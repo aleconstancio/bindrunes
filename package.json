@@ -2,6 +2,18 @@
   "name": "bindrunes",
   "version": "0.3.1",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aleconstancio/bindrunes.git"
+  },
+  "homepage": "https://github.com/aleconstancio/bindrunes#readme",
+  "bugs": {
+    "url": "https://github.com/aleconstancio/bindrunes/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./styles/*": "./src/styles/*",
