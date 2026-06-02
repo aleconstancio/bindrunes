@@ -19,9 +19,9 @@ export interface AuthStorage {
 }
 
 const DEFAULT_STORAGE: AuthStorage = {
-  getToken: () => typeof window !== 'undefined' ? localStorage.getItem('thoth_token') : null,
-  setToken: (token: string) => { if (typeof window !== 'undefined') localStorage.setItem('thoth_token', token); },
-  clearToken: () => { if (typeof window !== 'undefined') localStorage.removeItem('thoth_token'); },
+  getToken: () => typeof window !== 'undefined' ? localStorage.getItem('bindrunes_token') : null,
+  setToken: (token: string) => { if (typeof window !== 'undefined') localStorage.setItem('bindrunes_token', token); },
+  clearToken: () => { if (typeof window !== 'undefined') localStorage.removeItem('bindrunes_token'); },
 };
 
 /**

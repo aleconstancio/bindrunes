@@ -58,7 +58,7 @@ describe('createAuth', () => {
 	});
 
 	it('uses default localStorage storage when no storage option provided', async () => {
-		localStorage.setItem('thoth_token', 'tok_ls');
+		localStorage.setItem('bindrunes_token', 'tok_ls');
 		const auth = await mountComposable(() => createAuth());
 		expect(auth.token).toBe('tok_ls');
 		localStorage.clear();

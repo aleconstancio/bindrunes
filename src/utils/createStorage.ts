@@ -2,7 +2,7 @@
  * Typed localStorage wrapper with prefix.
  *
  * Usage:
- * const storage = createStorage('thoth');
+ * const storage = createStorage('myapp');
  * storage.set('token', 'abc123');
  * storage.get('token'); // 'abc123'
  * storage.remove('token');
