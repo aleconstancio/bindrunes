@@ -34,7 +34,7 @@
     "svelte-sonner": "^0.3.0"
   },
   "dependencies": {
-    "bits-ui": "^1.3.0",
+    "bits-ui": "^2.18.1",
     "valibot": "^1.4.1",
     "prosemirror-markdown": "^1.1.0",
     "prosemirror-model": "^1.22.0",
