@@ -22,13 +22,16 @@
 
 ```bash
 bun add bindrunes
+# or
+npm install bindrunes
 ```
 
 ### Peer dependencies
 
+You also need these peer dependencies installed in your project:
+
 ```bash
 bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
-bun add -D @tailwindcss/vite
 ```
 
 ### Tailwind setup
@@ -802,7 +805,7 @@ Utility classes: `.glass-panel`, `.glass-interactive`, `.text-gradient-violet`, 
 Follow the `createX()` pattern established by `createAuth`:
 
 ```ts
-// libs/ui/src/utils/createMyThing.svelte.ts
+// src/utils/createMyThing.svelte.ts
 export function createMyThing(options: Options): Result {
   let state = $state(initial);
   let derived = $derived(state > 0);
@@ -825,7 +828,7 @@ Use `.svelte.ts` extension for files containing runes. Export types alongside th
 ### Directory map
 
 ```
-libs/ui/src/
+src/
 ├── index.ts                            # barrel exports
 ├── actions/shortcut.ts                 # use:shortcut Svelte action
 ├── components/                         # Svelte components
@@ -880,10 +883,6 @@ libs/ui/src/
 ## Development
 
 ```bash
-# Dev servers
-bun run dev:web       # thoth-web dashboard
-bun run dev:docs      # thoth-docs catalog
-
 # Typecheck
 bun run check
 
@@ -899,4 +898,4 @@ bun run format        # biome auto-fix
 
 ## License
 
-MIT — see root [LICENSE](../../LICENSE).
+MIT — see [LICENSE](LICENSE).
