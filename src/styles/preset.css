@@ -57,3 +57,23 @@
   initial-value: 400ms;
   inherits: true;
 }
+@property --z-sidebar {
+  syntax: "<integer>";
+  initial-value: 20;
+  inherits: true;
+}
+@property --z-overlay {
+  syntax: "<integer>";
+  initial-value: 30;
+  inherits: true;
+}
+@property --z-toast {
+  syntax: "<integer>";
+  initial-value: 40;
+  inherits: true;
+}
+@property --z-omnibar {
+  syntax: "<integer>";
+  initial-value: 50;
+  inherits: true;
+}

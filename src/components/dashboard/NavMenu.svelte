@@ -18,7 +18,8 @@
           {#if typeof item.icon === 'string'}
             <span class="text-lg">{item.icon}</span>
           {:else}
-            <svelte:component this={item.icon} size={18} />
+            {@const Icon = item.icon}
+            <Icon size={18} />
           {/if}
           <div class="min-w-0">
             <span class="text-sm font-medium">{item.title}</span>

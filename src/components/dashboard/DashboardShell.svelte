@@ -97,11 +97,12 @@
         {@render sidebarHeader()}
       {:else if appName || brandIcon}
         <div class="flex items-center gap-3 py-1">
-          {#if brandIcon}
+            {#if brandIcon}
             {#if typeof brandIcon === 'string'}
               <span class="text-2xl">{brandIcon}</span>
             {:else}
-              <svelte:component this={brandIcon} size={24} style="color: var(--primary)" />
+              {@const BrandIcon = brandIcon}
+              <BrandIcon size={24} style="color: var(--primary)" />
             {/if}
           {/if}
           <div>

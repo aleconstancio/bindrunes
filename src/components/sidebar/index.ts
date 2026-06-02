@@ -1,10 +1,10 @@
 export { default as SidebarProvider } from './SidebarProvider.svelte';
 export { default as Sidebar } from './Sidebar.svelte';
 export { default as SidebarLayout } from './SidebarLayout.svelte';
-export { default as SidebarHeader } from './SidebarLayout.svelte';
-export { default as SidebarFooter } from './SidebarLayout.svelte';
-export { default as SidebarContent } from './SidebarLayout.svelte';
-export { default as SidebarSeparator } from './SidebarLayout.svelte';
+export { default as SidebarHeader } from './SidebarHeader.svelte';
+export { default as SidebarFooter } from './SidebarFooter.svelte';
+export { default as SidebarContent } from './SidebarContent.svelte';
+export { default as SidebarSeparator } from './SidebarSeparator.svelte';
 export { default as SidebarGroup } from './SidebarGroup.svelte';
 export { default as SidebarMenu } from './SidebarMenu.svelte';
 export { default as SidebarMenuItem } from './SidebarMenuItem.svelte';

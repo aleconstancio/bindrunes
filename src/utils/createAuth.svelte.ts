@@ -39,7 +39,7 @@ const DEFAULT_STORAGE: AuthStorage = {
  *   <Login onLogin={auth.login} />
  * {/if}
  */
-export function createAuth(options?: { storage?: AuthStorage; storageKey?: string }) {
+export function createAuth(options?: { storage?: AuthStorage; onLogout?: (t?: TFunction) => void }) {
   const storage = options?.storage ?? DEFAULT_STORAGE;
   let token = $state<string | null>(storage.getToken());
   let user = $state<User | null>(null);
@@ -79,7 +79,7 @@ export function createAuth(options?: { storage?: AuthStorage; storageKey?: strin
     if (typeof window !== 'undefined') {
       localStorage.removeItem('bindrunes_user');
     }
-    toast.info(t?.('auth.AuthGuard.loggedOut') ?? 'Sessão encerrada.');
+    options?.onLogout?.(t) ?? toast.info(t?.('auth.AuthGuard.loggedOut') ?? 'Sessão encerrada.');
   }
 
   function refreshToken(newToken: string) {
