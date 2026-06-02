@@ -1,5 +1,6 @@
 <script lang="ts">
   import { createAuth, type AuthStorage } from '../utils/createAuth.svelte.ts';
+  import { isSafeRedirect } from '../utils/url.ts';
 
   let {
     storage = undefined as AuthStorage | undefined,
@@ -18,6 +19,9 @@
     unauthorizedFallback?: string;
     children?: import('svelte').Snippet;
   } = $props();
+
+  const safeFallback = isSafeRedirect(fallback) ? fallback : '/login';
+  const safeUnauthorized = isSafeRedirect(unauthorizedFallback) ? unauthorizedFallback : '/403';
 
   const auth = createAuth({ storage });
 
@@ -39,12 +43,12 @@
   $effect(() => {
     if (typeof window === 'undefined') return;
     if (!auth.isAuthenticated) {
-      if (window.location.pathname !== fallback) {
-        window.location.href = fallback;
+      if (window.location.pathname !== safeFallback) {
+        window.location.href = safeFallback;
       }
     } else if (!accessGranted) {
-      if (window.location.pathname !== unauthorizedFallback) {
-        window.location.href = unauthorizedFallback;
+      if (window.location.pathname !== safeUnauthorized) {
+        window.location.href = safeUnauthorized;
       }
     }
   });

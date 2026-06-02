@@ -1,4 +1,5 @@
 import type { ComponentType } from 'svelte';
+import { isSafeRedirect } from './utils/url.ts';
 
 /**
  * A single navigation item.
@@ -50,7 +51,7 @@ export function deriveOmnibarOptions(groups: NavGroup[], options?: { idPrefix?: 
       label: item.title,
       description: item.description,
       category: group.label,
-      action: () => (window.location.href = item.to),
+      action: () => { if (isSafeRedirect(item.to)) window.location.href = item.to; },
     }))
   );
 }

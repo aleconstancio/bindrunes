@@ -150,6 +150,7 @@ export { default as ptBR } from './i18n/pt-BR.ts';
 // ── Utilities Core ──
 export { createStorage } from './utils/createStorage.ts';
 export { createEnv } from './utils/createEnv.ts';
+export { isSafeRedirect } from './utils/url.ts';
 export {
   formatDate, formatDateShort, formatDateTime, formatTime,
   formatRelative, formatNumber, formatPercentage, formatBytes,

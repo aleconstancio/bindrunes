@@ -880,6 +880,39 @@ src/
 
 ---
 
+## Security
+
+### Auth Token Storage
+
+The default `createAuth` stores tokens in **plaintext localStorage** (`bindrunes_token`). This is convenient for development but vulnerable to XSS-based token theft in production.
+
+**Recommended for production:** Use `httpOnly` cookies via a custom `AuthStorage`:
+
+```ts
+const auth = createAuth({
+  storage: {
+    getToken: () => getCookie('session_token'),  // server-set httpOnly cookie
+    setToken: () => {},  // no-op — server sets the cookie
+    clearToken: () => deleteCookie('session_token'),
+  },
+  onLogout: () => { window.location.href = '/login'; },
+});
+```
+
+### Open Redirect Protection
+
+`AuthGuard` validates `fallback` and `unauthorizedFallback` props to ensure they are relative paths (starting with `/`). Absolute URLs (`https://evil.com`) and protocol-relative URLs (`//evil.com`) are blocked and fall back to `/login` / `/403`.
+
+### SSE Connections
+
+`RealtimeClient` sends a `Bearer` token in the `Authorization` header. Ensure your SSE endpoint is served over **HTTPS** to prevent token interception.
+
+### Reporting Vulnerabilities
+
+If you discover a security issue, please report it privately via GitHub Security Advisories rather than opening a public issue.
+
+---
+
 ## Development
 
 ```bash
