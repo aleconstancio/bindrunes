@@ -1,0 +1,7 @@
+/* ══════════════════════════════════════════════════
+ * bindrunes — Core Styles (preset + utilities bundled)
+ * Usage: @import "bindrunes/core.css";
+ * ══════════════════════════════════════════════════ */
+
+@import "./preset.css";
+@import "./utilities.css";

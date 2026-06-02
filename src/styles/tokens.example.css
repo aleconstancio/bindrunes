@@ -1,0 +1,242 @@
+/* ─────────────────────────────────────────────────────
+ * bindrunes Design Token Contract — v0.2
+ *
+ * This file is a REFERENCE EXAMPLE for consumer projects.
+ * Each project (thoth-web, maze, vico) defines these tokens
+ * in their own app.css. bindrunes components read them.
+ *
+ * Architecture:
+ *   @layer tokens.base       — Required  tokens (surfaces, accents, borders)
+ *   @layer tokens.variants   — Derived  tokens (OKLCH-from base colors)
+ *   @layer tokens.motion     — Animation tokens
+ *   @layer tokens.sidebar    — Sidebar-specific tokens
+ *   @layer tokens.context    — Z-index scale
+ *
+ * Color strategy: OKLCH + `@property` for type safety + animation.
+ * ───────────────────────────────────────────────────── */
+
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════
+   STEP 1: Register typed custom properties with @property
+   ══════════════════════════════════════════════════════
+   These let the browser know the TYPE of each token:
+   - Optimizes paint/layout (browser preallocates memory)
+   - Enables CSS transitions/animations on the property
+   - Rejects invalid values (no silent failures)
+   ==================================================== */
+@property --radius {
+  syntax: "<length>";
+  initial-value: 0.625rem;
+  inherits: true;
+}
+
+@property --glass-blur {
+  syntax: "<length>";
+  initial-value: 16px;
+  inherits: true;
+}
+
+@property --duration-snappy {
+  syntax: "<time>";
+  initial-value: 150ms;
+  inherits: true;
+}
+
+@property --duration-fluid {
+  syntax: "<time>";
+  initial-value: 250ms;
+  inherits: true;
+}
+
+@property --duration-slow {
+  syntax: "<time>";
+  initial-value: 400ms;
+  inherits: true;
+}
+
+@property --z-sidebar {
+  syntax: "<integer>";
+  initial-value: 20;
+  inherits: true;
+}
+
+@property --z-overlay {
+  syntax: "<integer>";
+  initial-value: 30;
+  inherits: true;
+}
+
+@property --z-toast {
+  syntax: "<integer>";
+  initial-value: 40;
+  inherits: true;
+}
+
+@property --z-omnibar {
+  syntax: "<integer>";
+  initial-value: 50;
+  inherits: true;
+}
+
+/* ══════════════════════════════════════════════════════
+   STEP 2: Cascade layers — ordered by priority
+   ══════════════════════════════════════════════════════
+   Everything defined inside a layer can't override
+   something defined earlier in the cascade order.
+   ==================================================== */
+@layer tokens.base, tokens.variants, tokens.motion, tokens.sidebar, tokens.context;
+
+/* ══════════════════════════════════════════════════════
+   STEP 3: Map tokens to Tailwind v4 utility classes
+   ══════════════════════════════════════════════════════
+   This makes bindrunes tokens available as Tailwind
+   classnames: bg-primary, text-foreground, etc.
+   ==================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glass-surface: var(--glass-surface);
+  --color-glass-border: var(--glass-border);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ══════════════════════════════════════════════════════
+   STEP 4: Token defaults — override in your app.css
+   ══════════════════════════════════════════════════════
+   All tokens use OKLCH where possible for perceptual
+   uniformity and future color manipulation.
+   ==================================================== */
+@layer tokens.base {
+  :root {
+    /* ── Surfaces ──────────────────────────────── */
+    --background: oklch(0.05 0.01 290);         /* #0B0B11 */
+    --foreground: oklch(0.95 0.01 290);          /* #F8F8F2 */
+
+    --card: oklch(1 0 0 / 0.06);
+    --card-foreground: oklch(0.95 0.01 290);
+
+    --muted: oklch(1 0 0 / 0.04);
+    --muted-foreground: oklch(0.55 0.03 280);   /* #6272A4 */
+
+    --secondary: oklch(1 0 0 / 0.08);
+    --secondary-foreground: oklch(0.95 0.01 290);
+
+    /* ── Accents ───────────────────────────────── */
+    --primary: oklch(0.75 0.21 310);             /* #BD93F9 */
+    --primary-foreground: oklch(0.15 0 0);
+
+    --accent: oklch(0.72 0.30 340);              /* #FF79C6 */
+    --accent-foreground: oklch(0.15 0 0);
+
+    --destructive: oklch(0.65 0.24 30);           /* #FF5555 */
+    --destructive-foreground: oklch(0.95 0 0);
+
+    /* ── Borders & Inputs ──────────────────────── */
+    --border: oklch(1 0 0 / 0.08);
+    --input: oklch(1 0 0 / 0.06);
+    --ring: oklch(0.75 0.21 310);                 /* matches primary */
+  }
+}
+
+@layer tokens.variants {
+  :root {
+    /* Derived using OKLCH relative color syntax.
+     * These are optional — Tailwind's opacity modifiers
+     * (hover:opacity-90, bg-primary/10) can replace many.
+     *
+     * Examples:
+     *   --primary-hover:  oklch(from var(--primary) calc(l - 0.1) c h);
+     *   --primary-muted:  oklch(from var(--primary) l 0.5 c / 0.15);
+     *   --primary-glow:   oklch(from var(--primary) l 0.8 c / 0.25);
+     *
+     * Consumer projects can define these if they need
+     * custom hover/glow/muted values beyond opacity.
+     */
+  }
+}
+
+@layer tokens.motion {
+  :root {
+    --duration-snappy: 150ms;
+    --duration-fluid: 250ms;
+    --duration-slow: 400ms;
+    --easing-default: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@layer tokens.sidebar {
+  :root {
+    --sidebar-background: oklch(0.05 0.01 290);  /* matches --background */
+    --sidebar-foreground: oklch(0.95 0.01 290);   /* matches --foreground */
+    --sidebar-primary: oklch(0.75 0.21 310);       /* matches --primary */
+    --sidebar-primary-foreground: oklch(0.15 0 0);
+    --sidebar-accent: oklch(1 0 0 / 0.06);
+    --sidebar-accent-foreground: oklch(0.95 0.01 290);
+    --sidebar-border: oklch(1 0 0 / 0.08);
+    --sidebar-ring: oklch(0.75 0.21 310);
+  }
+}
+
+@layer tokens.context {
+  :root {
+    --z-sidebar: 20;
+    --z-overlay: 30;
+    --z-toast: 40;
+    --z-omnibar: 50;
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   Archetype / Runtime theme switching (optional)
+   ══════════════════════════════════════════════════════
+   Inspired by orb's 5 archetypes. Override any token
+   inside a data-theme selector.
+
+   [data-theme="dracula"] {
+     --primary: oklch(0.75 0.21 310);  // purple
+   }
+   [data-theme="martian"] {
+     --primary: oklch(0.65 0.28 30);   // red
+   }
+   [data-theme="akashic"] {
+     --primary: oklch(0.70 0.18 250);  // blue
+   }
+   [data-theme="alchemy"] {
+     --primary: oklch(0.80 0.20 80);   // gold
+   }
+   [data-theme="druidic"] {
+     --primary: oklch(0.75 0.22 150);  // green
+   }
+   ==================================================== */
+
+/* ══════════════════════════════════════════════════════
+   Base styles (optional, not bundled by bindrunes)
+   ══════════════════════════════════════════════════════ */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui);
+}

@@ -1,0 +1,134 @@
+import { toast } from 'svelte-sonner';
+
+type TFunction = (key: string, params?: Record<string, string | number>) => string;
+
+export type User = {
+  id: string;
+  email: string;
+  name?: string;
+  avatar?: string;
+  roles: string[];
+  permissions: string[];
+  tenantId?: string;
+};
+
+export interface AuthStorage {
+  getToken(): string | null;
+  setToken(token: string): void;
+  clearToken(): void;
+}
+
+const DEFAULT_STORAGE: AuthStorage = {
+  getToken: () => typeof window !== 'undefined' ? localStorage.getItem('thoth_token') : null,
+  setToken: (token: string) => { if (typeof window !== 'undefined') localStorage.setItem('thoth_token', token); },
+  clearToken: () => { if (typeof window !== 'undefined') localStorage.removeItem('thoth_token'); },
+};
+
+/**
+ * Reactive auth composable for Svelte 5.
+ *
+ * Usage:
+ * <script>
+ *   import { createAuth } from 'bindrunes';
+ *   const auth = createAuth({ storage: { getToken, setToken, clearToken } });
+ * </script>
+ *
+ * {#if auth.isAuthenticated}
+ *   <ProtectedContent />
+ * {:else}
+ *   <Login onLogin={auth.login} />
+ * {/if}
+ */
+export function createAuth(options?: { storage?: AuthStorage; storageKey?: string }) {
+  const storage = options?.storage ?? DEFAULT_STORAGE;
+  let token = $state<string | null>(storage.getToken());
+  let user = $state<User | null>(null);
+
+  const isAuthenticated = $derived(!!token);
+  const roles = $derived(user?.roles ?? []);
+  const permissions = $derived(user?.permissions ?? []);
+  const tenantId = $derived(user?.tenantId);
+
+  // Initialize user from localStorage
+  if (typeof window !== 'undefined') {
+    const storedUser = localStorage.getItem('bindrunes_user');
+    if (storedUser) {
+      try {
+        user = JSON.parse(storedUser);
+      } catch {
+        localStorage.removeItem('bindrunes_user');
+      }
+    }
+  }
+
+  function login(newToken: string, userData?: User) {
+    token = newToken;
+    storage.setToken(newToken);
+    if (userData) {
+      user = userData;
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('bindrunes_user', JSON.stringify(userData));
+      }
+    }
+  }
+
+  function logout(t?: TFunction) {
+    token = null;
+    user = null;
+    storage.clearToken();
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('bindrunes_user');
+    }
+    toast.info(t?.('auth.AuthGuard.loggedOut') ?? 'Sessão encerrada.');
+  }
+
+  function refreshToken(newToken: string) {
+    token = newToken;
+    storage.setToken(newToken);
+  }
+
+  function setUser(userData: User) {
+    user = userData;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('bindrunes_user', JSON.stringify(userData));
+    }
+  }
+
+  function hasRole(role: string): boolean {
+    return roles.includes(role);
+  }
+
+  function hasAnyRole(roleList: string[]): boolean {
+    return roleList.some(r => roles.includes(r));
+  }
+
+  function hasPermission(permission: string): boolean {
+    return permissions.includes(permission) || permissions.includes('*');
+  }
+
+  function hasAllRequired(permissionList: string[]): boolean {
+    return permissionList.every(p => hasPermission(p));
+  }
+
+  function hasAnyPermission(permissionList: string[]): boolean {
+    return permissionList.some(p => hasPermission(p));
+  }
+
+  return {
+    get token() { return token; },
+    get isAuthenticated() { return isAuthenticated; },
+    get user() { return user; },
+    get roles() { return roles; },
+    get permissions() { return permissions; },
+    get tenantId() { return tenantId; },
+    login,
+    logout,
+    refreshToken,
+    setUser,
+    hasRole,
+    hasAnyRole,
+    hasPermission,
+    hasAllRequired,
+    hasAnyPermission,
+  };
+}

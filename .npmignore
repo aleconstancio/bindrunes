@@ -1,0 +1,8 @@
+__tests__/
+tests/
+coverage/
+vitest.config.ts
+tsconfig.json
+svelte.config.js
+.github/
+.git/
