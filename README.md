@@ -18,7 +18,58 @@
 - Module-level cache for request deduplication (`queryCache`)
 - Pluggable auth via `createAuth` + `AuthGuard`
 
-## Installation
+## Why Svelte + SvelteKit
+
+We evaluated React, Vue, Angular, and Flutter-for-web before choosing Svelte. Here's why:
+
+### Compile-time reactivity (no virtual DOM)
+
+Svelte compiles components to vanilla JS at build time. There's no runtime framework overhead — the output is direct DOM manipulation. This means:
+- **Smaller bundles** — Svelte apps are typically 2-5x smaller than React equivalents
+- **Faster initial load** — less JavaScript to download and parse
+- **No runtime diffing** — state changes update the DOM directly, not via virtual DOM reconciliation
+
+For a B2B SaaS dashboard where users spend hours daily, this translates to snappier interactions and lower resource usage.
+
+### Svelte 5 runes (`$state`, `$derived`, `$effect`)
+
+Svelte 5 introduced runes — compiler-level reactivity primitives that replace the older `let`/`$:` syntax. They provide:
+- **Fine-grained reactivity** — only the DOM nodes that depend on changed state re-render
+- **TypeScript-native** — runes work with full type inference, no codegen tricks
+- **Composable patterns** — `$state` + `$derived` + `$effect` enable clean `createX()` composables (similar to Vue's Composition API or React hooks, but without the closure/stale-value pitfalls)
+
+### SvelteKit for routing + SSR
+
+SvelteKit provides file-based routing, server-side rendering, and static site generation — all with zero configuration. For VICO's landing page (SSG) and dashboard (SPA), SvelteKit handles both modes seamlessly.
+
+### Tailwind CSS v4 integration
+
+SvelteKit's Vite-based build system integrates natively with Tailwind CSS v4 via `@tailwindcss/vite`. No PostCSS configuration, no build-step hacks — just import and go.
+
+### Why not React/Vue/Angular
+
+| Factor | Svelte | React | Vue | Angular |
+|--------|--------|-------|-----|---------|
+| Bundle size | ~15KB runtime | ~45KB runtime | ~30KB runtime | ~65KB runtime |
+| Reactivity model | Compile-time (runes) | Runtime (hooks/re-render) | Runtime (Proxy) | Runtime (Zone.js) |
+| TypeScript | Native inference | JSX transform | SFC transform | Native |
+| Learning curve | Low (HTML-first) | Medium (JSX + hooks) | Low-Medium | High (decorators + DI) |
+| Ecosystem maturity | Growing fast | Largest | Large | Enterprise-focused |
+| Mobile (Capacitor) | ✅ | ✅ | ✅ | ✅ |
+
+Svelte's ecosystem is smaller than React's, but for a focused B2B product with a defined component set (like bindrunes), this is not a limitation — it's a feature. We build exactly what we need.
+
+### Why not Flutter-for-web
+
+Flutter renders via CanvasKit (WebGL), producing a canvas instead of native DOM. This means:
+- No semantic HTML → poor SEO
+- Large bundle sizes (2-5MB+ including the Dart runtime + Skia engine)
+- No native browser forms, scroll behavior, or accessibility
+- Slow initial load on mobile
+
+Flutter is excellent for mobile/desktop apps. For web landing pages and SaaS dashboards, native web technologies (HTML/CSS/JS) are the right choice.
+
+---
 
 ```bash
 bun add bindrunes

@@ -1,6 +1,6 @@
 {
   "name": "bindrunes",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "type": "module",
   "license": "MIT",
   "repository": {
@@ -14,16 +14,22 @@
   "publishConfig": {
     "access": "public"
   },
+  "svelte": "./dist/index.js",
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./styles/*": "./src/styles/*",
-    "./actions/*": "./src/actions/*",
-    "./utils/*": "./src/utils/*",
-    "./components/*": "./src/components/*",
-    "./i18n/*": "./src/i18n/*"
+    "./actions/*": "./dist/actions/*",
+    "./utils/*": "./dist/utils/*",
+    "./components/*": "./dist/components/*",
+    "./i18n/*": "./dist/i18n/*"
   },
   "files": [
-    "src",
+    "dist",
+    "src/styles",
     "README.md"
   ],
   "peerDependencies": {
@@ -46,6 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@sveltejs/package": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tailwindcss/vite": "^4.3.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -63,6 +70,8 @@
     "localforage": "^1.10.0"
   },
   "scripts": {
+    "build": "svelte-package -i src -o dist",
+    "prepublishOnly": "bun run build",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
     "test": "vitest run",
