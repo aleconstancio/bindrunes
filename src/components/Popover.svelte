@@ -40,10 +40,10 @@
 
 <style>
   :global(.animate-popover-fade-in) {
-    animation: popover-fade-in var(--duration-snappy, 150ms) ease-out forwards;
+    animation: popover-fade-in var(--duration-snappy, 120ms) var(--ease-standard) forwards;
   }
   :global(.animate-popover-fade-out) {
-    animation: popover-fade-out var(--duration-snappy, 150ms) ease-in forwards;
+    animation: popover-fade-out var(--duration-snappy, 120ms) var(--ease-standard) forwards;
   }
 
   @keyframes popover-fade-in {

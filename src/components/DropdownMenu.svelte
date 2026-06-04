@@ -33,7 +33,7 @@
         <BitsDropdown.Item
           disabled={item.disabled}
           onclick={() => onSelect?.(item.value)}
-          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
+          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-body-md
                  text-foreground hover:bg-muted focus:outline-none focus:bg-muted"
         >
           {item.label}

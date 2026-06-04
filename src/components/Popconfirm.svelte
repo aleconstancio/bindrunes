@@ -42,9 +42,9 @@
 
   <div class="space-y-3 min-w-[220px]">
     <div>
-      <p class="text-sm font-semibold" style="color: var(--foreground);">{title}</p>
+      <p class="text-title-3" style="color: var(--foreground);">{title}</p>
       {#if description}
-        <p class="text-xs mt-1" style="color: var(--muted-foreground);">{description}</p>
+        <p class="text-body-sm mt-1" style="color: var(--muted-foreground);">{description}</p>
       {/if}
     </div>
     <div class="flex items-center gap-2 justify-end">
