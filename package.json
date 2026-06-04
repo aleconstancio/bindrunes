@@ -21,6 +21,15 @@
       "svelte": "./dist/index.js",
       "default": "./dist/index.js"
     },
+    "./landing": {
+      "types": "./dist/components/landing/index.d.ts",
+      "svelte": "./dist/components/landing/index.js",
+      "default": "./dist/components/landing/index.js"
+    },
+    "./tailwind": {
+      "types": "./dist/tailwind-plugin.d.ts",
+      "default": "./dist/tailwind-plugin.js"
+    },
     "./styles/*": "./src/styles/*",
     "./actions/*": "./dist/actions/*",
     "./utils/*": "./dist/utils/*",
