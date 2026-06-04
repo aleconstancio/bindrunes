@@ -6,7 +6,7 @@
 
   let {
     t = undefined as TFunction | undefined,
-    form = undefined as FormState<any> | undefined,
+    form = undefined as FormState<Record<string, import('valibot').BaseSchema<any, any, any>>> | undefined,
     submitLabel = t?.('form.Form.submit') ?? 'Submit',
     loading = false,
     disabled = false,
@@ -18,7 +18,7 @@
     children,
   }: {
     t?: TFunction;
-    form?: FormState<any>;
+    form?: FormState<Record<string, import('valibot').BaseSchema<any, any, any>>>;
     submitLabel?: string;
     loading?: boolean;
     disabled?: boolean;

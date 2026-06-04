@@ -13,7 +13,7 @@
     Legend,
     Filler,
   } from 'chart.js';
-
+  import type { ChartData, ChartOptions } from 'chart.js';
   ChartJS.register(
     CategoryScale, LinearScale, PointElement, LineElement,
     BarElement, ArcElement, RadialLinearScale, Tooltip, Legend, Filler
@@ -28,8 +28,8 @@
     class: className = '',
   }: {
     type?: ChartType;
-    data: any;
-    options?: any;
+    data: ChartData<'line' | 'bar' | 'doughnut' | 'radar' | 'scatter', (number | [number, number] | import('chart.js').Point | import('chart.js').BubbleDataPoint)[], unknown>;
+    options?: ChartOptions<'line' | 'bar' | 'doughnut' | 'radar' | 'scatter'>;
     class?: string;
   } = $props();
 </script>

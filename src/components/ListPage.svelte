@@ -11,7 +11,7 @@
     description = undefined as string | undefined,
     backHref = undefined as string | undefined,
     breadcrumbs = [] as { label: string; href?: string }[],
-    query = undefined as any,
+    query = undefined as { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: unknown[] } | undefined,
     searchValue = $bindable(''),
     searchPlaceholder = 'Search...',
     emptyTitle = 'No results',
@@ -25,7 +25,7 @@
     description?: string;
     backHref?: string;
     breadcrumbs?: { label: string; href?: string }[];
-    query?: any;
+    query?: { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: unknown[] };
     searchValue?: string;
     searchPlaceholder?: string;
     emptyTitle?: string;

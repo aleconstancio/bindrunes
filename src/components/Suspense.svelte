@@ -7,14 +7,14 @@
 
   let {
     t = undefined as TFunction | undefined,
-    state = { status: 'loading' as const } as DataState<any>,
+    state = { status: 'loading' as const } as DataState<unknown>,
     loadingContent,
     empty,
     error,
     children,
   }: {
     t?: TFunction;
-    state?: DataState<any>;
+    state?: DataState<unknown>;
     loadingContent?: import('svelte').Snippet;
     empty?: import('svelte').Snippet;
     error?: import('svelte').Snippet;

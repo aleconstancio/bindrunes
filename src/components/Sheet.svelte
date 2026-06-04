@@ -20,7 +20,7 @@
     children?: import('svelte').Snippet;
   } = $props();
 
-  const transitions: Record<string, { in: any; out: any }> = {
+  const transitions: Record<string, Record<string, Record<string, unknown>>> = {
     left:   { in: { x: -300, duration: 250 }, out: { x: -300, duration: 200 } },
     right:  { in: { x: 300, duration: 250 },  out: { x: 300, duration: 200 } },
     top:    { in: { y: -300, duration: 250 }, out: { y: -300, duration: 200 } },
