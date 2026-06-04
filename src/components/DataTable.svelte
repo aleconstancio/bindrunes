@@ -53,21 +53,25 @@
   }
 </script>
 
-<div class="w-full overflow-x-auto rounded-[--radius] border" style="border-color: var(--border)">
+<div class="w-full overflow-x-auto rounded-[--radius] border border-border">
   <table class="w-full text-sm">
     <caption class="sr-only">Data table</caption>
     <thead>
-      <tr style="border-bottom: 1px solid var(--border); background: var(--muted)">
+      <tr class="border-b border-border bg-muted">
         {#each columns as col}
-          <th class="px-4 py-3 text-xs font-bold uppercase tracking-[0.05em] select-none"
-            style="{col.align === 'right' ? 'text-align: right;' : col.align === 'center' ? 'text-align: center;' : 'text-align: left;'}; color: var(--muted-foreground); {col.width ? 'width: ' + col.width + ';' : ''}"
+          <th class="px-4 py-3 text-xs font-bold uppercase tracking-[0.05em] select-none text-muted-foreground"
+            class:text-right={col.align === 'right'}
+            class:text-center={col.align === 'center'}
+            class:text-left={col.align !== 'right' && col.align !== 'center'}
+            style={col.width ? `width: ${col.width};` : undefined}
             role="columnheader"
             aria-sort={col.sortable ? (sort?.key === col.key ? (sort.direction === 'asc' ? 'ascending' : 'descending') : 'none') : undefined}>
             {#if col.sortable}
               <button
                 type="button"
-                class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-wider"
-                style="color: var(--muted-foreground); {col.align === 'right' ? 'margin-left: auto;' : col.align === 'center' ? 'margin-left: auto; margin-right: auto;' : ''}"
+                class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-wider text-muted-foreground"
+                class:ml-auto={col.align === 'right'}
+                class:mx-auto={col.align === 'center'}
                 onclick={() => toggleSort(col.key)}
               >
                 {col.label}
@@ -85,28 +89,31 @@
     <tbody>
       {#if loading}
         {#each { length: 5 } as _, i}
-          <tr style="border-bottom: 1px solid var(--border);">
+          <tr class="border-b border-border">
             {#each columns as col, j}
               <td class="px-4 py-3">
-                <div class="animate-thoth-shimmer rounded-[--radius]" style="width: {getSkeletonWidth(j)}; height: 1em; background: var(--muted);"></div>
+                <div class="animate-thoth-shimmer rounded-[--radius] bg-muted h-4" style="width: {getSkeletonWidth(j)};"></div>
               </td>
             {/each}
           </tr>
         {/each}
       {:else if rows.length === 0}
         <tr>
-          <td colspan={columns.length} class="px-4 py-12 text-center text-sm" style="color: var(--muted-foreground)">{emptyText}</td>
+          <td colspan={columns.length} class="px-4 py-12 text-center text-sm text-muted-foreground">{emptyText}</td>
         </tr>
       {:else}
         {#each rows as row, i}
-          <tr class="transition-colors {hoverable ? 'hover:bg-muted/50' : ''} {striped && i % 2 === 1 ? 'bg-muted/30' : ''} {rowClass ? rowClass(row, i) : ''} {selectedIndex === i ? 'bg-muted/60 ring-1 ring-inset ring-border translate-x-0.5 shadow-sm' : ''}"
-            style="border-bottom: 1px solid var(--border); {onRowClick ? 'cursor: pointer;' : ''}"
+          <tr class="transition-colors border-b border-border {hoverable ? 'hover:bg-muted/50' : ''} {striped && i % 2 === 1 ? 'bg-muted/30' : ''} {rowClass ? rowClass(row, i) : ''} {selectedIndex === i ? 'bg-muted/60 ring-1 ring-inset ring-border translate-x-0.5 shadow-sm' : ''}"
+            class:cursor-pointer={!!onRowClick}
             onclick={() => onRowClick?.(row, i)}
             onkeydown={onRowClick ? (e: KeyboardEvent) => { if (e.key === 'Enter') onRowClick?.(row, i); } : undefined}
             tabindex={onRowClick ? 0 : -1}
             aria-selected={selectedIndex === i || undefined}>
             {#each columns as col}
-              <td class="px-4 py-3" style="{col.align === 'right' ? 'text-align: right;' : col.align === 'center' ? 'text-align: center;' : 'text-align: left;'}; color: var(--foreground)">
+              <td class="px-4 py-3 text-foreground"
+                class:text-right={col.align === 'right'}
+                class:text-center={col.align === 'center'}
+                class:text-left={col.align !== 'right' && col.align !== 'center'}>
                 {#if col.cell}
                   {@render col.cell(row, i)}
                 {:else}
@@ -121,8 +128,8 @@
   </table>
 
   {#if totalPages > 1}
-    <div class="px-4 py-3 flex items-center justify-between" style="border-top: 1px solid var(--border);">
-      <span class="text-xs" style="color: var(--muted-foreground)">{t('table.page', { current: currentPage, total: totalPages })}</span>
+    <div class="px-4 py-3 flex items-center justify-between border-t border-border">
+      <span class="text-xs text-muted-foreground">{t('table.page', { current: currentPage, total: totalPages })}</span>
       <Pagination {currentPage} {totalPages} {onPageChange} siblingCount={1} />
     </div>
   {/if}

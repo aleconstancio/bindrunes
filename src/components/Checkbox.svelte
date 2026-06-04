@@ -15,7 +15,7 @@
     {required}
     bind:checked
     class="flex h-4 w-4 shrink-0 items-center justify-center rounded-[--radius-sm,4px] border transition-colors duration-[--duration-snappy]
-           data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground
+           data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-foreground
            data-[state=unchecked]:bg-input data-[state=unchecked]:border-border
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
   >

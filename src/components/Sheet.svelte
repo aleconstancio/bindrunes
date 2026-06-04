@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { fly, fade } from 'svelte/transition';
-  import { onDestroy } from 'svelte';
+  import { Dialog as BitsDialog } from 'bits-ui';
 
   let {
     open = $bindable(false),
@@ -20,18 +19,11 @@
     children?: import('svelte').Snippet;
   } = $props();
 
-  const transitions: Record<string, Record<string, Record<string, unknown>>> = {
-    left:   { in: { x: -300, duration: 250 }, out: { x: -300, duration: 200 } },
-    right:  { in: { x: 300, duration: 250 },  out: { x: 300, duration: 200 } },
-    top:    { in: { y: -300, duration: 250 }, out: { y: -300, duration: 200 } },
-    bottom: { in: { y: 300, duration: 250 },  out: { y: 300, duration: 200 } },
-  };
-
   const positionStyles: Record<string, string> = {
-    left:   'inset-y-0 left-0',
-    right:  'inset-y-0 right-0',
-    top:    'inset-x-0 top-0',
-    bottom: 'inset-x-0 bottom-0',
+    left:   'inset-y-0 left-0 border-r',
+    right:  'inset-y-0 right-0 border-l',
+    top:    'inset-x-0 top-0 border-b',
+    bottom: 'inset-x-0 bottom-0 border-t',
   };
 
   const sizeStyles: Record<string, string> = {
@@ -40,116 +32,126 @@
     top:    'w-full h-[300px] max-h-[80vh]',
     bottom: 'w-full h-[300px] max-h-[80vh]',
   };
-
-  let previouslyFocused = $state<HTMLElement | null>(null);
-  let panelEl = $state<HTMLElement>();
-  let keydownHandler: ((e: KeyboardEvent) => void) | null = null;
-
-  function trapFocus(e: KeyboardEvent) {
-    if (e.key !== 'Tab' || !panelEl) return;
-    const focusable = panelEl.querySelectorAll<HTMLElement>(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    if (focusable.length === 0) return;
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (e.shiftKey && document.activeElement === first) {
-      e.preventDefault();
-      last.focus();
-    } else if (!e.shiftKey && document.activeElement === last) {
-      e.preventDefault();
-      first.focus();
-    }
-  }
-
-  $effect(() => {
-    if (open) {
-      previouslyFocused = document.activeElement as HTMLElement;
-      setTimeout(() => panelEl?.focus(), 50);
-      keydownHandler = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') close();
-        trapFocus(e);
-      };
-      document.addEventListener('keydown', keydownHandler);
-    } else {
-      if (keydownHandler) {
-        document.removeEventListener('keydown', keydownHandler);
-        keydownHandler = null;
-      }
-      previouslyFocused?.focus();
-    }
-  });
-
-  onDestroy(() => {
-    if (keydownHandler) {
-      document.removeEventListener('keydown', keydownHandler);
-    }
-  });
-
-  function close() {
-    open = false;
-  }
-
-  function handleBackdropClick() {
-    close();
-  }
 </script>
 
-{#if open}
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div
-    class="fixed inset-0 z-50"
-    transition:fade={{ duration: 200 }}
-  >
-    <!-- Backdrop -->
-    <div
-      class="absolute inset-0"
-      style="background: oklch(0 0 0 / 0.5); backdrop-filter: blur(4px);"
-      onclick={handleBackdropClick}
-    ></div>
-
-    <!-- Panel -->
-    <div
-      bind:this={panelEl}
-      tabindex="-1"
-      class="absolute {positionStyles[side]} {sizeStyles[side]} {className}"
-      style="background: var(--background); border-color: var(--border); z-index: 1;"
-      transition:fly={transitions[side]}
-      role="dialog"
-      aria-modal="true"
-      aria-label={title ?? 'Sheet'}
+<BitsDialog.Root bind:open>
+  <BitsDialog.Portal>
+    <BitsDialog.Overlay
+      class="fixed inset-0 z-[--z-overlay,30] bg-black/50 backdrop-blur-sm
+             data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out"
+    />
+    <BitsDialog.Content
+      class="fixed z-[--z-overlay,30] bg-background border-border flex flex-col sheet-{side} {positionStyles[side]} {sizeStyles[side]} {className}
+             focus:outline-none"
     >
-      <div class="flex flex-col h-full">
-        {#if header || title}
-          <div class="flex items-center justify-between p-4 border-b" style="border-color: var(--border);">
-            {#if header}
-              {@render header()}
-            {:else if title}
-              <h2 class="text-lg font-semibold" style="color: var(--foreground);">{title}</h2>
-            {/if}
-            <button
-              onclick={close}
-              class="p-1 rounded transition-colors"
-              style="color: var(--muted-foreground);"
-              aria-label="Close"
-              onmouseenter={(e) => { e.currentTarget.style.color = 'var(--foreground)'; }}
-              onmouseleave={(e) => { e.currentTarget.style.color = 'var(--muted-foreground)'; }}
-            >
-              ×
-            </button>
-          </div>
-        {/if}
-
-        <div class="flex-1 overflow-y-auto p-4">
-          {@render children?.()}
+      {#if header || title}
+        <div class="flex items-center justify-between p-4 border-b border-border">
+          {#if header}
+            {@render header()}
+          {:else if title}
+            <BitsDialog.Title class="text-lg font-semibold text-foreground">{title}</BitsDialog.Title>
+          {/if}
+          <BitsDialog.Close
+            class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer select-none"
+            aria-label="Close"
+          >
+            ×
+          </BitsDialog.Close>
         </div>
+      {/if}
 
-        {#if footer}
-          <div class="p-4 border-t" style="border-color: var(--border);">
-            {@render footer()}
-          </div>
-        {/if}
+      <div class="flex-1 overflow-y-auto p-4">
+        {@render children?.()}
       </div>
-    </div>
-  </div>
-{/if}
+
+      {#if footer}
+        <div class="p-4 border-t border-border">
+          {@render footer()}
+        </div>
+      {/if}
+    </BitsDialog.Content>
+  </BitsDialog.Portal>
+</BitsDialog.Root>
+
+<style>
+  :global(.animate-fade-in) {
+    animation: fade-in var(--duration-fluid, 250ms) ease-out forwards;
+  }
+  :global(.animate-fade-out) {
+    animation: fade-out var(--duration-snappy, 150ms) ease-in forwards;
+  }
+
+  /* Sheet slide animations */
+  :global([data-state="open"].sheet-left) {
+    animation: slide-in-left var(--duration-fluid, 250ms) ease-out forwards;
+  }
+  :global([data-state="closed"].sheet-left) {
+    animation: slide-out-left var(--duration-snappy, 150ms) ease-in forwards;
+  }
+
+  :global([data-state="open"].sheet-right) {
+    animation: slide-in-right var(--duration-fluid, 250ms) ease-out forwards;
+  }
+  :global([data-state="closed"].sheet-right) {
+    animation: slide-out-right var(--duration-snappy, 150ms) ease-in forwards;
+  }
+
+  :global([data-state="open"].sheet-top) {
+    animation: slide-in-top var(--duration-fluid, 250ms) ease-out forwards;
+  }
+  :global([data-state="closed"].sheet-top) {
+    animation: slide-out-top var(--duration-snappy, 150ms) ease-in forwards;
+  }
+
+  :global([data-state="open"].sheet-bottom) {
+    animation: slide-in-bottom var(--duration-fluid, 250ms) ease-out forwards;
+  }
+  :global([data-state="closed"].sheet-bottom) {
+    animation: slide-out-bottom var(--duration-snappy, 150ms) ease-in forwards;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  @keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes slide-out-right {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+  }
+
+  @keyframes slide-in-top {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-out-top {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100%); }
+  }
+
+  @keyframes slide-in-bottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes slide-out-bottom {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+</style>

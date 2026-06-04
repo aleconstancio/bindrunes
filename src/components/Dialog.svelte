@@ -40,7 +40,7 @@
       {/if}
 
       {#if title}
-        <h2 class="text-lg font-semibold mb-4">{title}</h2>
+        <BitsDialog.Title class="text-lg font-semibold mb-4">{title}</BitsDialog.Title>
       {/if}
 
       {#if children}

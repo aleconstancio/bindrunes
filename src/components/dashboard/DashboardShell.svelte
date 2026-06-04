@@ -75,8 +75,7 @@
 
 {#if variant === 'topnav'}
   <div class="flex flex-col min-h-screen">
-    <header class="sticky top-0 z-20 shrink-0 transition-all duration-300 border-b"
-      style="background: oklch(from var(--background) l c h / 0.45); backdrop-filter: blur(12px); border-color: var(--border);">
+    <header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-300">
       <div class="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <div class="flex items-center gap-6">
           {#if brandIcon}
@@ -88,7 +87,7 @@
             {/if}
           {/if}
           {#if appName}
-            <span class="text-sm font-bold uppercase tracking-[0.2em]" style="color: var(--muted-foreground)">{appName}</span>
+            <span class="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground">{appName}</span>
           {/if}
           <nav class="hidden md:flex items-center gap-1">
             {#each navigation as group}
@@ -96,7 +95,10 @@
                 <a
                   href={item.to}
                   class="px-3 py-1.5 text-sm rounded transition-colors"
-                  style="color: {pagePath.startsWith(item.to) ? 'var(--foreground)' : 'var(--muted-foreground)'}; background: {pagePath.startsWith(item.to) ? 'var(--muted)' : 'transparent'};"
+                  class:text-foreground={pagePath.startsWith(item.to)}
+                  class:text-muted-foreground={!pagePath.startsWith(item.to)}
+                  class:bg-muted={pagePath.startsWith(item.to)}
+                  class:bg-transparent={!pagePath.startsWith(item.to)}
                 >
                   {item.title}
                 </a>
@@ -142,9 +144,9 @@
               {/if}
             {/if}
             <div>
-              <p class="text-xs font-bold uppercase tracking-[0.26em]" style="color: var(--muted-foreground)">{appName}</p>
+              <p class="text-xs font-bold uppercase tracking-[0.26em] text-muted-foreground">{appName}</p>
               {#if appSubtitle}
-                <p class="text-base font-semibold tracking-tight" style="color: var(--foreground)">{appSubtitle}</p>
+                <p class="text-base font-semibold tracking-tight text-foreground">{appSubtitle}</p>
               {/if}
             </div>
           </div>
@@ -153,10 +155,10 @@
 
       <SidebarLayout position="content">
         {#if variant === 'default' && scopeLabel}
-          <div class="rounded-[--radius] p-3 mb-4" style="background: var(--card); border: 1px solid var(--border)">
-            <p class="mono text-[0.65rem] font-bold uppercase tracking-[0.1em]" style="color: var(--muted-foreground)">{scopeLabel}</p>
-            {#if scopeTitle}<p class="text-sm font-semibold mt-1" style="color: var(--foreground)">{scopeTitle}</p>{/if}
-            {#if scopeDescription}<p class="text-xs mt-0.5" style="color: var(--muted-foreground)">{scopeDescription}</p>{/if}
+          <div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
+            <p class="mono text-[0.65rem] font-bold uppercase tracking-[0.1em] text-muted-foreground">{scopeLabel}</p>
+            {#if scopeTitle}<p class="text-sm font-semibold mt-1 text-foreground">{scopeTitle}</p>{/if}
+            {#if scopeDescription}<p class="text-xs mt-0.5 text-muted-foreground">{scopeDescription}</p>{/if}
           </div>
         {/if}
         <NavMenu groups={navigation} pathname={pagePath} />
@@ -177,18 +179,17 @@
     </Sidebar>
 
     <div class="flex-1 flex flex-col min-w-0 h-screen">
-      <header class="sticky top-0 z-20 shrink-0 transition-all duration-300 border-b"
-        style="background: oklch(from var(--background) l c h / 0.45); background: color-mix(in srgb, var(--background) 45%, transparent); backdrop-filter: blur(12px); border-color: var(--border);">
+      <header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-300">
         <div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
           <div class="flex min-w-0 items-center gap-3">
             <SidebarTrigger />
             <div class="min-w-0">
               {#if headerPrefix}
-                <p class="text-xs font-bold uppercase tracking-[0.24em]" style="color: var(--muted-foreground)">{headerPrefix}</p>
+                <p class="text-xs font-bold uppercase tracking-[0.24em] text-muted-foreground">{headerPrefix}</p>
               {/if}
-              <h1 class="truncate text-xl font-semibold tracking-tight" style="color: var(--foreground)">{resolvedTitle}</h1>
+              <h1 class="truncate text-xl font-semibold tracking-tight text-foreground">{resolvedTitle}</h1>
               {#if resolvedDescription}
-                <p class="hidden text-sm md:block" style="color: var(--muted-foreground)">{resolvedDescription}</p>
+                <p class="hidden text-sm md:block text-muted-foreground">{resolvedDescription}</p>
               {/if}
             </div>
           </div>

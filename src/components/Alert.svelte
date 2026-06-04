@@ -23,8 +23,7 @@
   };
 </script>
 
-<div class="rounded-[--radius] border border-l-4 bg-card p-4 {vars[variant]}"
-  style="border-color: var(--border); border-left-color: inherit;">
+<div class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {vars[variant]}">
   <div class="flex items-start gap-3">
     {#if icon}
       <div class="mt-0.5 text-muted-foreground">{@render icon()}</div>

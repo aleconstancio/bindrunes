@@ -14,7 +14,11 @@
     <SidebarMenu>
       {#each group.items as item}
         {@const isActive = (item.match ?? item.to) ? pathname.startsWith(item.match ?? item.to) : false}
-        <SidebarMenuButton isActive={isActive}>
+        <SidebarMenuButton
+          isActive={isActive}
+          href={item.to}
+          onclick={onNavigate ? (e) => { e.preventDefault(); onNavigate?.(item.to); } : undefined}
+        >
           {#if typeof item.icon === 'string'}
             <span class="text-lg">{item.icon}</span>
           {:else}
@@ -30,3 +34,4 @@
     </SidebarMenu>
   </SidebarGroup>
 {/each}
+
