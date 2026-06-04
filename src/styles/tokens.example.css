@@ -1,9 +1,16 @@
 /* ─────────────────────────────────────────────────────
- * bindrunes Design Token Contract — v0.2
+ * bindrunes Design Token Contract — v1.0
  *
  * This file is a REFERENCE EXAMPLE for consumer projects.
  * Each consumer project defines these tokens
  * in their own app.css. bindrunes components read them.
+ *
+ * ⚠️ This is a documentation file, not the actual source
+ * of truth. The live token definitions live in:
+ *   src/styles/preset.css
+ *   src/styles/themes/*.css
+ *   src/styles/aesthetics/*.css
+ *   src/styles/global.css
  *
  * Architecture:
  *   @layer tokens.base       — Required  tokens (surfaces, accents, borders)
@@ -210,25 +217,27 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   Archetype / Runtime theme switching (optional)
+   Runtime theme switching (optional)
    ══════════════════════════════════════════════════════
-   Inspired by orb's 5 archetypes. Override any token
-   inside a data-theme selector.
+   Override any token inside a data-theme selector.
 
+   [data-theme="editorial"] {
+     --primary: oklch(0.65 0.10 265);
+   }
    [data-theme="dracula"] {
-     --primary: oklch(0.75 0.21 310);  // purple
+     --primary: oklch(0.75 0.21 310);
    }
-   [data-theme="martian"] {
-     --primary: oklch(0.65 0.28 30);   // red
+   [data-theme="nord"] {
+     --primary: oklch(0.78 0.10 230);
    }
-   [data-theme="akashic"] {
-     --primary: oklch(0.70 0.18 250);  // blue
+   [data-theme="catppuccin"] {
+     --primary: oklch(0.80 0.14 280);
    }
-   [data-theme="alchemy"] {
-     --primary: oklch(0.80 0.20 80);   // gold
+   [data-theme="rose-pine"] {
+     --primary: oklch(0.72 0.12 15);
    }
-   [data-theme="druidic"] {
-     --primary: oklch(0.75 0.22 150);  // green
+   [data-theme="github"] {
+     --primary: oklch(0.65 0.18 250);
    }
    ==================================================== */
 

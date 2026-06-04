@@ -33,7 +33,7 @@
             type="text"
             placeholder={placeholder}
             value={state.searchQuery}
-            class="flex-1 bg-transparent border-none outline-none text-base"
+            class="flex-1 bg-transparent border-none outline-none text-body-lg"
             style="color: var(--foreground); font-family: inherit;"
             oninput={(e) => state.setQuery((e.target as HTMLInputElement).value)}
             autocomplete="off"
@@ -55,13 +55,13 @@
                 onclick={() => select(option)}
               >
                 <div>
-                  <span class="font-medium text-sm" style="color: var(--foreground);">{option.label}</span>
+                  <span class="font-medium text-label-md" style="color: var(--foreground);">{option.label}</span>
                   {#if option.description}
-                    <span class="block text-xs mt-0.5" style="color: var(--muted-foreground);">{option.description}</span>
+                    <span class="block text-body-sm mt-0.5" style="color: var(--muted-foreground);">{option.description}</span>
                   {/if}
                 </div>
                 {#if option.category}
-                  <span class="text-xs font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-[--radius]"
+                  <span class="text-label-sm font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-[--radius]"
                     style="color: var(--primary); background: oklch(from var(--primary) l c h / 0.1);"
                   >{option.category}</span>
                 {/if}
@@ -69,7 +69,7 @@
             {/each}
           </div>
         {:else if state.searchQuery}
-          <div class="py-8 text-center text-sm" style="color: var(--muted-foreground);">
+          <div class="py-8 text-center text-body-md" style="color: var(--muted-foreground);">
             No results found for "{state.searchQuery}"
           </div>
         {/if}

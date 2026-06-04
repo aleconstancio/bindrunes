@@ -31,11 +31,12 @@ export interface QueryResult<TData> {
 }
 
 export function createQuery<TData>(options: CreateQueryOptions<TData>): QueryResult<TData> {
-	let _data = $state<TData | undefined>();
-	let _error = $state<Error | null>(null);
-	let _status = $state<'loading' | 'success' | 'error'>('loading');
-	let _fetchStatus = $state<'idle' | 'fetching'>('idle');
-	let _lastUpdatedAt = $state<number>(0);
+	const initialEntry = getEntry<TData>(options.key);
+	let _data = $state<TData | undefined>(initialEntry?.data as TData | undefined);
+	let _error = $state<Error | null>(initialEntry?.error ?? null);
+	let _status = $state<'loading' | 'success' | 'error'>(initialEntry?.status ?? 'loading');
+	let _fetchStatus = $state<'idle' | 'fetching'>(initialEntry?.fetchStatus ?? 'idle');
+	let _lastUpdatedAt = $state<number>(initialEntry?.lastUpdatedAt ?? 0);
 
 	const isLoading = $derived(_status === 'loading');
 	const isSuccess = $derived(_status === 'success');

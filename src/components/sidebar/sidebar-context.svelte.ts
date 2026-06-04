@@ -5,7 +5,7 @@ export const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
 export type SidebarState = ReturnType<typeof createSidebarState>;
 
-const KEY = Symbol('thoth-sidebar');
+const KEY = Symbol('bindrunes-sidebar');
 
 export function setSidebarContext(ctx: SidebarState) {
   setContext(KEY, ctx);

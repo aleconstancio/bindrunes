@@ -1,4 +1,4 @@
-import type { ComponentType } from 'svelte';
+import type { Component } from 'svelte';
 
 // ── i18n ──
 export type TFunction = (key: string, params?: Record<string, string | number>) => string;
@@ -9,7 +9,7 @@ export interface NavItem {
   to: string;
   match?: string;
   description: string;
-  icon: ComponentType | string;
+  icon: Component | string;
 }
 
 export interface NavGroup {

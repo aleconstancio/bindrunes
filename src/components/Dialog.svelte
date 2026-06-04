@@ -40,11 +40,11 @@
       {/if}
 
       {#if title}
-        <BitsDialog.Title class="text-lg font-semibold mb-4">{title}</BitsDialog.Title>
+        <BitsDialog.Title class="text-title-2 mb-4">{title}</BitsDialog.Title>
       {/if}
 
       {#if children}
-        <div class="text-sm text-muted-foreground">
+        <div class="text-body-md text-muted-foreground">
           {@render children()}
         </div>
       {/if}

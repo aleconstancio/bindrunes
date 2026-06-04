@@ -38,7 +38,7 @@
         </div>
         <div>
           <h3 class="text-body-md font-bold text-foreground">{integration.title}</h3>
-          <p class="mt-1 text-body-sm text-muted-foreground leading-relaxed">{integration.description}</p>
+          <p class="mt-1 text-body-sm text-muted-foreground">{integration.description}</p>
         </div>
       </svelte:element>
     {/each}

@@ -44,7 +44,7 @@
               </div>
             </div>
             <h3 class="text-title-2 font-bold text-foreground">{step.title}</h3>
-            <p class="text-body-md text-muted-foreground leading-relaxed">{step.description}</p>
+            <p class="text-body-md text-muted-foreground">{step.description}</p>
           </div>
         {/snippet}
       </Card>

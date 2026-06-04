@@ -88,7 +88,6 @@
 
   <HeroBanner
     badge="Nova versão disponível"
-    title="Título <br />da Landing Page"
     titleGradient
     description="Uma descrição incrível do seu produto."
     ctas={[
@@ -96,7 +95,9 @@
       { label: 'Saiba mais', href: '#features', variant: 'outline' },
     ]}
     footnote={{ title: 'Sem cartão de crédito.', description: 'Cancele quando quiser.' }}
-  />
+  >
+    {#snippet title()}Título <br />da Landing Page{/snippet}
+  </HeroBanner>
 
   <section id="metrics" class="px-6 py-16 section-reveal">
     <MetricsBar {metrics} />
@@ -165,12 +166,13 @@
   </section>
 
   <HeroBanner
-    title="Pronto para começar?"
     description="Junte-se a milhares de usuários satisfeitos."
     ctas={[{ label: 'Começar agora', href: '/signup', icon: ArrowRight }]}
     footnote={{ title: 'Trial gratuito.', description: '7 dias sem compromisso.' }}
     level={2}
-  />
+  >
+    {#snippet title()}Pronto para começar?{/snippet}
+  </HeroBanner>
 
   <SiteFooter
     logo={{ label: 'Minha SaaS' }}

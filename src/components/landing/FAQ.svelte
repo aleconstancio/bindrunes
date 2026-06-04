@@ -24,7 +24,7 @@
           <span class="text-foreground font-medium">{item.question}</span>
         {/snippet}
         {#snippet children()}
-          <p class="text-muted-foreground leading-relaxed">{item.answer}</p>
+          <p class="text-body-md text-muted-foreground">{item.answer}</p>
         {/snippet}
       </AccordionItem>
     {/each}

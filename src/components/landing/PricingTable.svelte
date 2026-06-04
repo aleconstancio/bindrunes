@@ -68,7 +68,7 @@
               <div class="flex flex-col gap-6 pt-2 pricing-content">
                 {#if plan.highlight}
                   <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                    <div class="inline-flex items-center rounded-full border border-primary/30 bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground shadow-lg">
+                    <div class="inline-flex items-center rounded-full border border-primary/30 bg-primary px-3 py-1 text-mono-xs font-bold uppercase text-primary-foreground shadow-lg">
                       {plan.badge ?? (t?.('landing.PricingTable.mostChosen') ?? 'Mais escolhido')}
                     </div>
                   </div>

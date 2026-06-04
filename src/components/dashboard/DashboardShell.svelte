@@ -151,7 +151,7 @@
             <div>
               <p class="text-body-sm font-bold uppercase tracking-[0.26em] text-muted-foreground">{appName}</p>
               {#if appSubtitle}
-                <p class="text-body-lg font-semibold tracking-tight text-foreground">{appSubtitle}</p>
+                <p class="text-body-lg font-semibold text-foreground">{appSubtitle}</p>
               {/if}
             </div>
           </div>
@@ -192,7 +192,7 @@
               {#if headerPrefix}
                 <p class="text-body-sm font-bold uppercase tracking-[0.24em] text-muted-foreground">{headerPrefix}</p>
               {/if}
-              <h1 class="truncate text-title-1 font-semibold tracking-tight text-foreground">{resolvedTitle}</h1>
+              <h1 class="truncate text-title-1 font-semibold text-foreground">{resolvedTitle}</h1>
               {#if resolvedDescription}
                 <p class="hidden text-body-md md:block text-muted-foreground">{resolvedDescription}</p>
               {/if}

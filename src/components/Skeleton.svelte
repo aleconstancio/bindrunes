@@ -18,20 +18,14 @@
 {/each}
 
 <style>
-  @layer thoth.components {
-    .animate-shimmer {
-      background: linear-gradient(
-        90deg,
-        var(--muted, oklch(1 0 0 / 0.04)) 25%,
-        var(--muted-foreground, oklch(0.55 0.03 280)) 50%,
-        var(--muted, oklch(1 0 0 / 0.04)) 75%
-      );
-      background-size: 200% 100%;
-      animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite;
-    }
-    @keyframes bindrunes-shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--muted, oklch(1 0 0 / 0.04)) 25%,
+      var(--muted-foreground, oklch(0.55 0.03 280)) 50%,
+      var(--muted, oklch(1 0 0 / 0.04)) 75%
+    );
+    background-size: 200% 100%;
+    animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite;
   }
 </style>

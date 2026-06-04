@@ -10,9 +10,9 @@
  * ══════════════════════════════════════════════════ */
 
 /* ── Animations ── */
-@keyframes thoth-pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.75 0.21 310)) l 0.3 h / 0.15); }
-  50% { box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.75 0.21 310)) l 0.3 h / 0.25); }
+@keyframes bindrunes-pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.65 0.10 265)) l 0.3 h / 0.15); }
+  50% { box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.65 0.10 265)) l 0.3 h / 0.25); }
 }
 
 @keyframes fade-slide-in {
@@ -20,7 +20,7 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes thoth-shimmer {
+@keyframes bindrunes-shimmer {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
 }

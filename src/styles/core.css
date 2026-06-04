@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════
  * bindrunes — Core Styles (preset + utilities bundled)
- * Usage: @import "bindrunes/core.css";
+ * Import via: @import "bindrunes/styles/core.css";
  * ══════════════════════════════════════════════════ */
 
 @import "./preset.css";

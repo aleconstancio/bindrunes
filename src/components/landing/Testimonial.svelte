@@ -39,7 +39,7 @@
       </div>
     {/if}
   </div>
-  <blockquote class="text-title-1 italic text-foreground leading-relaxed">
+  <blockquote class="text-title-1 italic text-foreground">
     &ldquo;{quote}&rdquo;
   </blockquote>
   <div class="mt-6">

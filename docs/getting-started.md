@@ -79,7 +79,23 @@ export default defineConfig({
 </AppProvider>
 ```
 
-`AppProvider` sets up `ModeWatcher` (dark/light mode) and `Toaster` (svelte-sonner notifications).
+`AppProvider` sets up `ModeWatcher` (dark/light mode), `Toaster` (svelte-sonner notifications), and the three v1.0 design axes:
+
+- **Theme**: Color identity — `data-theme="editorial|dracula|nord|catppuccin|rose-pine|github"`
+- **Aesthetic**: Form (radius, shadow, motion) — `data-aesthetic="editorial|glass|bento|expressive"`
+- **Density**: Spacing scale — `data-density="compact|comfortable|spacious"`
+
+All three can be configured via `<AppProvider>` props:
+
+```svelte
+<AppProvider
+  themeDefault="editorial"
+  aestheticDefault="editorial"
+  densityDefault="comfortable"
+>
+  {@render children()}
+</AppProvider>
+```
 
 ## Next Steps
 

@@ -40,7 +40,7 @@
       {title}
     </h2>
     {#if description}
-      <p class="mt-4 text-body-lg text-muted-foreground leading-relaxed">
+      <p class="mt-4 text-body-lg text-muted-foreground">
         {description}
       </p>
     {/if}

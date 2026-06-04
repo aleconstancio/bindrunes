@@ -33,7 +33,7 @@
               {/if}
             </div>
             <h3 class="text-title-2 font-bold text-foreground">{feature.title}</h3>
-            <p class="text-body-md text-muted-foreground leading-relaxed">{feature.description}</p>
+            <p class="text-body-md text-muted-foreground">{feature.description}</p>
           </div>
         {/snippet}
       </Card>
@@ -41,15 +41,15 @@
       <div class="flex gap-4">
         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
           {#if typeof feature.icon === 'string'}
-            <span class="text-xl">{feature.icon}</span>
+            <span class="text-title-1">{feature.icon}</span>
           {:else}
             {@const Icon = feature.icon}
             <Icon size={20} />
           {/if}
         </div>
         <div>
-          <h3 class="text-lg font-bold text-foreground">{feature.title}</h3>
-          <p class="mt-1 text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+          <h3 class="text-title-2 font-bold text-foreground">{feature.title}</h3>
+          <p class="mt-1 text-body-md text-muted-foreground">{feature.description}</p>
         </div>
       </div>
     {/if}

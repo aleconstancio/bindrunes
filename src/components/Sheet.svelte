@@ -49,7 +49,7 @@
           {#if header}
             {@render header()}
           {:else if title}
-            <BitsDialog.Title class="text-lg font-semibold text-foreground">{title}</BitsDialog.Title>
+            <BitsDialog.Title class="text-title-2 text-foreground">{title}</BitsDialog.Title>
           {/if}
           <BitsDialog.Close
             class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer select-none"

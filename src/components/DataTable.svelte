@@ -59,7 +59,7 @@
     <thead>
       <tr class="border-b border-border bg-muted">
         {#each columns as col}
-          <th class="px-4 py-3 text-xs font-bold uppercase tracking-[0.05em] select-none text-muted-foreground"
+          <th class="px-4 py-3 text-mono-xs font-bold uppercase select-none text-muted-foreground"
             class:text-right={col.align === 'right'}
             class:text-center={col.align === 'center'}
             class:text-left={col.align !== 'right' && col.align !== 'center'}
@@ -92,14 +92,14 @@
           <tr class="border-b border-border">
             {#each columns as col, j}
               <td class="px-4 py-3">
-                <div class="animate-thoth-shimmer rounded-[--radius] bg-muted h-4" style="width: {getSkeletonWidth(j)};"></div>
+                <div class="animate-pulse rounded-[--radius] bg-muted h-4" style="width: {getSkeletonWidth(j)};"></div>
               </td>
             {/each}
           </tr>
         {/each}
       {:else if rows.length === 0}
         <tr>
-          <td colspan={columns.length} class="px-4 py-12 text-center text-sm text-muted-foreground">{emptyText}</td>
+          <td colspan={columns.length} class="px-4 py-12 text-center text-body-sm text-muted-foreground">{emptyText}</td>
         </tr>
       {:else}
         {#each rows as row, i}
@@ -129,22 +129,8 @@
 
   {#if totalPages > 1}
     <div class="px-4 py-3 flex items-center justify-between border-t border-border">
-      <span class="text-xs text-muted-foreground">{t('table.page', { current: currentPage, total: totalPages })}</span>
+      <span class="text-body-sm text-muted-foreground">{t('table.page', { current: currentPage, total: totalPages })}</span>
       <Pagination {currentPage} {totalPages} {onPageChange} siblingCount={1} />
     </div>
   {/if}
 </div>
-
-<style>
-  :global(.animate-thoth-shimmer) {
-    background: linear-gradient(
-      90deg,
-      var(--muted, oklch(1 0 0 / 0.04)) 25%,
-      var(--muted-foreground, oklch(0.55 0.03 280)) 50%,
-      var(--muted, oklch(1 0 0 / 0.04)) 75%
-    );
-    background-size: 200% 100%;
-    animation: thoth-shimmer 1.5s ease-in-out infinite;
-  }
-
-</style>

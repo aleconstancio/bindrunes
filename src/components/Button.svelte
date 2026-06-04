@@ -39,9 +39,9 @@
   };
 
   const sz: Record<Size, string> = {
-    sm: 'h-8 px-3 text-xs gap-1.5',
-    md: 'h-10 px-4 text-sm gap-2',
-    lg: 'h-12 px-6 text-base gap-2.5',
+    sm: 'h-8 px-3 text-label-sm gap-1.5',
+    md: 'h-10 px-4 text-label-md gap-2',
+    lg: 'h-12 px-6 text-body-lg gap-2.5',
   };
 </script>
 

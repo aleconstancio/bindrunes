@@ -267,3 +267,119 @@ const theme = getChartTheme();
 ```
 
 > Renamed from `useChartTheme` (deprecated).
+
+## Design System Axes (v1.0)
+
+### `createTheme`
+
+Color identity. Sets `data-theme` on `<html>` and persists to localStorage.
+
+```svelte
+<script lang="ts">
+  import { createTheme } from "bindrunes";
+
+  const theme = createTheme({ default: "editorial" });
+  theme.themes; // ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"]
+  theme.theme;  // current theme
+  theme.setTheme("dracula");
+</script>
+```
+
+### `createAesthetic`
+
+Form aesthetic (radius, shadow, motion). Sets `data-aesthetic` on `<html>`.
+
+```ts
+const aesthetic = createAesthetic({ default: "editorial" });
+aesthetic.aesthetics; // ["editorial", "glass", "bento", "expressive"]
+aesthetic.setAesthetic("bento");
+```
+
+Requires the matching CSS file to be imported:
+```
+@import "bindrunes/styles/aesthetics/glass.css";
+```
+
+### `createDensity`
+
+Spacing density. Sets `data-density` on `<html>`. All Tailwind spacing utilities become density-aware.
+
+```ts
+const density = createDensity({ default: "comfortable" });
+density.densities; // ["compact", "comfortable", "spacious"]
+density.setDensity("compact");
+```
+
+### `createPrefersTheme`
+
+Reads `prefers-color-scheme` on first paint and sets `.dark` class. Idempotent with `mode-watcher`.
+
+```ts
+const prefers = createPrefersTheme();
+prefers.stop(); // removes the change listener
+```
+
+### `defineTheme`
+
+Runtime per-tenant theme injection. Creates a `<style>` element in `<head>`.
+
+```ts
+const theme = defineTheme("corporate", {
+  "--primary": "oklch(0.50 0.15 250)",
+});
+theme.apply();   // injects CSS
+theme.remove();  // removes CSS
+```
+
+### `extendTheme`
+
+Extends a built-in theme preset with custom token overrides. Wraps `createThemeBuilder`.
+
+```ts
+const builder = extendTheme("nord", { primary: "oklch(0.70 0.15 240)" });
+builder.apply();
+```
+
+### `createThemeBuilder`
+
+Programmatic theme token generation with full OKLCH derivation. Used internally by `extendTheme` and `ThemeStudio`.
+
+```ts
+const builder = createThemeBuilder({ primary: "oklch(0.65 0.10 265)" });
+builder.apply();                    // sets CSS custom properties on :root
+builder.toCSS('[data-theme="x"]'); // returns CSS string
+```
+
+### `createDarkMode`
+
+Reactive wrapper around `mode-watcher` for dark/light mode toggling.
+
+```ts
+const dm = createDarkMode();
+dm.isDark; // boolean
+dm.toggle();
+dm.set("light");
+```
+
+### `hexToOklch` / `oklchToHex`
+
+OKLCH ↔ hex color conversion utilities.
+
+```ts
+hexToOklch("#BD93F9"); // "oklch(0.75 0.21 310)"
+oklchToHex("oklch(0.75 0.21 310)"); // "#bd93f9"
+```
+
+## ThemeStudio
+
+`<ThemeStudio>` (also exported as `<ThemeBuilder>` for back-compat) provides a tabbed preview UI for live theme editing:
+
+```svelte
+<script>
+  import { ThemeStudio } from "bindrunes";
+</script>
+
+<ThemeStudio />
+```
+
+Tabs: Theme (color pickers, presets), Aesthetic, Density, Export (copy CSS/JS).

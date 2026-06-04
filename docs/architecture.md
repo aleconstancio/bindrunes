@@ -19,25 +19,48 @@ src/
 │   ├── preset.css                      # @theme inline tokens
 │   ├── utilities.css                   # keyframe animations
 │   ├── landing.css                     # landing page animations
-│   └── themes/                         # 7 theme presets
+│   └── themes/                         # 6 theme presets + 4 aesthetic presets
 └── utils/
     ├── createAuth.svelte.ts            # reactive auth
     ├── createForm.svelte.ts            # valibot form validation
     ├── createI18n.svelte.ts            # i18n composable
-    ├── createTheme.svelte.ts           # runtime theme switching
+    ├── createTheme.svelte.ts           # runtime theme switching (v1.0: 6 themes)
+    ├── createAesthetic.svelte.ts       # form aesthetic switching (v1.0)
+    ├── createDensity.svelte.ts         # spacing density switching (v1.0)
+    ├── createPrefersTheme.svelte.ts    # prefers-color-scheme detection (v1.0)
+    ├── defineTheme.svelte.ts           # runtime per-tenant CSS injection (v1.0)
+    ├── createThemeBuilder.svelte.ts    # programmatic theme token generation (v1.0)
+    ├── extendTheme.svelte.ts           # extend built-in preset (v1.0)
+    ├── createDarkMode.svelte.ts        # mode-watcher wrapper (v1.0)
     ├── createMutation.svelte.ts        # mutation composable
     ├── createQuery.svelte.ts           # query composable
     ├── createApiClient.ts              # typed fetch wrapper
     ├── createStorage.ts                # typed localStorage
     ├── createTable.svelte.ts           # DataTable state management
     ├── createWizard.svelte.ts          # multi-step form wizard
+    ├── createOmnibar.svelte.ts         # command palette state
     ├── createToast.svelte.ts           # typed svelte-sonner wrapper
     ├── chartTheme.ts                   # CSS token reader for charts
     ├── formatters.ts                   # pt-BR formatters
     ├── navigation.ts                   # derivePageInfo, deriveOmnibarOptions
     ├── queryCache.ts                   # module-level cache backend
-    └── RealtimeClient.svelte.ts        # SSE client
+    ├── RealtimeClient.svelte.ts        # SSE client
+    └── colorConvert.ts                 # hex <-> OKLCH conversion
 ```
+
+## Three-Axis Design System (v1.0)
+
+bindrunes v1.0 introduces three orthogonal customization axes that never collide:
+
+| Axis | Attribute | Values | Controls | Composable |
+|------|-----------|--------|----------|-----------|
+| **Theme** | `data-theme` | editorial, dracula, nord, catppuccin, rose-pine, github | Color identity (all color tokens) | `createTheme()` |
+| **Aesthetic** | `data-aesthetic` | editorial, glass, bento, expressive | Form (radius, shadow, motion, button treatment) | `createAesthetic()` |
+| **Density** | `data-density` | compact, comfortable, spacious | Spacing scale (`--space-*` tokens) | `createDensity()` |
+
+Token resolution order: `:root` defaults → aesthetic overrides form tokens → theme overrides color tokens → density overrides spacing tokens. No two axes override the same token category.
+
+Each axis is independently composable: `dracula × bento × spacious` is a valid configuration.
 
 ## Design Principles
 
@@ -73,7 +96,7 @@ export function createMyThing(options: Options): Result {
 Shared component state uses `Symbol` keys with centralized factories:
 
 ```
-sidebar: Symbol('thoth-sidebar') + sidebar-context.svelte.ts
+sidebar: Symbol('bindrunes-sidebar') + sidebar-context.svelte.ts
 landing: Symbol('landing')       + landing-context.svelte.ts
 accordion: Symbol('accordion')   + accordionContext.ts
 ```

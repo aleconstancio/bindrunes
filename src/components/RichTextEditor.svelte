@@ -24,15 +24,15 @@
   };
 
   const iconStyles: Record<string, string> = {
-    bold: 'font-bold text-sm',
-    italic: 'italic text-sm font-serif',
-    code: 'font-mono text-xs tracking-wide',
-    heading: 'font-bold text-sm',
-    list: 'text-lg leading-none',
-    quote: 'text-lg leading-none',
-    horizontalrule: 'text-lg leading-none',
-    undo: 'text-sm',
-    redo: 'text-sm',
+    bold: 'font-bold text-label-md',
+    italic: 'italic text-label-md font-serif',
+    code: 'font-mono text-mono-sm',
+    heading: 'font-bold text-label-md',
+    list: 'text-title-2 leading-none',
+    quote: 'text-title-2 leading-none',
+    horizontalrule: 'text-title-2 leading-none',
+    undo: 'text-label-md',
+    redo: 'text-label-md',
   };
 
   let {

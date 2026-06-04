@@ -25,14 +25,23 @@ export function derivePageInfo(
  * Derives Omnibar/command palette options from navigation groups.
  * Usage: const omnibarOptions = deriveOmnibarOptions(navigationGroups);
  */
-export function deriveOmnibarOptions(groups: NavGroup[], options?: { idPrefix?: string }) {
+export function deriveOmnibarOptions(
+  groups: NavGroup[],
+  options?: { idPrefix?: string; goto?: (to: string) => void }
+) {
   return groups.flatMap(group =>
     group.items.map(item => ({
       id: options?.idPrefix ? `${options.idPrefix}${item.to}` : item.to.split('/').pop() ?? item.to,
       label: item.title,
       description: item.description,
       category: group.label,
-      action: () => { if (isSafeRedirect(item.to)) window.location.href = item.to; },
+      action: () => {
+        if (options?.goto) {
+          options.goto(item.to);
+        } else if (isSafeRedirect(item.to)) {
+          window.location.href = item.to;
+        }
+      },
     }))
   );
 }

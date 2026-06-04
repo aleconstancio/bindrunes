@@ -62,7 +62,7 @@
       </h2>
     {/if}
     {#if description}
-      <p class="mx-auto mt-6 max-w-2xl text-body-lg text-muted-foreground leading-relaxed">
+      <p class="mx-auto mt-6 max-w-2xl text-body-lg text-muted-foreground">
         {description}
       </p>
     {/if}

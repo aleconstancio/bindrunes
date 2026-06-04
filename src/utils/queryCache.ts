@@ -1,3 +1,5 @@
+import { getContext, hasContext } from 'svelte';
+
 export type QueryStatus = 'loading' | 'success' | 'error';
 export type FetchStatus = 'idle' | 'fetching';
 
@@ -13,7 +15,22 @@ interface CacheEntry<TData = unknown> {
 	gcTimeout: ReturnType<typeof setTimeout> | null;
 }
 
-const cache = new Map<string, CacheEntry>();
+export const CACHE_KEY = Symbol.for('bindrunes-query-cache');
+const clientCache = new Map<string, CacheEntry>();
+
+export function getCache(): Map<string, CacheEntry> {
+	if (typeof window === 'undefined') {
+		try {
+			if (hasContext(CACHE_KEY)) {
+				return getContext(CACHE_KEY);
+			}
+		} catch {
+			// getContext/hasContext might throw if called outside component initialization.
+		}
+		return new Map<string, CacheEntry>();
+	}
+	return clientCache;
+}
 
 function createEntry(key: string): CacheEntry {
 	return {
@@ -30,10 +47,11 @@ function createEntry(key: string): CacheEntry {
 }
 
 export function getEntry<T = unknown>(key: string): CacheEntry<T> | undefined {
-	return cache.get(key) as CacheEntry<T> | undefined;
+	return getCache().get(key) as CacheEntry<T> | undefined;
 }
 
 export function getOrCreateEntry<T = unknown>(key: string): CacheEntry<T> {
+	const cache = getCache();
 	let entry = cache.get(key);
 	if (!entry) {
 		entry = createEntry(key);
@@ -129,9 +147,14 @@ export function setQueryData<T>(key: string, data: T): void {
 }
 
 export function removeEntry(key: string): void {
+	const cache = getCache();
 	const entry = cache.get(key);
 	if (entry?.gcTimeout) {
 		clearTimeout(entry.gcTimeout);
 	}
 	cache.delete(key);
+}
+
+export function resetCache(): void {
+	getCache().clear();
 }

@@ -29,9 +29,9 @@
       <div class="mt-0.5 text-muted-foreground">{@render icon()}</div>
     {/if}
     <div class="flex-1 min-w-0">
-      <p class="text-sm font-semibold text-foreground">{title}</p>
+      <p class="text-label-md font-semibold text-foreground">{title}</p>
       {#if description}
-        <p class="text-xs text-muted-foreground mt-0.5">{description}</p>
+        <p class="text-body-sm text-muted-foreground mt-0.5">{description}</p>
       {/if}
     </div>
     {#if action}

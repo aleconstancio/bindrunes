@@ -39,7 +39,7 @@
         <h3 class="mt-4 text-title-2 font-bold text-foreground">{member.name}</h3>
         <p class="text-label-md text-primary">{member.role}</p>
         {#if member.bio}
-          <p class="mt-2 text-body-md text-muted-foreground leading-relaxed">{member.bio}</p>
+          <p class="mt-2 text-body-md text-muted-foreground">{member.bio}</p>
         {/if}
         {#if member.social && member.social.length > 0}
           <div class="mt-3 flex justify-center gap-3">
