@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { onMount } from 'svelte';
+  import { getGridClass } from './landing-utils';
 
   interface Stat {
     value: number;
@@ -17,13 +18,6 @@
   }
 
   let { stats, columns = 4, duration = 2000, children }: Props = $props();
-
-  const gridClass = $derived(
-    columns === 1 ? 'grid-cols-1'
-      : columns === 2 ? 'grid-cols-1 sm:grid-cols-2'
-      : columns === 4 ? 'grid-cols-2 sm:grid-cols-4'
-      : 'grid-cols-2 sm:grid-cols-3'
-  );
 
   let visible = $state(false);
   let element: HTMLElement;
@@ -72,7 +66,7 @@
   });
 </script>
 
-<div bind:this={element} class="grid {gridClass} gap-8 px-6 py-12 section-reveal">
+<div bind:this={element} class="grid {getGridClass(columns)} gap-8 px-6 py-12 section-reveal">
   {#each stats as stat, i}
     <div class="text-center">
       <p class="text-4xl font-extrabold text-foreground">

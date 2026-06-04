@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import Testimonial from './Testimonial.svelte';
+  import { getGridClass } from './landing-utils';
 
   interface TestimonialData {
     quote: string;
@@ -18,16 +19,9 @@
 
   let { testimonials, columns = 3, children }: Props = $props();
 
-  const gridClass = $derived(
-    columns === 1
-      ? 'grid-cols-1'
-      : columns === 2
-        ? 'grid-cols-1 sm:grid-cols-2'
-        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  );
 </script>
 
-<div class="grid {gridClass} gap-8">
+<div class="grid {getGridClass(columns)} gap-8">
   {#each testimonials as t}
     <Testimonial {...t} />
   {/each}

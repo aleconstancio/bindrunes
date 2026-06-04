@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
+  import { getGridClass } from './landing-utils';
 
   interface Integration {
     icon: Component;
@@ -18,20 +19,13 @@
 
   let { title, integrations, columns = 3, children }: Props = $props();
 
-  const gridClass = $derived(
-    columns === 1
-      ? 'grid-cols-1'
-      : columns === 2
-        ? 'grid-cols-1 sm:grid-cols-2'
-        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  );
 </script>
 
 <div class="px-6 py-12 section-reveal">
   {#if title}
     <h2 class="text-center text-3xl font-extrabold text-foreground mb-10">{title}</h2>
   {/if}
-  <div class="grid {gridClass} gap-6">
+  <div class="grid {getGridClass(columns)} gap-6">
     {#each integrations as integration}
       {#if integration.href}
         <a

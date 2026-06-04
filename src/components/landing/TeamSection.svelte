@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
+  import { getGridClass } from './landing-utils';
 
   interface TeamMember {
     name: string;
@@ -20,13 +21,6 @@
 
   let { title, members, columns = 3, children }: Props = $props();
 
-  const gridClass = $derived(
-    columns === 1 ? 'grid-cols-1'
-      : columns === 2 ? 'grid-cols-1 sm:grid-cols-2'
-      : columns === 4 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
-      : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  );
-
   function getInitials(name: string) {
     return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
   }
@@ -36,7 +30,7 @@
   {#if title}
     <h2 class="text-center text-3xl font-extrabold text-foreground mb-10">{title}</h2>
   {/if}
-  <div class="grid {gridClass} gap-8">
+  <div class="grid {getGridClass(columns)} gap-8">
     {#each members as member}
       <div class="text-center">
         {#if member.avatar}

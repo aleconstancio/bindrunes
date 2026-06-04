@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { Card } from 'bindrunes';
+  import { getGridClass } from './landing-utils';
 
   interface Metric {
     value: string;
@@ -17,14 +18,6 @@
 
   let { metrics, columns = 3, children }: Props = $props();
 
-  const gridClass = $derived(
-    columns === 1
-      ? 'grid-cols-1'
-      : columns === 2
-        ? 'grid-cols-1 sm:grid-cols-2'
-        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-  );
-
   const variantColors: Record<string, string> = {
     default: 'text-foreground',
     success: 'text-success',
@@ -32,7 +25,7 @@
   };
 </script>
 
-<div class="grid {gridClass} gap-6">
+<div class="grid {getGridClass(columns)} gap-6">
   {#each metrics as metric}
     <Card variant="glass" padding class="transition-all hover:scale-[1.02] hover:shadow-xl">
       {#snippet children()}
