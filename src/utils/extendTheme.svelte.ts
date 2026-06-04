@@ -1,3 +1,4 @@
+import { DRACULA_DEFAULTS } from './theme-defaults';
 import { createThemeBuilder } from './createThemeBuilder.svelte';
 
 type ExtendThemeOptions = {
@@ -11,12 +12,7 @@ type ExtendThemeOptions = {
 
 // Base tokens for each preset
 const presetTokens: Record<string, Record<string, string>> = {
-  dracula: {
-    primary: 'oklch(0.75 0.21 310)',
-    accent: 'oklch(0.72 0.30 340)',
-    destructive: 'oklch(0.65 0.24 30)',
-    background: 'oklch(0.05 0.01 290)',
-  },
+  dracula: { ...DRACULA_DEFAULTS },
   akashic: {
     primary: 'oklch(0.70 0.18 250)',
     accent: 'oklch(0.65 0.20 200)',
@@ -63,7 +59,7 @@ export function extendTheme(
   if (!base) {
     console.warn(`Unknown theme: ${baseTheme}. Available: ${Object.keys(presetTokens).join(', ')}`);
     return createThemeBuilder({
-      primary: overrides.primary ?? 'oklch(0.75 0.21 310)',
+      primary: overrides.primary ?? DRACULA_DEFAULTS.primary,
       ...overrides,
     });
   }

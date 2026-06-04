@@ -1,45 +1,21 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Standard CSS Utilities
+ * bindrunes — Animation Keyframes
  *
- * Import alongside preset.css for common UI patterns:
+ * These keyframes are referenced by the Tailwind plugin
+ * (src/tailwind-plugin.ts), which provides the utility classes.
+ * Utility classes previously defined here are now in the plugin.
+ *
+ * Import alongside preset.css:
  * @import "bindrunes/styles/utilities.css";
  * ══════════════════════════════════════════════════ */
-
-/* ── Glass panel ── */
-.glass-panel {
-  background: var(--glass-surface, oklch(0 0 0 / 0.4));
-  backdrop-filter: blur(var(--glass-blur, 16px));
-  -webkit-backdrop-filter: blur(var(--glass-blur, 16px));
-  border: 1px solid var(--glass-border, oklch(1 0 0 / 0.08));
-  border-radius: var(--radius, 0.625rem);
-  transition: border-color var(--duration-snappy, 150ms), background-color var(--duration-snappy, 150ms), box-shadow var(--duration-snappy, 150ms), transform var(--duration-snappy, 150ms);
-}
-
-.glass-interactive { cursor: pointer; }
-.glass-interactive:hover {
-  box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.75 0.21 310)) l c h / 0.2);
-  transform: translateY(-2px);
-}
-
-/* ── Text gradients ── */
-.text-gradient-violet {
-  background: linear-gradient(135deg, var(--foreground, oklch(0.95 0.01 290)) 30%, var(--primary, oklch(0.75 0.21 310)) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--foreground, oklch(0.95 0.01 290)) 30%, var(--warning, oklch(0.8 0.18 85)) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* ── Animations ── */
 @keyframes thoth-pulse-glow {
   0%, 100% { box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.75 0.21 310)) l 0.3 h / 0.15); }
   50% { box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.75 0.21 310)) l 0.3 h / 0.25); }
 }
-.animate-pulse-glow { animation: thoth-pulse-glow 3s infinite ease-in-out; }
 
-/* ── Mono font utility ── */
-.mono { font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', monospace; }
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

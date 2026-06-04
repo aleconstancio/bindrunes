@@ -1,3 +1,5 @@
+import { DRACULA_DEFAULTS } from './theme-defaults';
+
 type ThemeBuilderOptions = {
   primary: string;          // OKLCH color string
   accent?: string;          // defaults to primary with shifted hue
@@ -20,7 +22,7 @@ function deriveFromPrimary(primary: string, lightnessOffset: number, chromaScale
 export function createThemeBuilder(options: ThemeBuilderOptions) {
   const primary = options.primary;
   const accent = options.accent ?? deriveFromPrimary(primary, -0.03, 1.2);
-  const destructive = options.destructive ?? 'oklch(0.65 0.24 30)';
+  const destructive = options.destructive ?? DRACULA_DEFAULTS.destructive;
   const background = options.background ?? deriveFromPrimary(primary, -0.68, 0.1);
   const radius = options.radius ?? '0.625rem';
   const glassBlur = options.glassBlur ?? '16px';

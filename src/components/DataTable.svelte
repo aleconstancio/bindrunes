@@ -17,6 +17,12 @@
     emptyText = 'No results found.',
     selectedIndex = undefined as number | undefined,
     rowClass = undefined as ((row: Record<string, unknown>, index: number) => string) | undefined,
+    t = (key: string, params?: Record<string, string | number>): string => {
+      const fallbacks: Record<string, string> = {
+        'table.page': `Página ${params?.current ?? '?'} de ${params?.total ?? '?'}`,
+      };
+      return fallbacks[key] ?? key;
+    },
   }: {
     columns?: Column[];
     rows?: ReadonlyArray<Record<string, unknown>>;
@@ -32,6 +38,7 @@
     emptyText?: string;
     selectedIndex?: number;
     rowClass?: (row: Record<string, unknown>, index: number) => string;
+    t?: (key: string, params?: Record<string, string | number>) => string;
   } = $props();
 
   function toggleSort(key: string) {
@@ -106,7 +113,7 @@
 
   {#if totalPages > 1}
     <div class="px-4 py-3 flex items-center justify-between" style="border-top: 1px solid var(--border);">
-      <span class="text-xs" style="color: var(--muted-foreground)">Página {currentPage} de {totalPages}</span>
+      <span class="text-xs" style="color: var(--muted-foreground)">{t('table.page', { current: currentPage, total: totalPages })}</span>
       <Pagination {currentPage} {totalPages} {onPageChange} siblingCount={1} />
     </div>
   {/if}
@@ -121,10 +128,7 @@
       var(--muted, oklch(1 0 0 / 0.04)) 75%
     );
     background-size: 200% 100%;
-    animation: data-thoth-shimmer 1.5s ease-in-out infinite;
+    animation: thoth-shimmer 1.5s ease-in-out infinite;
   }
-  @keyframes data-thoth-shimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
+
 </style>

@@ -8,6 +8,13 @@
     pageSizeOptions = [10, 20, 50, 100],
     onPageChange = undefined as ((page: number) => void) | undefined,
     onPageSizeChange = undefined as ((size: number) => void) | undefined,
+    t = (key: string, params?: Record<string, string | number>): string => {
+      const fallbacks: Record<string, string> = {
+        'table.page': `Página ${params?.current ?? '?'} de ${params?.total ?? '?'}`,
+        'pagination.perPage': `${params?.count ?? '?'} por página`,
+      };
+      return fallbacks[key] ?? key;
+    },
   }: {
     currentPage?: number;
     totalPages?: number;
@@ -17,6 +24,7 @@
     pageSizeOptions?: number[];
     onPageChange?: (page: number) => void;
     onPageSizeChange?: (size: number) => void;
+    t?: (key: string, params?: Record<string, string | number>) => string;
   } = $props();
 
   let pages = $derived.by(() => {
@@ -32,7 +40,7 @@
 
 <nav class="flex items-center gap-1" aria-label="Pagination">
   {#if showTotal}
-    <span class="text-xs" style="color: var(--muted-foreground)">Página {currentPage} de {totalPages}</span>
+    <span class="text-xs" style="color: var(--muted-foreground)">{t('table.page', { current: currentPage, total: totalPages })}</span>
   {/if}
 
   {#if onPageSizeChange}
@@ -42,7 +50,7 @@
       class="h-8 rounded-[--radius] border border-border bg-transparent px-2 text-xs text-muted-foreground cursor-pointer"
     >
       {#each pageSizeOptions as opt}
-        <option value={opt}>{opt} por página</option>
+        <option value={opt}>{t('pagination.perPage', { count: opt })}</option>
       {/each}
     </select>
   {/if}
