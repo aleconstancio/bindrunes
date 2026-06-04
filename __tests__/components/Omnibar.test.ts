@@ -15,7 +15,7 @@ describe('Omnibar (component)', () => {
 		const state = await mountComposable(() => createOmnibar({ options: [] }));
 		state.open();
 		render(Omnibar, { state });
-		const input = screen.getByRole('textbox');
+		const input = screen.getByPlaceholderText('Search commands, routes, memory...');
 		expect(input).toBeInTheDocument();
 	});
 

@@ -7,7 +7,7 @@
   import { baseKeymap } from 'prosemirror-commands';
   import { history, undo, redo } from 'prosemirror-history';
   import { toggleMark, setBlockType, wrapIn } from 'prosemirror-commands';
-  import Button from './Button.svelte';
+  import { Toolbar } from 'bits-ui';
 
   type ToolbarAction = 'bold' | 'italic' | 'code' | 'link' | 'heading' | 'list' | 'quote' | 'horizontalrule' | 'undo' | 'redo';
 
@@ -115,13 +115,16 @@
 
 <div class="rounded-[--radius] border overflow-hidden {className}" style="border-color: var(--border); background: var(--card);">
   {#if toolbar.length > 0}
-    <div class="flex items-center gap-1 p-2" style="border-bottom: 1px solid var(--border);">
+    <Toolbar.Root orientation="horizontal" loop class="flex items-center gap-1 p-2 border-b border-border">
       {#each toolbar as tool}
-        <Button variant="ghost" size="sm" disabled={disabled} onclick={getToolbarCommand(tool)}>
-          <span class={iconStyles[tool] || 'text-sm'}>{iconMap[tool] || tool}</span>
-        </Button>
+        <Toolbar.Button disabled={disabled} onclick={getToolbarCommand(tool)}
+          class="inline-flex items-center justify-center rounded-[--radius] px-2 py-1 text-label-sm font-medium transition-colors cursor-pointer
+                 text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span class={iconStyles[tool] || 'text-label-md'}>{iconMap[tool] || tool}</span>
+        </Toolbar.Button>
       {/each}
-    </div>
+    </Toolbar.Root>
   {/if}
   <div
     bind:this={editorEl}
