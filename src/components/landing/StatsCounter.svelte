@@ -49,7 +49,12 @@
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / dur, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
-        resolve(Math.round(start + (end - start) * eased));
+        const current = Math.round(start + (end - start) * eased);
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          resolve(current);
+        }
       }
       requestAnimationFrame(update);
     });
