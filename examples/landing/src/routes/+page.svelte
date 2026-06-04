@@ -17,6 +17,7 @@
   const landing = createLandingState();
 
   const navLinks = [
+    { label: 'Métricas', href: '#metrics' },
     { label: 'Recursos', href: '#features' },
     { label: 'Como funciona', href: '#how-it-works' },
     { label: 'Planos', href: '#pricing' },
@@ -58,6 +59,7 @@
       monthly: 197,
       annual: 1891,
       highlight: true,
+      badge: 'Mais popular',
       features: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4', 'Feature 5'],
       cta: { label: 'Começar trial', variant: 'primary' as const, href: '/signup' },
     },
@@ -82,7 +84,7 @@
     logo={{ href: '/', label: 'Minha SaaS' }}
     links={navLinks}
     cta={{ label: 'Começar', href: '/signup' }}
-    sectionIds={['features', 'how-it-works', 'pricing', 'faq']}
+    sectionIds={['metrics', 'features', 'how-it-works', 'pricing', 'faq']}
   />
 
   <HeroSection
@@ -94,6 +96,7 @@
       { label: 'Começar agora', href: '/signup', icon: ArrowRight },
       { label: 'Saiba mais', href: '#features', variant: 'outline' },
     ]}
+    footnote={{ title: 'Sem cartão de crédito.', description: 'Cancele quando quiser.' }}
   />
 
   <section id="metrics" class="px-6 py-16 section-reveal">
@@ -104,7 +107,7 @@
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-extrabold">Recursos</h2>
       <div class="mt-10">
-        <FeatureGrid {features} />
+        <FeatureGrid {features} columns={2} variant="minimal" />
       </div>
     </div>
   </section>
@@ -113,7 +116,8 @@
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-extrabold">Como funciona</h2>
       <div class="mt-10">
-        <HowItWorks {steps} />
+        <!-- showConnector is true by default, enabling the connecting line between steps -->
+        <HowItWorks {steps} showConnector />
       </div>
     </div>
   </section>
@@ -122,20 +126,41 @@
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-extrabold">Planos</h2>
       <PricingTable {plans} />
+      <!-- 
+        Custom card example:
+        <PricingTable {plans}>
+          {#snippet customCard(plan, { annual, format })}
+            <div class="custom-card">
+              <h3>{plan.name}</h3>
+              <p>{annual ? format(plan.annual) : format(plan.monthly)}</p>
+            </div>
+          {/snippet}
+        </PricingTable>
+      -->
     </div>
   </section>
 
   <section class="px-6 py-16 section-reveal">
-    <Testimonial
-      quote="Este produto mudou a forma como trabalhamos."
-      author="Maria Silva"
-      role="CEO da Empresa"
-    />
+    <div class="mx-auto max-w-6xl space-y-16">
+      <Testimonial
+        quote="Este produto mudou a forma como trabalhamos."
+        author="Maria Silva"
+        role="CEO da Empresa"
+        avatar="https://i.pravatar.cc/150?u=maria"
+      />
+      <Testimonial
+        quote="Recomendo para todos os escritórios."
+        author="João Santos"
+        role="Advogado"
+        avatarFallback="JS"
+      />
+    </div>
   </section>
 
   <section id="faq" class="border-t border-border px-6 py-16 section-reveal">
     <div class="mx-auto max-w-6xl">
       <h2 class="text-center text-3xl font-extrabold">Perguntas frequentes</h2>
+      <!-- Components handle empty arrays gracefully (e.g. FAQ with []) -->
       <FAQ items={faqItems} />
     </div>
   </section>
@@ -144,6 +169,7 @@
     title="Pronto para começar?"
     description="Junte-se a milhares de usuários satisfeitos."
     ctas={[{ label: 'Começar agora', href: '/signup', icon: ArrowRight }]}
+    footnote={{ title: 'Trial gratuito.', description: '7 dias sem compromisso.' }}
   />
 
   <SiteFooter
@@ -153,6 +179,7 @@
       { label: 'Blog', href: '/blog' },
       { label: 'Contato', href: '/contact' },
     ]}
+    copyright="© 2026 Minha SaaS. Todos os direitos reservados."
     bottomLinks={[
       { label: 'Termos', href: '/terms' },
       { label: 'Privacidade', href: '/privacy' },
