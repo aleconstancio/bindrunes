@@ -114,6 +114,7 @@ export type { WizardStep, WizardOptions } from './utils/createWizard.svelte.ts';
 
 // ── Theme ──
 export { default as ThemeBuilder } from './components/ThemeBuilder.svelte';
+export { default as ThemeStudio } from './components/ThemeStudio.svelte';
 export { default as ThemeToggle } from './components/ThemeToggle.svelte';
 export { createTheme } from './utils/createTheme.svelte.ts';
 export type { Theme } from './utils/createTheme.svelte.ts';
