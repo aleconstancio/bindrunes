@@ -99,6 +99,9 @@ const plugin = {
           '.animate-pulse-glow': {
             animation: 'thoth-pulse-glow 3s infinite ease-in-out',
           },
+          '.section-reveal': {
+            animation: 'fade-slide-in 0.7s ease-out forwards',
+          },
         });
       },
     ],

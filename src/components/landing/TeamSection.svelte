@@ -63,10 +63,10 @@
       </div>
     {/each}
   </div>
-</div>
 
-{#if children}
-  <div class="mt-8">
-    {@render children()}
-  </div>
-{/if}
+  {#if children}
+    <div class="mt-8">
+      {@render children()}
+    </div>
+  {/if}
+</div>
