@@ -40,12 +40,12 @@
       </p>
     {/if}
     <form onsubmit={handleSubmit} class="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-      <input
+      <Input
         type="email"
         {placeholder}
         bind:value={email}
         required
-        class="flex-1 h-10 px-4 rounded-[--radius] border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        class="flex-1"
       />
       <Button type="submit" variant="primary">{buttonText}</Button>
     </form>

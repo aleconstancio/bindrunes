@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
+  import { getInitials } from './landing-utils';
 
   interface Props {
     quote: string;
@@ -19,9 +20,7 @@
     children,
   }: Props = $props();
 
-  const initials = $derived(
-    avatarFallback ?? author.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
-  );
+  const initials = $derived(avatarFallback ?? getInitials(author));
 </script>
 
 <div class="mx-auto max-w-2xl text-center px-6 py-12 section-reveal">

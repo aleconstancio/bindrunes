@@ -8,7 +8,7 @@
   interface NavLogo {
     href: string;
     label: string;
-    icon?: any;
+    icon?: import('svelte').Component;
   }
 
   interface NavLink {

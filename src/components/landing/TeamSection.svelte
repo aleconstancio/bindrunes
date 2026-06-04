@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
-  import { getGridClass } from './landing-utils';
+  import { getGridClass, getInitials } from './landing-utils';
 
   interface TeamMember {
     name: string;
@@ -21,9 +21,7 @@
 
   let { title, members, columns = 3, children }: Props = $props();
 
-  function getInitials(name: string) {
-    return name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
-  }
+
 </script>
 
 <div class="px-6 py-12 section-reveal">
