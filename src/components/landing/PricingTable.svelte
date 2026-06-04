@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  import { Card, Badge, Button } from 'bindrunes';
+  import { Card, Badge, Button, Switch } from 'bindrunes';
   import { Check } from 'lucide-svelte';
   import type { TFunction } from '../../shared-types';
   import { useLanding } from './landing-context.svelte';
@@ -41,15 +41,7 @@
   {#if showToggle}
     <div class="flex items-center justify-center gap-3">
       <span class="text-label-md {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
-      <button
-        role="switch"
-        aria-checked={landing.billingAnnual}
-        class="relative h-6 w-11 rounded-full transition-colors {landing.billingAnnual ? 'bg-primary' : 'bg-muted-foreground/30'}"
-        onclick={() => (landing.billingAnnual = !landing.billingAnnual)}
-        aria-label={t?.('landing.PricingTable.ariaToggle') ?? 'Alternar para faturamento anual'}
-      >
-        <span class="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-foreground transition-transform {landing.billingAnnual ? 'translate-x-5' : 'translate-x-0'}"></span>
-      </button>
+      <Switch bind:checked={landing.billingAnnual} />
       <span class="text-label-md {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Anual'}</span>
       {#if !landing.billingAnnual}
         <Badge variant="primary">{t?.('landing.PricingTable.saveUpTo') ?? 'Economize até 20%'}</Badge>

@@ -1,61 +1,60 @@
 <script lang="ts">
-  import Popover from './Popover.svelte';
-  import Button from './Button.svelte';
+	import { AlertDialog as BitsAlertDialog } from 'bits-ui';
+	import Button from './Button.svelte';
 
-  let {
-    title = 'Are you sure?',
-    description = undefined as string | undefined,
-    confirmLabel = 'Confirm',
-    cancelLabel = 'Cancel',
-    destructive = false,
-    onConfirm = undefined as (() => void) | undefined,
-    onCancel = undefined as (() => void) | undefined,
-    trigger,
-  }: {
-    title?: string;
-    description?: string;
-    confirmLabel?: string;
-    cancelLabel?: string;
-    destructive?: boolean;
-    onConfirm?: () => void;
-    onCancel?: () => void;
-    trigger?: import('svelte').Snippet;
-  } = $props();
+	let {
+		title = 'Are you sure?',
+		description = undefined as string | undefined,
+		confirmLabel = 'Confirm',
+		cancelLabel = 'Cancel',
+		destructive = false,
+		onConfirm = undefined as (() => void) | undefined,
+		onCancel = undefined as (() => void) | undefined,
+		trigger,
+	}: {
+		title?: string;
+		description?: string;
+		confirmLabel?: string;
+		cancelLabel?: string;
+		destructive?: boolean;
+		onConfirm?: () => void;
+		onCancel?: () => void;
+		trigger?: import('svelte').Snippet;
+	} = $props();
 
-  let open = $state(false);
+	let open = $state(false);
 
-  function handleConfirm() {
-    open = false;
-    onConfirm?.();
-  }
+	function handleConfirm() {
+		open = false;
+		onConfirm?.();
+	}
 
-  function handleCancel() {
-    open = false;
-    onCancel?.();
-  }
+	function handleCancel() {
+		open = false;
+		onCancel?.();
+	}
 </script>
 
-<Popover bind:open>
-  {#snippet trigger()}
-    {@render trigger?.()}
-  {/snippet}
+<BitsAlertDialog.Root bind:open>
+	<BitsAlertDialog.Trigger class="inline-flex">
+		{@render trigger?.()}
+	</BitsAlertDialog.Trigger>
 
-  <div class="space-y-3 min-w-[220px]">
-    <div>
-      <p class="text-title-3" style="color: var(--foreground);">{title}</p>
-      {#if description}
-        <p class="text-body-sm mt-1" style="color: var(--muted-foreground);">{description}</p>
-      {/if}
-    </div>
-    <div class="flex items-center gap-2 justify-end">
-      <Button variant="ghost" size="sm" onclick={handleCancel}>{cancelLabel}</Button>
-      <Button
-        variant={destructive ? 'destructive' : 'primary'}
-        size="sm"
-        onclick={handleConfirm}
-      >
-        {confirmLabel}
-      </Button>
-    </div>
-  </div>
-</Popover>
+	<BitsAlertDialog.Portal>
+		<BitsAlertDialog.Overlay class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+		<BitsAlertDialog.Content class="fixed left-1/2 top-1/2 z-[--z-overlay,30] w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[--radius] bg-card p-6 shadow-lg border border-border">
+			<BitsAlertDialog.Title class="text-title-2 mb-2 text-foreground">{title}</BitsAlertDialog.Title>
+			{#if description}
+				<BitsAlertDialog.Description class="text-body-md text-muted-foreground">{description}</BitsAlertDialog.Description>
+			{/if}
+			<div class="mt-6 flex justify-end gap-3">
+				<BitsAlertDialog.Cancel asChild let:props>
+					<Button variant="ghost" size="sm" {...props} onclick={handleCancel}>{cancelLabel}</Button>
+				</BitsAlertDialog.Cancel>
+				<BitsAlertDialog.Action asChild let:props>
+					<Button variant={destructive ? 'destructive' : 'primary'} size="sm" {...props} onclick={handleConfirm}>{confirmLabel}</Button>
+				</BitsAlertDialog.Action>
+			</div>
+		</BitsAlertDialog.Content>
+	</BitsAlertDialog.Portal>
+</BitsAlertDialog.Root>

@@ -2,7 +2,7 @@
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
   import { getGridClass, getInitials } from './landing-utils';
-
+  import Avatar from '../Avatar.svelte';
   import type { TeamMember } from './landing-types';
 
   interface Props {
@@ -25,17 +25,7 @@
   <div class="grid {getGridClass(columns)} gap-8">
     {#each members as member}
       <div class="text-center">
-        {#if member.avatar}
-          <img
-            src={member.avatar}
-            alt={member.name}
-            class="mx-auto h-24 w-24 rounded-full border-2 border-primary/30 object-cover"
-          />
-        {:else}
-          <div class="mx-auto flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-headline-2 text-primary">
-            {getInitials(member.name)}
-          </div>
-        {/if}
+        <Avatar src={member.avatar} alt={member.name} fallback={getInitials(member.name)} size="lg" class="mx-auto" />
         <h3 class="mt-4 text-title-2 font-bold text-foreground">{member.name}</h3>
         <p class="text-label-md text-primary">{member.role}</p>
         {#if member.bio}

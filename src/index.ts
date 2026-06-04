@@ -56,6 +56,12 @@ export { default as Sheet } from './components/Sheet.svelte';
 export { default as Popover } from './components/Popover.svelte';
 export { default as Popconfirm } from './components/Popconfirm.svelte';
 export { default as Stepper } from './components/Stepper.svelte';
+export { default as Avatar } from './components/Avatar.svelte';
+export { default as Combobox } from './components/Combobox.svelte';
+export { default as DatePicker } from './components/DatePicker.svelte';
+export { default as Slider } from './components/Slider.svelte';
+export { default as RadioGroup } from './components/RadioGroup.svelte';
+export { default as ToggleGroup } from './components/ToggleGroup.svelte';
 export { default as Accordion } from './components/Accordion.svelte';
 export { default as AccordionItem } from './components/AccordionItem.svelte';
 

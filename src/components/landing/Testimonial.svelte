@@ -1,44 +1,35 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { getInitials } from './landing-utils';
+	import type { Snippet } from 'svelte';
+	import Avatar from '../Avatar.svelte';
+	import { getInitials } from './landing-utils';
 
-  interface Props {
-    quote: string;
-    author: string;
-    role?: string;
-    avatar?: string;
-    avatarFallback?: string;
-    children?: Snippet;
-    class?: string;
-  }
+	interface Props {
+		quote: string;
+		author: string;
+		role?: string;
+		avatar?: string;
+		avatarFallback?: string;
+		children?: Snippet;
+		class?: string;
+	}
 
-  let {
-    quote,
-    author,
-    role,
-    avatar,
-    avatarFallback,
-    children,
-    class: className = '',
-  }: Props = $props();
+	let {
+		quote,
+		author,
+		role,
+		avatar,
+		avatarFallback,
+		children,
+		class: className = '',
+	}: Props = $props();
 
-  const initials = $derived(avatarFallback ?? getInitials(author));
+	const initials = $derived(avatarFallback ?? getInitials(author));
 </script>
 
 <div class="mx-auto max-w-2xl text-center px-6 py-12 section-reveal {className}">
-  <div class="mb-6 flex justify-center">
-    {#if avatar}
-      <img
-        src={avatar}
-        alt={author}
-        class="h-16 w-16 rounded-full border-2 border-primary/30 object-cover"
-      />
-    {:else}
-      <div class="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/30 bg-primary/10 text-title-2 font-bold text-primary">
-        {initials}
-      </div>
-    {/if}
-  </div>
+	<div class="mb-6 flex justify-center">
+		<Avatar src={avatar} alt={author} fallback={initials} />
+	</div>
   <blockquote class="text-title-1 italic text-foreground">
     &ldquo;{quote}&rdquo;
   </blockquote>
