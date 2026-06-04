@@ -78,7 +78,7 @@
 <style>
   :global(.final-cta-section.cta-gradient) {
     background:
-      radial-gradient(ellipse at 20% 50%, oklch(0.55 0.18 240 / 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, oklch(0.55 0.15 150 / 0.04) 0%, transparent 60%);
+      radial-gradient(ellipse at 20% 50%, oklch(from var(--primary) l c h / 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 50%, oklch(from var(--success, oklch(0.55 0.15 150)) l c h / 0.04) 0%, transparent 60%);
   }
 </style>

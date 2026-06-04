@@ -163,7 +163,7 @@
   }
 
   :global(.pricing-highlight) {
-    box-shadow: 0 0 30px oklch(0.55 0.18 240 / 0.15);
+    box-shadow: 0 0 30px oklch(from var(--primary) l c h / 0.15);
   }
 
   :global(.pricing-grid:has(.highlight) .pricing-card-wrapper:not(.highlight)) {

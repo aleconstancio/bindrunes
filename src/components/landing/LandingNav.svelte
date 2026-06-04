@@ -142,7 +142,7 @@
     bottom: 0;
     left: 0;
     height: 2px;
-    background: oklch(0.55 0.18 240);
+    background: var(--primary);
     transform-origin: left;
     scale: 0 1;
     animation: progress linear;
