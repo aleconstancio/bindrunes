@@ -951,14 +951,13 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
   import {
     createLandingState,
     LandingNav,
-    HeroSection,
+    HeroBanner,
     MetricsBar,
     HowItWorks,
     FeatureGrid,
     PricingTable,
     Testimonial,
     FAQ,
-    FinalCTA,
     SiteFooter,
   } from 'bindrunes/landing';
 
@@ -972,7 +971,7 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
     cta={{ label: 'Get Started', href: '/signup' }}
     sectionIds={['features']}
   />
-  <HeroSection
+  <HeroBanner
     title="My SaaS Title"
     description="The best product ever."
     ctas={[{ label: 'Get Started', href: '/signup' }]}
@@ -987,14 +986,13 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
 | Component | Description |
 |-----------|-------------|
 | `LandingNav` | Sticky nav with scroll progress, mobile menu, theme toggle |
-| `HeroSection` | Hero with gradient background, badge, CTAs |
+| `HeroBanner` | Hero/CTA banner with gradient, badge, CTAs (used for both hero and final CTA) |
 | `MetricsBar` | Responsive metric cards grid |
 | `HowItWorks` | Numbered steps with connector line |
 | `FeatureGrid` | Feature cards (card/minimal variants) |
 | `PricingTable` | Pricing with monthly/annual toggle, subgrid alignment |
 | `Testimonial` | Centered testimonial with avatar |
 | `FAQ` | Accordion-based FAQ section |
-| `FinalCTA` | Final call-to-action with gradient background |
 | `SiteFooter` | Site footer with links |
 
 ### Props
@@ -1009,17 +1007,19 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
 | sectionIds | `string[]` | `[]` | Section IDs for active tracking |
 | children | `Snippet` | - | Additional content |
 
-#### HeroSection
+#### HeroBanner
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | badge | `string` | - | Badge text above title |
-| title | `string` | required | HTML title (rendered via `@html`) |
+| title | `string` | required | HTML title (rendered via @html) |
 | titleGradient | `boolean` | `false` | Apply gradient to title |
-| description | `string` | required | Description text |
-| ctas | `Array<{ label: string; href: string; variant?: 'primary' \| 'outline'; icon?: Component }>` | required | CTA buttons |
+| description | `string` | - | Description text |
+| ctas | `CTA[]` | `[]` | CTA buttons |
 | footnote | `{ title: string; description: string }` | - | Footnote text |
 | background | `'gradient' \| 'solid' \| 'none'` | `'gradient'` | Background style |
+| level | `1 \| 2` | `1` | Heading level (h1 for hero, h2 for CTA) |
+| class | `string` | - | Additional CSS classes |
 | children | `Snippet` | - | Additional content |
 
 #### MetricsBar
@@ -1078,16 +1078,13 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
 | defaultOpen | `string` | - | Initially open item |
 | children | `Snippet` | - | Additional content |
 
-#### FinalCTA
+### Shared Utilities
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| title | `string` | required | CTA title |
-| description | `string` | - | CTA description |
-| ctas | `Array<{ label: string; href: string; variant?: 'primary' \| 'outline'; icon?: Component }>` | required | CTA buttons |
-| footnote | `{ title: string; description: string }` | - | Footnote text |
-| background | `'gradient' \| 'solid' \| 'none'` | `'gradient'` | Background style |
-| children | `Snippet` | - | Additional content |
+The landing components use shared types and utilities from `landing-types.ts` and `landing-utils.ts`:
+
+- `CTA`, `Feature`, `Metric`, `Step`, `Plan`, `TeamMember`, `Integration`, `FAQItem`, `FooterLink` — shared interfaces
+- `getGridClass(columns)` — responsive grid class helper
+- `getInitials(name)` — extract initials from a name string
 
 #### SiteFooter
 
