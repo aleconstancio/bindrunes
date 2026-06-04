@@ -58,8 +58,6 @@ export { default as Popconfirm } from './components/Popconfirm.svelte';
 export { default as Stepper } from './components/Stepper.svelte';
 export { default as Accordion } from './components/Accordion.svelte';
 export { default as AccordionItem } from './components/AccordionItem.svelte';
-export { getAccordionContext, ACCORDION_KEY } from './utils/accordionContext';
-export type { AccordionContext } from './utils/accordionContext';
 
 // ── Data Display ──
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/tabs/index.ts';
