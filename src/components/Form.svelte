@@ -72,7 +72,7 @@
 <form onsubmit={handleSubmit} novalidate class="space-y-4">
   {@render children?.()}
   {#if form && form.isSubmitted && Object.keys(form.errors).length > 0}
-    <div class="mb-4 text-sm text-destructive">
+    <div class="mb-4 text-body-sm text-destructive">
       {#each Object.values(form.errors) as error}
         {#if error}<p>{error}</p>{/if}
       {/each}

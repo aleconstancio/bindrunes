@@ -16,9 +16,9 @@
   } = $props();
 </script>
 
-<div class="flex flex-col gap-1.5 {className}">
+<div class="flex flex-col gap-2 {className}">
   {#if label}
-    <label class="text-sm font-medium" style="color: {error ? 'var(--destructive)' : 'var(--muted-foreground)'};">
+    <label class="text-label-md font-medium" style="color: {error ? 'var(--destructive)' : 'var(--muted-foreground)'};">
       {label}
       {#if required}
         <span style="color: var(--destructive);">*</span>
@@ -29,8 +29,8 @@
   {@render children?.()}
 
   {#if error}
-    <p class="text-xs" style="color: var(--destructive);">{error}</p>
+    <p class="text-body-sm" style="color: var(--destructive);">{error}</p>
   {:else if hint}
-    <p class="text-xs" style="color: var(--muted-foreground);">{hint}</p>
+    <p class="text-body-sm" style="color: var(--muted-foreground);">{hint}</p>
   {/if}
 </div>

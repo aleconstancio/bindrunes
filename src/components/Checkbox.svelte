@@ -26,6 +26,6 @@
     </BitsCheckbox.Indicator>
   </BitsCheckbox.Root>
   {#if label}
-    <span class="text-sm text-foreground">{label}</span>
+    <span class="text-label-md text-foreground">{label}</span>
   {/if}
 </label>

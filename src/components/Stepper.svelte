@@ -27,7 +27,7 @@
 
       <div class="flex items-center gap-2">
         <div
-          class="h-7 w-7 rounded-full flex items-center justify-center text-xs font-semibold transition-colors"
+          class="h-7 w-7 rounded-full flex items-center justify-center text-body-sm font-semibold transition-colors"
           style="background: {isCompleted || isActive ? 'var(--primary)' : 'var(--muted)'};
                  color: {isCompleted || isActive ? 'var(--primary-foreground)' : 'var(--muted-foreground)'};"
         >
@@ -38,7 +38,7 @@
           {/if}
         </div>
         <span
-          class="text-sm font-medium"
+          class="text-label-md font-medium"
           style="color: {isActive ? 'var(--foreground)' : 'var(--muted-foreground)'};"
         >
           {step.label}

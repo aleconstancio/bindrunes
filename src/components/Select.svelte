@@ -28,12 +28,12 @@
 </script>
 
 {#if label}
-  <label class="block text-sm font-medium mb-1.5 text-muted-foreground">{label}</label>
+  <label class="block text-label-md mb-2 text-muted-foreground">{label}</label>
 {/if}
 
 <BitsSelect.Root bind:value {disabled} {required}>
   <BitsSelect.Trigger
-    class="flex w-full items-center justify-between rounded-[--radius] border bg-input px-3 py-2 text-sm cursor-pointer
+    class="flex w-full items-center justify-between rounded-[--radius] border bg-input px-3 py-2 text-body-md cursor-pointer
            text-foreground transition-colors duration-[--duration-snappy]
            focus:outline-none focus:ring-2 focus:ring-ring
            disabled:opacity-50 disabled:cursor-not-allowed
@@ -55,7 +55,7 @@
         <BitsSelect.Item
           value={option.value}
           disabled={option.disabled}
-          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm
+          class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-body-md
                  text-foreground hover:bg-muted data-[state=checked]:bg-muted data-[state=checked]:text-foreground
                  focus:outline-none focus:bg-muted"
         >
@@ -72,5 +72,5 @@
 </BitsSelect.Root>
 
 {#if error}
-  <p class="mt-1 text-xs text-destructive">{error}</p>
+  <p class="mt-1 text-body-sm text-destructive">{error}</p>
 {/if}
