@@ -1,15 +1,15 @@
 <script lang="ts">
   import type { ComponentType } from 'svelte';
   import { SidebarProvider, Sidebar, SidebarLayout, SidebarTrigger } from '../sidebar/index.js';
-  import type { NavGroup } from '../../shared-types';
-  import type { StatusVariant } from '../../shared-types';
+  import { derivePageInfo } from '../../utils/navigation';
+  import type { NavGroup, StatusVariant } from '../../shared-types';
   import NavMenu from './NavMenu.svelte';
   import StatusChip from '../StatusChip.svelte';
   import ThemeToggle from '../ThemeToggle.svelte';
   import RuleFootnote from '../RuleFootnote.svelte';
-  import { toggleMode, mode } from 'mode-watcher';
 
   let {
+    variant = 'default' as 'default' | 'right' | 'topnav',
     appName = '',
     appSubtitle = undefined as string | undefined,
     brandIcon = undefined as string | ComponentType | undefined,
@@ -36,6 +36,7 @@
     headerActions,
     children,
   }: {
+    variant?: 'default' | 'right' | 'topnav';
     appName?: string;
     appSubtitle?: string;
     brandIcon?: string | ComponentType;
@@ -64,38 +65,21 @@
   } = $props();
 
   let pagePath = $derived(pathname ?? (typeof window !== 'undefined' ? window.location.pathname : ''));
-
-  let navMap = $derived.by(() => {
-    const map = new Map<string, { title: string; description: string }>();
-    for (const group of navigation) {
-      for (const item of group.items) {
-        map.set(item.match ?? item.to, { title: item.title, description: item.description });
-      }
-    }
-    return map;
-  });
-
-  let pageInfo = $derived.by(() => {
-    for (const [match, info] of navMap) {
-      if (pagePath.startsWith(match)) return info;
-    }
-    return { title: defaultTitle, description: defaultDescription };
-  });
-
+  let pageInfo = $derived(derivePageInfo(pagePath, navigation, { title: defaultTitle, description: defaultDescription }));
   let resolvedTitle = $derived(pageTitle ?? pageInfo.title);
   let resolvedDescription = $derived(pageDescription ?? pageInfo.description);
 
   let sidebarCollapsibleProp = $derived(sidebarCollapsible === 'full' ? 'none' as const : 'icon' as const);
+  let sidebarCollapsibleComputed = $derived(variant === 'right' ? 'icon' : sidebarCollapsibleProp);
 </script>
 
-<SidebarProvider defaultOpen collapsible={sidebarCollapsibleProp}>
-  <Sidebar>
-    <SidebarLayout position="header">
-      {#if sidebarHeader}
-        {@render sidebarHeader()}
-      {:else if appName || brandIcon}
-        <div class="flex items-center gap-3 py-1">
-            {#if brandIcon}
+{#if variant === 'topnav'}
+  <div class="flex flex-col min-h-screen">
+    <header class="sticky top-0 z-20 shrink-0 transition-all duration-300 border-b"
+      style="background: oklch(from var(--background) l c h / 0.45); backdrop-filter: blur(12px); border-color: var(--border);">
+      <div class="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div class="flex items-center gap-6">
+          {#if brandIcon}
             {#if typeof brandIcon === 'string'}
               <span class="text-2xl">{brandIcon}</span>
             {:else}
@@ -103,64 +87,30 @@
               <BrandIcon size={24} style="color: var(--primary)" />
             {/if}
           {/if}
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.26em]" style="color: var(--muted-foreground)">{appName}</p>
-            {#if appSubtitle}
-              <p class="text-base font-semibold tracking-tight" style="color: var(--foreground)">{appSubtitle}</p>
-            {/if}
-          </div>
+          {#if appName}
+            <span class="text-sm font-bold uppercase tracking-[0.2em]" style="color: var(--muted-foreground)">{appName}</span>
+          {/if}
+          <nav class="hidden md:flex items-center gap-1">
+            {#each navigation as group}
+              {#each group.items as item}
+                <a
+                  href={item.to}
+                  class="px-3 py-1.5 text-sm rounded transition-colors"
+                  style="color: {pagePath.startsWith(item.to) ? 'var(--foreground)' : 'var(--muted-foreground)'}; background: {pagePath.startsWith(item.to) ? 'var(--muted)' : 'transparent'};"
+                >
+                  {item.title}
+                </a>
+              {/each}
+            {/each}
+          </nav>
         </div>
-      {/if}
-    </SidebarLayout>
-
-    <SidebarLayout position="content">
-      {#if scopeLabel}
-        <div class="rounded-[--radius] p-3 mb-4" style="background: var(--card); border: 1px solid var(--border)">
-          <p class="mono text-[0.65rem] font-bold uppercase tracking-[0.1em]" style="color: var(--muted-foreground)">{scopeLabel}</p>
-          {#if scopeTitle}<p class="text-sm font-semibold mt-1" style="color: var(--foreground)">{scopeTitle}</p>{/if}
-          {#if scopeDescription}<p class="text-xs mt-0.5" style="color: var(--muted-foreground)">{scopeDescription}</p>{/if}
-        </div>
-      {/if}
-
-      <NavMenu groups={navigation} pathname={pagePath} />
-    </SidebarLayout>
-
-    <SidebarLayout position="footer">
-      {#if sidebarFooter}
-        {@render sidebarFooter()}
-      {:else}
-        <ThemeToggle />
-        {#if ruleTitle}
-          <RuleFootnote title={ruleTitle} description={ruleDescription}>
-            {#if ruleChildren}{@render ruleChildren()}{/if}
-          </RuleFootnote>
-        {/if}
-      {/if}
-    </SidebarLayout>
-  </Sidebar>
-
-  <div class="flex-1 flex flex-col min-w-0 h-screen">
-    <header class="sticky top-0 z-20 shrink-0 transition-all duration-300"
-      style="background: oklch(from var(--background) l c h / 0.45); background: color-mix(in srgb, var(--background) 45%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border)">
-      <div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <div class="flex min-w-0 items-center gap-3">
-          <SidebarTrigger />
-          <div class="min-w-0">
-            {#if headerPrefix}
-              <p class="text-xs font-bold uppercase tracking-[0.24em]" style="color: var(--muted-foreground)">{headerPrefix}</p>
-            {/if}
-            <h1 class="truncate text-xl font-semibold tracking-tight" style="color: var(--foreground)">{resolvedTitle}</h1>
-            {#if resolvedDescription}
-              <p class="hidden text-sm md:block" style="color: var(--muted-foreground)">{resolvedDescription}</p>
-            {/if}
-          </div>
-        </div>
-        <div class="hidden lg:flex items-center gap-3">
+        <div class="flex items-center gap-3">
           {#if headerActions}
             {@render headerActions()}
           {:else if statusChipLabel}
             <StatusChip variant={statusChipVariant ?? 'info'} label={statusChipLabel} dot={statusChipDot} animate={statusChipAnimate} />
           {/if}
+          <ThemeToggle />
         </div>
       </div>
     </header>
@@ -168,4 +118,92 @@
       {@render children?.()}
     </main>
   </div>
-</SidebarProvider>
+{:else}
+  <SidebarProvider
+    defaultOpen
+    collapsible={sidebarCollapsibleComputed}
+    style={variant === 'right' ? 'flex-direction: row-reverse' : ''}
+  >
+    <Sidebar
+      side={variant === 'right' ? 'right' : 'left'}
+      class={variant === 'right' ? 'border-l border-r-0' : ''}
+    >
+      <SidebarLayout position="header">
+        {#if sidebarHeader}
+          {@render sidebarHeader()}
+        {:else if appName || brandIcon}
+          <div class="flex items-center gap-3 py-1">
+            {#if brandIcon}
+              {#if typeof brandIcon === 'string'}
+                <span class="text-2xl">{brandIcon}</span>
+              {:else}
+                {@const BrandIcon = brandIcon}
+                <BrandIcon size={24} style="color: var(--primary)" />
+              {/if}
+            {/if}
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.26em]" style="color: var(--muted-foreground)">{appName}</p>
+              {#if appSubtitle}
+                <p class="text-base font-semibold tracking-tight" style="color: var(--foreground)">{appSubtitle}</p>
+              {/if}
+            </div>
+          </div>
+        {/if}
+      </SidebarLayout>
+
+      <SidebarLayout position="content">
+        {#if variant === 'default' && scopeLabel}
+          <div class="rounded-[--radius] p-3 mb-4" style="background: var(--card); border: 1px solid var(--border)">
+            <p class="mono text-[0.65rem] font-bold uppercase tracking-[0.1em]" style="color: var(--muted-foreground)">{scopeLabel}</p>
+            {#if scopeTitle}<p class="text-sm font-semibold mt-1" style="color: var(--foreground)">{scopeTitle}</p>{/if}
+            {#if scopeDescription}<p class="text-xs mt-0.5" style="color: var(--muted-foreground)">{scopeDescription}</p>{/if}
+          </div>
+        {/if}
+        <NavMenu groups={navigation} pathname={pagePath} />
+      </SidebarLayout>
+
+      <SidebarLayout position="footer">
+        {#if sidebarFooter}
+          {@render sidebarFooter()}
+        {:else if variant === 'default'}
+          <ThemeToggle />
+          {#if ruleTitle}
+            <RuleFootnote title={ruleTitle} description={ruleDescription}>
+              {#if ruleChildren}{@render ruleChildren()}{/if}
+            </RuleFootnote>
+          {/if}
+        {/if}
+      </SidebarLayout>
+    </Sidebar>
+
+    <div class="flex-1 flex flex-col min-w-0 h-screen">
+      <header class="sticky top-0 z-20 shrink-0 transition-all duration-300 border-b"
+        style="background: oklch(from var(--background) l c h / 0.45); background: color-mix(in srgb, var(--background) 45%, transparent); backdrop-filter: blur(12px); border-color: var(--border);">
+        <div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+          <div class="flex min-w-0 items-center gap-3">
+            <SidebarTrigger />
+            <div class="min-w-0">
+              {#if headerPrefix}
+                <p class="text-xs font-bold uppercase tracking-[0.24em]" style="color: var(--muted-foreground)">{headerPrefix}</p>
+              {/if}
+              <h1 class="truncate text-xl font-semibold tracking-tight" style="color: var(--foreground)">{resolvedTitle}</h1>
+              {#if resolvedDescription}
+                <p class="hidden text-sm md:block" style="color: var(--muted-foreground)">{resolvedDescription}</p>
+              {/if}
+            </div>
+          </div>
+          <div class="hidden lg:flex items-center gap-3">
+            {#if headerActions}
+              {@render headerActions()}
+            {:else if statusChipLabel}
+              <StatusChip variant={statusChipVariant ?? 'info'} label={statusChipLabel} dot={statusChipDot} animate={statusChipAnimate} />
+            {/if}
+          </div>
+        </div>
+      </header>
+      <main class="flex-1 min-w-0 overflow-y-auto">
+        {@render children?.()}
+      </main>
+    </div>
+  </SidebarProvider>
+{/if}
