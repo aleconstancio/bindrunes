@@ -177,4 +177,20 @@ export { default as Omnibar } from './components/Omnibar.svelte';
 export { createOmnibar } from './utils/createOmnibar.svelte.ts';
 export type { OmnibarState, OmnibarOption, CreateOmnibarOptions } from './utils/createOmnibar.svelte.ts';
 
+// ── Landing ──
+export {
+  LandingNav,
+  HeroSection,
+  MetricsBar,
+  HowItWorks,
+  FeatureGrid,
+  PricingTable,
+  Testimonial,
+  FAQ,
+  FinalCTA,
+  SiteFooter,
+  createLandingState,
+  useLanding,
+} from './components/landing/index.ts';
+export type { LandingState } from './components/landing/index.ts';
 
