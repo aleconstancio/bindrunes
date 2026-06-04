@@ -3,10 +3,9 @@
   import { SidebarProvider, Sidebar, SidebarLayout, SidebarTrigger } from '../sidebar/index.js';
   import { derivePageInfo } from '../../types.ts';
   import type { NavGroup } from '../../types.ts';
+  import type { StatusVariant } from '../../shared-types';
   import NavMenu from './NavMenu.svelte';
   import StatusChip from '../StatusChip.svelte';
-
-  type StatusVariant = 'success' | 'warning' | 'danger' | 'info';
 
   let {
     appName = '',

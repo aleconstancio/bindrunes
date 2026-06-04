@@ -1,9 +1,9 @@
 <script lang="ts">
   import EmptyState from './EmptyState.svelte';
   import Button from './Button.svelte';
+  import type { TFunction } from '../shared-types';
 
   type DataState<T> = { status: 'loading' } | { status: 'empty' } | { status: 'error'; error: Error } | { status: 'loaded'; data: T };
-  type TFunction = (key: string, params?: Record<string, string | number>) => string;
 
   let {
     t = undefined as TFunction | undefined,

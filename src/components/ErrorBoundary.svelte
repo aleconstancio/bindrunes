@@ -2,8 +2,8 @@
   import { onMount } from 'svelte';
   import { toast } from 'svelte-sonner';
   import Button from './Button.svelte';
+  import type { TFunction } from '../shared-types';
 
-  type TFunction = (key: string, params?: Record<string, string | number>) => string;
   type Variant = 'default' | 'minimal' | 'page';
 
   let {

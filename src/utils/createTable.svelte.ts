@@ -1,20 +1,6 @@
-type Column<T> = {
-  key: keyof T & string;
-  label: string;
-  sortable?: boolean;
-  filterable?: boolean;
-  width?: number;
-};
+import type { Column, SortState, PaginationState } from '../shared-types';
 
-type SortState = {
-  key: string;
-  direction: 'asc' | 'desc';
-};
-
-type PaginationState = {
-  page: number;
-  pageSize: number;
-};
+export type { Column, SortState, PaginationState };
 
 type CreateTableOptions<T> = {
   data: T[] | (() => T[]);
@@ -180,4 +166,4 @@ export function createTable<T extends Record<string, any>>(options: CreateTableO
   };
 }
 
-export type { Column, SortState, PaginationState, CreateTableOptions };
+export type { CreateTableOptions };

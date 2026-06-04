@@ -2,7 +2,9 @@ export interface Dict {
   [key: string]: string | ((...args: any[]) => string);
 }
 
-export type TFunction = (key: string, params?: Record<string, string | number>) => string;
+import type { TFunction } from '../shared-types';
+
+export type { TFunction } from '../shared-types';
 
 export interface I18nOptions {
   default: string;

@@ -2,10 +2,9 @@
   import type { ComponentType } from 'svelte';
   import { derivePageInfo } from '../../types.ts';
   import type { NavGroup } from '../../types.ts';
+  import type { StatusVariant } from '../../shared-types';
   import StatusChip from '../StatusChip.svelte';
   import ThemeToggle from '../ThemeToggle.svelte';
-
-  type StatusVariant = 'success' | 'warning' | 'danger' | 'info';
 
   let {
     appName = '',

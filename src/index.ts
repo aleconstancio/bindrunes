@@ -1,3 +1,6 @@
+// ── Shared Types ──
+export type { TFunction, StatusVariant, NavItem, NavGroup, Column, SortState, PaginationState } from './shared-types';
+
 // ── App Scaffold ──
 export { default as AppProvider } from './components/AppProvider.svelte';
 
@@ -58,7 +61,6 @@ export { default as RichTextEditor } from './components/RichTextEditor.svelte';
 
 // ── Dashboard Shell ──
 export { DashboardShell, DashboardShellRight, DashboardShellTopnav, DashboardShellSplit, NavMenu } from './components/dashboard/index.ts';
-export type { NavItem, NavGroup } from './components/dashboard/index.ts';
 export { derivePageInfo, deriveOmnibarOptions } from './components/dashboard/index.ts';
 
 // ── Sidebar ──
@@ -145,7 +147,7 @@ export type { AccordionContext } from './utils/accordionContext';
 
 // ── i18n ──
 export { createI18n } from './utils/createI18n.svelte.ts';
-export type { Dict, I18nOptions, I18nResult, TFunction } from './utils/createI18n.svelte.ts';
+export type { Dict, I18nOptions, I18nResult } from './utils/createI18n.svelte.ts';
 export { default as ptBR } from './i18n/pt-BR.ts';
 
 // ── Utilities Core ──
@@ -171,7 +173,7 @@ export { createToast } from './utils/createToast.svelte.ts';
 
 // ── Table ──
 export { createTable } from './utils/createTable.svelte.ts';
-export type { Column, SortState, PaginationState, CreateTableOptions } from './utils/createTable.svelte.ts';
+export type { CreateTableOptions } from './utils/createTable.svelte.ts';
 
 // ── Omnibar ──
 export { default as Omnibar } from './components/Omnibar.svelte';

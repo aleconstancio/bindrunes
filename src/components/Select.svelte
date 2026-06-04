@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Select as BitsSelect } from 'bits-ui';
+  import type { TFunction } from '../shared-types';
 
   type Option = { value: string; label: string; disabled?: boolean };
-  type TFunction = (key: string, params?: Record<string, string | number>) => string;
 
   let {
     t = undefined as TFunction | undefined,

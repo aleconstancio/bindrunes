@@ -2,8 +2,7 @@
   import { toast } from 'svelte-sonner';
   import Button from './Button.svelte';
   import type { FormState } from '../utils/createForm.svelte.js';
-
-  type TFunction = (key: string, params?: Record<string, string | number>) => string;
+  import type { TFunction } from '../shared-types';
 
   let {
     t = undefined as TFunction | undefined,

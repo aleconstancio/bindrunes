@@ -1,6 +1,5 @@
 import { toast } from 'svelte-sonner';
-
-type TFunction = (key: string, params?: Record<string, string | number>) => string;
+import type { TFunction } from '../shared-types';
 
 export type User = {
   id: string;

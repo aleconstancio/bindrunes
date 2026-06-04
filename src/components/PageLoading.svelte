@@ -1,6 +1,7 @@
 <script lang="ts">
+  import type { TFunction } from '../shared-types';
+
   type Type = 'table' | 'cards' | 'form' | 'text';
-  type TFunction = (key: string, params?: Record<string, string | number>) => string;
 
   let {
     t = undefined as TFunction | undefined,
