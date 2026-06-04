@@ -29,6 +29,7 @@
   --color-glass-border: var(--glass-border);
   --color-success: var(--success);
   --color-warning: var(--warning);
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
 /* @property rules for typed tokens */
