@@ -1,51 +1,42 @@
 <script lang="ts">
   import Pagination from './Pagination.svelte';
-
-  type Column = {
-    key: string;
-    label: string;
-    sortable?: boolean;
-    width?: string;
-    align?: 'left' | 'right' | 'center';
-    cell?: (row: Record<string, any>, index: number) => import('svelte').Snippet;
-  };
-  type SortState = { key: string; dir: 'asc' | 'desc' } | null;
+  import type { Column, SortState } from '../shared-types';
 
   let {
     columns = [] as Column[],
-    rows = [] as ReadonlyArray<Record<string, any>>,
+    rows = [] as ReadonlyArray<Record<string, unknown>>,
     currentPage = 1,
     totalPages = 1,
     onPageChange = undefined as ((page: number) => void) | undefined,
-    sort = $bindable(null as SortState),
-    onSort = undefined as ((sort: SortState) => void) | undefined,
+    sort = $bindable(null as SortState | null),
+    onSort = undefined as ((sort: SortState | null) => void) | undefined,
     hoverable = true,
     striped = false,
     loading = false,
-    onRowClick = undefined as ((row: Record<string, any>, index: number) => void) | undefined,
+    onRowClick = undefined as ((row: Record<string, unknown>, index: number) => void) | undefined,
     emptyText = 'No results found.',
     selectedIndex = undefined as number | undefined,
-    rowClass = undefined as ((row: Record<string, any>, index: number) => string) | undefined,
+    rowClass = undefined as ((row: Record<string, unknown>, index: number) => string) | undefined,
   }: {
     columns?: Column[];
-    rows?: ReadonlyArray<Record<string, any>>;
+    rows?: ReadonlyArray<Record<string, unknown>>;
     currentPage?: number;
     totalPages?: number;
     onPageChange?: (page: number) => void;
-    sort?: SortState;
-    onSort?: (sort: SortState) => void;
+    sort?: SortState | null;
+    onSort?: (sort: SortState | null) => void;
     hoverable?: boolean;
     striped?: boolean;
     loading?: boolean;
-    onRowClick?: (row: Record<string, any>, index: number) => void;
+    onRowClick?: (row: Record<string, unknown>, index: number) => void;
     emptyText?: string;
     selectedIndex?: number;
-    rowClass?: (row: Record<string, any>, index: number) => string;
+    rowClass?: (row: Record<string, unknown>, index: number) => string;
   } = $props();
 
   function toggleSort(key: string) {
-    if (!sort || sort.key !== key) { onSort?.({ key, dir: 'asc' }); }
-    else if (sort.dir === 'asc') { onSort?.({ key, dir: 'desc' }); }
+    if (!sort || sort.key !== key) { onSort?.({ key, direction: 'asc' }); }
+    else if (sort.direction === 'asc') { onSort?.({ key, direction: 'desc' }); }
     else { onSort?.(null); }
   }
 
@@ -69,7 +60,7 @@
             role={col.sortable ? 'columnheader button' : 'columnheader'}>
             {col.label}
             {#if col.sortable && sort?.key === col.key}
-              <span class="ml-1">{sort.dir === 'asc' ? '↑' : '↓'}</span>
+              <span class="ml-1">{sort.direction === 'asc' ? '↑' : '↓'}</span>
             {/if}
           </th>
         {/each}

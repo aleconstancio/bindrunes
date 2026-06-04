@@ -26,7 +26,9 @@ export interface Column<T = Record<string, unknown>> {
   label: string;
   sortable?: boolean;
   filterable?: boolean;
-  width?: number;
+  width?: number | string;
+  align?: 'left' | 'right' | 'center';
+  cell?: (row: T, index: number) => import('svelte').Snippet;
 }
 
 export interface SortState {
