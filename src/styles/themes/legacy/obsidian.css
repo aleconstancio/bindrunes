@@ -1,0 +1,4 @@
+/* v0.4 → v1.0 legacy re-export
+ * obsidian has been replaced by editorial (was greyscale, now warm-grey).
+ * This file forwards to the replacement so imports don't break. */
+@import "../editorial.css";
