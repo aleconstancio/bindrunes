@@ -19,7 +19,7 @@
   {href}
   {onclick}
   class="group/menubutton relative flex w-full cursor-pointer items-center gap-3 rounded-[--radius] px-3 py-2
-         text-sm font-medium border-0 bg-transparent text-left outline-none
+         text-label-md border-0 bg-transparent text-left outline-none
          transition-all duration-[--duration-snappy]
          {isActive
            ? 'bg-sidebar-accent text-sidebar-accent-foreground'

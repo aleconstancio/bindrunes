@@ -15,9 +15,10 @@
     columns?: 1 | 2 | 3 | 4;
     duration?: number;
     children?: Snippet;
+    class?: string;
   }
 
-  let { stats, columns = 4, duration = 2000, children }: Props = $props();
+  let { stats, columns = 4, duration = 2000, children, class: className = '' }: Props = $props();
 
   let visible = $state(false);
   let element: HTMLElement;
@@ -36,7 +37,12 @@
     return () => observer.disconnect();
   });
 
-  function animateValue(start: number, end: number, dur: number): Promise<number> {
+  function animateValue(
+    start: number,
+    end: number,
+    dur: number,
+    onFrame?: (value: number) => void
+  ): Promise<number> {
     return new Promise((resolve) => {
       const startTime = performance.now();
       function update(currentTime: number) {
@@ -44,6 +50,7 @@
         const progress = Math.min(elapsed / dur, 1);
         const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.round(start + (end - start) * eased);
+        onFrame?.(current);
         if (progress < 1) {
           requestAnimationFrame(update);
         } else {
@@ -59,20 +66,21 @@
   $effect(() => {
     if (visible) {
       stats.forEach(async (stat, i) => {
-        const val = await animateValue(0, stat.value, duration);
-        displayValues[i] = val;
+        await animateValue(0, stat.value, duration, (val) => {
+          displayValues[i] = val;
+        });
       });
     }
   });
 </script>
 
-<div bind:this={element} class="grid {getGridClass(columns)} gap-8 px-6 py-12 section-reveal">
+<div bind:this={element} class="grid {getGridClass(columns)} gap-8 px-6 py-12 section-reveal {className}">
   {#each stats as stat, i}
     <div class="text-center">
-      <p class="text-4xl font-extrabold text-foreground">
+      <p class="text-display-2 text-foreground">
         {stat.prefix ?? ''}{displayValues[i].toLocaleString()}{stat.suffix ?? ''}
       </p>
-      <p class="mt-2 text-sm font-medium text-muted-foreground">{stat.label}</p>
+      <p class="mt-2 text-label-md text-muted-foreground">{stat.label}</p>
     </div>
   {/each}
 

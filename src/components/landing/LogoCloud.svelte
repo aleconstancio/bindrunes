@@ -12,14 +12,15 @@
     title?: string;
     logos: Logo[];
     children?: Snippet;
+    class?: string;
   }
 
-  let { title, logos, children }: Props = $props();
+  let { title, logos, children, class: className = '' }: Props = $props();
 </script>
 
-<div class="px-6 py-12 section-reveal">
+<div class="px-6 py-12 section-reveal {className}">
   {#if title}
-    <p class="text-center text-sm font-medium uppercase tracking-widest text-muted-foreground mb-8">
+    <p class="text-center text-label-md uppercase tracking-widest text-muted-foreground mb-8">
       {title}
     </p>
   {/if}
@@ -34,7 +35,7 @@
           {#if logo.icon}
             <logo.icon size={24} />
           {:else}
-            <span class="text-lg font-bold">{logo.label}</span>
+            <span class="text-title-2 font-bold">{logo.label}</span>
           {/if}
         </a>
       {:else}
@@ -42,7 +43,7 @@
           {#if logo.icon}
             <logo.icon size={24} />
           {:else}
-            <span class="text-lg font-bold">{logo.label}</span>
+            <span class="text-title-2 font-bold">{logo.label}</span>
           {/if}
         </div>
       {/if}

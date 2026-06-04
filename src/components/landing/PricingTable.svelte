@@ -2,17 +2,10 @@
   import type { Snippet } from 'svelte';
   import { Card, Badge, Button } from 'bindrunes';
   import { Check } from 'lucide-svelte';
+  import type { TFunction } from '../../shared-types';
   import { useLanding } from './landing-context.svelte';
 
-  interface Plan {
-    name: string;
-    monthly: number;
-    annual: number;
-    features: string[];
-    cta: { label: string; href: string; variant?: 'primary' | 'outline' };
-    highlight?: boolean;
-    badge?: string;
-  }
+  import type { Plan } from './landing-types';
 
   interface Props {
     plans: Plan[];
@@ -22,6 +15,8 @@
     customCard?: Snippet<[Plan, { annual: boolean; format: (n: number) => string }]>;
     customFeature?: Snippet<[string, Plan]>;
     children?: Snippet;
+    class?: string;
+    t?: TFunction;
   }
 
   let {
@@ -32,6 +27,8 @@
     customCard,
     customFeature,
     children,
+    class: className = '',
+    t,
   }: Props = $props();
 
   const landing = useLanding();
@@ -40,22 +37,22 @@
     new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
 </script>
 
-<div class="mx-auto max-w-6xl">
+<div class="mx-auto max-w-6xl {className}">
   {#if showToggle}
     <div class="flex items-center justify-center gap-3">
-      <span class="text-sm font-medium {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">Mensal</span>
+      <span class="text-label-md {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
       <button
         role="switch"
         aria-checked={landing.billingAnnual}
         class="relative h-6 w-11 rounded-full transition-colors {landing.billingAnnual ? 'bg-primary' : 'bg-muted-foreground/30'}"
         onclick={() => (landing.billingAnnual = !landing.billingAnnual)}
-        aria-label="Alternar para faturamento anual"
+        aria-label={t?.('landing.PricingTable.ariaToggle') ?? 'Alternar para faturamento anual'}
       >
         <span class="absolute left-0.5 top-0.5 h-5 w-5 rounded-full bg-foreground transition-transform {landing.billingAnnual ? 'translate-x-5' : 'translate-x-0'}"></span>
       </button>
-      <span class="text-sm font-medium {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">Anual</span>
+      <span class="text-label-md {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Anual'}</span>
       {#if !landing.billingAnnual}
-        <Badge variant="primary">Economize até 20%</Badge>
+        <Badge variant="primary">{t?.('landing.PricingTable.saveUpTo') ?? 'Economize até 20%'}</Badge>
       {/if}
     </div>
   {/if}
@@ -72,25 +69,25 @@
                 {#if plan.highlight}
                   <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                     <div class="inline-flex items-center rounded-full border border-primary/30 bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground shadow-lg">
-                      {plan.badge ?? 'Mais escolhido'}
+                      {plan.badge ?? (t?.('landing.PricingTable.mostChosen') ?? 'Mais escolhido')}
                     </div>
                   </div>
                 {/if}
                 <div class="text-center pricing-name">
-                  <p class="text-sm font-bold uppercase tracking-widest {plan.highlight ? 'text-primary' : 'text-muted-foreground'}">{plan.name}</p>
+                  <p class="text-label-md font-bold uppercase tracking-widest {plan.highlight ? 'text-primary' : 'text-muted-foreground'}">{plan.name}</p>
                 </div>
                 <div class="text-center pricing-price">
                   {#if landing.billingAnnual}
-                    <p class="text-5xl font-extrabold text-foreground sm:text-6xl">{formatCurrency(plan.annual)}</p>
-                    <p class="text-sm text-muted-foreground">por ano <span class="text-xs text-primary font-medium">(economize R$ {(plan.monthly * 12 - plan.annual).toLocaleString(locale)})</span></p>
+                    <p class="text-display-2 text-foreground sm:text-display-1">{formatCurrency(plan.annual)}</p>
+                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perYear') ?? 'por ano'} <span class="text-body-sm text-primary font-medium">({t?.('landing.PricingTable.save') ?? 'economize R$ '}{(plan.monthly * 12 - plan.annual).toLocaleString(locale)})</span></p>
                   {:else}
-                    <p class="text-5xl font-extrabold text-foreground sm:text-6xl">{formatCurrency(plan.monthly)}</p>
-                    <p class="text-sm text-muted-foreground">por mês</p>
+                    <p class="text-display-2 text-foreground sm:text-display-1">{formatCurrency(plan.monthly)}</p>
+                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perMonth') ?? 'por mês'}</p>
                   {/if}
                 </div>
                 <ul class="space-y-3 pricing-features">
                   {#each plan.features as feature}
-                    <li class="flex items-start gap-2 text-sm text-foreground">
+                    <li class="flex items-start gap-2 text-body-md text-foreground">
                       {#if customFeature}
                         {@render customFeature(feature, plan)}
                       {:else}

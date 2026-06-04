@@ -50,6 +50,16 @@ declare const _destructive: never;
 /** Text on destructive surfaces. Type: <color> */
 declare const _destructiveForeground: never;
 
+/** Success/green color. Type: <color> */
+declare const _success: never;
+/** Text on success surfaces. Type: <color> */
+declare const _successForeground: never;
+
+/** Warning/amber color. Type: <color> */
+declare const _warning: never;
+/** Text on warning surfaces. Type: <color> */
+declare const _warningForeground: never;
+
 /** Default border color. Type: <color> */
 declare const _border: never;
 /** Input element background. Type: <color> */

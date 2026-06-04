@@ -8,10 +8,10 @@ describe('StatusChip', () => {
 		expect(screen.getByText('Active')).toBeInTheDocument();
 	});
 
-	it('success variant applies CSS custom property styles', () => {
+	it('success variant applies success-soft styles', () => {
 		render(StatusChip, { props: { label: 'Online', variant: 'success' } });
 		const el = screen.getByText('Online');
-		expect(el.className).toContain('bg-[--success]');
+		expect(el.className).toContain('success-soft');
 	});
 
 	it('danger variant applies destructive styles', () => {
@@ -20,10 +20,10 @@ describe('StatusChip', () => {
 		expect(el.className).toContain('destructive');
 	});
 
-	it('info variant applies primary styles', () => {
+	it('info variant applies info-soft styles', () => {
 		render(StatusChip, { props: { label: 'Info', variant: 'info' } });
 		const el = screen.getByText('Info');
-		expect(el.className).toContain('bg-primary');
+		expect(el.className).toContain('info-soft');
 	});
 
 	it('renders dot when dot prop is true', () => {

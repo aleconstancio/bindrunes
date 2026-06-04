@@ -3,23 +3,22 @@
   import type { Snippet } from 'svelte';
   import { Card } from 'bindrunes';
   import { Check } from 'lucide-svelte';
+  import type { TFunction } from '../../shared-types';
 
-  interface Step {
-    icon: Component;
-    title: string;
-    description: string;
-  }
+  import type { Step } from './landing-types';
 
   interface Props {
     steps: Step[];
     showConnector?: boolean;
     children?: Snippet;
+    class?: string;
+    t?: TFunction;
   }
 
-  let { steps, showConnector = true, children }: Props = $props();
+  let { steps, showConnector = true, children, class: className = '', t }: Props = $props();
 </script>
 
-<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 {className}">
   {#each steps as step, i}
     <div class="relative">
       <Card variant="glass" padding class="h-full">
@@ -27,20 +26,25 @@
           <div class="flex flex-col items-center text-center gap-4">
             <div class="relative">
               <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <step.icon size={24} />
+                {#if typeof step.icon === 'string'}
+                  <span class="text-title-1">{step.icon}</span>
+                {:else}
+                  {@const Icon = step.icon}
+                  <Icon size={24} />
+                {/if}
               </div>
-              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-body-sm font-bold text-primary-foreground">
                 {#if i < steps.length - 1}
                   <Check size={12} />
-                  <span class="sr-only">Passo {i + 1} concluído</span>
+                  <span class="sr-only">{t?.('landing.HowItWorks.stepDone') ?? 'Passo concluído'} {i + 1}</span>
                 {:else}
                   {i + 1}
-                  <span class="sr-only">Passo {i + 1}</span>
+                  <span class="sr-only">{t?.('landing.HowItWorks.step') ?? 'Passo'} {i + 1}</span>
                 {/if}
               </div>
             </div>
-            <h3 class="text-lg font-bold text-foreground">{step.title}</h3>
-            <p class="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
+            <h3 class="text-title-2 font-bold text-foreground">{step.title}</h3>
+            <p class="text-body-md text-muted-foreground leading-relaxed">{step.description}</p>
           </div>
         {/snippet}
       </Card>

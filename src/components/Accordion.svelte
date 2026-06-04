@@ -30,7 +30,11 @@
     return value.includes(itemId);
   }
 
-  setContext(ACCORDION_KEY, { toggle, isOpen, multiple });
+  setContext(ACCORDION_KEY, {
+    toggle,
+    isOpen,
+    get multiple() { return multiple; }
+  });
 </script>
 
 <div class="space-y-2 {className}">

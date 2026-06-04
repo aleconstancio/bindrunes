@@ -6,7 +6,7 @@
 
   interface Props {
     badge?: string;
-    title: string;
+    title: Snippet;
     titleGradient?: boolean;
     description?: string;
     ctas?: CTA[];
@@ -48,21 +48,21 @@
     {/if}
     {#if level === 1}
       <h1
-        class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl"
+        class="text-display-2 sm:text-display-1 md:text-display-1"
         class:text-gradient-violet={titleGradient}
       >
-        {@html title}
+        {@render title()}
       </h1>
     {:else}
       <h2
-        class="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+        class="text-display-3 sm:text-display-2 md:text-display-1"
         class:text-gradient-violet={titleGradient}
       >
-        {@html title}
+        {@render title()}
       </h2>
     {/if}
     {#if description}
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+      <p class="mx-auto mt-6 max-w-2xl text-body-lg text-muted-foreground leading-relaxed">
         {description}
       </p>
     {/if}
@@ -77,14 +77,19 @@
           >
             {cta.label}
             {#if cta.icon}
-              <cta.icon size={18} />
+              {#if typeof cta.icon === 'string'}
+                <span class="text-body-md">{cta.icon}</span>
+              {:else}
+                {@const Icon = cta.icon}
+                <Icon size={18} />
+              {/if}
             {/if}
           </Button>
         {/each}
       </div>
     {/if}
     {#if footnote}
-      <p class="mt-6 text-xs text-muted-foreground">
+      <p class="mt-6 text-body-sm text-muted-foreground">
         <strong>{footnote.title}</strong> {footnote.description}
       </p>
     {/if}

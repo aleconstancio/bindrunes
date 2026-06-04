@@ -20,14 +20,14 @@
           onclick={onNavigate ? (e) => { e.preventDefault(); onNavigate?.(item.to); } : undefined}
         >
           {#if typeof item.icon === 'string'}
-            <span class="text-lg">{item.icon}</span>
+            <span class="text-title-1">{item.icon}</span>
           {:else}
             {@const Icon = item.icon}
             <Icon size={18} />
           {/if}
           <div class="min-w-0">
-            <span class="text-sm font-medium">{item.title}</span>
-            <p class="text-[0.7rem] mt-[0.1rem] opacity-70">{item.description}</p>
+            <span class="text-label-md">{item.title}</span>
+            <p class="text-mono-xs mt-[0.1rem] opacity-70">{item.description}</p>
           </div>
         </SidebarMenuButton>
       {/each}

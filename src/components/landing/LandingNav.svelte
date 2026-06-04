@@ -3,12 +3,13 @@
   import { slide } from 'svelte/transition';
   import { Button, ThemeToggle } from 'bindrunes';
   import { Menu, X } from 'lucide-svelte';
+  import type { TFunction } from '../../shared-types';
   import { useLanding } from './landing-context.svelte';
 
   interface NavLogo {
     href: string;
     label: string;
-    icon?: import('svelte').Component;
+    icon?: import('svelte').Component | string;
   }
 
   interface NavLink {
@@ -28,9 +29,10 @@
     cta?: NavCTA;
     sectionIds?: string[];
     children?: import('svelte').Snippet;
+    t?: TFunction;
   }
 
-  let { logo, links, cta, sectionIds = [], children }: Props = $props();
+  let { logo, links, cta, sectionIds = [], children, t }: Props = $props();
 
   const landing = useLanding();
 
@@ -70,9 +72,14 @@
     {#if logo}
       <a href={logo.href} class="flex items-center gap-2 no-underline">
         {#if logo.icon}
-          <logo.icon size={22} class="text-primary" />
+          {#if typeof logo.icon === 'string'}
+            <span class="text-title-1">{logo.icon}</span>
+          {:else}
+            {@const Icon = logo.icon}
+            <Icon size={22} class="text-primary" />
+          {/if}
         {/if}
-        <span class="text-lg font-bold text-foreground">{logo.label}</span>
+        <span class="text-title-1 font-bold text-foreground">{logo.label}</span>
       </a>
     {:else}
       <div></div>
@@ -82,7 +89,7 @@
       {#each links as link}
         <a
           href={link.href}
-          class="text-sm font-medium transition-colors no-underline hover:text-foreground {landing.activeSection === link.href.replace('#', '') ? 'text-foreground' : 'text-muted-foreground'}"
+          class="text-label-md transition-colors no-underline hover:text-foreground {landing.activeSection === link.href.replace('#', '') ? 'text-foreground' : 'text-muted-foreground'}"
         >
           {link.label}
         </a>
@@ -106,7 +113,7 @@
         {/if}
       </button>
       {#if cta}
-        <Button variant={cta.variant ?? 'primary'} href={cta.href} class="text-sm">
+        <Button variant={cta.variant ?? 'primary'} href={cta.href} class="text-label-md">
           {cta.label}
         </Button>
       {/if}
@@ -119,7 +126,7 @@
         {#each links as link}
           <a
             href={link.href}
-            class="text-left text-base font-medium no-underline transition-colors hover:text-foreground {landing.activeSection === link.href.replace('#', '') ? 'text-foreground' : 'text-muted-foreground'}"
+            class="text-left text-body-lg font-medium no-underline transition-colors hover:text-foreground {landing.activeSection === link.href.replace('#', '') ? 'text-foreground' : 'text-muted-foreground'}"
             onclick={() => (landing.menuOpen = false)}
           >
             {link.label}
@@ -128,10 +135,16 @@
         <div class="border-t border-border pt-4">
           <div class="flex items-center gap-3">
             <ThemeToggle variant="icon" />
-            <span class="text-sm text-muted-foreground">Alternar tema</span>
+            <span class="text-label-md text-muted-foreground">{t?.('landing.LandingNav.toggleTheme') ?? 'Alternar tema'}</span>
           </div>
         </div>
       </div>
+    </div>
+  {/if}
+
+  {#if children}
+    <div class="px-6 py-3 border-t border-border md:hidden">
+      {@render children()}
     </div>
   {/if}
 </nav>

@@ -14,5 +14,7 @@ export { default as Newsletter } from './Newsletter.svelte';
 export { default as TeamSection } from './TeamSection.svelte';
 export { default as IntegrationGrid } from './IntegrationGrid.svelte';
 export { default as StatsCounter } from './StatsCounter.svelte';
+export { default as LandingSection } from './LandingSection.svelte';
 export { createLandingState, useLanding } from './landing-context.svelte.ts';
 export type { LandingState } from './landing-context.svelte.ts';
+export type { CTA, Feature, Metric, Step, Plan, TeamMember, Integration, FAQItem, FooterLink } from './landing-types';

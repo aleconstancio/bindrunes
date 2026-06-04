@@ -9,10 +9,10 @@ describe('Alert', () => {
 		expect(screen.getByText('Something went wrong')).toBeInTheDocument();
 	});
 
-	it('info variant applies border-l-primary', () => {
+	it('info variant applies border-l-info', () => {
 		const { container } = render(Alert, { props: { title: 'Info', variant: 'info' } });
 		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain('border-l-primary');
+		expect(div?.className).toContain('border-l-info');
 	});
 
 	it('warning variant applies border-l-warning', () => {

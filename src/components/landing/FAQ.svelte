@@ -2,23 +2,21 @@
   import type { Snippet } from 'svelte';
   import { Accordion, AccordionItem } from 'bindrunes';
 
-  interface FAQItem {
-    question: string;
-    answer: string;
-  }
+  import type { FAQItem } from './landing-types';
 
   interface Props {
     items: FAQItem[];
     defaultOpen?: string;
     children?: Snippet;
+    class?: string;
   }
 
-  let { items, defaultOpen, children }: Props = $props();
+  let { items, defaultOpen, children, class: className = '' }: Props = $props();
 
   const openValue = $state(defaultOpen ? [defaultOpen] : [] as string[]);
 </script>
 
-<div class="mx-auto max-w-3xl px-6 py-12 section-reveal">
+<div class="mx-auto max-w-3xl px-6 py-12 section-reveal {className}">
   <Accordion bind:value={openValue}>
     {#each items as item}
       <AccordionItem value={item.question}>

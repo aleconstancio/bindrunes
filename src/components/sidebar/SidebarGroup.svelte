@@ -13,7 +13,7 @@
 <div class="mb-4">
   {#if label}
     <div class="flex items-center justify-between mb-1 px-2">
-      <span class="text-xs font-medium uppercase tracking-wider text-sidebar-foreground/50">{label}</span>
+      <span class="text-body-sm font-medium uppercase tracking-wider text-sidebar-foreground/50">{label}</span>
       {#if action}
         <div class="text-sidebar-foreground/40 hover:text-sidebar-foreground">
           {@render action()}

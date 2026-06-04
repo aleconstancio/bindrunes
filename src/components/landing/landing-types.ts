@@ -4,11 +4,11 @@ export interface CTA {
   label: string;
   href: string;
   variant?: 'primary' | 'outline';
-  icon?: Component;
+  icon?: Component | string;
 }
 
 export interface Feature {
-  icon: Component;
+  icon: Component | string;
   title: string;
   description: string;
 }
@@ -21,7 +21,7 @@ export interface Metric {
 }
 
 export interface Step {
-  icon: Component;
+  icon: Component | string;
   title: string;
   description: string;
 }
@@ -42,11 +42,11 @@ export interface TeamMember {
   avatar?: string;
   avatarFallback?: string;
   bio?: string;
-  social?: { icon: Component; href: string; label: string }[];
+  social?: { icon: Component | string; href: string; label: string }[];
 }
 
 export interface Integration {
-  icon: Component;
+  icon: Component | string;
   title: string;
   description: string;
   href?: string;
