@@ -17,7 +17,7 @@
   {@render children?.()}
 </div>
 {:else if position === 'separator'}
-<div class="h-px bg-sidebar-border my-2" role="separator" />
+<div class="h-px bg-sidebar-border my-2" role="separator"></div>
 {:else}
 <div class="flex-1 overflow-y-auto px-4 py-2">
   {@render children?.()}

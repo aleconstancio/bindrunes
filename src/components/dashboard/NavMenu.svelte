@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { SidebarGroup, SidebarMenu, SidebarMenuButton } from '../sidebar/index.js';
+  import { SidebarGroup, SidebarMenu, SidebarMenuButton } from '../sidebar/index';
   import type { NavGroup } from '../../shared-types';
 
   let {

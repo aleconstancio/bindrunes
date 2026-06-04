@@ -14,7 +14,7 @@
   <div
     class="animate-shimmer rounded-[--radius,0.5rem] bg-muted {className}"
     style="width: {widths[i] ?? widths[widths.length - 1] ?? '100%'}; height: 1em; margin-bottom: 0.5em;"
-  />
+  ></div>
 {/each}
 
 <style>

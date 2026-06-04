@@ -104,7 +104,7 @@ export async function fetchQuery<T>(
 		for (let attempt = 0; attempt <= maxRetries; attempt++) {
 			try {
 				const result = await fetcher();
-				entry.data = result as any;
+				entry.data = result;
 				entry.status = 'success';
 				entry.fetchStatus = 'idle';
 				entry.lastUpdatedAt = Date.now();
@@ -140,7 +140,7 @@ export function invalidateQuery(key: string): void {
 
 export function setQueryData<T>(key: string, data: T): void {
 	const entry = getOrCreateEntry<T>(key);
-	entry.data = data as any;
+	entry.data = data;
 	entry.status = 'success';
 	entry.lastUpdatedAt = Date.now();
 	notify(entry);

@@ -62,15 +62,19 @@
   }
 
   let displayValues = $state(stats.map(() => 0));
+  let cancelled = $state(false);
 
   $effect(() => {
     if (visible) {
+      cancelled = false;
       stats.forEach(async (stat, i) => {
         await animateValue(0, stat.value, duration, (val) => {
+          if (cancelled) return;
           displayValues[i] = val;
         });
       });
     }
+    return () => { cancelled = true; };
   });
 </script>
 

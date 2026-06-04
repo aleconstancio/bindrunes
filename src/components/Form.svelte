@@ -1,7 +1,7 @@
 <script lang="ts">
   import { toast } from 'svelte-sonner';
   import Button from './Button.svelte';
-  import type { FormState } from '../utils/createForm.svelte.js';
+  import type { FormState } from '../utils/createForm.svelte';
   import type { TFunction } from '../shared-types';
 
   let {

@@ -29,7 +29,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   :global(.section-reveal) {
-    animation: fade-slide-in 0.7s ease-out forwards;
+    animation: fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards;
   }
 
   @supports (animation-timeline: scroll()) {

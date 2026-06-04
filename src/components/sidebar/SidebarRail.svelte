@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getSidebarContext } from './sidebar-context.svelte.js';
+  import { getSidebarContext } from './sidebar-context.svelte';
 
   const ctx = getSidebarContext();
 </script>

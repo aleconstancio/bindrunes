@@ -1,9 +1,9 @@
-import { safeParse } from "valibot";
+import { safeParse, type GenericSchema } from "valibot";
 
 export type WizardStep = {
   id: string;
   label: string;
-  schema?: any;
+  schema?: GenericSchema;
 };
 
 export type WizardOptions = {
@@ -35,7 +35,7 @@ export function createWizard(options: WizardOptions) {
     if (!result.success) {
       const newErrors: Record<string, string> = {};
       for (const issue of result.issues) {
-        const path = issue.path?.map((p: any) => p.key).join(".") ?? "unknown";
+        const path = issue.path?.map((p: { key: string }) => p.key).join(".") ?? "unknown";
         newErrors[path] = issue.message;
       }
       errors = newErrors;

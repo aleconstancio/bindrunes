@@ -1,5 +1,5 @@
 import { getContext, setContext } from 'svelte';
-import { browser } from './sidebar-constants.js';
+import { browser } from './sidebar-constants';
 
 export const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 

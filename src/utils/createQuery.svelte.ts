@@ -87,6 +87,7 @@ export function createQuery<TData>(options: CreateQueryOptions<TData>): QueryRes
 			unsubscribe();
 			const e = getEntry(options.key);
 			if (e && e.subscribers.size === 0) {
+				if (e.gcTimeout) clearTimeout(e.gcTimeout);
 				const gcTime = options.gcTime ?? 5 * 60 * 1000;
 				e.gcTimeout = setTimeout(() => {
 					removeEntry(options.key);

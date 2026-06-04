@@ -1,4 +1,4 @@
-import type { Dict } from "../utils/createI18n.svelte.js";
+import type { Dict } from "../utils/createI18n.svelte";
 
 const ptBR: Dict = {
   "common.reload": "Recarregar",

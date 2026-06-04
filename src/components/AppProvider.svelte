@@ -32,7 +32,8 @@
 
 	$effect(() => {
 		if (respectPrefersColorScheme) {
-			createPrefersTheme();
+			const prefers = createPrefersTheme();
+			return () => prefers.stop();
 		}
 	});
 </script>

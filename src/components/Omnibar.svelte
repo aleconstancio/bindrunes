@@ -25,16 +25,15 @@
   >
     <div class="w-full max-w-[650px] px-4" onclick={(e) => e.stopPropagation()}>
       <Card variant="glass" padding={false} class="border-primary/20 contain-layout">
-        <div class="flex items-center gap-3 px-4 py-3" style="border-bottom: 1px solid var(--border);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--muted-foreground); flex-shrink: 0;">
+        <div class="flex items-center gap-3 px-4 py-3 border-b border-border">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground shrink-0">
             <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
           </svg>
           <input
             type="text"
             placeholder={placeholder}
             value={state.searchQuery}
-            class="flex-1 bg-transparent border-none outline-none text-body-lg"
-            style="color: var(--foreground); font-family: inherit;"
+            class="flex-1 bg-transparent border-none outline-none text-body-lg text-foreground"
             oninput={(e) => state.setQuery((e.target as HTMLInputElement).value)}
             autocomplete="off"
             aria-label="Search"

@@ -105,7 +105,7 @@
 
   <section id="features" class="px-6 py-16 section-reveal">
     <div class="mx-auto max-w-6xl">
-      <h2 class="text-center text-3xl font-extrabold">Recursos</h2>
+      <h2 class="text-center text-display-3">Recursos</h2>
       <div class="mt-10">
         <FeatureGrid {features} columns={2} variant="minimal" />
       </div>
@@ -114,7 +114,7 @@
 
   <section id="how-it-works" class="px-6 py-16 section-reveal">
     <div class="mx-auto max-w-6xl">
-      <h2 class="text-center text-3xl font-extrabold">Como funciona</h2>
+      <h2 class="text-center text-display-3">Como funciona</h2>
       <div class="mt-10">
         <!-- showConnector is true by default, enabling the connecting line between steps -->
         <HowItWorks {steps} showConnector />
@@ -124,7 +124,7 @@
 
   <section id="pricing" class="border-t border-border px-6 py-16 section-reveal">
     <div class="mx-auto max-w-6xl">
-      <h2 class="text-center text-3xl font-extrabold">Planos</h2>
+      <h2 class="text-center text-display-3">Planos</h2>
       <PricingTable {plans} />
       <!-- 
         Custom card example:
@@ -159,7 +159,7 @@
 
   <section id="faq" class="border-t border-border px-6 py-16 section-reveal">
     <div class="mx-auto max-w-6xl">
-      <h2 class="text-center text-3xl font-extrabold">Perguntas frequentes</h2>
+      <h2 class="text-center text-display-3">Perguntas frequentes</h2>
       <!-- Components handle empty arrays gracefully (e.g. FAQ with []) -->
       <FAQ items={faqItems} />
     </div>

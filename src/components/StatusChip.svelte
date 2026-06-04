@@ -44,7 +44,7 @@
       style="--led-glow-color: {ledGlowColors[variant]}"
 >
   {#if dot}
-    <span class="w-1.5 h-1.5 rounded-full led-dot {dotVars[variant]} {animate ? 'animate-pulse' : ''}" />
+    <span class="w-1.5 h-1.5 rounded-full led-dot {dotVars[variant]} {animate ? 'animate-pulse' : ''}"></span>
   {/if}
   {label}
 </span>

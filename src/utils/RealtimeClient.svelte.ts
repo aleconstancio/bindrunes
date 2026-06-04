@@ -3,7 +3,7 @@ export type RealtimeStatus = 'connected' | 'reconnecting' | 'degraded' | 'discon
 export interface RealtimeEvent {
   id: string;
   type: string;
-  data: any;
+  data: unknown;
   seq: number;
 }
 
@@ -48,7 +48,7 @@ export class RealtimeClient {
     try {
       const { fetchEventSource } = await import('@microsoft/fetch-event-source');
 
-      let localforage: any;
+      let localforage: { getItem: (key: string) => Promise<string | null>; setItem: (key: string, value: string) => Promise<string>; removeItem: (key: string) => Promise<void> } | undefined;
       try {
         localforage = (await import('localforage')).default;
       } catch { /* optional */ }

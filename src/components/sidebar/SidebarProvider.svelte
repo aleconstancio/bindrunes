@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { setSidebarContext, createSidebarState } from './sidebar-context.svelte.js';
-  import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE } from './sidebar-constants.js';
+  import { setSidebarContext, createSidebarState } from './sidebar-context.svelte';
+  import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE } from './sidebar-constants';
 
   type Collapsible = 'offcanvas' | 'icon' | 'none';
 
