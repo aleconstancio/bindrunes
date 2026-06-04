@@ -28,14 +28,18 @@ export function createSidebarState(initialOpen = true) {
     }
   });
 
-  if (browser) {
-    document.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === SIDEBAR_KEYBOARD_SHORTCUT) {
-        e.preventDefault();
-        open = !open;
+  $effect(() => {
+    if (browser) {
+      function handleKeydown(e: KeyboardEvent) {
+        if ((e.metaKey || e.ctrlKey) && e.key === SIDEBAR_KEYBOARD_SHORTCUT) {
+          e.preventDefault();
+          open = !open;
+        }
       }
-    });
-  }
+      window.addEventListener('keydown', handleKeydown);
+      return () => window.removeEventListener('keydown', handleKeydown);
+    }
+  });
 
   function toggle() { open = !open; }
   function toggleMobile() { openMobile = !openMobile; }
