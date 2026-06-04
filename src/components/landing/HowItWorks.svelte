@@ -32,8 +32,10 @@
               <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
                 {#if i < steps.length - 1}
                   <Check size={12} />
+                  <span class="sr-only">Passo {i + 1} concluído</span>
                 {:else}
                   {i + 1}
+                  <span class="sr-only">Passo {i + 1}</span>
                 {/if}
               </div>
             </div>
@@ -44,6 +46,7 @@
       </Card>
       {#if showConnector && i < steps.length - 1}
         <div class="hidden lg:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-border"></div>
+        <div class="hidden md:block lg:hidden absolute -bottom-4 left-1/2 -translate-x-1/2 h-8 border-l-2 border-dashed border-border"></div>
       {/if}
     </div>
   {/each}

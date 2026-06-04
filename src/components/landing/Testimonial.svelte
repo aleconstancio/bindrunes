@@ -42,10 +42,12 @@
     &ldquo;{quote}&rdquo;
   </blockquote>
   <div class="mt-6">
-    <p class="font-bold text-foreground">{author}</p>
-    {#if role}
-      <p class="text-sm text-muted-foreground">{role}</p>
-    {/if}
+    <cite class="not-italic">
+      <p class="font-bold text-foreground">{author}</p>
+      {#if role}
+        <p class="text-sm text-muted-foreground">{role}</p>
+      {/if}
+    </cite>
   </div>
   {#if children}
     <div class="mt-6">
