@@ -1,0 +1,40 @@
+<script lang="ts">
+  import type { Snippet } from 'svelte';
+  import { Accordion, AccordionItem } from 'bindrunes';
+
+  interface FAQItem {
+    question: string;
+    answer: string;
+  }
+
+  interface Props {
+    items: FAQItem[];
+    defaultOpen?: string;
+    children?: Snippet;
+  }
+
+  let { items, defaultOpen, children }: Props = $props();
+
+  const openValue = $state(defaultOpen ? [defaultOpen] : [] as string[]);
+</script>
+
+<div class="mx-auto max-w-3xl px-6 py-12 section-reveal">
+  <Accordion bind:value={openValue}>
+    {#each items as item}
+      <AccordionItem value={item.question}>
+        {#snippet trigger()}
+          <span class="text-foreground font-medium">{item.question}</span>
+        {/snippet}
+        {#snippet children()}
+          <p class="text-muted-foreground leading-relaxed">{item.answer}</p>
+        {/snippet}
+      </AccordionItem>
+    {/each}
+  </Accordion>
+</div>
+
+{#if children}
+  <div class="mt-8">
+    {@render children()}
+  </div>
+{/if}
