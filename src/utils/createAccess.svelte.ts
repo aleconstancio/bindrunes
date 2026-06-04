@@ -1,8 +1,6 @@
 import { createAuth } from './createAuth.svelte';
 
-export function createAccess() {
-  const auth = createAuth();
-
+export function createAccess(auth: ReturnType<typeof createAuth>) {
   return {
     get isAuth() { return auth.isAuthenticated; },
     get roles() { return auth.roles; },
