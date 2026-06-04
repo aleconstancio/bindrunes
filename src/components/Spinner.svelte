@@ -25,12 +25,10 @@
 </svg>
 
 <style>
-  @layer thoth.components {
-    .animate-spin {
-      animation: thoth-spin 1s linear infinite;
-    }
-    @keyframes thoth-spin {
-      to { transform: rotate(360deg); }
-    }
+  @keyframes bindrunes-spin {
+    to { transform: rotate(360deg); }
+  }
+  :global(.animate-spin) {
+    animation: bindrunes-spin 1s linear infinite;
   }
 </style>

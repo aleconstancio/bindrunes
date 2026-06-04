@@ -29,7 +29,7 @@
 </script>
 
 {#if label}
-  <label class="block text-sm font-medium mb-1.5 text-muted-foreground" for={name}>
+  <label class="block text-label-md mb-2 text-muted-foreground" for={name}>
     {label}
     {#if required}<span class="text-destructive">*</span>{/if}
   </label>
@@ -49,9 +49,9 @@
       {disabled}
       {required}
       bind:value
-      class="w-full rounded-[--radius,0.625rem] border bg-input px-3 py-2 text-sm
+      class="w-full rounded-[--radius] border bg-input px-3 py-2 text-body-md
              text-foreground placeholder:text-muted-foreground
-             transition-colors duration-[--duration-snappy,150ms]
+             transition-colors duration-[--duration-snappy]
              focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background
              disabled:opacity-50 disabled:cursor-not-allowed
              {error ? 'border-destructive' : 'border-border'}
@@ -68,9 +68,9 @@
       {disabled}
       {required}
       bind:value
-      class="w-full rounded-[--radius,0.625rem] border bg-input px-3 py-2 text-sm
+      class="w-full rounded-[--radius] border bg-input px-3 py-2 text-body-md
              text-foreground placeholder:text-muted-foreground
-             transition-colors duration-[--duration-snappy,150ms]
+             transition-colors duration-[--duration-snappy]
              focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background
              disabled:opacity-50 disabled:cursor-not-allowed
              {error ? 'border-destructive' : 'border-border'}
@@ -87,7 +87,7 @@
 </div>
 
 {#if error}
-  <p class="mt-1.5 text-xs text-destructive">{error}</p>
+  <p class="mt-1.5 text-body-sm text-destructive">{error}</p>
 {:else if helper}
-  <p class="mt-1.5 text-xs text-muted-foreground">{helper}</p>
+  <p class="mt-1.5 text-body-sm text-muted-foreground">{helper}</p>
 {/if}
