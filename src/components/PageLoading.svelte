@@ -26,7 +26,7 @@
     {#each Array(rows) as _, r}
       <div class="flex gap-4 py-3" style="border-bottom: 1px solid var(--border)">
         {#each Array(4) as _, c}
-          <div class="h-4 flex-1 rounded" style="background: var(--muted); animation: thoth-shimmer 1.5s ease-in-out infinite; animation-delay: {(r * 4 + c) * 0.05}s"></div>
+          <div class="h-4 flex-1 rounded" style="background: var(--muted); animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {(r * 4 + c) * 0.05}s"></div>
         {/each}
       </div>
     {/each}
@@ -54,7 +54,7 @@
 {:else}
   <div class="space-y-2" role="status" aria-label={t?.('common.loading') ?? 'Carregando'}>
     {#each Array(lines) as _, l}
-      <div class="h-4 rounded" style="width: {60 + Math.random() * 40}%; background: var(--muted); animation: thoth-shimmer 1.5s ease-in-out infinite; animation-delay: {l * 0.15}s"></div>
+      <div class="h-4 rounded" style="width: {60 + Math.random() * 40}%; background: var(--muted); animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {l * 0.15}s"></div>
     {/each}
   </div>
 {/if}

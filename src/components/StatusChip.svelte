@@ -14,18 +14,18 @@
   } = $props();
 
   const vars: Record<Variant, string> = {
-    success: 'bg-[--success]/10 text-[--success] border-[--success]/30',
-    warning: 'bg-[--warning]/10 text-[--warning] border-[--warning]/30',
-    danger: 'bg-destructive/10 text-destructive border-destructive/30',
-    info: 'bg-primary/10 text-primary border-primary/30',
+    success: 'bg-success-soft text-success border-success/30',
+    warning: 'bg-warning-soft text-warning border-warning/30',
+    danger: 'bg-destructive-soft text-destructive border-destructive/30',
+    info: 'bg-info-soft text-info border-info/30',
     neutral: 'bg-muted text-muted-foreground border-border',
   };
 
   const dotVars: Record<Variant, string> = {
-    success: 'bg-[--success]',
-    warning: 'bg-[--warning]',
+    success: 'bg-success',
+    warning: 'bg-warning',
     danger: 'bg-destructive',
-    info: 'bg-primary',
+    info: 'bg-info',
     neutral: 'bg-muted-foreground',
   };
 
@@ -33,12 +33,12 @@
     success: 'var(--success)',
     warning: 'var(--warning)',
     danger: 'var(--destructive)',
-    info: 'var(--primary)',
+    info: 'var(--info)',
     neutral: 'var(--muted-foreground)',
   };
 </script>
 
-<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[0.65rem] font-semibold uppercase tracking-[0.05em]
+<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-mono-xs uppercase
              transition-all duration-[--duration-snappy] led-status
              {vars[variant]}"
       style="--led-glow-color: {ledGlowColors[variant]}"

@@ -62,7 +62,7 @@
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--destructive)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <p class="text-sm" style="color: var(--foreground)">{fallbackTitle}</p>
+      <p class="text-body-md" style="color: var(--foreground)">{fallbackTitle}</p>
       {#if showRetry}
         <Button variant="ghost" size="sm" onclick={retry}>{t?.('common.reload') ?? 'Recarregar'}</Button>
       {/if}
@@ -73,8 +73,8 @@
         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--destructive)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
-        <h1 class="text-2xl font-bold mt-6" style="color: var(--foreground)">{fallbackTitle}</h1>
-        <p class="text-sm mt-3" style="color: var(--muted-foreground)">{fallbackDescription}</p>
+        <h1 class="text-headline-2 font-bold mt-6" style="color: var(--foreground)">{fallbackTitle}</h1>
+        <p class="text-body-md mt-3" style="color: var(--muted-foreground)">{fallbackDescription}</p>
         <div class="flex gap-3 mt-8">
           {#if showRetry}
             <Button onclick={retry}>{t?.('common.reload') ?? 'Recarregar'}</Button>
@@ -90,8 +90,8 @@
       <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--destructive)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
       </svg>
-      <h2 class="text-lg font-semibold mt-4" style="color: var(--foreground)">{fallbackTitle}</h2>
-      <p class="text-sm mt-2 max-w-md" style="color: var(--muted-foreground)">{fallbackDescription}</p>
+      <h2 class="text-title-2 font-semibold mt-4" style="color: var(--foreground)">{fallbackTitle}</h2>
+      <p class="text-body-md mt-2 max-w-md" style="color: var(--muted-foreground)">{fallbackDescription}</p>
       <div class="flex gap-3 mt-6">
         {#if showRetry}
           <Button onclick={retry}>{t?.('common.reload') ?? 'Recarregar'}</Button>

@@ -20,11 +20,11 @@
   {/if}
 
   {#if title}
-    <h3 class="text-lg font-semibold text-foreground mb-1">{title}</h3>
+    <h3 class="text-title-1 text-foreground mb-1">{title}</h3>
   {/if}
 
   {#if description}
-    <p class="text-sm text-muted-foreground max-w-sm">{description}</p>
+    <p class="text-body-md text-muted-foreground max-w-sm">{description}</p>
   {/if}
 
   {#if action}
