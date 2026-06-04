@@ -30,7 +30,7 @@ describe('DataTable', () => {
 		const onSort = vi.fn();
 		render(DataTable, { props: { columns, rows, onSort } });
 		await userEvent.click(screen.getByText('Name'));
-		expect(onSort).toHaveBeenCalledWith({ key: 'name', dir: 'asc' });
+		expect(onSort).toHaveBeenCalledWith({ key: 'name', direction: 'asc' });
 	});
 
 	it('triggers onRowClick when row is clicked', async () => {
@@ -52,14 +52,14 @@ describe('DataTable', () => {
 
 	it('sort toggles direction', async () => {
 		const onSort = vi.fn();
-		render(DataTable, { props: { columns, rows, onSort, sort: { key: 'name', dir: 'asc' } } });
+		render(DataTable, { props: { columns, rows, onSort, sort: { key: 'name', direction: 'asc' } } });
 		await userEvent.click(screen.getByText('Name'));
-		expect(onSort).toHaveBeenCalledWith({ key: 'name', dir: 'desc' });
+		expect(onSort).toHaveBeenCalledWith({ key: 'name', direction: 'desc' });
 	});
 
 	it('sort unsets when already descending', async () => {
 		const onSort = vi.fn();
-		render(DataTable, { props: { columns, rows, onSort, sort: { key: 'name', dir: 'desc' } } });
+		render(DataTable, { props: { columns, rows, onSort, sort: { key: 'name', direction: 'desc' } } });
 		await userEvent.click(screen.getByText('Name'));
 		expect(onSort).toHaveBeenCalledWith(null);
 	});

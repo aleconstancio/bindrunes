@@ -24,6 +24,7 @@ export interface OmnibarState {
 	close(): void;
 	toggle(): void;
 	setOptions(options: OmnibarOption[]): void;
+	setQuery(query: string): Promise<void>;
 	selectNext(): void;
 	selectPrev(): void;
 	executeSelected(): void;

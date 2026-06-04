@@ -35,7 +35,7 @@ export function createTable<T extends Record<string, any>>(options: CreateTableO
     pageSize: initialState?.pagination?.pageSize ?? 20,
   });
   let selected = $state<Set<string>>(initialState?.selected ?? new Set());
-  let columnWidths = $state<Record<string, number>>(
+  let columnWidths = $state<Record<string, number | string>>(
     Object.fromEntries(columns.filter(c => c.width).map(c => [c.key, c.width!]))
   );
 

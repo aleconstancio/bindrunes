@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach, beforeEach } from 'vitest';
 import {
 	formatDate,
 	formatDateShort,
@@ -8,6 +8,7 @@ import {
 	formatNumber,
 	formatPercentage,
 	formatBytes,
+	setLocale,
 } from '../src/utils/formatters';
 
 describe('formatDate', () => {
@@ -48,6 +49,10 @@ describe('formatTime', () => {
 });
 
 describe('formatRelative', () => {
+	beforeEach(() => {
+		setLocale('pt-BR');
+	});
+
 	afterEach(() => {
 		vi.useRealTimers();
 	});

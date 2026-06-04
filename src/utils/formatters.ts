@@ -28,7 +28,7 @@ export function formatTime(date: Date | string | number): string {
 }
 
 const RELATIVE_STRINGS: Record<string, { now: string; min: string; mins: string; hour: string; hours: string; yesterday: string; days: string }> = {
-  'pt-BR': { now: 'agora', min: '1 minuto atrás', mins: '{n} minutos atrás', hour: '1 hora atrás', hours: '{n} horas atrás', yesterday: 'ontem', days: '{n} dias atrás' },
+  'pt': { now: 'agora', min: '1 minuto atrás', mins: '{n} minutos atrás', hour: '1 hora atrás', hours: '{n} horas atrás', yesterday: 'ontem', days: '{n} dias atrás' },
   'en': { now: 'now', min: '1 minute ago', mins: '{n} minutes ago', hour: '1 hour ago', hours: '{n} hours ago', yesterday: 'yesterday', days: '{n} days ago' },
   'es': { now: 'ahora', min: 'hace 1 minuto', mins: 'hace {n} minutos', hour: 'hace 1 hora', hours: 'hace {n} horas', yesterday: 'ayer', days: 'hace {n} días' },
 };
