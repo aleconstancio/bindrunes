@@ -10,13 +10,12 @@
   } = $props();
 </script>
 
-<div class="rounded-[--radius] border p-4"
-  style="background: oklch(from var(--warning) l c h / 0.05); border-color: oklch(from var(--warning) l c h / 0.15);">
-  <p class="mono text-[0.65rem] font-bold uppercase tracking-[0.1em]" style="color: var(--warning)">{title}</p>
+<div class="rounded-[--radius] border p-4 bg-warning-soft border-warning/30">
+  <p class="text-mono-xs font-bold uppercase text-warning">{title}</p>
   {#if description}
-    <p class="text-sm font-semibold mt-1 text-foreground">{description}</p>
+    <p class="text-label-md font-semibold mt-1 text-foreground">{description}</p>
   {/if}
   {#if children}
-    <div class="mt-1 text-xs text-muted-foreground">{@render children()}</div>
+    <div class="mt-1 text-body-sm text-muted-foreground">{@render children()}</div>
   {/if}
 </div>

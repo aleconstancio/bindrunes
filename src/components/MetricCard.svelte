@@ -27,10 +27,10 @@
 
 <div class="metric-card rounded-[--radius] border bg-card p-4 transition-all duration-[--duration-fluid] hover:-translate-y-1"
   style="--variant-color: {borderTop[variant]}; border-top: 2px solid {borderTop[variant]};">
-  <p class="mono text-[0.65rem] font-medium text-muted-foreground uppercase tracking-[0.08em]">{label}</p>
-  <p class="text-2xl font-bold text-foreground mt-1">{value}</p>
+  <p class="text-mono-xs font-medium text-muted-foreground uppercase">{label}</p>
+  <p class="text-headline-2 text-foreground mt-1">{value}</p>
   {#if detail}
-    <p class="text-xs text-muted-foreground mt-0.5">{detail}</p>
+    <p class="text-body-sm text-muted-foreground mt-0.5">{detail}</p>
   {/if}
   {#if progress !== undefined}
     <div class="w-full h-1.5 rounded-full bg-muted mt-2 overflow-hidden">

@@ -54,7 +54,7 @@
 </script>
 
 <div class="w-full overflow-x-auto rounded-[--radius] border border-border">
-  <table class="w-full text-sm">
+  <table class="w-full text-body-md">
     <caption class="sr-only">Data table</caption>
     <thead>
       <tr class="border-b border-border bg-muted">

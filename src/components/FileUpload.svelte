@@ -118,15 +118,15 @@
           <img src={entry.preview} alt="" class="h-10 w-10 rounded object-cover" />
         {:else}
           <span
-            class="h-10 w-10 rounded flex items-center justify-center text-xs"
+            class="h-10 w-10 rounded flex items-center justify-center text-label-sm"
             style="background: var(--muted); font-family: 'JetBrains Mono', monospace;"
           >
             {entry.file.name.split('.').pop()?.toUpperCase()}
           </span>
         {/if}
         <div class="flex-1 min-w-0">
-          <p class="text-sm truncate" style="color: var(--foreground);">{entry.file.name}</p>
-          <p class="text-xs" style="color: var(--muted-foreground);">{(entry.file.size / 1024).toFixed(1)} KB</p>
+          <p class="text-body-md truncate" style="color: var(--foreground);">{entry.file.name}</p>
+          <p class="text-body-sm" style="color: var(--muted-foreground);">{(entry.file.size / 1024).toFixed(1)} KB</p>
         </div>
         {#if entry.status === 'uploading'}
           <Progress value={entry.progress} class="w-24" />
