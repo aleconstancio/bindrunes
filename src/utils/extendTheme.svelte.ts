@@ -47,6 +47,12 @@ const presetTokens: Record<string, Record<string, string>> = {
     destructive: 'oklch(0.65 0.24 30)',
     background: 'oklch(0.05 0.01 260)',
   },
+  contrast: {
+    primary: 'oklch(0.80 0.22 310)',
+    accent: 'oklch(0.78 0.28 340)',
+    destructive: 'oklch(0.70 0.26 30)',
+    background: 'oklch(0.02 0.005 260)',
+  },
 };
 
 export function extendTheme(
