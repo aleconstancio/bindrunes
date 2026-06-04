@@ -27,7 +27,7 @@
     links: NavLink[];
     cta?: NavCTA;
     sectionIds?: string[];
-    children?: any;
+    children?: import('svelte').Snippet;
   }
 
   let { logo, links, cta, sectionIds = [], children }: Props = $props();
@@ -56,6 +56,12 @@
 
     return () => observers.forEach((o) => o.disconnect());
   });
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === 'Escape' && landing.menuOpen) {
+      landing.menuOpen = false;
+    }
+  }
 </script>
 
 <nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
@@ -91,6 +97,7 @@
         class="flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-muted md:hidden"
         onclick={() => (landing.menuOpen = !landing.menuOpen)}
         aria-label="Menu"
+        aria-expanded={landing.menuOpen}
       >
         {#if landing.menuOpen}
           <X size={20} class="text-foreground" />
@@ -107,7 +114,7 @@
   </div>
 
   {#if landing.menuOpen}
-    <div transition:slide={{ duration: 200 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden">
+    <div transition:slide={{ duration: 200 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" onkeydown={handleKeydown}>
       <div class="flex flex-col gap-5">
         {#each links as link}
           <a

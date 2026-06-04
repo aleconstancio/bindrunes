@@ -38,7 +38,7 @@
         </div>
       {/if}
       {#if links.length > 0}
-        <nav class="flex flex-wrap items-center justify-center gap-6">
+        <nav class="flex flex-wrap items-center justify-center gap-6" aria-label="Links">
           {#each links as link}
             <a
               href={link.href}
@@ -55,7 +55,7 @@
         {copyright ?? `\u00a9 ${year}. Todos os direitos reservados.`}
       </p>
       {#if bottomLinks.length > 0}
-        <nav class="flex flex-wrap items-center gap-4">
+        <nav class="flex flex-wrap items-center gap-4" aria-label="Links legais">
           {#each bottomLinks as link}
             <a
               href={link.href}
