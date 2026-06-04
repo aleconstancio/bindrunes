@@ -2,14 +2,13 @@
   import {
     createLandingState,
     LandingNav,
-    HeroSection,
+    HeroBanner,
     MetricsBar,
     HowItWorks,
     FeatureGrid,
     PricingTable,
     Testimonial,
     FAQ,
-    FinalCTA,
     SiteFooter,
   } from 'bindrunes/landing';
   import { ArrowRight, Zap, Shield, Clock, CheckCircle } from 'lucide-svelte';
@@ -87,7 +86,7 @@
     sectionIds={['metrics', 'features', 'how-it-works', 'pricing', 'faq']}
   />
 
-  <HeroSection
+  <HeroBanner
     badge="Nova versão disponível"
     title="Título <br />da Landing Page"
     titleGradient
@@ -165,11 +164,12 @@
     </div>
   </section>
 
-  <FinalCTA
+  <HeroBanner
     title="Pronto para começar?"
     description="Junte-se a milhares de usuários satisfeitos."
     ctas={[{ label: 'Começar agora', href: '/signup', icon: ArrowRight }]}
     footnote={{ title: 'Trial gratuito.', description: '7 dias sem compromisso.' }}
+    level={2}
   />
 
   <SiteFooter
