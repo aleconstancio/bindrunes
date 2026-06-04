@@ -1,11 +1,6 @@
 <script lang="ts">
-  import { setContext, getContext } from 'svelte';
-
-  type AccordionContext = {
-    toggle: (id: string) => void;
-    isOpen: (id: string) => boolean;
-    multiple: boolean;
-  };
+  import { setContext } from 'svelte';
+  import { ACCORDION_KEY, type AccordionContext } from '../utils/accordionContext';
 
   let {
     multiple = false,
@@ -35,7 +30,7 @@
     return value.includes(itemId);
   }
 
-  setContext('accordion', { toggle, isOpen, multiple });
+  setContext(ACCORDION_KEY, { toggle, isOpen, multiple });
 </script>
 
 <div class="space-y-2 {className}">

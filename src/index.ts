@@ -140,7 +140,8 @@ export { useBreakpoint } from './utils/useBreakpoint.svelte.ts';
 // ── Accordion ──
 export { default as Accordion } from './components/Accordion.svelte';
 export { default as AccordionItem } from './components/AccordionItem.svelte';
-export { getAccordionContext } from './utils/accordionContext';
+export { getAccordionContext, ACCORDION_KEY } from './utils/accordionContext';
+export type { AccordionContext } from './utils/accordionContext';
 
 // ── i18n ──
 export { createI18n } from './utils/createI18n.svelte.ts';

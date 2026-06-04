@@ -1,11 +1,13 @@
 import { getContext } from 'svelte';
 
-type AccordionContext = {
+export interface AccordionContext {
   toggle: (id: string) => void;
   isOpen: (id: string) => boolean;
   multiple: boolean;
-};
+}
+
+export const ACCORDION_KEY = Symbol('accordion');
 
 export function getAccordionContext(): AccordionContext {
-  return getContext('accordion');
+  return getContext<AccordionContext>(ACCORDION_KEY);
 }
