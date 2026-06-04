@@ -997,21 +997,158 @@ bindrunes provides pre-built landing page components for B2B SaaS products.
 | `FinalCTA` | Final call-to-action with gradient background |
 | `SiteFooter` | Site footer with links |
 
-### Customization
+### Props
 
-All components accept snippets for custom rendering:
+#### LandingNav
 
-```svelte
-<PricingTable {plans}>
-  {#snippet customCard(plan, { annual, format })}
-    <!-- Your custom plan card -->
-  {/snippet}
-</PricingTable>
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| logo | `{ href: string; label: string; icon?: Component }` | - | Logo with link |
+| links | `Array<{ label: string; href: string }>` | required | Navigation links |
+| cta | `{ label: string; href: string; variant?: 'primary' \| 'outline' }` | - | Call-to-action button |
+| sectionIds | `string[]` | `[]` | Section IDs for active tracking |
+| children | `Snippet` | - | Additional content |
+
+#### HeroSection
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| badge | `string` | - | Badge text above title |
+| title | `string` | required | HTML title (rendered via `@html`) |
+| titleGradient | `boolean` | `false` | Apply gradient to title |
+| description | `string` | required | Description text |
+| ctas | `Array<{ label: string; href: string; variant?: 'primary' \| 'outline'; icon?: Component }>` | required | CTA buttons |
+| footnote | `{ title: string; description: string }` | - | Footnote text |
+| background | `'gradient' \| 'solid' \| 'none'` | `'gradient'` | Background style |
+| children | `Snippet` | - | Additional content |
+
+#### MetricsBar
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| metrics | `Array<{ value: string; label: string; description?: string; variant?: 'default' \| 'success' \| 'warning' }>` | required | Metric data |
+| columns | `1 \| 2 \| 3` | `3` | Number of columns |
+| children | `Snippet` | - | Additional content |
+
+#### HowItWorks
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| steps | `Array<{ icon: Component; title: string; description: string }>` | required | Step data |
+| showConnector | `boolean` | `true` | Show connector lines |
+| children | `Snippet` | - | Additional content |
+
+#### FeatureGrid
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| features | `Array<{ icon: Component; title: string; description: string }>` | required | Feature data |
+| columns | `1 \| 2 \| 3` | `3` | Number of columns |
+| variant | `'card' \| 'minimal'` | `'card'` | Display variant |
+| children | `Snippet` | - | Additional content |
+
+#### PricingTable
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| plans | `Array<{ name: string; monthly: number; annual: number; features: string[]; cta: { label: string; href: string; variant?: 'primary' \| 'outline' }; highlight?: boolean; badge?: string }>` | required | Plan data |
+| showToggle | `boolean` | `true` | Show billing toggle |
+| currency | `string` | `'BRL'` | Currency code |
+| locale | `string` | `'pt-BR'` | Locale for formatting |
+| customCard | `Snippet<[Plan, { annual: boolean; format: (n: number) => string }]>` | - | Custom card renderer |
+| customFeature | `Snippet<[string, Plan]>` | - | Custom feature renderer |
+| children | `Snippet` | - | Additional content |
+
+#### Testimonial
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| quote | `string` | required | Quote text |
+| author | `string` | required | Author name |
+| role | `string` | - | Author role |
+| avatar | `string` | - | Avatar image URL |
+| avatarFallback | `string` | - | Fallback initials |
+| children | `Snippet` | - | Additional content |
+
+#### FAQ
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| items | `Array<{ question: string; answer: string }>` | required | FAQ items |
+| defaultOpen | `string` | - | Initially open item |
+| children | `Snippet` | - | Additional content |
+
+#### FinalCTA
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| title | `string` | required | CTA title |
+| description | `string` | - | CTA description |
+| ctas | `Array<{ label: string; href: string; variant?: 'primary' \| 'outline'; icon?: Component }>` | required | CTA buttons |
+| footnote | `{ title: string; description: string }` | - | Footnote text |
+| background | `'gradient' \| 'solid' \| 'none'` | `'gradient'` | Background style |
+| children | `Snippet` | - | Additional content |
+
+#### SiteFooter
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| logo | `{ label: string; icon?: Component }` | - | Logo |
+| links | `Array<{ label: string; href: string }>` | `[]` | Footer links |
+| copyright | `string` | auto-generated | Copyright text |
+| bottomLinks | `Array<{ label: string; href: string }>` | `[]` | Bottom links |
+| children | `Snippet` | - | Additional content |
+
+### Composables
+
+```ts
+import { createLandingState, useLanding } from 'bindrunes/landing';
+```
+
+**`createLandingState()`** — Creates and sets the shared landing page state. Must be called in a parent component's `<script>` block. Returns `LandingState`.
+
+**`useLanding()`** — Retrieves the landing state from context. Must be called inside a component that is a descendant of `createLandingState()`.
+
+```ts
+interface LandingState {
+  billingAnnual: boolean;  // pricing toggle state
+  activeSection: string;   // currently visible section ID
+  menuOpen: boolean;       // mobile menu toggle
+}
 ```
 
 ### CSS
 
-Import `bindrunes/styles/landing.css` for animations and text-wrap utilities.
+Wrap your landing page in `<div class="landing-page">`. Import `bindrunes/styles/landing.css` for animations, text-wrap utilities, and section reveal animations.
+
+```css
+/* app.css */
+@import "tailwindcss";
+@plugin "bindrunes/tailwind";
+@import "bindrunes/styles/landing.css";
+```
+
+### Customization
+
+All components accept a `children` snippet for adding extra content below the default rendering.
+
+`PricingTable` supports two additional snippets for full card and feature customization:
+
+```svelte
+<PricingTable {plans}>
+  {#snippet customCard(plan, { annual, format })}
+    <!-- plan: Plan — the current plan object -->
+    <!-- annual: boolean — true when annual billing is selected -->
+    <!-- format: (n: number) => string — formats a number as currency -->
+  {/snippet}
+  {#snippet customFeature(feature, plan)}
+    <!-- feature: string — the feature text -->
+    <!-- plan: Plan — the current plan object -->
+  {/snippet}
+</PricingTable>
+```
+
+`PricingTable` uses CSS subgrid when supported for aligned card heights. The `highlight` prop on a plan scales it up and adds a glow effect.
 
 ---
 
