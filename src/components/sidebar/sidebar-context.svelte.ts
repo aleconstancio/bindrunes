@@ -16,9 +16,9 @@ export function getSidebarContext(): SidebarState {
 }
 
 export function createSidebarState(initialOpen = true) {
-  let open = $state(initialOpen);
-  let openMobile = $state(false);
-  let isMobile = $state(false);
+		let open = $state<boolean>(initialOpen);
+		let openMobile = $state<boolean>(false);
+		let isMobile = $state<boolean>(false);
 
   let state = $derived(open ? 'expanded' as const : 'collapsed' as const);
 

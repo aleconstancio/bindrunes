@@ -13,5 +13,5 @@ export { default as SidebarMenuBadge } from './SidebarMenuBadge.svelte';
 export { default as SidebarMenuSkeleton } from './SidebarMenuSkeleton.svelte';
 export { default as SidebarTrigger } from './SidebarTrigger.svelte';
 export { default as SidebarRail } from './SidebarRail.svelte';
-export { getSidebarContext, createSidebarState } from './sidebar-context.svelte.js';
-export { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE, SIDEBAR_WIDTH_ICON } from './sidebar-constants.js';
+export { getSidebarContext, createSidebarState } from './sidebar-context.svelte';
+export { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE, SIDEBAR_WIDTH_ICON } from './sidebar-constants';

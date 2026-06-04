@@ -18,7 +18,7 @@ export function useBreakpoint(breakpoint: Breakpoint = 'md') {
     };
   }
 
-  const width = $state(window.innerWidth);
+		const width = $state<number>(window.innerWidth);
   const bp = breakpoints[breakpoint];
 
   let isAbove = $derived(width >= bp);

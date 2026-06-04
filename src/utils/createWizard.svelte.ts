@@ -15,11 +15,11 @@ export type WizardOptions = {
 export function createWizard(options: WizardOptions) {
   const { steps, onSubmit } = options;
 
-  let currentStepIndex = $state(0);
-  let values = $state<Record<string, any>>(options.initialValues ?? {});
-  let errors = $state<Record<string, string>>({});
-  let isSubmitting = $state(false);
-  let completedSteps = $state<Set<string>>(new Set());
+	let currentStepIndex = $state<number>(0);
+	let values = $state<Record<string, any>>(options.initialValues ?? {});
+	let errors = $state<Record<string, string>>({});
+	let isSubmitting = $state<boolean>(false);
+	let completedSteps = $state<Set<string>>(new Set());
 
   const currentStep = $derived(steps[currentStepIndex]);
   const isFirstStep = $derived(currentStepIndex === 0);

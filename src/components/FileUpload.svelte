@@ -113,31 +113,27 @@
 {#if files.length > 0}
   <div class="mt-4 space-y-2">
     {#each files as entry, i}
-      <div class="flex items-center gap-3 p-3 rounded-[--radius] border" style="border-color: var(--border); background: var(--card);">
+      <div class="flex items-center gap-3 p-3 rounded-[--radius] border border-border bg-card">
         {#if entry.preview}
           <img src={entry.preview} alt="" class="h-10 w-10 rounded object-cover" />
         {:else}
           <span
-            class="h-10 w-10 rounded flex items-center justify-center text-label-sm"
-            style="background: var(--muted); font-family: 'JetBrains Mono', monospace;"
+            class="h-10 w-10 rounded flex items-center justify-center text-label-sm bg-muted font-mono"
           >
             {entry.file.name.split('.').pop()?.toUpperCase()}
           </span>
         {/if}
         <div class="flex-1 min-w-0">
-          <p class="text-body-md truncate" style="color: var(--foreground);">{entry.file.name}</p>
-          <p class="text-body-sm" style="color: var(--muted-foreground);">{(entry.file.size / 1024).toFixed(1)} KB</p>
+          <p class="text-body-md truncate text-foreground">{entry.file.name}</p>
+          <p class="text-body-sm text-muted-foreground">{(entry.file.size / 1024).toFixed(1)} KB</p>
         </div>
         {#if entry.status === 'uploading'}
           <Progress value={entry.progress} class="w-24" />
         {/if}
         <button
           onclick={() => removeFile(i)}
-          class="transition-colors"
-          style="color: var(--muted-foreground); background: none; border: none; cursor: pointer; font-size: 1.2rem;"
+          class="transition-colors text-muted-foreground hover:text-destructive cursor-pointer bg-transparent border-none text-[1.2rem]"
           aria-label="Remove file"
-          onmouseenter={(e) => { e.currentTarget.style.color = 'var(--destructive)'; }}
-          onmouseleave={(e) => { e.currentTarget.style.color = 'var(--muted-foreground)'; }}
         >
           ×
         </button>

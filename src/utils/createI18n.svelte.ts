@@ -20,7 +20,7 @@ export interface I18nResult {
 }
 
 export function createI18n(options: I18nOptions): I18nResult {
-  let locale = $state(options.default);
+		let locale = $state<string>(options.default);
   const locales = Object.keys(options.dicts);
   const fallback = options.fallback ?? options.default;
 

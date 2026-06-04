@@ -69,6 +69,7 @@ export { default as StatusChip } from './components/StatusChip.svelte';
 export { default as MetricCard } from './components/MetricCard.svelte';
 export { default as SectionHeader } from './components/SectionHeader.svelte';
 export { default as RuleFootnote } from './components/RuleFootnote.svelte';
+export { default as DataChart } from './components/DataChart.svelte';
 export { default as DataTable } from './components/DataTable.svelte';
 export { default as Pagination } from './components/Pagination.svelte';
 export { default as ListPage } from './components/ListPage.svelte';

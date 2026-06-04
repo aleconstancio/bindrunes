@@ -48,28 +48,28 @@
           <div class="flex flex-col gap-1 p-2 max-h-[350px] overflow-y-auto" role="listbox">
             {#each state.filteredOptions as option, i}
               <button
-                class="flex items-center justify-between w-full px-4 py-3 rounded-[--radius] text-left transition-colors cursor-pointer"
-                style="outline: none; {i === state.selectedIndex ? 'background: oklch(1 0 0 / 0.06); border-left: 3px solid var(--primary); padding-left: calc(1rem - 3px);' : ''}"
+                class="flex items-center justify-between w-full px-4 py-3 rounded-[--radius] text-left transition-colors cursor-pointer
+                       focus:outline-none focus:bg-muted
+                       {i === state.selectedIndex ? 'bg-muted border-l-3 border-l-primary pl-[calc(1rem-3px)]' : ''}"
                 role="option"
                 aria-selected={i === state.selectedIndex}
                 onclick={() => select(option)}
               >
                 <div>
-                  <span class="font-medium text-label-md" style="color: var(--foreground);">{option.label}</span>
+                  <span class="font-medium text-label-md text-foreground">{option.label}</span>
                   {#if option.description}
-                    <span class="block text-body-sm mt-0.5" style="color: var(--muted-foreground);">{option.description}</span>
+                    <span class="block text-body-sm mt-0.5 text-muted-foreground">{option.description}</span>
                   {/if}
                 </div>
                 {#if option.category}
-                  <span class="text-label-sm font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-[--radius]"
-                    style="color: var(--primary); background: oklch(from var(--primary) l c h / 0.1);"
+                  <span class="text-label-sm font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-[--radius] text-primary bg-primary/10"
                   >{option.category}</span>
                 {/if}
               </button>
             {/each}
           </div>
         {:else if state.searchQuery}
-          <div class="py-8 text-center text-body-md" style="color: var(--muted-foreground);">
+          <div class="py-8 text-center text-body-md text-muted-foreground">
             No results found for "{state.searchQuery}"
           </div>
         {/if}

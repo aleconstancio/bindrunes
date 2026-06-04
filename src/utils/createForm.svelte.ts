@@ -34,8 +34,8 @@ export function createForm<TShape extends Record<string, BaseSchema<any, any, an
   let initial = { ...options.initialValues } as { [K in keyof TShape]: InferOutput<TShape[K]> };
   let values = $state({ ...initial }) as { [K in keyof TShape]: InferOutput<TShape[K]> };
   let touched = $state({}) as { [K in keyof TShape]?: boolean };
-  let isSubmitting = $state(false);
-  let isSubmitted = $state(false);
+		let isSubmitting = $state<boolean>(false);
+		let isSubmitted = $state<boolean>(false);
 
   let dirty = $derived.by(() => {
     const d: { [K in keyof TShape]?: boolean } = {};

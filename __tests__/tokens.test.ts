@@ -6,6 +6,21 @@ const PRESET = readFileSync(
 	join(__dirname, '..', 'src', 'styles', 'preset.css'),
 	'utf-8',
 );
+const TAILWIND = readFileSync(
+	join(__dirname, '..', 'src', 'styles', 'tokens', 'tailwind.css'),
+	'utf-8',
+);
+const ROOT = readFileSync(
+	join(__dirname, '..', 'src', 'styles', 'tokens', 'root.css'),
+	'utf-8',
+);
+const PROPERTY = readFileSync(
+	join(__dirname, '..', 'src', 'styles', 'tokens', 'property.css'),
+	'utf-8',
+);
+
+// Combine all token files for full-contract assertions
+const ALL = PRESET + TAILWIND + ROOT + PROPERTY;
 
 describe('preset.css — v1.0 token contract', () => {
 	describe('color tokens (@theme inline block)', () => {
@@ -28,7 +43,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredColorTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:\\s*var\\(--`));
+				expect(ALL).toMatch(new RegExp(`${token}:\\s*var\\(--`));
 			});
 		}
 	});
@@ -38,7 +53,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredFontTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -65,7 +80,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredTextScaleTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -88,7 +103,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredSpaceTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -105,7 +120,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredRadiusTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -123,7 +138,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredShadowTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -145,12 +160,12 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredDurationTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 		for (const token of requiredEaseTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
@@ -167,7 +182,7 @@ describe('preset.css — v1.0 token contract', () => {
 
 		for (const token of requiredContainerTokens) {
 			it(`declares ${token}`, () => {
-				expect(PRESET).toMatch(new RegExp(`${token}:`));
+				expect(ALL).toMatch(new RegExp(`${token}:`));
 			});
 		}
 	});
