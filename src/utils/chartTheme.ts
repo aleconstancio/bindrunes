@@ -1,6 +1,6 @@
 import { DRACULA_DEFAULTS } from './theme-defaults';
 
-export function useChartTheme() {
+export function getChartTheme() {
   if (typeof document === 'undefined') {
     return {
       primary: DRACULA_DEFAULTS.primary,

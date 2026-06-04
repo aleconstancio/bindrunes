@@ -4,6 +4,7 @@ export type SSEEventRouter = {
   [eventType: string]: string | string[];
 };
 
+/** @deprecated Application-specific defaults; provide routes explicitly via handleSSEEvent() */
 export const DEFAULT_SSE_ROUTES: SSEEventRouter = {
   'event.created': '/api/events',
   'event.promoted': '/api/events',

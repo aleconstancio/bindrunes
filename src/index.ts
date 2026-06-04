@@ -51,7 +51,7 @@ export { createAccess } from './utils/createAccess.svelte.ts';
 
 // ── Data Visualization ──
 // export { default as DataChart } from './components/DataChart.svelte'; // disabled — svelte-chartjs incompatible with Svelte 5
-export { useChartTheme } from './utils/chartTheme.ts';
+export { getChartTheme } from './utils/chartTheme.ts';
 
 // ── File Upload ──
 export { default as FileUpload } from './components/FileUpload.svelte';
@@ -95,6 +95,7 @@ export { createApiClient } from './utils/createApiClient.ts';
 export type { ApiClientOptions } from './utils/createApiClient.ts';
 export { RealtimeClient } from './utils/RealtimeClient.svelte.ts';
 export type { RealtimeStatus, RealtimeEvent, RealtimeOptions } from './utils/RealtimeClient.svelte.ts';
+/** @deprecated Application-specific defaults — supply routes explicitly to handleSSEEvent() */
 export { handleSSEEvent, DEFAULT_SSE_ROUTES } from './utils/sseBridge.svelte.ts';
 export type { SSEEventRouter } from './utils/sseBridge.svelte.ts';
 

@@ -700,9 +700,9 @@ Chart.js wrapper with theme integration.
 
 ```svelte
 <script lang="ts">
-  import { DataChart, useChartTheme } from "bindrunes";
+  import { DataChart, getChartTheme } from "bindrunes";
 
-  const theme = useChartTheme();
+  const theme = getChartTheme();
 
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr"],
@@ -720,12 +720,12 @@ Chart.js wrapper with theme integration.
 
 Supported types: `line`, `bar`, `doughnut`, `radar`, `scatter`.
 
-### `useChartTheme`
+### `getChartTheme`
 
 Reads CSS custom properties for chart color theming:
 
 ```ts
-const theme = useChartTheme();
+const theme = getChartTheme();
 // { primary, accent, destructive, muted, background }
 ```
 
