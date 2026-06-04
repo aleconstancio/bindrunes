@@ -16,8 +16,8 @@
 
   const colors: Record<string, string> = {
     default: 'bg-primary',
-    success: 'bg-emerald-500',
-    warning: 'bg-amber-500',
+    success: 'bg-success',
+    warning: 'bg-warning',
     destructive: 'bg-destructive',
   };
 </script>

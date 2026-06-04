@@ -31,11 +31,11 @@
   } = $props();
 
   const vars: Record<Variant, string> = {
-    primary: 'thoth-btn thoth-btn-primary',
-    secondary: 'thoth-btn thoth-btn-secondary text-secondary-foreground',
-    outline: 'thoth-btn thoth-btn-outline border border-border text-foreground bg-transparent',
-    ghost: 'thoth-btn thoth-btn-ghost text-foreground bg-transparent hover:bg-accent',
-    destructive: 'thoth-btn thoth-btn-destructive',
+    primary: 'btn btn-primary',
+    secondary: 'btn btn-secondary text-secondary-foreground',
+    outline: 'btn btn-outline border border-border text-foreground bg-transparent',
+    ghost: 'btn btn-ghost text-foreground bg-transparent hover:bg-accent',
+    destructive: 'btn btn-destructive',
   };
 
   const sz: Record<Size, string> = {
@@ -81,57 +81,53 @@
 {/if}
 
 <style>
-  :global(.thoth-btn) {
+  :global(.btn) {
     cursor: pointer;
     position: relative;
     overflow: hidden;
     transition: 
-      border-color var(--duration-fluid, 250ms), 
-      box-shadow var(--duration-fluid, 250ms), 
-      transform var(--duration-snappy, 150ms), 
-      background-color var(--duration-snappy, 150ms) !important;
+      border-color var(--duration-fluid, 220ms), 
+      box-shadow var(--duration-fluid, 220ms), 
+      transform var(--duration-snappy, 120ms), 
+      background-color var(--duration-snappy, 120ms);
   }
-  :global(.thoth-btn:hover) {
-    transform: translateY(-1px) !important;
+  :global(.btn:hover) {
+    transform: translateY(-1px);
   }
-  :global(.thoth-btn:active) {
-    transform: translateY(0) scale(0.975) !important;
+  :global(.btn:active) {
+    transform: translateY(0) scale(0.975);
   }
-  :global(.thoth-btn-primary) {
-    background: linear-gradient(135deg, var(--primary) 0%, oklch(from var(--primary) calc(l - 0.08) c h) 100%) !important;
-    color: var(--primary-foreground) !important;
-    box-shadow: 0 4px 12px -3px oklch(from var(--primary) l c h / 0.15);
-    border: 1px solid oklch(from var(--primary) l c h / 0.1) !important;
+  :global(.btn-primary) {
+    background: var(--button-bg, var(--primary));
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-subtle);
   }
-  :global(.thoth-btn-primary:hover) {
-    box-shadow: 
-      0 6px 16px -3px oklch(from var(--primary) l c h / 0.25),
-      0 0 10px -2px oklch(from var(--primary) l c h / 0.15) !important;
-    opacity: 0.95 !important;
+  :global(.btn-primary:hover) {
+    box-shadow: var(--shadow-lg);
+    opacity: 0.95;
   }
-  :global(.thoth-btn-secondary) {
-    background-color: var(--secondary) !important;
-    border: 1px solid var(--border) !important;
-    box-shadow: 0 2px 6px -2px oklch(0 0 0 / 0.2);
+  :global(.btn-secondary) {
+    background-color: var(--secondary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-xs);
   }
-  :global(.thoth-btn-secondary:hover) {
-    background-color: oklch(from var(--secondary) l c h / 1.5) !important;
-    border-color: oklch(from var(--primary) l c h / 0.15) !important;
+  :global(.btn-secondary:hover) {
+    background-color: oklch(from var(--secondary) l c h / 1.5);
+    border-color: var(--border-strong);
   }
-  :global(.thoth-btn-outline:hover) {
-    border-color: oklch(from var(--primary) l c h / 0.22) !important;
-    background-color: oklch(from var(--primary) l c h / 0.03) !important;
+  :global(.btn-outline:hover) {
+    border-color: var(--ring);
+    background-color: oklch(from var(--primary) l c h / 0.03);
   }
-  :global(.thoth-btn-destructive) {
-    background: linear-gradient(135deg, var(--destructive) 0%, oklch(from var(--destructive) calc(l - 0.08) c h) 100%) !important;
-    color: var(--destructive-foreground) !important;
-    box-shadow: 0 4px 12px -3px oklch(from var(--destructive) l c h / 0.15);
-    border: 1px solid oklch(from var(--destructive) l c h / 0.1) !important;
+  :global(.btn-destructive) {
+    background: var(--button-bg-destructive, var(--destructive));
+    color: var(--destructive-foreground);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-subtle);
   }
-  :global(.thoth-btn-destructive:hover) {
-    box-shadow: 
-      0 6px 16px -3px oklch(from var(--destructive) l c h / 0.25),
-      0 0 10px -2px oklch(from var(--destructive) l c h / 0.1) !important;
-    opacity: 0.95 !important;
+  :global(.btn-destructive:hover) {
+    box-shadow: var(--shadow-glow-destructive);
+    opacity: 0.95;
   }
 </style>

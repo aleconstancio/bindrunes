@@ -16,7 +16,7 @@
   } = $props();
 
   const vars: Record<Variant, string> = {
-    info: 'border-l-primary',
+    info: 'border-l-info',
     success: 'border-l-[--success]',
     warning: 'border-l-[--warning]',
     destructive: 'border-l-destructive',

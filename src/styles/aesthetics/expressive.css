@@ -31,6 +31,8 @@
 
 	/* Aesthetic hooks */
 	--button-treatment: gradient;
+	--button-bg: linear-gradient(135deg, var(--primary) 0%, oklch(from var(--primary) calc(l - 0.08) c h) 100%);
+	--button-bg-destructive: linear-gradient(135deg, var(--destructive) 0%, oklch(from var(--destructive) calc(l - 0.08) c h) 100%);
 	--card-treatment: glass;
 	--surface-texture: mesh;
 	--hero-translate: 24px;

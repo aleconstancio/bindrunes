@@ -13,9 +13,9 @@
     default: 'bg-muted text-muted-foreground',
     primary: 'bg-primary text-primary-foreground',
     secondary: 'bg-secondary text-secondary-foreground',
-    success: 'bg-emerald-500/15 text-emerald-400',
-    warning: 'bg-amber-500/15 text-amber-400',
-    destructive: 'bg-destructive/15 text-destructive',
+    success: 'bg-success-soft text-success',
+    warning: 'bg-warning-soft text-warning',
+    destructive: 'bg-destructive-soft text-destructive',
     outline: 'border border-border text-muted-foreground',
   };
 </script>

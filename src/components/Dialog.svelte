@@ -19,7 +19,7 @@
 <BitsDialog.Root bind:open>
   <BitsDialog.Portal>
     <BitsDialog.Overlay
-      class="fixed inset-0 z-[--z-overlay,30] bg-black/50 backdrop-blur-sm
+      class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm
              data-[state=open]:animate-in data-[state=closed]:animate-out
              data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
     />

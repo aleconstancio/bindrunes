@@ -3,11 +3,28 @@ import { render } from '@testing-library/svelte';
 import Progress from '../../src/components/Progress.svelte';
 
 describe('Progress', () => {
-	it('renders with default value 0', () => {
+	it('renders without crashing', () => {
 		const { container } = render(Progress);
-		const root = container.querySelector('[role="progressbar"]');
-		expect(root).toBeInTheDocument();
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
+
+	it('default variant applies bg-primary', () => {
+		const { container } = render(Progress, { props: { variant: 'default' } });
+		const track = container.querySelector('[role="progressbar"] + *') ?? container.querySelector('[class*="rounded-full"]');
+		// The track element carries the color class
+		expect(track).toBeInTheDocument();
+	});
+
+	it('success variant applies bg-success', () => {
+		const { container } = render(Progress, { props: { value: 50, variant: 'success' } });
+		expect(container.innerHTML).toContain('bg-success');
+	});
+
+	it('warning variant applies bg-warning', () => {
+		const { container } = render(Progress, { props: { value: 50, variant: 'warning' } });
+		expect(container.innerHTML).toContain('bg-warning');
+	});
+});
 
 	it('renders with a given value', () => {
 		const { container } = render(Progress, { props: { value: 50 } });

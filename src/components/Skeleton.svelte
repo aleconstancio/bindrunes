@@ -12,14 +12,14 @@
 
 {#each Array(lines) as _, i (i)}
   <div
-    class="animate-thoth-shimmer rounded-[--radius,0.625rem] bg-muted {className}"
+    class="animate-shimmer rounded-[--radius,0.5rem] bg-muted {className}"
     style="width: {widths[i] ?? widths[widths.length - 1] ?? '100%'}; height: 1em; margin-bottom: 0.5em;"
   />
 {/each}
 
 <style>
   @layer thoth.components {
-    .animate-thoth-shimmer {
+    .animate-shimmer {
       background: linear-gradient(
         90deg,
         var(--muted, oklch(1 0 0 / 0.04)) 25%,
@@ -27,9 +27,9 @@
         var(--muted, oklch(1 0 0 / 0.04)) 75%
       );
       background-size: 200% 100%;
-      animation: thoth-shimmer 1.5s ease-in-out infinite;
+      animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite;
     }
-    @keyframes thoth-shimmer {
+    @keyframes bindrunes-shimmer {
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }

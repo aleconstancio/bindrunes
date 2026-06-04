@@ -25,7 +25,7 @@
 
   const vars: Record<Variant, string> = {
     surface: 'bg-card text-card-foreground shadow-sm border border-border',
-    glass: 'bg-[--glass-surface,rgba(0,0,0,0.45)] text-card-foreground border border-[--glass-border,rgba(255,255,255,0.08)] backdrop-blur-[--glass-blur,16px]',
+    glass: 'bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--glass-blur,16px]',
     outlined: 'bg-transparent border border-border',
     ghost: 'bg-transparent',
   };

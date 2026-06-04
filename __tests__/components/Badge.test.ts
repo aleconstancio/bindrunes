@@ -23,14 +23,14 @@ describe('Badge', () => {
 		expect(container.firstElementChild!.className).toContain('bg-secondary');
 	});
 
-	it('success variant applies emerald classes', () => {
+	it('success variant applies success-soft classes', () => {
 		const { container } = render(Badge, { props: { variant: 'success' } });
-		expect(container.firstElementChild!.className).toContain('emerald');
+		expect(container.firstElementChild!.className).toContain('success-soft');
 	});
 
-	it('warning variant applies amber classes', () => {
+	it('warning variant applies warning-soft classes', () => {
 		const { container } = render(Badge, { props: { variant: 'warning' } });
-		expect(container.firstElementChild!.className).toContain('amber');
+		expect(container.firstElementChild!.className).toContain('warning-soft');
 	});
 
 	it('destructive variant applies destructive classes', () => {

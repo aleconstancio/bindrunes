@@ -18,7 +18,7 @@
 
 {#if state.isOpen}
   <div
-    class="fixed inset-0 z-50 flex justify-start pt-[10vh] bg-black/75 backdrop-blur-sm"
+    class="fixed inset-0 z-50 flex justify-start pt-[10vh] bg-[--overlay-strong] backdrop-blur-sm"
     role="dialog"
     aria-modal="true"
     onclick={() => state.close()}
