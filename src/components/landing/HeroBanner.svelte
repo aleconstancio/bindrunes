@@ -2,22 +2,18 @@
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
   import { Badge, Button } from 'bindrunes';
-
-  interface CTA {
-    label: string;
-    href: string;
-    variant?: 'primary' | 'outline';
-    icon?: Component;
-  }
+  import type { CTA } from './landing-types';
 
   interface Props {
     badge?: string;
     title: string;
     titleGradient?: boolean;
-    description: string;
-    ctas: CTA[];
+    description?: string;
+    ctas?: CTA[];
     footnote?: { title: string; description: string };
     background?: 'gradient' | 'solid' | 'none';
+    level?: 1 | 2;
+    class?: string;
     children?: Snippet;
   }
 
@@ -26,15 +22,19 @@
     title,
     titleGradient = false,
     description,
-    ctas,
+    ctas = [],
     footnote,
     background = 'gradient',
+    level = 1,
+    class: className = '',
     children,
   }: Props = $props();
+
+  const tag = $derived(level === 1 ? 'h1' : 'h2');
 </script>
 
 <section
-  class="hero-section relative overflow-hidden px-6 py-12 sm:py-24 section-reveal"
+  class="hero-banner relative overflow-hidden px-6 py-12 sm:py-24 section-reveal {className}"
   class:hero-gradient={background === 'gradient'}
 >
   {#if background === 'gradient'}
@@ -46,15 +46,26 @@
         <Badge variant="primary">{badge}</Badge>
       </div>
     {/if}
-    <h1
-      class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl"
-      class:text-gradient-violet={titleGradient}
-    >
-      {@html title}
-    </h1>
-    <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-      {description}
-    </p>
+    {#if level === 1}
+      <h1
+        class="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl"
+        class:text-gradient-violet={titleGradient}
+      >
+        {@html title}
+      </h1>
+    {:else}
+      <h2
+        class="text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl"
+        class:text-gradient-violet={titleGradient}
+      >
+        {@html title}
+      </h2>
+    {/if}
+    {#if description}
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+        {description}
+      </p>
+    {/if}
     {#if ctas.length > 0}
       <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
         {#each ctas as cta}
@@ -86,7 +97,7 @@
 </section>
 
 <style>
-  :global(.hero-section.hero-gradient) {
+  :global(.hero-banner.hero-gradient) {
     background:
       radial-gradient(ellipse at 20% 50%, oklch(from var(--primary) l c h / 0.08) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 50%, oklch(from var(--success, oklch(0.55 0.15 150)) l c h / 0.04) 0%, transparent 60%);

@@ -1,12 +1,11 @@
 export { default as LandingNav } from './LandingNav.svelte';
-export { default as HeroSection } from './HeroSection.svelte';
+export { default as HeroBanner } from './HeroBanner.svelte';
 export { default as MetricsBar } from './MetricsBar.svelte';
 export { default as HowItWorks } from './HowItWorks.svelte';
 export { default as FeatureGrid } from './FeatureGrid.svelte';
 export { default as PricingTable } from './PricingTable.svelte';
 export { default as Testimonial } from './Testimonial.svelte';
 export { default as FAQ } from './FAQ.svelte';
-export { default as FinalCTA } from './FinalCTA.svelte';
 export { default as SiteFooter } from './SiteFooter.svelte';
 export { default as TestimonialGrid } from './TestimonialGrid.svelte';
 export { default as LogoCloud } from './LogoCloud.svelte';

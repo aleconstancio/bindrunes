@@ -180,7 +180,7 @@ export type { OmnibarState, OmnibarOption, CreateOmnibarOptions } from './utils/
 // ── Landing ──
 export {
   LandingNav,
-  HeroSection,
+  HeroBanner,
   MetricsBar,
   HowItWorks,
   FeatureGrid,
@@ -194,7 +194,7 @@ export {
   IntegrationGrid,
   StatsCounter,
   FAQ,
-  FinalCTA,
+
   SiteFooter,
   createLandingState,
   useLanding,
