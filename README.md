@@ -931,6 +931,90 @@ src/
 
 ---
 
+## Landing Pages
+
+bindrunes provides pre-built landing page components for B2B SaaS products.
+
+### Setup
+
+```css
+/* app.css */
+@import "tailwindcss";
+@plugin "bindrunes/tailwind";
+@import "bindrunes/styles/landing.css";
+```
+
+### Usage
+
+```svelte
+<script lang="ts">
+  import {
+    createLandingState,
+    LandingNav,
+    HeroSection,
+    MetricsBar,
+    HowItWorks,
+    FeatureGrid,
+    PricingTable,
+    Testimonial,
+    FAQ,
+    FinalCTA,
+    SiteFooter,
+  } from 'bindrunes/landing';
+
+  const landing = createLandingState();
+</script>
+
+<div class="landing-page">
+  <LandingNav
+    logo={{ href: '/', label: 'My SaaS' }}
+    links={[{ label: 'Features', href: '#features' }]}
+    cta={{ label: 'Get Started', href: '/signup' }}
+    sectionIds={['features']}
+  />
+  <HeroSection
+    title="My SaaS Title"
+    description="The best product ever."
+    ctas={[{ label: 'Get Started', href: '/signup' }]}
+  />
+  <!-- ...more sections... -->
+  <SiteFooter logo={{ label: 'My SaaS' }} />
+</div>
+```
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| `LandingNav` | Sticky nav with scroll progress, mobile menu, theme toggle |
+| `HeroSection` | Hero with gradient background, badge, CTAs |
+| `MetricsBar` | Responsive metric cards grid |
+| `HowItWorks` | Numbered steps with connector line |
+| `FeatureGrid` | Feature cards (card/minimal variants) |
+| `PricingTable` | Pricing with monthly/annual toggle, subgrid alignment |
+| `Testimonial` | Centered testimonial with avatar |
+| `FAQ` | Accordion-based FAQ section |
+| `FinalCTA` | Final call-to-action with gradient background |
+| `SiteFooter` | Site footer with links |
+
+### Customization
+
+All components accept snippets for custom rendering:
+
+```svelte
+<PricingTable {plans}>
+  {#snippet customCard(plan, { annual, format })}
+    <!-- Your custom plan card -->
+  {/snippet}
+</PricingTable>
+```
+
+### CSS
+
+Import `bindrunes/styles/landing.css` for animations and text-wrap utilities.
+
+---
+
 ## Security
 
 ### Auth Token Storage
