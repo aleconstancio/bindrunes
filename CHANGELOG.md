@@ -1,98 +1,51 @@
-# Changelog — bindrunes
+# Changelog
 
-## v0.7.0 (2026-06-01)
+## v1.0.0 (2026-06-04)
 
-### Added
-- `Breadcrumb` component for multi-level navigation
-- `PageHeader` component with back button, breadcrumbs, and action slots
-- `FormField` component (Label + Input + error in one)
-- `Stepper` component for wizard/step progress
-- `ListPage` composite component (header + search + loading/error/empty + table)
-- `useHead` composable for per-page SEO meta tags
-- `useBreakpoint` composable for reactive responsive behavior
-- Register page, Forgot Password page in starter template
-- User detail page (`/dashboard/users/[id]`) with breadcrumbs and profile card
-- 404 page with dedicated UI in starter template
-- View transitions via SvelteKit `onNavigate` in starter layout
-- `onUnauthorized` callback in `createApiClient` for 401 handling
+### Breaking Changes
 
-### Fixed
-- AuthGuard: added redirect loop prevention
-- Login page: added links to register and forgot-password pages
+- **Theme suite renamed and expanded**: The 7 legacy themes (akashic, martian, alchemy, druidic, obsidian, contrast) have been replaced with 6 curated battle-tested palettes: editorial (new default), dracula (kept), nord, catppuccin, rose-pine, github. Legacy re-exports at `src/styles/themes/legacy/` forward to replacements for one release (drop in v1.2.0).
 
-## v0.6.0 (2026-06-01)
+- **Default theme changed**: `editorial` (warm grey + restrained indigo) replaces `dracula` as the default theme. First paint respects `prefers-color-scheme` when no localStorage entry exists.
 
-### Fixed
-- Sheet focus trap: focus is now trapped within the dialog when open
-- hasRole/hasPermission: no longer create new auth instances on every call
-- Popover: corrected ARIA role from tooltip to dialog
-- Added aria-labels to icon-only buttons (Sheet close, Pagination prev/next, FileUpload remove)
-- Removed hardcoded Portuguese from DataTable, Pagination, ThemeToggle, Select, Form, ErrorBoundary
+- **`thoth-` prefix retired**: All legacy `thoth-btn`, `thoth-shimmer`, `thoth-pulse-glow`, `thoth-spin` class names and keyframe names renamed to `btn`, `bindrunes-shimmer`, `bindrunes-pulse-glow`, `bindrunes-spin`.
 
-### Changed
-- createAuth: removed duplicate setToken method
-- DashboardShell* components: brandIcon prop typed as string | ComponentType instead of any
-- Deleted stale root-level Tabs component files (duplicates of tabs/ directory)
+- **Typography token system**: Replaced Tailwind defaults (`text-sm`, `text-xs`, `text-lg`, `text-2xl font-bold`, etc.) with a 17-step type scale (`text-display-1` through `text-mono-xs`). Each token bundles size, line-height, letter-spacing, and font-weight.
 
-### Added
-- Tests for createTable, createWizard, Sheet, Popover, Popconfirm, Accordion, FileUpload
+- **Complete token contract**: New system-wide CSS custom properties for typography, spacing, shadow, motion easings, container widths, surface elevation, overlays, border granularity, and info/soft state colors.
 
-## v0.5.0 (2026-06-01)
+- **Component API deprecated**: `ThemeBuilder` → renamed to `ThemeStudio`. `ThemeBuilder` remains as an alias through v1.1.0.
 
-### Added
-- RBAC auth layer: `createAuth` with user/roles/permissions/tenantId, `hasRole`, `hasPermission`, `createAccess` composable
-- `AuthGuard` now accepts `roles`, `permissions`, and `requireAll` props
-- 3 new dashboard layout variants: `DashboardShellRight`, `DashboardShellTopnav`, `DashboardShellSplit`
-- `ThemeBuilder` visual editor with color pickers, 6 preset starters, live preview, and CSS export
-- `hexToOklch` / `oklchToHex` color conversion utilities
+### Features
 
-### Changed
-- `createAuth` returns reactive `user`, `roles`, `permissions`, `tenantId` properties
-- `AuthGuard` supports unauthorized fallback route
+- **Three orthogonal axes**: `data-theme` (color identity), `data-aesthetic` (form), `data-density` (spacing). Fully composable — any combination works.
+- **4 aesthetic presets**: `editorial.css` (flat, snappy — default), `glass.css` (translucent, atmospheric — v0.4 legacy), `bento.css` (rounded, soft), `expressive.css` (dramatic, gradient).
+- **3 density modes**: `compact`, `comfortable` (default), `spacious`. Every spacing utility becomes density-aware.
+- **New composables**: `createAesthetic()`, `createDensity()`, `createPrefersTheme()`, `defineTheme()`.
+- **ThemeStudio**: Full preview with 4 tabs (Theme, Aesthetic, Density, Export), live CSS generation.
+- **AppProvider upgrade**: Accepts `themeDefault`, `aestheticDefault`, `densityDefault`, `respectPrefersColorScheme` props.
+- **Editorial aesthetic**: Flat button surfaces (no gradient), 1px hairline borders, near-zero shadows, snappy 120ms motion, `font-display` for headings, `font-mono` for metadata.
 
-## v0.4.0 (2026-05-31)
+### Token Categories Added
 
-### Added
-- 3 composables: `createTable` (reactive DataTable state), `createWizard` (multi-step form wizard), `createToast` (typed svelte-sonner wrapper)
-- 4 components: Sheet/Drawer, Popover, Popconfirm, Accordion/AccordionItem
-- `createThemeBuilder` — generate full OKLCH theme from partial palette
-- `extendTheme` — inherit from preset and override specific tokens
-- High-contrast theme preset (`contrast`) for accessibility
-- `prefers-reduced-motion` support in global styles
-- Starter template enrichment: Users CRUD, Profile form, Onboarding wizard, Settings with theme switcher
+- Color: `--info`, `--info-foreground`, `--info-soft`, `--success-soft`, `--warning-soft`, `--destructive-soft`, `--overlay`, `--overlay-strong`, `--border-strong`, `--border-subtle`, `--card-solid`, `--surface-1/2/3`
+- Typography: `--font-display`, `--font-mono`, `--text-*` (17-step type scale)
+- Spacing: `--space-0` through `--space-20` (density-aware)
+- Radius: `--radius-xs`, `--radius-sm`, `--radius-md`, `--radius-lg`, `--radius-xl`
+- Shadow: `--shadow-xs` through `--shadow-lg`, `--shadow-glow-*`, `--shadow-inset-subtle`
+- Motion: `--duration-instant`, `--ease-standard` through `--ease-spring`
+- Container: `--container-prose` through `--container-2xl`
+- Aesthetic hooks: `--button-treatment`, `--card-treatment`, `--surface-texture`, `--hero-translate`, `--shadow-emphasis`
 
-### Changed
-- Starter template now demonstrates createQuery, createMutation, createForm, createWizard, createToast, createTheme
+### Fixes
 
-## v0.3.0 (2026-05-31)
+- `Badge.svelte`: Removed hardcoded `emerald-500`/`amber-500` → uses `success-soft`/`warning-soft` tokens.
+- `Progress.svelte`: Removed hardcoded `emerald-500`/`amber-500` → uses `success`/`warning` tokens.
+- `Card.svelte`: Replaced deprecated `rgba()` fallback with OKLCH.
+- `Dialog.svelte`, `Sheet.svelte`: `bg-black/50` → `--overlay` token.
+- `Omnibar.svelte`: `bg-black/75` → `--overlay-strong` token.
+- `Alert.svelte`: `border-l-primary` for info variant → `border-l-info`.
 
-### Added
-- 3 new components: DataChart (Chart.js wrapper), FileUpload (drag-and-drop), RichTextEditor (ProseMirror markdown)
-- 6 theme presets: Dracula, Akashic, Martian, Alchemy, Druidic, Obsidian
-- `createTheme` composable for runtime theme switching with localStorage persistence
-- `useChartTheme` utility for reading CSS tokens in Chart.js datasets
-- Peer dependency: `chart.js` + `svelte-chartjs`
-- Dependencies: `prosemirror-*` packages for rich text editing
+### Migration
 
-### Changed
-- Package renamed from `@thoth/ui` to `bindrunes`
-- Starter template enriched with full token system, ambient backdrop, composables, and route patterns
-- thoth-web simplified to consume template patterns
-
-## v0.2.1 (2026-05-30)
-
-### Added
-- Full API documentation in README.md
-- CHANGELOG tracking
-
-## v0.2.0 (2026-04-01)
-
-### Added
-- 52 Svelte 5 components across foundation, forms, feedback, overlays, navigation, dashboard, sidebar
-- 12 composables/utilities: createQuery, createMutation, createAuth, createForm, createI18n, createApiClient, createStorage, createEnv, RealtimeClient, createOmnibar, derivePageInfo, deriveOmnibarOptions
-- 1 Svelte action: shortcut
-- i18n system with pt-BR dictionary
-- OKLCH-based design token system
-- ~50 Vitest tests
-- Dark/light theme via mode-watcher
-- Validation via valibot
+See `docs/migration.md` for the full v0.4 → v1.0 migration guide.
