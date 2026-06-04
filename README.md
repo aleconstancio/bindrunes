@@ -91,7 +91,16 @@ In your `app.css`:
 
 ```css
 @import "tailwindcss";
+@plugin "bindrunes/tailwind";
 @import "bindrunes/styles/global.css";
+```
+
+The plugin registers all color tokens, utilities (`.glass-panel`, `.text-gradient-violet`, etc.), and sidebar tokens as Tailwind theme values. Alternatively, use the CSS-only preset:
+
+```css
+@import "tailwindcss";
+@import "bindrunes/styles/preset.css";
+@import "bindrunes/styles/utilities.css";
 ```
 
 Map design tokens to your theme by reassigning CSS custom properties on `:root`.
@@ -207,14 +216,14 @@ export default defineConfig({
 
 | Component | Description |
 |-----------|-------------|
-| `<DashboardShell>` | Full dashboard: sidebar + sticky header + content area |
+| `<DashboardShell>` | Full dashboard with `variant` prop (default/right/topnav) — sidebar + sticky header + content |
 | `<NavMenu>` | Renders `NavGroup[]` as sidebar navigation |
 | `<Sidebar>` | Three modes: offcanvas/icon/none |
 | `<SidebarProvider>` | Context provider for sidebar state |
 | `<SidebarTrigger>` | Hamburger toggle |
 | `<SidebarRail>` | Edge handle for collapse |
-| `<DashboardShellRight>` | Sidebar on right for detail/chat panels |
-| `<DashboardShellTopnav>` | Top navigation bar, no sidebar |
+| `<DashboardShellRight>` | Wrapper around `<DashboardShell variant="right">` for detail/chat panels |
+| `<DashboardShellTopnav>` | Wrapper around `<DashboardShell variant="topnav">` — top nav, no sidebar |
 | `<DashboardShellSplit>` | Master-detail two-panel layout |
 | `<ThemeBuilder>` | Interactive theme editor with color pickers |
 
@@ -664,17 +673,19 @@ toast.warning("Session expiring");
 
 ### `createAccess`
 
-RBAC access control with role and permission checking.
+RBAC access control with role and permission checking. Requires an existing auth instance from `createAuth()`:
 
 ```ts
-import { createAccess } from "bindrunes";
-const access = createAccess();
-if (access.can({ roles: ['admin'] })) { ... }
+import { createAccess, createAuth } from "bindrunes";
+const auth = createAuth();
+const access = createAccess(auth);
+if (access.hasRole('admin')) { ... }
+if (access.hasPermission('users:write')) { ... }
 ```
 
-### `hasRole` / `hasPermission`
+### `hasRole` / `hasPermission` *(deprecated)*
 
-Standalone role and permission check utilities.
+Standalone role and permission check utilities. Prefer `createAccess(auth)` for consistent state.
 
 ```ts
 import { hasRole, hasPermission } from "bindrunes";
@@ -729,6 +740,8 @@ const theme = getChartTheme();
 // { primary, accent, destructive, muted, background }
 ```
 
+**Note:** `getChartTheme` was renamed from `useChartTheme` (deprecated) to reflect that it is a plain function, not a reactive composable.
+
 ---
 
 ## File Upload
@@ -766,6 +779,12 @@ Features: image thumbnails, per-file progress, type/size/count validation, keybo
 
 ProseMirror-based markdown editor with configurable toolbar.
 
+**Note:** ProseMirror packages are optional dependencies — only install if you use `RichTextEditor`:
+
+```bash
+bun add prosemirror-commands prosemirror-history prosemirror-keymap prosemirror-markdown prosemirror-model prosemirror-state prosemirror-view
+```
+
 ```svelte
 <script lang="ts">
   import { RichTextEditor } from "bindrunes";
@@ -784,7 +803,7 @@ Toolbar actions: `bold`, `italic`, `code`, `heading`, `list`, `quote`, `horizont
 
 ### Theme Presets
 
-`bindrunes` ships with 6 built-in theme presets:
+`bindrunes` ships with 7 built-in theme presets:
 
 | Preset | Primary | Accent | Character |
 |--------|---------|--------|-----------|
@@ -794,6 +813,7 @@ Toolbar actions: `bold`, `italic`, `code`, `heading`, `list`, `quote`, `horizont
 | `alchemy` | Gold | Amber | Precious, refined |
 | `druidic` | Green | Teal | Natural, balanced |
 | `obsidian` | Slate | Neutral | Minimal, professional |
+| `contrast` | White | White | High-contrast accessibility |
 
 Import a preset in your `app.css`:
 
@@ -843,9 +863,9 @@ Override by setting on `:root`:
 }
 ```
 
-Available tokens: `background`, `foreground`, `card`, `primary`, `secondary`, `muted`, `accent`, `destructive`, `border`, `input`, `ring`, `glass-*`, `success`, `warning`, `radius`, `glass-blur`, `duration-*`.
+Available tokens: `background`, `foreground`, `card`, `primary`, `secondary`, `muted`, `accent`, `destructive`, `border`, `input`, `ring`, `glass-*`, `success`, `warning`, `radius`, `glass-blur`, `duration-*`. Sidebar tokens: `sidebar-background`, `sidebar-foreground`, `sidebar-primary`, `sidebar-accent`, `sidebar-border`, `sidebar-ring`.
 
-Utility classes: `.glass-panel`, `.glass-interactive`, `.text-gradient-violet`, `.text-gradient-gold`, `.animate-pulse-glow`, `.mono`.
+Utility classes: `.glass-panel`, `.glass-interactive`, `.text-gradient-violet`, `.text-gradient-gold`, `.animate-pulse-glow`, `.section-reveal`, `.mono`.
 
 ---
 
@@ -881,25 +901,28 @@ Use `.svelte.ts` extension for files containing runes. Export types alongside th
 ```
 src/
 ├── index.ts                            # barrel exports
+├── shared-types.ts                     # shared type definitions (TFunction, Column, NavItem, etc.)
 ├── actions/shortcut.ts                 # use:shortcut Svelte action
 ├── components/                         # Svelte components
 │   ├── Button.svelte, Card.svelte, ...
 │   ├── DataChart.svelte               # Chart.js wrapper
 │   ├── FileUpload.svelte              # Drag-and-drop upload
-│   ├── RichTextEditor.svelte          # ProseMirror markdown editor
+│   ├── RichTextEditor.svelte          # ProseMirror markdown editor (optional dep)
 │   ├── Sheet.svelte                   # Side-panel overlay
 │   ├── Popover.svelte                 # Positioned popover
 │   ├── Popconfirm.svelte              # Confirmation popover
 │   ├── Accordion.svelte               # Expandable sections
 │   ├── AccordionItem.svelte           # Individual accordion panel
 │   ├── dashboard/                      # DashboardShell, NavMenu
+│   ├── landing/                        # Landing page components
 │   └── sidebar/                        # SidebarProvider, Sidebar*, ...
 ├── i18n/
 │   └── pt-BR.ts                        # default pt-BR dictionary
 ├── styles/
 │   ├── global.css                      # base reset + preset + utilities + reduced-motion
 │   ├── preset.css                      # @theme inline tokens
-│   ├── utilities.css                   # glass, gradients, animations
+│   ├── utilities.css                   # keyframe animations only (classes via Tailwind plugin)
+│   ├── landing.css                     # landing page animations + text-wrap
 │   └── themes/                         # theme preset CSS files
 │       ├── dracula.css
 │       ├── akashic.css
@@ -925,8 +948,10 @@ src/
     ├── createStorage.ts                # typed localStorage wrapper
     ├── chartTheme.ts                   # CSS token reader for charts
     ├── formatters.ts                   # pt-BR formatters
+    ├── navigation.ts                   # derivePageInfo, deriveOmnibarOptions
     ├── queryCache.ts                   # module-level cache backend
-    └── RealtimeClient.svelte.ts        # SSE client
+    ├── RealtimeClient.svelte.ts        # SSE client
+    └── theme-defaults.ts               # shared OKLCH default values
 ```
 
 ---
@@ -1176,6 +1201,8 @@ const auth = createAuth({
 
 `RealtimeClient` sends a `Bearer` token in the `Authorization` header. Ensure your SSE endpoint is served over **HTTPS** to prevent token interception.
 
+**Note:** `DEFAULT_SSE_ROUTES` is deprecated — these were application-specific routes from VICO. Pass your own routes when configuring the SSE client.
+
 ### Reporting Vulnerabilities
 
 If you discover a security issue, please report it privately via GitHub Security Advisories rather than opening a public issue.
@@ -1201,3 +1228,23 @@ bun run format        # biome auto-fix
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+---
+
+## Breaking Changes & Migration (v0.4.0 → v0.5.0)
+
+The following changes may require migration when upgrading from v0.4.0:
+
+| Change | Migration |
+|--------|-----------|
+| `createAccess()` now requires `auth` param | Update `createAccess()` → `createAccess(auth)` |
+| `useChartTheme` renamed to `getChartTheme` | Search/replace `useChartTheme` → `getChartTheme` |
+| `HeroSection` + `FinalCTA` merged into `HeroBanner` | Use `<HeroBanner level={1}>` for hero, `<HeroBanner level={2}>` for final CTA |
+| `base.css` removed | Use `global.css` instead (already covers base styles) |
+| `DEFAULT_SSE_ROUTES` deprecated | Pass your own routes to the SSE client |
+| ProseMirror moved to optional deps | Run `bun add prosemirror-*` if using `RichTextEditor` |
+| `utilities.css` now only contains keyframes | Utility classes are provided by the Tailwind plugin |
+| Accordion context now uses `Symbol` | No migration needed — fully backward compatible |
+| Sidebar tokens now in Tailwind plugin | `bg-sidebar-*`, `text-sidebar-*` classes now work with the plugin |
+| Folder `landing/` added with 16 components | Import from `bindrunes/landing` |
+| `TFunction`, `Column`, `SortState` in `shared-types.ts` | Update imports from `'bindrunes'` — backward compatible via re-exports |
