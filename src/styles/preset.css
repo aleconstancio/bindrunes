@@ -326,6 +326,13 @@
 	--space-12: 4rem;
 	--space-16: 5rem;
 	--space-20: 6rem;
+
+	/* ── Aesthetic-coupled hooks (editorial default) ── */
+	--button-treatment: flat;
+	--card-treatment: solid;
+	--surface-texture: none;
+	--hero-translate: 8px;
+	--shadow-emphasis: low;
 }
 
 /* ── @property: type-safety for animations and JS reads ── */
