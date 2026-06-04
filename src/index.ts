@@ -61,7 +61,7 @@ export { default as RichTextEditor } from './components/RichTextEditor.svelte';
 
 // ── Dashboard Shell ──
 export { DashboardShell, DashboardShellRight, DashboardShellTopnav, DashboardShellSplit, NavMenu } from './components/dashboard/index.ts';
-export { derivePageInfo, deriveOmnibarOptions } from './components/dashboard/index.ts';
+export { derivePageInfo, deriveOmnibarOptions } from './utils/navigation';
 
 // ── Sidebar ──
 export {

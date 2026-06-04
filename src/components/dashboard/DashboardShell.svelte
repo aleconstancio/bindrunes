@@ -1,8 +1,7 @@
 <script lang="ts">
   import type { ComponentType } from 'svelte';
   import { SidebarProvider, Sidebar, SidebarLayout, SidebarTrigger } from '../sidebar/index.js';
-  import { derivePageInfo } from '../../types.ts';
-  import type { NavGroup } from '../../types.ts';
+  import type { NavGroup } from '../../shared-types';
   import type { StatusVariant } from '../../shared-types';
   import NavMenu from './NavMenu.svelte';
   import StatusChip from '../StatusChip.svelte';

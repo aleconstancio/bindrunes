@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ComponentType } from 'svelte';
-  import { derivePageInfo } from '../../types.ts';
-  import type { NavGroup } from '../../types.ts';
+  import { derivePageInfo } from '../../utils/navigation';
+  import type { NavGroup } from '../../shared-types';
   import type { StatusVariant } from '../../shared-types';
   import StatusChip from '../StatusChip.svelte';
   import ThemeToggle from '../ThemeToggle.svelte';
