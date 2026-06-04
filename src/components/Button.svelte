@@ -57,7 +57,7 @@
     data-loading={loading || undefined}
   >
     {#if loading}
-      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full mr-1.5" />
+      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full mr-1.5"></span>
     {/if}
     {@render children?.()}
   </a>
@@ -74,7 +74,7 @@
     data-loading={loading || undefined}
   >
     {#if loading}
-      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full mr-1.5" />
+      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full mr-1.5"></span>
     {/if}
     {@render children?.()}
   </BitsButton.Root>

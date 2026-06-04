@@ -19,9 +19,13 @@ export interface RealtimeOptions {
 }
 
 export class RealtimeClient {
-  status = $state<RealtimeStatus>('disconnected');
-  hasGap = $state<boolean>(false);
-  lastEvent = $state<RealtimeEvent | null>(null);
+  #status = $state<RealtimeStatus>('disconnected');
+  #hasGap = $state<boolean>(false);
+  #lastEvent = $state<RealtimeEvent | null>(null);
+
+  get status() { return this.#status; }
+  get hasGap() { return this.#hasGap; }
+  get lastEvent() { return this.#lastEvent; }
 
   private lastEventId: string | null = null;
   private lastSeq: number = -1;
@@ -39,7 +43,7 @@ export class RealtimeClient {
 
     if (this.controller) this.controller.abort();
     this.controller = new AbortController();
-    this.status = 'reconnecting';
+    this.#status = 'reconnecting';
 
     try {
       const { fetchEventSource } = await import('@microsoft/fetch-event-source');
@@ -64,13 +68,13 @@ export class RealtimeClient {
         signal: this.controller.signal,
         onopen: async (response) => {
           if (response.ok) {
-            this.status = 'connected';
+            this.#status = 'connected';
             this.retryDelay = this.options.reconnectDelay ?? 1000;
           } else if (response.status === 401 || response.status === 403) {
-            this.status = 'disconnected';
+            this.#status = 'disconnected';
             throw new Error('Authentication failed');
           } else {
-            this.status = 'degraded';
+            this.#status = 'degraded';
           }
         },
         onmessage: (msg) => {
@@ -98,22 +102,22 @@ export class RealtimeClient {
             }
 
             if (event.seq !== -1) this.lastSeq = event.seq;
-            this.lastEvent = event;
+            this.#lastEvent = event;
             onEvent?.(event);
           } catch { /* skip malformed messages */ }
         },
         onerror: (err) => {
           const error = err instanceof Error ? err : new Error(String(err));
           if (error.name === 'AbortError') {
-            this.status = 'disconnected';
+            this.#status = 'disconnected';
             return;
           }
           this.options.onError?.(error);
-          this.status = 'degraded';
+          this.#status = 'degraded';
           throw err;
         },
         onclose: () => {
-          this.status = 'disconnected';
+          this.#status = 'disconnected';
           this.scheduleReconnect();
         },
       });
@@ -129,17 +133,17 @@ export class RealtimeClient {
       this.controller.abort();
       this.controller = null;
     }
-    this.status = 'disconnected';
+    this.#status = 'disconnected';
   }
 
   dismissGap() {
-    this.hasGap = false;
+    this.#hasGap = false;
   }
 
   private handleGap() {
-    this.hasGap = true;
+    this.#hasGap = true;
     const delay = this.options.gapDismissDelay ?? 5000;
-    setTimeout(() => { this.hasGap = false; }, delay);
+    setTimeout(() => { this.#hasGap = false; }, delay);
   }
 
   private scheduleReconnect() {

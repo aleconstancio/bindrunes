@@ -29,7 +29,7 @@
     {@render loadingContent()}
   {:else}
     <div class="flex justify-center py-12">
-      <span class="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full" />
+      <span class="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full"></span>
     </div>
   {/if}
 {:else if state.status === 'empty'}

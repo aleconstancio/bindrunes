@@ -12,6 +12,9 @@ const auth = createAuth({
     getToken: () => getCookie('session_token'),  // server-set httpOnly cookie
     setToken: () => {},  // no-op — server sets the cookie
     clearToken: () => deleteCookie('session_token'),
+    getUser: () => getCookie('user_profile') ? JSON.parse(getCookie('user_profile')!) : null,
+    setUser: (user) => setCookie('user_profile', JSON.stringify(user)),
+    clearUser: () => deleteCookie('user_profile'),
   },
   onLogout: () => { window.location.href = '/login'; },
 });

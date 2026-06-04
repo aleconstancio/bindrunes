@@ -57,6 +57,7 @@
       class="absolute z-50 min-w-[200px] rounded-[--radius] p-3 shadow-lg {positionStyles[side]} {className}"
       style="background: var(--card); border: 1px solid var(--border);"
       role="dialog"
+      tabindex="-1"
       onkeydown={handleKeydown}
     >
       {@render children?.()}

@@ -59,15 +59,24 @@
     <thead>
       <tr style="border-bottom: 1px solid var(--border); background: var(--muted)">
         {#each columns as col}
-          <th class="px-4 py-3 text-xs font-bold uppercase tracking-[0.05em] cursor-pointer select-none"
+          <th class="px-4 py-3 text-xs font-bold uppercase tracking-[0.05em] select-none"
             style="{col.align === 'right' ? 'text-align: right;' : col.align === 'center' ? 'text-align: center;' : 'text-align: left;'}; color: var(--muted-foreground); {col.width ? 'width: ' + col.width + ';' : ''}"
-            onclick={col.sortable ? () => toggleSort(col.key) : undefined}
-            onkeydown={col.sortable ? (e: KeyboardEvent) => { if (e.key === 'Enter') toggleSort(col.key); } : undefined}
-            tabindex={col.sortable ? 0 : -1}
-            role={col.sortable ? 'columnheader button' : 'columnheader'}>
-            {col.label}
-            {#if col.sortable && sort?.key === col.key}
-              <span class="ml-1">{sort.direction === 'asc' ? '↑' : '↓'}</span>
+            role="columnheader"
+            aria-sort={col.sortable ? (sort?.key === col.key ? (sort.direction === 'asc' ? 'ascending' : 'descending') : 'none') : undefined}>
+            {#if col.sortable}
+              <button
+                type="button"
+                class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-wider"
+                style="color: var(--muted-foreground); {col.align === 'right' ? 'margin-left: auto;' : col.align === 'center' ? 'margin-left: auto; margin-right: auto;' : ''}"
+                onclick={() => toggleSort(col.key)}
+              >
+                {col.label}
+                {#if sort?.key === col.key}
+                  <span class="ml-1" aria-hidden="true">{sort.direction === 'asc' ? '↑' : '↓'}</span>
+                {/if}
+              </button>
+            {:else}
+              {col.label}
             {/if}
           </th>
         {/each}

@@ -40,7 +40,7 @@
             aria-label="Search"
           />
           {#if state.isLoading}
-            <span class="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
+            <span class="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></span>
           {/if}
         </div>
 
