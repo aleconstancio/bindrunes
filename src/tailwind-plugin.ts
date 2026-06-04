@@ -1,4 +1,9 @@
 // src/tailwind-plugin.ts
+//
+// This plugin provides bindrunes design tokens and utility classes for Tailwind CSS v4.
+// Some utilities (glass-panel, glass-interactive, text-gradient-*, mono) also exist in
+// src/styles/utilities.css for consumers who don't use Tailwind. If you use both the
+// plugin and utilities.css, the plugin's definitions take precedence at runtime.
 import type { Config } from 'tailwindcss';
 
 const plugin = {
@@ -90,6 +95,9 @@ const plugin = {
           },
           '.mono': {
             'font-family': "'JetBrains Mono', 'IBM Plex Mono', 'Fira Code', monospace",
+          },
+          '.animate-pulse-glow': {
+            animation: 'thoth-pulse-glow 3s infinite ease-in-out',
           },
         });
       },
