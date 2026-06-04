@@ -10,17 +10,17 @@
   } = $props();
 </script>
 
-<nav aria-label="Breadcrumb" class="text-sm {className}">
-  <ol class="flex items-center gap-1.5 list-none m-0 p-0" style="color: var(--muted-foreground);">
+<nav aria-label="Breadcrumb" class="text-body-sm {className}">
+  <ol class="flex items-center gap-1.5 list-none m-0 p-0 text-muted-foreground">
     {#each items as item, i}
       <li class="flex items-center gap-1.5">
         {#if i > 0}
-          <span aria-hidden="true" style="color: var(--border);">{separator}</span>
+          <span aria-hidden="true" class="text-border">{separator}</span>
         {/if}
         {#if item.href && i < items.length - 1}
-          <a href={item.href} class="hover:underline transition-colors" style="color: var(--primary);">{item.label}</a>
+          <a href={item.href} class="text-primary hover:underline transition-colors duration-[--duration-snappy]">{item.label}</a>
         {:else}
-          <span style="color: var(--foreground);">{item.label}</span>
+          <span class="text-foreground">{item.label}</span>
         {/if}
       </li>
     {/each}

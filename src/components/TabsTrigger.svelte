@@ -15,7 +15,7 @@
 <BitsTabs.Trigger
   {value}
   {disabled}
-  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium
+  class="inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-label-md font-medium
          transition-all duration-[--duration-snappy]
          data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm
          data-[state=inactive]:text-muted-foreground hover:text-foreground

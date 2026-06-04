@@ -40,14 +40,14 @@
 
 <nav class="flex items-center gap-1" aria-label="Pagination">
   {#if showTotal}
-    <span class="text-xs" style="color: var(--muted-foreground)">{t('table.page', { current: currentPage, total: totalPages })}</span>
+    <span class="text-body-sm" style="color: var(--muted-foreground)">{t('table.page', { current: currentPage, total: totalPages })}</span>
   {/if}
 
   {#if onPageSizeChange}
     <select
       value={pageSize}
       onchange={(e) => onPageSizeChange(Number((e.target as HTMLSelectElement).value))}
-      class="h-8 rounded-[--radius] border border-border bg-transparent px-2 text-xs text-muted-foreground cursor-pointer"
+      class="h-8 rounded-[--radius] border border-border bg-transparent px-2 text-body-sm text-muted-foreground cursor-pointer"
     >
       {#each pageSizeOptions as opt}
         <option value={opt}>{t('pagination.perPage', { count: opt })}</option>
@@ -57,7 +57,7 @@
 
   <div class="flex items-center gap-1">
     <button disabled={currentPage <= 1} onclick={() => onPageChange?.(currentPage - 1)} aria-label="Previous page"
-      class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-sm font-medium transition-colors cursor-pointer
+      class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-label-sm font-medium transition-colors cursor-pointer
            disabled:opacity-30 disabled:cursor-not-allowed hover:bg-muted"
       style="color: var(--muted-foreground)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
@@ -65,10 +65,10 @@
 
     {#each pages as p, i}
       {#if p === '...'}
-        <span class="inline-flex items-center justify-center h-8 w-8 text-xs" style="color: var(--muted-foreground)">...</span>
+        <span class="inline-flex items-center justify-center h-8 w-8 text-body-sm" style="color: var(--muted-foreground)">...</span>
       {:else}
         <button onclick={() => onPageChange?.(p as number)}
-          class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-sm font-medium transition-colors cursor-pointer"
+          class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-label-sm font-medium transition-colors cursor-pointer"
           style="background: {currentPage === p ? 'var(--primary)' : 'transparent'}; color: {currentPage === p ? 'var(--primary-foreground)' : 'var(--muted-foreground)'};"
           aria-current={currentPage === p ? 'page' : undefined}>
           {p}
@@ -77,7 +77,7 @@
     {/each}
 
     <button disabled={currentPage >= totalPages} onclick={() => onPageChange?.(currentPage + 1)} aria-label="Next page"
-      class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-sm font-medium transition-colors cursor-pointer
+      class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-label-sm font-medium transition-colors cursor-pointer
            disabled:opacity-30 disabled:cursor-not-allowed hover:bg-muted"
       style="color: var(--muted-foreground)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
