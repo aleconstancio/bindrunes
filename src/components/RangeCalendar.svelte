@@ -10,8 +10,9 @@
 	} = $props();
 </script>
 
-<BitsRangeCalendar.Root
+	<BitsRangeCalendar.Root
 	bind:value
+	numberOfMonths={2}
 	class="inline-flex flex-col gap-4 rounded-[--radius] border bg-card p-4 shadow-md {className}"
 >
 	<BitsRangeCalendar.Header class="flex items-center justify-between" />

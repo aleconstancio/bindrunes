@@ -24,8 +24,8 @@
 		<BitsRatingGroup.Item
 			value={i + 1}
 			class="inline-flex items-center justify-center text-2xl transition-colors cursor-pointer
-			       data-[highlighted]:text-warning data-[state=checked]:text-warning
-			       data-[state=unchecked]:text-muted-foreground hover:text-warning
+			       data-[state=active]:text-warning data-[state=inactive]:text-muted-foreground
+			       hover:text-warning
 			       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
 			       disabled:cursor-not-allowed disabled:opacity-50"
 		>

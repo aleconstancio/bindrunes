@@ -26,7 +26,7 @@
 					href={link.href}
 					class="inline-flex items-center rounded-[--radius-sm] px-3 py-1.5 text-label-md transition-colors no-underline
 					       hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
-					       {activeId && link.href.includes(activeId) ? 'text-foreground bg-muted' : 'text-muted-foreground'}"
+					       {activeId && (link.href.endsWith(activeId) || link.href === `/${activeId}` || link.href === activeId) ? 'text-foreground bg-muted' : 'text-muted-foreground'}"
 				>
 					{link.label}
 				</BitsNavigationMenu.Link>

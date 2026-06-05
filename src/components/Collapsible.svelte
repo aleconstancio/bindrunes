@@ -25,7 +25,7 @@
 	>
 		{@render trigger?.()}
 	</BitsCollapsible.Trigger>
-	<BitsCollapsible.Content class="overflow-hidden data-[state=closed]:animate-out data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
+	<BitsCollapsible.Content class="overflow-hidden transition-all data-[state=closed]:opacity-0 data-[state=open]:opacity-100 data-[state=closed]:h-0">
 		<div class="pt-2">
 			{@render children?.()}
 		</div>

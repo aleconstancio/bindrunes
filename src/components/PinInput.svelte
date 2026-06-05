@@ -2,14 +2,14 @@
 	import { PinInput as BitsPinInput } from 'bits-ui';
 
 	let {
-		value = $bindable(['', '', '', ''] as string[]),
+		value = $bindable(''),
 		placeholder = '\u25CB',
 		disabled = false,
 		type = 'text' as 'text' | 'password',
 		length = 4,
 		class: className = '',
 	}: {
-		value?: string[];
+		value?: string;
 		placeholder?: string;
 		disabled?: boolean;
 		type?: 'text' | 'password';
@@ -18,13 +18,14 @@
 	} = $props();
 </script>
 
-<BitsPinInput.Root bind:value {placeholder} {disabled} {type} class="flex items-center gap-2 {className}">
-	{#each Array(length) as _, i}
-		<BitsPinInput.Cell
-			{...{ ref: undefined }}
-			class="flex h-12 w-12 items-center justify-center rounded-[--radius] border bg-input text-center text-headline-2 text-foreground transition-colors duration-[--duration-snappy]
-			       focus-within:ring-2 focus-within:ring-ring focus-within:border-ring
-			       data-[state=filled]:border-primary data-[state=active]:border-ring"
-		/>
-	{/each}
+<BitsPinInput.Root bind:value maxlength={length} {placeholder} {disabled} {type} class="flex items-center gap-2 {className}">
+	{#snippet children({ cells })}
+		{#each cells as cell}
+			<BitsPinInput.Cell
+				{cell}
+				class="flex h-12 w-12 items-center justify-center rounded-[--radius] border bg-input text-center text-headline-2 text-foreground transition-colors duration-[--duration-snappy]
+				       focus-within:ring-2 focus-within:ring-ring focus-within:border-ring"
+			/>
+		{/each}
+	{/snippet}
 </BitsPinInput.Root>

@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import { Button, ThemeToggle, NavigationMenu } from 'bindrunes';
+	import Button from '../Button.svelte';
+	import ThemeToggle from '../ThemeToggle.svelte';
+	import NavigationMenu from '../NavigationMenu.svelte';
 	import { Menu, X } from 'lucide-svelte';
 	import type { TFunction } from '../../shared-types';
 	import { useLanding } from './landing-context.svelte';
