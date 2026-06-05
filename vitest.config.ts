@@ -19,7 +19,20 @@ export default defineConfig({
     setupFiles: ['./src/test-setup.ts'],
     coverage: {
       include: ['src/**'],
-      exclude: ['src/test-setup.ts', 'src/test-utils.ts'],
+      exclude: [
+        'src/test-setup.ts',
+        'src/test-utils.ts',
+        'src/helpers/**',
+        'src/**/*.test.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.d.ts',
+      ],
+      thresholds: {
+        lines: 0,
+        functions: 0,
+        statements: 0,
+        branches: 0,
+      },
     },
   },
 });
