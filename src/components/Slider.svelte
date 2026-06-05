@@ -6,17 +6,19 @@
 		min = 0,
 		max = 100,
 		step = 1,
+		disabled = false,
 		class: className = '',
 	}: {
 		value?: number[];
 		min?: number;
 		max?: number;
 		step?: number;
+		disabled?: boolean;
 		class?: string;
 	} = $props();
 </script>
 
-<BitsSlider.Root bind:value {min} {max} {step} class="relative flex w-full touch-none select-none items-center h-6 {className}">
+<BitsSlider.Root bind:value {min} {max} {step} {disabled} class="relative flex w-full touch-none select-none items-center h-6 {className}">
 	<BitsSlider.Range class="absolute h-2 rounded-full bg-primary" />
 	{#each value as _, i}
 		<BitsSlider.Thumb

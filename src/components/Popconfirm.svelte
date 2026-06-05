@@ -10,7 +10,10 @@
 		destructive = false,
 		onConfirm = undefined as (() => void) | undefined,
 		onCancel = undefined as (() => void) | undefined,
+		open = $bindable(false),
+		class: className = '',
 		trigger,
+		children,
 	}: {
 		title?: string;
 		description?: string;
@@ -19,10 +22,11 @@
 		destructive?: boolean;
 		onConfirm?: () => void;
 		onCancel?: () => void;
+		open?: boolean;
+		class?: string;
 		trigger?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
 	} = $props();
-
-	let open = $state(false);
 
 	function handleConfirm() {
 		open = false;
@@ -41,8 +45,8 @@
 	</BitsAlertDialog.Trigger>
 
 	<BitsAlertDialog.Portal>
-		<BitsAlertDialog.Overlay class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-		<BitsAlertDialog.Content class="fixed left-1/2 top-1/2 z-[--z-overlay,30] w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[--radius] bg-card p-6 shadow-lg border border-border">
+		<BitsAlertDialog.Overlay class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm duration-[--duration-slow,360ms] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+		<BitsAlertDialog.Content class="fixed left-1/2 top-1/2 z-[--z-overlay,30] w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[--radius] bg-card p-6 shadow-lg border border-border duration-[--duration-slow,360ms] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 {className}">
 			<BitsAlertDialog.Title class="text-title-2 mb-2 text-foreground">{title}</BitsAlertDialog.Title>
 			{#if description}
 				<BitsAlertDialog.Description class="text-body-md text-muted-foreground">{description}</BitsAlertDialog.Description>
@@ -55,6 +59,9 @@
 					<Button variant={destructive ? 'destructive' : 'primary'} size="sm" {...props} onclick={handleConfirm}>{confirmLabel}</Button>
 				</BitsAlertDialog.Action>
 			</div>
+			{#if children}
+				{@render children()}
+			{/if}
 		</BitsAlertDialog.Content>
 	</BitsAlertDialog.Portal>
 </BitsAlertDialog.Root>

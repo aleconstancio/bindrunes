@@ -1,6 +1,25 @@
 import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 
+// jsdom polyfills for bits-ui
+if (typeof window !== 'undefined') {
+	window.CSS = { supports: () => true, escape: (s: string) => s } as any;
+	window.Element.prototype.scrollTo = () => {};
+	class MockResizeObserver {
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	}
+	window.ResizeObserver = MockResizeObserver as any;
+	class MockIntersectionObserver {
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	}
+	window.IntersectionObserver = MockIntersectionObserver as any;
+	window.HTMLElement.prototype.hasPointerCapture = () => false;
+}
+
 vi.mock('svelte-sonner', () => ({
 	Toaster: (() => '') as unknown as any,
 	toast: {

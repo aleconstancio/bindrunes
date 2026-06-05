@@ -96,7 +96,7 @@
 				<ThemeToggle variant="icon" />
 			</div>
 			<button
-				class="flex items-center justify-center rounded-lg p-2 transition-colors hover:bg-muted md:hidden"
+				class="flex items-center justify-center rounded-[--radius] p-2 transition-colors hover:bg-muted md:hidden"
 				onclick={() => (landing.menuOpen = !landing.menuOpen)}
 				aria-label="Menu"
 				aria-expanded={landing.menuOpen}
@@ -116,7 +116,7 @@
 	</div>
 
 	{#if landing.menuOpen}
-		<div transition:slide={{ duration: 200 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" onkeydown={handleKeydown}>
+		<div transition:slide={{ duration: 220 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" onkeydown={handleKeydown}>
 			<div class="flex flex-col gap-5">
 				{#each links as link}
 					<a

@@ -1,19 +1,20 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/svelte';
+import { describe, it, expect, vi } from 'vitest';
+import { render } from '@testing-library/svelte';
 import Popconfirm from '../../src/components/Popconfirm.svelte';
 
 describe('Popconfirm', () => {
-	it('renders container', () => {
+	it('renders without crashing', () => {
 		const { container } = render(Popconfirm);
 		expect(container).toBeInTheDocument();
 	});
 
-	it('renders with default props', () => {
-		const { container } = render(Popconfirm, {
-			props: {
-				title: 'Delete user?',
-			},
-		});
+	it('accepts custom class without crashing', () => {
+		const { container } = render(Popconfirm, { props: { class: 'custom' } });
+		expect(container).toBeInTheDocument();
+	});
+
+	it('renders with custom title', () => {
+		const { container } = render(Popconfirm, { props: { title: 'Delete?' } });
 		expect(container).toBeInTheDocument();
 	});
 });

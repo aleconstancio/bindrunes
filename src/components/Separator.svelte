@@ -12,8 +12,6 @@
 
 <BitsSeparator.Root
 	{orientation}
-	class:border-b={orientation === 'horizontal'}
-	class:border-l={orientation === 'vertical'}
-	class="border-border {className}"
+	class="border-border {orientation === 'horizontal' ? 'border-b' : 'border-l'} {className}"
 	decorative
 />

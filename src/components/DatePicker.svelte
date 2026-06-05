@@ -5,10 +5,12 @@
 	let {
 		value = $bindable<Date | undefined>(undefined),
 		label = '',
+		disabled = false,
 		class: className = '',
 	}: {
 		value?: Date | undefined;
 		label?: string;
+		disabled?: boolean;
 		class?: string;
 	} = $props();
 
@@ -23,7 +25,7 @@
 	}
 </script>
 
-<BitsDatePicker.Root value={bitsValue} onValueChange={onBitsValueChange} trimValues class="w-full {className}">
+<BitsDatePicker.Root value={bitsValue} onValueChange={onBitsValueChange} {disabled} trimValues class="w-full {className}">
 	{#if label}
 		<BitsDatePicker.Label class="text-label-md text-muted-foreground mb-1.5 block">{label}</BitsDatePicker.Label>
 	{/if}

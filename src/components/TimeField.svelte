@@ -1,18 +1,19 @@
 <script lang="ts">
+	import { Time } from '@internationalized/date';
 	import { TimeField as BitsTimeField } from 'bits-ui';
 
 	let {
-		value = $bindable<Date | undefined>(undefined),
-		placeholder = '--:--',
+		value = $bindable(new Time(0, 0)),
+		disabled = false,
 		class: className = '',
 	}: {
-		value?: Date | undefined;
-		placeholder?: string;
+		value?: Time;
+		disabled?: boolean;
 		class?: string;
 	} = $props();
 </script>
 
-<BitsTimeField.Root bind:value {placeholder} class="w-full {className}">
+<BitsTimeField.Root bind:value {disabled} class="w-full {className}">
 	<BitsTimeField.Label class="text-label-md text-muted-foreground mb-1.5 block" />
 	<BitsTimeField.Input class="flex w-full items-center rounded-[--radius] border bg-input px-3 py-2 text-body-md text-foreground transition-colors duration-[--duration-snappy] focus:outline-none focus:ring-2 focus:ring-ring">
 		{#snippet children({ segments })}
