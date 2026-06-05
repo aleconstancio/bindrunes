@@ -3,19 +3,19 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const PRESET = readFileSync(
-	join(__dirname, '..', 'src', 'styles', 'preset.css'),
+	join(__dirname, '..', 'styles', 'preset.css'),
 	'utf-8',
 );
 const TAILWIND = readFileSync(
-	join(__dirname, '..', 'src', 'styles', 'tokens', 'tailwind.css'),
+	join(__dirname, '..', 'styles', 'tokens', 'tailwind.css'),
 	'utf-8',
 );
 const ROOT = readFileSync(
-	join(__dirname, '..', 'src', 'styles', 'tokens', 'root.css'),
+	join(__dirname, '..', 'styles', 'tokens', 'root.css'),
 	'utf-8',
 );
 const PROPERTY = readFileSync(
-	join(__dirname, '..', 'src', 'styles', 'tokens', 'property.css'),
+	join(__dirname, '..', 'styles', 'tokens', 'property.css'),
 	'utf-8',
 );
 

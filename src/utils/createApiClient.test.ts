@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { createApiClient } from '../src/utils/createApiClient';
+import { createApiClient } from '../utils/createApiClient';
 
 describe('createApiClient', () => {
 	const mockFetch = vi.fn();

@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { tick } from 'svelte';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createWizard } from '../src/utils/createWizard.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createWizard } from './createWizard.svelte';
 
 describe('createWizard', () => {
 	const steps = [

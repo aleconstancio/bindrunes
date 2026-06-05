@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createAuth } from '../src/utils/createAuth.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createAuth } from './createAuth.svelte';
 
 describe('createAuth', () => {
 	it('initializes with null token when storage returns null', async () => {

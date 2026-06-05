@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render } from '@testing-library/svelte';
 import { tick } from 'svelte';
-import Harness from './ComposableHarness.svelte';
-import { createDensity } from '../src/utils/createDensity.svelte';
+import Harness from '../ComposableHarness.svelte';
+import { createDensity } from './createDensity.svelte';
 
 describe('createDensity', () => {
 	beforeEach(() => {

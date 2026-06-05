@@ -9,7 +9,7 @@ import {
 	formatPercentage,
 	formatBytes,
 	setLocale,
-} from '../src/utils/formatters';
+} from '../utils/formatters';
 
 describe('formatDate', () => {
 	it('formatDate returns a formatted date string', () => {

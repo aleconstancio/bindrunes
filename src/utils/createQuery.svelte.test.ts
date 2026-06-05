@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, waitFor } from '@testing-library/svelte';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createQuery } from '../src/utils/createQuery.svelte';
-import { setQueryData, invalidateQuery, getEntry } from '../src/utils/queryCache';
-import MountSvelte from './helpers/mount.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createQuery } from './createQuery.svelte';
+import { setQueryData, invalidateQuery, getEntry } from '../utils/queryCache';
+import MountSvelte from '../helpers/mount.svelte';
 
 describe('createQuery', () => {
 	afterEach(() => {

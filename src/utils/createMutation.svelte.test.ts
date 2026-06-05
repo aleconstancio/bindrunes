@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createMutation } from '../src/utils/createMutation.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createMutation } from './createMutation.svelte';
 
 describe('createMutation', () => {
 	it('initial state is idle with no data or error', async () => {

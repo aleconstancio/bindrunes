@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { shortcut } from '../src/actions/shortcut';
+import { shortcut } from '../actions/shortcut';
 
 describe('shortcut', () => {
 	it('calls callback when matching key is pressed', () => {

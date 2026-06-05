@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { handleSSEEvent, DEFAULT_SSE_ROUTES } from '../src/utils/sseBridge.svelte.js';
+import { handleSSEEvent, DEFAULT_SSE_ROUTES } from './sseBridge.svelte';
 
 // Mock the query cache
-vi.mock('../src/utils/queryCache', () => ({
+vi.mock('./queryCache', () => ({
   invalidateQuery: vi.fn(),
 }));
 
-import { invalidateQuery } from '../src/utils/queryCache';
+import { invalidateQuery } from './queryCache';
 
 describe('handleSSEEvent', () => {
   beforeEach(() => {

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createQuery } from '../src/utils/createQuery.svelte';
-import { createMutation } from '../src/utils/createMutation.svelte';
-import { invalidateQuery, setQueryData } from '../src/utils/queryCache';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createQuery } from './createQuery.svelte';
+import { createMutation } from './createMutation.svelte';
+import { invalidateQuery, setQueryData } from '../utils/queryCache';
 
 describe('mutation → invalidate → query integration', () => {
 	afterEach(() => {

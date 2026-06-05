@@ -5,7 +5,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('sidebar-context', () => {
   it('can be imported without error', async () => {
-    const mod = await import('../src/components/sidebar/sidebar-context.svelte.ts');
+    const mod = await import('../components/sidebar/sidebar-context.svelte');
     expect(mod.createSidebarState).toBeDefined();
     expect(mod.setSidebarContext).toBeDefined();
     expect(mod.getSidebarContext).toBeDefined();

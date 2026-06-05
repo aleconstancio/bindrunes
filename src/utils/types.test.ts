@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { derivePageInfo, deriveOmnibarOptions } from '../src/utils/navigation';
+import { derivePageInfo, deriveOmnibarOptions } from '../utils/navigation';
 
 const mockGroups = [
 	{

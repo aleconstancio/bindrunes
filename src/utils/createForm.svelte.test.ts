@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { waitFor } from '@testing-library/svelte';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createForm } from '../src/utils/createForm.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createForm } from './createForm.svelte';
 import { string, email, minLength, pipe, number } from 'valibot';
 
 const testSchema = {

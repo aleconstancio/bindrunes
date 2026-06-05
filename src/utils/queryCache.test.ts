@@ -9,7 +9,7 @@ import {
 	invalidateQuery,
 	setQueryData,
 	removeEntry,
-} from "../src/utils/queryCache";
+} from '../utils/queryCache';
 
 describe("queryCache", () => {
 	afterEach(() => {

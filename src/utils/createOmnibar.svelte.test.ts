@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createOmnibar } from '../src/utils/createOmnibar.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createOmnibar } from './createOmnibar.svelte';
 
 const sampleOptions = [
 	{ id: '1', label: 'Dashboard', description: 'Main view', category: 'Nav', action: vi.fn() },

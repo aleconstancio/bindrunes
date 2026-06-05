@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { createEnv } from '../src/utils/createEnv';
+import { createEnv } from '../utils/createEnv';
 
 describe('createEnv', () => {
 	it('get returns fallback when var is missing', () => {

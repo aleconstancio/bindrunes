@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { tick } from 'svelte';
-import { mountComposable } from './helpers/test-wrapper.svelte';
-import { createTable } from '../src/utils/createTable.svelte';
+import { mountComposable } from '../helpers/test-wrapper.svelte';
+import { createTable } from './createTable.svelte';
 
 describe('createTable', () => {
 	const columns = [

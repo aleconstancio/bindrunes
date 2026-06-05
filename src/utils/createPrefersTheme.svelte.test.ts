@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render } from '@testing-library/svelte';
 import { tick } from 'svelte';
-import Harness from './ComposableHarness.svelte';
-import { createPrefersTheme } from '../src/utils/createPrefersTheme.svelte';
+import Harness from '../ComposableHarness.svelte';
+import { createPrefersTheme } from './createPrefersTheme.svelte';
 
 describe('createPrefersTheme', () => {
 	beforeEach(() => {
