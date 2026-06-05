@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import Combobox from './Combobox.svelte';
+import ListPage from './ListPage.svelte';
 
-describe('Combobox', () => {
+describe('ListPage', () => {
 	it('exports a Svelte component', () => {
-		expect(Combobox).toBeDefined();
+		expect(ListPage).toBeDefined();
 	});
 
 	it('is a function (Svelte component signature)', () => {
-		expect(typeof Combobox).toBe('function');
+		expect(typeof ListPage).toBe('function');
 	});
 });
