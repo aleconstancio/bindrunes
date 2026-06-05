@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Status | Approved (brainstorming complete, awaiting spec review) |
+| Status | Draft (brainstorming approved, awaiting user spec review) |
 | Date | 2026-06-05 |
 | Author | opencode (brainstorming skill) |
 | Target | bindrunes v1.0.x (testing elevation, no API changes) |
@@ -102,15 +102,15 @@ src/
 - New `scripts.test:coverage`: `vitest run --coverage`
 - New `scripts.test:ci`: `vitest run --coverage --reporter=verbose`
 - New `scripts.test:watch:coverage`: `vitest --coverage`
-- New `devDependencies.vitest-axe`: `^2.0.0` (or current latest compatible with vitest 4.x)
+- New `devDependencies.vitest-axe`: pin to the version compatible with vitest 4.x at install time (verify in phase 1 with a smoke test)
 
 **`package.json` `files` field:** verify that `dist/` (output of `svelte-package`) excludes `*.test.ts`. If not, explicitly add `!src/**/*.test.ts` patterns. Validate with `bun run build` then `ls dist/components/Button.svelte.test*` (should not exist).
 
 ### 3.4 CI
 
 **`.github/workflows/test.yml` (NEW):**
-- Triggers: `push` to `main`, `pull_request` to `main`
-- Steps: `actions/checkout@v4`, `oven-sh/setup-bun@v1`, `bun install --frozen-lockfile`, `bun run lint`, `bun run check`, `bun run test:ci`
+- Triggers: `push` to `main`, `pull_request` to `main` (with `paths-ignore: ['docs/**', '**/*.md']` to avoid doc-only runs)
+- Steps: `actions/checkout@v4`, `oven-sh/setup-bun@v1` (with `cache: true` for `bun.lock`), `bun install --frozen-lockfile`, `bun run lint`, `bun run check`, `bun run test:ci`
 - Cache: `bun install` cache keyed on `bun.lock`
 - Fails on coverage threshold miss
 
@@ -214,7 +214,7 @@ vi.mock('bits-ui', () => mockBitsUi());
 
 | Group | Files | Cases each | Notes |
 |-------|-------|-----------|-------|
-| **High-traffic components** | Button, Form, FormField, DataTable, DataChart, RichTextEditor, Dialog, Sheet, Combobox, DatePicker, Select, DropdownMenu, Omnibar, Popover, Popconfirm, Tooltip, Tabs, Sidebar (14 files), Pagination, ListPage, ErrorBoundary | 10-20 | Slots, events, keyboard, a11y, edge cases |
+| **High-traffic components** | Button, Form, FormField, DataTable, DataChart, RichTextEditor, Dialog, Sheet, Combobox, DatePicker, Select, DropdownMenu, Omnibar, Popover, Popconfirm, Tooltip, Tabs, Sidebar.svelte (+ 14 internal sidebar files), Pagination, ListPage, ErrorBoundary | 10-20 | Slots, events, keyboard, a11y, edge cases |
 | **Form primitives** | Input, Switch, Checkbox, RadioGroup, ToggleGroup, Toggle, Slider, PinInput, RatingGroup, TimeField, RangeCalendar, Stepper | 6-10 | Validation binding, disabled, focus, a11y |
 | **Composables** | createForm, createQuery, createMutation, createTable, createWizard, createOmnibar, createApiClient, createAuth, createStorage, createI18n, createToast, createTheme, createAesthetic, createDensity, createPrefersTheme, createThemeBuilder, defineTheme, extendTheme, createDarkMode, createAccess, RealtimeClient, queryCache, sseBridge, navigation, hasRole, url, colorConvert, useBreakpoint, useHead, theme-defaults | 8-15 | State, derived, effects, errors, cleanup |
 | **Simple primitives** | Card, Badge, Spinner, Skeleton, Kbd, Label, Avatar, StatusChip, Alert, MetricCard, EmptyState, SectionHeader, RuleFootnote, PageHeader, Separator, Progress, PageLoading, Suspense, LazyLoad, ThemeToggle | 3-5 | Render + key props |
@@ -288,7 +288,7 @@ The three disabled rules are documented in `docs/testing.md` §6 with reasoning:
 1. **Scaffold helpers + CI + config.** Add `src/helpers/{axe,bits-ui-mock,theme}.ts`; add `vitest-axe` devDep; add `test:coverage` / `test:ci` / `test:watch:coverage` scripts; baseline coverage threshold (0) in `vitest.config.ts`; add `.github/workflows/test.yml`. Verify `bun run test` still runs.
 2. **Add `docs/testing.md`.** Document patterns, helpers, mock strategy, coverage rules.
 3. **Migrate existing tests.** Move 75 files from `__tests__/` to co-located `src/**`; update import paths. Run `bun run test` to confirm green. Remove `__tests__/` and `tests/` dirs. This is one commit.
-4. **New high-traffic component tests with a11y.** Dialog, Sheet, Combobox, DataTable, DataChart, RichTextEditor, Tabs, DropdownMenu, Omnibar, Popover, Popconfirm, Tooltip, Select. Use `mockBitsUi()`.
+4. **New high-traffic component tests with a11y.** Dialog, Sheet, Combobox, DataTable, DataChart, RichTextEditor, Tabs, DropdownMenu, Omnibar, Popover, Popconfirm, Tooltip, Select, Pagination, ListPage, ErrorBoundary, DatePicker, Form, FormField. Use `mockBitsUi()`. For each high-traffic component, add at least one test that uses the *real* bits-ui import (e.g., Accordion keyboard nav) to keep the mock honest.
 5. **Composable coverage.** `colorConvert`, `hasRole`, `url`, `navigation`, `useBreakpoint`, `useHead`, `theme-defaults`, `createAccess`, `createDarkMode`, `extendTheme`. Pure functions, lowest risk.
 6. **Sidebar internals + dashboard subcomponents + theme studio.** Use context-based testing (existing pattern).
 7. **Landing components** (16 files, 3-5 cases each). Test data wiring via prop, not visuals.
