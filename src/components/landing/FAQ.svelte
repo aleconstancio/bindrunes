@@ -13,7 +13,7 @@
 
   let { items, defaultOpen, children, class: className = '' }: Props = $props();
 
-  const openValue = $state(defaultOpen ? [defaultOpen] : [] as string[]);
+  let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
 </script>
 
 <div class="mx-auto max-w-3xl px-6 py-12 section-reveal {className}">

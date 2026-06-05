@@ -11,6 +11,9 @@ export default defineConfig({
   ],
   resolve: {
     conditions: ['browser', 'import', 'module'],
+    alias: {
+      bindrunes: new URL('./src/bindrunes-stub.ts', import.meta.url).pathname,
+    },
   },
   test: {
     environment: 'jsdom',
