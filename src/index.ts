@@ -62,6 +62,12 @@ export { default as DatePicker } from './components/DatePicker.svelte';
 export { default as Slider } from './components/Slider.svelte';
 export { default as RadioGroup } from './components/RadioGroup.svelte';
 export { default as ToggleGroup } from './components/ToggleGroup.svelte';
+export { default as Toggle } from './components/Toggle.svelte';
+export { default as Collapsible } from './components/Collapsible.svelte';
+export { default as PinInput } from './components/PinInput.svelte';
+export { default as RangeCalendar } from './components/RangeCalendar.svelte';
+export { default as RatingGroup } from './components/RatingGroup.svelte';
+export { default as ScrollArea } from './components/ScrollArea.svelte';
 export { default as Accordion } from './components/Accordion.svelte';
 export { default as AccordionItem } from './components/AccordionItem.svelte';
 
