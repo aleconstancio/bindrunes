@@ -68,6 +68,9 @@ export { default as PinInput } from './components/PinInput.svelte';
 export { default as RangeCalendar } from './components/RangeCalendar.svelte';
 export { default as RatingGroup } from './components/RatingGroup.svelte';
 export { default as ScrollArea } from './components/ScrollArea.svelte';
+export { default as NavigationMenu } from './components/NavigationMenu.svelte';
+export { default as TimeField } from './components/TimeField.svelte';
+export { default as Separator } from './components/Separator.svelte';
 export { default as Accordion } from './components/Accordion.svelte';
 export { default as AccordionItem } from './components/AccordionItem.svelte';
 
