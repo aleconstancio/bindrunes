@@ -6,7 +6,7 @@ describe('DashboardShellRight', () => {
 		expect(DashboardShellRight).toBeDefined();
 	});
 
-	it('is a function', () => {
+	it('is a function (Svelte component signature)', () => {
 		expect(typeof DashboardShellRight).toBe('function');
 	});
 });

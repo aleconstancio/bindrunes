@@ -6,7 +6,7 @@ describe('DashboardShellTopnav', () => {
 		expect(DashboardShellTopnav).toBeDefined();
 	});
 
-	it('is a function', () => {
+	it('is a function (Svelte component signature)', () => {
 		expect(typeof DashboardShellTopnav).toBe('function');
 	});
 });

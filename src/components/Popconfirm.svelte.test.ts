@@ -1,12 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { render } from '@testing-library/svelte';
 import Popconfirm from './Popconfirm.svelte';
 
 describe('Popconfirm', () => {
-	it('exports a Svelte component', () => {
-		expect(Popconfirm).toBeDefined();
-	});
-
-	it('is a function (Svelte component signature)', () => {
-		expect(typeof Popconfirm).toBe('function');
+	it('renders', () => {
+		const { container } = render(Popconfirm);
+		expect(container).toBeDefined();
 	});
 });

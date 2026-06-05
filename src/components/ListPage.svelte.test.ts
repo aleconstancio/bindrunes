@@ -1,12 +1,10 @@
 import { describe, it, expect } from 'vitest';
+import { render } from '@testing-library/svelte';
 import ListPage from './ListPage.svelte';
 
 describe('ListPage', () => {
-	it('exports a Svelte component', () => {
-		expect(ListPage).toBeDefined();
-	});
-
-	it('is a function (Svelte component signature)', () => {
-		expect(typeof ListPage).toBe('function');
+	it('renders', () => {
+		const { container } = render(ListPage);
+		expect(container).toBeDefined();
 	});
 });
