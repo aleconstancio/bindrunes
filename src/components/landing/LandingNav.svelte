@@ -48,7 +48,7 @@
 				const observer = new IntersectionObserver(
 					([entry]) => {
 						if (entry.isIntersecting) {
-							landing.activeSection = id;
+							landing.setActiveSection(id);
 						}
 					},
 					{ rootMargin: '-40% 0px -45% 0px' },
@@ -63,7 +63,7 @@
 
 	function handleKeydown(e: KeyboardEvent) {
 		if (e.key === 'Escape' && landing.menuOpen) {
-			landing.menuOpen = false;
+			landing.setMenuOpen(false);
 		}
 	}
 </script>
@@ -97,7 +97,7 @@
 			</div>
 			<button
 				class="flex items-center justify-center rounded-[--radius] p-2 transition-colors hover:bg-muted md:hidden"
-				onclick={() => (landing.menuOpen = !landing.menuOpen)}
+				onclick={() => landing.setMenuOpen(!landing.menuOpen)}
 				aria-label="Menu"
 				aria-expanded={landing.menuOpen}
 			>
@@ -122,7 +122,7 @@
 					<a
 						href={link.href}
 						class="text-left text-body-lg font-medium no-underline transition-colors hover:text-foreground {landing.activeSection === link.href.replace('#', '') ? 'text-foreground' : 'text-muted-foreground'}"
-						onclick={() => (landing.menuOpen = false)}
+						onclick={() => landing.setMenuOpen(false)}
 					>
 						{link.label}
 					</a>
