@@ -4,6 +4,13 @@ export type { TFunction, StatusVariant, NavItem, NavGroup, Column, SortState, Pa
 // ── App Scaffold ──
 export { default as AppProvider } from './components/AppProvider.svelte';
 
+// ── Meta Pragmas ──
+export { createMetaContext, useMetaContext } from './utils/createMetaContext.svelte';
+export { readonlyGetters } from './utils/readonlyGetters';
+export { default as MetaLayout } from './components/MetaLayout.svelte';
+export { default as MetaContainer } from './components/MetaContainer.svelte';
+export { default as MetaScrollable } from './components/MetaScrollable.svelte';
+
 // ── Layout (Sidebar, Dashboard Shell) ──
 export { DashboardShell, DashboardShellRight, DashboardShellTopnav, DashboardShellSplit, NavMenu } from './components/dashboard/index.ts';
 export {
