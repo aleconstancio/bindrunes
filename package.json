@@ -82,7 +82,7 @@
     "svelte-chartjs": "^3.1.5"
   },
   "scripts": {
-    "build": "svelte-package -i src -o dist && node -e \"import('node:fs').then(({readdirSync,statSync,unlinkSync,rmSync,existsSync})=>{function w(d,o){for(const e of readdirSync(d)){const p=o?require('node:path').join(d,e):require('node:path').join(d,e);if(statSync(p).isDirectory())w(p,true);else if(/\\.(test|spec)\\.(ts|js|d\\.ts|js\\.map|d\\.ts\\.map)$/.test(e))unlinkSync(p)}}w('dist',false);rmSync('dist/__tests__',{recursive:true,force:true});rmSync('dist/tests',{recursive:true,force:true});})\"",
+    "build": "svelte-package -i src -o dist && node -e \"import('node:fs').then(({readdirSync,statSync,unlinkSync,rmSync,existsSync})=>{function w(d,o){for(const e of readdirSync(d)){const p=o?require('node:path').join(d,e):require('node:path').join(d,e);if(statSync(p).isDirectory())w(p,true);else if(/(\\.(test|spec)\\.(ts|js|d\\.ts|js\\.map|d\\.ts\\.map)$|Harness\\.svelte(\\.d\\.ts(\\.map)?)?$|^SidebarTestHarness\\.svelte(\\.d\\.ts(\\.map)?)?$|^bindrunes-stub\\.(ts|d\\.ts|js|js\\.map|d\\.ts\\.map)$)/.test(e))unlinkSync(p)}}w('dist',false);rmSync('dist/__tests__',{recursive:true,force:true});rmSync('dist/tests',{recursive:true,force:true});})\"",
     "prepublishOnly": "bun run build",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
