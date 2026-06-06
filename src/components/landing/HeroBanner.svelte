@@ -1,37 +1,36 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { Component } from 'svelte';
-  import { Badge, Button } from 'bindrunes';
-  import MetaContainer from '../MetaContainer.svelte';
-  import type { CTA } from './landing-types';
+import { Badge, Button } from "bindrunes";
+import type { Component, Snippet } from "svelte";
+import MetaContainer from "../MetaContainer.svelte";
+import type { CTA } from "./landing-types";
 
-  interface Props {
-    badge?: string;
-    title: Snippet;
-    titleGradient?: boolean;
-    description?: string;
-    ctas?: CTA[];
-    footnote?: { title: string; description: string };
-    background?: 'gradient' | 'solid' | 'none';
-    level?: 1 | 2;
-    class?: string;
-    children?: Snippet;
-  }
+interface Props {
+	badge?: string;
+	title: Snippet;
+	titleGradient?: boolean;
+	description?: string;
+	ctas?: CTA[];
+	footnote?: { title: string; description: string };
+	background?: "gradient" | "solid" | "none";
+	level?: 1 | 2;
+	class?: string;
+	children?: Snippet;
+}
 
-  let {
-    badge,
-    title,
-    titleGradient = false,
-    description,
-    ctas = [],
-    footnote,
-    background = 'gradient',
-    level = 1,
-    class: className = '',
-    children,
-  }: Props = $props();
+let {
+	badge,
+	title,
+	titleGradient = false,
+	description,
+	ctas = [],
+	footnote,
+	background = "gradient",
+	level = 1,
+	class: className = "",
+	children,
+}: Props = $props();
 
-  const tag = $derived(level === 1 ? 'h1' : 'h2');
+const tag = $derived(level === 1 ? "h1" : "h2");
 </script>
 
 <section

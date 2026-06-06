@@ -1,71 +1,71 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { slide } from 'svelte/transition';
-	import Button from '../Button.svelte';
-	import ThemeToggle from '../ThemeToggle.svelte';
-	import NavigationMenu from '../NavigationMenu.svelte';
-	import { Menu, X } from 'lucide-svelte';
-	import type { TFunction } from '../../shared-types';
-	import { useLanding } from './landing-context.svelte';
+import { Menu, X } from "lucide-svelte";
+import { onMount } from "svelte";
+import { slide } from "svelte/transition";
+import type { TFunction } from "../../shared-types";
+import Button from "../Button.svelte";
+import NavigationMenu from "../NavigationMenu.svelte";
+import ThemeToggle from "../ThemeToggle.svelte";
+import { useLanding } from "./landing-context.svelte";
 
-	interface NavLogo {
-		href: string;
-		label: string;
-		icon?: import('svelte').Component | string;
+interface NavLogo {
+	href: string;
+	label: string;
+	icon?: import("svelte").Component | string;
+}
+
+interface NavLink {
+	label: string;
+	href: string;
+}
+
+interface NavCTA {
+	label: string;
+	href: string;
+	variant?: "primary" | "outline";
+}
+
+interface Props {
+	logo?: NavLogo;
+	links: NavLink[];
+	cta?: NavCTA;
+	sectionIds?: string[];
+	children?: import("svelte").Snippet;
+	t?: TFunction;
+}
+
+let { logo, links, cta, sectionIds = [], children, t }: Props = $props();
+
+const landing = useLanding();
+
+let observers: IntersectionObserver[] = [];
+
+onMount(() => {
+	observers = sectionIds
+		.map((id) => {
+			const el = document.getElementById(id);
+			if (!el) return null;
+			const observer = new IntersectionObserver(
+				([entry]) => {
+					if (entry.isIntersecting) {
+						landing.setActiveSection(id);
+					}
+				},
+				{ rootMargin: "-40% 0px -45% 0px" },
+			);
+			observer.observe(el);
+			return observer;
+		})
+		.filter(Boolean) as IntersectionObserver[];
+
+	return () => observers.forEach((o) => o.disconnect());
+});
+
+function handleKeydown(e: KeyboardEvent) {
+	if (e.key === "Escape" && landing.menuOpen) {
+		landing.setMenuOpen(false);
 	}
-
-	interface NavLink {
-		label: string;
-		href: string;
-	}
-
-	interface NavCTA {
-		label: string;
-		href: string;
-		variant?: 'primary' | 'outline';
-	}
-
-	interface Props {
-		logo?: NavLogo;
-		links: NavLink[];
-		cta?: NavCTA;
-		sectionIds?: string[];
-		children?: import('svelte').Snippet;
-		t?: TFunction;
-	}
-
-	let { logo, links, cta, sectionIds = [], children, t }: Props = $props();
-
-	const landing = useLanding();
-
-	let observers: IntersectionObserver[] = [];
-
-	onMount(() => {
-		observers = sectionIds
-			.map((id) => {
-				const el = document.getElementById(id);
-				if (!el) return null;
-				const observer = new IntersectionObserver(
-					([entry]) => {
-						if (entry.isIntersecting) {
-							landing.setActiveSection(id);
-						}
-					},
-					{ rootMargin: '-40% 0px -45% 0px' },
-				);
-				observer.observe(el);
-				return observer;
-			})
-			.filter(Boolean) as IntersectionObserver[];
-
-		return () => observers.forEach((o) => o.disconnect());
-	});
-
-	function handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Escape' && landing.menuOpen) {
-			landing.setMenuOpen(false);
-		}
-	}
+}
 </script>
 
 <nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">

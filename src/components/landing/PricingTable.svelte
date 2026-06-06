@@ -1,44 +1,46 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { Card, Badge, Button, Switch } from 'bindrunes';
-  import { Check } from 'lucide-svelte';
-  import MetaContainer from '../MetaContainer.svelte';
-  import type { TFunction } from '../../shared-types';
-  import { useLanding } from './landing-context.svelte';
+import { Badge, Button, Card, Switch } from "bindrunes";
+import { Check } from "lucide-svelte";
+import type { Snippet } from "svelte";
+import type { TFunction } from "../../shared-types";
+import MetaContainer from "../MetaContainer.svelte";
+import { useLanding } from "./landing-context.svelte";
 
-  import type { Plan } from './landing-types';
+import type { Plan } from "./landing-types";
 
-  interface Props {
-    plans: Plan[];
-    showToggle?: boolean;
-    currency?: string;
-    locale?: string;
-    customCard?: Snippet<[Plan, { annual: boolean; format: (n: number) => string }]>;
-    customFeature?: Snippet<[string, Plan]>;
-    children?: Snippet;
-    class?: string;
-    t?: TFunction;
-  }
+interface Props {
+	plans: Plan[];
+	showToggle?: boolean;
+	currency?: string;
+	locale?: string;
+	customCard?: Snippet<[Plan, { annual: boolean; format: (n: number) => string }]>;
+	customFeature?: Snippet<[string, Plan]>;
+	children?: Snippet;
+	class?: string;
+	t?: TFunction;
+}
 
-  let {
-    plans,
-    showToggle = true,
-    currency = 'BRL',
-    locale = 'pt-BR',
-    customCard,
-    customFeature,
-    children,
-    class: className = '',
-    t,
-  }: Props = $props();
+let {
+	plans,
+	showToggle = true,
+	currency = "BRL",
+	locale = "pt-BR",
+	customCard,
+	customFeature,
+	children,
+	class: className = "",
+	t,
+}: Props = $props();
 
-  const landing = useLanding();
+const landing = useLanding();
 
-  let billingAnnual = $state(landing.billingAnnual);
-  $effect(() => { landing.setBillingAnnual(billingAnnual); });
+let billingAnnual = $state(landing.billingAnnual);
+$effect(() => {
+	landing.setBillingAnnual(billingAnnual);
+});
 
-  const formatCurrency = (n: number) =>
-    new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
+const formatCurrency = (n: number) =>
+	new Intl.NumberFormat(locale, { style: "currency", currency }).format(n);
 </script>
 
 <MetaContainer size="xl" class={className}>

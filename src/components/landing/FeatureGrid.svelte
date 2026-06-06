@@ -1,22 +1,19 @@
 <script lang="ts">
-  import type { Component } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import { Card } from 'bindrunes';
-  import MetaContainer from '../MetaContainer.svelte';
-  import { getGridClass } from './landing-utils';
+import { Card } from "bindrunes";
+import type { Component, Snippet } from "svelte";
+import MetaContainer from "../MetaContainer.svelte";
+import type { Feature } from "./landing-types";
+import { getGridClass } from "./landing-utils";
 
-  import type { Feature } from './landing-types';
+interface Props {
+	features: Feature[];
+	columns?: 1 | 2 | 3;
+	variant?: "card" | "minimal";
+	children?: Snippet;
+	class?: string;
+}
 
-  interface Props {
-    features: Feature[];
-    columns?: 1 | 2 | 3;
-    variant?: 'card' | 'minimal';
-    children?: Snippet;
-    class?: string;
-  }
-
-  let { features, columns = 3, variant = 'card', children, class: className = '' }: Props = $props();
-
+let { features, columns = 3, variant = "card", children, class: className = "" }: Props = $props();
 </script>
 
 <MetaContainer size="xl" padding={false}>

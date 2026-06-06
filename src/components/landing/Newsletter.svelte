@@ -1,37 +1,37 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { Button, Input } from 'bindrunes';
-  import MetaContainer from '../MetaContainer.svelte';
-  import type { TFunction } from '../../shared-types';
+import { Button, Input } from "bindrunes";
+import type { Snippet } from "svelte";
+import type { TFunction } from "../../shared-types";
+import MetaContainer from "../MetaContainer.svelte";
 
-  interface Props {
-    title: string;
-    description?: string;
-    placeholder?: string;
-    buttonText?: string;
-    onSubmit?: (email: string) => void;
-    children?: Snippet;
-    class?: string;
-    t?: TFunction;
-  }
+interface Props {
+	title: string;
+	description?: string;
+	placeholder?: string;
+	buttonText?: string;
+	onSubmit?: (email: string) => void;
+	children?: Snippet;
+	class?: string;
+	t?: TFunction;
+}
 
-  let {
-    title,
-    description,
-    placeholder = 'seu@email.com',
-    buttonText = 'Inscrever',
-    onSubmit,
-    children,
-    class: className = '',
-    t,
-  }: Props = $props();
+let {
+	title,
+	description,
+	placeholder = "seu@email.com",
+	buttonText = "Inscrever",
+	onSubmit,
+	children,
+	class: className = "",
+	t,
+}: Props = $props();
 
-  let email = $state('');
+let email = $state("");
 
-  function handleSubmit(e: Event) {
-    e.preventDefault();
-    onSubmit?.(email);
-  }
+function handleSubmit(e: Event) {
+	e.preventDefault();
+	onSubmit?.(email);
+}
 </script>
 
 <section class="newsletter-section relative overflow-hidden px-6 py-16 sm:py-24 section-reveal {className}">

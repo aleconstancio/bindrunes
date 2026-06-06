@@ -1,32 +1,31 @@
 <script lang="ts">
-  import type { Component } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import MetaContainer from '../MetaContainer.svelte';
-  import type { TFunction } from '../../shared-types';
+import type { Component, Snippet } from "svelte";
+import type { TFunction } from "../../shared-types";
+import MetaContainer from "../MetaContainer.svelte";
 
-  import type { FooterLink } from './landing-types';
+import type { FooterLink } from "./landing-types";
 
-  interface Props {
-    logo?: { label: string; icon?: Component | string };
-    links?: FooterLink[];
-    copyright?: string;
-    bottomLinks?: FooterLink[];
-    children?: Snippet;
-    class?: string;
-    t?: TFunction;
-  }
+interface Props {
+	logo?: { label: string; icon?: Component | string };
+	links?: FooterLink[];
+	copyright?: string;
+	bottomLinks?: FooterLink[];
+	children?: Snippet;
+	class?: string;
+	t?: TFunction;
+}
 
-  let {
-    logo,
-    links = [],
-    copyright,
-    bottomLinks = [],
-    children,
-    class: className = '',
-    t,
-  }: Props = $props();
+let {
+	logo,
+	links = [],
+	copyright,
+	bottomLinks = [],
+	children,
+	class: className = "",
+	t,
+}: Props = $props();
 
-  const year = new Date().getFullYear();
+const year = new Date().getFullYear();
 </script>
 
 <footer class="border-t border-border px-6 py-12 {className}">

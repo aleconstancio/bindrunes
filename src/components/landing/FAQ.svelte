@@ -1,20 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { Accordion, AccordionItem } from 'bindrunes';
-  import MetaContainer from '../MetaContainer.svelte';
+import { Accordion, AccordionItem } from "bindrunes";
+import type { Snippet } from "svelte";
+import MetaContainer from "../MetaContainer.svelte";
 
-  import type { FAQItem } from './landing-types';
+import type { FAQItem } from "./landing-types";
 
-  interface Props {
-    items: FAQItem[];
-    defaultOpen?: string;
-    children?: Snippet;
-    class?: string;
-  }
+interface Props {
+	items: FAQItem[];
+	defaultOpen?: string;
+	children?: Snippet;
+	class?: string;
+}
 
-  let { items, defaultOpen, children, class: className = '' }: Props = $props();
+let { items, defaultOpen, children, class: className = "" }: Props = $props();
 
-  let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
+let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
 </script>
 
 <MetaContainer size="md" class="px-6 py-12 section-reveal {className}">
