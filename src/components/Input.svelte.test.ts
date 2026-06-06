@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/svelte';
-import Input from '../../src/components/Input.svelte';
+import Input from './Input.svelte';
+import { expectNoAxeViolations } from '../helpers/axe';
 
 describe('Input', () => {
 	it('renders with label', () => {
@@ -36,7 +37,22 @@ describe('Input', () => {
 	});
 
 	it('required shows asterisk on label', () => {
-		render(Input, { props: { label: 'Email', required: true } });
+		render(Input, { label: 'Email', required: true });
 		expect(screen.getByText('*')).toBeInTheDocument();
+	});
+
+	it('a11y: input with name has no violations', async () => {
+		const { container } = render(Input, { name: 'email', label: 'Email', placeholder: 'you@x.com' });
+		await expectNoAxeViolations(container);
+	});
+
+	it('a11y: input with error has no violations', async () => {
+		const { container } = render(Input, { name: 'email', label: 'Email', error: 'Required' });
+		await expectNoAxeViolations(container);
+	});
+
+	it('a11y: textarea has no violations', async () => {
+		const { container } = render(Input, { type: 'textarea', name: 'bio', label: 'Bio' });
+		await expectNoAxeViolations(container);
 	});
 });

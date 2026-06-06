@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/svelte';
-import Sheet from '../../src/components/Sheet.svelte';
+import Sheet from './Sheet.svelte';
+import { expectNoAxeViolations } from '../helpers/axe';
 
 describe('Sheet', () => {
 	it('does not render when closed', () => {
@@ -24,7 +25,12 @@ describe('Sheet', () => {
 	});
 
 	it('has aria-modal attribute', () => {
-		render(Sheet, { props: { open: true } });
+		render(Sheet, { open: true });
 		expect(screen.getByRole('dialog')).toHaveAttribute('aria-modal', 'true');
+	});
+
+	it('a11y: open sheet has no violations', async () => {
+		const { container } = render(Sheet, { open: true, title: 'Test' });
+		await expectNoAxeViolations(container);
 	});
 });
