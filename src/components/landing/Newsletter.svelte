@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { Button, Input } from 'bindrunes';
+  import MetaContainer from '../MetaContainer.svelte';
   import type { TFunction } from '../../shared-types';
 
   interface Props {
@@ -35,7 +36,7 @@
 
 <section class="newsletter-section relative overflow-hidden px-6 py-16 sm:py-24 section-reveal {className}">
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
-  <div class="mx-auto max-w-2xl text-center relative">
+  <MetaContainer size="lg" padding={false} class="text-center relative">
     <h2 class="text-display-3 sm:text-display-2 text-foreground">
       {title}
     </h2>
@@ -54,7 +55,7 @@
       />
       <Button type="submit" variant="primary">{t?.('landing.Newsletter.button') ?? buttonText}</Button>
     </form>
-  </div>
+  </MetaContainer>
 </section>
 
 {#if children}

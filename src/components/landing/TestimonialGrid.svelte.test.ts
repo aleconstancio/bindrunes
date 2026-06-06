@@ -10,7 +10,7 @@ const testimonials = [
 describe('TestimonialGrid', () => {
 	it('renders grid container', () => {
 		const { container } = render(TestimonialGrid, { testimonials });
-		expect(container.querySelector('div')?.className).toContain('grid');
+		expect(container.querySelector('.grid')).not.toBeNull();
 	});
 
 	it('renders all testimonials', () => {
@@ -26,6 +26,6 @@ describe('TestimonialGrid', () => {
 
 	it('applies class prop', () => {
 		const { container } = render(TestimonialGrid, { testimonials, class: 'custom' });
-		expect(container.firstElementChild?.className).toContain('custom');
+		expect(container.querySelector('.grid')?.className).toContain('custom');
 	});
 });

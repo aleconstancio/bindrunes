@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Component } from 'svelte';
   import type { Snippet } from 'svelte';
+  import MetaContainer from '../MetaContainer.svelte';
   import type { TFunction } from '../../shared-types';
 
   import type { FooterLink } from './landing-types';
@@ -29,7 +30,7 @@
 </script>
 
 <footer class="border-t border-border px-6 py-12 {className}">
-  <div class="mx-auto max-w-6xl">
+  <MetaContainer size="xl" padding={false}>
     <div class="flex flex-col items-center gap-8 sm:flex-row sm:justify-between">
       {#if logo}
         <div class="flex items-center gap-2">
@@ -79,5 +80,5 @@
         {@render children()}
       </div>
     {/if}
-  </div>
+  </MetaContainer>
 </footer>

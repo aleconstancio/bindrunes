@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte';
   import { Card, Badge, Button, Switch } from 'bindrunes';
   import { Check } from 'lucide-svelte';
+  import MetaContainer from '../MetaContainer.svelte';
   import type { TFunction } from '../../shared-types';
   import { useLanding } from './landing-context.svelte';
 
@@ -40,7 +41,7 @@
     new Intl.NumberFormat(locale, { style: 'currency', currency }).format(n);
 </script>
 
-<div class="mx-auto max-w-6xl {className}">
+<MetaContainer size="xl" class={className}>
   {#if showToggle}
     <div class="flex items-center justify-center gap-3">
       <span class="text-label-md {!billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
@@ -108,7 +109,7 @@
       {@render children()}
     </div>
   {/if}
-</div>
+</MetaContainer>
 
 <style>
   :global(.pricing-grid) {

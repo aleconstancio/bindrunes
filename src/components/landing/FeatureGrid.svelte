@@ -2,6 +2,7 @@
   import type { Component } from 'svelte';
   import type { Snippet } from 'svelte';
   import { Card } from 'bindrunes';
+  import MetaContainer from '../MetaContainer.svelte';
   import { getGridClass } from './landing-utils';
 
   import type { Feature } from './landing-types';
@@ -18,6 +19,7 @@
 
 </script>
 
+<MetaContainer size="xl" padding={false}>
 <div class="grid {getGridClass(columns)} gap-6 {className}">
   {#each features as feature}
     {#if variant === 'card'}
@@ -55,6 +57,7 @@
     {/if}
   {/each}
 </div>
+</MetaContainer>
 
 {#if children}
   <div class="mt-8">

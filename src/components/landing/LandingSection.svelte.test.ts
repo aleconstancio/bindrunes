@@ -18,23 +18,23 @@ describe('LandingSection', () => {
 		expect(container.firstElementChild?.className).toContain('custom');
 	});
 
-	it('applies max-width classes', () => {
+	it('applies max-width classes via MetaContainer', () => {
 		const { container } = render(LandingSection, { maxWidth: '4xl' });
-		expect(container.querySelector('section')?.innerHTML).toContain('max-w-4xl');
+		expect(container.querySelector('section')?.innerHTML).toContain('max-w-[var(--container-lg)]');
 	});
 
-	it('uses 7xl max width', () => {
+	it('uses 7xl max width via MetaContainer', () => {
 		const { container } = render(LandingSection, { maxWidth: '7xl' });
-		expect(container.querySelector('section')?.innerHTML).toContain('max-w-7xl');
+		expect(container.querySelector('section')?.innerHTML).toContain('max-w-[var(--container-2xl)]');
 	});
 
-	it('uses full max width', () => {
+	it('uses full max width via MetaContainer', () => {
 		const { container } = render(LandingSection, { maxWidth: 'full' });
 		expect(container.querySelector('section')?.innerHTML).toContain('max-w-full');
 	});
 
-	it('uses default 6xl max width', () => {
+	it('uses default 6xl max width via MetaContainer', () => {
 		const { container } = render(LandingSection, {});
-		expect(container.querySelector('section')?.innerHTML).toContain('max-w-6xl');
+		expect(container.querySelector('section')?.innerHTML).toContain('max-w-[var(--container-xl)]');
 	});
 });

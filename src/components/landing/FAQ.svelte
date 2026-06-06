@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { Accordion, AccordionItem } from 'bindrunes';
+  import MetaContainer from '../MetaContainer.svelte';
 
   import type { FAQItem } from './landing-types';
 
@@ -16,7 +17,7 @@
   let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
 </script>
 
-<div class="mx-auto max-w-3xl px-6 py-12 section-reveal {className}">
+<MetaContainer size="md" class="px-6 py-12 section-reveal {className}">
   <Accordion bind:value={openValue}>
     {#each items as item}
       <AccordionItem value={item.question}>
@@ -35,4 +36,4 @@
       {@render children()}
     </div>
   {/if}
-</div>
+</MetaContainer>

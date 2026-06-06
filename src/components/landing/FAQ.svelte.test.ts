@@ -12,7 +12,7 @@ describe('FAQ', () => {
 	it('renders the section', () => {
 		const { container } = render(FAQ, { items });
 		const section = container.querySelector('div');
-		expect(section?.className).toContain('max-w-3xl');
+		expect(section?.className).toContain('max-w-[var(--container-md)]');
 	});
 
 	it('renders each question', () => {

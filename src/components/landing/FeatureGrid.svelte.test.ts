@@ -16,7 +16,7 @@ const componentFeatures: Feature[] = [
 describe('FeatureGrid', () => {
 	it('renders grid container', () => {
 		const { container } = render(FeatureGrid, { features: stringFeatures });
-		expect(container.querySelector('div')?.className).toContain('grid');
+		expect(container.querySelector('.grid')).not.toBeNull();
 	});
 
 	it('renders all feature titles', () => {
@@ -38,22 +38,22 @@ describe('FeatureGrid', () => {
 
 	it('applies columns=1', () => {
 		const { container } = render(FeatureGrid, { features: stringFeatures, columns: 1 });
-		expect(container.querySelector('div')?.className).toMatch(/grid-cols-1/);
+		expect(container.querySelector('.grid')?.className).toMatch(/grid-cols-1/);
 	});
 
 	it('applies columns=2', () => {
 		const { container } = render(FeatureGrid, { features: stringFeatures, columns: 2 });
-		expect(container.querySelector('div')?.className).toMatch(/grid-cols-2/);
+		expect(container.querySelector('.grid')?.className).toMatch(/grid-cols-2/);
 	});
 
 	it('applies columns=3 (default)', () => {
 		const { container } = render(FeatureGrid, { features: stringFeatures });
-		expect(container.querySelector('div')?.className).toMatch(/grid-cols-3/);
+		expect(container.querySelector('.grid')?.className).toMatch(/grid-cols-3/);
 	});
 
 	it('applies class prop', () => {
 		const { container } = render(FeatureGrid, { features: stringFeatures, class: 'custom' });
-		expect(container.firstElementChild?.className).toContain('custom');
+		expect(container.querySelector('.grid')?.className).toContain('custom');
 	});
 
 	it('minimal variant renders without Card wrapper', () => {

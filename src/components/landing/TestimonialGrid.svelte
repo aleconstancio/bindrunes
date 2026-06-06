@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import Testimonial from './Testimonial.svelte';
+  import MetaContainer from '../MetaContainer.svelte';
   import { getGridClass } from './landing-utils';
 
   interface TestimonialData {
@@ -22,11 +23,13 @@
 
 </script>
 
+<MetaContainer size="xl" padding={false}>
 <div class="grid {getGridClass(columns)} gap-8 {className}">
   {#each testimonials as t}
     <Testimonial {...t} />
   {/each}
 </div>
+</MetaContainer>
 
 {#if children}
   <div class="mt-8">

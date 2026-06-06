@@ -2,6 +2,7 @@
   import type { Snippet } from 'svelte';
   import type { Component } from 'svelte';
   import { Badge, Button } from 'bindrunes';
+  import MetaContainer from '../MetaContainer.svelte';
   import type { CTA } from './landing-types';
 
   interface Props {
@@ -40,7 +41,7 @@
   {#if background === 'gradient'}
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
   {/if}
-  <div class="mx-auto max-w-4xl text-center relative">
+  <MetaContainer size="lg" padding={false} class="text-center relative">
     {#if badge}
       <div class="mb-6 flex justify-center">
         <Badge variant="primary">{badge}</Badge>
@@ -98,7 +99,7 @@
         {@render children()}
       </div>
     {/if}
-  </div>
+  </MetaContainer>
 </section>
 
 <style>
