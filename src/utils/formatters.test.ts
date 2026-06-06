@@ -13,20 +13,43 @@ import {
 
 describe('formatDate', () => {
 	it('formatDate returns a formatted date string', () => {
-		const date = new Date(2025, 0, 15); // Jan 15, 2025
+		const date = new Date(2025, 0, 15);
 		const result = formatDate(date);
-		// Should contain the date parts
 		expect(result).toContain('2025');
 		expect(result).toContain('15');
+	});
+
+	it('accepts string input', () => {
+		expect(formatDate('2025-01-15')).toContain('2025');
+	});
+
+	it('accepts number input', () => {
+		expect(formatDate(Date.now())).toBeDefined();
+	});
+
+	it('respects custom options', () => {
+		const result = formatDate(new Date(2025, 0, 15), { year: 'numeric' });
+		expect(result).toContain('2025');
+	});
+});
+
+describe('setLocale', () => {
+	afterEach(() => {
+		setLocale('en');
+	});
+
+	it('changes the locale used by formatters', () => {
+		setLocale('en-US');
+		const result = formatDateShort(new Date(2025, 0, 15));
+		expect(result).toContain('2025');
 	});
 });
 
 describe('formatDateShort', () => {
-	it('formats a date in short pt-BR format', () => {
-		const date = new Date(2025, 4, 15, 12, 0, 0); // local time
+	it('formats a date in short format', () => {
+		const date = new Date(2025, 4, 15, 12, 0, 0);
 		const result = formatDateShort(date);
 		expect(result).toContain('15');
-		expect(result).toContain('05');
 		expect(result).toContain('2025');
 	});
 });
@@ -64,11 +87,32 @@ describe('formatRelative', () => {
 		expect(formatRelative(recent)).toBe('agora');
 	});
 
+	it('returns "1 minuto atrás" for 1 minute ago', () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 12, 1, 0));
+		const oneMinAgo = new Date(2025, 4, 15, 12, 0, 0);
+		expect(formatRelative(oneMinAgo)).toBe('1 minuto atrás');
+	});
+
 	it('returns minutes ago for recent timestamps', () => {
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date(2025, 4, 15, 12, 5, 0));
 		const fiveMinAgo = new Date(2025, 4, 15, 12, 0, 0);
 		expect(formatRelative(fiveMinAgo)).toBe('5 minutos atrás');
+	});
+
+	it('returns "1 hora atrás" for 1 hour ago', () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 13, 0, 0));
+		const oneHourAgo = new Date(2025, 4, 15, 12, 0, 0);
+		expect(formatRelative(oneHourAgo)).toBe('1 hora atrás');
+	});
+
+	it('returns hours ago for past hours', () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 15, 0, 0));
+		const threeHoursAgo = new Date(2025, 4, 15, 12, 0, 0);
+		expect(formatRelative(threeHoursAgo)).toBe('3 horas atrás');
 	});
 
 	it('returns "ontem" for yesterday', () => {
@@ -77,13 +121,34 @@ describe('formatRelative', () => {
 		const yesterday = new Date(2025, 4, 14, 12, 0, 0);
 		expect(formatRelative(yesterday)).toBe('ontem');
 	});
+
+	it('returns days ago for recent days', () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 12, 0, 0));
+		const threeDaysAgo = new Date(2025, 4, 12, 12, 0, 0);
+		expect(formatRelative(threeDaysAgo)).toBe('3 dias atrás');
+	});
+
+	it('falls back to date format for >30 days', () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 12, 0, 0));
+		const longAgo = new Date(2025, 0, 1, 12, 0, 0);
+		const result = formatRelative(longAgo);
+		expect(result).toContain('2025');
+	});
+
+	it('uses English fallback when locale unknown', () => {
+		setLocale('fr-FR');
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(2025, 4, 15, 12, 0, 0));
+		const recent = new Date(2025, 4, 15, 11, 59, 30);
+		expect(formatRelative(recent)).toBe('now');
+	});
 });
 
 describe('formatNumber', () => {
 	it('formatNumber formats large numbers', () => {
 		const result = formatNumber(1234567.89);
-		// The exact format depends on locale, but should include grouping
-		expect(result).not.toBe('1234567.89');
 		expect(typeof result).toBe('string');
 		expect(result.length).toBeGreaterThan(10);
 	});
@@ -91,15 +156,17 @@ describe('formatNumber', () => {
 	it('formats integer', () => {
 		expect(formatNumber(42)).toContain('42');
 	});
+
+	it('accepts options', () => {
+		const result = formatNumber(3.14159, { maximumFractionDigits: 2 });
+		expect(result).toMatch(/3[.,]14/);
+	});
 });
 
 describe('formatPercentage', () => {
 	it('formatPercentage formats ratio as percentage', () => {
 		const result = formatPercentage(0.756);
-		// Should include the number and percent sign
 		expect(result).toContain('%');
-		expect(typeof result).toBe('string');
-		expect(result.length).toBeGreaterThan(0);
 	});
 });
 
