@@ -9,6 +9,9 @@ src/
 ├── actions/shortcut.ts                 # use:shortcut Svelte action
 ├── components/                         # Svelte components
 │   ├── Button.svelte, Card.svelte, ...
+│   ├── MetaLayout.svelte               # shared position-based snippet slots
+│   ├── MetaContainer.svelte            # token-aware content width wrapper
+│   ├── MetaScrollable.svelte           # standardized overflow container
 │   ├── dashboard/                      # DashboardShell, NavMenu
 │   ├── landing/                        # 17 landing page components
 │   └── sidebar/                        # SidebarProvider, Sidebar*, ...
@@ -21,6 +24,8 @@ src/
 │   ├── landing.css                     # landing page animations
 │   └── themes/                         # 6 theme presets + 4 aesthetic presets
 └── utils/
+    ├── createMetaContext.svelte.ts      # two-function context pattern (createMetaContext / useMetaContext)
+    ├── readonlyGetters.ts              # readonly state exposure utility
     ├── createAuth.svelte.ts            # reactive auth
     ├── createForm.svelte.ts            # valibot form validation
     ├── createI18n.svelte.ts            # i18n composable
@@ -93,13 +98,26 @@ export function createMyThing(options: Options): Result {
 
 ### Context Pattern
 
-Shared component state uses `Symbol` keys with centralized factories:
+Shared component state uses `createMetaContext` / `useMetaContext` with module-scoped Symbol keys:
 
+```ts
+// src/components/sidebar/sidebar-context.svelte.ts
+import { createMetaContext, useMetaContext } from '../../utils/createMetaContext.svelte';
+
+const KEY = Symbol('bindrunes-sidebar');
+
+export function createSidebarState(initialOpen = true) {
+  return createMetaContext(KEY, () => {
+    // runes + state + actions
+  });
+}
+
+export function getSidebarContext() {
+  return useMetaContext<SidebarState>(KEY);
+}
 ```
-sidebar: Symbol('bindrunes-sidebar') + sidebar-context.svelte.ts
-landing: Symbol('landing')       + landing-context.svelte.ts
-accordion: Symbol('accordion')   + accordionContext.ts
-```
+
+Each subsystem defines its own Symbol key and wraps `createMetaContext`/`useMetaContext` with named functions. Consumers never import the generics directly.
 
 ### Styling Strategy
 

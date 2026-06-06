@@ -115,9 +115,11 @@
 				</div>
 			</div>
 		</header>
-		<MetaScrollable class="flex-1 min-w-0">
-			{@render children?.()}
-		</MetaScrollable>
+		<main class="flex-1 min-w-0">
+			<MetaScrollable class="h-full">
+				{@render children?.()}
+			</MetaScrollable>
+		</main>
 	</div>
 {:else}
 	<SidebarProvider
@@ -177,9 +179,11 @@
 					<SidebarTrigger />
 				{/snippet}
 			</DashboardShellHeader>
-		<MetaScrollable class="flex-1 min-w-0">
-			{@render children?.()}
-		</MetaScrollable>
+		<main class="flex-1 min-w-0">
+			<MetaScrollable class="h-full">
+				{@render children?.()}
+			</MetaScrollable>
+		</main>
 		</div>
 	</SidebarProvider>
 {/if}

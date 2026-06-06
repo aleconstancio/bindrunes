@@ -22,6 +22,9 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - bits-ui for accessible primitives
 - Prefer lightweight, tree-shakeable dependencies
 - The agentic kernel (`src/utils/agentic/`, `src/types/agent.ts`) follows the same `createX()` factory + readonly-getter contract as the rest of the library. **The `AgentRuntime` interface is the only thing consumers are expected to implement.**
+- **Meta-component context:** Use `createMetaContext` / `useMetaContext` (from `src/utils/createMetaContext.svelte.ts`) for all subsystem context. Never use raw `setContext`/`getContext`.
+- **Meta-component state:** Use `readonlyGetters` for state exposed to consumers. Mutations via explicit action methods only.
+- **Meta-component layout:** Use `MetaLayout` (position slots), `MetaContainer` (content width), `MetaScrollable` (overflow). Never hardcode `max-w-*` or inline overflow styles.
 
 ## Anti-Patterns
 - Don't use legacy Svelte stores
@@ -34,6 +37,9 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - Don't hardcode `--duration-*` fallbacks — preset.css provides all token defaults
 - Don't ship provider SDKs in the agentic kernel — the contract is the boundary
 - Don't add a `Window` to the store without wiring it into the parent's `lineage.children`
+- Don't use raw `setContext`/`getContext` — use `createMetaContext`/`useMetaContext`
+- Don't hardcode `max-w-4xl`/`max-w-6xl` etc. — use `<MetaContainer size="...">`
+- Don't use `<SidebarLayout>` — use `<MetaLayout>` (SidebarLayout is deprecated)
 
 ## Routing
 - Design system → `docs/design-system.md`

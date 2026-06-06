@@ -200,7 +200,7 @@ if (access.hasRole('admin')) { ... }
 if (access.hasPermission('users:write')) { ... }
 ```
 
-> `hasRole`/`hasPermission` standalone utilities are deprecated. Use `createAccess(auth)` instead.
+> `hasRole`/`hasPermission` standalone utilities are deprecated. Use `createAccess(auth)` instead. The standalone functions will be removed in v1.2.0.
 
 ### `AuthGuard`
 
@@ -234,28 +234,304 @@ Reactive locale switching with interpolation.
 <button onclick={() => t.setLocale("en")}>English</button>
 ```
 
+## UI State
+
+### `createOmnibar`
+
+Reactive command palette / Cmd+K omnibar with keyboard shortcuts, search, and async results.
+
+```svelte
+<script lang="ts">
+  import { createOmnibar, Omnibar } from "bindrunes";
+
+  const omnibar = createOmnibar({
+    options: [
+      { id: "1", label: "Dashboard", category: "Navigation", action: () => goto("/dashboard") },
+      { id: "2", label: "Settings", category: "Navigation", action: () => goto("/settings") },
+    ],
+    fetchResults: async (query) => {
+      const res = await api.get(`/search?q=${query}`);
+      return res.map(r => ({ id: r.id, label: r.title, action: () => goto(r.url) }));
+    },
+    shortcutKey: "k",
+    onSelect: (opt) => console.log("selected", opt.label),
+  });
+</script>
+
+<Omnibar {omnibar} />
+```
+
+```ts
+interface OmnibarOption {
+  id: string;
+  label: string;
+  description?: string;
+  category?: string;
+  action: () => void;
+}
+
+interface CreateOmnibarOptions {
+  options?: OmnibarOption[];
+  fetchResults?: (query: string) => Promise<OmnibarOption[]>;
+  shortcutKey?: string;       // default: "k"
+  shortcutCtrl?: boolean;     // default: true
+  onSelect?: (option: OmnibarOption) => void;
+}
+
+interface OmnibarState {
+  readonly isOpen: boolean;
+  readonly searchQuery: string;
+  readonly selectedIndex: number;
+  readonly filteredOptions: OmnibarOption[];
+  readonly isLoading: boolean;
+  open(): void;
+  close(): void;
+  toggle(): void;
+  setOptions(options: OmnibarOption[]): void;
+  setQuery(query: string): Promise<void>;
+  selectNext(): void;
+  selectPrev(): void;
+  executeSelected(): void;
+}
+```
+
+### `createTable`
+
+Reactive DataTable state with sorting, filtering, and pagination.
+
+```ts
+import { createTable } from "bindrunes";
+
+const table = createTable({
+  data: users,
+  columns: [
+    { key: "name", label: "Name", sortable: true },
+    { key: "email", label: "Email" },
+  ],
+  pageSize: 20,
+});
+
+table.sort("name", "asc");
+table.filter((row) => row.active);
+table.page; // current page
+table.paginatedData; // sliced data for current page
+```
+
+### `createToast`
+
+Typed wrapper over svelte-sonner.
+
+```ts
+import { createToast } from "bindrunes";
+
+const toast = createToast();
+toast.success("Saved successfully");
+toast.error("Something went wrong");
+toast.info("Check your email");
+```
+
+### `shortcut`
+
+Svelte action for keyboard bindings.
+
+```svelte
+<script lang="ts">
+  import { shortcut } from "bindrunes";
+</script>
+
+<button use:shortcut={{ key: "k", ctrl: true }} onclick={() => omnibar.toggle()}>
+  Search
+</button>
+```
+
+## Meta-Component Pragmas
+
+### `createMetaContext` / `useMetaContext`
+
+Two-function context pattern for subsystem state management. Replaces ad-hoc `setContext`/`getContext` usage.
+
+```ts
+import { createMetaContext, useMetaContext } from "bindrunes";
+
+const KEY = Symbol("my-subsystem");
+
+// In the provider component:
+export function createMyState() {
+  return createMetaContext(KEY, () => {
+    let count = $state(0);
+    return readonlyGetters({
+      get count() { return count; },
+      increment() { count++; },
+    });
+  });
+}
+
+// In consumer components:
+const state = useMetaContext<MyState>(KEY);
+state.count;    // readonly
+state.increment(); // action
+```
+
+### `readonlyGetters`
+
+Wraps a state object with get-only accessors. Prevents accidental mutation while preserving Svelte 5 reactivity.
+
+```ts
+import { readonlyGetters } from "bindrunes";
+
+const state = $state({ count: 0, name: "test" });
+const readonly = readonlyGetters(state);
+
+readonly.count; // 0
+state.count = 5;
+readonly.count; // 5 (reflects underlying change)
+
+readonly.count = 10; // silently ignored — no setter
+state.count; // 5 (unchanged)
+```
+
+> **Rule:** All subsystem context must use `createMetaContext`/`useMetaContext`. All state exposed to consumers must use `readonlyGetters`. Mutations happen through explicit action methods.
+
 ## Utilities
 
-| Utility | Description |
-|---------|-------------|
-| `createApiClient` | Typed HTTP client wrapping `fetch` |
-| `createStorage` | Typed localStorage wrapper with prefix |
-| `createEnv` | Type-safe environment variable access |
-| `RealtimeClient` | SSE client with exponential backoff reconnection |
-| `createToast` | Typed wrapper over svelte-sonner |
-| `createTable` | Reactive DataTable state (sorting, filtering, pagination) |
-| `shortcut` | `use:shortcut` Svelte action for keyboard bindings |
+### `createApiClient`
+
+Typed HTTP client wrapping `fetch` with automatic JSON parsing and error handling.
+
+```ts
+import { createApiClient } from "bindrunes";
+
+const api = createApiClient({
+  baseUrl: "/api",
+  getToken: () => localStorage.getItem("token"),
+  headers: { "X-Custom": "value" },
+});
+
+const users = await api.get<User[]>("/users");
+const user = await api.post<User>("/users", { name: "Ale" });
+await api.put("/users/1", { name: "Updated" });
+await api.delete("/users/1");
+```
+
+### `createStorage`
+
+Typed localStorage wrapper with key prefixing and JSON serialization.
+
+```ts
+import { createStorage } from "bindrunes";
+
+const storage = createStorage("myapp");
+
+storage.set("token", "abc123");      // stored as "myapp_token"
+storage.get("token");                // "abc123"
+storage.get<number>("count", 0);     // typed getter with fallback
+storage.remove("token");
+storage.clear();                     // removes all keys with "myapp_" prefix
+```
+
+### `createEnv`
+
+Type-safe environment variable access with optional prefix and strict mode.
+
+```ts
+import { createEnv } from "bindrunes";
+
+const env = createEnv({ prefix: "VITE", strict: true });
+
+env.get("API_URL");                    // string | undefined
+env.get("API_URL", "/api");            // with fallback
+env.getNumber("PORT", 3000);           // number | undefined
+env.getBoolean("DEBUG", false);        // boolean | undefined
+```
+
+In strict mode, `get()` throws if the variable is missing and no fallback is provided.
+
+### `useHead`
+
+Sets `document.title` and `<meta>` tags (description, Open Graph) reactively.
+
+```svelte
+<script lang="ts">
+  import { useHead } from "bindrunes";
+
+  useHead({
+    title: "My Page — MyApp",
+    description: "Page description for search engines",
+    og: {
+      title: "My Page",
+      description: "OG description",
+      image: "/og-image.png",
+    },
+  });
+</script>
+```
+
+### `useBreakpoint`
+
+Reactive breakpoint detection based on window width.
+
+```svelte
+<script lang="ts">
+  import { useBreakpoint } from "bindrunes";
+
+  const bp = useBreakpoint("md"); // 768px
+</script>
+
+{#if bp.isBelow}
+  <MobileNav />
+{:else}
+  <DesktopNav />
+{/if}
+```
+
+Available breakpoints: `sm` (640), `md` (768), `lg` (1024), `xl` (1280), `2xl` (1536).
+
+### `isSafeRedirect`
+
+Validates that a URL is a safe relative path (starts with `/`). Blocks protocol-relative, absolute, and `javascript:` URIs. Used internally by `AuthGuard`.
+
+```ts
+import { isSafeRedirect } from "bindrunes";
+
+isSafeRedirect("/dashboard");  // true
+isSafeRedirect("//evil.com");  // false
+isSafeRedirect("https://x");   // false
+```
+
+### `RealtimeClient`
+
+SSE client with exponential backoff reconnection.
+
+```ts
+import { RealtimeClient } from "bindrunes";
+
+const client = new RealtimeClient({
+  url: "/api/events",
+  getToken: () => localStorage.getItem("token"),
+  onMessage: (event) => console.log(event.data),
+  onError: (err) => console.error(err),
+});
+
+client.connect();
+client.disconnect();
+```
 
 ### Formatters
 
 ```ts
-import { formatDate, formatRelative, formatNumber, formatBytes } from "bindrunes";
+import { formatDate, formatDateShort, formatDateTime, formatTime, formatRelative, formatNumber, formatPercentage, formatBytes } from "bindrunes";
 
 formatDate(new Date());       // "19/05/2026"
-formatRelative(new Date());   // "agora"
-formatNumber(1500);           // "1.500"
+formatDateShort(new Date());  // "19/05"
+formatDateTime(new Date());   // "19/05/2026 14:30"
+formatTime(new Date());       // "14:30"
+formatRelative(new Date());   // "agora" (relative time in current locale)
+formatNumber(1500);           // "1.500" (pt-BR locale)
+formatPercentage(0.85);      // "85%"
 formatBytes(2048);            // "2 KB"
 ```
+
+> Formatters use pt-BR locale by default. For other locales, use `createI18n` to set the active locale, which the formatters will respect.
 
 ### `getChartTheme`
 
