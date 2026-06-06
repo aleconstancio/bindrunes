@@ -1,11 +1,13 @@
 <script lang="ts">
-  let {
-    children,
-  }: {
-    children?: import('svelte').Snippet;
-  } = $props();
+import MetaLayout from "../MetaLayout.svelte";
+
+let {
+	children,
+}: {
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
-<div class="flex-shrink-0 p-4">
+<MetaLayout position="header">
   {@render children?.()}
-</div>
+</MetaLayout>
