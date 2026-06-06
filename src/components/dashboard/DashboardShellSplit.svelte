@@ -1,4 +1,6 @@
 <script lang="ts">
+  import MetaScrollable from '../MetaScrollable.svelte';
+
   let {
     listWidth = '400px',
     resizable = false,
@@ -76,12 +78,14 @@
 <div class="flex min-h-screen">
   <!-- List Panel -->
   <div
-    class="shrink-0 border-r border-border bg-background overflow-y-auto"
+    class="shrink-0 border-r border-border bg-background"
     style="width: {width}; min-width: 280px;"
   >
-    {#if listPanel}
-      {@render listPanel()}
-    {/if}
+    <MetaScrollable class="h-full">
+      {#if listPanel}
+        {@render listPanel()}
+      {/if}
+    </MetaScrollable>
   </div>
 
   <!-- Resize Handle -->
@@ -101,11 +105,11 @@
   {/if}
 
   <!-- Detail Panel -->
-  <div class="flex-1 min-w-0 overflow-y-auto">
+  <MetaScrollable class="flex-1 min-w-0">
     {#if detailPanel}
       {@render detailPanel()}
     {:else}
       {@render children?.()}
     {/if}
-  </div>
+  </MetaScrollable>
 </div>

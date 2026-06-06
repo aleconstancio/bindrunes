@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
-	import { SidebarProvider, Sidebar, SidebarLayout, SidebarTrigger } from '../sidebar/index';
+	import { SidebarProvider, Sidebar, SidebarTrigger } from '../sidebar/index';
+	import MetaLayout from '../MetaLayout.svelte';
+	import MetaScrollable from '../MetaScrollable.svelte';
 	import { derivePageInfo } from '../../utils/navigation';
 	import type { NavGroup, StatusVariant, TFunction } from '../../shared-types';
 	import NavMenu from './NavMenu.svelte';
@@ -113,9 +115,9 @@
 				</div>
 			</div>
 		</header>
-		<main class="flex-1 min-w-0 overflow-y-auto">
+		<MetaScrollable class="flex-1 min-w-0">
 			{@render children?.()}
-		</main>
+		</MetaScrollable>
 	</div>
 {:else}
 	<SidebarProvider
@@ -127,15 +129,15 @@
 			side={variant === 'right' ? 'right' : 'left'}
 			class={variant === 'right' ? 'border-l border-r-0' : ''}
 		>
-			<SidebarLayout position="header">
+			<MetaLayout position="header">
 				{#if sidebarHeader}
 					{@render sidebarHeader()}
 				{:else}
 					<DashboardShellBrand {brandIcon} {appName} {appSubtitle} />
 				{/if}
-			</SidebarLayout>
+			</MetaLayout>
 
-			<SidebarLayout position="content">
+			<MetaLayout position="content">
 				{#if variant === 'default' && scopeLabel}
 					<div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
 						<p class="font-mono text-mono-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">{scopeLabel}</p>
@@ -144,9 +146,9 @@
 					</div>
 				{/if}
 				<NavMenu groups={navigation} pathname={pagePath} onNavigate={onNavigate} />
-			</SidebarLayout>
+			</MetaLayout>
 
-			<SidebarLayout position="footer">
+			<MetaLayout position="footer">
 				{#if sidebarFooter}
 					{@render sidebarFooter()}
 				{:else if variant === 'default'}
@@ -157,7 +159,7 @@
 						</RuleFootnote>
 					{/if}
 				{/if}
-			</SidebarLayout>
+			</MetaLayout>
 		</Sidebar>
 
 		<div class="flex-1 flex flex-col min-w-0 h-screen">
@@ -175,9 +177,9 @@
 					<SidebarTrigger />
 				{/snippet}
 			</DashboardShellHeader>
-			<main class="flex-1 min-w-0 overflow-y-auto">
-				{@render children?.()}
-			</main>
+		<MetaScrollable class="flex-1 min-w-0">
+			{@render children?.()}
+		</MetaScrollable>
 		</div>
 	</SidebarProvider>
 {/if}
