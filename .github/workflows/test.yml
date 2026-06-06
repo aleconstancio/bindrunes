@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Type check
+        run: bun run check
+
+      - name: Test (with coverage)
+        run: bun run test:ci
+
+      - name: Verify build excludes test files
+        run: |
+          bun run build
+          if find dist -name '*.test.*' -o -name '*.spec.*' | grep -q .; then
+            echo "ERROR: test files leaked into dist/"
+            find dist -name '*.test.*' -o -name '*.spec.*'
+            exit 1
+          fi

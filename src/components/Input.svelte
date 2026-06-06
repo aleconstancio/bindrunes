@@ -44,6 +44,7 @@
 
   {#if type === 'textarea'}
     <textarea
+      id={name}
       {name}
       {placeholder}
       {disabled}
@@ -62,6 +63,7 @@
     />
   {:else}
     <input
+      id={name}
       {type}
       {name}
       {placeholder}

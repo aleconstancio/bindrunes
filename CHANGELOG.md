@@ -1,5 +1,29 @@
 # Changelog
 
+## v1.0.1 (2026-06-06)
+
+### Testing Infrastructure
+
+- **Co-located tests**: 141 test files moved from `__tests__/` to live next to their source files (e.g. `Button.svelte.test.ts` next to `Button.svelte`).
+- **Coverage thresholds**: vitest enforces 80% lines/statements, 70% branches, 77% functions in CI. See `docs/testing.md` for rationale.
+- **vitest-axe integration**: 9 high-traffic components have a11y assertions via `expectNoAxeViolations()` helper.
+- **Curated bits-ui mock**: `src/helpers/bits-ui-mock.ts` exports 32 primitive factories.
+- **CI workflow**: `.github/workflows/test.yml` runs lint → check → test:ci → dist leak check.
+- **Test entry points**: `CardHarness.svelte`, `ButtonHarness.svelte`, `ErrorBoundaryHarness.svelte`, `FormHarness.svelte`, `SidebarTestHarness.svelte`, `PricingHarness.svelte` for components that need Svelte 5 snippet context.
+- **Composable test harness**: `src/ComposableHarness.svelte` + `mountComposable` for testing `$state`/`$derived`/`$effect` runes.
+- **JSDOM polyfills**: lucide-svelte (~100 icons), svelte-sonner, mode-watcher, matchMedia, `bindrunes` package alias.
+
+### Bug Fixes (uncovered by new tests)
+
+- **Input.svelte**: `id={name}` added to `<input>` and `<textarea>` so `<label for={name}>` references a real element. Pre-existing a11y bug.
+- **landing/FAQ.svelte**: `const openValue` → `let openValue` so `bind:value` works in Svelte 5.
+
+### Stats
+
+- 1,046 tests passing across 141 test files
+- Coverage: 80.7% statements, 71.5% branches, 78.1% functions, 83.3% lines
+- 100+ a11y checks via vitest-axe
+
 ## v1.0.0 (2026-06-04)
 
 ### Breaking Changes

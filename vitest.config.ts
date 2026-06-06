@@ -11,15 +11,32 @@ export default defineConfig({
   ],
   resolve: {
     conditions: ['browser', 'import', 'module'],
+    alias: {
+      bindrunes: new URL('./src/bindrunes-stub.ts', import.meta.url).pathname,
+    },
   },
   test: {
     environment: 'jsdom',
-    include: ['**/*.{test,spec}.{js,ts}'],
+    include: ['src/**/*.{test,spec}.{js,ts}'],
+    exclude: ['node_modules', 'dist', '.svelte-kit', '**/__package__/**'],
     globals: true,
     setupFiles: ['./src/test-setup.ts'],
     coverage: {
       include: ['src/**'],
-      exclude: ['src/test-setup.ts', 'src/test-utils.ts'],
+      exclude: [
+        'src/test-setup.ts',
+        'src/test-utils.ts',
+        'src/helpers/**',
+        'src/**/*.test.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.d.ts',
+      ],
+      thresholds: {
+        lines: 80,
+        functions: 77,
+        statements: 80,
+        branches: 70,
+      },
     },
   },
 });
