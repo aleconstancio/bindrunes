@@ -21,6 +21,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - OKLCH color space for theming
 - bits-ui for accessible primitives
 - Prefer lightweight, tree-shakeable dependencies
+- The agentic kernel (`src/utils/agentic/`, `src/types/agent.ts`) follows the same `createX()` factory + readonly-getter contract as the rest of the library. **The `AgentRuntime` interface is the only thing consumers are expected to implement.**
 
 ## Anti-Patterns
 - Don't use legacy Svelte stores
@@ -31,6 +32,8 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - Don't use `thoth-` prefix (retired in v1.0)
 - Don't use `text-sm`/`text-xs`/`text-lg`/`text-2xl font-bold`/etc. — use type scale tokens (`text-display-2`, `text-headline-2`, `text-title-1`, `text-body-md`, `text-label-md`, `text-mono-xs`)
 - Don't hardcode `--duration-*` fallbacks — preset.css provides all token defaults
+- Don't ship provider SDKs in the agentic kernel — the contract is the boundary
+- Don't add a `Window` to the store without wiring it into the parent's `lineage.children`
 
 ## Routing
 - Design system → `docs/design-system.md`
@@ -39,3 +42,14 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - Theme/styling → `docs/themes.md`
 - Aesthetic presets → `docs/aesthetics.md`
 - Security patterns → `docs/security.md`
+- Agentic-chat kernel → `docs/agentic/overview.md`
+- Adding a new metacomponent → also follow `docs/testing.md` (a11y + vitest-axe)
+
+## Agentic Coverage
+The agentic folder has a **stricter per-glob threshold** enforced in CI
+(`vitest.config.ts#thresholds`):
+- `src/utils/agentic/**` and `src/types/agent.ts`: **90% lines / 85% branches
+  / 88% functions / 90% statements**.
+- Global floor stays at 80 / 70 / 77.
+- When adding agentic code, TDD is required — the contract is the API
+  surface; logic must be deeply covered.
