@@ -1,11 +1,4 @@
 <script lang="ts">
-import Alert from "./Alert.svelte";
-import Card from "./Card.svelte";
-import EmptyState from "./EmptyState.svelte";
-import Input from "./Input.svelte";
-import PageHeader from "./PageHeader.svelte";
-import PageLoading from "./PageLoading.svelte";
-
 let {
 	title = "",
 	description = undefined as string | undefined,

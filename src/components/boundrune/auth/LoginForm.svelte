@@ -1,10 +1,4 @@
 <script lang="ts">
-import { Eye, EyeOff, LogIn } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import Input from "../../Input.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
-import Block from "../Block.svelte";
-
 let {
 	title = "Sign in",
 	description = "Enter your credentials to access your account.",
@@ -37,9 +31,9 @@ let {
 
 let email = $state("");
 let password = $state("");
-let showPassword = $state(false);
+let _showPassword = $state(false);
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
 	if (onSubmit) await onSubmit({ email, password });
 }

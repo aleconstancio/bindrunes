@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Label as BitsLabel } from "bits-ui";
-
 let { for: forEl, children }: { for?: string; children?: import("svelte").Snippet } = $props();
 </script>
 

@@ -1,5 +1,4 @@
 <script lang="ts">
-import { Command } from "bits-ui";
 import type { OmnibarState } from "../utils/createOmnibar.svelte";
 
 let {
@@ -10,7 +9,7 @@ let {
 	placeholder?: string;
 } = $props();
 
-function select(opt: { action: () => void }) {
+function _select(opt: { action: () => void }) {
 	state.close();
 	opt.action();
 }

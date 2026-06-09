@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import ComposableHarness from "../ComposableHarness.svelte";
 import ThemeStudio from "./ThemeStudio.svelte";
 
 describe("ThemeStudio", () => {

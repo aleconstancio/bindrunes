@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Dialog as BitsDialog } from "bits-ui";
-
 let {
 	open = $bindable(false),
 	title = undefined as string | undefined,

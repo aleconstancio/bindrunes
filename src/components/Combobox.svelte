@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Combobox as BitsCombobox } from "bits-ui";
-
 type Option = { value: string; label: string; disabled?: boolean };
 
 let {
@@ -19,7 +17,7 @@ let {
 
 let inputValue = $state("");
 
-let filtered = $derived(
+let _filtered = $derived(
 	options.filter((o) => o.label.toLowerCase().includes(inputValue.toLowerCase())),
 );
 </script>

@@ -72,7 +72,7 @@ describe("queryCache", () => {
 			getOrCreateEntry("get-test");
 			const entry = getEntry("get-test");
 			expect(entry).toBeDefined();
-			expect(entry!.key).toBe("get-test");
+			expect(entry?.key).toBe("get-test");
 		});
 	});
 
@@ -146,14 +146,14 @@ describe("queryCache", () => {
 			fetchQuery("dedup-key", fetcher);
 			// After the first call, entry.promise is set by the sync portion of fetchQuery
 			const entry = getEntry<string>("dedup-key");
-			const cachedPromise = entry!.promise;
+			const cachedPromise = entry?.promise;
 			expect(cachedPromise).not.toBeNull();
 
 			// Second call returns the same cached promise (via early return)
 			fetchQuery("dedup-key", fetcher);
-			expect(entry!.promise).toBe(cachedPromise);
+			expect(entry?.promise).toBe(cachedPromise);
 
-			resolveFetcher!("done");
+			resolveFetcher?.("done");
 			await cachedPromise;
 			expect(fetcher).toHaveBeenCalledTimes(1);
 		});
@@ -233,12 +233,12 @@ describe("queryCache", () => {
 		it("marks the entry as stale by setting lastUpdatedAt to 0", () => {
 			setQueryData("inv-key", "some data");
 			const before = getEntry("inv-key");
-			const updatedAt = before!.lastUpdatedAt;
+			const updatedAt = before?.lastUpdatedAt;
 			expect(updatedAt).toBeGreaterThan(0);
 
 			invalidateQuery("inv-key");
 			const after = getEntry("inv-key");
-			expect(after!.lastUpdatedAt).toBe(0);
+			expect(after?.lastUpdatedAt).toBe(0);
 		});
 
 		it("notifies subscribers when entry is invalidated", () => {
@@ -275,7 +275,7 @@ describe("queryCache", () => {
 			setQueryData("set-create", "fresh");
 			const entry = getEntry("set-create");
 			expect(entry).toBeDefined();
-			expect(entry!.data).toBe("fresh");
+			expect(entry?.data).toBe("fresh");
 		});
 	});
 

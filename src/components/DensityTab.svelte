@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { createDensity, Density } from "../utils/createDensity.svelte";
+import type { createDensity } from "../utils/createDensity.svelte";
 
 let {
 	density,

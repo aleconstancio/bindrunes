@@ -1,6 +1,4 @@
 <script lang="ts">
-import Block from "../Block.svelte";
-
 let {
 	items = [] as { title: string; description: string; image?: string; tags?: string[] }[],
 	columns = 3,
@@ -11,7 +9,7 @@ let {
 	class?: string;
 } = $props();
 
-const gridCols: Record<number, string> = {
+const _gridCols: Record<number, string> = {
 	2: "sm:grid-cols-2",
 	3: "sm:grid-cols-2 lg:grid-cols-3",
 	4: "sm:grid-cols-2 lg:grid-cols-4",

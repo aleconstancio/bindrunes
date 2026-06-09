@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { createMutation } from "./createMutation.svelte";
 
@@ -25,7 +25,7 @@ describe("createMutation", () => {
 		const promise = mutation.mutate("test");
 		expect(mutation.isLoading).toBe(true);
 
-		resolveMutator!("done");
+		resolveMutator?.("done");
 		await promise;
 	});
 

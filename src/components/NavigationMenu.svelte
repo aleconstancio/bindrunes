@@ -1,6 +1,4 @@
 <script lang="ts">
-import { NavigationMenu as BitsNavigationMenu } from "bits-ui";
-
 type NavLink = { label: string; href: string };
 
 let {

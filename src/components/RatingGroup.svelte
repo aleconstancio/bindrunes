@@ -1,6 +1,4 @@
 <script lang="ts">
-import { RatingGroup as BitsRatingGroup } from "bits-ui";
-
 let {
 	value = $bindable(0),
 	max = 5,

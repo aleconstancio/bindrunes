@@ -1,10 +1,7 @@
 <script lang="ts">
-import { Check } from "lucide-svelte";
-import type { Component, Snippet } from "svelte";
+import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import type { TFunction } from "../../shared-types";
-import Card from "../Card.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
 
 import type { Step } from "./landing-types";
 
@@ -18,14 +15,14 @@ interface Props {
 
 let { steps, showConnector = true, children, class: className = "", t }: Props = $props();
 
-let visible = $state(false);
+let _visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			if (entry.isIntersecting) {
-				visible = true;
+				_visible = true;
 				observer.disconnect();
 			}
 		},

@@ -1,5 +1,4 @@
-import { fireEvent, render } from "@testing-library/svelte";
-import userEvent from "@testing-library/user-event";
+import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 import Combobox from "./Combobox.svelte";
 

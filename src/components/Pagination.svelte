@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Pagination as BitsPagination } from "bits-ui";
-
 let {
 	currentPage = 1,
 	totalPages = 1,
@@ -29,7 +27,7 @@ let {
 	t?: (key: string, params?: Record<string, string | number>) => string;
 } = $props();
 
-let pages = $derived.by(() => {
+let _pages = $derived.by(() => {
 	const range: (number | string)[] = [];
 	const start = Math.max(1, currentPage - siblingCount);
 	const end = Math.min(totalPages, currentPage + siblingCount);

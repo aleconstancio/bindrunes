@@ -1,7 +1,4 @@
 <script lang="ts">
-import { AlertDialog as BitsAlertDialog } from "bits-ui";
-import Button from "./Button.svelte";
-
 let {
 	title = "Are you sure?",
 	description = undefined as string | undefined,
@@ -28,12 +25,12 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-function handleConfirm() {
+function _handleConfirm() {
 	open = false;
 	onConfirm?.();
 }
 
-function handleCancel() {
+function _handleCancel() {
 	open = false;
 	onCancel?.();
 }

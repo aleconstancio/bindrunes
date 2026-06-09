@@ -1,5 +1,4 @@
-import type { Component } from "svelte";
-import type { NavGroup, NavItem } from "../shared-types";
+import type { NavGroup } from "../shared-types";
 import { isSafeRedirect } from "./url";
 
 /**

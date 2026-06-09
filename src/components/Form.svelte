@@ -2,7 +2,6 @@
 import { toast } from "svelte-sonner";
 import type { TFunction } from "../shared-types";
 import type { FormState } from "../utils/createForm.svelte";
-import Button from "./Button.svelte";
 
 let {
 	t = undefined as TFunction | undefined,
@@ -35,7 +34,7 @@ let {
 let submitting = $state(false);
 let isSubmittingDerived = $derived(submitting || loading);
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
 	if (isSubmittingDerived) return;
 

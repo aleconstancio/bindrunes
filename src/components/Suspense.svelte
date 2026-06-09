@@ -1,7 +1,5 @@
 <script lang="ts">
 import type { TFunction } from "../shared-types";
-import Button from "./Button.svelte";
-import EmptyState from "./EmptyState.svelte";
 
 type DataState<T> =
 	| { status: "loading" }
@@ -25,7 +23,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-function retry() {
+function _retry() {
 	window.location.reload();
 }
 </script>

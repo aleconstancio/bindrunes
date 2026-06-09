@@ -59,7 +59,7 @@ export function createApiClient<
 
 	const client = {
 		get<T>(path: string, params?: Record<string, string>): Promise<T> {
-			const qs = params ? "?" + new URLSearchParams(params).toString() : "";
+			const qs = params ? `?${new URLSearchParams(params).toString()}` : "";
 			return request<T>(`${path}${qs}`, "GET");
 		},
 		post<T>(path: string, body?: any): Promise<T> {

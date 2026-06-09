@@ -1,6 +1,4 @@
 <script lang="ts">
-import { RadioGroup as BitsRadioGroup } from "bits-ui";
-
 type Option = { value: string; label: string; disabled?: boolean };
 
 let {

@@ -1,9 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import Card from "../Card.svelte";
 import type { Metric } from "./landing-types";
-import { getGridClass } from "./landing-utils";
 
 interface Props {
 	metrics: Metric[];
@@ -14,14 +12,14 @@ interface Props {
 
 let { metrics, columns = 3, children, class: className = "" }: Props = $props();
 
-let visible = $state(false);
+let _visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			if (entry.isIntersecting) {
-				visible = true;
+				_visible = true;
 				observer.disconnect();
 			}
 		},
@@ -31,7 +29,7 @@ onMount(() => {
 	return () => observer.disconnect();
 });
 
-const variantColors: Record<string, string> = {
+const _variantColors: Record<string, string> = {
 	default: "text-foreground",
 	success: "text-success",
 	warning: "text-warning",

@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
-import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import FormHarness from "./FormHarness.svelte";
 
@@ -111,7 +110,7 @@ describe("Form", () => {
 		fireEvent.submit(form);
 		fireEvent.submit(form);
 		expect(onSubmit).toHaveBeenCalledTimes(1);
-		resolveSubmit!();
+		resolveSubmit?.();
 	});
 
 	it("renders form errors from form prop", () => {

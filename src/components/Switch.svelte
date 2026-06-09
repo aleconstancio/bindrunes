@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Switch as BitsSwitch } from "bits-ui";
-
 let {
 	checked = $bindable(false),
 	disabled = false,

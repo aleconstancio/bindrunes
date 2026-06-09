@@ -1,22 +1,16 @@
 <script lang="ts">
-import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import Card from "../Card.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
-import MetaContainer from "../MetaContainer.svelte";
-import type { Feature } from "./landing-types";
-import { getGridClass } from "./landing-utils";
 
 let { features, columns = 3, variant = "card", children, class: className = "" }: Props = $props();
 
-let visible = $state(false);
+let _visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			if (entry.isIntersecting) {
-				visible = true;
+				_visible = true;
 				observer.disconnect();
 			}
 		},

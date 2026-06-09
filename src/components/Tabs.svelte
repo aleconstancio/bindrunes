@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Tabs as BitsTabs } from "bits-ui";
-
 let {
 	value = $bindable(""),
 	children,

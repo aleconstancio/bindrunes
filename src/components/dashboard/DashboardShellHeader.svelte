@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { StatusVariant } from "../../shared-types";
-import StatusChip from "../StatusChip.svelte";
 
 let {
 	headerPrefix = "",

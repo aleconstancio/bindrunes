@@ -1,6 +1,4 @@
 <script lang="ts">
-import { ToggleGroup as BitsToggleGroup } from "bits-ui";
-
 type Option = { value: string; label: string; disabled?: boolean };
 
 let {

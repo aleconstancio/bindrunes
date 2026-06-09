@@ -1,7 +1,4 @@
 <script lang="ts">
-import Avatar from "../../Avatar.svelte";
-import Block from "../Block.svelte";
-
 let {
 	title = "",
 	content = "",

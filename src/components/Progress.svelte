@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Progress as BitsProgress } from "bits-ui";
-
 let {
 	value = 0,
 	max = 100,
@@ -8,13 +6,13 @@ let {
 	variant = "default" as "default" | "success" | "warning" | "destructive",
 } = $props();
 
-const heights: Record<string, string> = {
+const _heights: Record<string, string> = {
 	sm: "h-1",
 	md: "h-2",
 	lg: "h-3",
 };
 
-const colors: Record<string, string> = {
+const _colors: Record<string, string> = {
 	default: "bg-primary",
 	success: "bg-success",
 	warning: "bg-warning",

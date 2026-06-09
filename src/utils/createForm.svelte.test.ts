@@ -1,6 +1,6 @@
 import { waitFor } from "@testing-library/svelte";
 import { email, minLength, number, pipe, string } from "valibot";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { createForm } from "./createForm.svelte";
 
@@ -274,7 +274,7 @@ describe("createForm — handleSubmit", () => {
 		const promise = form.handleSubmit(event);
 		await waitFor(() => expect(form.isSubmitting).toBe(true));
 
-		resolveSubmit!();
+		resolveSubmit?.();
 		await promise;
 	});
 

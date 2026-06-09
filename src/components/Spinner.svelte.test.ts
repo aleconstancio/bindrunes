@@ -10,19 +10,19 @@ describe("Spinner", () => {
 
 	it("renders with default md size", () => {
 		const { container } = render(Spinner);
-		const cls = container.querySelector("svg")!.getAttribute("class")!;
+		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
 		expect(cls).toContain("h-6");
 	});
 
 	it("sm size applies h-4", () => {
 		const { container } = render(Spinner, { props: { size: "sm" } });
-		const cls = container.querySelector("svg")!.getAttribute("class")!;
+		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
 		expect(cls).toContain("h-4");
 	});
 
 	it("lg size applies h-10", () => {
 		const { container } = render(Spinner, { props: { size: "lg" } });
-		const cls = container.querySelector("svg")!.getAttribute("class")!;
+		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
 		expect(cls).toContain("h-10");
 	});
 });

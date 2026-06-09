@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Toggle as BitsToggle } from "bits-ui";
-
 let {
 	pressed = $bindable(false),
 	disabled = false,

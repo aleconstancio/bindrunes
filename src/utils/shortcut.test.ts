@@ -60,7 +60,7 @@ describe("shortcut", () => {
 		const node = document.createElement("div");
 		const action = shortcut(node, { key: "Escape", callback });
 
-		action!.destroy();
+		action?.destroy();
 		window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
 		expect(callback).not.toHaveBeenCalled();
 	});

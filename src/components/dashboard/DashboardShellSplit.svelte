@@ -1,6 +1,4 @@
 <script lang="ts">
-import MetaScrollable from "../MetaScrollable.svelte";
-
 let {
 	listWidth = "400px",
 	resizable = false,
@@ -21,10 +19,10 @@ let {
 
 let width = $state(listWidth);
 
-function handleResize(e: MouseEvent) {
+function _handleResize(e: MouseEvent) {
 	if (!resizable) return;
 	const startX = e.clientX;
-	const startWidth = parseInt(width);
+	const startWidth = parseInt(width, 10);
 
 	function onMouseMove(e: MouseEvent) {
 		const delta = e.clientX - startX;
@@ -40,11 +38,11 @@ function handleResize(e: MouseEvent) {
 	document.addEventListener("mouseup", onMouseUp);
 }
 
-function handleTouchStart(e: TouchEvent) {
+function _handleTouchStart(e: TouchEvent) {
 	if (!resizable || e.touches.length === 0) return;
 	const touch = e.touches[0];
 	const startX = touch.clientX;
-	const startWidth = parseInt(width);
+	const startWidth = parseInt(width, 10);
 
 	function onTouchMove(e: TouchEvent) {
 		if (e.touches.length === 0) return;
@@ -62,9 +60,9 @@ function handleTouchStart(e: TouchEvent) {
 	document.addEventListener("touchend", onTouchEnd);
 }
 
-function handleKeyDown(e: KeyboardEvent) {
+function _handleKeyDown(e: KeyboardEvent) {
 	if (!resizable) return;
-	const currentVal = parseInt(width);
+	const currentVal = parseInt(width, 10);
 	if (e.key === "ArrowLeft") {
 		e.preventDefault();
 		width = `${Math.max(280, Math.min(600, currentVal - 10))}px`;

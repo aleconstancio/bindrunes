@@ -1,6 +1,4 @@
 <script lang="ts">
-import { DropdownMenu as BitsDropdown } from "bits-ui";
-
 type Item = { label: string; value: string; disabled?: boolean };
 
 let {

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { ScrollArea as BitsScrollArea } from "bits-ui";
-
 let {
 	class: className = "",
 	children,

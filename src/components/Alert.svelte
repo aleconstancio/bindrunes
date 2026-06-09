@@ -15,7 +15,7 @@ let {
 	action?: import("svelte").Snippet;
 } = $props();
 
-const vars: Record<Variant, string> = {
+const _vars: Record<Variant, string> = {
 	info: "border-l-info",
 	success: "border-l-[--success]",
 	warning: "border-l-[--warning]",

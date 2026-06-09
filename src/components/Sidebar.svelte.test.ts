@@ -1,7 +1,6 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 import SidebarTestHarness from "./SidebarTestHarness.svelte";
-import Sidebar from "./sidebar/Sidebar.svelte";
 import SidebarContent from "./sidebar/SidebarContent.svelte";
 import SidebarFooter from "./sidebar/SidebarFooter.svelte";
 import SidebarGroup from "./sidebar/SidebarGroup.svelte";
@@ -25,7 +24,7 @@ describe("Sidebar standalone components", () => {
 
 	it("SidebarLayout renders in footer position", () => {
 		const { container } = render(SidebarLayout, { position: "footer" });
-		expect(container.firstElementChild!.className).toContain("border-t");
+		expect(container.firstElementChild?.className).toContain("border-t");
 	});
 
 	it("SidebarLayout renders in content position", () => {
@@ -50,27 +49,27 @@ describe("Sidebar standalone components", () => {
 
 	it("SidebarMenuItem renders", () => {
 		const { container } = render(SidebarMenuItem);
-		expect(container.firstElementChild!.className).toContain("group/menuitem");
+		expect(container.firstElementChild?.className).toContain("group/menuitem");
 	});
 
 	it("SidebarMenuButton renders", () => {
 		const { container } = render(SidebarMenuButton);
-		expect(container.firstElementChild!.className).toContain("group/menubutton");
+		expect(container.firstElementChild?.className).toContain("group/menubutton");
 	});
 
 	it("SidebarMenuButton applies active class when isActive", () => {
 		const { container } = render(SidebarMenuButton, { isActive: true });
-		expect(container.firstElementChild!.className).toContain("bg-sidebar-accent");
+		expect(container.firstElementChild?.className).toContain("bg-sidebar-accent");
 	});
 
 	it("SidebarMenuBadge renders", () => {
 		const { container } = render(SidebarMenuBadge);
-		expect(container.firstElementChild!.className).toContain("rounded-full");
+		expect(container.firstElementChild?.className).toContain("rounded-full");
 	});
 
 	it("SidebarMenuBadge applies ml-auto class", () => {
 		const { container } = render(SidebarMenuBadge);
-		expect(container.firstElementChild!.className).toContain("ml-auto");
+		expect(container.firstElementChild?.className).toContain("ml-auto");
 	});
 
 	it("SidebarMenuSkeleton renders", () => {

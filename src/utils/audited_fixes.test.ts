@@ -1,6 +1,6 @@
 import { mode } from "mode-watcher";
 import { describe, expect, it, vi } from "vitest";
-import { getCache, resetCache } from "../utils/queryCache";
+import { getCache } from "../utils/queryCache";
 import { createDarkMode } from "./createDarkMode.svelte";
 
 // Mock mode-watcher

@@ -1,5 +1,4 @@
 <script lang="ts">
-import { Check, X } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
 

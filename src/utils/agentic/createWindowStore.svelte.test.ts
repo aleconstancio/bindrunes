@@ -119,11 +119,11 @@ describe("createWindowStore", () => {
 
 		it("updates the window's updatedAt timestamp", () => {
 			const root = store.createRoot({});
-			const before = store.windows.find((w) => w.id === root)!.updatedAt;
+			const before = store.windows.find((w) => w.id === root)?.updatedAt;
 			// bump clock a tick
 			const t = makeTurn("user", "x");
 			store.appendTurn(root, t);
-			const after = store.windows.find((w) => w.id === root)!.updatedAt;
+			const after = store.windows.find((w) => w.id === root)?.updatedAt;
 			expect(after).toBeGreaterThanOrEqual(before);
 		});
 
@@ -209,7 +209,7 @@ describe("createWindowStore", () => {
 
 	describe("reactivity (runes)", () => {
 		it("exposes readonly getters that change when state mutates", () => {
-			const root = store.createRoot({});
+			const _root = store.createRoot({});
 			expect(store.windows).toHaveLength(1);
 			const initial = store.windows.length;
 			store.createRoot({});

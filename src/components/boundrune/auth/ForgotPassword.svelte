@@ -1,10 +1,4 @@
 <script lang="ts">
-import { ArrowLeft, Mail } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import Input from "../../Input.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
-import Block from "../Block.svelte";
-
 let {
 	title = "Forgot password",
 	description = "Enter your email address and we'll send you a link to reset your password.",
@@ -33,7 +27,7 @@ let {
 
 let email = $state("");
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
 	if (onSubmit) await onSubmit(email);
 }

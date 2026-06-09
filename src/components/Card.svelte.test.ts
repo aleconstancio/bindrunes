@@ -19,27 +19,27 @@ describe("Card", () => {
 
 	it("glass variant applies backdrop-blur", () => {
 		const { container } = render(Card, { variant: "glass" });
-		expect(container.firstElementChild!.className).toContain("backdrop-blur");
+		expect(container.firstElementChild?.className).toContain("backdrop-blur");
 	});
 
 	it("outlined variant applies bg-transparent", () => {
 		const { container } = render(Card, { variant: "outlined" });
-		expect(container.firstElementChild!.className).toContain("bg-transparent");
+		expect(container.firstElementChild?.className).toContain("bg-transparent");
 	});
 
 	it("ghost variant applies bg-transparent", () => {
 		const { container } = render(Card, { variant: "ghost" });
-		expect(container.firstElementChild!.className).toContain("bg-transparent");
+		expect(container.firstElementChild?.className).toContain("bg-transparent");
 	});
 
 	it("custom class is merged", () => {
 		const { container } = render(Card, { class: "my-custom-class" });
-		expect(container.firstElementChild!.className).toContain("my-custom-class");
+		expect(container.firstElementChild?.className).toContain("my-custom-class");
 	});
 
 	it("padding=false removes padding class", () => {
 		const { container } = render(Card, { padding: false });
-		expect(container.firstElementChild!.className).not.toContain(" p-[");
+		expect(container.firstElementChild?.className).not.toContain(" p-[");
 	});
 
 	it("href renders an anchor", () => {
@@ -51,7 +51,7 @@ describe("Card", () => {
 
 	it("href card still applies variant classes", () => {
 		const { container } = render(Card, { href: "/p", variant: "outlined" });
-		expect(container.firstElementChild!.className).toContain("bg-transparent");
+		expect(container.firstElementChild?.className).toContain("bg-transparent");
 	});
 
 	it("interactive adds role=button and tabindex=0", () => {
@@ -63,7 +63,7 @@ describe("Card", () => {
 
 	it("interactive adds card-interactive class", () => {
 		const { container } = render(Card, { interactive: true });
-		expect(container.firstElementChild!.className).toContain("card-interactive");
+		expect(container.firstElementChild?.className).toContain("card-interactive");
 	});
 
 	it("interactive fires onclick on click", async () => {

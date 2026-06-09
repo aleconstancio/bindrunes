@@ -1,9 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
 import type { Integration } from "./landing-types";
-import { getGridClass } from "./landing-utils";
 
 interface Props {
 	title?: string;
@@ -15,14 +13,14 @@ interface Props {
 
 let { title, integrations, columns = 3, children, class: className = "" }: Props = $props();
 
-let visible = $state(false);
+let _visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			if (entry.isIntersecting) {
-				visible = true;
+				_visible = true;
 				observer.disconnect();
 			}
 		},

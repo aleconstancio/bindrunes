@@ -1,5 +1,4 @@
 <script lang="ts">
-import { Toolbar } from "bits-ui";
 import { baseKeymap, setBlockType, toggleMark, wrapIn } from "prosemirror-commands";
 import { history, redo, undo } from "prosemirror-history";
 import { keymap } from "prosemirror-keymap";
@@ -20,7 +19,7 @@ type ToolbarAction =
 	| "undo"
 	| "redo";
 
-const iconMap: Record<string, string> = {
+const _iconMap: Record<string, string> = {
 	bold: "B",
 	italic: "I",
 	code: "</>",
@@ -32,7 +31,7 @@ const iconMap: Record<string, string> = {
 	redo: "\u21AA",
 };
 
-const iconStyles: Record<string, string> = {
+const _iconStyles: Record<string, string> = {
 	bold: "text-label-md",
 	italic: "italic text-label-md font-serif",
 	code: "font-mono text-mono-sm",
@@ -73,29 +72,29 @@ let {
 let editorEl = $state<HTMLDivElement>();
 let view: EditorView | undefined;
 
-function getToolbarCommand(tool: ToolbarAction) {
+function _getToolbarCommand(tool: ToolbarAction) {
 	switch (tool) {
 		case "bold":
-			return () => toggleMark(schema.marks.strong)(view!.state, view!.dispatch);
+			return () => toggleMark(schema.marks.strong)(view?.state, view?.dispatch);
 		case "italic":
-			return () => toggleMark(schema.marks.em)(view!.state, view!.dispatch);
+			return () => toggleMark(schema.marks.em)(view?.state, view?.dispatch);
 		case "code":
-			return () => toggleMark(schema.marks.code)(view!.state, view!.dispatch);
+			return () => toggleMark(schema.marks.code)(view?.state, view?.dispatch);
 		case "heading":
-			return () => setBlockType(schema.nodes.heading, { level: 2 })(view!.state, view!.dispatch);
+			return () => setBlockType(schema.nodes.heading, { level: 2 })(view?.state, view?.dispatch);
 		case "list":
-			return () => wrapIn(schema.nodes.bullet_list)(view!.state, view!.dispatch);
+			return () => wrapIn(schema.nodes.bullet_list)(view?.state, view?.dispatch);
 		case "quote":
-			return () => wrapIn(schema.nodes.blockquote)(view!.state, view!.dispatch);
+			return () => wrapIn(schema.nodes.blockquote)(view?.state, view?.dispatch);
 		case "horizontalrule":
 			return () => {
 				const hr = schema.nodes.horizontal_rule.create();
-				view!.dispatch(view!.state.tr.replaceSelectionWith(hr));
+				view?.dispatch(view?.state.tr.replaceSelectionWith(hr));
 			};
 		case "undo":
-			return () => undo(view!.state, view!.dispatch);
+			return () => undo(view?.state, view?.dispatch);
 		case "redo":
-			return () => redo(view!.state, view!.dispatch);
+			return () => redo(view?.state, view?.dispatch);
 		default:
 			return () => {};
 	}
@@ -118,12 +117,12 @@ onMount(() => {
 			history(),
 			keymap(baseKeymap),
 			keymap({
-				"Mod-b": () => toggleMark(schema.marks.strong)(view!.state, view!.dispatch),
-				"Mod-i": () => toggleMark(schema.marks.em)(view!.state, view!.dispatch),
-				"Mod-`": () => toggleMark(schema.marks.code)(view!.state, view!.dispatch),
-				"Mod-z": () => undo(view!.state, view!.dispatch),
-				"Mod-y": () => redo(view!.state, view!.dispatch),
-				"Mod-Shift-z": () => redo(view!.state, view!.dispatch),
+				"Mod-b": () => toggleMark(schema.marks.strong)(view?.state, view?.dispatch),
+				"Mod-i": () => toggleMark(schema.marks.em)(view?.state, view?.dispatch),
+				"Mod-`": () => toggleMark(schema.marks.code)(view?.state, view?.dispatch),
+				"Mod-z": () => undo(view?.state, view?.dispatch),
+				"Mod-y": () => redo(view?.state, view?.dispatch),
+				"Mod-Shift-z": () => redo(view?.state, view?.dispatch),
 			}),
 		],
 	});

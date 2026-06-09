@@ -1,6 +1,5 @@
 <script lang="ts">
 import { CalendarDate } from "@internationalized/date";
-import { DatePicker as BitsDatePicker } from "bits-ui";
 
 let {
 	value = $bindable<Date | undefined>(undefined),
@@ -18,7 +17,7 @@ let bitsValue = $derived(
 	value ? new CalendarDate(value.getFullYear(), value.getMonth() + 1, value.getDate()) : undefined,
 );
 
-function onBitsValueChange(v: typeof bitsValue) {
+function _onBitsValueChange(v: typeof bitsValue) {
 	if (v) {
 		value = new Date(v.year, v.month - 1, v.day);
 	} else {

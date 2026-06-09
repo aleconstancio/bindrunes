@@ -1,7 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import { getGridClass } from "./landing-utils";
 
 interface Stat {
 	value: number;

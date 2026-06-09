@@ -15,7 +15,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const ctx = getSidebarContext();
+const _ctx = getSidebarContext();
 </script>
 
 {#if collapsible === 'offcanvas'}

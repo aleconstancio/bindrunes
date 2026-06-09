@@ -1,10 +1,4 @@
 <script lang="ts">
-import { Eye, EyeOff, KeyRound } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import Input from "../../Input.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
-import Block from "../Block.svelte";
-
 let {
 	title = "Reset password",
 	description = "Enter your new password below.",
@@ -33,20 +27,20 @@ let {
 
 let password = $state("");
 let confirmPassword = $state("");
-let showPassword = $state(false);
-let showConfirm = $state(false);
-let validationError = $state("");
+let _showPassword = $state(false);
+let _showConfirm = $state(false);
+let _validationError = $state("");
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
-	validationError = "";
+	_validationError = "";
 
 	if (password !== confirmPassword) {
-		validationError = "Passwords do not match.";
+		_validationError = "Passwords do not match.";
 		return;
 	}
 	if (password.length < 6) {
-		validationError = "Password must be at least 6 characters.";
+		_validationError = "Password must be at least 6 characters.";
 		return;
 	}
 

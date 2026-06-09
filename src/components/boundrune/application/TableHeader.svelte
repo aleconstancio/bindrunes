@@ -18,7 +18,7 @@ let {
 	class?: string;
 } = $props();
 
-function toggleSort(key: string) {
+function _toggleSort(key: string) {
 	if (!sort || sort.key !== key) {
 		onSort?.({ key, direction: "asc" });
 	} else if (sort.direction === "asc") {

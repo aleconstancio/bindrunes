@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Tooltip as BitsTooltip } from "bits-ui";
-
 let {
 	content = "",
 	side = "top" as "top" | "right" | "bottom" | "left",

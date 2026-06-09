@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Slider as BitsSlider } from "bits-ui";
-
 let {
 	value = $bindable([50]),
 	min = 0,

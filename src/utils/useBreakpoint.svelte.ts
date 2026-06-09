@@ -1,5 +1,3 @@
-import { untrack } from "svelte";
-
 const breakpoints = {
 	sm: 640,
 	md: 768,

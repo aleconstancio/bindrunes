@@ -1,7 +1,7 @@
 <script lang="ts">
 import { getSidebarContext } from "./sidebar-context.svelte";
 
-const ctx = getSidebarContext();
+const _ctx = getSidebarContext();
 </script>
 
 <button

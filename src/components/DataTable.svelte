@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { Column, SortState } from "../shared-types";
-import Pagination from "./Pagination.svelte";
 
 let {
 	columns = [] as Column[],
@@ -41,7 +40,7 @@ let {
 	t?: (key: string, params?: Record<string, string | number>) => string;
 } = $props();
 
-function toggleSort(key: string) {
+function _toggleSort(key: string) {
 	if (!sort || sort.key !== key) {
 		onSort?.({ key, direction: "asc" });
 	} else if (sort.direction === "asc") {
@@ -51,7 +50,7 @@ function toggleSort(key: string) {
 	}
 }
 
-function getSkeletonWidth(i: number): string {
+function _getSkeletonWidth(i: number): string {
 	const widths = ["65%", "85%", "50%", "75%", "60%", "90%", "55%", "70%"];
 	return widths[i % widths.length];
 }

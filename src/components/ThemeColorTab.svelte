@@ -1,7 +1,4 @@
 <script lang="ts">
-import Button from "./Button.svelte";
-import Input from "./Input.svelte";
-
 let {
 	baseTheme = "editorial",
 	primaryHex = "#6B8AFF",

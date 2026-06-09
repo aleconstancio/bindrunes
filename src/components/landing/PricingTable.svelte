@@ -1,12 +1,6 @@
 <script lang="ts">
-import { Check } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
-import Badge from "../Badge.svelte";
-import Button from "../Button.svelte";
-import Card from "../Card.svelte";
-import MetaContainer from "../MetaContainer.svelte";
-import Switch from "../Switch.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 import type { Plan } from "./landing-types";
@@ -42,7 +36,7 @@ $effect(() => {
 	landing.setBillingAnnual(billingAnnual);
 });
 
-const formatCurrency = (n: number) =>
+const _formatCurrency = (n: number) =>
 	new Intl.NumberFormat(locale, { style: "currency", currency }).format(n);
 </script>
 

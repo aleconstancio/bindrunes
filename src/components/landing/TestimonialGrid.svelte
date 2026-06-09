@@ -1,9 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import MetaContainer from "../MetaContainer.svelte";
-import { getGridClass } from "./landing-utils";
-import Testimonial from "./Testimonial.svelte";
 
 interface TestimonialData {
 	quote: string;
@@ -22,14 +19,14 @@ interface Props {
 
 let { testimonials, columns = 3, children, class: className = "" }: Props = $props();
 
-let visible = $state(false);
+let _visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
 	const observer = new IntersectionObserver(
 		([entry]) => {
 			if (entry.isIntersecting) {
-				visible = true;
+				_visible = true;
 				observer.disconnect();
 			}
 		},

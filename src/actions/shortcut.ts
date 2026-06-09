@@ -24,7 +24,7 @@ export interface ShortcutOptions {
  * ]}>
  */
 export function shortcut(
-	node: HTMLElement,
+	_node: HTMLElement,
 	options: ShortcutOptions | ShortcutOptions[],
 ): ActionReturn {
 	const list = Array.isArray(options) ? options : [options];

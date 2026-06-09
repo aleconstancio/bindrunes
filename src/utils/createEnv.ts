@@ -35,7 +35,7 @@ export function createEnv(options: EnvOptions = {}) {
 		const val = get(key);
 		if (val === undefined) return fallback;
 		const n = Number(val);
-		return isNaN(n) ? fallback : n;
+		return Number.isNaN(n) ? fallback : n;
 	}
 
 	function getBoolean(key: string, fallback?: boolean): boolean | undefined {

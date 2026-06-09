@@ -76,7 +76,7 @@ const RELATIVE_STRINGS: Record<
 
 function getRelativeStrings() {
 	const lang = LOCALE.split("-")[0];
-	return RELATIVE_STRINGS[lang] ?? RELATIVE_STRINGS["en"];
+	return RELATIVE_STRINGS[lang] ?? RELATIVE_STRINGS.en;
 }
 
 export function formatRelative(date: Date | string | number): string {

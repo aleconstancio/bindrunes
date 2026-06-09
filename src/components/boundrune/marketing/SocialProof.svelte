@@ -1,6 +1,4 @@
 <script lang="ts">
-import Block from "../Block.svelte";
-
 let {
 	title = "",
 	testimonials = [] as { quote: string; author: string; role?: string; avatar?: string }[],

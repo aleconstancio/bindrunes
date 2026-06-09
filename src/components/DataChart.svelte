@@ -13,7 +13,6 @@ import {
 	RadialLinearScale,
 	Tooltip,
 } from "chart.js";
-import { Chart } from "svelte-chartjs";
 
 ChartJS.register(
 	CategoryScale,

@@ -1,7 +1,4 @@
 <script lang="ts">
-import Button from "../../Button.svelte";
-import Block from "../Block.svelte";
-
 let {
 	items = [] as { author: string; avatar?: string; content: string; date?: string }[],
 	onSubmit = undefined as ((text: string) => void | Promise<void>) | undefined,
@@ -19,16 +16,16 @@ let {
 } = $props();
 
 let newComment = $state("");
-let submitting = $state(false);
+let _submitting = $state(false);
 
-async function handleSubmit() {
+async function _handleSubmit() {
 	if (!newComment.trim() || !onSubmit) return;
-	submitting = true;
+	_submitting = true;
 	try {
 		await onSubmit(newComment.trim());
 		newComment = "";
 	} finally {
-		submitting = false;
+		_submitting = false;
 	}
 }
 </script>

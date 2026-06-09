@@ -1,6 +1,4 @@
 <script lang="ts">
-import Breadcrumb from "./Breadcrumb.svelte";
-
 let {
 	title = "",
 	description = undefined as string | undefined,

@@ -1,8 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Accordion from "../Accordion.svelte";
-import AccordionItem from "../AccordionItem.svelte";
-import MetaContainer from "../MetaContainer.svelte";
 
 import type { FAQItem } from "./landing-types";
 
@@ -15,7 +12,7 @@ interface Props {
 
 let { items, defaultOpen, children, class: className = "" }: Props = $props();
 
-let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
+let _openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
 </script>
 
 <MetaContainer size="md" class="px-6 py-12 section-reveal {className}">

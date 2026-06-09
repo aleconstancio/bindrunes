@@ -1,6 +1,4 @@
 <script lang="ts">
-import { ModeWatcher } from "mode-watcher";
-import { Toaster } from "svelte-sonner";
 import { createAesthetic } from "../utils/createAesthetic.svelte";
 import { createDensity } from "../utils/createDensity.svelte";
 import { createPrefersTheme } from "../utils/createPrefersTheme.svelte";
@@ -32,9 +30,9 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const theme = createTheme({ default: (themeDefault ?? "editorial") as any });
-const aesthetic = createAesthetic({ default: (aestheticDefault ?? "editorial") as any });
-const density = createDensity({ default: (densityDefault ?? "comfortable") as any });
+const _theme = createTheme({ default: (themeDefault ?? "editorial") as any });
+const _aesthetic = createAesthetic({ default: (aestheticDefault ?? "editorial") as any });
+const _density = createDensity({ default: (densityDefault ?? "comfortable") as any });
 
 $effect(() => {
 	if (respectPrefersColorScheme) {

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Dialog as BitsDialog } from "bits-ui";
-
 let {
 	open = $bindable(false),
 	side = "right" as "left" | "right" | "top" | "bottom",
@@ -21,14 +19,14 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const positionStyles: Record<string, string> = {
+const _positionStyles: Record<string, string> = {
 	left: "inset-y-0 left-0 border-r",
 	right: "inset-y-0 right-0 border-l",
 	top: "inset-x-0 top-0 border-b",
 	bottom: "inset-x-0 bottom-0 border-t",
 };
 
-const sizeStyles: Record<string, string> = {
+const _sizeStyles: Record<string, string> = {
 	left: "h-full w-[--container-sm,350px] max-w-[90vw]",
 	right: "h-full w-[--container-sm,350px] max-w-[90vw]",
 	top: "w-full h-[300px] max-h-[80vh]",

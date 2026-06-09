@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Aesthetic, createAesthetic } from "../utils/createAesthetic.svelte";
+import type { createAesthetic } from "../utils/createAesthetic.svelte";
 
 let {
 	aesthetic,

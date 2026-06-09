@@ -1,7 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Badge from "../../Badge.svelte";
-import Block from "../Block.svelte";
 
 let {
 	sections = [] as {

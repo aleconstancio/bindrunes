@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import MetaContainer from "../MetaContainer.svelte";
 
 let {
 	id = undefined as string | undefined,

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Avatar as BitsAvatar } from "bits-ui";
-
 let {
 	src = undefined as string | undefined,
 	alt = "",
@@ -15,7 +13,7 @@ let {
 	class?: string;
 } = $props();
 
-const sizeClasses: Record<string, string> = {
+const _sizeClasses: Record<string, string> = {
 	sm: "h-10 w-10 text-label-md",
 	md: "h-16 w-16 text-title-2",
 	lg: "h-24 w-24 text-headline-2",

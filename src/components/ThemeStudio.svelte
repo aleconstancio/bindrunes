@@ -3,12 +3,6 @@ import { hexToOklch } from "../utils/colorConvert";
 import { createAesthetic } from "../utils/createAesthetic.svelte";
 import { createDensity } from "../utils/createDensity.svelte";
 import { createThemeBuilder } from "../utils/createThemeBuilder.svelte";
-import AestheticTab from "./AestheticTab.svelte";
-import Card from "./Card.svelte";
-import DensityTab from "./DensityTab.svelte";
-import ExportTab from "./ExportTab.svelte";
-import ThemeColorTab from "./ThemeColorTab.svelte";
-import ThemePreview from "./ThemePreview.svelte";
 
 type Tab = "theme" | "aesthetic" | "density" | "export";
 
@@ -20,7 +14,7 @@ let {
 	onchange?: (css: string) => void;
 } = $props();
 
-let activeTab = $state<Tab>("theme");
+let _activeTab = $state<Tab>("theme");
 let primaryHex = $state("#6B8AFF");
 let accentHex = $state("#8A6BFF");
 let destructiveHex = $state("#FF5555");
@@ -33,25 +27,25 @@ let destructive = $derived(hexToOklch(destructiveHex));
 let theme = $derived(createThemeBuilder({ primary, accent, destructive, radius }));
 let cssOutput = $derived(theme.toCSS('[data-theme="custom"]'));
 
-let copied = $state(false);
+let _copied = $state(false);
 
-const aesthetic = createAesthetic();
-const density = createDensity();
+const _aesthetic = createAesthetic();
+const _density = createDensity();
 
-function handleCopy() {
+function _handleCopy() {
 	navigator.clipboard.writeText(cssOutput);
-	copied = true;
+	_copied = true;
 	setTimeout(() => {
-		copied = false;
+		_copied = false;
 	}, 2000);
 }
 
-function handleApply() {
+function _handleApply() {
 	theme.apply();
 	onchange?.(cssOutput);
 }
 
-function applyPreset(preset: string) {
+function _applyPreset(preset: string) {
 	const presets: Record<string, { primary: string; accent: string; destructive: string }> = {
 		editorial: { primary: "#6B8AFF", accent: "#8A6BFF", destructive: "#FF5555" },
 		dracula: { primary: "#BD93F9", accent: "#FF79C6", destructive: "#FF5555" },
@@ -75,16 +69,16 @@ const tabs: { id: Tab; label: string }[] = [
 	{ id: "export", label: "Export" },
 ];
 
-function handleTabKeydown(e: KeyboardEvent, index: number) {
+function _handleTabKeydown(e: KeyboardEvent, index: number) {
 	if (e.key === "ArrowRight") {
 		e.preventDefault();
 		const next = (index + 1) % tabs.length;
-		activeTab = tabs[next].id;
+		_activeTab = tabs[next].id;
 		(e.target as HTMLElement).parentElement?.children[next]?.querySelector("button")?.focus();
 	} else if (e.key === "ArrowLeft") {
 		e.preventDefault();
 		const prev = (index - 1 + tabs.length) % tabs.length;
-		activeTab = tabs[prev].id;
+		_activeTab = tabs[prev].id;
 		(e.target as HTMLElement).parentElement?.children[prev]?.querySelector("button")?.focus();
 	}
 }

@@ -16,7 +16,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const vars: Record<Variant, string> = {
+const _vars: Record<Variant, string> = {
 	default: "bg-muted text-muted-foreground",
 	primary: "bg-primary text-primary-foreground",
 	secondary: "bg-secondary text-secondary-foreground",

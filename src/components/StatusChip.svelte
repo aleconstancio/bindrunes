@@ -13,7 +13,7 @@ let {
 	animate?: boolean;
 } = $props();
 
-const vars: Record<Variant, string> = {
+const _vars: Record<Variant, string> = {
 	success: "bg-success-soft text-success border-success/30",
 	warning: "bg-warning-soft text-warning border-warning/30",
 	danger: "bg-destructive-soft text-destructive border-destructive/30",
@@ -21,7 +21,7 @@ const vars: Record<Variant, string> = {
 	neutral: "bg-muted text-muted-foreground border-border",
 };
 
-const dotVars: Record<Variant, string> = {
+const _dotVars: Record<Variant, string> = {
 	success: "bg-success",
 	warning: "bg-warning",
 	danger: "bg-destructive",
@@ -29,7 +29,7 @@ const dotVars: Record<Variant, string> = {
 	neutral: "bg-muted-foreground",
 };
 
-const ledGlowColors: Record<Variant, string> = {
+const _ledGlowColors: Record<Variant, string> = {
 	success: "var(--success)",
 	warning: "var(--warning)",
 	danger: "var(--destructive)",

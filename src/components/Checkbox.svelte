@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Checkbox as BitsCheckbox } from "bits-ui";
-
 let {
 	checked = $bindable(false),
 	disabled = false,

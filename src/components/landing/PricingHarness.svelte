@@ -1,7 +1,6 @@
 <script lang="ts">
 import { createLandingState } from "./landing-context.svelte";
 import type { Plan } from "./landing-types";
-import PricingTable from "./PricingTable.svelte";
 
 createLandingState();
 

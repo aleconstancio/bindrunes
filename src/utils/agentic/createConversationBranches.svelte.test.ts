@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toWindowId, type Window, type WindowId } from "../../types/agent";
+import { toWindowId, type Window } from "../../types/agent";
 import { createConversationBranches } from "./createConversationBranches.svelte";
 
 function w(

@@ -13,7 +13,7 @@ let {
 	children?: Snippet;
 } = $props();
 
-const widthClass = $derived(
+const _widthClass = $derived(
 	size === "prose"
 		? "max-w-[var(--container-prose)]"
 		: size === "sm"

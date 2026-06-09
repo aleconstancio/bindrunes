@@ -1,11 +1,5 @@
 <script lang="ts">
-import { Search } from "lucide-svelte";
 import type { Column, SortState } from "../../../shared-types";
-import Button from "../../Button.svelte";
-import DataTable from "../../DataTable.svelte";
-import Input from "../../Input.svelte";
-import Pagination from "../../Pagination.svelte";
-import Block from "../Block.svelte";
 
 let {
 	columns = [] as Column[],

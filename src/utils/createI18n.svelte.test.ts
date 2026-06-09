@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { createI18n } from "./createI18n.svelte";
 

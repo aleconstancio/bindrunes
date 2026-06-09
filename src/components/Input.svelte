@@ -27,7 +27,7 @@ let {
 	class?: string;
 } = $props();
 
-let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` : undefined);
+let _describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` : undefined);
 </script>
 
 {#if label}

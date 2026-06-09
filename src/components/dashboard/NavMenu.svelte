@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { NavGroup } from "../../shared-types";
-import { SidebarGroup, SidebarMenu, SidebarMenuButton } from "../sidebar/index";
 
 let {
 	groups = [] as NavGroup[],

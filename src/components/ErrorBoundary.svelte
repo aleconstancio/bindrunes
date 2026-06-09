@@ -2,7 +2,6 @@
 import { onMount } from "svelte";
 import { toast } from "svelte-sonner";
 import type { TFunction } from "../shared-types";
-import Button from "./Button.svelte";
 
 type Variant = "default" | "minimal" | "page";
 
@@ -45,7 +44,7 @@ onMount(() => {
 	return () => window.removeEventListener("error", handler);
 });
 
-function retry() {
+function _retry() {
 	error = null;
 	errorInfo = "";
 	if (onRetry) {

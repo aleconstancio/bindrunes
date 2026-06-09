@@ -1,6 +1,4 @@
 <script lang="ts">
-import Card from "./Card.svelte";
-
 let { headerText = "", footerText = "", childrenText = "", ...rest } = $props();
 </script>
 

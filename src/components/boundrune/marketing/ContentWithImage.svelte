@@ -1,6 +1,4 @@
 <script lang="ts">
-import Block from "../Block.svelte";
-
 let {
 	items = [] as {
 		title: string;

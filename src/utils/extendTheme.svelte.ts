@@ -45,12 +45,12 @@ const presetTokens: Record<string, Record<string, string>> = {
 };
 
 // Legacy forwards — wrap old names to their replacements
-presetTokens["akashic"] = presetTokens["nord"];
-presetTokens["martian"] = presetTokens["dracula"];
-presetTokens["alchemy"] = presetTokens["github"];
-presetTokens["druidic"] = presetTokens["rose-pine"];
-presetTokens["obsidian"] = presetTokens["editorial"];
-presetTokens["contrast"] = presetTokens["github"];
+presetTokens.akashic = presetTokens.nord;
+presetTokens.martian = presetTokens.dracula;
+presetTokens.alchemy = presetTokens.github;
+presetTokens.druidic = presetTokens["rose-pine"];
+presetTokens.obsidian = presetTokens.editorial;
+presetTokens.contrast = presetTokens.github;
 
 export function extendTheme(baseTheme: string, overrides: ExtendThemeOptions) {
 	const base = presetTokens[baseTheme];

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { PinInput as BitsPinInput } from "bits-ui";
-
 let {
 	value = $bindable(""),
 	placeholder = "\u25CB",

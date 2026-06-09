@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Collapsible as BitsCollapsible } from "bits-ui";
-
 let {
 	open = $bindable(false),
 	disabled = false,

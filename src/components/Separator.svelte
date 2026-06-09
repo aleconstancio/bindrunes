@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Separator as BitsSeparator } from "bits-ui";
-
 let {
 	orientation = "horizontal" as "horizontal" | "vertical",
 	class: className = "",

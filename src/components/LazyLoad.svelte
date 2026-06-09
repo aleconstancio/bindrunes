@@ -1,6 +1,5 @@
 <script lang="ts">
 import { onMount } from "svelte";
-import PageLoading from "./PageLoading.svelte";
 
 let {
 	load = undefined as (() => Promise<unknown>) | undefined,
@@ -18,14 +17,14 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-let loaded = $state(false);
+let _loaded = $state(false);
 
 onMount(async () => {
 	if (load) {
 		const result = await load();
 		onLoaded?.(result);
 	}
-	loaded = true;
+	_loaded = true;
 });
 </script>
 

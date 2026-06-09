@@ -1,7 +1,5 @@
 <script lang="ts">
-import { X } from "lucide-svelte";
 import type { Snippet } from "svelte";
-import Button from "../../Button.svelte";
 
 let {
 	open = $bindable(true),
@@ -23,7 +21,7 @@ let {
 	class?: string;
 } = $props();
 
-function dismiss() {
+function _dismiss() {
 	open = false;
 	onDismiss?.();
 }

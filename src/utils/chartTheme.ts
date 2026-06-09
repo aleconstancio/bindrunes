@@ -1,5 +1,3 @@
-import { DRACULA_DEFAULTS } from "./theme-defaults";
-
 const EDITORIAL_DEFAULTS = {
 	primary: "oklch(0.65 0.10 265)",
 	accent: "oklch(0.62 0.13 285)",

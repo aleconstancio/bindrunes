@@ -1,6 +1,4 @@
 <script lang="ts">
-import Progress from "./Progress.svelte";
-
 type FileEntry = {
 	file: File;
 	preview?: string;
@@ -28,7 +26,7 @@ let {
 } = $props();
 
 let files = $state<FileEntry[]>([]);
-let dragover = $state(false);
+let _dragover = $state(false);
 let inputEl = $state<HTMLInputElement>();
 
 function addFiles(newFiles: FileList | File[]) {
@@ -49,38 +47,38 @@ function addFiles(newFiles: FileList | File[]) {
 	];
 }
 
-function removeFile(index: number) {
+function _removeFile(index: number) {
 	if (files[index].preview) URL.revokeObjectURL(files[index].preview);
 	files = files.filter((_, i) => i !== index);
 }
 
-function handleDrop(e: DragEvent) {
+function _handleDrop(e: DragEvent) {
 	e.preventDefault();
-	dragover = false;
+	_dragover = false;
 	if (e.dataTransfer?.files) addFiles(e.dataTransfer.files);
 }
 
-function handleDragOver(e: DragEvent) {
+function _handleDragOver(e: DragEvent) {
 	e.preventDefault();
-	dragover = true;
+	_dragover = true;
 }
 
-function handleDragLeave() {
-	dragover = false;
+function _handleDragLeave() {
+	_dragover = false;
 }
 
-function handleClick() {
+function _handleClick() {
 	inputEl?.click();
 }
 
-function handleKeydown(e: KeyboardEvent) {
+function _handleKeydown(e: KeyboardEvent) {
 	if (e.key === "Enter" || e.key === " ") {
 		e.preventDefault();
 		inputEl?.click();
 	}
 }
 
-function handleFileInput(e: Event) {
+function _handleFileInput(e: Event) {
 	const target = e.target as HTMLInputElement;
 	if (target.files) addFiles(target.files);
 }

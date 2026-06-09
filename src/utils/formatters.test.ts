@@ -158,7 +158,7 @@ describe("formatNumber", () => {
 	});
 
 	it("accepts options", () => {
-		const result = formatNumber(3.14159, { maximumFractionDigits: 2 });
+		const result = formatNumber(Math.PI, { maximumFractionDigits: 2 });
 		expect(result).toMatch(/3[.,]14/);
 	});
 });

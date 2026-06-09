@@ -2,8 +2,6 @@ export interface Dict {
 	[key: string]: string | ((...args: any[]) => string);
 }
 
-import type { TFunction } from "../shared-types";
-
 export type { TFunction } from "../shared-types";
 
 export interface I18nOptions {

@@ -1,6 +1,4 @@
 <script lang="ts">
-import Input from "../../Input.svelte";
-
 let {
 	searchValue = $bindable(""),
 	searchPlaceholder = "Search...",

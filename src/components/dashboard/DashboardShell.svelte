@@ -2,15 +2,6 @@
 import type { Component } from "svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import { derivePageInfo } from "../../utils/navigation";
-import MetaLayout from "../MetaLayout.svelte";
-import MetaScrollable from "../MetaScrollable.svelte";
-import RuleFootnote from "../RuleFootnote.svelte";
-import StatusChip from "../StatusChip.svelte";
-import { Sidebar, SidebarProvider, SidebarTrigger } from "../sidebar/index";
-import ThemeToggle from "../ThemeToggle.svelte";
-import DashboardShellBrand from "./DashboardShellBrand.svelte";
-import DashboardShellHeader from "./DashboardShellHeader.svelte";
-import NavMenu from "./NavMenu.svelte";
 
 let {
 	variant = "default" as "default" | "right" | "topnav",
@@ -78,16 +69,16 @@ let pagePath = $derived(
 let pageInfo = $derived(
 	derivePageInfo(pagePath, navigation, { title: defaultTitle, description: defaultDescription }),
 );
-let resolvedTitle = $derived(pageTitle ?? pageInfo.title);
-let resolvedDescription = $derived(pageDescription ?? pageInfo.description);
-let resolvedRuleTitle = $derived(
+let _resolvedTitle = $derived(pageTitle ?? pageInfo.title);
+let _resolvedDescription = $derived(pageDescription ?? pageInfo.description);
+let _resolvedRuleTitle = $derived(
 	ruleTitle ?? t?.("dashboard.RuleFootnote.title") ?? "Regra Crítica",
 );
 
 let sidebarCollapsibleProp = $derived(
 	sidebarCollapsible === "full" ? ("none" as const) : ("icon" as const),
 );
-let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebarCollapsibleProp);
+let _sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebarCollapsibleProp);
 </script>
 
 {#if variant === 'topnav'}

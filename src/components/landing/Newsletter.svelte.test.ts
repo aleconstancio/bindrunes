@@ -1,5 +1,5 @@
-import { fireEvent, render } from "@testing-library/svelte";
-import { describe, expect, it, vi } from "vitest";
+import { render } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
 import Newsletter from "./Newsletter.svelte";
 
 describe("Newsletter", () => {

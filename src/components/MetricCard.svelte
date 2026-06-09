@@ -17,7 +17,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const borderTop: Record<string, string> = {
+const _borderTop: Record<string, string> = {
 	default: "var(--primary)",
 	success: "var(--success)",
 	warning: "var(--warning)",

@@ -70,7 +70,7 @@ describe("defineTheme", () => {
 
 	it("survives server-side (no window)", async () => {
 		const originalWindow = global.window;
-		const state: { current: unknown } = { current: null };
+		const _state: { current: unknown } = { current: null };
 		(global as any).window = undefined;
 		try {
 			const ssr = defineTheme("ssr", { "--primary": "oklch(0.5 0.1 0)" });

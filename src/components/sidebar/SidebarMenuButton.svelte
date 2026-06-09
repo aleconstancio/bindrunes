@@ -11,7 +11,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-let tag = $derived(href ? "a" : onclick ? "button" : "div");
+let _tag = $derived(href ? "a" : onclick ? "button" : "div");
 </script>
 
 <svelte:element

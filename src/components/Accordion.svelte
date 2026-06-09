@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Accordion as BitsAccordion } from "bits-ui";
-
 let {
 	multiple = false,
 	value = $bindable([] as string[]),

@@ -3,7 +3,7 @@ import { getSidebarContext } from "./sidebar-context.svelte";
 
 let { children }: { children?: import("svelte").Snippet } = $props();
 
-const ctx = getSidebarContext();
+const _ctx = getSidebarContext();
 </script>
 
 <button

@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Button as BitsButton } from "bits-ui";
-
 type Variant = "primary" | "secondary" | "outline" | "ghost" | "destructive";
 type Size = "sm" | "md" | "lg";
 
@@ -32,7 +30,7 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
-const vars: Record<Variant, string> = {
+const _vars: Record<Variant, string> = {
 	primary: "btn btn-primary",
 	secondary: "btn btn-secondary text-secondary-foreground",
 	outline: "btn btn-outline border border-border text-foreground bg-transparent",
@@ -40,7 +38,7 @@ const vars: Record<Variant, string> = {
 	destructive: "btn btn-destructive",
 };
 
-const sz: Record<Size, string> = {
+const _sz: Record<Size, string> = {
 	sm: "h-8 px-3 text-label-sm gap-1.5",
 	md: "h-10 px-4 text-label-md gap-2",
 	lg: "h-12 px-6 text-body-lg gap-2.5",

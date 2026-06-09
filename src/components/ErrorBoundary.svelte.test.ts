@@ -1,6 +1,5 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
-import ErrorBoundary from "./ErrorBoundary.svelte";
 import ErrorBoundaryHarness from "./ErrorBoundaryHarness.svelte";
 
 describe("ErrorBoundary", () => {

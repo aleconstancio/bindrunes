@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Avatar from "../Avatar.svelte";
 import { getInitials } from "./landing-utils";
 
 interface Props {
@@ -23,7 +22,7 @@ let {
 	class: className = "",
 }: Props = $props();
 
-const initials = $derived(avatarFallback ?? getInitials(author));
+const _initials = $derived(avatarFallback ?? getInitials(author));
 </script>
 
 <div class="mx-auto max-w-[var(--container-lg)] text-center px-6 py-12 section-reveal {className}">

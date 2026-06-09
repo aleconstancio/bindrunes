@@ -1,5 +1,4 @@
 <script lang="ts">
-import { Select as BitsSelect } from "bits-ui";
 import type { TFunction } from "../shared-types";
 
 type Option = { value: string; label: string; disabled?: boolean };
@@ -26,9 +25,9 @@ let {
 	name?: string;
 } = $props();
 
-let selectedLabel = $derived(options.find((o) => o.value === value)?.label || placeholder);
+let _selectedLabel = $derived(options.find((o) => o.value === value)?.label || placeholder);
 
-let selectId = $derived(`select-${name ?? Math.random().toString(36).slice(2, 8)}`);
+let _selectId = $derived(`select-${name ?? Math.random().toString(36).slice(2, 8)}`);
 </script>
 
 {#if label}

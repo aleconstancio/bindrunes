@@ -1,6 +1,5 @@
 <script lang="ts">
 import { Time } from "@internationalized/date";
-import { TimeField as BitsTimeField } from "bits-ui";
 
 let {
 	value = $bindable(new Time(0, 0)),
