@@ -12,7 +12,8 @@
 		"url": "https://github.com/aleconstancio/bindrunes/issues"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"svelte": "./dist/index.js",
 	"exports": {
