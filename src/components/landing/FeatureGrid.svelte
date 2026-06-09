@@ -1,6 +1,6 @@
 <script lang="ts">
-import { onMount } from "svelte";
 import type { Snippet } from "svelte";
+import { onMount } from "svelte";
 import Card from "../Card.svelte";
 import DynamicIcon from "../DynamicIcon.svelte";
 import MetaContainer from "../MetaContainer.svelte";
@@ -13,17 +13,17 @@ let visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        visible = true;
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.1 }
-  );
-  observer.observe(grid);
-  return () => observer.disconnect();
+	const observer = new IntersectionObserver(
+		([entry]) => {
+			if (entry.isIntersecting) {
+				visible = true;
+				observer.disconnect();
+			}
+		},
+		{ threshold: 0.1 },
+	);
+	observer.observe(grid);
+	return () => observer.disconnect();
 });
 </script>
 

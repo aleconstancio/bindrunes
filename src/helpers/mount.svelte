@@ -1,20 +1,20 @@
 <script lang="ts">
-  let { composable, onResult } = $props<{
-    composable: () => any;
-    onResult: (result: any) => void;
-  }>();
+let { composable, onResult } = $props<{
+	composable: () => any;
+	onResult: (result: any) => void;
+}>();
 
-  let result = $state<any>(null);
+let result = $state<any>(null);
 
-  $effect(() => {
-    result = composable();
-  });
+$effect(() => {
+	result = composable();
+});
 
-  $effect(() => {
-    if (result !== null) {
-      onResult(result);
-    }
-  });
+$effect(() => {
+	if (result !== null) {
+		onResult(result);
+	}
+});
 </script>
 
 {#if result}

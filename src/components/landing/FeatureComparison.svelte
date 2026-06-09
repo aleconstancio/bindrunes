@@ -1,27 +1,27 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import { Check, X } from 'lucide-svelte';
-  import type { TFunction } from '../../shared-types';
+import { Check, X } from "lucide-svelte";
+import type { Snippet } from "svelte";
+import type { TFunction } from "../../shared-types";
 
-  interface Feature {
-    name: string;
-    plans: Record<string, boolean | string>;
-  }
+interface Feature {
+	name: string;
+	plans: Record<string, boolean | string>;
+}
 
-  interface Plan {
-    name: string;
-    highlight?: boolean;
-  }
+interface Plan {
+	name: string;
+	highlight?: boolean;
+}
 
-  interface Props {
-    plans: Plan[];
-    features: Feature[];
-    children?: Snippet;
-    class?: string;
-    t?: TFunction;
-  }
+interface Props {
+	plans: Plan[];
+	features: Feature[];
+	children?: Snippet;
+	class?: string;
+	t?: TFunction;
+}
 
-  let { plans, features, children, class: className = '', t }: Props = $props();
+let { plans, features, children, class: className = "", t }: Props = $props();
 </script>
 
 <div class="overflow-x-auto px-6 py-12 section-reveal {className}">

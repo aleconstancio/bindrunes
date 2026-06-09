@@ -1,13 +1,13 @@
 <script lang="ts">
-  let {
-    label,
-    action,
-    children,
-  }: {
-    label?: string;
-    action?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	label,
+	action,
+	children,
+}: {
+	label?: string;
+	action?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="mb-4">

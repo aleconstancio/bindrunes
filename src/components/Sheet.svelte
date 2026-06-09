@@ -1,39 +1,39 @@
 <script lang="ts">
-  import { Dialog as BitsDialog } from 'bits-ui';
+import { Dialog as BitsDialog } from "bits-ui";
 
-  let {
-    open = $bindable(false),
-    side = 'right' as 'left' | 'right' | 'top' | 'bottom',
-    title = undefined as string | undefined,
-    ariaLabel = undefined as string | undefined,
-    class: className = '',
-    header,
-    footer,
-    children,
-  }: {
-    open?: boolean;
-    side?: 'left' | 'right' | 'top' | 'bottom';
-    title?: string;
-    ariaLabel?: string;
-    class?: string;
-    header?: import('svelte').Snippet;
-    footer?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	open = $bindable(false),
+	side = "right" as "left" | "right" | "top" | "bottom",
+	title = undefined as string | undefined,
+	ariaLabel = undefined as string | undefined,
+	class: className = "",
+	header,
+	footer,
+	children,
+}: {
+	open?: boolean;
+	side?: "left" | "right" | "top" | "bottom";
+	title?: string;
+	ariaLabel?: string;
+	class?: string;
+	header?: import("svelte").Snippet;
+	footer?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  const positionStyles: Record<string, string> = {
-    left:   'inset-y-0 left-0 border-r',
-    right:  'inset-y-0 right-0 border-l',
-    top:    'inset-x-0 top-0 border-b',
-    bottom: 'inset-x-0 bottom-0 border-t',
-  };
+const positionStyles: Record<string, string> = {
+	left: "inset-y-0 left-0 border-r",
+	right: "inset-y-0 right-0 border-l",
+	top: "inset-x-0 top-0 border-b",
+	bottom: "inset-x-0 bottom-0 border-t",
+};
 
-  const sizeStyles: Record<string, string> = {
-    left:   'h-full w-[--container-sm,350px] max-w-[90vw]',
-    right:  'h-full w-[--container-sm,350px] max-w-[90vw]',
-    top:    'w-full h-[300px] max-h-[80vh]',
-    bottom: 'w-full h-[300px] max-h-[80vh]',
-  };
+const sizeStyles: Record<string, string> = {
+	left: "h-full w-[--container-sm,350px] max-w-[90vw]",
+	right: "h-full w-[--container-sm,350px] max-w-[90vw]",
+	top: "w-full h-[300px] max-h-[80vh]",
+	bottom: "w-full h-[300px] max-h-[80vh]",
+};
 </script>
 
 <BitsDialog.Root bind:open>

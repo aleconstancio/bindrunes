@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/svelte';
-import RichTextEditor from './RichTextEditor.svelte';
+import { render } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
+import RichTextEditor from "./RichTextEditor.svelte";
 
-describe('RichTextEditor', () => {
-	it('renders', () => {
+describe("RichTextEditor", () => {
+	it("renders", () => {
 		const { container } = render(RichTextEditor);
 		expect(container).toBeDefined();
 	});

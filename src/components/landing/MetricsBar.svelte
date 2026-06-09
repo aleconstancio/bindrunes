@@ -1,42 +1,41 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import Card from '../Card.svelte';
-  import { getGridClass } from './landing-utils';
+import type { Snippet } from "svelte";
+import { onMount } from "svelte";
+import Card from "../Card.svelte";
+import type { Metric } from "./landing-types";
+import { getGridClass } from "./landing-utils";
 
-  import type { Metric } from './landing-types';
+interface Props {
+	metrics: Metric[];
+	columns?: 1 | 2 | 3;
+	children?: Snippet;
+	class?: string;
+}
 
-  interface Props {
-    metrics: Metric[];
-    columns?: 1 | 2 | 3;
-    children?: Snippet;
-    class?: string;
-  }
+let { metrics, columns = 3, children, class: className = "" }: Props = $props();
 
-  let { metrics, columns = 3, children, class: className = '' }: Props = $props();
+let visible = $state(false);
+let grid: HTMLElement;
 
-  let visible = $state(false);
-  let grid: HTMLElement;
+onMount(() => {
+	const observer = new IntersectionObserver(
+		([entry]) => {
+			if (entry.isIntersecting) {
+				visible = true;
+				observer.disconnect();
+			}
+		},
+		{ threshold: 0.1 },
+	);
+	observer.observe(grid);
+	return () => observer.disconnect();
+});
 
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          visible = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(grid);
-    return () => observer.disconnect();
-  });
-
-  const variantColors: Record<string, string> = {
-    default: 'text-foreground',
-    success: 'text-success',
-    warning: 'text-warning',
-  };
+const variantColors: Record<string, string> = {
+	default: "text-foreground",
+	success: "text-success",
+	warning: "text-warning",
+};
 </script>
 
 <div bind:this={grid} class="grid {getGridClass(columns)} gap-6 {className}">

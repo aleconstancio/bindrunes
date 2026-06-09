@@ -1,13 +1,13 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte';
-import { tick } from 'svelte';
-import Harness from '../ComposableHarness.svelte';
-import { createAesthetic } from './createAesthetic.svelte';
+import { render } from "@testing-library/svelte";
+import { tick } from "svelte";
+import { beforeEach, describe, expect, it } from "vitest";
+import Harness from "../ComposableHarness.svelte";
+import { createAesthetic } from "./createAesthetic.svelte";
 
-describe('createAesthetic', () => {
+describe("createAesthetic", () => {
 	beforeEach(() => {
 		localStorage.clear();
-		document.documentElement.removeAttribute('data-aesthetic');
+		document.documentElement.removeAttribute("data-aesthetic");
 	});
 
 	async function mountAesthetic(opts?: { default?: string }) {
@@ -19,44 +19,44 @@ describe('createAesthetic', () => {
 		return state.current as ReturnType<typeof createAesthetic>;
 	}
 
-	it('defaults to editorial', async () => {
+	it("defaults to editorial", async () => {
 		const a = await mountAesthetic();
-		expect(a.aesthetic).toBe('editorial');
+		expect(a.aesthetic).toBe("editorial");
 	});
 
-	it('sets data-aesthetic attribute on document element', async () => {
+	it("sets data-aesthetic attribute on document element", async () => {
 		await mountAesthetic();
-		expect(document.documentElement.getAttribute('data-aesthetic')).toBe('editorial');
+		expect(document.documentElement.getAttribute("data-aesthetic")).toBe("editorial");
 	});
 
-	it('setAesthetic updates value and attribute', async () => {
+	it("setAesthetic updates value and attribute", async () => {
 		const a = await mountAesthetic();
-		a.setAesthetic('glass');
+		a.setAesthetic("glass");
 		await tick();
-		expect(a.aesthetic).toBe('glass');
-		expect(document.documentElement.getAttribute('data-aesthetic')).toBe('glass');
+		expect(a.aesthetic).toBe("glass");
+		expect(document.documentElement.getAttribute("data-aesthetic")).toBe("glass");
 	});
 
-	it('persists to localStorage', async () => {
+	it("persists to localStorage", async () => {
 		const a = await mountAesthetic();
-		a.setAesthetic('bento');
+		a.setAesthetic("bento");
 		await tick();
-		expect(localStorage.getItem('bindrunes_aesthetic')).toBe('"bento"');
+		expect(localStorage.getItem("bindrunes_aesthetic")).toBe('"bento"');
 	});
 
-	it('restores from localStorage on next creation', async () => {
-		localStorage.setItem('bindrunes_aesthetic', '"expressive"');
+	it("restores from localStorage on next creation", async () => {
+		localStorage.setItem("bindrunes_aesthetic", '"expressive"');
 		const a = await mountAesthetic();
-		expect(a.aesthetic).toBe('expressive');
+		expect(a.aesthetic).toBe("expressive");
 	});
 
-	it('accepts a custom default via options', async () => {
-		const a = await mountAesthetic({ default: 'glass' });
-		expect(a.aesthetic).toBe('glass');
+	it("accepts a custom default via options", async () => {
+		const a = await mountAesthetic({ default: "glass" });
+		expect(a.aesthetic).toBe("glass");
 	});
 
-	it('exposes the full aesthetic list', async () => {
+	it("exposes the full aesthetic list", async () => {
 		const a = await mountAesthetic();
-		expect(a.aesthetics).toEqual(['editorial', 'glass', 'bento', 'expressive']);
+		expect(a.aesthetics).toEqual(["editorial", "glass", "bento", "expressive"]);
 	});
 });

@@ -5,8 +5,8 @@ import type { TFunction } from "../../shared-types";
 import Badge from "../Badge.svelte";
 import Button from "../Button.svelte";
 import Card from "../Card.svelte";
-import Switch from "../Switch.svelte";
 import MetaContainer from "../MetaContainer.svelte";
+import Switch from "../Switch.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 import type { Plan } from "./landing-types";

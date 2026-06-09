@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { Tooltip as BitsTooltip } from 'bits-ui';
+import { Tooltip as BitsTooltip } from "bits-ui";
 
-  let {
-    content = '',
-    side = 'top' as 'top' | 'right' | 'bottom' | 'left',
-    openDelay = 700,
-    closeDelay = 300,
-    children,
-  }: {
-    content?: string;
-    side?: 'top' | 'right' | 'bottom' | 'left';
-    openDelay?: number;
-    closeDelay?: number;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	content = "",
+	side = "top" as "top" | "right" | "bottom" | "left",
+	openDelay = 700,
+	closeDelay = 300,
+	children,
+}: {
+	content?: string;
+	side?: "top" | "right" | "bottom" | "left";
+	openDelay?: number;
+	closeDelay?: number;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsTooltip.Provider {openDelay} {closeDelay}>

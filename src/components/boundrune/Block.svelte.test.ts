@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
 import Block from "./Block.svelte";
 
 describe("Block", () => {
@@ -20,9 +20,7 @@ describe("Block", () => {
 
 	it("applies size via MetaContainer", () => {
 		const { container } = render(Block, { size: "lg" });
-		expect(container.querySelector("section")?.innerHTML).toContain(
-			"max-w-[var(--container-lg)]",
-		);
+		expect(container.querySelector("section")?.innerHTML).toContain("max-w-[var(--container-lg)]");
 	});
 
 	it("applies size full", () => {
@@ -32,9 +30,7 @@ describe("Block", () => {
 
 	it("defaults to xl size", () => {
 		const { container } = render(Block);
-		expect(container.querySelector("section")?.innerHTML).toContain(
-			"max-w-[var(--container-xl)]",
-		);
+		expect(container.querySelector("section")?.innerHTML).toContain("max-w-[var(--container-xl)]");
 	});
 
 	it("applies compact spacing", () => {

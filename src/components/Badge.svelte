@@ -1,23 +1,30 @@
 <script lang="ts">
-  type Variant = 'default' | 'primary' | 'secondary' | 'success' | 'warning' | 'destructive' | 'outline';
+type Variant =
+	| "default"
+	| "primary"
+	| "secondary"
+	| "success"
+	| "warning"
+	| "destructive"
+	| "outline";
 
-  let {
-    variant = 'default' as Variant,
-    children,
-  }: {
-    variant?: Variant;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	variant = "default" as Variant,
+	children,
+}: {
+	variant?: Variant;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  const vars: Record<Variant, string> = {
-    default: 'bg-muted text-muted-foreground',
-    primary: 'bg-primary text-primary-foreground',
-    secondary: 'bg-secondary text-secondary-foreground',
-    success: 'bg-success-soft text-success',
-    warning: 'bg-warning-soft text-warning',
-    destructive: 'bg-destructive-soft text-destructive',
-    outline: 'border border-border text-muted-foreground',
-  };
+const vars: Record<Variant, string> = {
+	default: "bg-muted text-muted-foreground",
+	primary: "bg-primary text-primary-foreground",
+	secondary: "bg-secondary text-secondary-foreground",
+	success: "bg-success-soft text-success",
+	warning: "bg-warning-soft text-warning",
+	destructive: "bg-destructive-soft text-destructive",
+	outline: "border border-border text-muted-foreground",
+};
 </script>
 
 <span

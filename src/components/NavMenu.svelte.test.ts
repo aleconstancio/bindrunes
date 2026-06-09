@@ -1,24 +1,22 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/svelte';
-import NavMenu from '../../src/components/dashboard/NavMenu.svelte';
+import { render, screen } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
+import NavMenu from "../../src/components/dashboard/NavMenu.svelte";
 
-describe('NavMenu', () => {
+describe("NavMenu", () => {
 	const groups = [
 		{
-			label: 'Main',
-			items: [
-				{ title: 'Home', to: '/home', description: 'Go home', icon: '🏠' },
-			],
+			label: "Main",
+			items: [{ title: "Home", to: "/home", description: "Go home", icon: "🏠" }],
 		},
 	];
 
-	it('renders group labels', () => {
+	it("renders group labels", () => {
 		render(NavMenu, { props: { groups } });
-		expect(screen.getByText('Main')).toBeInTheDocument();
+		expect(screen.getByText("Main")).toBeInTheDocument();
 	});
 
-	it('renders navigation items', () => {
+	it("renders navigation items", () => {
 		render(NavMenu, { props: { groups } });
-		expect(screen.getByText('Home')).toBeInTheDocument();
+		expect(screen.getByText("Home")).toBeInTheDocument();
 	});
 });

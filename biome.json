@@ -8,7 +8,10 @@
 			"!**/.svelte-kit",
 			"!**/dist",
 			"!**/node_modules",
-			"!**/coverage"
+			"!**/coverage",
+			"!examples",
+			"!src/styles/tokens/tailwind.css",
+			"!src/styles/tokens.example.css"
 		]
 	},
 	"formatter": {
@@ -26,7 +29,8 @@
 				"noUnusedVariables": "warn"
 			},
 			"suspicious": {
-				"noExplicitAny": "warn"
+				"noExplicitAny": "warn",
+				"useIterableCallbackReturn": "warn"
 			},
 			"style": {
 				"noNonNullAssertion": "warn"
@@ -44,6 +48,21 @@
 			"includes": ["**/*.svelte"],
 			"formatter": {
 				"indentStyle": "tab"
+			}
+		},
+		{
+			"includes": ["**/*.json"],
+			"formatter": {
+				"indentStyle": "tab"
+			}
+		},
+		{
+			"includes": ["**/*.css"],
+			"linter": {
+				"enabled": false
+			},
+			"formatter": {
+				"enabled": false
 			}
 		}
 	]

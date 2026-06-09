@@ -1,23 +1,23 @@
 <script lang="ts">
-import { onMount } from "svelte";
 import type { Snippet } from "svelte";
+import { onMount } from "svelte";
 import MetaContainer from "../MetaContainer.svelte";
 import { getGridClass } from "./landing-utils";
 import Testimonial from "./Testimonial.svelte";
 
 interface TestimonialData {
-  quote: string;
-  author: string;
-  role?: string;
-  avatar?: string;
-  avatarFallback?: string;
+	quote: string;
+	author: string;
+	role?: string;
+	avatar?: string;
+	avatarFallback?: string;
 }
 
 interface Props {
-  testimonials: TestimonialData[];
-  columns?: 1 | 2 | 3;
-  children?: Snippet;
-  class?: string;
+	testimonials: TestimonialData[];
+	columns?: 1 | 2 | 3;
+	children?: Snippet;
+	class?: string;
 }
 
 let { testimonials, columns = 3, children, class: className = "" }: Props = $props();
@@ -26,17 +26,17 @@ let visible = $state(false);
 let grid: HTMLElement;
 
 onMount(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        visible = true;
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.1 }
-  );
-  observer.observe(grid);
-  return () => observer.disconnect();
+	const observer = new IntersectionObserver(
+		([entry]) => {
+			if (entry.isIntersecting) {
+				visible = true;
+				observer.disconnect();
+			}
+		},
+		{ threshold: 0.1 },
+	);
+	observer.observe(grid);
+	return () => observer.disconnect();
 });
 </script>
 

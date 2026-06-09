@@ -1,17 +1,17 @@
 <script lang="ts">
-	import Button from './Button.svelte';
+import Button from "./Button.svelte";
 
-	let {
-		cssOutput = '',
-		copied = false,
-		oncopy,
-		onapply,
-	}: {
-		cssOutput?: string;
-		copied?: boolean;
-		oncopy?: () => void;
-		onapply?: () => void;
-	} = $props();
+let {
+	cssOutput = "",
+	copied = false,
+	oncopy,
+	onapply,
+}: {
+	cssOutput?: string;
+	copied?: boolean;
+	oncopy?: () => void;
+	onapply?: () => void;
+} = $props();
 </script>
 
 <div class="space-y-4">

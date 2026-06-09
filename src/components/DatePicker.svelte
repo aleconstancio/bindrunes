@@ -1,28 +1,30 @@
 <script lang="ts">
-	import { CalendarDate } from '@internationalized/date';
-	import { DatePicker as BitsDatePicker } from 'bits-ui';
+import { CalendarDate } from "@internationalized/date";
+import { DatePicker as BitsDatePicker } from "bits-ui";
 
-	let {
-		value = $bindable<Date | undefined>(undefined),
-		label = '',
-		disabled = false,
-		class: className = '',
-	}: {
-		value?: Date | undefined;
-		label?: string;
-		disabled?: boolean;
-		class?: string;
-	} = $props();
+let {
+	value = $bindable<Date | undefined>(undefined),
+	label = "",
+	disabled = false,
+	class: className = "",
+}: {
+	value?: Date | undefined;
+	label?: string;
+	disabled?: boolean;
+	class?: string;
+} = $props();
 
-	let bitsValue = $derived(value ? new CalendarDate(value.getFullYear(), value.getMonth() + 1, value.getDate()) : undefined);
+let bitsValue = $derived(
+	value ? new CalendarDate(value.getFullYear(), value.getMonth() + 1, value.getDate()) : undefined,
+);
 
-	function onBitsValueChange(v: typeof bitsValue) {
-		if (v) {
-			value = new Date(v.year, v.month - 1, v.day);
-		} else {
-			value = undefined;
-		}
+function onBitsValueChange(v: typeof bitsValue) {
+	if (v) {
+		value = new Date(v.year, v.month - 1, v.day);
+	} else {
+		value = undefined;
 	}
+}
 </script>
 
 <BitsDatePicker.Root value={bitsValue} onValueChange={onBitsValueChange} {disabled} trimValues class="w-full {className}">

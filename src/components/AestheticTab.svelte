@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { createAesthetic } from '../utils/createAesthetic.svelte';
-	import type { Aesthetic } from '../utils/createAesthetic.svelte';
+import type { Aesthetic, createAesthetic } from "../utils/createAesthetic.svelte";
 
-	let {
-		aesthetic,
-	}: {
-		aesthetic: ReturnType<typeof createAesthetic>;
-	} = $props();
+let {
+	aesthetic,
+}: {
+	aesthetic: ReturnType<typeof createAesthetic>;
+} = $props();
 </script>
 
 <div>

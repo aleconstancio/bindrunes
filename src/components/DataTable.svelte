@@ -1,56 +1,60 @@
 <script lang="ts">
-  import Pagination from './Pagination.svelte';
-  import type { Column, SortState } from '../shared-types';
+import type { Column, SortState } from "../shared-types";
+import Pagination from "./Pagination.svelte";
 
-  let {
-    columns = [] as Column[],
-    rows = [] as ReadonlyArray<Record<string, unknown>>,
-    currentPage = 1,
-    totalPages = 1,
-    onPageChange = undefined as ((page: number) => void) | undefined,
-    sort = $bindable(null as SortState | null),
-    onSort = undefined as ((sort: SortState | null) => void) | undefined,
-    hoverable = true,
-    striped = false,
-    loading = false,
-    onRowClick = undefined as ((row: Record<string, unknown>, index: number) => void) | undefined,
-    emptyText = 'No results found.',
-    selectedIndex = undefined as number | undefined,
-    rowClass = undefined as ((row: Record<string, unknown>, index: number) => string) | undefined,
-    t = (key: string, params?: Record<string, string | number>): string => {
-      const fallbacks: Record<string, string> = {
-        'table.page': `Page ${params?.current ?? '?'} of ${params?.total ?? '?'}`,
-      };
-      return fallbacks[key] ?? key;
-    },
-  }: {
-    columns?: Column[];
-    rows?: ReadonlyArray<Record<string, unknown>>;
-    currentPage?: number;
-    totalPages?: number;
-    onPageChange?: (page: number) => void;
-    sort?: SortState | null;
-    onSort?: (sort: SortState | null) => void;
-    hoverable?: boolean;
-    striped?: boolean;
-    loading?: boolean;
-    onRowClick?: (row: Record<string, unknown>, index: number) => void;
-    emptyText?: string;
-    selectedIndex?: number;
-    rowClass?: (row: Record<string, unknown>, index: number) => string;
-    t?: (key: string, params?: Record<string, string | number>) => string;
-  } = $props();
+let {
+	columns = [] as Column[],
+	rows = [] as ReadonlyArray<Record<string, unknown>>,
+	currentPage = 1,
+	totalPages = 1,
+	onPageChange = undefined as ((page: number) => void) | undefined,
+	sort = $bindable(null as SortState | null),
+	onSort = undefined as ((sort: SortState | null) => void) | undefined,
+	hoverable = true,
+	striped = false,
+	loading = false,
+	onRowClick = undefined as ((row: Record<string, unknown>, index: number) => void) | undefined,
+	emptyText = "No results found.",
+	selectedIndex = undefined as number | undefined,
+	rowClass = undefined as ((row: Record<string, unknown>, index: number) => string) | undefined,
+	t = (key: string, params?: Record<string, string | number>): string => {
+		const fallbacks: Record<string, string> = {
+			"table.page": `Page ${params?.current ?? "?"} of ${params?.total ?? "?"}`,
+		};
+		return fallbacks[key] ?? key;
+	},
+}: {
+	columns?: Column[];
+	rows?: ReadonlyArray<Record<string, unknown>>;
+	currentPage?: number;
+	totalPages?: number;
+	onPageChange?: (page: number) => void;
+	sort?: SortState | null;
+	onSort?: (sort: SortState | null) => void;
+	hoverable?: boolean;
+	striped?: boolean;
+	loading?: boolean;
+	onRowClick?: (row: Record<string, unknown>, index: number) => void;
+	emptyText?: string;
+	selectedIndex?: number;
+	rowClass?: (row: Record<string, unknown>, index: number) => string;
+	t?: (key: string, params?: Record<string, string | number>) => string;
+} = $props();
 
-  function toggleSort(key: string) {
-    if (!sort || sort.key !== key) { onSort?.({ key, direction: 'asc' }); }
-    else if (sort.direction === 'asc') { onSort?.({ key, direction: 'desc' }); }
-    else { onSort?.(null); }
-  }
+function toggleSort(key: string) {
+	if (!sort || sort.key !== key) {
+		onSort?.({ key, direction: "asc" });
+	} else if (sort.direction === "asc") {
+		onSort?.({ key, direction: "desc" });
+	} else {
+		onSort?.(null);
+	}
+}
 
-  function getSkeletonWidth(i: number): string {
-    const widths = ['65%', '85%', '50%', '75%', '60%', '90%', '55%', '70%'];
-    return widths[i % widths.length];
-  }
+function getSkeletonWidth(i: number): string {
+	const widths = ["65%", "85%", "50%", "75%", "60%", "90%", "55%", "70%"];
+	return widths[i % widths.length];
+}
 </script>
 
 <div class="w-full overflow-x-auto rounded-[--radius] border border-border">

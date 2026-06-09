@@ -1,18 +1,86 @@
 /* bindrunes — @property type-safety for animations and JS reads */
-@property --radius       { syntax: "<length>"; initial-value: 0.5rem; inherits: true; }
-@property --radius-xs    { syntax: "<length>"; initial-value: 0.25rem; inherits: true; }
-@property --radius-sm    { syntax: "<length>"; initial-value: 0.375rem; inherits: true; }
-@property --radius-md    { syntax: "<length>"; initial-value: 0.625rem; inherits: true; }
-@property --radius-lg    { syntax: "<length>"; initial-value: 0.875rem; inherits: true; }
-@property --radius-xl    { syntax: "<length>"; initial-value: 1.25rem; inherits: true; }
-@property --glass-blur   { syntax: "<length>"; initial-value: 16px; inherits: true; }
-@property --duration-instant { syntax: "<time>"; initial-value: 50ms; inherits: true; }
-@property --duration-snappy  { syntax: "<time>"; initial-value: 120ms; inherits: true; }
-@property --duration-fluid   { syntax: "<time>"; initial-value: 220ms; inherits: true; }
-@property --duration-slow    { syntax: "<time>"; initial-value: 360ms; inherits: true; }
-@property --z-sidebar   { syntax: "<integer>"; initial-value: 20; inherits: true; }
-@property --z-overlay   { syntax: "<integer>"; initial-value: 30; inherits: true; }
-@property --z-toast     { syntax: "<integer>"; initial-value: 40; inherits: true; }
-@property --z-omnibar   { syntax: "<integer>"; initial-value: 50; inherits: true; }
-@property --z-popover   { syntax: "<integer>"; initial-value: 60; inherits: true; }
-@property --z-tooltip   { syntax: "<integer>"; initial-value: 70; inherits: true; }
+@property --radius {
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
+}
+@property --radius-xs {
+	syntax: "<length>";
+	initial-value: 0.25rem;
+	inherits: true;
+}
+@property --radius-sm {
+	syntax: "<length>";
+	initial-value: 0.375rem;
+	inherits: true;
+}
+@property --radius-md {
+	syntax: "<length>";
+	initial-value: 0.625rem;
+	inherits: true;
+}
+@property --radius-lg {
+	syntax: "<length>";
+	initial-value: 0.875rem;
+	inherits: true;
+}
+@property --radius-xl {
+	syntax: "<length>";
+	initial-value: 1.25rem;
+	inherits: true;
+}
+@property --glass-blur {
+	syntax: "<length>";
+	initial-value: 16px;
+	inherits: true;
+}
+@property --duration-instant {
+	syntax: "<time>";
+	initial-value: 50ms;
+	inherits: true;
+}
+@property --duration-snappy {
+	syntax: "<time>";
+	initial-value: 120ms;
+	inherits: true;
+}
+@property --duration-fluid {
+	syntax: "<time>";
+	initial-value: 220ms;
+	inherits: true;
+}
+@property --duration-slow {
+	syntax: "<time>";
+	initial-value: 360ms;
+	inherits: true;
+}
+@property --z-sidebar {
+	syntax: "<integer>";
+	initial-value: 20;
+	inherits: true;
+}
+@property --z-overlay {
+	syntax: "<integer>";
+	initial-value: 30;
+	inherits: true;
+}
+@property --z-toast {
+	syntax: "<integer>";
+	initial-value: 40;
+	inherits: true;
+}
+@property --z-omnibar {
+	syntax: "<integer>";
+	initial-value: 50;
+	inherits: true;
+}
+@property --z-popover {
+	syntax: "<integer>";
+	initial-value: 60;
+	inherits: true;
+}
+@property --z-tooltip {
+	syntax: "<integer>";
+	initial-value: 70;
+	inherits: true;
+}

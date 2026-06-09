@@ -14,7 +14,7 @@ export function readonlyGetters<T extends Record<string, any>>(state: T): Getter
 				return state[key];
 			},
 			set(v) {
-				if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
+				if (typeof process !== "undefined" && process.env.NODE_ENV !== "production") {
 					console.warn(`[bindrunes] Attempted to set readonly property "${key}"`);
 				}
 			},

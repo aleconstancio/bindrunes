@@ -1,10 +1,15 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
 import Portfolio from "./Portfolio.svelte";
 
 describe("Portfolio", () => {
 	const items = [
-		{ title: "Project A", description: "A cool project", image: "/img/a.jpg", tags: ["Svelte", "TS"] },
+		{
+			title: "Project A",
+			description: "A cool project",
+			image: "/img/a.jpg",
+			tags: ["Svelte", "TS"],
+		},
 		{ title: "Project B", description: "Another project" },
 	];
 

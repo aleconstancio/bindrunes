@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { createDensity } from '../utils/createDensity.svelte';
-	import type { Density } from '../utils/createDensity.svelte';
+import type { createDensity, Density } from "../utils/createDensity.svelte";
 
-	let {
-		density,
-	}: {
-		density: ReturnType<typeof createDensity>;
-	} = $props();
+let {
+	density,
+}: {
+	density: ReturnType<typeof createDensity>;
+} = $props();
 </script>
 
 <div>

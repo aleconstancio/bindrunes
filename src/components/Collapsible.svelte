@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { Collapsible as BitsCollapsible } from 'bits-ui';
+import { Collapsible as BitsCollapsible } from "bits-ui";
 
-	let {
-		open = $bindable(false),
-		disabled = false,
-		trigger,
-		class: className = '',
-		children,
-	}: {
-		open?: boolean;
-		disabled?: boolean;
-		trigger?: import('svelte').Snippet;
-		class?: string;
-		children?: import('svelte').Snippet;
-	} = $props();
+let {
+	open = $bindable(false),
+	disabled = false,
+	trigger,
+	class: className = "",
+	children,
+}: {
+	open?: boolean;
+	disabled?: boolean;
+	trigger?: import("svelte").Snippet;
+	class?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsCollapsible.Root bind:open {disabled} class="w-full {className}">

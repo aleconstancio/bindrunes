@@ -2,13 +2,13 @@
 import type { Component } from "svelte";
 
 let {
-  icon = undefined as Component | string | undefined,
-  size = 20,
-  class: className = "",
+	icon = undefined as Component | string | undefined,
+	size = 20,
+	class: className = "",
 }: {
-  icon?: Component | string;
-  size?: number;
-  class?: string;
+	icon?: Component | string;
+	size?: number;
+	class?: string;
 } = $props();
 </script>
 

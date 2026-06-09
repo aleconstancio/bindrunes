@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { NavigationMenu as BitsNavigationMenu } from 'bits-ui';
+import { NavigationMenu as BitsNavigationMenu } from "bits-ui";
 
-	type NavLink = { label: string; href: string };
+type NavLink = { label: string; href: string };
 
-	let {
-		links = [] as NavLink[],
-		activeId = undefined as string | undefined,
-		class: className = '',
-	}: {
-		links?: NavLink[];
-		activeId?: string;
-		class?: string;
-	} = $props();
+let {
+	links = [] as NavLink[],
+	activeId = undefined as string | undefined,
+	class: className = "",
+}: {
+	links?: NavLink[];
+	activeId?: string;
+	class?: string;
+} = $props();
 </script>
 
 <BitsNavigationMenu.Root

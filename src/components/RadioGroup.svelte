@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { RadioGroup as BitsRadioGroup } from 'bits-ui';
+import { RadioGroup as BitsRadioGroup } from "bits-ui";
 
-	type Option = { value: string; label: string; disabled?: boolean };
+type Option = { value: string; label: string; disabled?: boolean };
 
-	let {
-		value = $bindable(''),
-		options = [] as Option[],
-		class: className = '',
-		ariaLabel = undefined as string | undefined,
-	}: {
-		value?: string;
-		options?: Option[];
-		class?: string;
-		ariaLabel?: string;
-	} = $props();
+let {
+	value = $bindable(""),
+	options = [] as Option[],
+	class: className = "",
+	ariaLabel = undefined as string | undefined,
+}: {
+	value?: string;
+	options?: Option[];
+	class?: string;
+	ariaLabel?: string;
+} = $props();
 </script>
 
 <BitsRadioGroup.Root bind:value aria-label={ariaLabel} class="flex flex-col gap-2 {className}">

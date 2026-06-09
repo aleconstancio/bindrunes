@@ -1,13 +1,13 @@
 <script lang="ts">
-  let {
-    title = 'Regra Crítica',
-    description = '',
-    children,
-  }: {
-    title?: string;
-    description?: string;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	title = "Regra Crítica",
+	description = "",
+	children,
+}: {
+	title?: string;
+	description?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="rounded-[--radius] border p-4 bg-warning-soft border-warning/30">

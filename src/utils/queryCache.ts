@@ -1,7 +1,7 @@
-import { getContext, hasContext } from 'svelte';
+import { getContext, hasContext } from "svelte";
 
-export type QueryStatus = 'loading' | 'success' | 'error';
-export type FetchStatus = 'idle' | 'fetching';
+export type QueryStatus = "loading" | "success" | "error";
+export type FetchStatus = "idle" | "fetching";
 
 interface CacheEntry<TData = unknown> {
 	key: string;
@@ -15,11 +15,11 @@ interface CacheEntry<TData = unknown> {
 	gcTimeout: ReturnType<typeof setTimeout> | null;
 }
 
-export const CACHE_KEY = Symbol.for('bindrunes-query-cache');
+export const CACHE_KEY = Symbol.for("bindrunes-query-cache");
 const clientCache = new Map<string, CacheEntry>();
 
 export function getCache(): Map<string, CacheEntry> {
-	if (typeof window === 'undefined') {
+	if (typeof window === "undefined") {
 		try {
 			if (hasContext(CACHE_KEY)) {
 				return getContext(CACHE_KEY);
@@ -37,8 +37,8 @@ function createEntry(key: string): CacheEntry {
 		key,
 		data: undefined,
 		error: null,
-		status: 'loading',
-		fetchStatus: 'idle',
+		status: "loading",
+		fetchStatus: "idle",
 		lastUpdatedAt: 0,
 		promise: null,
 		subscribers: new Set(),
@@ -75,7 +75,7 @@ export function subscribe(key: string, listener: () => void): () => void {
 }
 
 export function notify(entry: CacheEntry): void {
-	entry.subscribers.forEach(fn => fn());
+	entry.subscribers.forEach((fn) => fn());
 }
 
 export function defaultRetryDelay(attempt: number): number {
@@ -85,7 +85,7 @@ export function defaultRetryDelay(attempt: number): number {
 export async function fetchQuery<T>(
 	key: string,
 	fetcher: () => Promise<T>,
-	options?: { retry?: number }
+	options?: { retry?: number },
 ): Promise<void> {
 	const entry = getOrCreateEntry<T>(key);
 
@@ -93,8 +93,8 @@ export async function fetchQuery<T>(
 		return entry.promise;
 	}
 
-	entry.status = 'loading';
-	entry.fetchStatus = 'fetching';
+	entry.status = "loading";
+	entry.fetchStatus = "fetching";
 	entry.error = null;
 	notify(entry);
 
@@ -105,8 +105,8 @@ export async function fetchQuery<T>(
 			try {
 				const result = await fetcher();
 				entry.data = result;
-				entry.status = 'success';
-				entry.fetchStatus = 'idle';
+				entry.status = "success";
+				entry.fetchStatus = "idle";
 				entry.lastUpdatedAt = Date.now();
 				entry.error = null;
 				entry.promise = null;
@@ -114,11 +114,11 @@ export async function fetchQuery<T>(
 				return;
 			} catch (err) {
 				if (attempt < maxRetries) {
-					await new Promise(resolve => setTimeout(resolve, defaultRetryDelay(attempt)));
+					await new Promise((resolve) => setTimeout(resolve, defaultRetryDelay(attempt)));
 				} else {
 					entry.error = err instanceof Error ? err : new Error(String(err));
-					entry.status = 'error';
-					entry.fetchStatus = 'idle';
+					entry.status = "error";
+					entry.fetchStatus = "idle";
 					entry.promise = null;
 					notify(entry);
 					return;
@@ -141,7 +141,7 @@ export function invalidateQuery(key: string): void {
 export function setQueryData<T>(key: string, data: T): void {
 	const entry = getOrCreateEntry<T>(key);
 	entry.data = data;
-	entry.status = 'success';
+	entry.status = "success";
 	entry.lastUpdatedAt = Date.now();
 	notify(entry);
 }

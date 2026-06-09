@@ -1,11 +1,11 @@
-import { expect } from 'vitest';
-import { configureAxe } from 'vitest-axe';
+import { expect } from "vitest";
+import { configureAxe } from "vitest-axe";
 
 const axe = configureAxe({
 	rules: {
-		'aria-required-children': { enabled: false },
-		'aria-required-parent': { enabled: false },
-		'color-contrast': { enabled: false },
+		"aria-required-children": { enabled: false },
+		"aria-required-parent": { enabled: false },
+		"color-contrast": { enabled: false },
 	},
 });
 

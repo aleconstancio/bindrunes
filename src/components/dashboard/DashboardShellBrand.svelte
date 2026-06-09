@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { Component } from 'svelte';
+import type { Component } from "svelte";
 
-	let {
-		brandIcon = undefined as string | Component | undefined,
-		appName = '',
-		appSubtitle = undefined as string | undefined,
-	}: {
-		brandIcon?: string | Component;
-		appName?: string;
-		appSubtitle?: string;
-	} = $props();
+let {
+	brandIcon = undefined as string | Component | undefined,
+	appName = "",
+	appSubtitle = undefined as string | undefined,
+}: {
+	brandIcon?: string | Component;
+	appName?: string;
+	appSubtitle?: string;
+} = $props();
 </script>
 
 {#if brandIcon || appName}

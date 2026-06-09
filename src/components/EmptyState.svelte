@@ -1,15 +1,15 @@
 <script lang="ts">
-  let {
-    icon,
-    title = undefined as string | undefined,
-    description = undefined as string | undefined,
-    action,
-  }: {
-    icon?: import('svelte').Snippet;
-    title?: string;
-    description?: string;
-    action?: import('svelte').Snippet;
-  } = $props();
+let {
+	icon,
+	title = undefined as string | undefined,
+	description = undefined as string | undefined,
+	action,
+}: {
+	icon?: import("svelte").Snippet;
+	title?: string;
+	description?: string;
+	action?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="flex flex-col items-center justify-center py-16 text-center">

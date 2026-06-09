@@ -1,13 +1,13 @@
 <script lang="ts">
-  let {
-    items = [] as { label: string; href?: string }[],
-    separator = '/',
-    class: className = '',
-  }: {
-    items?: { label: string; href?: string }[];
-    separator?: string;
-    class?: string;
-  } = $props();
+let {
+	items = [] as { label: string; href?: string }[],
+	separator = "/",
+	class: className = "",
+}: {
+	items?: { label: string; href?: string }[];
+	separator?: string;
+	class?: string;
+} = $props();
 </script>
 
 <nav aria-label="Breadcrumb" class="text-body-sm {className}">

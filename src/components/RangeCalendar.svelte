@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { RangeCalendar as BitsRangeCalendar } from 'bits-ui';
+import { RangeCalendar as BitsRangeCalendar } from "bits-ui";
 
-	let {
-		value = $bindable<{ start: Date; end: Date } | undefined>(undefined),
-		class: className = '',
-	}: {
-		value?: { start: Date; end: Date } | undefined;
-		class?: string;
-	} = $props();
+let {
+	value = $bindable<{ start: Date; end: Date } | undefined>(undefined),
+	class: className = "",
+}: {
+	value?: { start: Date; end: Date } | undefined;
+	class?: string;
+} = $props();
 </script>
 
 	<BitsRangeCalendar.Root

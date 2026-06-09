@@ -32,7 +32,7 @@ export interface OmnibarState {
 
 export function createOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
 	let isOpen = $state(false);
-	let searchQuery = $state('');
+	let searchQuery = $state("");
 	let selectedIndex = $state(0);
 	let options = $state<OmnibarOption[]>(opts.options ?? []);
 	let isLoading = $state(false);
@@ -44,7 +44,7 @@ export function createOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
 			(o) =>
 				o.label.toLowerCase().includes(q) ||
 				o.description?.toLowerCase().includes(q) ||
-				o.category?.toLowerCase().includes(q)
+				o.category?.toLowerCase().includes(q),
 		);
 	});
 
@@ -66,15 +66,30 @@ export function createOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
 		}
 	}
 
-	function open() { isOpen = true; searchQuery = ''; selectedIndex = 0; }
+	function open() {
+		isOpen = true;
+		searchQuery = "";
+		selectedIndex = 0;
+	}
 
-	function close() { isOpen = false; searchQuery = ''; selectedIndex = 0; }
+	function close() {
+		isOpen = false;
+		searchQuery = "";
+		selectedIndex = 0;
+	}
 
-	function toggle() { if (isOpen) close(); else open(); }
+	function toggle() {
+		if (isOpen) close();
+		else open();
+	}
 
-	function selectNext() { if (selectedIndex < filteredOptions.length - 1) selectedIndex++; }
+	function selectNext() {
+		if (selectedIndex < filteredOptions.length - 1) selectedIndex++;
+	}
 
-	function selectPrev() { if (selectedIndex > 0) selectedIndex--; }
+	function selectPrev() {
+		if (selectedIndex > 0) selectedIndex--;
+	}
 
 	function executeSelected() {
 		const opt = filteredOptions[selectedIndex];
@@ -86,34 +101,53 @@ export function createOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
 	}
 
 	$effect(() => {
-		const key = opts.shortcutKey ?? 'k';
+		const key = opts.shortcutKey ?? "k";
 		const ctrl = opts.shortcutCtrl ?? true;
 
 		function onKeyDown(e: KeyboardEvent) {
-			if (e.key.toLowerCase() === key.toLowerCase() && (ctrl ? (e.metaKey || e.ctrlKey) : true)) {
+			if (e.key.toLowerCase() === key.toLowerCase() && (ctrl ? e.metaKey || e.ctrlKey : true)) {
 				e.preventDefault();
 				toggle();
 			}
-			if (e.key === 'Escape' && isOpen) {
+			if (e.key === "Escape" && isOpen) {
 				close();
 			}
 			if (isOpen) {
-				if (e.key === 'ArrowDown') { e.preventDefault(); selectNext(); }
-				if (e.key === 'ArrowUp') { e.preventDefault(); selectPrev(); }
-				if (e.key === 'Enter') { e.preventDefault(); executeSelected(); }
+				if (e.key === "ArrowDown") {
+					e.preventDefault();
+					selectNext();
+				}
+				if (e.key === "ArrowUp") {
+					e.preventDefault();
+					selectPrev();
+				}
+				if (e.key === "Enter") {
+					e.preventDefault();
+					executeSelected();
+				}
 			}
 		}
 
-		window.addEventListener('keydown', onKeyDown);
-		return () => window.removeEventListener('keydown', onKeyDown);
+		window.addEventListener("keydown", onKeyDown);
+		return () => window.removeEventListener("keydown", onKeyDown);
 	});
 
 	return {
-		get isOpen() { return isOpen; },
-		get searchQuery() { return searchQuery; },
-		get selectedIndex() { return selectedIndex; },
-		get filteredOptions() { return filteredOptions; },
-		get isLoading() { return isLoading; },
+		get isOpen() {
+			return isOpen;
+		},
+		get searchQuery() {
+			return searchQuery;
+		},
+		get selectedIndex() {
+			return selectedIndex;
+		},
+		get filteredOptions() {
+			return filteredOptions;
+		},
+		get isLoading() {
+			return isLoading;
+		},
 		open,
 		close,
 		toggle,

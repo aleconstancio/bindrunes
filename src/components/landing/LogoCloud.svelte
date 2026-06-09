@@ -1,21 +1,20 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
-  import type { Component } from 'svelte';
+import type { Component, Snippet } from "svelte";
 
-  interface Logo {
-    label: string;
-    icon?: Component;
-    href?: string;
-  }
+interface Logo {
+	label: string;
+	icon?: Component;
+	href?: string;
+}
 
-  interface Props {
-    title?: string;
-    logos: Logo[];
-    children?: Snippet;
-    class?: string;
-  }
+interface Props {
+	title?: string;
+	logos: Logo[];
+	children?: Snippet;
+	class?: string;
+}
 
-  let { title, logos, children, class: className = '' }: Props = $props();
+let { title, logos, children, class: className = "" }: Props = $props();
 </script>
 
 <div class="px-6 py-12 section-reveal {className}">

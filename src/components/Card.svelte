@@ -1,36 +1,37 @@
 <script lang="ts">
-  type Variant = 'surface' | 'glass' | 'outlined' | 'ghost';
+type Variant = "surface" | "glass" | "outlined" | "ghost";
 
-  let {
-    variant = 'surface' as Variant,
-    interactive = false,
-    padding = true,
-    href = undefined as string | undefined,
-    ariaLabel = undefined as string | undefined,
-    onclick = undefined as ((e: MouseEvent) => void) | undefined,
-    header,
-    children,
-    footer,
-    class: className = '',
-  }: {
-    variant?: Variant;
-    interactive?: boolean;
-    padding?: boolean;
-    href?: string;
-    ariaLabel?: string;
-    onclick?: (e: MouseEvent) => void;
-    header?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-    footer?: import('svelte').Snippet;
-    class?: string;
-  } = $props();
+let {
+	variant = "surface" as Variant,
+	interactive = false,
+	padding = true,
+	href = undefined as string | undefined,
+	ariaLabel = undefined as string | undefined,
+	onclick = undefined as ((e: MouseEvent) => void) | undefined,
+	header,
+	children,
+	footer,
+	class: className = "",
+}: {
+	variant?: Variant;
+	interactive?: boolean;
+	padding?: boolean;
+	href?: string;
+	ariaLabel?: string;
+	onclick?: (e: MouseEvent) => void;
+	header?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+	footer?: import("svelte").Snippet;
+	class?: string;
+} = $props();
 
-  const vars: Record<Variant, string> = {
-    surface: 'bg-card text-card-foreground shadow-sm border border-border',
-    glass: 'bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--glass-blur,16px]',
-    outlined: 'bg-transparent border border-border',
-    ghost: 'bg-transparent',
-  };
+const vars: Record<Variant, string> = {
+	surface: "bg-card text-card-foreground shadow-sm border border-border",
+	glass:
+		"bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--glass-blur,16px]",
+	outlined: "bg-transparent border border-border",
+	ghost: "bg-transparent",
+};
 </script>
 
 {#if href}

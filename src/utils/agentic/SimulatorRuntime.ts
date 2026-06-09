@@ -3,12 +3,7 @@
 // development. Reads scripted Delta streams; respects AbortSignal; never
 // touches the network.
 
-import type {
-	AgentRuntime,
-	CompletionRequest,
-	Delta,
-	ToolSpec,
-} from "../../types/agent";
+import type { AgentRuntime, CompletionRequest, Delta, ToolSpec } from "../../types/agent";
 import { isTerminalDelta } from "../../types/agent";
 
 export interface SimulatorRuntimeOptions {
@@ -26,10 +21,7 @@ export class SimulatorRuntime implements AgentRuntime {
 		this.delayMs = options.delayMs ?? 0;
 	}
 
-	async *complete(
-		_req: CompletionRequest,
-		signal: AbortSignal,
-	): AsyncIterable<Delta> {
+	async *complete(_req: CompletionRequest, signal: AbortSignal): AsyncIterable<Delta> {
 		if (signal.aborted) {
 			return;
 		}

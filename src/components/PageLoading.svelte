@@ -1,19 +1,19 @@
 <script lang="ts">
-  import type { TFunction } from '../shared-types';
+import type { TFunction } from "../shared-types";
 
-  type Type = 'table' | 'cards' | 'form' | 'text';
+type Type = "table" | "cards" | "form" | "text";
 
-  let {
-    t = undefined as TFunction | undefined,
-    type = 'text' as Type,
-    lines = 1,
-    rows = 1,
-  }: {
-    t?: TFunction;
-    type?: Type;
-    lines?: number;
-    rows?: number;
-  } = $props();
+let {
+	t = undefined as TFunction | undefined,
+	type = "text" as Type,
+	lines = 1,
+	rows = 1,
+}: {
+	t?: TFunction;
+	type?: Type;
+	lines?: number;
+	rows?: number;
+} = $props();
 </script>
 
 {#if type === 'table'}

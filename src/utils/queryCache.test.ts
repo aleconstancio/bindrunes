@@ -1,15 +1,15 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+	defaultRetryDelay,
+	fetchQuery,
 	getEntry,
 	getOrCreateEntry,
-	subscribe,
-	notify,
-	fetchQuery,
-	defaultRetryDelay,
 	invalidateQuery,
-	setQueryData,
+	notify,
 	removeEntry,
-} from '../utils/queryCache';
+	setQueryData,
+	subscribe,
+} from "../utils/queryCache";
 
 describe("queryCache", () => {
 	afterEach(() => {
@@ -17,16 +17,31 @@ describe("queryCache", () => {
 	});
 
 	const sharedKeys = [
-		'nonexistent', 'fresh-key', 'existing-key', 'get-test',
-		'sub-key', 'notify-key', 'unsub-key', 'multi-key',
-		'fetch-key', 'notify-fetch', 'dedup-key',
-		'retry-success-key', 'retry-fail-key', 'no-retry-key', 'default-retry-key',
-		'inv-key', 'inv-notify', 'set-key', 'set-notify', 'set-create',
-		'remove-key',
+		"nonexistent",
+		"fresh-key",
+		"existing-key",
+		"get-test",
+		"sub-key",
+		"notify-key",
+		"unsub-key",
+		"multi-key",
+		"fetch-key",
+		"notify-fetch",
+		"dedup-key",
+		"retry-success-key",
+		"retry-fail-key",
+		"no-retry-key",
+		"default-retry-key",
+		"inv-key",
+		"inv-notify",
+		"set-key",
+		"set-notify",
+		"set-create",
+		"remove-key",
 	];
 
 	beforeEach(() => {
-		sharedKeys.forEach(k => removeEntry(k));
+		sharedKeys.forEach((k) => removeEntry(k));
 	});
 
 	describe("getEntry / getOrCreateEntry", () => {
@@ -63,7 +78,7 @@ describe("queryCache", () => {
 
 	describe("subscribe / notify", () => {
 		it("subscribe returns an unsubscribe function", () => {
-			const unsub = subscribe("sub-key", () => { });
+			const unsub = subscribe("sub-key", () => {});
 			expect(typeof unsub).toBe("function");
 			unsub();
 		});
@@ -120,10 +135,12 @@ describe("queryCache", () => {
 	});
 
 	describe("fetchQuery dedup", () => {
-	it("concurrent calls with the same key use the cached promise", async () => {
+		it("concurrent calls with the same key use the cached promise", async () => {
 			let resolveFetcher: (v: string) => void;
 			const fetcher = vi.fn().mockReturnValue(
-				new Promise<string>(resolve => { resolveFetcher = resolve; })
+				new Promise<string>((resolve) => {
+					resolveFetcher = resolve;
+				}),
 			);
 
 			fetchQuery("dedup-key", fetcher);
@@ -145,7 +162,8 @@ describe("queryCache", () => {
 	describe("fetchQuery retry", () => {
 		it("retries on failure and eventually succeeds", async () => {
 			vi.useFakeTimers();
-			const fetcher = vi.fn()
+			const fetcher = vi
+				.fn()
 				.mockRejectedValueOnce(new Error("fail 1"))
 				.mockResolvedValueOnce("success-after-retry");
 

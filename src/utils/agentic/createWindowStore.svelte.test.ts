@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { createWindowStore } from "./createWindowStore.svelte";
-import type { Turn, CompactionPlan, Window } from "../../types/agent";
+import { beforeEach, describe, expect, it } from "vitest";
+import type { CompactionPlan, Turn, Window } from "../../types/agent";
 import { toWindowId } from "../../types/agent";
+import { createWindowStore } from "./createWindowStore.svelte";
 
 function makeTurn(role: Turn["role"], content: string, tokens = 10): Turn {
 	return {

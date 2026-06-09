@@ -6,13 +6,7 @@
 // Reusable across all Svelte 5 components via shared context. Exposes
 // readonly getters — internal mutations happen in place via Svelte 5 runes.
 
-import type {
-	CompactionPlan,
-	EvictionPolicy,
-	Turn,
-	Window,
-	WindowId,
-} from "../../types/agent";
+import type { CompactionPlan, EvictionPolicy, Turn, Window, WindowId } from "../../types/agent";
 import { toWindowId } from "../../types/agent";
 
 export interface WindowStoreOptions {
@@ -130,14 +124,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 			const source = windows[idx]!;
 			const childId = toWindowId(uid("w"));
 			const childState = (forkOptions?.state ?? source.state) as TState;
-			const child = emptyWindow(
-				childId,
-				fromId,
-				childState,
-				budgetCap,
-				source.policy,
-				nowMs(),
-			);
+			const child = emptyWindow(childId, fromId, childState, budgetCap, source.policy, nowMs());
 			// Snapshot the turns at fork time.
 			(child.turns as Turn[]).push(...source.turns.map((t) => ({ ...t })));
 			(child.budget as { used: number }).used = sumTokens(child.turns);

@@ -1,86 +1,89 @@
 <script lang="ts">
-  import Progress from './Progress.svelte';
+import Progress from "./Progress.svelte";
 
-  type FileEntry = {
-    file: File;
-    preview?: string;
-    progress: number;
-    status: 'pending' | 'uploading' | 'done' | 'error';
-    error?: string;
-  };
+type FileEntry = {
+	file: File;
+	preview?: string;
+	progress: number;
+	status: "pending" | "uploading" | "done" | "error";
+	error?: string;
+};
 
-  let {
-    accept = undefined as string[] | undefined,
-    maxFiles = 10,
-    maxSize = 10 * 1024 * 1024,
-    multiple = true,
-    onUpload = undefined as ((files: File[]) => Promise<void>) | undefined,
-    class: className = '',
-    dropzone = undefined as import('svelte').Snippet | undefined,
-  }: {
-    accept?: string[];
-    maxFiles?: number;
-    maxSize?: number;
-    multiple?: boolean;
-    onUpload?: (files: File[]) => Promise<void>;
-    class?: string;
-    dropzone?: import('svelte').Snippet;
-  } = $props();
+let {
+	accept = undefined as string[] | undefined,
+	maxFiles = 10,
+	maxSize = 10 * 1024 * 1024,
+	multiple = true,
+	onUpload = undefined as ((files: File[]) => Promise<void>) | undefined,
+	class: className = "",
+	dropzone = undefined as import("svelte").Snippet | undefined,
+}: {
+	accept?: string[];
+	maxFiles?: number;
+	maxSize?: number;
+	multiple?: boolean;
+	onUpload?: (files: File[]) => Promise<void>;
+	class?: string;
+	dropzone?: import("svelte").Snippet;
+} = $props();
 
-  let files = $state<FileEntry[]>([]);
-  let dragover = $state(false);
-  let inputEl = $state<HTMLInputElement>();
+let files = $state<FileEntry[]>([]);
+let dragover = $state(false);
+let inputEl = $state<HTMLInputElement>();
 
-  function addFiles(newFiles: FileList | File[]) {
-    const incoming = Array.from(newFiles);
-    const filtered = incoming
-      .filter(f => !accept || accept.some(type => f.type.match(type.replace('*', '.*'))))
-      .filter(f => f.size <= maxSize)
-      .slice(0, maxFiles - files.length);
+function addFiles(newFiles: FileList | File[]) {
+	const incoming = Array.from(newFiles);
+	const filtered = incoming
+		.filter((f) => !accept || accept.some((type) => f.type.match(type.replace("*", ".*"))))
+		.filter((f) => f.size <= maxSize)
+		.slice(0, maxFiles - files.length);
 
-    files = [...files, ...filtered.map(file => ({
-      file,
-      preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : undefined,
-      progress: 0,
-      status: 'pending' as const,
-    }))];
-  }
+	files = [
+		...files,
+		...filtered.map((file) => ({
+			file,
+			preview: file.type.startsWith("image/") ? URL.createObjectURL(file) : undefined,
+			progress: 0,
+			status: "pending" as const,
+		})),
+	];
+}
 
-  function removeFile(index: number) {
-    if (files[index].preview) URL.revokeObjectURL(files[index].preview);
-    files = files.filter((_, i) => i !== index);
-  }
+function removeFile(index: number) {
+	if (files[index].preview) URL.revokeObjectURL(files[index].preview);
+	files = files.filter((_, i) => i !== index);
+}
 
-  function handleDrop(e: DragEvent) {
-    e.preventDefault();
-    dragover = false;
-    if (e.dataTransfer?.files) addFiles(e.dataTransfer.files);
-  }
+function handleDrop(e: DragEvent) {
+	e.preventDefault();
+	dragover = false;
+	if (e.dataTransfer?.files) addFiles(e.dataTransfer.files);
+}
 
-  function handleDragOver(e: DragEvent) {
-    e.preventDefault();
-    dragover = true;
-  }
+function handleDragOver(e: DragEvent) {
+	e.preventDefault();
+	dragover = true;
+}
 
-  function handleDragLeave() {
-    dragover = false;
-  }
+function handleDragLeave() {
+	dragover = false;
+}
 
-  function handleClick() {
-    inputEl?.click();
-  }
+function handleClick() {
+	inputEl?.click();
+}
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      inputEl?.click();
-    }
-  }
+function handleKeydown(e: KeyboardEvent) {
+	if (e.key === "Enter" || e.key === " ") {
+		e.preventDefault();
+		inputEl?.click();
+	}
+}
 
-  function handleFileInput(e: Event) {
-    const target = e.target as HTMLInputElement;
-    if (target.files) addFiles(target.files);
-  }
+function handleFileInput(e: Event) {
+	const target = e.target as HTMLInputElement;
+	if (target.files) addFiles(target.files);
+}
 </script>
 
 <div

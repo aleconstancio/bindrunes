@@ -1,23 +1,23 @@
 <script lang="ts">
-  import Breadcrumb from './Breadcrumb.svelte';
+import Breadcrumb from "./Breadcrumb.svelte";
 
-  let {
-    title = '',
-    description = undefined as string | undefined,
-    backHref = undefined as string | undefined,
-    breadcrumbs = [] as { label: string; href?: string }[],
-    class: className = '',
-    actions,
-    children,
-  }: {
-    title?: string;
-    description?: string;
-    backHref?: string;
-    breadcrumbs?: { label: string; href?: string }[];
-    class?: string;
-    actions?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	title = "",
+	description = undefined as string | undefined,
+	backHref = undefined as string | undefined,
+	breadcrumbs = [] as { label: string; href?: string }[],
+	class: className = "",
+	actions,
+	children,
+}: {
+	title?: string;
+	description?: string;
+	backHref?: string;
+	breadcrumbs?: { label: string; href?: string }[];
+	class?: string;
+	actions?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="space-y-4 {className}">

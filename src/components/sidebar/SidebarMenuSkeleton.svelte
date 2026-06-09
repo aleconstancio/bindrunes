@@ -1,5 +1,5 @@
 <script lang="ts">
-  let { children }: { children?: import('svelte').Snippet } = $props();
+let { children }: { children?: import("svelte").Snippet } = $props();
 </script>
 
 <div class="flex items-center gap-2 px-3 py-1.5">

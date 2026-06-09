@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
 import SocialProof from "./SocialProof.svelte";
 
 describe("SocialProof", () => {
@@ -8,10 +8,7 @@ describe("SocialProof", () => {
 		{ quote: "Changed our workflow", author: "Bob" },
 	];
 
-	const logos = [
-		{ name: "Acme" },
-		{ name: "TechCo", url: "https://techco.com" },
-	];
+	const logos = [{ name: "Acme" }, { name: "TechCo", url: "https://techco.com" }];
 
 	it("renders title", () => {
 		render(SocialProof, { title: "Trusted by thousands", testimonials, logos });

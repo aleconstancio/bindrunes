@@ -1,14 +1,14 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/svelte';
-import { tick } from 'svelte';
-import AestheticTab from './AestheticTab.svelte';
-import ComposableHarness from '../ComposableHarness.svelte';
-import { createAesthetic } from '../utils/createAesthetic.svelte';
+import { fireEvent, render, screen } from "@testing-library/svelte";
+import { tick } from "svelte";
+import { beforeEach, describe, expect, it } from "vitest";
+import ComposableHarness from "../ComposableHarness.svelte";
+import { createAesthetic } from "../utils/createAesthetic.svelte";
+import AestheticTab from "./AestheticTab.svelte";
 
-describe('AestheticTab', () => {
+describe("AestheticTab", () => {
 	beforeEach(() => {
 		localStorage.clear();
-		document.documentElement.removeAttribute('data-aesthetic');
+		document.documentElement.removeAttribute("data-aesthetic");
 	});
 
 	async function mountAesthetic() {
@@ -23,53 +23,56 @@ describe('AestheticTab', () => {
 			},
 		});
 		await tick();
-		return state.current as { aesthetic: ReturnType<typeof createAesthetic>; render: typeof AestheticTab };
+		return state.current as {
+			aesthetic: ReturnType<typeof createAesthetic>;
+			render: typeof AestheticTab;
+		};
 	}
 
-	it('renders the form aesthetic label', async () => {
+	it("renders the form aesthetic label", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
-		expect(screen.getByText('Form aesthetic')).toBeInTheDocument();
+		expect(screen.getByText("Form aesthetic")).toBeInTheDocument();
 	});
 
-	it('renders all aesthetic options', async () => {
+	it("renders all aesthetic options", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
-		expect(screen.getByText('editorial')).toBeInTheDocument();
-		expect(screen.getByText('glass')).toBeInTheDocument();
-		expect(screen.getByText('bento')).toBeInTheDocument();
-		expect(screen.getByText('expressive')).toBeInTheDocument();
+		expect(screen.getByText("editorial")).toBeInTheDocument();
+		expect(screen.getByText("glass")).toBeInTheDocument();
+		expect(screen.getByText("bento")).toBeInTheDocument();
+		expect(screen.getByText("expressive")).toBeInTheDocument();
 	});
 
-	it('shows description for editorial', async () => {
+	it("shows description for editorial", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
 		expect(screen.getByText(/Flat surfaces/)).toBeInTheDocument();
 	});
 
-	it('shows description for glass', async () => {
+	it("shows description for glass", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
 		expect(screen.getByText(/Translucent surfaces/)).toBeInTheDocument();
 	});
 
-	it('shows description for bento', async () => {
+	it("shows description for bento", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
 		expect(screen.getByText(/Rounded corners/)).toBeInTheDocument();
 	});
 
-	it('shows description for neon/expressive', async () => {
+	it("shows description for neon/expressive", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
 		expect(screen.getByText(/Dramatic shadows/)).toBeInTheDocument();
 	});
 
-	it('clicking an aesthetic calls setAesthetic', async () => {
+	it("clicking an aesthetic calls setAesthetic", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
-		await fireEvent.click(screen.getByText('glass'));
+		await fireEvent.click(screen.getByText("glass"));
 		await tick();
-		expect(a.aesthetic.aesthetic).toBe('glass');
+		expect(a.aesthetic.aesthetic).toBe("glass");
 	});
 });

@@ -2,8 +2,8 @@
 import { Eye, EyeOff, UserPlus } from "lucide-svelte";
 import Button from "../../Button.svelte";
 import Input from "../../Input.svelte";
-import Block from "../Block.svelte";
 import MetaContainer from "../../MetaContainer.svelte";
+import Block from "../Block.svelte";
 
 let {
 	title = "Create an account",

@@ -1,43 +1,49 @@
 <script lang="ts">
-	import { Pagination as BitsPagination } from 'bits-ui';
+import { Pagination as BitsPagination } from "bits-ui";
 
-	let {
-		currentPage = 1,
-		totalPages = 1,
-		siblingCount = 2,
-		showTotal = false,
-		pageSize = 20,
-		pageSizeOptions = [10, 20, 50, 100],
-		onPageChange = undefined as ((page: number) => void) | undefined,
-		onPageSizeChange = undefined as ((size: number) => void) | undefined,
-		t = (key: string, params?: Record<string, string | number>): string => {
-			const fallbacks: Record<string, string> = {
-				'table.page': `Page ${params?.current ?? '?'} of ${params?.total ?? '?'}`,
-				'pagination.perPage': `${params?.count ?? '?'} per page`,
-			};
-			return fallbacks[key] ?? key;
-		},
-	}: {
-		currentPage?: number;
-		totalPages?: number;
-		siblingCount?: number;
-		showTotal?: boolean;
-		pageSize?: number;
-		pageSizeOptions?: number[];
-		onPageChange?: (page: number) => void;
-		onPageSizeChange?: (size: number) => void;
-		t?: (key: string, params?: Record<string, string | number>) => string;
-	} = $props();
+let {
+	currentPage = 1,
+	totalPages = 1,
+	siblingCount = 2,
+	showTotal = false,
+	pageSize = 20,
+	pageSizeOptions = [10, 20, 50, 100],
+	onPageChange = undefined as ((page: number) => void) | undefined,
+	onPageSizeChange = undefined as ((size: number) => void) | undefined,
+	t = (key: string, params?: Record<string, string | number>): string => {
+		const fallbacks: Record<string, string> = {
+			"table.page": `Page ${params?.current ?? "?"} of ${params?.total ?? "?"}`,
+			"pagination.perPage": `${params?.count ?? "?"} per page`,
+		};
+		return fallbacks[key] ?? key;
+	},
+}: {
+	currentPage?: number;
+	totalPages?: number;
+	siblingCount?: number;
+	showTotal?: boolean;
+	pageSize?: number;
+	pageSizeOptions?: number[];
+	onPageChange?: (page: number) => void;
+	onPageSizeChange?: (size: number) => void;
+	t?: (key: string, params?: Record<string, string | number>) => string;
+} = $props();
 
-	let pages = $derived.by(() => {
-		const range: (number | string)[] = [];
-		const start = Math.max(1, currentPage - siblingCount);
-		const end = Math.min(totalPages, currentPage + siblingCount);
-		if (start > 1) { range.push(1); if (start > 2) range.push('...'); }
-		for (let i = start; i <= end; i++) range.push(i);
-		if (end < totalPages) { if (end < totalPages - 1) range.push('...'); range.push(totalPages); }
-		return range;
-	});
+let pages = $derived.by(() => {
+	const range: (number | string)[] = [];
+	const start = Math.max(1, currentPage - siblingCount);
+	const end = Math.min(totalPages, currentPage + siblingCount);
+	if (start > 1) {
+		range.push(1);
+		if (start > 2) range.push("...");
+	}
+	for (let i = start; i <= end; i++) range.push(i);
+	if (end < totalPages) {
+		if (end < totalPages - 1) range.push("...");
+		range.push(totalPages);
+	}
+	return range;
+});
 </script>
 
 <BitsPagination.Root count={totalPages} perPage={1} page={currentPage} onPageChange={onPageChange}>

@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { Separator as BitsSeparator } from 'bits-ui';
+import { Separator as BitsSeparator } from "bits-ui";
 
-	let {
-		orientation = 'horizontal' as 'horizontal' | 'vertical',
-		class: className = '',
-	}: {
-		orientation?: 'horizontal' | 'vertical';
-		class?: string;
-	} = $props();
+let {
+	orientation = "horizontal" as "horizontal" | "vertical",
+	class: className = "",
+}: {
+	orientation?: "horizontal" | "vertical";
+	class?: string;
+} = $props();
 </script>
 
 <BitsSeparator.Root

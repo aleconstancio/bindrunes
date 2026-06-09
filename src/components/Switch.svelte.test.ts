@@ -1,31 +1,31 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/svelte';
-import userEvent from '@testing-library/user-event';
-import Switch from '../../src/components/Switch.svelte';
+import { render, screen } from "@testing-library/svelte";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, it } from "vitest";
+import Switch from "../../src/components/Switch.svelte";
 
-describe('Switch', () => {
-	it('renders label when provided', () => {
-		render(Switch, { props: { label: 'Notifications' } });
-		expect(screen.getByText('Notifications')).toBeInTheDocument();
+describe("Switch", () => {
+	it("renders label when provided", () => {
+		render(Switch, { props: { label: "Notifications" } });
+		expect(screen.getByText("Notifications")).toBeInTheDocument();
 	});
 
-	it('is unchecked by default', () => {
+	it("is unchecked by default", () => {
 		const { container } = render(Switch);
 		const root = container.querySelector('[role="switch"]');
-		expect(root?.getAttribute('data-state')).toBe('unchecked');
+		expect(root?.getAttribute("data-state")).toBe("unchecked");
 	});
 
-	it('toggles checked state on click', async () => {
+	it("toggles checked state on click", async () => {
 		const { container } = render(Switch);
 		const root = container.querySelector('[role="switch"]')!;
 		await userEvent.click(root);
-		expect(root.getAttribute('data-state')).toBe('checked');
+		expect(root.getAttribute("data-state")).toBe("checked");
 	});
 
-	it('does not toggle when disabled', async () => {
-		const { container } = render(Switch, { props: { disabled: true, label: 'Disabled' } });
+	it("does not toggle when disabled", async () => {
+		const { container } = render(Switch, { props: { disabled: true, label: "Disabled" } });
 		const root = container.querySelector('[role="switch"]')!;
 		await userEvent.click(root);
-		expect(root.getAttribute('data-state')).toBe('unchecked');
+		expect(root.getAttribute("data-state")).toBe("unchecked");
 	});
 });

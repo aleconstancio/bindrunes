@@ -1,13 +1,11 @@
 <script lang="ts">
-  import { toggleMode, mode } from 'mode-watcher';
-  import { Sun, Moon } from 'lucide-svelte';
-  import Button from './Button.svelte';
+import { Moon, Sun } from "lucide-svelte";
+import { mode, toggleMode } from "mode-watcher";
+import Button from "./Button.svelte";
 
-  let {
-    variant = 'outline' as 'icon' | 'outline',
-  } = $props();
+let { variant = "outline" as "icon" | "outline" } = $props();
 
-  let buttonVariant = $derived(variant === 'icon' ? 'ghost' : variant);
+let buttonVariant = $derived(variant === "icon" ? "ghost" : variant);
 </script>
 
 <Button

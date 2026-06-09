@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { Dialog as BitsDialog } from 'bits-ui';
+import { Dialog as BitsDialog } from "bits-ui";
 
-  let {
-    open = $bindable(false),
-    title = undefined as string | undefined,
-    ariaLabel = undefined as string | undefined,
-    icon,
-    children,
-    actions,
-  }: {
-    open?: boolean;
-    title?: string;
-    ariaLabel?: string;
-    icon?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-    actions?: import('svelte').Snippet;
-  } = $props();
+let {
+	open = $bindable(false),
+	title = undefined as string | undefined,
+	ariaLabel = undefined as string | undefined,
+	icon,
+	children,
+	actions,
+}: {
+	open?: boolean;
+	title?: string;
+	ariaLabel?: string;
+	icon?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+	actions?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsDialog.Root bind:open>

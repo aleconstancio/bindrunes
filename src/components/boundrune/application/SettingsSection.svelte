@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Block from "../Block.svelte";
 import MetaContainer from "../../MetaContainer.svelte";
+import Block from "../Block.svelte";
 
 let {
 	title = "",

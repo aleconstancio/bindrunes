@@ -1,38 +1,36 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import DynamicIcon from '../DynamicIcon.svelte';
-  import { getGridClass } from './landing-utils';
+import type { Snippet } from "svelte";
+import { onMount } from "svelte";
+import DynamicIcon from "../DynamicIcon.svelte";
+import type { Integration } from "./landing-types";
+import { getGridClass } from "./landing-utils";
 
-  import type { Integration } from './landing-types';
+interface Props {
+	title?: string;
+	integrations: Integration[];
+	columns?: 1 | 2 | 3;
+	children?: Snippet;
+	class?: string;
+}
 
-  interface Props {
-    title?: string;
-    integrations: Integration[];
-    columns?: 1 | 2 | 3;
-    children?: Snippet;
-    class?: string;
-  }
+let { title, integrations, columns = 3, children, class: className = "" }: Props = $props();
 
-  let { title, integrations, columns = 3, children, class: className = '' }: Props = $props();
+let visible = $state(false);
+let grid: HTMLElement;
 
-  let visible = $state(false);
-  let grid: HTMLElement;
-
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          visible = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(grid);
-    return () => observer.disconnect();
-  });
-
+onMount(() => {
+	const observer = new IntersectionObserver(
+		([entry]) => {
+			if (entry.isIntersecting) {
+				visible = true;
+				observer.disconnect();
+			}
+		},
+		{ threshold: 0.1 },
+	);
+	observer.observe(grid);
+	return () => observer.disconnect();
+});
 </script>
 
 <div class="px-6 py-12 section-reveal {className}">

@@ -1,32 +1,35 @@
 <script lang="ts">
-  import { useHead } from '../utils/useHead.svelte.ts';
+import { useHead } from "../utils/useHead.svelte.ts";
 
-  let {
-    title = undefined as string | undefined,
-    description = undefined as string | undefined,
-    ogTitle = undefined as string | undefined,
-    ogDescription = undefined as string | undefined,
-    ogImage = undefined as string | undefined,
-  }: {
-    title?: string;
-    description?: string;
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-  } = $props();
+let {
+	title = undefined as string | undefined,
+	description = undefined as string | undefined,
+	ogTitle = undefined as string | undefined,
+	ogDescription = undefined as string | undefined,
+	ogImage = undefined as string | undefined,
+}: {
+	title?: string;
+	description?: string;
+	ogTitle?: string;
+	ogDescription?: string;
+	ogImage?: string;
+} = $props();
 
-  // Run imperative useHead on client side for dynamic updates if metadata changes
-  $effect(() => {
-    useHead({
-      title,
-      description,
-      og: (ogTitle || ogDescription || ogImage) ? {
-        title: ogTitle ?? title,
-        description: ogDescription ?? description,
-        image: ogImage,
-      } : undefined,
-    });
-  });
+// Run imperative useHead on client side for dynamic updates if metadata changes
+$effect(() => {
+	useHead({
+		title,
+		description,
+		og:
+			ogTitle || ogDescription || ogImage
+				? {
+						title: ogTitle ?? title,
+						description: ogDescription ?? description,
+						image: ogImage,
+					}
+				: undefined,
+	});
+});
 </script>
 
 <svelte:head>

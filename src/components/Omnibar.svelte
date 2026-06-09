@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { Command } from 'bits-ui';
-	import type { OmnibarState } from '../utils/createOmnibar.svelte';
+import { Command } from "bits-ui";
+import type { OmnibarState } from "../utils/createOmnibar.svelte";
 
-	let {
-		state,
-		placeholder = 'Search commands, routes, memory...',
-	}: {
-		state: OmnibarState;
-		placeholder?: string;
-	} = $props();
+let {
+	state,
+	placeholder = "Search commands, routes, memory...",
+}: {
+	state: OmnibarState;
+	placeholder?: string;
+} = $props();
 
-	function select(opt: { action: () => void }) {
-		state.close();
-		opt.action();
-	}
+function select(opt: { action: () => void }) {
+	state.close();
+	opt.action();
+}
 </script>
 
 {#if state.isOpen}

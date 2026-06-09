@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
-import { SimulatorRuntime } from "./SimulatorRuntime";
-import type { Delta } from "../../types/agent";
+import { describe, expect, it } from "vitest";
 import { scriptedRun } from "../../test-fixtures/scriptedRuns";
+import type { Delta } from "../../types/agent";
+import { SimulatorRuntime } from "./SimulatorRuntime";
 
 async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
 	const out: T[] = [];
@@ -31,7 +31,9 @@ describe("SimulatorRuntime", () => {
 				{ kind: "done", finishReason: "stop" },
 			];
 			const rt = new SimulatorRuntime({ script });
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			expect(out).toEqual(script);
 		});
 
@@ -42,13 +44,17 @@ describe("SimulatorRuntime", () => {
 					{ kind: "done", finishReason: "stop" },
 				],
 			});
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			expect(out.at(-1)).toEqual({ kind: "done", finishReason: "stop" });
 		});
 
 		it("yields nothing when the script is empty", async () => {
 			const rt = new SimulatorRuntime({ script: [] });
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			expect(out).toEqual([]);
 		});
 
@@ -56,7 +62,9 @@ describe("SimulatorRuntime", () => {
 			const rt = new SimulatorRuntime({
 				script: [{ kind: "token", text: "trailing" }],
 			});
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			expect(out.at(-1)?.kind).toBe("done");
 		});
 	});
@@ -132,7 +140,9 @@ describe("SimulatorRuntime", () => {
 		it("scriptedRun.greeting yields a friendly greeting", async () => {
 			const script = scriptedRun("greeting");
 			const rt = new SimulatorRuntime({ script });
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			const text = out
 				.filter((d): d is Extract<Delta, { kind: "token" }> => d.kind === "token")
 				.map((d) => d.text)
@@ -143,7 +153,9 @@ describe("SimulatorRuntime", () => {
 		it("scriptedRun.toolCall yields a tool_call delta before done", async () => {
 			const script = scriptedRun("toolCall");
 			const rt = new SimulatorRuntime({ script });
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			const kinds = out.map((d) => d.kind);
 			expect(kinds).toContain("tool_call");
 			expect(kinds.at(-1)).toBe("done");
@@ -158,7 +170,9 @@ describe("SimulatorRuntime", () => {
 					{ kind: "error", message: "rate limited", recoverable: true },
 				],
 			});
-			const out = await collect(rt.complete({ messages: [] } as never, new AbortController().signal));
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
 			const kinds = out.map((d) => d.kind);
 			expect(kinds).toContain("error");
 			expect(kinds.at(-1)).toBe("error", "error is terminal and stops the stream");

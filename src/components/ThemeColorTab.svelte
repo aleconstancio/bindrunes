@@ -1,22 +1,22 @@
 <script lang="ts">
-	import Button from './Button.svelte';
-	import Input from './Input.svelte';
+import Button from "./Button.svelte";
+import Input from "./Input.svelte";
 
-	let {
-		baseTheme = 'editorial',
-		primaryHex = '#6B8AFF',
-		accentHex = '#8A6BFF',
-		destructiveHex = '#FF5555',
-		radius = '0.5rem',
-		onpreset,
-	}: {
-		baseTheme?: string;
-		primaryHex?: string;
-		accentHex?: string;
-		destructiveHex?: string;
-		radius?: string;
-		onpreset?: (preset: string) => void;
-	} = $props();
+let {
+	baseTheme = "editorial",
+	primaryHex = "#6B8AFF",
+	accentHex = "#8A6BFF",
+	destructiveHex = "#FF5555",
+	radius = "0.5rem",
+	onpreset,
+}: {
+	baseTheme?: string;
+	primaryHex?: string;
+	accentHex?: string;
+	destructiveHex?: string;
+	radius?: string;
+	onpreset?: (preset: string) => void;
+} = $props();
 </script>
 
 <div>

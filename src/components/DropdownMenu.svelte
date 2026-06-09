@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { DropdownMenu as BitsDropdown } from 'bits-ui';
+import { DropdownMenu as BitsDropdown } from "bits-ui";
 
-  type Item = { label: string; value: string; disabled?: boolean };
+type Item = { label: string; value: string; disabled?: boolean };
 
-  let {
-    trigger,
-    items = [] as Item[],
-    onSelect = undefined as ((value: string) => void) | undefined,
-    side = 'bottom' as 'top' | 'right' | 'bottom' | 'left',
-    align = 'start' as 'start' | 'center' | 'end',
-  }: {
-    trigger?: import('svelte').Snippet;
-    items?: Item[];
-    onSelect?: (value: string) => void;
-    side?: 'top' | 'right' | 'bottom' | 'left';
-    align?: 'start' | 'center' | 'end';
-  } = $props();
+let {
+	trigger,
+	items = [] as Item[],
+	onSelect = undefined as ((value: string) => void) | undefined,
+	side = "bottom" as "top" | "right" | "bottom" | "left",
+	align = "start" as "start" | "center" | "end",
+}: {
+	trigger?: import("svelte").Snippet;
+	items?: Item[];
+	onSelect?: (value: string) => void;
+	side?: "top" | "right" | "bottom" | "left";
+	align?: "start" | "center" | "end";
+} = $props();
 </script>
 
 <BitsDropdown.Root>

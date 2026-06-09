@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { Time } from '@internationalized/date';
-	import { TimeField as BitsTimeField } from 'bits-ui';
+import { Time } from "@internationalized/date";
+import { TimeField as BitsTimeField } from "bits-ui";
 
-	let {
-		value = $bindable(new Time(0, 0)),
-		disabled = false,
-		class: className = '',
-	}: {
-		value?: Time;
-		disabled?: boolean;
-		class?: string;
-	} = $props();
+let {
+	value = $bindable(new Time(0, 0)),
+	disabled = false,
+	class: className = "",
+}: {
+	value?: Time;
+	disabled?: boolean;
+	class?: string;
+} = $props();
 </script>
 
 <BitsTimeField.Root bind:value {disabled} class="w-full {className}">

@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { Combobox as BitsCombobox } from 'bits-ui';
+import { Combobox as BitsCombobox } from "bits-ui";
 
-	type Option = { value: string; label: string; disabled?: boolean };
+type Option = { value: string; label: string; disabled?: boolean };
 
-	let {
-		value = $bindable(''),
-		placeholder = 'Search...',
-		options = [] as Option[],
-		disabled = false,
-		class: className = '',
-	}: {
-		value?: string;
-		placeholder?: string;
-		options?: Option[];
-		disabled?: boolean;
-		class?: string;
-	} = $props();
+let {
+	value = $bindable(""),
+	placeholder = "Search...",
+	options = [] as Option[],
+	disabled = false,
+	class: className = "",
+}: {
+	value?: string;
+	placeholder?: string;
+	options?: Option[];
+	disabled?: boolean;
+	class?: string;
+} = $props();
 
-	let inputValue = $state('');
+let inputValue = $state("");
 
-	let filtered = $derived(
-		options.filter((o) => o.label.toLowerCase().includes(inputValue.toLowerCase())),
-	);
+let filtered = $derived(
+	options.filter((o) => o.label.toLowerCase().includes(inputValue.toLowerCase())),
+);
 </script>
 
 <BitsCombobox.Root bind:value bind:inputValue {disabled} class="relative {className}">

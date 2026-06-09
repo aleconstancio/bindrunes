@@ -1,28 +1,28 @@
 <script lang="ts">
-	import StatusChip from '../StatusChip.svelte';
-	import type { StatusVariant } from '../../shared-types';
+import type { StatusVariant } from "../../shared-types";
+import StatusChip from "../StatusChip.svelte";
 
-	let {
-		headerPrefix = '',
-		resolvedTitle = '',
-		resolvedDescription = '',
-		headerActions,
-		statusChipVariant = undefined as StatusVariant | undefined,
-		statusChipLabel = undefined as string | undefined,
-		statusChipDot = true,
-		statusChipAnimate = false,
-		trigger,
-	}: {
-		headerPrefix?: string;
-		resolvedTitle?: string;
-		resolvedDescription?: string;
-		headerActions?: import('svelte').Snippet;
-		statusChipVariant?: StatusVariant;
-		statusChipLabel?: string;
-		statusChipDot?: boolean;
-		statusChipAnimate?: boolean;
-		trigger?: import('svelte').Snippet;
-	} = $props();
+let {
+	headerPrefix = "",
+	resolvedTitle = "",
+	resolvedDescription = "",
+	headerActions,
+	statusChipVariant = undefined as StatusVariant | undefined,
+	statusChipLabel = undefined as string | undefined,
+	statusChipDot = true,
+	statusChipAnimate = false,
+	trigger,
+}: {
+	headerPrefix?: string;
+	resolvedTitle?: string;
+	resolvedDescription?: string;
+	headerActions?: import("svelte").Snippet;
+	statusChipVariant?: StatusVariant;
+	statusChipLabel?: string;
+	statusChipDot?: boolean;
+	statusChipAnimate?: boolean;
+	trigger?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-300">

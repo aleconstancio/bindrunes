@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { getSidebarContext } from './sidebar-context.svelte';
+import { getSidebarContext } from "./sidebar-context.svelte";
 
-  let { children }: { children?: import('svelte').Snippet } = $props();
+let { children }: { children?: import("svelte").Snippet } = $props();
 
-  const ctx = getSidebarContext();
+const ctx = getSidebarContext();
 </script>
 
 <button

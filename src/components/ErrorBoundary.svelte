@@ -1,59 +1,59 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { toast } from 'svelte-sonner';
-  import Button from './Button.svelte';
-  import type { TFunction } from '../shared-types';
+import { onMount } from "svelte";
+import { toast } from "svelte-sonner";
+import type { TFunction } from "../shared-types";
+import Button from "./Button.svelte";
 
-  type Variant = 'default' | 'minimal' | 'page';
+type Variant = "default" | "minimal" | "page";
 
-  let {
-    t = undefined as TFunction | undefined,
-    fallbackTitle = t?.('error.ErrorBoundary.title') ?? 'Something went wrong',
-    fallbackDescription = t?.('error.ErrorBoundary.description') ?? 'An unexpected error occurred.',
-    showRetry = true,
-    showHome = false,
-    homeUrl = '/',
-    variant = 'default' as Variant,
-    onError,
-    onRetry,
-    children,
-  }: {
-    t?: TFunction;
-    fallbackTitle?: string;
-    fallbackDescription?: string;
-    showRetry?: boolean;
-    showHome?: boolean;
-    homeUrl?: string;
-    variant?: Variant;
-    onError?: (error: Error) => void;
-    onRetry?: () => void;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	t = undefined as TFunction | undefined,
+	fallbackTitle = t?.("error.ErrorBoundary.title") ?? "Something went wrong",
+	fallbackDescription = t?.("error.ErrorBoundary.description") ?? "An unexpected error occurred.",
+	showRetry = true,
+	showHome = false,
+	homeUrl = "/",
+	variant = "default" as Variant,
+	onError,
+	onRetry,
+	children,
+}: {
+	t?: TFunction;
+	fallbackTitle?: string;
+	fallbackDescription?: string;
+	showRetry?: boolean;
+	showHome?: boolean;
+	homeUrl?: string;
+	variant?: Variant;
+	onError?: (error: Error) => void;
+	onRetry?: () => void;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  let error = $state<Error | null>(null);
-  let errorInfo = $state<string>('');
+let error = $state<Error | null>(null);
+let errorInfo = $state<string>("");
 
-  onMount(() => {
-    const handler = (event: ErrorEvent) => {
-      error = event.error || new Error(event.message);
-      errorInfo = event.message;
-      onError?.(error);
-      toast.error(fallbackTitle, { description: errorInfo.slice(0, 120) });
-      event.preventDefault();
-    };
-    window.addEventListener('error', handler);
-    return () => window.removeEventListener('error', handler);
-  });
+onMount(() => {
+	const handler = (event: ErrorEvent) => {
+		error = event.error || new Error(event.message);
+		errorInfo = event.message;
+		onError?.(error);
+		toast.error(fallbackTitle, { description: errorInfo.slice(0, 120) });
+		event.preventDefault();
+	};
+	window.addEventListener("error", handler);
+	return () => window.removeEventListener("error", handler);
+});
 
-  function retry() {
-    error = null;
-    errorInfo = '';
-    if (onRetry) {
-      onRetry();
-    } else {
-      window.location.reload();
-    }
-  }
+function retry() {
+	error = null;
+	errorInfo = "";
+	if (onRetry) {
+		onRetry();
+	} else {
+		window.location.reload();
+	}
+}
 </script>
 
 {#if error}

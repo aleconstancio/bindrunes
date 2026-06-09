@@ -1,32 +1,32 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import PageLoading from './PageLoading.svelte';
+import { onMount } from "svelte";
+import PageLoading from "./PageLoading.svelte";
 
-  let {
-    load = undefined as (() => Promise<unknown>) | undefined,
-    type = 'text' as 'text' | 'cards' | 'table',
-    loadingLines = 3,
-    loadingRows = 3,
-    onLoaded = undefined as ((result: unknown) => void) | undefined,
-    children,
-  }: {
-    load?: () => Promise<unknown>;
-    type?: 'text' | 'cards' | 'table';
-    loadingLines?: number;
-    loadingRows?: number;
-    onLoaded?: (result: unknown) => void;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	load = undefined as (() => Promise<unknown>) | undefined,
+	type = "text" as "text" | "cards" | "table",
+	loadingLines = 3,
+	loadingRows = 3,
+	onLoaded = undefined as ((result: unknown) => void) | undefined,
+	children,
+}: {
+	load?: () => Promise<unknown>;
+	type?: "text" | "cards" | "table";
+	loadingLines?: number;
+	loadingRows?: number;
+	onLoaded?: (result: unknown) => void;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  let loaded = $state(false);
+let loaded = $state(false);
 
-  onMount(async () => {
-    if (load) {
-      const result = await load();
-      onLoaded?.(result);
-    }
-    loaded = true;
-  });
+onMount(async () => {
+	if (load) {
+		const result = await load();
+		onLoaded?.(result);
+	}
+	loaded = true;
+});
 </script>
 
 {#if loaded}

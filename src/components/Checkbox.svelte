@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { Checkbox as BitsCheckbox } from 'bits-ui';
+import { Checkbox as BitsCheckbox } from "bits-ui";
 
-  let {
-    checked = $bindable(false),
-    disabled = false,
-    error = false,
-    ariaDescribedby = undefined as string | undefined,
-    label = undefined as string | undefined,
-    required = false,
-  } = $props();
+let {
+	checked = $bindable(false),
+	disabled = false,
+	error = false,
+	ariaDescribedby = undefined as string | undefined,
+	label = undefined as string | undefined,
+	required = false,
+} = $props();
 </script>
 
 <label class="inline-flex items-center gap-2 cursor-pointer">

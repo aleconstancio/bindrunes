@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { RatingGroup as BitsRatingGroup } from 'bits-ui';
+import { RatingGroup as BitsRatingGroup } from "bits-ui";
 
-	let {
-		value = $bindable(0),
-		max = 5,
-		disabled = false,
-		class: className = '',
-	}: {
-		value?: number;
-		max?: number;
-		disabled?: boolean;
-		class?: string;
-	} = $props();
+let {
+	value = $bindable(0),
+	max = 5,
+	disabled = false,
+	class: className = "",
+}: {
+	value?: number;
+	max?: number;
+	disabled?: boolean;
+	class?: string;
+} = $props();
 </script>
 
 <BitsRatingGroup.Root

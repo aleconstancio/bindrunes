@@ -1,28 +1,28 @@
 <script lang="ts">
-  let {
-    label = '',
-    value = '',
-    detail = '',
-    variant = 'default' as 'default' | 'success' | 'warning' | 'destructive',
-    progress = undefined as number | undefined,
-    progressMax = 100,
-    children,
-  }: {
-    label?: string;
-    value?: string;
-    detail?: string;
-    variant?: 'default' | 'success' | 'warning' | 'destructive';
-    progress?: number;
-    progressMax?: number;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	label = "",
+	value = "",
+	detail = "",
+	variant = "default" as "default" | "success" | "warning" | "destructive",
+	progress = undefined as number | undefined,
+	progressMax = 100,
+	children,
+}: {
+	label?: string;
+	value?: string;
+	detail?: string;
+	variant?: "default" | "success" | "warning" | "destructive";
+	progress?: number;
+	progressMax?: number;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  const borderTop: Record<string, string> = {
-    default: 'var(--primary)',
-    success: 'var(--success)',
-    warning: 'var(--warning)',
-    destructive: 'var(--destructive)',
-  };
+const borderTop: Record<string, string> = {
+	default: "var(--primary)",
+	success: "var(--success)",
+	warning: "var(--warning)",
+	destructive: "var(--destructive)",
+};
 </script>
 
 <div class="metric-card rounded-[--radius] border bg-card p-4 transition-all duration-[--duration-fluid] hover:-translate-y-1"

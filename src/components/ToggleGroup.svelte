@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { ToggleGroup as BitsToggleGroup } from 'bits-ui';
+import { ToggleGroup as BitsToggleGroup } from "bits-ui";
 
-	type Option = { value: string; label: string; disabled?: boolean };
+type Option = { value: string; label: string; disabled?: boolean };
 
-	let {
-		value = $bindable<string | string[]>(''),
-		multiple = false,
-		options = [] as Option[],
-		class: className = '',
-	}: {
-		value?: string | string[];
-		multiple?: boolean;
-		options?: Option[];
-		class?: string;
-	} = $props();
+let {
+	value = $bindable<string | string[]>(""),
+	multiple = false,
+	options = [] as Option[],
+	class: className = "",
+}: {
+	value?: string | string[];
+	multiple?: boolean;
+	options?: Option[];
+	class?: string;
+} = $props();
 </script>
 
 <BitsToggleGroup.Root

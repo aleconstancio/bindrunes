@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { Toggle as BitsToggle } from 'bits-ui';
+import { Toggle as BitsToggle } from "bits-ui";
 
-	let {
-		pressed = $bindable(false),
-		disabled = false,
-		class: className = '',
-		children,
-	}: {
-		pressed?: boolean;
-		disabled?: boolean;
-		class?: string;
-		children?: import('svelte').Snippet;
-	} = $props();
+let {
+	pressed = $bindable(false),
+	disabled = false,
+	class: className = "",
+	children,
+}: {
+	pressed?: boolean;
+	disabled?: boolean;
+	class?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsToggle.Root

@@ -1,26 +1,26 @@
 <script lang="ts">
-  type Variant = 'info' | 'success' | 'warning' | 'destructive';
+type Variant = "info" | "success" | "warning" | "destructive";
 
-  let {
-    variant = 'info' as Variant,
-    title = '',
-    description = '',
-    icon,
-    action,
-  }: {
-    variant?: Variant;
-    title?: string;
-    description?: string;
-    icon?: import('svelte').Snippet;
-    action?: import('svelte').Snippet;
-  } = $props();
+let {
+	variant = "info" as Variant,
+	title = "",
+	description = "",
+	icon,
+	action,
+}: {
+	variant?: Variant;
+	title?: string;
+	description?: string;
+	icon?: import("svelte").Snippet;
+	action?: import("svelte").Snippet;
+} = $props();
 
-  const vars: Record<Variant, string> = {
-    info: 'border-l-info',
-    success: 'border-l-[--success]',
-    warning: 'border-l-[--warning]',
-    destructive: 'border-l-destructive',
-  };
+const vars: Record<Variant, string> = {
+	info: "border-l-info",
+	success: "border-l-[--success]",
+	warning: "border-l-[--warning]",
+	destructive: "border-l-destructive",
+};
 </script>
 
 <div class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {vars[variant]}">

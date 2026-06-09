@@ -1,42 +1,42 @@
 <script lang="ts">
-	import { AlertDialog as BitsAlertDialog } from 'bits-ui';
-	import Button from './Button.svelte';
+import { AlertDialog as BitsAlertDialog } from "bits-ui";
+import Button from "./Button.svelte";
 
-	let {
-		title = 'Are you sure?',
-		description = undefined as string | undefined,
-		confirmLabel = 'Confirm',
-		cancelLabel = 'Cancel',
-		destructive = false,
-		onConfirm = undefined as (() => void) | undefined,
-		onCancel = undefined as (() => void) | undefined,
-		open = $bindable(false),
-		class: className = '',
-		trigger,
-		children,
-	}: {
-		title?: string;
-		description?: string;
-		confirmLabel?: string;
-		cancelLabel?: string;
-		destructive?: boolean;
-		onConfirm?: () => void;
-		onCancel?: () => void;
-		open?: boolean;
-		class?: string;
-		trigger?: import('svelte').Snippet;
-		children?: import('svelte').Snippet;
-	} = $props();
+let {
+	title = "Are you sure?",
+	description = undefined as string | undefined,
+	confirmLabel = "Confirm",
+	cancelLabel = "Cancel",
+	destructive = false,
+	onConfirm = undefined as (() => void) | undefined,
+	onCancel = undefined as (() => void) | undefined,
+	open = $bindable(false),
+	class: className = "",
+	trigger,
+	children,
+}: {
+	title?: string;
+	description?: string;
+	confirmLabel?: string;
+	cancelLabel?: string;
+	destructive?: boolean;
+	onConfirm?: () => void;
+	onCancel?: () => void;
+	open?: boolean;
+	class?: string;
+	trigger?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 
-	function handleConfirm() {
-		open = false;
-		onConfirm?.();
-	}
+function handleConfirm() {
+	open = false;
+	onConfirm?.();
+}
 
-	function handleCancel() {
-		open = false;
-		onCancel?.();
-	}
+function handleCancel() {
+	open = false;
+	onCancel?.();
+}
 </script>
 
 <BitsAlertDialog.Root bind:open>

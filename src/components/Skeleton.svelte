@@ -1,13 +1,7 @@
 <script lang="ts">
-  let {
-    lines = 3,
-    width = '100%' as string | string[],
-    class: className = '',
-  } = $props();
+let { lines = 3, width = "100%" as string | string[], class: className = "" } = $props();
 
-  const widths: string[] = typeof width === 'string'
-    ? Array(lines).fill(width)
-    : width;
+const widths: string[] = typeof width === "string" ? Array(lines).fill(width) : width;
 </script>
 
 {#each Array(lines) as _, i (i)}

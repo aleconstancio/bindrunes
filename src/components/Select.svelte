@@ -1,34 +1,34 @@
 <script lang="ts">
-  import { Select as BitsSelect } from 'bits-ui';
-  import type { TFunction } from '../shared-types';
+import { Select as BitsSelect } from "bits-ui";
+import type { TFunction } from "../shared-types";
 
-  type Option = { value: string; label: string; disabled?: boolean };
+type Option = { value: string; label: string; disabled?: boolean };
 
-  let {
-    t = undefined as TFunction | undefined,
-    value = $bindable(''),
-    label = undefined as string | undefined,
-    placeholder = t?.('input.Select.placeholder') ?? 'Select...',
-    options = [] as Option[],
-    disabled = false,
-    required = false,
-    error = undefined as string | undefined,
-    name = undefined as string | undefined,
-  }: {
-    t?: TFunction;
-    value?: string;
-    label?: string;
-    placeholder?: string;
-    options?: Option[];
-    disabled?: boolean;
-    required?: boolean;
-    error?: string;
-    name?: string;
-  } = $props();
+let {
+	t = undefined as TFunction | undefined,
+	value = $bindable(""),
+	label = undefined as string | undefined,
+	placeholder = t?.("input.Select.placeholder") ?? "Select...",
+	options = [] as Option[],
+	disabled = false,
+	required = false,
+	error = undefined as string | undefined,
+	name = undefined as string | undefined,
+}: {
+	t?: TFunction;
+	value?: string;
+	label?: string;
+	placeholder?: string;
+	options?: Option[];
+	disabled?: boolean;
+	required?: boolean;
+	error?: string;
+	name?: string;
+} = $props();
 
-  let selectedLabel = $derived(options.find(o => o.value === value)?.label || placeholder);
+let selectedLabel = $derived(options.find((o) => o.value === value)?.label || placeholder);
 
-  let selectId = $derived(`select-${name ?? Math.random().toString(36).slice(2, 8)}`);
+let selectId = $derived(`select-${name ?? Math.random().toString(36).slice(2, 8)}`);
 </script>
 
 {#if label}
