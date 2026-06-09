@@ -107,6 +107,6 @@
 		"check": "tsc --noEmit",
 		"changeset": "changeset",
 		"release:version": "changeset version",
-		"release:publish": "bun run build && changeset publish"
+		"release:publish": "changeset publish"
 	}
 }
