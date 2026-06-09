@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@plugin "bindrunes/tailwind";
+@import "bindrunes/styles/global.css";
+@import "bindrunes/styles/landing.css";

@@ -1,0 +1,40 @@
+/* ══════════════════════════════════════════════════
+ * bindrunes — Expressive Aesthetic Preset
+ *
+ * Dramatic, loud. Mesh gradients, glow shadows,
+ * amplified motion. For marketing sites, splash
+ * pages, and creative SaaS interfaces.
+ *
+ * Import in your app.css:
+ * @import "bindrunes/styles/aesthetics/expressive.css";
+ * ══════════════════════════════════════════════════ */
+
+[data-aesthetic="expressive"] {
+	/* Radius — large */
+	--radius: 1rem;
+	--radius-md: 1rem;
+	--radius-lg: 1.25rem;
+	--radius-xl: 1.5rem;
+
+	/* Shadow — amplified */
+	--shadow-sm: 0 4px 12px -4px oklch(0 0 0 / 0.12);
+	--shadow-md: 0 8px 24px -4px oklch(0 0 0 / 0.18);
+	--shadow-lg: 0 16px 40px -8px oklch(0 0 0 / 0.22);
+	--shadow-xs: 0 2px 6px oklch(0 0 0 / 0.08);
+
+	/* Motion — emphatic */
+	--duration-snappy: 180ms;
+	--duration-fluid: 300ms;
+	--duration-slow: 450ms;
+	--ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+	--ease-standard: var(--ease-emphasized);
+
+	/* Aesthetic hooks */
+	--button-treatment: gradient;
+	--button-bg: linear-gradient(135deg, var(--primary) 0%, oklch(from var(--primary) calc(l - 0.08) c h) 100%);
+	--button-bg-destructive: linear-gradient(135deg, var(--destructive) 0%, oklch(from var(--destructive) calc(l - 0.08) c h) 100%);
+	--card-treatment: glass;
+	--surface-texture: mesh;
+	--hero-translate: 24px;
+	--shadow-emphasis: high;
+}

@@ -1,0 +1,12 @@
+/* bindrunes — CSS Preset (v1.0)
+ *
+ * Imports bindrunes design tokens in cascade order:
+ * 1. Tailwind v4 @theme inline bindings
+ * 2. Default :root token values (editorial aesthetic, comfortable density)
+ * 3. @property declarations for type-safe animations
+ *
+ * Usage: @import "bindrunes/styles/preset.css";
+ */
+@import "./tokens/tailwind.css";
+@import "./tokens/root.css";
+@import "./tokens/property.css";

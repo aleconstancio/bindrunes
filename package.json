@@ -1,0 +1,111 @@
+{
+	"name": "bindrunes",
+	"version": "1.0.1",
+	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aleconstancio/bindrunes.git"
+	},
+	"homepage": "https://github.com/aleconstancio/bindrunes#readme",
+	"bugs": {
+		"url": "https://github.com/aleconstancio/bindrunes/issues"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"svelte": "./dist/index.js",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./landing": {
+			"types": "./dist/components/landing/index.d.ts",
+			"svelte": "./dist/components/landing/index.js",
+			"default": "./dist/components/landing/index.js"
+		},
+		"./boundrune": {
+			"types": "./dist/components/boundrune/index.d.ts",
+			"svelte": "./dist/components/boundrune/index.js",
+			"default": "./dist/components/boundrune/index.js"
+		},
+		"./tailwind": {
+			"types": "./dist/tailwind-plugin.d.ts",
+			"default": "./dist/tailwind-plugin.js"
+		},
+		"./styles/*": "./src/styles/*",
+		"./densities/*": "./src/styles/densities/*",
+		"./actions/*": "./dist/actions/*",
+		"./utils/*": "./dist/utils/*",
+		"./components/*": "./dist/components/*",
+		"./i18n/*": "./dist/i18n/*"
+	},
+	"files": [
+		"dist",
+		"src/styles",
+		"README.md"
+	],
+	"peerDependencies": {
+		"lucide-svelte": "^1.0.1",
+		"mode-watcher": "^0.5.1",
+		"svelte": "^5.0.0",
+		"svelte-sonner": "^0.3.28",
+		"tailwindcss": "^4.0.0"
+	},
+	"dependencies": {
+		"bits-ui": "^2.18.1",
+		"valibot": "^1.4.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.16",
+		"@changesets/cli": "^2.27.0",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@tailwindcss/vite": "^4.3.0",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/svelte": "^5.3.1",
+		"@testing-library/user-event": "^14.6.1",
+		"@vitest/coverage-v8": "^4.1.8",
+		"jsdom": "^29.1.1",
+		"svelte": "^5.56.1",
+		"tailwindcss": "^4.3.0",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.8",
+		"vitest-axe": "^0.1.0"
+	},
+	"optionalDependencies": {
+		"@microsoft/fetch-event-source": "^2.0.1",
+		"chart.js": "^4.4.0",
+		"localforage": "^1.10.0",
+		"prosemirror-commands": "^1.7.1",
+		"prosemirror-history": "^1.5.0",
+		"prosemirror-keymap": "^1.2.3",
+		"prosemirror-markdown": "^1.13.4",
+		"prosemirror-model": "^1.25.7",
+		"prosemirror-state": "^1.4.4",
+		"prosemirror-view": "^1.41.8",
+		"svelte-chartjs": "^3.1.5"
+	},
+	"engines": {
+		"bun": ">=1.3.0",
+		"node": ">=20.0.0"
+	},
+	"scripts": {
+		"build": "svelte-package -i src -o dist && node scripts/build-clean.mjs",
+		"build:clean": "node scripts/build-clean.mjs",
+		"prepublishOnly": "bun run build",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"test:ci": "vitest run --coverage --reporter=verbose",
+		"test:watch:coverage": "vitest --coverage",
+		"check": "tsc --noEmit",
+		"changeset": "changeset",
+		"release:version": "changeset version",
+		"release:publish": "bun run build && changeset publish"
+	}
+}
