@@ -1,27 +1,29 @@
-import '@testing-library/jest-dom/vitest';
-import { vi } from 'vitest';
+import "@testing-library/jest-dom/vitest";
+import { vi } from "vitest";
+
+vi.mock("esm-env", () => ({ BROWSER: false, DEV: false, NODE: true }));
 
 // jsdom polyfills for bits-ui
-if (typeof window !== 'undefined') {
-	window.CSS = { supports: () => true, escape: (s: string) => s } as any;
+if (typeof window !== "undefined") {
+	window.CSS = { supports: () => true, escape: (s: string) => s } as unknown as typeof CSS;
 	window.Element.prototype.scrollTo = () => {};
 	class MockResizeObserver {
 		observe() {}
 		unobserve() {}
 		disconnect() {}
 	}
-	window.ResizeObserver = MockResizeObserver as any;
+	window.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver;
 	class MockIntersectionObserver {
 		observe() {}
 		unobserve() {}
 		disconnect() {}
 	}
-	window.IntersectionObserver = MockIntersectionObserver as any;
+	window.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
 	window.HTMLElement.prototype.hasPointerCapture = () => false;
 }
 
-vi.mock('svelte-sonner', () => ({
-	Toaster: (() => '') as unknown as any,
+vi.mock("svelte-sonner", () => ({
+	Toaster: (() => "") as unknown as typeof import("svelte-sonner").Toaster,
 	toast: {
 		error: vi.fn(),
 		success: vi.fn(),
@@ -30,26 +32,38 @@ vi.mock('svelte-sonner', () => ({
 	},
 }));
 
-vi.mock('mode-watcher', () => {
-	const mode = { current: 'dark', subscribe: (fn: any) => { fn('dark'); return () => {}; } };
-	const theme = { current: 'dark', subscribe: (fn: any) => { fn('dark'); return () => {}; } };
+vi.mock("mode-watcher", () => {
+	const mode = {
+		current: "dark",
+		subscribe: (fn: (value: string) => void) => {
+			fn("dark");
+			return () => {};
+		},
+	};
+	const theme = {
+		current: "dark",
+		subscribe: (fn: (value: string) => void) => {
+			fn("dark");
+			return () => {};
+		},
+	};
 	return {
-		ModeWatcher: (() => '') as unknown as any,
+		ModeWatcher: (() => "") as unknown as typeof import("mode-watcher").ModeWatcher,
 		mode,
 		theme,
 		toggleMode: vi.fn(),
 		setMode: vi.fn(),
 		resetMode: vi.fn(),
-		modeStorageKey: 'mode',
-		themeStorageKey: 'theme',
-		userPrefersMode: 'dark',
-		systemPrefersMode: 'dark',
+		modeStorageKey: "mode",
+		themeStorageKey: "theme",
+		userPrefersMode: "dark",
+		systemPrefersMode: "dark",
 		generateSetInitialModeExpression: vi.fn(),
 	};
 });
 
-vi.mock('lucide-svelte', () => {
-	const icon = () => '';
+vi.mock("lucide-svelte", () => {
+	const icon = () => "";
 	icon.size = 16;
 	return {
 		Sun: icon,
