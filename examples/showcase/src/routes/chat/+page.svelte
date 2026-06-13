@@ -1,0 +1,193 @@
+<script lang="ts">
+	import { PageHeader, Card } from "bindrunes";
+	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/boundrune";
+	import { RealtimeClient } from "bindrunes";
+	import type { RealtimeEvent } from "bindrunes";
+
+	const conversations = [
+		{ id: "1", name: "Alice Johnson", lastMessage: "Hey, how's the project going?", timestamp: "2m", unread: 2 },
+		{ id: "2", name: "Bob Smith", lastMessage: "The deployment is complete", timestamp: "15m" },
+		{ id: "3", name: "Charlie Brown", lastMessage: "Can you review my PR?", timestamp: "1h" },
+		{ id: "4", name: "Diana Prince", lastMessage: "Meeting at 3pm tomorrow", timestamp: "3h" },
+	];
+
+	const messages = [
+		{ id: "1", content: "Hey! How's the new component library going?", sender: "user" as const, timestamp: "10:30 AM" },
+		{ id: "2", content: "It's going great! We just added 32 new components across 12 categories.", sender: "assistant" as const, timestamp: "10:31 AM" },
+		{ id: "3", content: "That's impressive! What categories did you add?", sender: "user" as const, timestamp: "10:32 AM" },
+		{ id: "4", content: "We added e-commerce, media, calendar, and chat components. Plus improved the existing auth, dashboard, and settings patterns.", sender: "assistant" as const, timestamp: "10:33 AM" },
+		{ id: "5", content: "Can't wait to try them out!", sender: "user" as const, timestamp: "10:34 AM" },
+	];
+
+	let selectedConversation = $state("1");
+	let chatMessages = $state(messages);
+	let isTyping = $state(false);
+	let realtimeStatus = $state<RealtimeClient["status"]>("disconnected");
+	let realtimeEvents = $state<RealtimeEvent[]>([]);
+
+	function handleSend(message: string) {
+		chatMessages = [...chatMessages, {
+			id: String(chatMessages.length + 1),
+			content: message,
+			sender: "user",
+			timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+		}];
+
+		isTyping = true;
+
+		setTimeout(() => {
+			isTyping = false;
+			chatMessages = [...chatMessages, {
+				id: String(chatMessages.length + 1),
+				content: "Thanks for your message! I'm a demo assistant. In a real app, this would be connected to an AI backend.",
+				sender: "assistant",
+				timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+			}];
+		}, 1500);
+	}
+
+	// --- RealtimeClient mock demo ---
+	const mockEvents: RealtimeEvent[] = [
+		{ id: "evt-1", type: "message.new", data: { text: "Hello from SSE stream" }, seq: 1 },
+		{ id: "evt-2", type: "user.typing", data: { userId: "alice" }, seq: 2 },
+		{ id: "evt-3", type: "message.read", data: { messageId: "msg-42", readBy: "bob" }, seq: 3 },
+		{ id: "evt-4", type: "presence.update", data: { userId: "alice", online: true }, seq: 4 },
+		{ id: "evt-5", type: "SYNC_GAP", data: { reason: "sequence break" }, seq: 5 },
+	];
+
+	let mockClient: RealtimeClient | null = $state(null);
+	let mockConnected = $state(false);
+	let mockGapDetected = $state(false);
+	let mockEventLog = $state<RealtimeEvent[]>([]);
+
+	function startMockRealtime() {
+		if (mockClient) return;
+
+		let seq = 0;
+		const interval = setInterval(() => {
+			if (seq >= mockEvents.length) {
+				clearInterval(interval);
+				return;
+			}
+			const event = mockEvents[seq++];
+			mockEventLog = [...mockEventLog, event];
+			if (event.type === "SYNC_GAP") {
+				mockGapDetected = true;
+				setTimeout(() => { mockGapDetected = false; }, 5000);
+			}
+		}, 800);
+
+		mockClient = new RealtimeClient({
+			url: "https://example.com/sse",
+			onEvent: () => {},
+			onError: () => {},
+		});
+
+		// Force state for demo
+		mockConnected = true;
+		realtimeStatus = "connected";
+	}
+
+	function stopMockRealtime() {
+		if (mockClient) {
+			mockClient.disconnect();
+			mockClient = null;
+		}
+		mockConnected = false;
+		realtimeStatus = "disconnected";
+		mockEventLog = [];
+		mockGapDetected = false;
+	}
+
+	const statusColors: Record<string, string> = {
+		connected: "bg-green-500",
+		reconnecting: "bg-yellow-500",
+		degraded: "bg-orange-500",
+		disconnected: "bg-gray-400",
+	};
+</script>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+	<PageHeader title="Chat Components" description="AI chat interface with threads, messages, and conversation list" />
+
+	<!-- Typing Indicator demo embedded in chat -->
+	<Card padding class="max-w-2xl mx-auto">
+		<h3 class="text-title-3 text-foreground mb-2">TypingIndicator</h3>
+		<p class="text-sm text-muted-foreground mb-4">Animated dots shown while the assistant is composing a reply.</p>
+		<div class="space-y-3 rounded-lg border border-border p-4 bg-background min-h-[60px]">
+			{#if isTyping}
+				<TypingIndicator />
+			{:else}
+				<p class="text-sm text-muted-foreground italic">Send a message to see the typing indicator…</p>
+			{/if}
+		</div>
+	</Card>
+
+	<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[600px]">
+		<!-- Conversation List -->
+		<Card padding class="lg:col-span-1 overflow-hidden flex flex-col">
+			<h3 class="text-title-3 text-foreground mb-3">Conversations</h3>
+			<div class="flex-1 overflow-y-auto">
+				<ConversationList {conversations} bind:selectedId={selectedConversation} />
+			</div>
+		</Card>
+
+		<!-- Chat Area -->
+		<Card padding class="lg:col-span-3 overflow-hidden flex flex-col">
+			<h3 class="text-title-3 text-foreground mb-3">Chat</h3>
+			<ChatThread messages={chatMessages} class="flex-1 min-h-0" />
+			{#if isTyping}
+				<div class="px-4 pb-2">
+					<TypingIndicator />
+				</div>
+			{/if}
+			<ChatInput onSend={handleSend} placeholder="Type a message..." />
+		</Card>
+	</div>
+
+	<!-- RealtimeClient mock -->
+	<Card padding class="max-w-2xl mx-auto">
+		<div class="flex items-center justify-between mb-2">
+			<h3 class="text-title-3 text-foreground">RealtimeClient (Mock)</h3>
+			<div class="flex items-center gap-2">
+				<span class="inline-block w-2.5 h-2.5 rounded-full {statusColors[realtimeStatus]}"></span>
+				<span class="text-sm text-muted-foreground capitalize">{realtimeStatus}</span>
+			</div>
+		</div>
+		<p class="text-sm text-muted-foreground mb-4">Simulated SSE event stream with status tracking.</p>
+
+		{#if !mockConnected}
+			<button
+				class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 text-sm font-medium transition-colors"
+				onclick={startMockRealtime}
+			>
+				Start Stream
+			</button>
+		{:else}
+			<div class="flex items-center gap-3 mb-4">
+				<button
+					class="inline-flex items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 px-4 py-2 text-sm font-medium transition-colors"
+					onclick={stopMockRealtime}
+				>
+					Stop Stream
+				</button>
+				{#if mockGapDetected}
+					<span class="text-xs text-orange-600 dark:text-orange-400 font-medium">Sync gap detected</span>
+				{/if}
+			</div>
+		{/if}
+
+		<div class="rounded-lg border border-border bg-muted/30 p-3 max-h-[240px] overflow-y-auto font-mono text-xs space-y-1.5">
+			{#if mockEventLog.length === 0}
+				<p class="text-muted-foreground italic">No events yet.</p>
+			{/if}
+			{#each mockEventLog as event}
+				<div class="flex items-start gap-2">
+					<span class="text-muted-foreground">#{event.seq}</span>
+					<span class="text-primary font-semibold">{event.type}</span>
+					<span class="text-muted-foreground break-all">{JSON.stringify(event.data)}</span>
+				</div>
+			{/each}
+		</div>
+	</Card>
+</div>
