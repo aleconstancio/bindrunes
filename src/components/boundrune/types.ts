@@ -1,5 +1,7 @@
 import type { Component } from "svelte";
 
+// ── CRUD ──
+
 export interface CrudAction {
 	label: string;
 	href: string;
@@ -23,6 +25,12 @@ export interface CrudField {
 	options?: { label: string; value: string }[];
 }
 
+export interface DetailSection {
+	label: string;
+	value: string;
+	variant?: "default" | "primary" | "secondary" | "success" | "warning" | "destructive" | "outline";
+}
+
 export interface TableColumnConfig {
 	key: string;
 	label: string;
@@ -35,4 +43,46 @@ export interface SearchFilter {
 	key: string;
 	label: string;
 	options: { label: string; value: string }[];
+}
+
+// ── Marketing ──
+
+export interface TestimonialItem {
+	quote: string;
+	author: string;
+	role?: string;
+	avatar?: string;
+}
+
+export interface LogoItem {
+	name: string;
+	url?: string;
+}
+
+export interface PortfolioItem {
+	title: string;
+	description: string;
+	image?: string;
+	tags?: string[];
+	href?: string;
+}
+
+export interface CommentItem {
+	author: string;
+	avatar?: string;
+	content: string;
+	date?: string;
+}
+
+export interface ScheduleItem {
+	time: string;
+	title: string;
+	description: string;
+}
+
+export interface ContentItem {
+	title: string;
+	description: string;
+	image?: string;
+	imageSide?: "left" | "right";
 }

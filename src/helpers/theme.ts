@@ -1,5 +1,5 @@
-import { render, type RenderResult } from '@testing-library/svelte';
-import type { Component } from 'svelte';
+import { type RenderResult, render } from "@testing-library/svelte";
+import type { Component } from "svelte";
 
 export interface RenderWithThemeOptions {
 	theme?: string;
@@ -10,11 +10,11 @@ export interface RenderWithThemeOptions {
 export function renderWithTheme(
 	component: Component,
 	options: RenderWithThemeOptions & Record<string, unknown> = {},
-): RenderResult {
+): RenderResult<Component> {
 	const { theme, aesthetic, density, ...componentProps } = options;
-	if (theme) document.documentElement.setAttribute('data-theme', theme);
-	if (aesthetic) document.documentElement.setAttribute('data-aesthetic', aesthetic);
-	if (density) document.documentElement.setAttribute('data-density', density);
+	if (theme) document.documentElement.setAttribute("data-theme", theme);
+	if (aesthetic) document.documentElement.setAttribute("data-aesthetic", aesthetic);
+	if (density) document.documentElement.setAttribute("data-density", density);
 
 	const result = render(component, { props: componentProps });
 	return result;

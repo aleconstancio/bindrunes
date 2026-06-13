@@ -1,85 +1,61 @@
-// ── Shared Types ──
+// ── Actions ──
 
 export type { ShortcutOptions } from "./actions/shortcut.ts";
-// ── Actions ──
 export { shortcut } from "./actions/shortcut.ts";
+// ── Foundation ──
 export { default as Accordion } from "./components/Accordion.svelte";
 export { default as AccordionItem } from "./components/AccordionItem.svelte";
-// ── Feedback & Overlay ──
+// ── Feedback ──
 export { default as Alert } from "./components/Alert.svelte";
-// ── App Scaffold ──
-export { default as AppProvider } from "./components/AppProvider.svelte";
 // ── Auth & Access ──
+export { default as AlertDialog } from "./components/AlertDialog.svelte";
+// ── App Shell ──
+export { default as AppProvider } from "./components/AppProvider.svelte";
 export { default as AuthGuard } from "./components/AuthGuard.svelte";
 export { default as Avatar } from "./components/Avatar.svelte";
 export { default as Badge } from "./components/Badge.svelte";
-
 // ── Navigation ──
 export { default as Breadcrumb } from "./components/Breadcrumb.svelte";
-// ── Foundation (Button, Card, Input, etc.) ──
 export { default as Button } from "./components/Button.svelte";
 export { default as Card } from "./components/Card.svelte";
 export { default as Checkbox } from "./components/Checkbox.svelte";
 export { default as Collapsible } from "./components/Collapsible.svelte";
 export { default as Combobox } from "./components/Combobox.svelte";
+export { default as ContextMenu } from "./components/ContextMenu.svelte";
+// ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";
+// ── Data Table ──
 export { default as DataTable } from "./components/DataTable.svelte";
+// ── Data Entry ──
 export { default as DatePicker } from "./components/DatePicker.svelte";
 export { default as Dialog } from "./components/Dialog.svelte";
+export { default as Drawer } from "./components/Drawer.svelte";
 export { default as DropdownMenu } from "./components/DropdownMenu.svelte";
-// ── Layout (Sidebar, Dashboard Shell) ──
-export {
-	DashboardShell,
-	DashboardShellRight,
-	DashboardShellSplit,
-	DashboardShellTopnav,
-	NavMenu,
-} from "./components/dashboard/index.ts";
+export { default as DynamicIcon } from "./components/DynamicIcon.svelte";
 export { default as EmptyState } from "./components/EmptyState.svelte";
 export { default as ErrorBoundary } from "./components/ErrorBoundary.svelte";
-// ── File Upload ──
 export { default as FileUpload } from "./components/FileUpload.svelte";
+// ── Forms ──
 export { default as Form } from "./components/Form.svelte";
 export { default as FormField } from "./components/FormField.svelte";
 export { default as Input } from "./components/Input.svelte";
-// ── Form Primitives ──
 export { default as Kbd } from "./components/Kbd.svelte";
 export { default as Label } from "./components/Label.svelte";
 export { default as LazyLoad } from "./components/LazyLoad.svelte";
+// ── Pages ──
 export { default as ListPage } from "./components/ListPage.svelte";
-export type { LandingState } from "./components/landing/index.ts";
-// ── Landing ──
-export {
-	createLandingState,
-	FAQ,
-	FeatureComparison,
-	FeatureGrid,
-	HeroBanner,
-	HowItWorks,
-	IntegrationGrid,
-	LandingNav,
-	LandingSection,
-	LogoCloud,
-	MetricsBar,
-	Newsletter,
-	PricingTable,
-	SiteFooter,
-	StatsCounter,
-	TeamSection,
-	Testimonial,
-	TestimonialGrid,
-	useLanding,
-} from "./components/landing/index.ts";
+// ── Layout ──
 export { default as MetaContainer } from "./components/MetaContainer.svelte";
 export { default as MetaLayout } from "./components/MetaLayout.svelte";
 export { default as MetaScrollable } from "./components/MetaScrollable.svelte";
 export { default as MetricCard } from "./components/MetricCard.svelte";
 export { default as NavigationMenu } from "./components/NavigationMenu.svelte";
-// ── Omnibar ──
+export { default as NumberInput } from "./components/NumberInput.svelte";
 export { default as Omnibar } from "./components/Omnibar.svelte";
 export { default as PageHeader } from "./components/PageHeader.svelte";
 export { default as PageLoading } from "./components/PageLoading.svelte";
 export { default as Pagination } from "./components/Pagination.svelte";
+export { default as PasswordInput } from "./components/PasswordInput.svelte";
 export { default as PinInput } from "./components/PinInput.svelte";
 export { default as Popconfirm } from "./components/Popconfirm.svelte";
 export { default as Popover } from "./components/Popover.svelte";
@@ -91,6 +67,7 @@ export { default as RatingGroup } from "./components/RatingGroup.svelte";
 export { default as RichTextEditor } from "./components/RichTextEditor.svelte";
 export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
 export { default as ScrollArea } from "./components/ScrollArea.svelte";
+// ── SEO & Head ──
 export { default as SEO } from "./components/SEO.svelte";
 export { default as SectionHeader } from "./components/SectionHeader.svelte";
 export { default as Select } from "./components/Select.svelte";
@@ -103,92 +80,82 @@ export { default as StatusChip } from "./components/StatusChip.svelte";
 export { default as Stepper } from "./components/Stepper.svelte";
 export { default as Suspense } from "./components/Suspense.svelte";
 export { default as Switch } from "./components/Switch.svelte";
-export {
-	createSidebarState,
-	getSidebarContext,
-	SIDEBAR_WIDTH,
-	SIDEBAR_WIDTH_ICON,
-	SIDEBAR_WIDTH_MOBILE,
-	Sidebar,
-	SidebarContent,
-	SidebarFooter,
-	SidebarGroup,
-	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuBadge,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSkeleton,
-	SidebarProvider,
-	SidebarRail,
-	SidebarSeparator,
-	SidebarTrigger,
-} from "./components/sidebar/index.ts";
+export { default as TagInput } from "./components/TagInput.svelte";
 // ── Theme ──
-export { default as ThemeBuilder } from "./components/ThemeBuilder.svelte";
 export { default as ThemeStudio } from "./components/ThemeStudio.svelte";
 export { default as ThemeToggle } from "./components/ThemeToggle.svelte";
 export { default as TimeField } from "./components/TimeField.svelte";
+export { default as Timeline } from "./components/Timeline.svelte";
+export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as Toggle } from "./components/Toggle.svelte";
 export { default as ToggleGroup } from "./components/ToggleGroup.svelte";
 export { default as Tooltip } from "./components/Tooltip.svelte";
+export { default as TreeView } from "./components/TreeView.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
-export { default as en } from "./i18n/en.ts";
-export { default as ptBR } from "./i18n/pt-BR.ts";
+// ── Shared Types ──
 export type {
 	Column,
+	ContainerSize,
 	NavGroup,
 	NavItem,
 	PaginationState,
+	SelectOption,
+	SemanticVariant,
 	SortState,
 	StatusVariant,
 	TFunction,
 } from "./shared-types";
 export { getChartTheme } from "./utils/chartTheme.ts";
+// ── Shared Utilities ──
+export { cn } from "./utils/cn.ts";
 export { hexToOklch, oklchToHex } from "./utils/colorConvert.ts";
 export { createAccess } from "./utils/createAccess.svelte.ts";
+// ── Composables: Design System ──
 export type { Aesthetic } from "./utils/createAesthetic.svelte.ts";
-// ── v1.0: Design System Axes ──
 export { createAesthetic } from "./utils/createAesthetic.svelte.ts";
+// ── Composables: API & Auth ──
 export type { ApiClientOptions } from "./utils/createApiClient.ts";
 export { createApiClient } from "./utils/createApiClient.ts";
+export { createAsyncState } from "./utils/createAsyncState.svelte.ts";
 export type { AuthStorage, User } from "./utils/createAuth.svelte.ts";
 export { createAuth } from "./utils/createAuth.svelte.ts";
 export { createDarkMode } from "./utils/createDarkMode.svelte.ts";
 export type { Density } from "./utils/createDensity.svelte.ts";
 export { createDensity } from "./utils/createDensity.svelte.ts";
+// ── Utilities ──
 export { createEnv } from "./utils/createEnv.ts";
+// ── Composables: Forms & Validation ──
 export type { CreateFormOptions, FormState, InferSchemaType } from "./utils/createForm.svelte.ts";
-// ── Form Validation ──
 export { createForm } from "./utils/createForm.svelte.ts";
+// ── Composables: i18n ──
 export type { Dict, I18nOptions, I18nResult } from "./utils/createI18n.svelte.ts";
-// ── i18n ──
 export { createI18n } from "./utils/createI18n.svelte.ts";
-// ── Meta Pragmas ──
+export { createI18nContext, useI18n } from "./utils/createI18nContext.svelte.ts";
+export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
+// ── Composables: Context ──
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte";
 export type { CreateMutationOptions, MutationResult } from "./utils/createMutation.svelte.ts";
 export { createMutation } from "./utils/createMutation.svelte.ts";
+// ── Composables: Omnibar ──
 export type {
 	CreateOmnibarOptions,
 	OmnibarOption,
 	OmnibarState,
 } from "./utils/createOmnibar.svelte.ts";
 export { createOmnibar } from "./utils/createOmnibar.svelte.ts";
+export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
+// ── Composables: Data Layer ──
 export type { CreateQueryOptions, QueryResult } from "./utils/createQuery.svelte.ts";
-// ── Data Layer ──
 export { createQuery } from "./utils/createQuery.svelte.ts";
-// ── Utilities ──
 export { createStorage } from "./utils/createStorage.ts";
 export type { CreateTableOptions } from "./utils/createTable.svelte.ts";
 export { createTable } from "./utils/createTable.svelte.ts";
 export type { Theme } from "./utils/createTheme.svelte.ts";
 export { createTheme } from "./utils/createTheme.svelte.ts";
-export { createThemeBuilder } from "./utils/createThemeBuilder.svelte.ts";
 export { createToast } from "./utils/createToast.svelte.ts";
 export type { WizardOptions, WizardStep } from "./utils/createWizard.svelte.ts";
-// ── Wizard ──
 export { createWizard } from "./utils/createWizard.svelte.ts";
 export { defineTheme } from "./utils/defineTheme.svelte.ts";
 export { extendTheme } from "./utils/extendTheme.svelte.ts";
@@ -201,22 +168,43 @@ export {
 	formatPercentage,
 	formatRelative,
 	formatTime,
+	getLocale,
 	LOCALE,
+	setLocale,
 } from "./utils/formatters.ts";
-export { hasAnyRole, hasPermission, hasRole } from "./utils/hasRole.svelte.ts";
+export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";
 export { invalidateQuery, setQueryData } from "./utils/queryCache.ts";
+// ── Composables: Realtime ──
 export type {
 	RealtimeEvent,
 	RealtimeOptions,
 	RealtimeStatus,
 } from "./utils/RealtimeClient.svelte.ts";
 export { RealtimeClient } from "./utils/RealtimeClient.svelte.ts";
-export { readonlyGetters } from "./utils/readonlyGetters";
+export type { SemanticColor } from "./utils/semanticColors.ts";
+export { semanticColors } from "./utils/semanticColors.ts";
 export type { SSEEventRouter } from "./utils/sseBridge.svelte.ts";
-/** @deprecated Application-specific defaults — supply routes explicitly to handleSSEEvent() */
-export { DEFAULT_SSE_ROUTES, handleSSEEvent } from "./utils/sseBridge.svelte.ts";
+export { handleSSEEvent } from "./utils/sseBridge.svelte.ts";
+export { defaultTableFallbacks } from "./utils/tableFallbacks.ts";
+export { toError } from "./utils/toError.ts";
 export { isSafeRedirect } from "./utils/url.ts";
+// ── Composables: Components ──
 export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
-// ── Head & Breakpoint ──
+// ── Composables: Reactivity ──
+export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
+export { useClipboard } from "./utils/useClipboard.svelte.ts";
+export { useCounter } from "./utils/useCounter.svelte.ts";
+export { useDebounce } from "./utils/useDebounce.svelte.ts";
+export { useEventListener } from "./utils/useEventListener.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
+export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
+export { useInterval } from "./utils/useInterval.svelte.ts";
+export { useLocalStorage } from "./utils/useLocalStorage.svelte.ts";
+export { useReducedMotion } from "./utils/useReducedMotion.svelte.ts";
+export { useResizeObserver } from "./utils/useResizeObserver.svelte.ts";
+export { useThrottle } from "./utils/useThrottle.svelte.ts";
+export { useTimeout } from "./utils/useTimeout.svelte.ts";
+export { useToggle } from "./utils/useToggle.svelte.ts";
+export { useUrlParams } from "./utils/useUrlParams.svelte.ts";
+export { validateWithSchema } from "./utils/validateWithSchema.ts";
