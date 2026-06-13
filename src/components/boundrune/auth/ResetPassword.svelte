@@ -1,9 +1,10 @@
 <script lang="ts">
 import { Eye, EyeOff, KeyRound } from "lucide-svelte";
+import type { Snippet } from "svelte";
 import Button from "../../Button.svelte";
 import Input from "../../Input.svelte";
-import Block from "../Block.svelte";
 import MetaContainer from "../../MetaContainer.svelte";
+import Block from "../Block.svelte";
 
 let {
 	title = "Reset password",
@@ -17,6 +18,8 @@ let {
 	loading = false,
 	error = "",
 	class: className = "",
+	header = undefined as Snippet | undefined,
+	footer = undefined as Snippet | undefined,
 }: {
 	title?: string;
 	description?: string;
@@ -29,6 +32,8 @@ let {
 	loading?: boolean;
 	error?: string;
 	class?: string;
+	header?: Snippet;
+	footer?: Snippet;
 } = $props();
 
 let password = $state("");
@@ -56,10 +61,14 @@ async function handleSubmit(e: SubmitEvent) {
 
 <Block size="sm" spacing="normal" class={className}>
   <MetaContainer size="sm" padding={false} class="mx-auto">
-    <div class="text-center space-y-2">
-      <h1 class="text-title-1 text-foreground font-bold">{title}</h1>
-      <p class="text-body-md text-muted-foreground">{description}</p>
-    </div>
+    {#if header}
+      {@render header()}
+    {:else}
+      <div class="text-center space-y-2">
+        <h1 class="text-title-1 text-foreground font-bold">{title}</h1>
+        <p class="text-body-md text-muted-foreground">{description}</p>
+      </div>
+    {/if}
 
     <form onsubmit={handleSubmit} novalidate class="space-y-4">
       {#if error || validationError}
@@ -118,7 +127,9 @@ async function handleSubmit(e: SubmitEvent) {
       </Button>
     </form>
 
-    {#if onBack}
+    {#if footer}
+      {@render footer()}
+    {:else if onBack}
       <div class="text-center">
         <button
           type="button"

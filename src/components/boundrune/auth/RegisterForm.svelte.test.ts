@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
+import { describe, expect, it, vi } from "vitest";
 import RegisterForm from "./RegisterForm.svelte";
 
 describe("RegisterForm", () => {
@@ -76,7 +76,11 @@ describe("RegisterForm", () => {
 		await userEvent.type(passwords[0], "secret123");
 		await userEvent.type(passwords[1], "secret123");
 		await userEvent.click(screen.getByRole("button", { name: /Create account/ }));
-		expect(fn).toHaveBeenCalledWith({ name: "Alice", email: "alice@test.com", password: "secret123" });
+		expect(fn).toHaveBeenCalledWith({
+			name: "Alice",
+			email: "alice@test.com",
+			password: "secret123",
+		});
 	});
 
 	it("shows error message", () => {
