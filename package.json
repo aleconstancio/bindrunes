@@ -12,7 +12,8 @@
 		"url": "https://github.com/aleconstancio/bindrunes/issues"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"svelte": "./dist/index.js",
 	"exports": {
@@ -30,6 +31,16 @@
 			"types": "./dist/components/boundrune/index.d.ts",
 			"svelte": "./dist/components/boundrune/index.js",
 			"default": "./dist/components/boundrune/index.js"
+		},
+		"./dashboard": {
+			"types": "./dist/components/dashboard/index.d.ts",
+			"svelte": "./dist/components/dashboard/index.js",
+			"default": "./dist/components/dashboard/index.js"
+		},
+		"./sidebar": {
+			"types": "./dist/components/sidebar/index.d.ts",
+			"svelte": "./dist/components/sidebar/index.js",
+			"default": "./dist/components/sidebar/index.js"
 		},
 		"./tailwind": {
 			"types": "./dist/tailwind-plugin.d.ts",
@@ -60,6 +71,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.16",
+		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.0",
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
@@ -68,7 +80,9 @@
 		"@testing-library/svelte": "^5.3.1",
 		"@testing-library/user-event": "^14.6.1",
 		"@vitest/coverage-v8": "^4.1.8",
+		"husky": "^9.0.0",
 		"jsdom": "^29.1.1",
+		"lint-staged": "^15.0.0",
 		"svelte": "^5.56.1",
 		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.3",
@@ -88,24 +102,38 @@
 		"prosemirror-view": "^1.41.8",
 		"svelte-chartjs": "^3.1.5"
 	},
+	"lint-staged": {
+		"*.{js,ts,svelte}": [
+			"biome check --write"
+		],
+		"*.{json,css,md}": [
+			"biome check --write"
+		]
+	},
 	"engines": {
 		"bun": ">=1.3.0",
 		"node": ">=20.0.0"
 	},
 	"scripts": {
+		"dev": "svelte-package -i src -o dist -w",
+		"dev:test": "vitest",
+		"clean": "rm -rf dist .svelte-kit",
 		"build": "svelte-package -i src -o dist && node scripts/build-clean.mjs",
 		"build:clean": "node scripts/build-clean.mjs",
 		"prepublishOnly": "bun run build",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
+		"format": "biome check --write .",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"test:coverage": "vitest run --coverage",
 		"test:ci": "vitest run --coverage --reporter=verbose",
 		"test:watch:coverage": "vitest --coverage",
 		"check": "tsc --noEmit",
+		"validate": "bun run lint && bun run check && bun run test",
 		"changeset": "changeset",
 		"release:version": "changeset version",
-		"release:publish": "bun run build && changeset publish"
+		"release:publish": "changeset publish",
+		"prepare": "husky"
 	}
 }

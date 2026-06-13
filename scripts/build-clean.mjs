@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 // scripts/build-clean.mjs
-// Post-build cleanup: strip test files, harnesses, and stubs from dist/.
-// Extracted from an inline node -e block in package.json (M0 hardening).
+// Post-build cleanup: strip test files, harnesses, stubs, and fix .ts references in dist/.
 
-import { readdirSync, rmSync, statSync, unlinkSync } from "node:fs";
+import { readdirSync, readFileSync, rmSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const DIST = new URL("../dist", import.meta.url).pathname;
@@ -12,9 +11,8 @@ const REMOVED_DIRS = ["__tests__", "tests"];
 const FILE_PATTERNS = [
 	/\.test\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/\.spec\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
-	/^Harness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
-	/^SidebarTestHarness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
-	/^bindrunes-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
+	/Harness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
+	/bindrunes-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
 ];
 
 function shouldRemoveFile(name) {
@@ -23,6 +21,7 @@ function shouldRemoveFile(name) {
 
 let removedFiles = 0;
 let removedDirs = 0;
+let fixedFiles = 0;
 
 function walk(dir) {
 	let entries;
@@ -38,10 +37,29 @@ function walk(dir) {
 		const stat = statSync(full);
 		if (stat.isDirectory()) {
 			walk(full);
-		} else if (stat.isFile() && shouldRemoveFile(entry)) {
-			unlinkSync(full);
-			removedFiles++;
+		} else if (stat.isFile()) {
+			if (shouldRemoveFile(entry)) {
+				unlinkSync(full);
+				removedFiles++;
+			} else if (entry.endsWith(".svelte") || entry.endsWith(".js")) {
+				fixTsReferences(full);
+			}
 		}
+	}
+}
+
+function fixTsReferences(filePath) {
+	try {
+		let content = readFileSync(filePath, "utf8");
+		const original = content;
+		content = content.replace(/\.svelte\.ts"/g, '.svelte.js"');
+		content = content.replace(/\.ts"/g, '.js"');
+		if (content !== original) {
+			writeFileSync(filePath, content, "utf8");
+			fixedFiles++;
+		}
+	} catch {
+		// skip files that can't be read
 	}
 }
 
@@ -57,4 +75,6 @@ for (const sub of REMOVED_DIRS) {
 	}
 }
 
-console.log(`[build-clean] removed ${removedFiles} file(s) and ${removedDirs} dir(s) from dist/`);
+console.log(
+	`[build-clean] removed ${removedFiles} file(s), fixed ${fixedFiles} file(s), removed ${removedDirs} dir(s) from dist/`,
+);

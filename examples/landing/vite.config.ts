@@ -7,4 +7,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['bindrunes'],
   },
+  server: {
+    port: 5176,
+  },
 });
