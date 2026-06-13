@@ -10,6 +10,11 @@ dist/
 .svelte-kit/types/
 .vite/
 
+# Environment
+.env
+.env.*
+!.env.example
+
 # OS
 .DS_Store
 Thumbs.db

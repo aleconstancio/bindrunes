@@ -8,7 +8,10 @@
 			"!**/.svelte-kit",
 			"!**/dist",
 			"!**/node_modules",
-			"!**/coverage"
+			"!**/coverage",
+			"!examples",
+			"!src/styles/tokens/tailwind.css",
+			"!src/styles/tokens.example.css"
 		]
 	},
 	"formatter": {
@@ -26,10 +29,12 @@
 				"noUnusedVariables": "warn"
 			},
 			"suspicious": {
-				"noExplicitAny": "warn"
+				"noExplicitAny": "error",
+				"useIterableCallbackReturn": "warn"
 			},
 			"style": {
-				"noNonNullAssertion": "warn"
+				"noNonNullAssertion": "warn",
+				"useNodejsImportProtocol": "off"
 			}
 		}
 	},
@@ -42,8 +47,45 @@
 	"overrides": [
 		{
 			"includes": ["**/*.svelte"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedImports": "off",
+						"noUnusedVariables": "off"
+					}
+				}
+			},
 			"formatter": {
 				"indentStyle": "tab"
+			}
+		},
+		{
+			"includes": ["**/*.json"],
+			"formatter": {
+				"indentStyle": "tab"
+			}
+		},
+		{
+			"includes": ["**/*.css"],
+			"linter": {
+				"enabled": false
+			},
+			"formatter": {
+				"enabled": false
+			}
+		},
+		{
+			"includes": ["**/*.test.ts", "**/*.spec.ts", "**/*.test.svelte.ts"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noNonNullAssertion": "off"
+					},
+					"suspicious": {
+						"useIterableCallbackReturn": "off",
+						"noExplicitAny": "off"
+					}
+				}
 			}
 		}
 	]
