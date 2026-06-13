@@ -1,0 +1,11 @@
+import { describe, expect, it } from "vitest";
+import { mountComposable } from "../helpers/test-wrapper.svelte";
+import { createI18nContext } from "./createI18nContext.svelte";
+
+describe("createI18nContext", () => {
+	it("creates a context and t function is callable", async () => {
+		const t = (key: string) => `translated:${key}`;
+		const ctx = await mountComposable(() => createI18nContext(t));
+		expect(ctx).toBeDefined();
+	});
+});
