@@ -15,8 +15,10 @@
 	--radius: 0.5rem;
 	--radius-md: 0.5rem;
 	--radius-lg: 0.75rem;
+	--radius-xl: 0.875rem;
 
 	/* Shadow — near-zero (editorial signature) */
+	--shadow-xs: 0 1px 0 oklch(0 0 0 / 0.03);
 	--shadow-sm: 0 1px 0 oklch(0 0 0 / 0.04);
 	--shadow-md: 0 1px 0 oklch(0 0 0 / 0.06);
 	--shadow-lg: 0 2px 4px oklch(0 0 0 / 0.08);

@@ -33,57 +33,57 @@
    - Rejects invalid values (no silent failures)
    ==================================================== */
 @property --radius {
-  syntax: "<length>";
-  initial-value: 0.5rem;
-  inherits: true;
+	syntax: "<length>";
+	initial-value: 0.5rem;
+	inherits: true;
 }
 
 @property --glass-blur {
-  syntax: "<length>";
-  initial-value: 16px;
-  inherits: true;
+	syntax: "<length>";
+	initial-value: 16px;
+	inherits: true;
 }
 
 @property --duration-snappy {
-  syntax: "<time>";
-  initial-value: 120ms;
-  inherits: true;
+	syntax: "<time>";
+	initial-value: 120ms;
+	inherits: true;
 }
 
 @property --duration-fluid {
-  syntax: "<time>";
-  initial-value: 220ms;
-  inherits: true;
+	syntax: "<time>";
+	initial-value: 220ms;
+	inherits: true;
 }
 
 @property --duration-slow {
-  syntax: "<time>";
-  initial-value: 360ms;
-  inherits: true;
+	syntax: "<time>";
+	initial-value: 360ms;
+	inherits: true;
 }
 
 @property --z-sidebar {
-  syntax: "<integer>";
-  initial-value: 20;
-  inherits: true;
+	syntax: "<integer>";
+	initial-value: 20;
+	inherits: true;
 }
 
 @property --z-overlay {
-  syntax: "<integer>";
-  initial-value: 30;
-  inherits: true;
+	syntax: "<integer>";
+	initial-value: 30;
+	inherits: true;
 }
 
 @property --z-toast {
-  syntax: "<integer>";
-  initial-value: 40;
-  inherits: true;
+	syntax: "<integer>";
+	initial-value: 40;
+	inherits: true;
 }
 
 @property --z-omnibar {
-  syntax: "<integer>";
-  initial-value: 50;
-  inherits: true;
+	syntax: "<integer>";
+	initial-value: 50;
+	inherits: true;
 }
 
 /* ══════════════════════════════════════════════════════
@@ -137,40 +137,40 @@
    uniformity and future color manipulation.
    ==================================================== */
 @layer tokens.base {
-  :root {
-    /* ── Surfaces ──────────────────────────────── */
-    --background: oklch(0.05 0.01 290);         /* #0B0B11 */
-    --foreground: oklch(0.95 0.01 290);          /* #F8F8F2 */
+	:root {
+		/* ── Surfaces ──────────────────────────────── */
+		--background: oklch(0.05 0.01 290); /* #0B0B11 */
+		--foreground: oklch(0.95 0.01 290); /* #F8F8F2 */
 
-    --card: oklch(1 0 0 / 0.06);
-    --card-foreground: oklch(0.95 0.01 290);
+		--card: oklch(1 0 0 / 0.06);
+		--card-foreground: oklch(0.95 0.01 290);
 
-    --muted: oklch(1 0 0 / 0.04);
-    --muted-foreground: oklch(0.55 0.03 280);   /* #6272A4 */
+		--muted: oklch(1 0 0 / 0.04);
+		--muted-foreground: oklch(0.55 0.03 280); /* #6272A4 */
 
-    --secondary: oklch(1 0 0 / 0.08);
-    --secondary-foreground: oklch(0.95 0.01 290);
+		--secondary: oklch(1 0 0 / 0.08);
+		--secondary-foreground: oklch(0.95 0.01 290);
 
-    /* ── Accents ───────────────────────────────── */
-    --primary: oklch(0.75 0.21 310);             /* #BD93F9 */
-    --primary-foreground: oklch(0.15 0 0);
+		/* ── Accents ───────────────────────────────── */
+		--primary: oklch(0.75 0.21 310); /* #BD93F9 */
+		--primary-foreground: oklch(0.15 0 0);
 
-    --accent: oklch(0.72 0.30 340);              /* #FF79C6 */
-    --accent-foreground: oklch(0.15 0 0);
+		--accent: oklch(0.72 0.3 340); /* #FF79C6 */
+		--accent-foreground: oklch(0.15 0 0);
 
-    --destructive: oklch(0.65 0.24 30);           /* #FF5555 */
-    --destructive-foreground: oklch(0.95 0 0);
+		--destructive: oklch(0.65 0.24 30); /* #FF5555 */
+		--destructive-foreground: oklch(0.95 0 0);
 
-    /* ── Borders & Inputs ──────────────────────── */
-    --border: oklch(1 0 0 / 0.08);
-    --input: oklch(1 0 0 / 0.06);
-    --ring: oklch(0.75 0.21 310);                 /* matches primary */
-  }
+		/* ── Borders & Inputs ──────────────────────── */
+		--border: oklch(1 0 0 / 0.08);
+		--input: oklch(1 0 0 / 0.06);
+		--ring: oklch(0.75 0.21 310); /* matches primary */
+	}
 }
 
 @layer tokens.variants {
-  :root {
-    /* Derived using OKLCH relative color syntax.
+	:root {
+		/* Derived using OKLCH relative color syntax.
      * These are optional — Tailwind's opacity modifiers
      * (hover:opacity-90, bg-primary/10) can replace many.
      *
@@ -182,38 +182,38 @@
      * Consumer projects can define these if they need
      * custom hover/glow/muted values beyond opacity.
      */
-  }
+	}
 }
 
 @layer tokens.motion {
-  :root {
-    --duration-snappy: 120ms;
-    --duration-fluid: 220ms;
-    --duration-slow: 360ms;
-    --easing-default: cubic-bezier(0.16, 1, 0.3, 1);
-  }
+	:root {
+		--duration-snappy: 120ms;
+		--duration-fluid: 220ms;
+		--duration-slow: 360ms;
+		--easing-default: cubic-bezier(0.16, 1, 0.3, 1);
+	}
 }
 
 @layer tokens.sidebar {
-  :root {
-    --sidebar-background: oklch(0.05 0.01 290);  /* matches --background */
-    --sidebar-foreground: oklch(0.95 0.01 290);   /* matches --foreground */
-    --sidebar-primary: oklch(0.75 0.21 310);       /* matches --primary */
-    --sidebar-primary-foreground: oklch(0.15 0 0);
-    --sidebar-accent: oklch(1 0 0 / 0.06);
-    --sidebar-accent-foreground: oklch(0.95 0.01 290);
-    --sidebar-border: oklch(1 0 0 / 0.08);
-    --sidebar-ring: oklch(0.75 0.21 310);
-  }
+	:root {
+		--sidebar-background: oklch(0.05 0.01 290); /* matches --background */
+		--sidebar-foreground: oklch(0.95 0.01 290); /* matches --foreground */
+		--sidebar-primary: oklch(0.75 0.21 310); /* matches --primary */
+		--sidebar-primary-foreground: oklch(0.15 0 0);
+		--sidebar-accent: oklch(1 0 0 / 0.06);
+		--sidebar-accent-foreground: oklch(0.95 0.01 290);
+		--sidebar-border: oklch(1 0 0 / 0.08);
+		--sidebar-ring: oklch(0.75 0.21 310);
+	}
 }
 
 @layer tokens.context {
-  :root {
-    --z-sidebar: 20;
-    --z-overlay: 30;
-    --z-toast: 40;
-    --z-omnibar: 50;
-  }
+	:root {
+		--z-sidebar: 20;
+		--z-overlay: 30;
+		--z-toast: 40;
+		--z-omnibar: 50;
+	}
 }
 
 /* ══════════════════════════════════════════════════════
@@ -245,7 +245,7 @@
    Base styles (optional, not bundled by bindrunes)
    ══════════════════════════════════════════════════════ */
 body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans, system-ui);
+	background-color: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-sans, system-ui);
 }

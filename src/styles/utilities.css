@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Animation Keyframes
+ * bindrunes — Animation Keyframes & Aesthetic Hook Utilities
  *
  * These keyframes are referenced by the Tailwind plugin
  * (src/tailwind-plugin.ts), which provides the utility classes.
@@ -11,17 +11,76 @@
 
 /* ── Animations ── */
 @keyframes bindrunes-pulse-glow {
-  0%, 100% { box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.65 0.10 265)) l 0.3 h / 0.15); }
-  50% { box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.65 0.10 265)) l 0.3 h / 0.25); }
+	0%,
+	100% {
+		box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.65 0.1 265)) l 0.3 h / 0.15);
+	}
+	50% {
+		box-shadow: 0 0 30px oklch(from var(--primary, oklch(0.65 0.1 265)) l 0.3 h / 0.25);
+	}
 }
 
 @keyframes fade-slide-in {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 @keyframes bindrunes-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
 }
 
+/* ── Aesthetic Hook Utilities ── */
+
+/*
+ * --shadow-emphasis: low | medium | high
+ * Maps to shadow intensity. Components reference this via:
+ *   box-shadow: var(--shadow-emphasis-resolved);
+ */
+:root,
+[data-aesthetic] {
+	--shadow-emphasis-resolved: var(--shadow-sm);
+}
+[data-aesthetic="glass"],
+[data-aesthetic="expressive"] {
+	--shadow-emphasis-resolved: var(--shadow-md);
+}
+
+/*
+ * --button-treatment: flat | gradient | inner-light
+ * Button.svelte reads this to choose its visual treatment.
+ * Each aesthetic defines the value; Button applies it.
+ */
+/* flat = no gradient, solid background (editorial, bento) */
+/* gradient = linear-gradient background (glass, expressive) — defined in aesthetic files */
+/* inner-light = subtle inner highlight (bento) — defined in aesthetic files */
+
+/*
+ * --surface-texture: none | grain | dot-grid | mesh
+ * Applied via .surface-texture utility class.
+ */
+.surface-texture-none {
+	background-image: none;
+}
+.surface-texture-grain {
+	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+.surface-texture-dot-grid {
+	background-image: radial-gradient(circle, oklch(from var(--foreground) l c h / 0.06) 1px, transparent 1px);
+	background-size: 16px 16px;
+}
+.surface-texture-mesh {
+	background-image:
+		radial-gradient(at 0% 0%, oklch(from var(--primary) l c h / 0.08) 0px, transparent 50%),
+		radial-gradient(at 100% 100%, oklch(from var(--accent) l c h / 0.06) 0px, transparent 50%);
+}
