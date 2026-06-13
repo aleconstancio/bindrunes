@@ -28,6 +28,8 @@
 		{ href: "/media", label: "Media" },
 		{ href: "/calendar", label: "Calendar" },
 		{ href: "/chat", label: "Chat" },
+		{ href: "/themes", label: "Themes" },
+		{ href: "/aesthetics", label: "Aesthetics" },
 		{ href: "/components", label: "Components" },
 	];
 
