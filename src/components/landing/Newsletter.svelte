@@ -29,7 +29,7 @@ let {
 
 let email = $state("");
 
-function handleSubmit(e: Event) {
+function _handleSubmit(e: Event) {
 	e.preventDefault();
 	onSubmit?.(email);
 }
@@ -46,7 +46,7 @@ function handleSubmit(e: Event) {
         {description}
       </p>
     {/if}
-    <form onsubmit={handleSubmit} class="mt-8 flex flex-col sm:flex-row gap-3 max-w-[var(--container-md)] mx-auto">
+    <form onsubmit={_handleSubmit} class="mt-8 flex flex-col sm:flex-row gap-3 max-w-[var(--container-md)] mx-auto">
       <Input
         type="email"
         placeholder={t?.('landing.Newsletter.placeholder') ?? placeholder}

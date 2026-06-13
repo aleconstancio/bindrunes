@@ -1,42 +1,24 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Component, Snippet } from 'svelte';
-  import { Check } from 'lucide-svelte';
-  import Card from '../Card.svelte';
-  import DynamicIcon from '../DynamicIcon.svelte';
-  import type { TFunction } from '../../shared-types';
+import { Check } from "lucide-svelte";
+import type { Snippet } from "svelte";
+import type { TFunction } from "../../shared-types";
+import Card from "../Card.svelte";
+import DynamicIcon from "../DynamicIcon.svelte";
 
-  import type { Step } from './landing-types';
+import type { Step } from "./landing-types";
 
-  interface Props {
-    steps: Step[];
-    showConnector?: boolean;
-    children?: Snippet;
-    class?: string;
-    t?: TFunction;
-  }
+interface Props {
+	steps: Step[];
+	showConnector?: boolean;
+	children?: Snippet;
+	class?: string;
+	t?: TFunction;
+}
 
-  let { steps, showConnector = true, children, class: className = '', t }: Props = $props();
-
-  let visible = $state(false);
-  let grid: HTMLElement;
-
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          visible = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(grid);
-    return () => observer.disconnect();
-  });
+let { steps, showConnector = true, children, class: className = "", t }: Props = $props();
 </script>
 
-<div bind:this={grid} class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 {className}">
+<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 {className}">
   {#each steps as step, i}
     <div class="stagger-enter relative" style="--stagger-index: {i}">
       <Card variant="glass" padding class="h-full">

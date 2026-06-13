@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Snippet } from "svelte";
+import type { Component, Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
 import DynamicIcon from "../DynamicIcon.svelte";
 import MetaContainer from "../MetaContainer.svelte";

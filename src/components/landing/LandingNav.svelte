@@ -59,7 +59,9 @@ onMount(() => {
 		})
 		.filter(Boolean) as IntersectionObserver[];
 
-	return () => observers.forEach((o) => o.disconnect());
+	return () => {
+		for (const o of observers) o.disconnect();
+	};
 });
 
 function handleKeydown(e: KeyboardEvent) {

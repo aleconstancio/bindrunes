@@ -5,8 +5,8 @@ import type { TFunction } from "../../shared-types";
 import Badge from "../Badge.svelte";
 import Button from "../Button.svelte";
 import Card from "../Card.svelte";
-import Switch from "../Switch.svelte";
 import MetaContainer from "../MetaContainer.svelte";
+import Switch from "../Switch.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 import type { Plan } from "./landing-types";
@@ -37,11 +37,6 @@ let {
 
 const landing = useLanding();
 
-let billingAnnual = $state(landing.billingAnnual);
-$effect(() => {
-	landing.setBillingAnnual(billingAnnual);
-});
-
 const formatCurrency = (n: number) =>
 	new Intl.NumberFormat(locale, { style: "currency", currency }).format(n);
 </script>
@@ -49,10 +44,10 @@ const formatCurrency = (n: number) =>
 <MetaContainer size="xl" class={className}>
   {#if showToggle}
     <div class="flex items-center justify-center gap-3">
-      <span class="text-label-md {!billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
-      <Switch bind:checked={billingAnnual} />
-      <span class="text-label-md {billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Anual'}</span>
-      {#if !billingAnnual}
+      <span class="text-label-md {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
+      <Switch checked={landing.billingAnnual} onchange={() => landing.setBillingAnnual(!landing.billingAnnual)} />
+      <span class="text-label-md {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Anual'}</span>
+      {#if !landing.billingAnnual}
         <Badge variant="primary">{t?.('landing.PricingTable.saveUpTo') ?? 'Economize até 20%'}</Badge>
       {/if}
     </div>
@@ -62,7 +57,7 @@ const formatCurrency = (n: number) =>
     {#each plans as plan}
       <div class="pricing-card-wrapper {plan.highlight ? 'highlight' : ''}">
         {#if customCard}
-          {@render customCard(plan, { annual: billingAnnual, format: formatCurrency })}
+          {@render customCard(plan, { annual: landing.billingAnnual, format: formatCurrency })}
         {:else}
           <Card variant="glass" padding class="pricing-card-inner transition-all {plan.highlight ? 'pricing-highlight' : ''} {plan.highlight ? 'scale-[1.03] sm:scale-[1.05]' : 'hover:scale-[1.02] hover:shadow-xl'}">
             {#snippet children()}
@@ -78,7 +73,7 @@ const formatCurrency = (n: number) =>
                   <p class="text-label-md uppercase tracking-widest {plan.highlight ? 'text-primary' : 'text-muted-foreground'}">{plan.name}</p>
                 </div>
                 <div class="text-center pricing-price">
-                  {#if billingAnnual}
+                  {#if landing.billingAnnual}
                     <p class="text-display-2 text-foreground sm:text-display-1">{formatCurrency(plan.annual)}</p>
                     <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perYear') ?? 'por ano'} <span class="text-body-sm text-primary font-medium">({t?.('landing.PricingTable.save') ?? 'economize R$ '}{(plan.monthly * 12 - plan.annual).toLocaleString(locale)})</span></p>
                   {:else}
@@ -117,19 +112,19 @@ const formatCurrency = (n: number) =>
 </MetaContainer>
 
 <style>
-  :global(.pricing-grid) {
+  .pricing-grid {
     display: grid;
     grid-template-rows: 1fr;
   }
 
-  :global(.pricing-content) {
+  .pricing-content {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
-    gap: 1.5rem;
+    gap: var(--space-6);
   }
 
   @supports (grid-template-rows: subgrid) {
-    :global(.pricing-grid) {
+    .pricing-grid {
       grid-template-rows: repeat(3, auto auto 1fr auto);
     }
 
@@ -143,14 +138,14 @@ const formatCurrency = (n: number) =>
       height: 100%;
     }
 
-    :global(.pricing-content) {
+    .pricing-content {
       display: contents;
     }
 
-    :global(.pricing-name),
-    :global(.pricing-price),
-    :global(.pricing-features),
-    :global(.pricing-cta) {
+    .pricing-name,
+    .pricing-price,
+    .pricing-features,
+    .pricing-cta {
       grid-row: auto / span 1;
     }
   }

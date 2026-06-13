@@ -32,7 +32,7 @@ let {
 	children,
 }: Props = $props();
 
-const tag = $derived(level === 1 ? "h1" : "h2");
+const _tag = $derived(level === 1 ? "h1" : "h2");
 </script>
 
 <section

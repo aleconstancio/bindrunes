@@ -1,37 +1,37 @@
 <script lang="ts">
-import { onMount } from "svelte";
-import type { Snippet } from "svelte";
 import Card from "../Card.svelte";
 import DynamicIcon from "../DynamicIcon.svelte";
 import MetaContainer from "../MetaContainer.svelte";
-import type { Feature } from "./landing-types";
 import { getGridClass } from "./landing-utils";
 
-let { features, columns = 3, variant = "card", children, class: className = "" }: Props = $props();
+interface Props {
+	features: { icon: string; title: string; description: string }[];
+	columns?: number;
+	variant?: "card" | "inline";
+	children?: import("svelte").Snippet;
+	class?: string;
+	featureSnippet?: import("svelte").Snippet<
+		[{ feature: { icon: string; title: string; description: string }; index: number }]
+	>;
+}
 
-let visible = $state(false);
-let grid: HTMLElement;
-
-onMount(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        visible = true;
-        observer.disconnect();
-      }
-    },
-    { threshold: 0.1 }
-  );
-  observer.observe(grid);
-  return () => observer.disconnect();
-});
+let {
+	features,
+	columns = 3,
+	variant = "card",
+	children,
+	class: className = "",
+	featureSnippet,
+}: Props = $props();
 </script>
 
 <MetaContainer size="xl" padding={false}>
-<div bind:this={grid} class="grid {getGridClass(columns)} gap-6 {className}">
+<div class="grid {getGridClass(columns)} gap-6 {className}">
   {#each features as feature, i}
     <div class="stagger-enter" style="--stagger-index: {i}">
-    {#if variant === 'card'}
+    {#if featureSnippet}
+      {@render featureSnippet({ feature, index: i })}
+    {:else if variant === 'card'}
       <Card variant="glass" padding class="transition-all hover:scale-[1.02] hover:shadow-xl">
         {#snippet children()}
           <div class="flex flex-col gap-4">

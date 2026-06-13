@@ -1,29 +1,29 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import Avatar from '../Avatar.svelte';
-	import { getInitials } from './landing-utils';
+import type { Snippet } from "svelte";
+import Avatar from "../Avatar.svelte";
+import { getInitials } from "./landing-utils";
 
-	interface Props {
-		quote: string;
-		author: string;
-		role?: string;
-		avatar?: string;
-		avatarFallback?: string;
-		children?: Snippet;
-		class?: string;
-	}
+interface Props {
+	quote: string;
+	author: string;
+	role?: string;
+	avatar?: string;
+	avatarFallback?: string;
+	children?: Snippet;
+	class?: string;
+}
 
-	let {
-		quote,
-		author,
-		role,
-		avatar,
-		avatarFallback,
-		children,
-		class: className = '',
-	}: Props = $props();
+let {
+	quote,
+	author,
+	role,
+	avatar,
+	avatarFallback,
+	children,
+	class: className = "",
+}: Props = $props();
 
-	const initials = $derived(avatarFallback ?? getInitials(author));
+const initials = $derived(avatarFallback ?? getInitials(author));
 </script>
 
 <div class="mx-auto max-w-[var(--container-lg)] text-center px-6 py-12 section-reveal {className}">

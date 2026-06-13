@@ -1,22 +1,35 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import MetaContainer from "../MetaContainer.svelte";
+import type { ContainerSize } from "../../shared-types";
+import Block from "../boundrune/Block.svelte";
 
 let {
 	id = undefined as string | undefined,
 	class: className = "",
-	size = "xl" as "prose" | "sm" | "md" | "lg" | "xl" | "2xl" | "full",
+	size = "xl" as ContainerSize,
+	background = "none" as "none" | "muted" | "gradient",
+	spacing = "normal" as "compact" | "normal" | "wide",
+	header = undefined as Snippet | undefined,
+	footer = undefined as Snippet | undefined,
 	children,
 }: {
 	id?: string;
 	class?: string;
-	size?: "prose" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+	size?: ContainerSize;
+	background?: "none" | "muted" | "gradient";
+	spacing?: "compact" | "normal" | "wide";
+	header?: Snippet;
+	footer?: Snippet;
 	children?: Snippet;
 } = $props();
 </script>
 
-<section {id} class="px-6 py-16 section-reveal {className}">
-  <MetaContainer {size}>
-    {@render children?.()}
-  </MetaContainer>
-</section>
+<Block {id} {size} {background} {spacing} class="section-reveal {className}">
+  {#if header}
+    {@render header()}
+  {/if}
+  {@render children?.()}
+  {#if footer}
+    {@render footer()}
+  {/if}
+</Block>

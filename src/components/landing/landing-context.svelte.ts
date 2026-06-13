@@ -1,5 +1,4 @@
 import { createMetaContext, useMetaContext } from "../../utils/createMetaContext.svelte";
-import { readonlyGetters } from "../../utils/readonlyGetters";
 
 const KEY = Symbol("landing");
 
@@ -17,7 +16,7 @@ export function createLandingState(): LandingState {
 	let activeSection = $state("");
 	let menuOpen = $state(false);
 
-	const state = readonlyGetters({
+	const state = {
 		get billingAnnual() {
 			return billingAnnual;
 		},
@@ -36,7 +35,7 @@ export function createLandingState(): LandingState {
 		setMenuOpen(v: boolean) {
 			menuOpen = v;
 		},
-	});
+	};
 
 	return createMetaContext(KEY, () => state);
 }

@@ -3,7 +3,6 @@ import type { Snippet } from "svelte";
 import Accordion from "../Accordion.svelte";
 import AccordionItem from "../AccordionItem.svelte";
 import MetaContainer from "../MetaContainer.svelte";
-
 import type { FAQItem } from "./landing-types";
 
 interface Props {
@@ -15,6 +14,7 @@ interface Props {
 
 let { items, defaultOpen, children, class: className = "" }: Props = $props();
 
+// svelte-ignore state_referenced_locally
 let openValue = $state(defaultOpen ? [defaultOpen] : ([] as string[]));
 </script>
 

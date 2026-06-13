@@ -1,45 +1,26 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import DynamicIcon from '../DynamicIcon.svelte';
-  import { getGridClass, getInitials } from './landing-utils';
-  import Avatar from '../Avatar.svelte';
-  import type { TeamMember } from './landing-types';
+import type { Snippet } from "svelte";
+import Avatar from "../Avatar.svelte";
+import DynamicIcon from "../DynamicIcon.svelte";
+import type { TeamMember } from "./landing-types";
+import { getGridClass, getInitials } from "./landing-utils";
 
-  interface Props {
-    title?: string;
-    members: TeamMember[];
-    columns?: 1 | 2 | 3 | 4;
-    children?: Snippet;
-    class?: string;
-  }
+interface Props {
+	title?: string;
+	members: TeamMember[];
+	columns?: 1 | 2 | 3 | 4;
+	children?: Snippet;
+	class?: string;
+}
 
-  let { title, members, columns = 3, children, class: className = '' }: Props = $props();
-
-  let visible = $state(false);
-  let grid: HTMLElement;
-
-  onMount(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          visible = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(grid);
-    return () => observer.disconnect();
-  });
-
+let { title, members, columns = 3, children, class: className = "" }: Props = $props();
 </script>
 
 <div class="px-6 py-12 section-reveal {className}">
   {#if title}
     <h2 class="text-center text-display-3 text-foreground mb-10">{title}</h2>
   {/if}
-  <div bind:this={grid} class="grid {getGridClass(columns)} gap-8">
+  <div class="grid {getGridClass(columns)} gap-8">
     {#each members as member, i}
       <div class="stagger-enter" style="--stagger-index: {i}">
       <div class="text-center">
