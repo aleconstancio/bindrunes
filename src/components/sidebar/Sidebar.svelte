@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { getSidebarContext } from './sidebar-context.svelte';
+import { getSidebarContext } from "./sidebar-context.svelte";
 
-  let {
-    side = 'left' as 'left' | 'right',
-    variant = 'sidebar' as 'sidebar' | 'floating' | 'inset',
-    collapsible = 'icon' as 'offcanvas' | 'icon' | 'none',
-    class: className = '',
-    children,
-  }: {
-    side?: 'left' | 'right';
-    variant?: 'sidebar' | 'floating' | 'inset';
-    collapsible?: 'offcanvas' | 'icon' | 'none';
-    class?: string;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	side = "left" as "left" | "right",
+	_variant = "sidebar" as "sidebar" | "floating" | "inset",
+	collapsible = "icon" as "offcanvas" | "icon" | "none",
+	class: className = "",
+	children,
+}: {
+	side?: "left" | "right";
+	variant?: "sidebar" | "floating" | "inset";
+	collapsible?: "offcanvas" | "icon" | "none";
+	class?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  const ctx = getSidebarContext();
+const ctx = getSidebarContext();
 </script>
 
 {#if collapsible === 'offcanvas'}

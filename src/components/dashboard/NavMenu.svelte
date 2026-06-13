@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { SidebarGroup, SidebarMenu, SidebarMenuButton } from '../sidebar/index';
-  import type { NavGroup } from '../../shared-types';
+import type { NavGroup } from "../../shared-types";
+import { SidebarGroup, SidebarMenu, SidebarMenuButton } from "../sidebar";
 
-  let {
-    groups = [] as NavGroup[],
-    pathname = '',
-    onNavigate = undefined as ((to: string) => void) | undefined,
-  } = $props();
+let {
+	groups = [] as NavGroup[],
+	pathname = "",
+	onNavigate = undefined as ((to: string) => void) | undefined,
+} = $props();
 </script>
 
 {#each groups as group}

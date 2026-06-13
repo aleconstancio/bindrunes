@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getSidebarContext } from './sidebar-context.svelte';
+import { getSidebarContext } from "./sidebar-context.svelte";
 
-  const ctx = getSidebarContext();
+const _ctx = getSidebarContext();
 </script>
 
 <button
-  onclick={() => ctx.toggle()}
+  onclick={() => _ctx.toggle()}
   aria-label="Toggle sidebar"
   class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10
          flex h-8 w-4 items-center justify-center rounded-full

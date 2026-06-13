@@ -1,85 +1,89 @@
 <script lang="ts">
-	import type { Component } from 'svelte';
-	import { SidebarProvider, Sidebar, SidebarTrigger } from '../sidebar/index';
-	import MetaLayout from '../MetaLayout.svelte';
-	import MetaScrollable from '../MetaScrollable.svelte';
-	import { derivePageInfo } from '../../utils/navigation';
-	import type { NavGroup, StatusVariant, TFunction } from '../../shared-types';
-	import NavMenu from './NavMenu.svelte';
-	import StatusChip from '../StatusChip.svelte';
-	import ThemeToggle from '../ThemeToggle.svelte';
-	import RuleFootnote from '../RuleFootnote.svelte';
-	import DashboardShellBrand from './DashboardShellBrand.svelte';
-	import DashboardShellHeader from './DashboardShellHeader.svelte';
+import type { Component } from "svelte";
+import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
+import { derivePageInfo } from "../../utils/navigation";
+import MetaLayout from "../MetaLayout.svelte";
+import MetaScrollable from "../MetaScrollable.svelte";
+import RuleFootnote from "../RuleFootnote.svelte";
+import StatusChip from "../StatusChip.svelte";
+import { Sidebar, SidebarProvider, SidebarTrigger } from "../sidebar";
+import ThemeToggle from "../ThemeToggle.svelte";
+import DashboardShellBrand from "./DashboardShellBrand.svelte";
+import DashboardShellHeader from "./DashboardShellHeader.svelte";
+import NavMenu from "./NavMenu.svelte";
 
-	let {
-		variant = 'default' as 'default' | 'right' | 'topnav',
-		appName = '',
-		appSubtitle = undefined as string | undefined,
-		brandIcon = undefined as string | Component | undefined,
-		navigation = [] as NavGroup[],
-		pathname = undefined as string | undefined,
-		scopeLabel = undefined as string | undefined,
-		scopeTitle = undefined as string | undefined,
-		scopeDescription = undefined as string | undefined,
-		ruleTitle = undefined as string | undefined,
-		ruleDescription = undefined as string | undefined,
-		ruleChildren = undefined as import('svelte').Snippet | undefined,
-		headerPrefix = '',
-		defaultTitle = 'Home',
-		defaultDescription = '',
-		pageTitle = undefined as string | undefined,
-		pageDescription = undefined as string | undefined,
-		sidebarCollapsible = 'icon' as 'icon' | 'full',
-		statusChipVariant = undefined as StatusVariant | undefined,
-		statusChipLabel = undefined as string | undefined,
-		statusChipDot = true,
-		statusChipAnimate = false,
-		onNavigate = undefined as ((to: string) => void) | undefined,
-		t = undefined as TFunction | undefined,
-		sidebarHeader,
-		sidebarFooter,
-		headerActions,
-		children,
-	}: {
-		variant?: 'default' | 'right' | 'topnav';
-		appName?: string;
-		appSubtitle?: string;
-		brandIcon?: string | Component;
-		navigation?: NavGroup[];
-		pathname?: string;
-		scopeLabel?: string;
-		scopeTitle?: string;
-		scopeDescription?: string;
-		ruleTitle?: string;
-		ruleDescription?: string;
-		ruleChildren?: import('svelte').Snippet;
-		headerPrefix?: string;
-		defaultTitle?: string;
-		defaultDescription?: string;
-		pageTitle?: string;
-		pageDescription?: string;
-		sidebarCollapsible?: 'icon' | 'full';
-		statusChipVariant?: StatusVariant;
-		statusChipLabel?: string;
-		statusChipDot?: boolean;
-		statusChipAnimate?: boolean;
-		onNavigate?: (to: string) => void;
-		t?: TFunction;
-		sidebarHeader?: import('svelte').Snippet;
-		sidebarFooter?: import('svelte').Snippet;
-		headerActions?: import('svelte').Snippet;
-		children?: import('svelte').Snippet;
-	} = $props();
+let {
+	variant = "default" as "default" | "right" | "topnav",
+	appName = "",
+	appSubtitle = undefined as string | undefined,
+	brandIcon = undefined as string | Component | undefined,
+	navigation = [] as NavGroup[],
+	pathname = undefined as string | undefined,
+	scopeLabel = undefined as string | undefined,
+	scopeTitle = undefined as string | undefined,
+	scopeDescription = undefined as string | undefined,
+	ruleTitle = undefined as string | undefined,
+	ruleDescription = undefined as string | undefined,
+	ruleChildren = undefined as import("svelte").Snippet | undefined,
+	headerPrefix = "",
+	defaultTitle = "Home",
+	defaultDescription = "",
+	pageTitle = undefined as string | undefined,
+	pageDescription = undefined as string | undefined,
+	sidebarCollapsible = "icon" as "icon" | "full",
+	statusChip = undefined as
+		| { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean }
+		| undefined,
+	onNavigate = undefined as ((to: string) => void) | undefined,
+	t = undefined as TFunction | undefined,
+	sidebarHeader,
+	sidebarFooter,
+	headerActions,
+	children,
+}: {
+	variant?: "default" | "right" | "topnav";
+	appName?: string;
+	appSubtitle?: string;
+	brandIcon?: string | Component;
+	navigation?: NavGroup[];
+	pathname?: string;
+	scopeLabel?: string;
+	scopeTitle?: string;
+	scopeDescription?: string;
+	ruleTitle?: string;
+	ruleDescription?: string;
+	ruleChildren?: import("svelte").Snippet;
+	headerPrefix?: string;
+	defaultTitle?: string;
+	defaultDescription?: string;
+	pageTitle?: string;
+	pageDescription?: string;
+	sidebarCollapsible?: "icon" | "full";
+	statusChip?: { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean };
+	onNavigate?: (to: string) => void;
+	t?: TFunction;
+	sidebarHeader?: import("svelte").Snippet;
+	sidebarFooter?: import("svelte").Snippet;
+	headerActions?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 
-	let pagePath = $derived(pathname ?? (typeof window !== 'undefined' ? window.location.pathname : ''));
-	let pageInfo = $derived(derivePageInfo(pagePath, navigation, { title: defaultTitle, description: defaultDescription }));
-	let resolvedTitle = $derived(pageTitle ?? pageInfo.title);
-	let resolvedDescription = $derived(pageDescription ?? pageInfo.description);
-	let resolvedRuleTitle = $derived(ruleTitle ?? (t?.('dashboard.RuleFootnote.title') ?? 'Regra Crítica'));
+let pagePath = $derived(
+	pathname ?? (typeof window !== "undefined" ? window.location.pathname : ""),
+);
+let pageInfo = $derived(
+	derivePageInfo(pagePath, navigation, { title: defaultTitle, description: defaultDescription }),
+);
+let resolvedTitle = $derived(pageTitle ?? pageInfo.title);
+let resolvedDescription = $derived(pageDescription ?? pageInfo.description);
+let resolvedRuleTitle = $derived(
+	ruleTitle ?? t?.("dashboard.RuleFootnote.title") ?? "Regra Crítica",
+);
 
-	let sidebarCollapsibleProp = $derived(sidebarCollapsible === 'full' ? 'none' as const : 'icon' as const);
-	let sidebarCollapsibleComputed = $derived(variant === 'right' ? 'icon' : sidebarCollapsibleProp);
+let sidebarCollapsibleProp = $derived(
+	sidebarCollapsible === "full" ? ("none" as const) : ("icon" as const),
+);
+let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebarCollapsibleProp);
 </script>
 
 {#if variant === 'topnav'}
@@ -108,8 +112,8 @@
 				<div class="flex items-center gap-3">
 					{#if headerActions}
 						{@render headerActions()}
-					{:else if statusChipLabel}
-						<StatusChip variant={statusChipVariant ?? 'info'} label={statusChipLabel} dot={statusChipDot} animate={statusChipAnimate} />
+					{:else if statusChip?.label}
+						<StatusChip variant={statusChip.variant ?? 'info'} label={statusChip.label} dot={statusChip.dot ?? true} animate={statusChip.animate ?? false} />
 					{/if}
 					<ThemeToggle />
 				</div>
@@ -170,10 +174,7 @@
 				{resolvedTitle}
 				{resolvedDescription}
 				{headerActions}
-				{statusChipVariant}
-				{statusChipLabel}
-				{statusChipDot}
-				{statusChipAnimate}
+				{statusChip}
 			>
 				{#snippet trigger()}
 					<SidebarTrigger />

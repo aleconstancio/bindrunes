@@ -20,12 +20,14 @@ let {
 	children?: import("svelte").Snippet;
 } = $props();
 
+// svelte-ignore state_referenced_locally
 let ctx = createSidebarState(defaultOpen);
 
 // Controlled mode
+// svelte-ignore state_referenced_locally
 if (open !== undefined) {
 	$effect(() => {
-		ctx.open = open;
+		ctx.setOpen(open);
 	});
 }
 

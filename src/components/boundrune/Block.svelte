@@ -10,6 +10,8 @@ let {
 	size = "xl" as ContainerSize,
 	background = "none" as "none" | "muted" | "gradient",
 	spacing = "normal" as "compact" | "normal" | "wide",
+	header = undefined as Snippet | undefined,
+	footer = undefined as Snippet | undefined,
 	children,
 }: {
 	id?: string;
@@ -17,6 +19,8 @@ let {
 	size?: ContainerSize;
 	background?: "none" | "muted" | "gradient";
 	spacing?: "compact" | "normal" | "wide";
+	header?: Snippet;
+	footer?: Snippet;
 	children?: Snippet;
 } = $props();
 
@@ -38,6 +42,12 @@ const bgClass: Record<string, string> = {
   class="px-6 {spacingY[spacing]} {bgClass[background]} {className}"
 >
   <MetaContainer {size}>
+    {#if header}
+      <div class="mb-8">{@render header()}</div>
+    {/if}
     {@render children?.()}
+    {#if footer}
+      <div class="mt-8">{@render footer()}</div>
+    {/if}
   </MetaContainer>
 </section>

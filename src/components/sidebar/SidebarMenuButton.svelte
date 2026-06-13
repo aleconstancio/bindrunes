@@ -1,17 +1,17 @@
 <script lang="ts">
-  let {
-    isActive = false,
-    href = undefined as string | undefined,
-    onclick = undefined as ((e: MouseEvent) => void) | undefined,
-    children,
-  }: {
-    isActive?: boolean;
-    href?: string;
-    onclick?: (e: MouseEvent) => void;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	isActive = false,
+	href = undefined as string | undefined,
+	onclick = undefined as ((e: MouseEvent) => void) | undefined,
+	children,
+}: {
+	isActive?: boolean;
+	href?: string;
+	onclick?: (e: MouseEvent) => void;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  let tag = $derived(href ? 'a' : onclick ? 'button' : 'div');
+let tag = $derived(href ? "a" : onclick ? "button" : "div");
 </script>
 
 <svelte:element

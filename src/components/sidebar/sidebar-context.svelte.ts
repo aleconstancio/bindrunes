@@ -48,23 +48,23 @@ export function createSidebarState(initialOpen = true) {
 		get open() {
 			return open;
 		},
-		set open(v: boolean) {
-			open = v;
-		},
 		get openMobile() {
 			return openMobile;
-		},
-		set openMobile(v: boolean) {
-			openMobile = v;
 		},
 		get isMobile() {
 			return isMobile;
 		},
-		set isMobile(v: boolean) {
-			isMobile = v;
-		},
 		get state() {
 			return state;
+		},
+		setOpen(v: boolean) {
+			open = v;
+		},
+		setOpenMobile(v: boolean) {
+			openMobile = v;
+		},
+		setIsMobile(v: boolean) {
+			isMobile = v;
 		},
 		toggle,
 		toggleMobile,

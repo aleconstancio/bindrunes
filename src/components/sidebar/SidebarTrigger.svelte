@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { getSidebarContext } from './sidebar-context.svelte';
+import { getSidebarContext } from "./sidebar-context.svelte";
 
-  let { children }: { children?: import('svelte').Snippet } = $props();
+let { children }: { children?: import("svelte").Snippet } = $props();
 
-  const ctx = getSidebarContext();
+const _ctx = getSidebarContext();
 </script>
 
 <button
-  onclick={() => ctx.open = !ctx.open}
+  onclick={() => _ctx.setOpen(!_ctx.open)}
   aria-label="Toggle sidebar"
   class="inline-flex items-center justify-center rounded-[--radius] p-2
          text-sidebar-foreground/50 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
