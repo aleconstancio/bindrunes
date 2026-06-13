@@ -1,6 +1,7 @@
 <script lang="ts">
-	import Form from './Form.svelte';
-	let { text = '', ...rest } = $props();
+import Form from "./Form.svelte";
+
+let { text = "", ...rest } = $props();
 </script>
 
 <Form {...rest}>

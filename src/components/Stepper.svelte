@@ -1,15 +1,15 @@
 <script lang="ts">
-  let {
-    steps = [] as { id: string; label: string }[],
-    currentStep = '' as string,
-    completedSteps = new Set<string>(),
-    class: className = '',
-  }: {
-    steps?: { id: string; label: string }[];
-    currentStep?: string;
-    completedSteps?: Set<string>;
-    class?: string;
-  } = $props();
+let {
+	steps = [] as { id: string; label: string }[],
+	currentStep = "" as string,
+	completedSteps = new Set<string>(),
+	class: className = "",
+}: {
+	steps?: { id: string; label: string }[];
+	currentStep?: string;
+	completedSteps?: Set<string>;
+	class?: string;
+} = $props();
 </script>
 
 <div class="flex items-center gap-2 {className}">

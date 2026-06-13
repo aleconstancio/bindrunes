@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+import { onMount } from "svelte";
 
-	let {
-		setup,
-		state,
-		children,
-	}: {
-		setup: () => unknown;
-		state: { current: unknown };
-		children?: import('svelte').Snippet;
-	} = $props();
+let {
+	setup,
+	state,
+	children,
+}: {
+	setup: () => unknown;
+	state: { current: unknown };
+	children?: import("svelte").Snippet;
+} = $props();
 
-	onMount(() => {
-		state.current = setup();
-	});
+onMount(() => {
+	state.current = setup();
+});
 </script>
 {@render children?.()}

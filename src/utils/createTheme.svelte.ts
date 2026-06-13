@@ -1,33 +1,22 @@
-import { createStorage } from './createStorage';
+import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 
-const THEMES = [
-	'editorial',
-	'dracula',
-	'nord',
-	'catppuccin',
-	'rose-pine',
-	'github',
-] as const;
+const THEMES = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 export type Theme = (typeof THEMES)[number];
 
 export function createTheme(options?: { default?: Theme }) {
-	const storage = createStorage('bindrunes');
-	const defaultTheme = options?.default ?? 'editorial';
-	let theme = $state<Theme>(
-		(storage.get<string>('theme') as Theme) ?? defaultTheme,
-	);
-
-	$effect(() => {
-		document.documentElement.setAttribute('data-theme', theme);
-		storage.set('theme', theme);
+	const state = createPersistedDataAttribute({
+		storageKey: "theme",
+		attributeName: "data-theme",
+		values: THEMES,
+		default: options?.default ?? "editorial",
 	});
 
 	return {
 		get theme() {
-			return theme;
+			return state.value;
 		},
 		setTheme(t: Theme) {
-			theme = t;
+			state.setValue(t);
 		},
 		themes: THEMES,
 	};

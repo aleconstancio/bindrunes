@@ -1,4 +1,4 @@
-import { invalidateQuery } from './queryCache';
+import { invalidateQuery } from "./queryCache";
 
 export interface CreateMutationOptions<TData, TVariables = void> {
 	mutator: (variables: TVariables) => Promise<TData>;
@@ -12,7 +12,7 @@ export interface CreateMutationOptions<TData, TVariables = void> {
 export interface MutationResult<TData, TVariables> {
 	readonly data: TData | undefined;
 	readonly error: Error | null;
-	readonly status: 'idle' | 'loading' | 'success' | 'error';
+	readonly status: "idle" | "loading" | "success" | "error";
 	readonly isLoading: boolean;
 	readonly isSuccess: boolean;
 	readonly isError: boolean;
@@ -21,25 +21,25 @@ export interface MutationResult<TData, TVariables> {
 }
 
 export function createMutation<TData, TVariables = void>(
-	options: CreateMutationOptions<TData, TVariables>
+	options: CreateMutationOptions<TData, TVariables>,
 ): MutationResult<TData, TVariables> {
 	let data = $state<TData | undefined>();
 	let error = $state<Error | null>(null);
-	let status = $state<'idle' | 'loading' | 'success' | 'error'>('idle');
+	let status = $state<"idle" | "loading" | "success" | "error">("idle");
 
-	const isLoading = $derived(status === 'loading');
-	const isSuccess = $derived(status === 'success');
-	const isError = $derived(status === 'error');
+	const isLoading = $derived(status === "loading");
+	const isSuccess = $derived(status === "success");
+	const isError = $derived(status === "error");
 
 	async function mutate(vars: TVariables): Promise<TData> {
-		status = 'loading';
+		status = "loading";
 		error = null;
 
 		try {
 			await options.onMutate?.(vars);
 			const result = await options.mutator(vars);
 			data = result;
-			status = 'success';
+			status = "success";
 			options.onSuccess?.(result, vars);
 			if (options.invalidateKeys) {
 				for (const key of options.invalidateKeys) {
@@ -51,7 +51,7 @@ export function createMutation<TData, TVariables = void>(
 		} catch (err) {
 			const e = err instanceof Error ? err : new Error(String(err));
 			error = e;
-			status = 'error';
+			status = "error";
 			options.onError?.(e, vars);
 			options.onSettled?.(undefined, e, vars);
 			throw e;
@@ -61,16 +61,28 @@ export function createMutation<TData, TVariables = void>(
 	function reset() {
 		data = undefined;
 		error = null;
-		status = 'idle';
+		status = "idle";
 	}
 
 	return {
-		get data() { return data; },
-		get error() { return error; },
-		get status() { return status; },
-		get isLoading() { return isLoading; },
-		get isSuccess() { return isSuccess; },
-		get isError() { return isError; },
+		get data() {
+			return data;
+		},
+		get error() {
+			return error;
+		},
+		get status() {
+			return status;
+		},
+		get isLoading() {
+			return isLoading;
+		},
+		get isSuccess() {
+			return isSuccess;
+		},
+		get isError() {
+			return isError;
+		},
 		mutate,
 		reset,
 	};

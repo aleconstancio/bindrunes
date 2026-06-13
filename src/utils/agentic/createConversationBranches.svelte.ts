@@ -76,7 +76,7 @@ export function createConversationBranches(
 	const reachable = new Set<WindowId>([rootId]);
 	const queue: WindowId[] = [rootId];
 	while (queue.length > 0) {
-		const cur = queue.shift()!;
+		const cur = queue.shift() as WindowId;
 		const win = byId.get(cur);
 		if (!win) continue;
 		for (const child of win.lineage.children) {
@@ -90,7 +90,8 @@ export function createConversationBranches(
 	// A leaf is a reachable window with no reachable children.
 	const leaves: WindowId[] = [];
 	for (const id of reachable) {
-		const win = byId.get(id)!;
+		const win = byId.get(id);
+		if (!win) continue;
 		const hasReachableChild = win.lineage.children.some((c) => reachable.has(c));
 		if (!hasReachableChild) leaves.push(id);
 	}
@@ -121,7 +122,7 @@ export function createConversationBranches(
 		const len = Math.min(pathA.length, pathB.length);
 		for (let i = 0; i < len; i++) {
 			if (pathA[i] === pathB[i]) {
-				lastShared = pathA[i]!;
+				lastShared = pathA[i] as WindowId;
 				lastSharedTurns = byId.get(lastShared)?.turns.length ?? 0;
 			} else {
 				break;

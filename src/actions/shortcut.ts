@@ -1,9 +1,9 @@
-import type { ActionReturn } from 'svelte/action';
+import type { ActionReturn } from "svelte/action";
 
 export interface ShortcutOptions {
-  key: string;
-  ctrl?: boolean;
-  callback: (e: KeyboardEvent) => void;
+	key: string;
+	ctrl?: boolean;
+	callback: (e: KeyboardEvent) => void;
 }
 
 /**
@@ -23,37 +23,40 @@ export interface ShortcutOptions {
  *   { key: 'Escape', callback: () => closePanel() },
  * ]}>
  */
-export function shortcut(node: HTMLElement, options: ShortcutOptions | ShortcutOptions[]): ActionReturn {
-  const list = Array.isArray(options) ? options : [options];
+export function shortcut(
+	_node: HTMLElement,
+	options: ShortcutOptions | ShortcutOptions[],
+): ActionReturn {
+	const list = Array.isArray(options) ? options : [options];
 
-  function handleKeyDown(event: KeyboardEvent) {
-    const active = document.activeElement;
-    if (
-      active &&
-      (active.tagName === 'INPUT' ||
-        active.tagName === 'SELECT' ||
-        active.tagName === 'TEXTAREA' ||
-        active.getAttribute('contenteditable') === 'true')
-    ) {
-      return;
-    }
+	function handleKeyDown(event: KeyboardEvent) {
+		const active = document.activeElement;
+		if (
+			active &&
+			(active.tagName === "INPUT" ||
+				active.tagName === "SELECT" ||
+				active.tagName === "TEXTAREA" ||
+				active.getAttribute("contenteditable") === "true")
+		) {
+			return;
+		}
 
-    for (const opt of list) {
-      const matchKey = event.key.toLowerCase() === opt.key.toLowerCase();
-      const matchCtrl = opt.ctrl ? event.metaKey || event.ctrlKey : true;
+		for (const opt of list) {
+			const matchKey = event.key.toLowerCase() === opt.key.toLowerCase();
+			const matchCtrl = opt.ctrl ? event.metaKey || event.ctrlKey : true;
 
-      if (matchKey && matchCtrl) {
-        event.preventDefault();
-        opt.callback(event);
-      }
-    }
-  }
+			if (matchKey && matchCtrl) {
+				event.preventDefault();
+				opt.callback(event);
+			}
+		}
+	}
 
-  window.addEventListener('keydown', handleKeyDown);
+	window.addEventListener("keydown", handleKeyDown);
 
-  return {
-    destroy() {
-      window.removeEventListener('keydown', handleKeyDown);
-    }
-  };
+	return {
+		destroy() {
+			window.removeEventListener("keydown", handleKeyDown);
+		},
+	};
 }

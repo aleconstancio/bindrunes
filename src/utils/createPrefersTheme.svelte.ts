@@ -1,17 +1,15 @@
-export function createPrefersTheme() {
-	if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-		return { stop: () => {} };
-	}
+import { createMediaQuery } from "./createMediaQuery.svelte";
 
-	const mql = window.matchMedia('(prefers-color-scheme: dark)');
-	const apply = () => {
-		document.documentElement.classList.toggle('dark', mql.matches);
-	};
-	apply();
-	mql.addEventListener('change', apply);
+export function createPrefersTheme() {
+	const mql = createMediaQuery({ query: "(prefers-color-scheme: dark)" });
+
+	$effect(() => {
+		document.documentElement.classList.toggle("dark", mql.matches);
+	});
+
 	return {
 		stop() {
-			mql.removeEventListener('change', apply);
+			mql.stop();
 		},
 	};
 }

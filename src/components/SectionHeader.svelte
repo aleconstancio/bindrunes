@@ -1,11 +1,11 @@
 <script lang="ts">
-  let {
-    label = '',
-    action,
-  }: {
-    label?: string;
-    action?: import('svelte').Snippet;
-  } = $props();
+let {
+	label = "",
+	action,
+}: {
+	label?: string;
+	action?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="flex items-center justify-between border-b border-border-subtle pb-2 mb-3">

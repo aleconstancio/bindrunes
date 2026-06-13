@@ -1,27 +1,22 @@
-import { createStorage } from './createStorage';
+import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 
-const AESTHETICS = ['editorial', 'glass', 'bento', 'expressive'] as const;
+const AESTHETICS = ["editorial", "glass", "bento", "expressive"] as const;
 export type Aesthetic = (typeof AESTHETICS)[number];
 
 export function createAesthetic(options?: { default?: Aesthetic }) {
-	const storage = createStorage('bindrunes');
-	let aesthetic = $state<Aesthetic>(
-		(storage.get<string>('aesthetic') as Aesthetic) ??
-			options?.default ??
-			'editorial',
-	);
-
-	$effect(() => {
-		document.documentElement.setAttribute('data-aesthetic', aesthetic);
-		storage.set('aesthetic', aesthetic);
+	const state = createPersistedDataAttribute({
+		storageKey: "aesthetic",
+		attributeName: "data-aesthetic",
+		values: AESTHETICS,
+		default: options?.default ?? "editorial",
 	});
 
 	return {
 		get aesthetic() {
-			return aesthetic;
+			return state.value;
 		},
 		setAesthetic(a: Aesthetic) {
-			aesthetic = a;
+			state.setValue(a);
 		},
 		aesthetics: AESTHETICS,
 	};

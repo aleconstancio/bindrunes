@@ -1,27 +1,22 @@
-import { createStorage } from './createStorage';
+import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 
-const DENSITIES = ['compact', 'comfortable', 'spacious'] as const;
+const DENSITIES = ["compact", "comfortable", "spacious"] as const;
 export type Density = (typeof DENSITIES)[number];
 
 export function createDensity(options?: { default?: Density }) {
-	const storage = createStorage('bindrunes');
-	let density = $state<Density>(
-		(storage.get<string>('density') as Density) ??
-			options?.default ??
-			'comfortable',
-	);
-
-	$effect(() => {
-		document.documentElement.setAttribute('data-density', density);
-		storage.set('density', density);
+	const state = createPersistedDataAttribute({
+		storageKey: "density",
+		attributeName: "data-density",
+		values: DENSITIES,
+		default: options?.default ?? "comfortable",
 	});
 
 	return {
 		get density() {
-			return density;
+			return state.value;
 		},
 		setDensity(d: Density) {
-			density = d;
+			state.setValue(d);
 		},
 		densities: DENSITIES,
 	};

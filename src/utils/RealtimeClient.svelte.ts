@@ -74,7 +74,7 @@ export class RealtimeClient {
 				Accept: "text/event-stream",
 				"Last-Event-ID": this.lastEventId || "",
 			};
-			if (token) headers["Authorization"] = `Bearer ${token}`;
+			if (token) headers.Authorization = `Bearer ${token}`;
 
 			fetchEventSource(url, {
 				method: "GET",
