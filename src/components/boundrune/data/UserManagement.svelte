@@ -1,0 +1,82 @@
+<script lang="ts">
+import type { Snippet } from "svelte";
+import type { Column, SortState } from "../../../shared-types";
+import Avatar from "../../Avatar.svelte";
+import Badge from "../../Badge.svelte";
+import CrudListPage from "./CrudListPage.svelte";
+
+interface User {
+	id: string | number;
+	name: string;
+	email: string;
+	avatar?: string;
+	role?: string;
+	status?: "active" | "inactive" | "invited";
+	lastLogin?: string;
+}
+
+let {
+	users = [] as User[],
+	title = "Users",
+	description = "Manage team members and their access.",
+	loading = false,
+	currentPage = 1,
+	totalPages = 1,
+	onPageChange = undefined as ((page: number) => void) | undefined,
+	onCreate = undefined as (() => void) | undefined,
+	onRowClick = undefined as ((user: User) => void) | undefined,
+	onSearch = undefined as ((search: string) => void) | undefined,
+	class: className = "",
+	bulkActions = undefined as Snippet | undefined,
+}: {
+	users?: User[];
+	title?: string;
+	description?: string;
+	loading?: boolean;
+	currentPage?: number;
+	totalPages?: number;
+	onPageChange?: (page: number) => void;
+	onCreate?: () => void;
+	onRowClick?: (user: User) => void;
+	onSearch?: (search: string) => void;
+	class?: string;
+	bulkActions?: Snippet;
+} = $props();
+
+let searchValue = $state("");
+let sort = $state<SortState | null>(null);
+
+const statusVariant: Record<string, "success" | "warning" | "default"> = {
+	active: "success",
+	inactive: "default",
+	invited: "warning",
+};
+
+const columns: Column[] = [
+	{ key: "name", label: "User", sortable: true },
+	{ key: "email", label: "Email", sortable: true },
+	{ key: "role", label: "Role" },
+	{ key: "status", label: "Status" },
+	{ key: "lastLogin", label: "Last Login", sortable: true },
+];
+</script>
+
+<CrudListPage
+	{title}
+	{description}
+	{columns}
+	rows={users as unknown as Record<string, unknown>[]}
+	searchPlaceholder="Search users..."
+	createLabel="Invite User"
+	{onCreate}
+	{loading}
+	{currentPage}
+	{totalPages}
+	{onPageChange}
+	bind:sort
+	bind:searchValue
+	emptyText="No users found."
+	class={className}
+	{bulkActions}
+	onRowClick={onRowClick ? (row) => onRowClick(row as unknown as User) : undefined}
+/>
