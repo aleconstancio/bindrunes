@@ -1,21 +1,21 @@
 <script lang="ts">
-	import Button from './Button.svelte';
+import Button from "./Button.svelte";
 
-	let {
-		cssOutput = '',
-		copied = false,
-		oncopy,
-		onapply,
-	}: {
-		cssOutput?: string;
-		copied?: boolean;
-		oncopy?: () => void;
-		onapply?: () => void;
-	} = $props();
+let {
+	cssOutput = "",
+	copied = false,
+	oncopy,
+	onapply,
+}: {
+	cssOutput?: string;
+	copied?: boolean;
+	oncopy?: () => void;
+	onapply?: () => void;
+} = $props();
 </script>
 
 <div class="space-y-4">
-	<label class="text-label-md block text-muted-foreground">Generated CSS</label>
+	<p class="text-label-md block text-muted-foreground">Generated CSS</p>
 	<pre
 		class="p-3 rounded text-mono-sm overflow-auto max-h-[400px] bg-muted text-foreground font-mono"
 	><code>{cssOutput}</code></pre>

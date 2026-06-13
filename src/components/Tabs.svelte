@@ -1,15 +1,22 @@
 <script lang="ts">
-  import { Tabs as BitsTabs } from 'bits-ui';
+import { Tabs } from "bits-ui";
+import type { Snippet } from "svelte";
 
-  let {
-    value = $bindable(''),
-    children,
-  }: {
-    value?: string;
-    children?: import('svelte').Snippet;
-  } = $props();
+const BitsTabs = Tabs;
+
+let {
+	value = $bindable(""),
+	orientation = "horizontal" as "horizontal" | "vertical",
+	class: className = "",
+	children,
+}: {
+	value?: string;
+	orientation?: "horizontal" | "vertical";
+	class?: string;
+	children?: Snippet;
+} = $props();
 </script>
 
-<BitsTabs.Root bind:value class="w-full">
+<BitsTabs.Root bind:value {orientation} class="w-full {className}">
   {@render children?.()}
 </BitsTabs.Root>

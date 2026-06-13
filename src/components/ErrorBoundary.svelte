@@ -1,59 +1,79 @@
+<!--
+  @component
+  Captures global JavaScript errors via `window.addEventListener("error", ...)`.
+
+  NOTE: This does NOT catch errors thrown by child Svelte components during rendering.
+  Svelte 5 does not have a built-in error boundary primitive. This component only
+  intercepts uncaught global JS errors (e.g., from event handlers, timers, async code).
+  For child component errors, use try/catch in async code or handle errors at the data layer.
+-->
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { toast } from 'svelte-sonner';
-  import Button from './Button.svelte';
-  import type { TFunction } from '../shared-types';
+import { onMount } from "svelte";
+import type { TFunction } from "../shared-types";
+import Button from "./Button.svelte";
 
-  type Variant = 'default' | 'minimal' | 'page';
+type Variant = "default" | "minimal" | "page";
 
-  let {
-    t = undefined as TFunction | undefined,
-    fallbackTitle = t?.('error.ErrorBoundary.title') ?? 'Something went wrong',
-    fallbackDescription = t?.('error.ErrorBoundary.description') ?? 'An unexpected error occurred.',
-    showRetry = true,
-    showHome = false,
-    homeUrl = '/',
-    variant = 'default' as Variant,
-    onError,
-    onRetry,
-    children,
-  }: {
-    t?: TFunction;
-    fallbackTitle?: string;
-    fallbackDescription?: string;
-    showRetry?: boolean;
-    showHome?: boolean;
-    homeUrl?: string;
-    variant?: Variant;
-    onError?: (error: Error) => void;
-    onRetry?: () => void;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	t = undefined as TFunction | undefined,
+	fallbackTitle = t?.("error.ErrorBoundary.title") ?? "Something went wrong",
+	fallbackDescription = t?.("error.ErrorBoundary.description") ?? "An unexpected error occurred.",
+	showRetry = true,
+	showHome = false,
+	homeUrl = "/",
+	variant = "default" as Variant,
+	onError,
+	onRetry,
+	disableToast = false,
+	children,
+}: {
+	t?: TFunction;
+	fallbackTitle?: string;
+	fallbackDescription?: string;
+	showRetry?: boolean;
+	showHome?: boolean;
+	homeUrl?: string;
+	variant?: Variant;
+	onError?: (error: Error) => void;
+	onRetry?: () => void;
+	disableToast?: boolean;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  let error = $state<Error | null>(null);
-  let errorInfo = $state<string>('');
+let error = $state<Error | null>(null);
+let errorInfo = $state<string>("");
 
-  onMount(() => {
-    const handler = (event: ErrorEvent) => {
-      error = event.error || new Error(event.message);
-      errorInfo = event.message;
-      onError?.(error);
-      toast.error(fallbackTitle, { description: errorInfo.slice(0, 120) });
-      event.preventDefault();
-    };
-    window.addEventListener('error', handler);
-    return () => window.removeEventListener('error', handler);
-  });
+async function notifyError(title: string, description: string) {
+	if (disableToast) return;
+	try {
+		const { toast } = await import("svelte-sonner");
+		toast.error(title, { description: description.slice(0, 120) });
+	} catch {
+		// svelte-sonner not installed — silently skip
+	}
+}
 
-  function retry() {
-    error = null;
-    errorInfo = '';
-    if (onRetry) {
-      onRetry();
-    } else {
-      window.location.reload();
-    }
-  }
+onMount(() => {
+	const handler = (event: ErrorEvent) => {
+		error = event.error || new Error(event.message);
+		errorInfo = event.message;
+		onError?.(error);
+		notifyError(fallbackTitle, errorInfo);
+		event.preventDefault();
+	};
+	window.addEventListener("error", handler);
+	return () => window.removeEventListener("error", handler);
+});
+
+function retry() {
+	error = null;
+	errorInfo = "";
+	if (onRetry) {
+		onRetry();
+	} else {
+		window.location.reload();
+	}
+}
 </script>
 
 {#if error}

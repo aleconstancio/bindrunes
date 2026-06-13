@@ -1,21 +1,23 @@
 <script lang="ts">
-	import { Slider as BitsSlider } from 'bits-ui';
+import { Slider } from "bits-ui";
 
-	let {
-		value = $bindable([50]),
-		min = 0,
-		max = 100,
-		step = 1,
-		disabled = false,
-		class: className = '',
-	}: {
-		value?: number[];
-		min?: number;
-		max?: number;
-		step?: number;
-		disabled?: boolean;
-		class?: string;
-	} = $props();
+const BitsSlider = Slider;
+
+let {
+	value = $bindable([50]),
+	min = 0,
+	max = 100,
+	step = 1,
+	disabled = false,
+	class: className = "",
+}: {
+	value?: number[];
+	min?: number;
+	max?: number;
+	step?: number;
+	disabled?: boolean;
+	class?: string;
+} = $props();
 </script>
 
 <BitsSlider.Root bind:value {min} {max} {step} {disabled} class="relative flex w-full touch-none select-none items-center h-6 {className}">

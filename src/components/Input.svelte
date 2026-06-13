@@ -1,35 +1,53 @@
 <script lang="ts">
-  let {
-    label = undefined as string | undefined,
-    value = $bindable(''),
-    placeholder = '',
-    error = undefined as string | undefined,
-    helper = undefined as string | undefined,
-    disabled = false,
-    required = false,
-    type = 'text' as string,
-    name = undefined as string | undefined,
-    prefix,
-    suffix,
-    class: className = '',
-  }: {
-    label?: string;
-    value?: string;
-    placeholder?: string;
-    error?: string;
-    helper?: string;
-    disabled?: boolean;
-    required?: boolean;
-    type?: string;
-    name?: string;
-    prefix?: import('svelte').Snippet;
-    suffix?: import('svelte').Snippet;
-    class?: string;
-  } = $props();
+let {
+	label = undefined as string | undefined,
+	value = $bindable(""),
+	placeholder = "",
+	error = undefined as string | undefined,
+	helper = undefined as string | undefined,
+	disabled = false,
+	required = false,
+	type = "text" as
+		| "text"
+		| "email"
+		| "password"
+		| "number"
+		| "tel"
+		| "url"
+		| "search"
+		| "date"
+		| "time"
+		| "textarea",
+	name = undefined as string | undefined,
+	prefix,
+	suffix,
+	class: className = "",
+}: {
+	label?: string;
+	value?: string;
+	placeholder?: string;
+	error?: string;
+	helper?: string;
+	disabled?: boolean;
+	required?: boolean;
+	type?:
+		| "text"
+		| "email"
+		| "password"
+		| "number"
+		| "tel"
+		| "url"
+		| "search"
+		| "date"
+		| "time"
+		| "textarea";
+	name?: string;
+	prefix?: import("svelte").Snippet;
+	suffix?: import("svelte").Snippet;
+	class?: string;
+} = $props();
 
-  let describedBy = $derived(
-    error ? `${name}-error` : helper ? `${name}-helper` : undefined
-  );
+let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` : undefined);
 </script>
 
 {#if label}
@@ -65,7 +83,6 @@
              {prefix ? 'pl-10' : ''} {suffix ? 'pr-10' : ''}
              {className}"
       rows={4}
-      oninput={(e) => value = (e.target as HTMLTextAreaElement).value}
     ></textarea>
   {:else}
     <input

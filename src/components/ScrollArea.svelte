@@ -1,13 +1,15 @@
 <script lang="ts">
-	import { ScrollArea as BitsScrollArea } from 'bits-ui';
+import { ScrollArea } from "bits-ui";
 
-	let {
-		class: className = '',
-		children,
-	}: {
-		class?: string;
-		children?: import('svelte').Snippet;
-	} = $props();
+const BitsScrollArea = ScrollArea;
+
+let {
+	class: className = "",
+	children,
+}: {
+	class?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsScrollArea.Root class="overflow-hidden rounded-[--radius] {className}">

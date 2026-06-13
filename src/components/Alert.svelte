@@ -1,29 +1,36 @@
 <script lang="ts">
-  type Variant = 'info' | 'success' | 'warning' | 'destructive';
+import { X } from "lucide-svelte";
+import type { Snippet } from "svelte";
 
-  let {
-    variant = 'info' as Variant,
-    title = '',
-    description = '',
-    icon,
-    action,
-  }: {
-    variant?: Variant;
-    title?: string;
-    description?: string;
-    icon?: import('svelte').Snippet;
-    action?: import('svelte').Snippet;
-  } = $props();
+type Variant = "info" | "success" | "warning" | "destructive";
 
-  const vars: Record<Variant, string> = {
-    info: 'border-l-info',
-    success: 'border-l-[--success]',
-    warning: 'border-l-[--warning]',
-    destructive: 'border-l-destructive',
-  };
+let {
+	variant = "info" as Variant,
+	title = "",
+	description = "",
+	closable = false,
+	onclose = undefined as (() => void) | undefined,
+	icon,
+	action,
+}: {
+	variant?: Variant;
+	title?: string;
+	description?: string;
+	closable?: boolean;
+	onclose?: () => void;
+	icon?: Snippet;
+	action?: Snippet;
+} = $props();
+
+const borderColors: Record<Variant, string> = {
+	info: "border-l-info",
+	success: "border-l-[--success]",
+	warning: "border-l-[--warning]",
+	destructive: "border-l-destructive",
+};
 </script>
 
-<div class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {vars[variant]}">
+<div class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {borderColors[variant]}">
   <div class="flex items-start gap-3">
     {#if icon}
       <div class="mt-0.5 text-muted-foreground">{@render icon()}</div>
@@ -34,8 +41,20 @@
         <p class="text-body-sm text-muted-foreground mt-0.5">{description}</p>
       {/if}
     </div>
-    {#if action}
-      <div class="flex-shrink-0">{@render action()}</div>
-    {/if}
+    <div class="flex items-center gap-2 flex-shrink-0">
+      {#if action}
+        {@render action()}
+      {/if}
+      {#if closable}
+        <button
+          type="button"
+          class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+          onclick={() => onclose?.()}
+          aria-label="Dismiss"
+        >
+          <X class="h-4 w-4" />
+        </button>
+      {/if}
+    </div>
   </div>
 </div>

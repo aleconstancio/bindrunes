@@ -1,19 +1,20 @@
 <script lang="ts">
-	import { ToggleGroup as BitsToggleGroup } from 'bits-ui';
+import { ToggleGroup } from "bits-ui";
+import type { SelectOption } from "../shared-types";
 
-	type Option = { value: string; label: string; disabled?: boolean };
+const BitsToggleGroup = ToggleGroup;
 
-	let {
-		value = $bindable<string | string[]>(''),
-		multiple = false,
-		options = [] as Option[],
-		class: className = '',
-	}: {
-		value?: string | string[];
-		multiple?: boolean;
-		options?: Option[];
-		class?: string;
-	} = $props();
+let {
+	value = $bindable<string | string[]>(""),
+	multiple = false,
+	options = [] as SelectOption[],
+	class: className = "",
+}: {
+	value?: string | string[];
+	multiple?: boolean;
+	options?: SelectOption[];
+	class?: string;
+} = $props();
 </script>
 
 <BitsToggleGroup.Root

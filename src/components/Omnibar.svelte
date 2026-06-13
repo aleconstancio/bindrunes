@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { Command } from 'bits-ui';
-	import type { OmnibarState } from '../utils/createOmnibar.svelte';
+import { Command } from "bits-ui";
+import type { OmnibarState } from "../utils/createOmnibar.svelte";
 
-	let {
-		state,
-		placeholder = 'Search commands, routes, memory...',
-	}: {
-		state: OmnibarState;
-		placeholder?: string;
-	} = $props();
+let {
+	state,
+	placeholder = "Search commands, routes, memory...",
+}: {
+	state: OmnibarState;
+	placeholder?: string;
+} = $props();
 
-	function select(opt: { action: () => void }) {
-		state.close();
-		opt.action();
-	}
+function _select(opt: { action: () => void }) {
+	state.close();
+	opt.action();
+}
 </script>
 
 {#if state.isOpen}
@@ -22,7 +22,9 @@
 		role="dialog"
 		aria-label="Command palette"
 		aria-modal="true"
+		tabindex="-1"
 		onclick={() => state.close()}
+		onkeydown={(e) => { if (e.key === 'Escape') state.close(); }}
 	>
 		<div class="w-full max-w-[650px] px-4" role="none" onclick={(e) => e.stopPropagation()}>
 			<Command.Root
@@ -48,7 +50,7 @@
 					{#each state.filteredOptions as option, i}
 						<Command.Item
 							value={option.label}
-							onSelect={() => select(option)}
+							onSelect={() => _select(option)}
 							class="flex items-center justify-between w-full px-4 py-3 rounded-[--radius] text-left transition-colors cursor-pointer focus:bg-muted data-[selected]:bg-muted"
 						>
 							<div>

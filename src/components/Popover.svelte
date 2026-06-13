@@ -1,21 +1,23 @@
 <script lang="ts">
-  import { Popover as BitsPopover } from 'bits-ui';
+import { Popover } from "bits-ui";
 
-  let {
-    open = $bindable(false),
-    side = 'bottom' as 'top' | 'right' | 'bottom' | 'left',
-    align = 'center' as 'start' | 'center' | 'end',
-    class: className = '',
-    trigger,
-    children,
-  }: {
-    open?: boolean;
-    side?: 'top' | 'right' | 'bottom' | 'left';
-    align?: 'start' | 'center' | 'end';
-    class?: string;
-    trigger?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+const BitsPopover = Popover;
+
+let {
+	open = $bindable(false),
+	side = "bottom" as "top" | "right" | "bottom" | "left",
+	align = "center" as "start" | "center" | "end",
+	class: className = "",
+	trigger,
+	children,
+}: {
+	open?: boolean;
+	side?: "top" | "right" | "bottom" | "left";
+	align?: "start" | "center" | "end";
+	class?: string;
+	trigger?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="relative inline-block">

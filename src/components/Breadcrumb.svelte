@@ -1,13 +1,21 @@
 <script lang="ts">
-  let {
-    items = [] as { label: string; href?: string }[],
-    separator = '/',
-    class: className = '',
-  }: {
-    items?: { label: string; href?: string }[];
-    separator?: string;
-    class?: string;
-  } = $props();
+import type { Snippet } from "svelte";
+
+let {
+	items = [] as { label: string; href?: string }[],
+	separator = "/",
+	class: className = "",
+	itemSnippet = undefined as
+		| Snippet<[{ item: { label: string; href?: string }; index: number; isLast: boolean }]>
+		| undefined,
+}: {
+	items?: { label: string; href?: string }[];
+	separator?: string;
+	class?: string;
+	itemSnippet?: Snippet<
+		[{ item: { label: string; href?: string }; index: number; isLast: boolean }]
+	>;
+} = $props();
 </script>
 
 <nav aria-label="Breadcrumb" class="text-body-sm {className}">
@@ -17,7 +25,9 @@
         {#if i > 0}
           <span aria-hidden="true" class="text-border">{separator}</span>
         {/if}
-        {#if item.href && i < items.length - 1}
+        {#if itemSnippet}
+          {@render itemSnippet({ item, index: i, isLast: i === items.length - 1 })}
+        {:else if item.href && i < items.length - 1}
           <a href={item.href} class="text-primary hover:underline transition-colors duration-[--duration-snappy]">{item.label}</a>
         {:else}
           <span class="text-foreground">{item.label}</span>

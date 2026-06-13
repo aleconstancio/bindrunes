@@ -1,19 +1,21 @@
 <script lang="ts">
-	import { Accordion as BitsAccordion } from 'bits-ui';
+import { Accordion } from "bits-ui";
 
-	let {
-		value = '',
-		disabled = false,
-		class: className = '',
-		trigger,
-		children,
-	}: {
-		value: string;
-		disabled?: boolean;
-		class?: string;
-		trigger?: import('svelte').Snippet;
-		children?: import('svelte').Snippet;
-	} = $props();
+const BitsAccordion = Accordion;
+
+let {
+	value = "",
+	disabled = false,
+	class: className = "",
+	trigger,
+	children,
+}: {
+	value: string;
+	disabled?: boolean;
+	class?: string;
+	trigger?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsAccordion.Item {value} {disabled} class="rounded-[--radius] overflow-hidden border border-border bg-card {className}">

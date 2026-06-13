@@ -1,15 +1,17 @@
 <script lang="ts">
-  import { Tabs as BitsTabs } from 'bits-ui';
+import { Tabs } from "bits-ui";
 
-  let {
-    value = '',
-    disabled = false,
-    children,
-  }: {
-    value?: string;
-    disabled?: boolean;
-    children?: import('svelte').Snippet;
-  } = $props();
+const BitsTabs = Tabs;
+
+let {
+	value = "",
+	disabled = false,
+	children,
+}: {
+	value?: string;
+	disabled?: boolean;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsTabs.Trigger

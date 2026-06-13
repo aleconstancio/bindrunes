@@ -1,17 +1,21 @@
 <script lang="ts">
-  let {
-    size = 'md' as 'sm' | 'md' | 'lg',
-  } = $props();
+let {
+	size = "md" as "sm" | "md" | "lg",
+	class: className = "",
+}: {
+	size?: "sm" | "md" | "lg";
+	class?: string;
+} = $props();
 
-  const sizes = {
-    sm: 'h-4 w-4 border-2',
-    md: 'h-6 w-6 border-2',
-    lg: 'h-10 w-10 border-[3px]',
-  };
+const sizes = {
+	sm: "h-4 w-4 border-2",
+	md: "h-6 w-6 border-2",
+	lg: "h-10 w-10 border-[3px]",
+};
 </script>
 
 <svg
-  class="animate-spin text-primary {sizes[size]}"
+  class="bindrunes-spin text-primary {sizes[size]} {className}"
   viewBox="0 0 24 24"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +32,7 @@
   @keyframes bindrunes-spin {
     to { transform: rotate(360deg); }
   }
-  :global(.animate-spin) {
+  .bindrunes-spin {
     animation: bindrunes-spin 1s linear infinite;
   }
 </style>

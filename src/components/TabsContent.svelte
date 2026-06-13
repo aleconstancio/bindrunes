@@ -1,13 +1,15 @@
 <script lang="ts">
-  import { Tabs as BitsTabs } from 'bits-ui';
+import { Tabs } from "bits-ui";
 
-  let {
-    value = '',
-    children,
-  }: {
-    value?: string;
-    children?: import('svelte').Snippet;
-  } = $props();
+const BitsTabs = Tabs;
+
+let {
+	value = "",
+	children,
+}: {
+	value?: string;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsTabs.Content {value} class="mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">

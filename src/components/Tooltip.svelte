@@ -1,19 +1,24 @@
 <script lang="ts">
-  import { Tooltip as BitsTooltip } from 'bits-ui';
+import { Tooltip } from "bits-ui";
+import type { Snippet } from "svelte";
 
-  let {
-    content = '',
-    side = 'top' as 'top' | 'right' | 'bottom' | 'left',
-    openDelay = 700,
-    closeDelay = 300,
-    children,
-  }: {
-    content?: string;
-    side?: 'top' | 'right' | 'bottom' | 'left';
-    openDelay?: number;
-    closeDelay?: number;
-    children?: import('svelte').Snippet;
-  } = $props();
+const BitsTooltip = Tooltip;
+
+let {
+	content = "",
+	contentSnippet = undefined as Snippet | undefined,
+	side = "top" as "top" | "right" | "bottom" | "left",
+	openDelay = 700,
+	closeDelay = 300,
+	children,
+}: {
+	content?: string;
+	contentSnippet?: Snippet;
+	side?: "top" | "right" | "bottom" | "left";
+	openDelay?: number;
+	closeDelay?: number;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <BitsTooltip.Provider {openDelay} {closeDelay}>
@@ -26,7 +31,11 @@
            data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
            data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 max-w-[20rem]"
   >
-    {content}
+    {#if contentSnippet}
+      {@render contentSnippet()}
+    {:else}
+      {content}
+    {/if}
   </BitsTooltip.Content>
 </BitsTooltip.Root>
 </BitsTooltip.Provider>

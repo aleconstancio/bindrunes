@@ -1,12 +1,19 @@
 <script lang="ts">
-  import { Switch as BitsSwitch } from 'bits-ui';
+import { Switch } from "bits-ui";
 
-  let {
-    checked = $bindable(false),
-    disabled = false,
-    error = false,
-    label = undefined as string | undefined,
-  } = $props();
+const BitsSwitch = Switch;
+
+let {
+	checked = $bindable(false),
+	disabled = false,
+	error = "",
+	label = undefined as string | undefined,
+}: {
+	checked?: boolean;
+	disabled?: boolean;
+	error?: string;
+	label?: string;
+} = $props();
 </script>
 
 <label class="inline-flex items-center gap-3 cursor-pointer">

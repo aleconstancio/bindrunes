@@ -1,40 +1,42 @@
-<script lang="ts">
-  import PageHeader from './PageHeader.svelte';
-  import PageLoading from './PageLoading.svelte';
-  import Alert from './Alert.svelte';
-  import EmptyState from './EmptyState.svelte';
-  import Card from './Card.svelte';
-  import Input from './Input.svelte';
+<script lang="ts" generics="TData">
+import Alert from "./Alert.svelte";
+import Card from "./Card.svelte";
+import EmptyState from "./EmptyState.svelte";
+import Input from "./Input.svelte";
+import PageHeader from "./PageHeader.svelte";
+import PageLoading from "./PageLoading.svelte";
 
-  let {
-    title = '',
-    description = undefined as string | undefined,
-    backHref = undefined as string | undefined,
-    breadcrumbs = [] as { label: string; href?: string }[],
-    query = undefined as { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: unknown[] } | undefined,
-    searchValue = $bindable(''),
-    searchPlaceholder = 'Search...',
-    emptyTitle = 'No results',
-    emptyDescription = 'No items found.',
-    class: className = '',
-    headerActions,
-    filters,
-    children,
-  }: {
-    title?: string;
-    description?: string;
-    backHref?: string;
-    breadcrumbs?: { label: string; href?: string }[];
-    query?: { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: unknown[] };
-    searchValue?: string;
-    searchPlaceholder?: string;
-    emptyTitle?: string;
-    emptyDescription?: string;
-    class?: string;
-    headerActions?: import('svelte').Snippet;
-    filters?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	title = "",
+	description = undefined as string | undefined,
+	backHref = undefined as string | undefined,
+	breadcrumbs = [] as { label: string; href?: string }[],
+	query = undefined as
+		| { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: TData[] }
+		| undefined,
+	searchValue = $bindable(""),
+	searchPlaceholder = "Search...",
+	emptyTitle = "No results",
+	emptyDescription = "No items found.",
+	class: className = "",
+	headerActions,
+	filters,
+	children,
+}: {
+	title?: string;
+	description?: string;
+	backHref?: string;
+	breadcrumbs?: { label: string; href?: string }[];
+	query?: { isLoading?: boolean; isError?: boolean; error?: { message: string }; data?: TData[] };
+	searchValue?: string;
+	searchPlaceholder?: string;
+	emptyTitle?: string;
+	emptyDescription?: string;
+	class?: string;
+	headerActions?: import("svelte").Snippet;
+	filters?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 </script>
 
 <div class="space-y-6 {className}">

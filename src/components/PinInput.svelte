@@ -1,21 +1,23 @@
 <script lang="ts">
-	import { PinInput as BitsPinInput } from 'bits-ui';
+import { PinInput } from "bits-ui";
 
-	let {
-		value = $bindable(''),
-		placeholder = '\u25CB',
-		disabled = false,
-		type = 'text' as 'text' | 'password',
-		length = 4,
-		class: className = '',
-	}: {
-		value?: string;
-		placeholder?: string;
-		disabled?: boolean;
-		type?: 'text' | 'password';
-		length?: number;
-		class?: string;
-	} = $props();
+const BitsPinInput = PinInput;
+
+let {
+	value = $bindable(""),
+	placeholder = "\u25CB",
+	disabled = false,
+	type = "text" as "text" | "password",
+	length = 4,
+	class: className = "",
+}: {
+	value?: string;
+	placeholder?: string;
+	disabled?: boolean;
+	type?: "text" | "password";
+	length?: number;
+	class?: string;
+} = $props();
 </script>
 
 <BitsPinInput.Root bind:value maxlength={length} {placeholder} {disabled} {type} class="flex items-center gap-2 {className}">

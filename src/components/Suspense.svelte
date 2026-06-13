@@ -1,27 +1,33 @@
 <script lang="ts">
-  import EmptyState from './EmptyState.svelte';
-  import Button from './Button.svelte';
-  import type { TFunction } from '../shared-types';
+import type { TFunction } from "../shared-types";
+import Button from "./Button.svelte";
+import EmptyState from "./EmptyState.svelte";
 
-  type DataState<T> = { status: 'loading' } | { status: 'empty' } | { status: 'error'; error: Error } | { status: 'loaded'; data: T };
+type DataState<T> =
+	| { status: "loading" }
+	| { status: "empty" }
+	| { status: "error"; error: Error }
+	| { status: "loaded"; data: T };
 
-  let {
-    t = undefined as TFunction | undefined,
-    state = { status: 'loading' as const } as DataState<unknown>,
-    loadingContent,
-    empty,
-    error,
-    children,
-  }: {
-    t?: TFunction;
-    state?: DataState<unknown>;
-    loadingContent?: import('svelte').Snippet;
-    empty?: import('svelte').Snippet;
-    error?: import('svelte').Snippet;
-    children?: import('svelte').Snippet;
-  } = $props();
+let {
+	t = undefined as TFunction | undefined,
+	state = { status: "loading" as const } as DataState<unknown>,
+	loadingContent,
+	empty,
+	error,
+	children,
+}: {
+	t?: TFunction;
+	state?: DataState<unknown>;
+	loadingContent?: import("svelte").Snippet;
+	empty?: import("svelte").Snippet;
+	error?: import("svelte").Snippet;
+	children?: import("svelte").Snippet;
+} = $props();
 
-  function retry() { window.location.reload(); }
+function retry() {
+	window.location.reload();
+}
 </script>
 
 {#if state.status === 'loading'}

@@ -1,26 +1,26 @@
 <script lang="ts">
-	import Button from './Button.svelte';
-	import Input from './Input.svelte';
+import Button from "./Button.svelte";
+import Input from "./Input.svelte";
 
-	let {
-		baseTheme = 'editorial',
-		primaryHex = '#6B8AFF',
-		accentHex = '#8A6BFF',
-		destructiveHex = '#FF5555',
-		radius = '0.5rem',
-		onpreset,
-	}: {
-		baseTheme?: string;
-		primaryHex?: string;
-		accentHex?: string;
-		destructiveHex?: string;
-		radius?: string;
-		onpreset?: (preset: string) => void;
-	} = $props();
+let {
+	baseTheme = "editorial",
+	primaryHex = "#6B8AFF",
+	accentHex = "#8A6BFF",
+	destructiveHex = "#FF5555",
+	radius = "0.5rem",
+	onpreset,
+}: {
+	baseTheme?: string;
+	primaryHex?: string;
+	accentHex?: string;
+	destructiveHex?: string;
+	radius?: string;
+	onpreset?: (preset: string) => void;
+} = $props();
 </script>
 
 <div>
-	<label class="text-label-md block mb-1.5 text-muted-foreground">Start from preset</label>
+	<p class="text-label-md block mb-1.5 text-muted-foreground">Start from preset</p>
 	<div class="flex flex-wrap gap-2">
 		{#each ['editorial', 'dracula', 'nord', 'catppuccin', 'rose-pine', 'github'] as preset}
 			<Button
@@ -59,6 +59,6 @@
 </div>
 
 <div>
-	<label class="text-label-md block mb-1.5 text-muted-foreground">Border Radius</label>
-	<Input bind:value={radius} class="font-mono text-mono-sm" />
+	<label for="input-radius" class="text-label-md block mb-1.5 text-muted-foreground">Border Radius</label>
+	<Input id="input-radius" bind:value={radius} class="font-mono text-mono-sm" />
 </div>
