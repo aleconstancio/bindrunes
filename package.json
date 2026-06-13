@@ -42,6 +42,11 @@
 			"svelte": "./dist/components/sidebar/index.js",
 			"default": "./dist/components/sidebar/index.js"
 		},
+		"./scaffold": {
+			"types": "./dist/components/scaffold/index.d.ts",
+			"svelte": "./dist/components/scaffold/index.js",
+			"default": "./dist/components/scaffold/index.js"
+		},
 		"./tailwind": {
 			"types": "./dist/tailwind-plugin.d.ts",
 			"default": "./dist/tailwind-plugin.js"
@@ -79,6 +84,7 @@
 		"@testing-library/jest-dom": "^6.9.1",
 		"@testing-library/svelte": "^5.3.1",
 		"@testing-library/user-event": "^14.6.1",
+		"@types/node": "^25.9.3",
 		"@vitest/coverage-v8": "^4.1.8",
 		"husky": "^9.0.0",
 		"jsdom": "^29.1.1",
@@ -131,6 +137,7 @@
 		"test:watch:coverage": "vitest --coverage",
 		"check": "tsc --noEmit",
 		"validate": "bun run lint && bun run check && bun run test",
+		"validate:contrast": "bun run test src/utils/contrastCheck.test.ts src/utils/themeContrast.test.ts",
 		"changeset": "changeset",
 		"release:version": "changeset version",
 		"release:publish": "changeset publish",
