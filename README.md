@@ -4,27 +4,26 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-88+ components · 20+ composables · 6 themes · 17 landing sections · 25 page blocks  
-Svelte 5 + Tailwind v4 + bits-ui + valibot
+160+ components · 47 composables · 12 Boundrune categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
 
-## Why bindrunes?
+## Features
 
-- **Three-axis design system** — theme (color), aesthetic (form), density (spacing) are fully orthogonal. Mix `dracula × bento × spacious` without token collisions.
-- **Svelte 5 runes** — all composables use `$state`, `$derived`, `$effect`. No legacy stores, no `export let`.
-- **B2B SaaS focus** — dashboard shells, sidebar system, data tables, auth/RBAC, 17 landing page sections out of the box.
-- **Valibot, not Zod** — typesafe validation with smaller bundle size.
-- **OKLCH color space** — perceptually uniform theming with 6 curated presets.
-- **1,046 tests** — co-located, a11y-checked via vitest-axe, enforced in CI.
+- **Three-axis design system** — Fully orthogonal theme (color), aesthetic (form), and density (spacing) scales.
+- **Svelte 5 runes** — Built exclusively with `$state`, `$derived`, and `$effect`. No legacy stores.
+- **12 Boundrune categories** — Pre-composed page patterns for App, Auth, Dashboard, Settings, Landing, Marketing, Portfolio, Data, E-commerce, Media, Calendar, and Chat.
+- **B2B SaaS focus** — Shells, sidebars, data tables, CRUD operations, and pre-built landing sections.
+- **Lightweight validation** — Built with Valibot, not Zod.
+- **OKLCH color space** — Perceptually uniform theming with 6 curated presets.
+- **47 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
 
-## Quick Install
+## Install
 
 ```bash
 bun add bindrunes
-# peer deps
 bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 ```
 
-## Tailwind Setup
+## Setup
 
 ```css
 /* app.css */
@@ -45,8 +44,6 @@ export default defineConfig({
 });
 ```
 
-## Quick Start
-
 ```svelte
 <!-- +layout.svelte -->
 <script lang="ts">
@@ -55,15 +52,7 @@ export default defineConfig({
   let { children } = $props();
 </script>
 
-<AppProvider>
-  {@render children()}
-</AppProvider>
-```
-
-`AppProvider` sets up dark/light mode, toasts, and the three design axes. Configure defaults via props:
-
-```svelte
-<AppProvider themeDefault="dracula" aestheticDefault="glass" densityDefault="compact">
+<AppProvider themeDefault="editorial" aestheticDefault="editorial" densityDefault="comfortable">
   {@render children()}
 </AppProvider>
 ```
@@ -74,77 +63,47 @@ export default defineConfig({
 
 | Guide | Description |
 |-------|-------------|
-| [Getting Started](docs/getting-started.md) | Install, setup, quick start |
-| [Components](docs/components.md) | Full component reference (88+) |
-| [Composables](docs/composables.md) | Data layer, forms, auth, i18n, theming (20+) |
-| [Themes](docs/themes.md) | Theme presets, tokens, customization |
-| [Aesthetics](docs/aesthetics.md) | Form presets — radius, shadow, motion |
-| [Landing Pages](docs/landing.md) | Pre-built landing page sections (17) |
-| [Architecture](docs/architecture.md) | Codebase structure, patterns, conventions |
-| [Design System](docs/design-system.md) | Token contract, CSS layers, three-axis architecture |
-| [Testing](docs/testing.md) | Test conventions, helpers, CI |
-| [Migration](docs/migration.md) | Breaking changes between versions |
-| [Security](docs/security.md) | Auth tokens, open redirect, SSE |
+| [Getting Started](docs/getting-started.md) | Install, setup, and troubleshooting |
+| [Components](docs/components.md) | Component references and details |
+| [Composables](docs/composables.md) | Core composable APIs (caching, forms, auth) |
+| [Design System](docs/design-system.md) | Customizing themes, aesthetics, and density |
+| [Landing Pages](docs/landing.md) | Pre-built landing page sections |
+| [Boundrunes](docs/boundrunes.md) | Pre-composed page patterns by category |
+| [Architecture](docs/architecture.md) | Codebase design, context, and file mapping |
+| [Security](docs/security.md) | Token storage and redirect validation |
+| [Testing](docs/testing.md) | Vitest testing rules, helpers, and coverage |
 
 ---
 
-## Feature Overview
+## Export Paths
 
-**Foundation** — Button, Card, Input, Badge, Spinner, Skeleton, Progress, Kbd, Avatar
-
-**Forms** — Form, Input, Select, Switch, Checkbox, Label, RadioGroup, Toggle, ToggleGroup, Combobox, Slider, DatePicker, TimeField, PinInput, RangeCalendar, RatingGroup, FileUpload  
-**Composables** — `createForm` with valibot validation, `createWizard` for multi-step
-
-**Data** — DataTable with sorting/filtering/pagination, `createQuery`, `createMutation`, DataChart  
-**Dashboard** — DashboardShell (3 variants), Sidebar (15 components), NavMenu, DashboardShellSplit  
-**Auth** — `createAuth`, `AuthGuard`, `createAccess` (RBAC)
-
-**Overlays** — Dialog, Sheet, Popover, Popconfirm, Tooltip, DropdownMenu, Omnibar (Cmd+K)
-
-**i18n** — `createI18n` with pt-BR dict, locale switching, interpolation
-
-**Theming** — 6 presets (editorial, dracula, nord, catppuccin, rose-pine, github), 4 aesthetics (editorial, glass, bento, expressive), 3 density modes (compact, comfortable, spacious), runtime switching, custom themes via CSS tokens, ThemeStudio live editor
-
-**Landing Pages** — 17 pre-built sections (HeroBanner, PricingTable, FAQ, FeatureGrid, TestimonialGrid, etc.), importable from `bindrunes/landing`
-
-**Rich Text** — ProseMirror editor with configurable toolbar (optional deps)
-
----
-
-## Package Exports
-
-| Import path | What it provides |
-|-------------|------------------|
-| `bindrunes` | All components + composables |
-| `bindrunes/landing` | Landing page components only |
-| `bindrunes/boundrune` | Composable page blocks (CRUD, marketing, auth) |
-| `bindrunes/tailwind` | Tailwind CSS v4 plugin |
-| `bindrunes/styles/*` | CSS files (presets, themes, utilities) |
-| `bindrunes/actions/*` | Svelte actions (`shortcut`) |
-| `bindrunes/utils/*` | Utility modules |
-| `bindrunes/components/*` | Individual components |
-| `bindrunes/i18n/*` | Internationalization dictionaries |
+| Path | Description |
+|------|-------------|
+| `bindrunes` | Core components & composables |
+| `bindrunes/landing` | Marketing landing page sections |
+| `bindrunes/boundrune` | Pre-composed page patterns (12 categories) |
+| `bindrunes/dashboard` | Dashboard shell components |
+| `bindrunes/sidebar` | Sidebar navigation components |
+| `bindrunes/tailwind` | Tailwind CSS v4 integration plugin |
+| `bindrunes/styles/*` | Presets and theme CSS |
 
 ---
 
 ## Development
 
 ```bash
-bun install          # install dependencies
-bun run build        # svelte-package
-bun run check        # tsc --noEmit
-bun run test         # vitest
-bun run test:coverage # vitest with coverage
-bun run lint         # biome check
+bun install           # Dependencies
+bun run dev           # Watch mode (library + tests)
+bun run build         # Build library
+bun run clean         # Clean dist
+bun run check         # Type check
+bun run test          # Run tests
+bun run lint          # Lint check
 ```
 
-## Examples
+## Releases
 
-See [`examples/landing/`](examples/landing/) for a complete SvelteKit landing page using bindrunes components.
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, PR guidelines, and code style.
+We use Changesets for versioning. Push changes to `main` with a changeset, and the release workflow handles the rest.
 
 ## License
 

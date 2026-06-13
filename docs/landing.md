@@ -1,8 +1,10 @@
 # Landing Pages
 
-Pre-built landing page sections for B2B SaaS products. Import from `bindrunes/landing`.
+Marketing layout blocks designed for SaaS platforms. Import from `bindrunes/landing`.
 
 ## Setup
+
+Enable landing page styles by importing the stylesheet after Tailwind:
 
 ```css
 /* app.css */
@@ -11,108 +13,108 @@ Pre-built landing page sections for B2B SaaS products. Import from `bindrunes/la
 @import "bindrunes/styles/landing.css";
 ```
 
-Requires `<div class="landing-page">` wrapper for CSS selectors.
+Ensure all landing content is contained inside a `<div class="landing-page">` wrapper.
 
-## Usage
+---
+
+## Example Usage
 
 ```svelte
 <script lang="ts">
-  import {
-    createLandingState,
-    LandingNav,
-    HeroBanner,
-    MetricsBar,
-    HowItWorks,
-    FeatureGrid,
-    PricingTable,
-    Testimonial,
-    FAQ,
-    SiteFooter,
-  } from 'bindrunes/landing';
-
+  import { createLandingState, LandingNav, HeroBanner, FeatureGrid, PricingTable, SiteFooter } from "bindrunes/landing";
   const landing = createLandingState();
 </script>
 
 <div class="landing-page">
-  <LandingNav
-    logo={{ href: '/', label: 'My SaaS' }}
-    links={[{ label: 'Features', href: '#features' }]}
-    cta={{ label: 'Get Started', href: '/signup' }}
-    sectionIds={['features']}
-  />
-  <HeroBanner
-    title="My SaaS Title"
-    description="The best product ever."
-    ctas={[{ label: 'Get Started', href: '/signup' }]}
-  />
-  <!-- ... sections ... -->
-  <SiteFooter logo={{ label: 'My SaaS' }} />
+  <LandingNav logo={{ label: "MySaaS" }} links={[{ label: "Home", href: "/" }]} />
+  <HeroBanner title="Innovate faster" description="Unify your tools." ctaLabel="Get Started" ctaHref="/signup" />
+  <FeatureGrid features={[{ icon: "Zap", title: "Fast", description: "Lightning quick." }]} />
+  <PricingTable plans={[{ name: "Pro", monthly: 29, annual: 290, features: ["Feature 1"] }]} />
+  <SiteFooter logo={{ label: "MySaaS" }} />
 </div>
 ```
 
-## Components
+---
 
-| Component | Description |
-|-----------|-------------|
-| `LandingNav` | Sticky nav with scroll progress, mobile menu, theme toggle |
-| `HeroBanner` | Hero/CTA banner with gradient, badge, CTAs (used for both hero and final CTA) |
-| `MetricsBar` | Responsive metric cards grid |
-| `HowItWorks` | Numbered steps with connector line |
-| `FeatureGrid` | Feature cards (card/minimal variants) |
-| `PricingTable` | Pricing with monthly/annual toggle, subgrid alignment |
-| `Testimonial` | Centered testimonial with avatar |
-| `FAQ` | Accordion-based FAQ section |
-| `SiteFooter` | Site footer with links |
+## Landing Primitives
 
-### Additional Components
+### Navigation
+- **`LandingNav`**: Sticky navigation bar with logo, links, and CTA button.
+- **`SiteFooter`**: Single-row footer with logo, links, and copyright.
+- **`SiteFooterColumns`**: 4-column footer with link groups.
 
-| Component | Description |
-|-----------|-------------|
-| `TestimonialGrid` | Multi-testimonial grid (1/2/3 columns) |
-| `LogoCloud` | Partner/customer logo row |
-| `FeatureComparison` | Side-by-side feature comparison table |
-| `Newsletter` | Email signup form section |
-| `TeamSection` | Team member cards with avatars/social |
-| `IntegrationGrid` | Integration logos with descriptions |
-| `StatsCounter` | Animated number counters |
+### Hero & CTAs
+- **`HeroBanner`**: Hero section with badge, title, description, and CTAs.
+- **`CtaBanner`**: Full-width call-to-action section with gradient background.
 
-## Composables
+### Content Sections
+- **`FeatureGrid`**: Feature cards in 2/3/4 column grid with card or inline variants.
+- **`HowItWorks`**: Step-by-step process with connector lines.
+- **`MetricsBar`**: Key metrics display in 1-3 columns.
+- **`StatsCounter`**: Animated number counters with suffixes.
+- **`FeatureComparison`**: Feature comparison table.
 
-```ts
-import { createLandingState, useLanding } from 'bindrunes/landing';
-```
+### Social Proof
+- **`Testimonial`**: Single testimonial card with quote, author, avatar.
+- **`TestimonialGrid`**: Grid of testimonials in 1-3 columns.
+- **`LogoCloud`**: Partner logo display.
+- **`TeamSection`**: Team member grid with roles and social links.
+- **`IntegrationGrid`**: Integration partner display.
+- **`SecurityBadges`**: SOC2/GDPR/HIPAA badge display.
 
-**`createLandingState()`** — Creates and sets the shared landing page state. Call once at the root of your landing page.
+### Pricing
+- **`PricingTable`**: 3-tier pricing with monthly/annual toggle and feature lists.
 
-**`useLanding()`** — Retrieves the landing state from context. Used internally by `LandingNav` and `PricingTable`.
+### FAQ & Content
+- **`FAQ`**: Accordion FAQ section.
+- **`Newsletter`**: Email signup form.
+- **`ContentWithImage`**: Text + image alternating sections.
+- **`VideoEmbed`**: Video demo section with caption.
+- **`ComparisonTable`**: vs Competitors comparison table.
 
-```ts
-interface LandingState {
-  billingAnnual: boolean;  // pricing toggle state
-  activeSection: string;   // currently visible section ID
-  menuOpen: boolean;       // mobile menu toggle
-}
-```
+### Utility
+- **`LandingSection`**: Generic section wrapper with reveal animation.
+- **`createLandingState`**: Shared state for billing toggle and active section.
+- **`useLanding`**: Access landing state from child components.
 
-## Shared Utilities
+---
 
-- `CTA`, `Feature`, `Metric`, `Step`, `Plan`, `TeamMember`, `Integration`, `FAQItem`, `FooterLink` — shared interfaces
-- `getGridClass(columns)` — responsive grid class helper
-- `getInitials(name)` — extract initials from a name string
-
-## Customization
-
-All components accept a `children` snippet. `PricingTable` supports two additional snippets:
+## Example: Full Landing Page
 
 ```svelte
-<PricingTable {plans}>
-  {#snippet customCard(plan, { annual, format })}
-    <!-- Your custom plan card -->
-  {/snippet}
-  {#snippet customFeature(feature, plan)}
-    <!-- Custom per-feature rendering -->
-  {/snippet}
-</PricingTable>
-```
+<script lang="ts">
+  import {
+    createLandingState, LandingNav, HeroBanner, LogoCloud, MetricsBar,
+    FeatureGrid, HowItWorks, StatsCounter, TestimonialGrid, PricingTable,
+    FAQ, CtaBanner, SiteFooter
+  } from "bindrunes/landing";
 
-`PricingTable` uses CSS subgrid when supported for aligned card heights. The `highlight` prop scales the plan card and adds a glow effect.
+  const landing = createLandingState();
+
+  const features = [
+    { icon: "Zap", title: "Lightning Fast", description: "Optimized for performance." },
+    { icon: "Shield", title: "Secure", description: "Built-in security best practices." },
+    { icon: "Clock", title: "Quick Setup", description: "Get started in minutes." },
+  ];
+
+  const plans = [
+    { name: "Starter", monthly: 29, annual: 290, features: ["5 Projects", "10GB Storage"] },
+    { name: "Pro", monthly: 79, annual: 790, features: ["Unlimited", "100GB"], highlight: true },
+    { name: "Enterprise", monthly: 199, annual: 1990, features: ["Everything", "SLA"] },
+  ];
+</script>
+
+<div class="landing-page">
+  <LandingNav logo={{ label: "MySaaS" }} links={[{ label: "Features", href: "#features" }]} />
+  <HeroBanner title="Build faster" description="The modern toolkit." ctaLabel="Start Free" ctaHref="/signup" />
+  <LogoCloud logos={[{ name: "Acme" }, { name: "TechCo" }]} />
+  <MetricsBar metrics={[{ value: "10k+", label: "Users" }]} />
+  <FeatureGrid {features} id="features" />
+  <HowItWorks steps={[{ icon: "Zap", title: "Install", description: "Add to project" }]} />
+  <StatsCounter stats={[{ value: 500, label: "Customers", suffix: "+" }]} />
+  <PricingTable {plans} />
+  <FAQ items={[{ question: "What is it?", answer: "A component library." }]} />
+  <CtaBanner title="Ready?" ctaLabel="Get Started" ctaHref="/signup" />
+  <SiteFooter logo={{ label: "MySaaS" }} />
+</div>
+```

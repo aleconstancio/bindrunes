@@ -42,11 +42,9 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - Don't use `<SidebarLayout>` — use `<MetaLayout>` (SidebarLayout is deprecated)
 
 ## Routing
-- Design system → `docs/design-system.md`
+- Design system, themes, aesthetics → `docs/design-system.md`
 - Component/composable tasks → `docs/components.md` or `docs/composables.md`
 - Architecture decisions → `docs/architecture.md`
-- Theme/styling → `docs/themes.md`
-- Aesthetic presets → `docs/aesthetics.md`
 - Security patterns → `docs/security.md`
 - Agentic-chat kernel → `docs/agentic/overview.md`
 - Adding a new metacomponent → also follow `docs/testing.md` (a11y + vitest-axe)

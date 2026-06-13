@@ -1,47 +1,26 @@
 # Security
 
-## Auth Token Storage
-
-The default `createAuth` stores tokens in **plaintext localStorage** (`bindrunes_token`). This is convenient for development but vulnerable to XSS-based token theft in production.
-
-**Recommended for production:** Use `httpOnly` cookies via a custom `AuthStorage`:
+## 1. Auth Token Storage
+By default, `createAuth` utilizes `localStorage` (`bindrunes_token`). For production, override the default storage logic to employ `httpOnly` secure cookies:
 
 ```ts
 const auth = createAuth({
   storage: {
-    getToken: () => getCookie('session_token'),  // server-set httpOnly cookie
-    setToken: () => {},  // no-op — server sets the cookie
-    clearToken: () => deleteCookie('session_token'),
-    getUser: () => getCookie('user_profile') ? JSON.parse(getCookie('user_profile')!) : null,
-    setUser: (user) => setCookie('user_profile', JSON.stringify(user)),
-    clearUser: () => deleteCookie('user_profile'),
-  },
-  onLogout: () => { window.location.href = '/login'; },
+    getToken: () => getCookie("session_token"),
+    setToken: () => {}, // Handled server-side
+    clearToken: () => deleteCookie("session_token"),
+    getUser: () => JSON.parse(getCookie("user") || "null"),
+    setUser: (u) => setCookie("user", JSON.stringify(u)),
+    clearUser: () => deleteCookie("user"),
+  }
 });
 ```
 
-## Open Redirect Protection
+## 2. Open Redirect Mitigation
+`AuthGuard` checks `fallback` and `unauthorizedFallback` links to guarantee they are relative paths (beginning with `/`). External URLs are rejected and defaulted to `/login`.
 
-`AuthGuard` validates `fallback` and `unauthorizedFallback` props to ensure they are relative paths (starting with `/`). Absolute URLs and protocol-relative URLs are blocked and fall back to `/login` / `/403`.
+## 3. SSE Transport Security
+Ensure all `RealtimeClient` connections are established over **HTTPS** to shield auth headers.
 
-```svelte
-<!-- Safe -->
-<AuthGuard fallback="/login">
-  <ProtectedContent />
-</AuthGuard>
-
-<!-- Blocked — falls back to /login -->
-<AuthGuard fallback="https://evil.com">
-  <ProtectedContent />
-</AuthGuard>
-```
-
-## SSE Connections
-
-`RealtimeClient` sends a Bearer token in the `Authorization` header. Ensure your SSE endpoint is served over **HTTPS** to prevent token interception.
-
-> `DEFAULT_SSE_ROUTES` is deprecated. Pass your own routes when configuring the SSE client.
-
-## Reporting Vulnerabilities
-
-Report issues via GitHub Security Advisories rather than opening a public issue.
+## 4. Reports
+Disclose security matters using GitHub Security Advisories rather than public issues.

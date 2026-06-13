@@ -1,25 +1,14 @@
 # bindrunes Documentation
 
-> Svelte 5 Component Library & B2B SaaS Scaffold — 88+ components, 20+ composables, 6 themes, 17 landing sections.
+> Svelte 5 Component Library & B2B SaaS Scaffold — 160+ components, 47 composables, 12 Boundrune categories, 6 themes.
 
-## What is bindrunes?
+## Overview
 
-bindrunes is a comprehensive UI toolkit for building B2B SaaS applications with Svelte 5. It provides:
-
-- **88+ components** — forms, data display, dashboards, overlays, landing pages, theming UI
-- **20+ composables** — data fetching, form validation, auth, i18n, RBAC, theming
-- **Three-axis design system** — theme (color), aesthetic (form), density (spacing) — fully orthogonal, any combination works
-- **6 theme presets** — editorial, dracula, nord, catppuccin, rose-pine, github
-- **4 aesthetic presets** — editorial, glass, bento, expressive
-- **17 landing page sections** — import from `bindrunes/landing`
-
-## Quick Example
+bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis design system: theme (color), aesthetic (form), and density (spacing).
 
 ```svelte
 <script lang="ts">
-  import { AppProvider, Button, Card, createQuery, createTheme } from "bindrunes";
-
-  const theme = createTheme({ default: "editorial" });
+  import { AppProvider, Button, Card, createQuery } from "bindrunes";
   const users = createQuery({
     key: "/api/users",
     fetcher: () => fetch("/api/users").then(r => r.json()),
@@ -41,29 +30,23 @@ bindrunes is a comprehensive UI toolkit for building B2B SaaS applications with 
 
 ## Guides
 
-| Guide | Description |
-|-------|-------------|
-| [Getting Started](getting-started.md) | Install, setup, quick start |
-| [Components](components.md) | Full component reference (88+) |
-| [Composables](composables.md) | Data layer, forms, auth, i18n, theming (20+) |
-| [Themes](themes.md) | Theme presets, tokens, customization |
-| [Aesthetics](aesthetics.md) | Form presets — radius, shadow, motion |
-| [Landing Pages](landing.md) | Pre-built landing page sections (17) |
-| [Architecture](architecture.md) | Codebase structure, patterns, conventions |
-| [Design System](design-system.md) | Token contract, CSS layers, three-axis architecture |
-| [Migration](migration.md) | Breaking changes between versions |
-| [Security](security.md) | Auth tokens, open redirect, SSE |
-| [Testing](testing.md) | Test conventions, helpers, CI |
+- [Getting Started](getting-started.md) — Install, setup, and troubleshooting
+- [Components](components.md) — Reference for all 160+ components
+- [Composables](composables.md) — Reference for state, fetching, forms, auth, i18n
+- [Design System](design-system.md) — Orthogonal theme, aesthetic, and density customizer
+- [Landing Pages](landing.md) — Pre-built marketing sections
+- [Boundrunes](boundrunes.md) — Pre-composed page patterns by category
+- [Architecture](architecture.md) — Folder mapping, composite patterns, context rules
+- [Security](security.md) — Token storage and redirect sanitization
+- [Testing](testing.md) — Test conventions, helpers, and coverage
+- [Agentic Chat](agentic/overview.md) — Core agent memory and budget kernel
 
-## Package Exports
+## Exports
 
-| Import path | What it provides |
-|-------------|------------------|
-| `bindrunes` | All components + composables |
-| `bindrunes/landing` | Landing page components only |
-| `bindrunes/tailwind` | Tailwind CSS v4 plugin |
-| `bindrunes/styles/*` | CSS files (presets, themes, utilities) |
-| `bindrunes/actions/*` | Svelte actions (`shortcut`) |
-| `bindrunes/utils/*` | Utility modules |
-| `bindrunes/components/*` | Individual components |
-| `bindrunes/i18n/*` | Internationalization dictionaries |
+- `bindrunes` — Core components & composables
+- `bindrunes/landing` — Marketing landing page sections
+- `bindrunes/boundrune` — Pre-composed page patterns (12 categories)
+- `bindrunes/dashboard` — Dashboard shell components
+- `bindrunes/sidebar` — Sidebar navigation components
+- `bindrunes/tailwind` — Tailwind CSS v4 integration plugin
+- `bindrunes/styles/*` — Presets and theme CSS

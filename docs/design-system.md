@@ -1,96 +1,104 @@
-# bindrunes Design System (v1.0)
+# Design System
 
-The bindrunes design system has three orthogonal customization axes, backed by a complete CSS custom property token contract.
+The bindrunes design system has three orthogonal customization axes, backed by a complete CSS custom property token contract. Any combination is valid: e.g., `dracula × bento × spacious`.
 
-## Three Axes
+## The Three Axes
 
-| Axis | Attribute | Values | Controls |
-|---|---|---|---|
-| Theme | `data-theme` | `editorial`, `dracula`, `nord`, `catppuccin`, `rose-pine`, `github` | Color identity |
-| Aesthetic | `data-aesthetic` | `editorial`, `glass`, `bento`, `expressive` | Form (radius, shadow, motion) |
-| Density | `data-density` | `compact`, `comfortable`, `spacious` | Spacing scale |
+| Axis | Attribute | Presets | Controls | Composable |
+|---|---|---|---|---|
+| **Theme** | `data-theme` | `editorial` (default), `dracula`, `nord`, `catppuccin`, `rose-pine`, `github` | Color identity | `createTheme()` |
+| **Aesthetic** | `data-aesthetic` | `editorial` (default), `glass`, `bento`, `expressive` | Form (radius, shadow, motion) | `createAesthetic()` |
+| **Density** | `data-density` | `compact`, `comfortable` (default), `spacious` | Spacing scale | `createDensity()` |
 
-**Any combination is legal:** `dracula × bento × spacious` is a valid configuration.
+---
 
-## Token Cascade
+## Axis Definitions
+
+### 1. Theme Presets
+- **editorial**: Warm grey & indigo (minimalist).
+- **dracula**: Vibrant purple and dark accents.
+- **nord**: Nordic blue-grey (calm and professional).
+- **catppuccin**: Soft modern pastels.
+- **rose-pine**: Warm muted tones.
+- **github**: Accessible, universal palette.
+
+### 2. Aesthetic Presets
+- **editorial**: 0.5rem radius, flat buttons, snappy 120ms transitions.
+- **glass**: 0.625rem radius, gradient buttons, fluid 250ms transitions, grain texture.
+- **bento**: 0.875rem radius, inner-light buttons, bouncy 220ms spring transitions.
+- **expressive**: 1.0rem radius, gradient buttons, dramatic 300ms transitions, mesh texture.
+
+### 3. Density Modes
+- **compact**: Spacing scaled by ~0.8× (data-dense).
+- **comfortable**: Spacing at 1× (default).
+- **spacious**: Spacing scaled by ~1.25× (generous).
+
+---
+
+## Token Cascade Order
 
 ```css
 @layer bindrunes.reset,
-       bindrunes.tokens.contract,    /* @property type declarations */
-       bindrunes.tokens.defaults,    /* :root fallbacks */
-       bindrunes.tokens.aesthetic,   /* form overrides per aesthetic */
-       bindrunes.tokens.theme,       /* color overrides per theme */
-       bindrunes.tokens.density,     /* spacing overrides per density */
+       bindrunes.tokens.contract,    /* CSS custom properties types */
+       bindrunes.tokens.defaults,    /* Default fallback values */
+       bindrunes.tokens.aesthetic,   /* Form overrides (radius, shadow, motion) */
+       bindrunes.tokens.theme,       /* Color overrides */
+       bindrunes.tokens.density,     /* Spacing overrides */
        bindrunes.utilities,
        bindrunes.components;
 ```
+*Note: Aesthetics never modify colors. Themes never modify spacing or forms.*
 
-Aesthetic NEVER touches color tokens. Theme NEVER touches form tokens. Density NEVER touches color or form.
+---
 
-## Getting Started
+## Usage & Integration
 
+### CSS Setup
+Import the core styles and any desired aesthetics in `app.css`:
 ```css
-/* app.css */
 @import "tailwindcss";
 @plugin "bindrunes/tailwind";
 @import "bindrunes/styles/global.css";
-/* global.css imports the editorial aesthetic only; colors come from root.css defaults */
-/* optionally import additional aesthetics: */
 @import "bindrunes/styles/aesthetics/glass.css";
 ```
 
+### Runtime Switching
 ```svelte
-<!-- root layout -->
-<script>
-  import { AppProvider } from 'bindrunes';
+<script lang="ts">
+  import { createTheme, createAesthetic, createDensity } from "bindrunes";
+  const theme = createTheme({ default: "editorial" });
+  const aesthetic = createAesthetic({ default: "editorial" });
+  const density = createDensity({ default: "comfortable" });
 </script>
 
-<AppProvider
-  themeDefault="editorial"
-  aestheticDefault="editorial"
-  densityDefault="comfortable"
->
-  <slot />
-</AppProvider>
+<button onclick={() => theme.setTheme("dracula")}>Dracula</button>
+<button onclick={() => aesthetic.setAesthetic("glass")}>Glass</button>
+<button onclick={() => density.setDensity("compact")}>Compact</button>
 ```
 
-## Token Categories
+### Programmatic Themes & Aesthetics
 
-- **Color tokens** → `src/styles/themes/<name>.css` (all themes, both light + dark)
-- **Typography** → `--font-display`, `--font-mono`, 17-step type scale (`text-display-1` through `text-mono-xs`)
-- **Spacing** → `--space-0` through `--space-20` (density-aware via `data-density`)
-- **Radius** → `--radius-xs` through `--radius-xl` (6-step, default tightened to 0.5rem)
-- **Shadow** → `--shadow-xs` through `--shadow-lg` (editorial default: near-zero)
-- **Motion** → `--duration-instant` through `--duration-slow`, `--ease-standard` through `--ease-spring`
-- **Container** → `--container-prose` through `--container-2xl`
+#### Custom Theme
+```ts
+import { defineTheme } from "bindrunes";
+const theme = defineTheme("my-brand", { "--primary": "oklch(0.60 0.15 250)" });
+theme.apply(); // Injects stylesheet
+```
 
-## Token Naming Convention
+#### Custom Aesthetic
+```css
+[data-aesthetic="my-aesthetic"] {
+  --radius: 0.25rem;
+  --duration-snappy: 100ms;
+  --button-treatment: flat;
+}
+```
 
-- `--shadow-*` — Base shadow tokens (xs, sm, md, lg)
-- `--shadow-glow-*` — Glow-effect shadows (compound name)
-- `--shadow-inset-*` — Inset shadows
-- `--radius-*` — Border radius tokens (xs, sm, md, lg, xl)
-- `--duration-*` — Motion duration tokens (instant, snappy, fluid, slow)
-- `--ease-*` — Motion easing tokens (standard, emphasized, decelerated, accelerated, spring)
-- `--space-*` — Spacing scale tokens (0-20)
-- `--container-*` — Container width tokens (prose, sm, md, lg, xl, 2xl)
+---
 
-## Composables
-
-| Function | Import | Purpose |
-|---|---|---|
-| `createTheme()` | `bindrunes` | Color theme (sets `data-theme`, persists) |
-| `createAesthetic()` | `bindrunes` | Form aesthetic (sets `data-aesthetic`, persists) |
-| `createDensity()` | `bindrunes` | Spacing density (sets `data-density`, persists) |
-| `createPrefersTheme()` | `bindrunes` | `prefers-color-scheme` → `.dark` class |
-| `defineTheme()` | `bindrunes` | Runtime per-tenant theme injection |
-| `createThemeBuilder()` | `bindrunes` | Programmatic theme token generation |
-| `createDarkMode()` | `bindrunes` | Subscribe to mode-watcher toggles |
-
-## ThemeStudio
-
-`<ThemeStudio>` (or legacy `<ThemeBuilder>`) provides a preview UI with tabs for Theme, Aesthetic, Density, and Export. Use it for live theme editing and CSS export.
-
-## Density-Aware Spacing
-
-The `--spacing` Tailwind token maps to `--space-1`, making all Tailwind spacing utilities (`p-3`, `gap-4`, `space-y-2`) respond to the current density. No component changes needed.
+## Utility Classes
+Provided by the Tailwind plugin:
+- `.glass-panel`: Glassmorphism backdrop with blur.
+- `.glass-interactive`: Hover glow interactive panel.
+- `.text-gradient-violet` / `.text-gradient-gold`: Gradient text effects.
+- `.section-reveal`: Scroll-triggered reveal animations.
