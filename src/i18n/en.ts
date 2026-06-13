@@ -59,6 +59,32 @@ const en: Dict = {
 	"landing.Newsletter.placeholder": "your@email.com",
 	"landing.Newsletter.button": "Subscribe",
 	"landing.FeatureComparison.feature": "Feature",
+
+	"dashboard.social.title": "Social",
+	"dashboard.social.queueEmpty": "Triage Queue Clear",
+	"dashboard.social.queueEmptyDesc":
+		"All email events have been triaged and promoted successfully. Great work!",
+	"dashboard.social.pendingQueue": "PENDING QUEUE",
+	"dashboard.social.promotionGate": "PROMOTION GATE",
+	"dashboard.social.rawEmail": "RAW EMAIL CONTENTS",
+
+	"dashboard.triage.title": "Triage Dashboard",
+	"dashboard.triage.desc": "Corrections, re-filing, and deadline monitoring",
+	"dashboard.triage.pending": "Pending",
+
+	"dashboard.ingestion.title": "Ingestion Monitor",
+	"dashboard.ingestion.desc": "IMAP/API connection management and real-time capture logs.",
+	"dashboard.ingestion.sync": "Sync Channels Now",
+
+	"dashboard.context.title": "Context Dashboard",
+	"dashboard.context.desc": "Dossier sufficiency, document indexing, and local agent dependencies.",
+
+	"dashboard.audit.title": "Immutable Audit Log",
+	"dashboard.audit.desc":
+		"End-to-end traceability. Every analysis, monologue, and engine decision is recorded with its signature.",
+
+	"common.logout": "Log out",
+	"common.loadingError": "Error loading",
 };
 
 export default en;

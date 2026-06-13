@@ -74,12 +74,14 @@ function handleCancel() {
         {#if actions}
           {@render actions()}
         {:else}
-          <AlertDialog.Cancel asChild let:props>
+          {#snippet cancelBtn(props)}
             <Button variant="ghost" size="sm" {...props} onclick={handleCancel}>{cancelLabel}</Button>
-          </AlertDialog.Cancel>
-          <AlertDialog.Action asChild let:props>
+          {/snippet}
+          {#snippet confirmBtn(props)}
             <Button variant={destructive ? 'destructive' : 'primary'} size="sm" {...props} onclick={handleConfirm}>{confirmLabel}</Button>
-          </AlertDialog.Action>
+          {/snippet}
+          <AlertDialog.Cancel asChild={cancelBtn} />
+          <AlertDialog.Action asChild={confirmBtn} />
         {/if}
       </div>
     </AlertDialog.Content>

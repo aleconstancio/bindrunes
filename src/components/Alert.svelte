@@ -23,10 +23,10 @@ let {
 } = $props();
 
 const borderColors: Record<Variant, string> = {
-	info: "border-l-info",
+	info: "border-l-[--info]",
 	success: "border-l-[--success]",
 	warning: "border-l-[--warning]",
-	destructive: "border-l-destructive",
+	destructive: "border-l-[--destructive]",
 };
 </script>
 

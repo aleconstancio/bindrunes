@@ -1,3 +1,4 @@
+import { array, object, optional, safeParse, string } from "valibot";
 import type { TFunction } from "../shared-types";
 
 type ToastFn = {
@@ -36,7 +37,20 @@ const DEFAULT_STORAGE: AuthStorage = {
 		const stored = localStorage.getItem("bindrunes_user");
 		if (!stored) return null;
 		try {
-			return JSON.parse(stored);
+			const parsed = JSON.parse(stored);
+			const { success, output } = safeParse(
+				object({
+					id: string(),
+					email: string(),
+					name: optional(string()),
+					avatar: optional(string()),
+					roles: array(string()),
+					permissions: array(string()),
+					tenantId: optional(string()),
+				}),
+				parsed,
+			);
+			return success ? (output as User) : null;
 		} catch {
 			try {
 				localStorage.removeItem("bindrunes_user");

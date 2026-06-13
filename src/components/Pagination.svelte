@@ -75,8 +75,9 @@ let pages = $derived.by(() => {
 				{#if p === '...'}
 					<span class="inline-flex items-center justify-center h-8 w-8 text-body-sm text-muted-foreground">...</span>
 				{:else}
-					<button
-						onclick={() => onPageChange?.(p as number)}
+				<button
+					type="button"
+					onclick={() => onPageChange?.(p as number)}
 						class="inline-flex items-center justify-center h-8 w-8 rounded-[--radius] text-label-sm font-medium transition-colors cursor-pointer"
 						class:bg-primary={currentPage === p}
 						class:text-primary-foreground={currentPage === p}

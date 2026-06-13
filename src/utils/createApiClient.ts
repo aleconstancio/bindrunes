@@ -19,12 +19,14 @@ export interface ApiClientOptions {
 	getToken?: () => string | null;
 	onError?: (error: Error, path: string) => void;
 	onUnauthorized?: () => void;
+	timeout?: number;
 }
 
 export function createApiClient<
 	TBase extends Record<string, (...args: never[]) => Promise<unknown>> = Record<string, never>,
 >(options: ApiClientOptions, domainApis?: TBase) {
 	const { baseUrl, getToken, onError, onUnauthorized } = options;
+	const timeoutMs = options.timeout ?? 30_000;
 
 	async function request<T>(path: string, method: string = "GET", body?: unknown): Promise<T> {
 		const headers = new Headers();
@@ -34,27 +36,37 @@ export function createApiClient<
 			headers.set("Content-Type", "application/json");
 		}
 
-		const response = await fetch(`${baseUrl}${path}`, {
-			method,
-			headers,
-			credentials: "same-origin",
-			body: body instanceof FormData ? body : body ? JSON.stringify(body) : undefined,
-		});
+		const controller = new AbortController();
+		const timer = setTimeout(() => controller.abort(), timeoutMs);
 
-		if (response.status === 401) {
-			onUnauthorized?.();
-			throw new Error("Unauthorized");
+		try {
+			const response = await fetch(`${baseUrl}${path}`, {
+				method,
+				headers,
+				credentials: "same-origin",
+				body: body instanceof FormData ? body : body ? JSON.stringify(body) : undefined,
+				signal: controller.signal,
+			});
+
+			if (response.status === 401) {
+				onUnauthorized?.();
+				throw new Error("Unauthorized");
+			}
+
+			if (!response.ok) {
+				const errorData = await response
+					.json()
+					.catch(() => ({ message: `HTTP ${response.status}` }));
+				const error = new Error(errorData.message || errorData.code || `HTTP ${response.status}`);
+				onError?.(error, path);
+				throw error;
+			}
+
+			if (response.status === 204) return {} as T;
+			return response.json();
+		} finally {
+			clearTimeout(timer);
 		}
-
-		if (!response.ok) {
-			const errorData = await response.json().catch(() => ({ message: `HTTP ${response.status}` }));
-			const error = new Error(errorData.message || errorData.code || `HTTP ${response.status}`);
-			onError?.(error, path);
-			throw error;
-		}
-
-		if (response.status === 204) return {} as T;
-		return response.json();
 	}
 
 	const client = {

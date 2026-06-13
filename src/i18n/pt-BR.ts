@@ -4,7 +4,7 @@ const ptBR: Dict = {
 	"common.reload": "Recarregar",
 	"common.loading": "Carregando",
 	"common.save": "Salvar",
-	"common.search": "Search",
+	"common.search": "Pesquisar",
 	"common.pagination": "Paginação",
 	"common.home": "Início",
 
@@ -24,8 +24,8 @@ const ptBR: Dict = {
 
 	"input.Select.placeholder": "Selecione...",
 
-	"omnibar.Omnibar.placeholder": "Search commands, routes, memory...",
-	"omnibar.Omnibar.searchLabel": "Search",
+	"omnibar.Omnibar.placeholder": "Pesquisar comandos, rotas, memória...",
+	"omnibar.Omnibar.searchLabel": "Pesquisar",
 	"omnibar.Omnibar.noResults": 'Nenhum resultado encontrado para "{query}"',
 
 	"auth.AuthGuard.loggedOut": "Sessão encerrada.",
@@ -68,9 +68,8 @@ const ptBR: Dict = {
 	"dashboard.audit.desc":
 		"Rastreabilidade ponta a ponta. Cada análise, monólogo e decisão do motor do agente é registrada com sua assinatura.",
 
-	"common.sair": "Sair",
-	"common.carregando": "Carregando",
-	"common.erro": "Erro ao carregar",
+	"common.logout": "Sair",
+	"common.loadingError": "Erro ao carregar",
 };
 
 export default ptBR;

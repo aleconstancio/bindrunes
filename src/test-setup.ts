@@ -77,6 +77,7 @@ vi.mock("lucide-svelte", () => {
 		Menu: icon,
 		Search: icon,
 		Plus: icon,
+		Minus: icon,
 		XCircle: icon,
 		AlertCircle: icon,
 		Info: icon,

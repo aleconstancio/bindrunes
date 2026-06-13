@@ -9,11 +9,14 @@
  */
 export function createStorage(prefix: string) {
 	const key = (k: string) => `${prefix}_${k}`;
-	const isBrowser = typeof window !== "undefined" && typeof localStorage !== "undefined";
+
+	function isBrowser() {
+		return typeof window !== "undefined" && typeof localStorage !== "undefined";
+	}
 
 	return {
 		get<T = string>(k: string): T | null {
-			if (!isBrowser) return null;
+			if (!isBrowser()) return null;
 			try {
 				const raw = localStorage.getItem(key(k));
 				return raw ? (JSON.parse(raw) as T) : null;
@@ -22,7 +25,7 @@ export function createStorage(prefix: string) {
 			}
 		},
 		set<T>(k: string, v: T): void {
-			if (!isBrowser) return;
+			if (!isBrowser()) return;
 			try {
 				localStorage.setItem(key(k), JSON.stringify(v));
 			} catch {
@@ -30,7 +33,7 @@ export function createStorage(prefix: string) {
 			}
 		},
 		remove(k: string): void {
-			if (!isBrowser) return;
+			if (!isBrowser()) return;
 			try {
 				localStorage.removeItem(key(k));
 			} catch {
@@ -38,7 +41,7 @@ export function createStorage(prefix: string) {
 			}
 		},
 		clear(): void {
-			if (!isBrowser) return;
+			if (!isBrowser()) return;
 			try {
 				const prefixMatch = (k: string) => k.startsWith(`${prefix}_`);
 				const keys = Object.keys(localStorage).filter(prefixMatch);

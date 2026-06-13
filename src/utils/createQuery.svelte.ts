@@ -1,3 +1,4 @@
+import { isBrowser } from "./isBrowser";
 import { fetchQuery, getEntry, removeEntry, subscribe } from "./queryCache";
 
 export interface CreateQueryOptions<TData> {
@@ -105,6 +106,8 @@ export function createQuery<TData>(options: CreateQueryOptions<TData>): QueryRes
 				fetchQuery<TData>(options.key, options.fetcher, { retry: options.retry });
 			}
 		}
+
+		if (!isBrowser) return;
 
 		window.addEventListener("focus", onFocus);
 		return () => window.removeEventListener("focus", onFocus);

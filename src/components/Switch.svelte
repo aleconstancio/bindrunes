@@ -8,18 +8,23 @@ let {
 	disabled = false,
 	error = "",
 	label = undefined as string | undefined,
+	name = undefined as string | undefined,
 }: {
 	checked?: boolean;
 	disabled?: boolean;
 	error?: string;
 	label?: string;
+	name?: string;
 } = $props();
+
+let errorId = $derived(name ? `${name}-error` : undefined);
 </script>
 
 <label class="inline-flex items-center gap-3 cursor-pointer">
   <BitsSwitch.Root
     {disabled}
     aria-invalid={error ? true : undefined}
+    aria-describedby={error && errorId ? errorId : undefined}
     bind:checked
     class="inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-[--duration-snappy]
            data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted
@@ -34,3 +39,6 @@ let {
     <span class="text-label-md text-foreground">{label}</span>
   {/if}
 </label>
+{#if error && errorId}
+  <p id={errorId} class="mt-1.5 text-body-sm text-destructive">{error}</p>
+{/if}

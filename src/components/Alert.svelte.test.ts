@@ -9,10 +9,10 @@ describe("Alert", () => {
 		expect(screen.getByText("Something went wrong")).toBeInTheDocument();
 	});
 
-	it("info variant applies border-l-info", () => {
+	it("info variant applies border-l-[--info]", () => {
 		const { container } = render(Alert, { props: { title: "Info", variant: "info" } });
 		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain("border-l-info");
+		expect(div?.className).toContain("border-l-[--info]");
 	});
 
 	it("warning variant applies border-l-warning", () => {
@@ -21,9 +21,9 @@ describe("Alert", () => {
 		expect(div?.className).toContain("border-l-[--warning]");
 	});
 
-	it("destructive variant applies border-l-destructive", () => {
+	it("destructive variant applies border-l-[--destructive]", () => {
 		const { container } = render(Alert, { props: { title: "Error", variant: "destructive" } });
 		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain("border-l-destructive");
+		expect(div?.className).toContain("border-l-[--destructive]");
 	});
 });
