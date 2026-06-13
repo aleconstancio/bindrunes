@@ -23,7 +23,7 @@ let {
 	class?: string;
 } = $props();
 
-function dismiss() {
+function _dismiss() {
 	open = false;
 	onDismiss?.();
 }
@@ -49,7 +49,7 @@ function dismiss() {
         <button
           type="button"
           class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
-          onclick={dismiss}
+          onclick={_dismiss}
           aria-label="Dismiss"
         >
           <X class="h-4 w-4" />

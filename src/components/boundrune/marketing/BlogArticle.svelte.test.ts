@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/svelte";
+import { describe, expect, it } from "vitest";
 import BlogArticle from "./BlogArticle.svelte";
 
 describe("BlogArticle", () => {

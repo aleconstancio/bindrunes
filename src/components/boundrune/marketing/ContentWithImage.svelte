@@ -1,41 +1,44 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Block from "../Block.svelte";
+import type { ContentItem } from "../types";
 
 let {
-	items = [] as {
-		title: string;
-		description: string;
-		image?: string;
-		imageSide?: "left" | "right";
-	}[],
+	items = [] as ContentItem[],
 	class: className = "",
+	itemSnippet = undefined as Snippet<[{ item: ContentItem; index: number }]> | undefined,
 }: {
-	items?: { title: string; description: string; image?: string; imageSide?: "left" | "right" }[];
+	items?: ContentItem[];
 	class?: string;
+	itemSnippet?: Snippet<[{ item: ContentItem; index: number }]>;
 } = $props();
 </script>
 
 <Block size="xl" spacing="normal" class={className}>
   <div class="space-y-16">
     {#each items as item, i}
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
-        class:lg:flex-row-reverse={item.imageSide === "right"}
-      >
-        {#if item.image}
-          <div class={item.imageSide === "right" ? "lg:order-2" : "lg:order-1"}>
-            <img
-              src={item.image}
-              alt={item.title}
-              class="w-full rounded-[--radius] shadow-lg"
-            />
+      {#if itemSnippet}
+        {@render itemSnippet({ item, index: i })}
+      {:else}
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+          class:lg:flex-row-reverse={item.imageSide === "right"}
+        >
+          {#if item.image}
+            <div class={item.imageSide === "right" ? "lg:order-2" : "lg:order-1"}>
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full rounded-[--radius] shadow-lg"
+              />
+            </div>
+          {/if}
+          <div class={item.imageSide === "right" ? "lg:order-1" : "lg:order-2"}>
+            <h3 class="text-title-1 text-foreground mb-4">{item.title}</h3>
+            <p class="text-body-lg text-muted-foreground leading-relaxed">{item.description}</p>
           </div>
-        {/if}
-        <div class={item.imageSide === "right" ? "lg:order-1" : "lg:order-2"}>
-          <h3 class="text-title-1 text-foreground mb-4">{item.title}</h3>
-          <p class="text-body-lg text-muted-foreground leading-relaxed">{item.description}</p>
         </div>
-      </div>
+      {/if}
     {/each}
   </div>
 </Block>

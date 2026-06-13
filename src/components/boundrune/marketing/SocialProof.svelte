@@ -1,16 +1,22 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Block from "../Block.svelte";
+import type { LogoItem, TestimonialItem } from "../types";
 
 let {
 	title = "",
-	testimonials = [] as { quote: string; author: string; role?: string; avatar?: string }[],
-	logos = [] as { name: string; url?: string }[],
+	testimonials = [] as TestimonialItem[],
+	logos = [] as LogoItem[],
 	class: className = "",
+	testimonialSnippet = undefined as Snippet<[{ testimonial: TestimonialItem }]> | undefined,
+	logoSnippet = undefined as Snippet<[{ logo: LogoItem }]> | undefined,
 }: {
 	title?: string;
-	testimonials?: { quote: string; author: string; role?: string; avatar?: string }[];
-	logos?: { name: string; url?: string }[];
+	testimonials?: TestimonialItem[];
+	logos?: LogoItem[];
 	class?: string;
+	testimonialSnippet?: Snippet<[{ testimonial: TestimonialItem }]>;
+	logoSnippet?: Snippet<[{ logo: LogoItem }]>;
 } = $props();
 </script>
 
@@ -23,29 +29,33 @@ let {
     {#if testimonials.length > 0}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {#each testimonials as testimonial}
-          <div class="rounded-[--radius] border border-border bg-card p-6 space-y-4">
-            <span class="text-primary/40 text-headline-3 font-display">&ldquo;</span>
-            <p class="text-body-md text-muted-foreground leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
-            <div class="flex items-center gap-3 pt-2">
-              {#if testimonial.avatar}
-                <img
-                  src={testimonial.avatar}
-                  alt={testimonial.author}
-                  class="w-10 h-10 rounded-full object-cover"
-                />
-              {:else}
-                <div class="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                  <span class="text-label-md text-muted-foreground">{testimonial.author[0]?.toUpperCase()}</span>
-                </div>
-              {/if}
-              <div>
-                <p class="text-label-md text-foreground font-semibold">{testimonial.author}</p>
-                {#if testimonial.role}
-                  <p class="text-body-sm text-muted-foreground">{testimonial.role}</p>
+          {#if testimonialSnippet}
+            {@render testimonialSnippet({ testimonial })}
+          {:else}
+            <div class="rounded-[--radius] border border-border bg-card p-6 space-y-4">
+              <span class="text-primary/40 text-headline-3 font-display">&ldquo;</span>
+              <p class="text-body-md text-muted-foreground leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+              <div class="flex items-center gap-3 pt-2">
+                {#if testimonial.avatar}
+                  <img
+                    src={testimonial.avatar}
+                    alt={testimonial.author}
+                    class="w-10 h-10 rounded-full object-cover"
+                  />
+                {:else}
+                  <div class="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                    <span class="text-label-md text-muted-foreground">{testimonial.author[0]?.toUpperCase()}</span>
+                  </div>
                 {/if}
+                <div>
+                  <p class="text-label-md text-foreground font-semibold">{testimonial.author}</p>
+                  {#if testimonial.role}
+                    <p class="text-body-sm text-muted-foreground">{testimonial.role}</p>
+                  {/if}
+                </div>
               </div>
             </div>
-          </div>
+          {/if}
         {/each}
       </div>
     {/if}
@@ -55,7 +65,9 @@ let {
         <p class="text-center text-mono-xs uppercase text-muted-foreground mb-6">Trusted by</p>
         <div class="flex flex-wrap items-center justify-center gap-8">
           {#each logos as logo}
-            {#if logo.url}
+            {#if logoSnippet}
+              {@render logoSnippet({ logo })}
+            {:else if logo.url}
               <a href={logo.url} class="text-muted-foreground hover:text-foreground transition-colors text-label-lg font-semibold">
                 {logo.name}
               </a>

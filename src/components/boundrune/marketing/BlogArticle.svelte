@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Avatar from "../../Avatar.svelte";
 import Block from "../Block.svelte";
 
@@ -12,6 +13,7 @@ let {
 	readTime = "",
 	tags = [] as string[],
 	class: className = "",
+	contentSnippet = undefined as Snippet | undefined,
 }: {
 	title?: string;
 	content?: string;
@@ -22,6 +24,7 @@ let {
 	readTime?: string;
 	tags?: string[];
 	class?: string;
+	contentSnippet?: Snippet;
 } = $props();
 </script>
 
@@ -48,7 +51,11 @@ let {
       {/if}
     </header>
 
-    {#if content}
+    {#if contentSnippet}
+      <div class="prose prose-gray dark:prose-invert max-w-none">
+        {@render contentSnippet()}
+      </div>
+    {:else if content}
       <div class="prose prose-gray dark:prose-invert max-w-none">
         {#each content.split("\n") as paragraph}
           {#if paragraph.trim()}
