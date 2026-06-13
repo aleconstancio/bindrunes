@@ -1,11 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/svelte';
-import { tick } from 'svelte';
-import DensityTab from './DensityTab.svelte';
-import ComposableHarness from '../ComposableHarness.svelte';
-import { createDensity } from '../utils/createDensity.svelte';
+import { fireEvent, render, screen } from "@testing-library/svelte";
+import { tick } from "svelte";
+import { beforeEach, describe, expect, it } from "vitest";
+import ComposableHarness from "../ComposableHarness.svelte";
+import { createDensity } from "../utils/createDensity.svelte";
+import DensityTab from "./DensityTab.svelte";
 
-describe('DensityTab', () => {
+describe("DensityTab", () => {
 	beforeEach(() => {
 		localStorage.clear();
 	});
@@ -22,54 +22,57 @@ describe('DensityTab', () => {
 			},
 		});
 		await tick();
-		return state.current as { density: ReturnType<typeof createDensity>; render: typeof DensityTab };
+		return state.current as {
+			density: ReturnType<typeof createDensity>;
+			render: typeof DensityTab;
+		};
 	}
 
-	it('renders the content density label', async () => {
+	it("renders the content density label", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
-		expect(screen.getByText('Content density')).toBeInTheDocument();
+		expect(screen.getByText("Content density")).toBeInTheDocument();
 	});
 
-	it('renders all density options', async () => {
+	it("renders all density options", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
-		expect(screen.getByText('compact')).toBeInTheDocument();
-		expect(screen.getByText('comfortable')).toBeInTheDocument();
-		expect(screen.getByText('spacious')).toBeInTheDocument();
+		expect(screen.getByText("compact")).toBeInTheDocument();
+		expect(screen.getByText("comfortable")).toBeInTheDocument();
+		expect(screen.getByText("spacious")).toBeInTheDocument();
 	});
 
-	it('shows description for compact', async () => {
+	it("shows description for compact", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
 		expect(screen.getByText(/Tighter spacing/)).toBeInTheDocument();
 	});
 
-	it('shows description for comfortable', async () => {
+	it("shows description for comfortable", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
 		expect(screen.getByText(/Balanced spacing/)).toBeInTheDocument();
 	});
 
-	it('shows description for spacious', async () => {
+	it("shows description for spacious", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
 		expect(screen.getByText(/Generous spacing/)).toBeInTheDocument();
 	});
 
-	it('clicking a density calls setDensity', async () => {
+	it("clicking a density calls setDensity", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
-		await fireEvent.click(screen.getByText('compact'));
+		await fireEvent.click(screen.getByText("compact"));
 		await tick();
-		expect(d.density.density).toBe('compact');
+		expect(d.density.density).toBe("compact");
 	});
 
-	it('clicking spacious updates state', async () => {
+	it("clicking spacious updates state", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
-		await fireEvent.click(screen.getByText('spacious'));
+		await fireEvent.click(screen.getByText("spacious"));
 		await tick();
-		expect(d.density.density).toBe('spacious');
+		expect(d.density.density).toBe("spacious");
 	});
 });

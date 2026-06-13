@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+import { toWindowId, type Window } from "../../types/agent";
 import { createConversationBranches } from "./createConversationBranches.svelte";
-import { toWindowId, type Window, type WindowId } from "../../types/agent";
 
 function w(
 	id: string,
@@ -104,9 +104,7 @@ describe("createConversationBranches", () => {
 				rootId: toWindowId("root"),
 				windows,
 			});
-			const lengths = branches.branches
-				.map((b) => b.path.length)
-				.sort((x, y) => x - y);
+			const lengths = branches.branches.map((b) => b.path.length).sort((x, y) => x - y);
 			expect(lengths).toEqual([3, 4]);
 		});
 	});
@@ -124,14 +122,11 @@ describe("createConversationBranches", () => {
 			});
 			const cmp = branches.compareSiblings(toWindowId("a"), toWindowId("b"));
 			expect(cmp.commonAncestor).toBe(toWindowId("root"));
-			expect(cmp.divergedAt).toBe(1, "they diverge right after the root (turn 1)");
+			expect(cmp.divergedAt).toBe(1);
 		});
 
 		it("returns the same window as both ancestor and 'diverged at its turn count' when comparing a window to itself", () => {
-			const windows: ReadonlyArray<Window> = [
-				w("root", null, ["a"], 1),
-				w("a", "root", [], 2),
-			];
+			const windows: ReadonlyArray<Window> = [w("root", null, ["a"], 1), w("a", "root", [], 2)];
 			const branches = createConversationBranches({
 				rootId: toWindowId("root"),
 				windows,
@@ -208,10 +203,7 @@ describe("createConversationBranches", () => {
 		});
 
 		it("compareSiblings returns the root as common ancestor when one window is unreachable", () => {
-			const windows: ReadonlyArray<Window> = [
-				w("root", null, ["a"], 1),
-				w("a", "root", [], 2),
-			];
+			const windows: ReadonlyArray<Window> = [w("root", null, ["a"], 1), w("a", "root", [], 2)];
 			const branches = createConversationBranches({
 				rootId: toWindowId("root"),
 				windows,

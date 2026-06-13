@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { createTokenBudget } from "./createTokenBudget.svelte";
 
 describe("createTokenBudget", () => {
@@ -38,7 +38,7 @@ describe("createTokenBudget", () => {
 			b.record({ prompt: 80, completion: 50 });
 			expect(b.used).toBe(130);
 			expect(b.overflow).toBe(true);
-			expect(b.remaining).toBe(0, "remaining never goes negative; clamps at 0");
+			expect(b.remaining).toBe(0);
 		});
 
 		it("zero usage deltas do not move used", () => {

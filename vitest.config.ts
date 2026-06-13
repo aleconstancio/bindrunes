@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	plugins: [
@@ -10,26 +10,26 @@ export default defineConfig({
 		}),
 	],
 	resolve: {
-		conditions: ['browser', 'import', 'module'],
+		conditions: ["browser", "import", "module"],
 		alias: {
-			bindrunes: new URL('./src/bindrunes-stub.ts', import.meta.url).pathname,
+			bindrunes: new URL("./src/bindrunes-stub.ts", import.meta.url).pathname,
 		},
 	},
 	test: {
-		environment: 'jsdom',
-		include: ['src/**/*.{test,spec}.{js,ts}'],
-		exclude: ['node_modules', 'dist', '.svelte-kit', '**/__package__/**'],
+		environment: "jsdom",
+		include: ["src/**/*.{test,spec}.{js,ts}"],
+		exclude: ["node_modules", "dist", ".svelte-kit", "**/__package__/**"],
 		globals: true,
-		setupFiles: ['./src/test-setup.ts'],
+		setupFiles: ["./src/test-setup.ts"],
 		coverage: {
-			include: ['src/**'],
+			include: ["src/**"],
 			exclude: [
-				'src/test-setup.ts',
-				'src/test-utils.ts',
-				'src/helpers/**',
-				'src/**/*.test.ts',
-				'src/**/*.spec.ts',
-				'src/**/*.d.ts',
+				"src/test-setup.ts",
+				"src/test-utils.ts",
+				"src/helpers/**",
+				"src/**/*.test.ts",
+				"src/**/*.spec.ts",
+				"src/**/*.d.ts",
 			],
 			thresholds: [
 				{
@@ -43,7 +43,7 @@ export default defineConfig({
 					// Stricter local threshold for the agentic-chat kernel
 					// (M1+ in v1.2.0). Logic-heavy contract surface — must be
 					// deeply covered.
-					include: ['src/utils/agentic/**', 'src/types/agent.ts'],
+					include: ["src/utils/agentic/**", "src/types/agent.ts"],
 					lines: 90,
 					functions: 88,
 					statements: 90,

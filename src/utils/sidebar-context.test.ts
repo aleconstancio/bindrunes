@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 // Sidebar context must be tested within a Svelte component using the context
 // These tests verify the module can be imported and the factory functions exist

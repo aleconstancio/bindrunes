@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { createWindowStore } from "./createWindowStore.svelte";
-import type { Turn, CompactionPlan, Window } from "../../types/agent";
+import { beforeEach, describe, expect, it } from "vitest";
+import type { CompactionPlan, Turn, Window } from "../../types/agent";
 import { toWindowId } from "../../types/agent";
+import { createWindowStore } from "./createWindowStore.svelte";
 
 function makeTurn(role: Turn["role"], content: string, tokens = 10): Turn {
 	return {
@@ -119,12 +119,12 @@ describe("createWindowStore", () => {
 
 		it("updates the window's updatedAt timestamp", () => {
 			const root = store.createRoot({});
-			const before = store.windows.find((w) => w.id === root)!.updatedAt;
+			const before = store.windows.find((w) => w.id === root)?.updatedAt;
 			// bump clock a tick
 			const t = makeTurn("user", "x");
 			store.appendTurn(root, t);
-			const after = store.windows.find((w) => w.id === root)!.updatedAt;
-			expect(after).toBeGreaterThanOrEqual(before);
+			const after = store.windows.find((w) => w.id === root)?.updatedAt;
+			expect(after).toBeGreaterThanOrEqual(before!);
 		});
 
 		it("appends to the active window when no id is given", () => {
@@ -209,7 +209,7 @@ describe("createWindowStore", () => {
 
 	describe("reactivity (runes)", () => {
 		it("exposes readonly getters that change when state mutates", () => {
-			const root = store.createRoot({});
+			const _root = store.createRoot({});
 			expect(store.windows).toHaveLength(1);
 			const initial = store.windows.length;
 			store.createRoot({});
@@ -260,7 +260,7 @@ describe("createWindowStore", () => {
 			const before = store.windows.length;
 			store.remove(toWindowId("nope"));
 			expect(store.windows.length).toBe(before);
-			expect(store.activeId).toBe(root, "active is preserved when remove targets nothing");
+			expect(store.activeId).toBe(root);
 		});
 
 		it("remove() clears activeId when the active window is removed", () => {
