@@ -9,86 +9,94 @@
 		demoPath: string;
 	}
 
+	const categoryDemos = [
+		{ name: "Forms", path: "/components/forms", description: "Inputs, checkboxes, selects, sliders, and specialty fields" },
+		{ name: "Overlays", path: "/components/overlays", description: "Dialogs, sheets, menus, popovers, and tooltips" },
+		{ name: "Feedback", path: "/components/feedback", description: "Alerts, spinners, skeletons, progress, and status chips" },
+		{ name: "Navigation", path: "/components/navigation", description: "Breadcrumbs, steppers, timelines, and pagination" },
+		{ name: "Data Display", path: "/components/data-display", description: "Avatars, badges, progress bars, and keyboard shortcuts" },
+	];
+
 	const components: ComponentEntry[] = [
 		// Foundation
-		{ name: "Accordion", category: "Foundation", description: "Collapsible content sections", demoPath: "" },
-		{ name: "AccordionItem", category: "Foundation", description: "Individual accordion item", demoPath: "" },
+		{ name: "Accordion", category: "Foundation", description: "Collapsible content sections", demoPath: "/app" },
+		{ name: "AccordionItem", category: "Foundation", description: "Individual accordion item", demoPath: "/app" },
 
 		// Feedback
-		{ name: "Alert", category: "Feedback", description: "Alert messages with variants", demoPath: "/app" },
-		{ name: "EmptyState", category: "Feedback", description: "Empty state placeholders", demoPath: "" },
+		{ name: "Alert", category: "Feedback", description: "Alert messages with variants", demoPath: "/components/feedback" },
+		{ name: "EmptyState", category: "Feedback", description: "Empty state placeholders", demoPath: "/components/feedback" },
 		{ name: "ErrorBoundary", category: "Feedback", description: "Error boundary with retry", demoPath: "/app" },
-		{ name: "Skeleton", category: "Feedback", description: "Loading skeleton", demoPath: "" },
-		{ name: "Spinner", category: "Feedback", description: "Loading spinner", demoPath: "" },
-		{ name: "PageLoading", category: "Feedback", description: "Full-page loading state", demoPath: "" },
-		{ name: "Suspense", category: "Feedback", description: "Async content wrapper", demoPath: "" },
-		{ name: "StatusChip", category: "Feedback", description: "Status indicator with dot", demoPath: "" },
+		{ name: "Skeleton", category: "Feedback", description: "Loading skeleton", demoPath: "/components/feedback" },
+		{ name: "Spinner", category: "Feedback", description: "Loading spinner", demoPath: "/components/feedback" },
+		{ name: "PageLoading", category: "Feedback", description: "Full-page loading state", demoPath: "/components/feedback" },
+		{ name: "Suspense", category: "Feedback", description: "Async content wrapper", demoPath: "/components/feedback" },
+		{ name: "StatusChip", category: "Feedback", description: "Status indicator with dot", demoPath: "/components/feedback" },
 
 		// Navigation
-		{ name: "Breadcrumb", category: "Navigation", description: "Breadcrumb navigation", demoPath: "" },
-		{ name: "NavigationMenu", category: "Navigation", description: "Main navigation menu", demoPath: "" },
+		{ name: "Breadcrumb", category: "Navigation", description: "Breadcrumb navigation", demoPath: "/components/navigation" },
+		{ name: "NavigationMenu", category: "Navigation", description: "Main navigation menu", demoPath: "/components/navigation" },
 		{ name: "Omnibar", category: "Navigation", description: "Command palette (Ctrl+K)", demoPath: "/app" },
-		{ name: "Pagination", category: "Navigation", description: "Page navigation", demoPath: "/data/list" },
-		{ name: "Stepper", category: "Navigation", description: "Step-by-step wizard UI", demoPath: "" },
-		{ name: "Timeline", category: "Navigation", description: "Timeline display", demoPath: "" },
-		{ name: "TreeView", category: "Navigation", description: "Hierarchical tree", demoPath: "" },
+		{ name: "Pagination", category: "Navigation", description: "Page navigation", demoPath: "/components/navigation" },
+		{ name: "Stepper", category: "Navigation", description: "Step-by-step wizard UI", demoPath: "/components/navigation" },
+		{ name: "Timeline", category: "Navigation", description: "Timeline display", demoPath: "/components/navigation" },
+		{ name: "TreeView", category: "Navigation", description: "Hierarchical tree", demoPath: "/components/navigation" },
 
 		// App Shell
 		{ name: "AppProvider", category: "App Shell", description: "App-wide providers wrapper", demoPath: "/" },
-		{ name: "AuthGuard", category: "App Shell", description: "Auth gate component", demoPath: "" },
-		{ name: "MetaContainer", category: "App Shell", description: "Responsive container", demoPath: "" },
-		{ name: "MetaLayout", category: "App Shell", description: "Slot-based layout", demoPath: "" },
-		{ name: "MetaScrollable", category: "App Shell", description: "Scrollable container", demoPath: "" },
-		{ name: "PageHeader", category: "App Shell", description: "Page header with title/description", demoPath: "" },
-		{ name: "SectionHeader", category: "App Shell", description: "Section heading", demoPath: "" },
-		{ name: "Separator", category: "App Shell", description: "Visual divider", demoPath: "" },
-		{ name: "ListPage", category: "App Shell", description: "List page layout wrapper", demoPath: "" },
+		{ name: "AuthGuard", category: "App Shell", description: "Auth gate component", demoPath: "/auth/login" },
+		{ name: "MetaContainer", category: "App Shell", description: "Responsive container", demoPath: "/dashboard" },
+		{ name: "MetaLayout", category: "App Shell", description: "Slot-based layout", demoPath: "/dashboard" },
+		{ name: "MetaScrollable", category: "App Shell", description: "Scrollable container", demoPath: "/dashboard" },
+		{ name: "PageHeader", category: "App Shell", description: "Page header with title/description", demoPath: "/components/feedback" },
+		{ name: "SectionHeader", category: "App Shell", description: "Section heading", demoPath: "/components/feedback" },
+		{ name: "Separator", category: "App Shell", description: "Visual divider", demoPath: "/components/feedback" },
+		{ name: "ListPage", category: "App Shell", description: "List page layout wrapper", demoPath: "/data/list" },
 
 		// Data Display
-		{ name: "Avatar", category: "Data Display", description: "User avatar", demoPath: "" },
-		{ name: "Badge", category: "Data Display", description: "Status/tag badge", demoPath: "/app" },
+		{ name: "Avatar", category: "Data Display", description: "User avatar", demoPath: "/components/data-display" },
+		{ name: "Badge", category: "Data Display", description: "Status/tag badge", demoPath: "/components/data-display" },
 		{ name: "Card", category: "Data Display", description: "Card container", demoPath: "/" },
 		{ name: "DataChart", category: "Data Display", description: "Chart wrapper", demoPath: "/dashboard" },
 		{ name: "DataTable", category: "Data Display", description: "Full data table with sort/filter/pagination", demoPath: "/data/list" },
 		{ name: "MetricCard", category: "Data Display", description: "KPI metric card", demoPath: "/dashboard" },
-		{ name: "Progress", category: "Data Display", description: "Progress bar", demoPath: "" },
+		{ name: "Progress", category: "Data Display", description: "Progress bar", demoPath: "/components/data-display" },
 		{ name: "Tabs", category: "Data Display", description: "Tab system", demoPath: "/app" },
-		{ name: "Kbd", category: "Data Display", description: "Keyboard shortcut display", demoPath: "/app" },
+		{ name: "Kbd", category: "Data Display", description: "Keyboard shortcut display", demoPath: "/components/data-display" },
 
 		// Forms
-		{ name: "Button", category: "Forms", description: "Button with aesthetic hooks", demoPath: "/" },
-		{ name: "Checkbox", category: "Forms", description: "Checkbox input", demoPath: "" },
-		{ name: "Combobox", category: "Forms", description: "Searchable dropdown", demoPath: "" },
-		{ name: "DatePicker", category: "Forms", description: "Date picker", demoPath: "" },
+		{ name: "Button", category: "Forms", description: "Button with aesthetic hooks", demoPath: "/components/forms" },
+		{ name: "Checkbox", category: "Forms", description: "Checkbox input", demoPath: "/components/forms" },
+		{ name: "Combobox", category: "Forms", description: "Searchable dropdown", demoPath: "/components/forms" },
+		{ name: "DatePicker", category: "Forms", description: "Date picker", demoPath: "/calendar" },
 		{ name: "Form", category: "Forms", description: "Form wrapper with validation", demoPath: "/data/list" },
-		{ name: "FormField", category: "Forms", description: "Form field with label/error", demoPath: "" },
-		{ name: "Input", category: "Forms", description: "Text input", demoPath: "" },
-		{ name: "Label", category: "Forms", description: "Form label", demoPath: "" },
-		{ name: "NumberInput", category: "Forms", description: "Numeric input", demoPath: "" },
-		{ name: "PasswordInput", category: "Forms", description: "Password input with toggle", demoPath: "" },
-		{ name: "PinInput", category: "Forms", description: "PIN/OTP input", demoPath: "" },
-		{ name: "RadioGroup", category: "Forms", description: "Radio button group", demoPath: "" },
-		{ name: "RangeCalendar", category: "Forms", description: "Date range picker", demoPath: "" },
-		{ name: "RatingGroup", category: "Forms", description: "Star rating input", demoPath: "" },
-		{ name: "RichTextEditor", category: "Forms", description: "Rich text editor", demoPath: "" },
-		{ name: "Select", category: "Forms", description: "Select dropdown", demoPath: "" },
-		{ name: "Slider", category: "Forms", description: "Range slider", demoPath: "" },
-		{ name: "Switch", category: "Forms", description: "Toggle switch", demoPath: "" },
-		{ name: "TagInput", category: "Forms", description: "Tag/chip input", demoPath: "" },
-		{ name: "TimeField", category: "Forms", description: "Time input", demoPath: "" },
-		{ name: "Toggle", category: "Forms", description: "Toggle button", demoPath: "" },
-		{ name: "ToggleGroup", category: "Forms", description: "Toggle button group", demoPath: "" },
+		{ name: "FormField", category: "Forms", description: "Form field with label/error", demoPath: "/components/forms" },
+		{ name: "Input", category: "Forms", description: "Text input", demoPath: "/components/forms" },
+		{ name: "Label", category: "Forms", description: "Form label", demoPath: "/components/forms" },
+		{ name: "NumberInput", category: "Forms", description: "Numeric input", demoPath: "/components/forms" },
+		{ name: "PasswordInput", category: "Forms", description: "Password input with toggle", demoPath: "/components/forms" },
+		{ name: "PinInput", category: "Forms", description: "PIN/OTP input", demoPath: "/components/forms" },
+		{ name: "RadioGroup", category: "Forms", description: "Radio button group", demoPath: "/components/forms" },
+		{ name: "RangeCalendar", category: "Forms", description: "Date range picker", demoPath: "/calendar" },
+		{ name: "RatingGroup", category: "Forms", description: "Star rating input", demoPath: "/components/forms" },
+		{ name: "RichTextEditor", category: "Forms", description: "Rich text editor", demoPath: "/marketing/blog" },
+		{ name: "Select", category: "Forms", description: "Select dropdown", demoPath: "/components/forms" },
+		{ name: "Slider", category: "Forms", description: "Range slider", demoPath: "/components/forms" },
+		{ name: "Switch", category: "Forms", description: "Toggle switch", demoPath: "/components/forms" },
+		{ name: "TagInput", category: "Forms", description: "Tag/chip input", demoPath: "/components/forms" },
+		{ name: "TimeField", category: "Forms", description: "Time input", demoPath: "/components/forms" },
+		{ name: "Toggle", category: "Forms", description: "Toggle button", demoPath: "/components/forms" },
+		{ name: "ToggleGroup", category: "Forms", description: "Toggle button group", demoPath: "/components/forms" },
 
 		// Overlays
-		{ name: "AlertDialog", category: "Overlays", description: "Confirmation dialog", demoPath: "" },
-		{ name: "ContextMenu", category: "Overlays", description: "Right-click context menu", demoPath: "" },
-		{ name: "Dialog", category: "Overlays", description: "Modal dialog", demoPath: "/marketing/blog" },
-		{ name: "Drawer", category: "Overlays", description: "Side drawer", demoPath: "" },
-		{ name: "DropdownMenu", category: "Overlays", description: "Dropdown menu", demoPath: "" },
-		{ name: "Popconfirm", category: "Overlays", description: "Popover confirmation", demoPath: "" },
-		{ name: "Popover", category: "Overlays", description: "Popover content", demoPath: "" },
-		{ name: "Sheet", category: "Overlays", description: "Sheet overlay", demoPath: "" },
-		{ name: "Tooltip", category: "Overlays", description: "Tooltip", demoPath: "" },
+		{ name: "AlertDialog", category: "Overlays", description: "Confirmation dialog", demoPath: "/components/overlays" },
+		{ name: "ContextMenu", category: "Overlays", description: "Right-click context menu", demoPath: "/components/overlays" },
+		{ name: "Dialog", category: "Overlays", description: "Modal dialog", demoPath: "/components/overlays" },
+		{ name: "Drawer", category: "Overlays", description: "Side drawer", demoPath: "/components/overlays" },
+		{ name: "DropdownMenu", category: "Overlays", description: "Dropdown menu", demoPath: "/components/overlays" },
+		{ name: "Popconfirm", category: "Overlays", description: "Popover confirmation", demoPath: "/components/overlays" },
+		{ name: "Popover", category: "Overlays", description: "Popover content", demoPath: "/components/overlays" },
+		{ name: "Sheet", category: "Overlays", description: "Sheet overlay", demoPath: "/components/overlays" },
+		{ name: "Tooltip", category: "Overlays", description: "Tooltip", demoPath: "/components/overlays" },
 
 		// Theme
 		{ name: "ThemeStudio", category: "Theme", description: "Theme customization panel", demoPath: "/app" },
@@ -288,6 +296,23 @@
 		title="Component Index"
 		description="Browse every component and composable in the bindrunes library ({components.length} components · {composables.length} composables)"
 	/>
+
+	<!-- Category Demo Pages -->
+	<div>
+		<h2 class="text-title-1 text-foreground mb-4">Interactive Demos</h2>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			{#each categoryDemos as demo}
+				<a href={demo.path} class="block group">
+					<Card padding class="h-full transition-all group-hover:shadow-md group-hover:scale-[1.01]">
+						<div class="space-y-1">
+							<h3 class="text-title-3 text-foreground group-hover:text-primary transition-colors">{demo.name}</h3>
+							<p class="text-body-sm text-muted-foreground">{demo.description}</p>
+						</div>
+					</Card>
+				</a>
+			{/each}
+		</div>
+	</div>
 
 	<!-- Search and Filter -->
 	<div class="flex flex-col sm:flex-row gap-4">

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, Badge } from "bindrunes";
+	import { Card, Badge, ThemeToggle } from "bindrunes";
 	import {
 		Layout,
 		Shield,
@@ -36,6 +36,12 @@
 		{ value: "6", label: "Themes" },
 		{ value: "12", label: "Boundrune Categories" },
 	];
+
+	const designAxes = [
+		{ axis: "Theme", values: ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"], description: "Color identity" },
+		{ axis: "Aesthetic", values: ["editorial", "glass", "bento", "expressive"], description: "Form & motion" },
+		{ axis: "Density", values: ["compact", "comfortable", "spacious"], description: "Spacing scale" },
+	];
 </script>
 
 <div class="min-h-screen">
@@ -58,12 +64,18 @@
 					Explore Demos
 				</a>
 				<a
+					href="/components"
+					class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] border border-border bg-background text-foreground text-label-md font-medium hover:bg-muted transition-colors"
+				>
+					Component Index
+				</a>
+				<a
 					href="https://github.com/aleconstancio/bindrunes"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] border border-border bg-background text-foreground text-label-md font-medium hover:bg-muted transition-colors"
 				>
-					View on GitHub
+					GitHub
 				</a>
 			</div>
 		</div>
@@ -78,6 +90,34 @@
 						<div class="text-display-3 text-foreground font-bold">{stat.value}</div>
 						<div class="text-body-sm text-muted-foreground mt-1">{stat.label}</div>
 					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- Three-axis design system showcase -->
+	<section class="border-b border-border">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+			<div class="text-center space-y-3 mb-12">
+				<Badge variant="soft" size="sm">Core Concept</Badge>
+				<h2 class="text-display-2 text-foreground">Three-Axis Design System</h2>
+				<p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+					Theme, aesthetic, and density are fully independent. Mix any combination to create unique looks.
+					Use the palette icon in the header to switch live.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				{#each designAxes as axis}
+					<Card padding class="text-center space-y-3">
+						<h3 class="text-title-2 text-foreground">{axis.axis}</h3>
+						<p class="text-body-sm text-muted-foreground">{axis.description}</p>
+						<div class="flex flex-wrap justify-center gap-1.5">
+							{#each axis.values as value}
+								<Badge variant="outline" size="sm">{value}</Badge>
+							{/each}
+						</div>
+					</Card>
 				{/each}
 			</div>
 		</div>
