@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { PageHeader } from "bindrunes";
-	import { BlogArticle, BlogListing, ChangelogPage, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/boundrune";
+	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/boundrune";
 
 	let popupOpen = $state(false);
+	let bannerOpen = $state(true);
 
 	const posts = [
 		{ id: "1", title: "Getting Started with bindrunes", excerpt: "Learn how to set up and use bindrunes in your SvelteKit project.", author: "Alice", date: "Jan 15, 2024", readTime: "5", tags: ["Tutorial", "Svelte"] },
@@ -78,6 +79,12 @@
 		{ name: "Stripe", url: "https://stripe.com" },
 		{ name: "Linear", url: "https://linear.app" },
 		{ name: "Notion", url: "https://notion.so" },
+	];
+
+	const comments = [
+		{ author: "Alex Morgan", avatar: "https://i.pravatar.cc/80?u=alex", content: "This article really helped me understand the design system approach. Great walkthrough!", date: "2 days ago" },
+		{ author: "Jordan Lee", content: "Would love to see a follow-up on custom token definitions.", date: "1 day ago" },
+		{ author: "Sam Rivera", avatar: "https://i.pravatar.cc/80?u=sam", content: "We've been using this pattern in production for months now. Works beautifully.", date: "5 hours ago" },
 	];
 
 	const release = {
@@ -185,5 +192,27 @@ Component composition is the real power. Small, focused components like Button, 
 		<h2 class="text-title-2 text-foreground mb-4">Cookie Consent</h2>
 		<p class="text-body-sm text-muted-foreground mb-4">This banner appears at the bottom of the screen.</p>
 		<CookieConsent />
+	</section>
+
+	<section>
+		<h2 class="text-title-2 text-foreground mb-4">Banner</h2>
+		<p class="text-body-sm text-muted-foreground mb-4">A dismissible top or bottom banner for announcements.</p>
+		<Banner
+			bind:open={bannerOpen}
+			position="top"
+			text="bindrunes v2.0 is now available with 50+ new components!"
+			ctaLabel="Learn more"
+			ctaHref="#"
+		/>
+	</section>
+
+	<section>
+		<h2 class="text-title-2 text-foreground mb-4">Comment Section</h2>
+		<CommentSection
+			items={comments}
+			onSubmit={(text) => console.log("New comment:", text)}
+			placeholder="Share your thoughts..."
+			submitLabel="Post comment"
+		/>
 	</section>
 </div>
