@@ -18,14 +18,14 @@ let {
 	variant = "default" as Variant,
 	size = "md" as Size,
 	removable = false,
-	onremove = undefined as (() => void) | undefined,
+	onRemove = undefined as (() => void) | undefined,
 	icon,
 	children,
 }: {
 	variant?: Variant;
 	size?: Size;
 	removable?: boolean;
-	onremove?: () => void;
+	onRemove?: () => void;
 	icon?: Snippet;
 	children?: Snippet;
 } = $props();
@@ -63,7 +63,7 @@ const sizeClasses: Record<Size, string> = {
     <button
       type="button"
       class="shrink-0 rounded-full p-0.5 hover:bg-foreground/10 transition-colors cursor-pointer -mr-1"
-      onclick={() => onremove?.()}
+      onclick={() => onRemove?.()}
       aria-label="Remove"
     >
       <X class="h-3 w-3" />

@@ -5,11 +5,23 @@ import type { Snippet } from "svelte";
 const BitsContextMenu = ContextMenu;
 
 let {
-	items = [] as { label: string; icon?: Snippet; disabled?: boolean; separator?: boolean }[],
+	items = [] as {
+		label: string;
+		value: string;
+		icon?: Snippet;
+		disabled?: boolean;
+		separator?: boolean;
+	}[],
 	onSelect = undefined as ((value: string) => void) | undefined,
 	children,
 }: {
-	items?: { label: string; icon?: Snippet; disabled?: boolean; separator?: boolean }[];
+	items?: {
+		label: string;
+		value: string;
+		icon?: Snippet;
+		disabled?: boolean;
+		separator?: boolean;
+	}[];
 	onSelect?: (value: string) => void;
 	children?: Snippet;
 } = $props();
@@ -34,7 +46,7 @@ let {
           class="relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-body-md
                  text-foreground hover:bg-muted focus:outline-none focus:bg-muted
                  data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-          onclick={() => onSelect?.(item.label)}
+          onclick={() => onSelect?.(item.value)}
         >
           {#if item.icon}
             <span class="text-muted-foreground">{@render item.icon()}</span>

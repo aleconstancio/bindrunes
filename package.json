@@ -47,6 +47,11 @@
 			"svelte": "./dist/components/scaffold/index.js",
 			"default": "./dist/components/scaffold/index.js"
 		},
+		"./agentic": {
+			"types": "./dist/utils/agentic/index.d.ts",
+			"svelte": "./dist/utils/agentic/index.js",
+			"default": "./dist/utils/agentic/index.js"
+		},
 		"./tailwind": {
 			"types": "./dist/tailwind-plugin.d.ts",
 			"default": "./dist/tailwind-plugin.js"

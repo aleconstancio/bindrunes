@@ -48,7 +48,7 @@ const ptBR: Dict = {
 	"dashboard.social.queueEmpty": "Fila de Triagem Limpa",
 	"dashboard.social.queueEmptyDesc":
 		"Todos os eventos de e-mail foram triados e promovidos com sucesso. Excelente trabalho!",
-	"dashboard.social.pendingQueue": "PANDING QUEUE",
+	"dashboard.social.pendingQueue": "PENDÊNCIA NA FILA",
 	"dashboard.social.promotionGate": "PROMOTION GATE",
 	"dashboard.social.rawEmail": "RAW EMAIL CONTENTS",
 

@@ -9,7 +9,7 @@ let {
 	title = "",
 	description = "",
 	closable = false,
-	onclose = undefined as (() => void) | undefined,
+	onClose = undefined as (() => void) | undefined,
 	icon,
 	action,
 }: {
@@ -17,7 +17,7 @@ let {
 	title?: string;
 	description?: string;
 	closable?: boolean;
-	onclose?: () => void;
+	onClose?: () => void;
 	icon?: Snippet;
 	action?: Snippet;
 } = $props();
@@ -49,7 +49,7 @@ const borderColors: Record<Variant, string> = {
         <button
           type="button"
           class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
-          onclick={() => onclose?.()}
+          onclick={() => onClose?.()}
           aria-label="Dismiss"
         >
           <X class="h-4 w-4" />

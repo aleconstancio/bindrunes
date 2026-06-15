@@ -31,13 +31,13 @@ function handleKeydown(e: KeyboardEvent) {
 </script>
 
 {#if open}
-  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
   <div
     class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm animate-in fade-in-0 duration-[--duration-fluid]"
     onclick={handleOverlayClick}
     onkeydown={handleKeydown}
-    role="dialog"
-    aria-modal="true"
+    role="button"
+    tabindex="-1"
+    aria-label="Close drawer"
   ></div>
 
   <div

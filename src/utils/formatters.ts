@@ -79,15 +79,6 @@ const RELATIVE_STRINGS: Record<
 		yesterday: "yesterday",
 		days: "{n} days ago",
 	},
-	es: {
-		now: "ahora",
-		min: "hace 1 minuto",
-		mins: "hace {n} minutos",
-		hour: "hace 1 hora",
-		hours: "hace {n} horas",
-		yesterday: "ayer",
-		days: "hace {n} días",
-	},
 };
 
 function getRelativeStrings() {

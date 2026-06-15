@@ -104,10 +104,6 @@ bun run lint          # Lint check
 
 ## Releases
 
-We use Changesets for versioning. Push changes to `main` with a changeset, and the release workflow handles the rest.
-
-## Releases
-
 We use [Changesets](https://github.com/changesets/changesets) to manage versioning and package publishing.
 
 ### 1. Adding a Changeset

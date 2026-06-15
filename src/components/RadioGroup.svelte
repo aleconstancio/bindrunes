@@ -7,17 +7,22 @@ const BitsRadioGroup = RadioGroup;
 let {
 	value = $bindable(""),
 	options = [] as SelectOption[],
+	label = undefined as string | undefined,
 	class: className = "",
 	ariaLabel = undefined as string | undefined,
 }: {
 	value?: string;
 	options?: SelectOption[];
+	label?: string;
 	class?: string;
 	ariaLabel?: string;
 } = $props();
 </script>
 
-<BitsRadioGroup.Root bind:value aria-label={ariaLabel} class="flex flex-col gap-2 {className}">
+{#if label}
+  <p class="text-label-md font-medium text-foreground mb-2" id="radio-group-label">{label}</p>
+{/if}
+<BitsRadioGroup.Root bind:value aria-label={ariaLabel} aria-labelledby={label ? "radio-group-label" : undefined} class="flex flex-col gap-2 {className}">
 	{#each options as option}
 		<BitsRadioGroup.Item
 			value={option.value}

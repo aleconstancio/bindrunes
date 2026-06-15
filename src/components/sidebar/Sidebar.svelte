@@ -3,7 +3,7 @@ import { getSidebarContext } from "./sidebar-context.svelte";
 
 let {
 	side = "left" as "left" | "right",
-	_variant = "sidebar" as "sidebar" | "floating" | "inset",
+	variant = "sidebar" as "sidebar" | "floating" | "inset",
 	collapsible = "icon" as "offcanvas" | "icon" | "none",
 	class: className = "",
 	children,
