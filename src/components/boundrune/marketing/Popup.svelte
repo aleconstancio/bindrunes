@@ -1,5 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import Badge from "../../Badge.svelte";
+import Button from "../../Button.svelte";
+import Dialog from "../../Dialog.svelte";
 
 let {
 	open = $bindable(false),

@@ -1,4 +1,7 @@
 <script lang="ts">
+import Button from "../../Button.svelte";
+import Dialog from "../../Dialog.svelte";
+
 let {
 	open = $bindable(false),
 	title = "Confirm deletion",

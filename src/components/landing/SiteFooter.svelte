@@ -3,6 +3,8 @@ import type { Component, Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
 
 import type { FooterLink } from "./landing-types";
+import DynamicIcon from "../DynamicIcon.svelte";
+import MetaContainer from "../MetaContainer.svelte";
 
 interface Props {
 	logo?: { label: string; icon?: Component | string };
@@ -24,7 +26,7 @@ let {
 	t,
 }: Props = $props();
 
-const _year = new Date().getFullYear();
+const year = new Date().getFullYear();
 </script>
 
 <footer class="border-t border-border px-6 py-12 {className}">

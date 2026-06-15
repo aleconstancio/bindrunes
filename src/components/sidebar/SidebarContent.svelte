@@ -1,4 +1,6 @@
 <script lang="ts">
+import MetaScrollable from "../MetaScrollable.svelte";
+
 let {
 	children,
 }: {

@@ -2,6 +2,8 @@
 import type { BaseIssue, BaseSchema } from "valibot";
 import type { FormState } from "../../../utils/createForm.svelte";
 import type { CrudConfig } from "../types";
+import Dialog from "../../Dialog.svelte";
+import Form from "../../Form.svelte";
 
 let {
 	open = $bindable(false),

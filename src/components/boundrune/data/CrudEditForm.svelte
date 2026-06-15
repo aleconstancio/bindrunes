@@ -3,6 +3,8 @@ import type { Snippet } from "svelte";
 import type { BaseIssue, BaseSchema } from "valibot";
 import type { FormState } from "../../../utils/createForm.svelte";
 import type { CrudConfig } from "../types";
+import Form from "../../Form.svelte";
+import Block from "../Block.svelte";
 
 let {
 	config,

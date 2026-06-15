@@ -1,4 +1,7 @@
 <script lang="ts">
+import Button from "../../Button.svelte";
+import Block from "../Block.svelte";
+
 let {
 	title = "Under maintenance",
 	description = "We are performing scheduled maintenance. We'll be back shortly.",

@@ -1,6 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { CTA } from "./landing-types";
+import Badge from "../Badge.svelte";
+import Button from "../Button.svelte";
+import DynamicIcon from "../DynamicIcon.svelte";
+import MetaContainer from "../MetaContainer.svelte";
 
 interface Props {
 	badge?: string;

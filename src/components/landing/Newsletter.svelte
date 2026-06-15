@@ -1,6 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
+import Button from "../Button.svelte";
+import Input from "../Input.svelte";
+import MetaContainer from "../MetaContainer.svelte";
 
 interface Props {
 	title: string;

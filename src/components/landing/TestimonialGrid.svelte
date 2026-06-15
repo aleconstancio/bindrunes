@@ -1,6 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
+import MetaContainer from "../MetaContainer.svelte";
+import { getGridClass } from "./landing-utils";
+import Testimonial from "./Testimonial.svelte";
 
 interface TestimonialData {
 	quote: string;

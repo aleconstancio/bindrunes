@@ -1,4 +1,5 @@
 <script lang="ts">
+import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE } from "./sidebar-constants";
 import { createSidebarState } from "./sidebar-context.svelte";
 
 type Collapsible = "offcanvas" | "icon" | "none";

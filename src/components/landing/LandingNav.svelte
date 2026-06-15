@@ -2,6 +2,12 @@
 import { onMount } from "svelte";
 import type { TFunction } from "../../shared-types";
 import { useLanding } from "./landing-context.svelte";
+import { Menu, X } from "lucide-svelte";
+import { slide } from "svelte/transition";
+import Button from "../Button.svelte";
+import DynamicIcon from "../DynamicIcon.svelte";
+import NavigationMenu from "../NavigationMenu.svelte";
+import ThemeToggle from "../ThemeToggle.svelte";
 
 interface NavLogo {
 	href: string;
