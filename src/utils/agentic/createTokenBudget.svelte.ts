@@ -1,4 +1,4 @@
-export type MemoryLayer = "working" | "episodic" | "semantic";
+import type { MemoryLayer } from "../../types/agent.js";
 
 export interface TokenUsage {
 	readonly prompt: number;
