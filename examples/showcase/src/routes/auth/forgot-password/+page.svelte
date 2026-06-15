@@ -1,14 +1,17 @@
 <script lang="ts">
-	import { ForgotPassword } from "bindrunes/boundrune";
+	import { AuthLayout, ForgotPassword } from "bindrunes/boundrune";
 	import { goto } from "$app/navigation";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>
 
 <AuthNav />
 
-<div class="min-h-[80vh] flex items-center justify-center p-8">
+<AuthLayout
+	brandTitle="Forgot Password"
+	brandDescription="We'll help you reset your password."
+>
 	<ForgotPassword
 		onSubmit={(email) => console.log("Forgot password:", email)}
 		onBack={() => goto("/auth/login")}
 	/>
-</div>
+</AuthLayout>
