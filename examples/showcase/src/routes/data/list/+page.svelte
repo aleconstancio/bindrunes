@@ -1,6 +1,20 @@
 <script lang="ts">
 	import { PageHeader, Tabs, TabsContent, TabsList, TabsTrigger, Button, Input, Label, Card } from "bindrunes";
-	import { AdvancedTable, ExportFlow, FacetedSearch, ImportFlow, WizardForm } from "bindrunes/boundrune";
+	import {
+		AdvancedTable,
+		ExportFlow,
+		FacetedSearch,
+		ImportFlow,
+		WizardForm,
+		CrudCreateForm,
+		CrudCreateDrawer,
+		CrudCreateModal,
+		CrudEditForm,
+		CrudEditDrawer,
+		CrudEditModal,
+		CrudDeleteConfirm,
+		CrudDetailDrawer,
+	} from "bindrunes/boundrune";
 	import { createForm, createQuery, createMutation } from "bindrunes";
 	import * as v from "valibot";
 
@@ -195,6 +209,57 @@
 		addTodoMutation.mutate(newTodoTitle.trim());
 		newTodoTitle = "";
 	}
+
+	// ── CRUD Component Demos ──
+	const crudItemSchema = {
+		name: v.pipe(v.string(), v.minLength(2, "Name must be at least 2 characters")),
+		email: v.pipe(v.string(), v.email("Please enter a valid email")),
+		role: v.pipe(v.string(), v.minLength(1, "Role is required")),
+	};
+
+	let crudFormLoading = $state(false);
+	let crudSubmitResult = $state("");
+
+	function handleCrudSubmit(e: SubmitEvent) {
+		e.preventDefault();
+		crudFormLoading = true;
+		setTimeout(() => {
+			crudFormLoading = false;
+			crudSubmitResult = "Submitted successfully!";
+			crudCreateForm.reset();
+		}, 1000);
+	}
+
+	const crudCreateForm = createForm({
+		schema: crudItemSchema,
+		initialValues: { name: "", email: "", role: "" },
+		onSubmit: (values) => {
+			crudSubmitResult = JSON.stringify(values, null, 2);
+			crudCreateForm.reset();
+		},
+	});
+
+	const crudEditForm = createForm({
+		schema: crudItemSchema,
+		initialValues: { name: "Jane Smith", email: "jane@example.com", role: "Editor" },
+		onSubmit: (values) => {
+			crudSubmitResult = JSON.stringify(values, null, 2);
+		},
+	});
+
+	let crudCreateDrawerOpen = $state(false);
+	let crudCreateModalOpen = $state(false);
+	let crudEditDrawerOpen = $state(false);
+	let crudEditModalOpen = $state(false);
+	let crudDeleteOpen = $state(false);
+	let crudDetailOpen = $state(false);
+
+	const mockItemSections = [
+		{ label: "Name", value: "Alice Johnson" },
+		{ label: "Email", value: "alice@example.com" },
+		{ label: "Role", value: "Admin", variant: "primary" as const },
+		{ label: "Status", value: "Active", variant: "success" as const },
+	];
 </script>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -209,6 +274,14 @@
 			<TabsTrigger value="faceted">FacetedSearch</TabsTrigger>
 			<TabsTrigger value="form">createForm</TabsTrigger>
 			<TabsTrigger value="query">Query/Mutation</TabsTrigger>
+			<TabsTrigger value="crud-create">CrudCreateForm</TabsTrigger>
+			<TabsTrigger value="crud-create-drawer">CrudCreateDrawer</TabsTrigger>
+			<TabsTrigger value="crud-create-modal">CrudCreateModal</TabsTrigger>
+			<TabsTrigger value="crud-edit">CrudEditForm</TabsTrigger>
+			<TabsTrigger value="crud-edit-drawer">CrudEditDrawer</TabsTrigger>
+			<TabsTrigger value="crud-edit-modal">CrudEditModal</TabsTrigger>
+			<TabsTrigger value="crud-delete">CrudDeleteConfirm</TabsTrigger>
+			<TabsTrigger value="crud-detail">CrudDetailDrawer</TabsTrigger>
 		</TabsList>
 
 		<TabsContent value="wizard">
@@ -497,6 +570,229 @@
 						{/if}
 					</Card>
 				</div>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-create">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudCreateForm</h2>
+				<p class="text-body-sm text-muted-foreground">Inline create form with title, description, and validation</p>
+				<div class="max-w-lg">
+					<CrudCreateForm
+						config={{ title: "Create New User", description: "Fill in the details to create a new user account", submitLabel: "Create User" }}
+						form={crudCreateForm}
+						onSubmit={handleCrudSubmit}
+						loading={crudFormLoading}
+					>
+						<div class="space-y-4">
+							<div>
+								<Label for="crud-name">Name</Label>
+								<Input name="crud-name" bind:value={crudCreateForm.values.name} placeholder="Jane Doe" />
+								{#if crudCreateForm.errors.name}
+									<p class="text-body-sm text-destructive mt-1">{crudCreateForm.errors.name}</p>
+								{/if}
+							</div>
+							<div>
+								<Label for="crud-email">Email</Label>
+								<Input name="crud-email" type="email" bind:value={crudCreateForm.values.email} placeholder="jane@example.com" />
+								{#if crudCreateForm.errors.email}
+									<p class="text-body-sm text-destructive mt-1">{crudCreateForm.errors.email}</p>
+								{/if}
+							</div>
+							<div>
+								<Label for="crud-role">Role</Label>
+								<Input name="crud-role" bind:value={crudCreateForm.values.role} placeholder="Admin, Editor, Viewer" />
+								{#if crudCreateForm.errors.role}
+									<p class="text-body-sm text-destructive mt-1">{crudCreateForm.errors.role}</p>
+								{/if}
+							</div>
+						</div>
+					</CrudCreateForm>
+				</div>
+				{#if crudSubmitResult}
+					<Card padding>
+						<h3 class="text-label-md text-foreground mb-2">Submitted</h3>
+						<pre class="text-body-sm text-muted-foreground whitespace-pre-wrap">{crudSubmitResult}</pre>
+					</Card>
+				{/if}
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-create-drawer">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudCreateDrawer</h2>
+				<p class="text-body-sm text-muted-foreground">Side drawer for creating a new record</p>
+				<Card padding>
+					<Button onclick={() => (crudCreateDrawerOpen = true)}>Open Create Drawer</Button>
+				</Card>
+				<CrudCreateDrawer
+					bind:open={crudCreateDrawerOpen}
+					config={{ title: "Create New User", submitLabel: "Create" }}
+					loading={false}
+				>
+					<div class="space-y-4">
+						<div>
+							<Label for="drawer-name">Name</Label>
+							<Input name="drawer-name" placeholder="Jane Doe" />
+						</div>
+						<div>
+							<Label for="drawer-email">Email</Label>
+							<Input name="drawer-email" type="email" placeholder="jane@example.com" />
+						</div>
+					</div>
+				</CrudCreateDrawer>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-create-modal">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudCreateModal</h2>
+				<p class="text-body-sm text-muted-foreground">Modal dialog for creating a new record</p>
+				<Card padding>
+					<Button onclick={() => (crudCreateModalOpen = true)}>Open Create Modal</Button>
+				</Card>
+				<CrudCreateModal
+					bind:open={crudCreateModalOpen}
+					config={{ title: "Create New User", submitLabel: "Create" }}
+					loading={false}
+				>
+					<div class="space-y-4">
+						<div>
+							<Label for="modal-name">Name</Label>
+							<Input name="modal-name" placeholder="Jane Doe" />
+						</div>
+						<div>
+							<Label for="modal-email">Email</Label>
+							<Input name="modal-email" type="email" placeholder="jane@example.com" />
+						</div>
+					</div>
+				</CrudCreateModal>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-edit">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudEditForm</h2>
+				<p class="text-body-sm text-muted-foreground">Inline edit form pre-populated with existing data</p>
+				<div class="max-w-lg">
+					<CrudEditForm
+						config={{ title: "Edit User", description: "Update user account details", submitLabel: "Save Changes" }}
+						form={crudEditForm}
+						onSubmit={(e) => { e.preventDefault(); crudEditForm.handleSubmit(); }}
+						loading={false}
+					>
+						<div class="space-y-4">
+							<div>
+								<Label for="edit-name">Name</Label>
+								<Input name="edit-name" bind:value={crudEditForm.values.name} />
+								{#if crudEditForm.errors.name}
+									<p class="text-body-sm text-destructive mt-1">{crudEditForm.errors.name}</p>
+								{/if}
+							</div>
+							<div>
+								<Label for="edit-email">Email</Label>
+								<Input name="edit-email" type="email" bind:value={crudEditForm.values.email} />
+								{#if crudEditForm.errors.email}
+									<p class="text-body-sm text-destructive mt-1">{crudEditForm.errors.email}</p>
+								{/if}
+							</div>
+							<div>
+								<Label for="edit-role">Role</Label>
+								<Input name="edit-role" bind:value={crudEditForm.values.role} />
+								{#if crudEditForm.errors.role}
+									<p class="text-body-sm text-destructive mt-1">{crudEditForm.errors.role}</p>
+								{/if}
+							</div>
+						</div>
+					</CrudEditForm>
+				</div>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-edit-drawer">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudEditDrawer</h2>
+				<p class="text-body-sm text-muted-foreground">Side drawer for editing an existing record</p>
+				<Card padding>
+					<Button onclick={() => (crudEditDrawerOpen = true)}>Open Edit Drawer</Button>
+				</Card>
+				<CrudEditDrawer
+					bind:open={crudEditDrawerOpen}
+					config={{ title: "Edit User", submitLabel: "Update" }}
+					loading={false}
+				>
+					<div class="space-y-4">
+						<div>
+							<Label for="edit-drawer-name">Name</Label>
+							<Input name="edit-drawer-name" value="Jane Smith" />
+						</div>
+						<div>
+							<Label for="edit-drawer-email">Email</Label>
+							<Input name="edit-drawer-email" type="email" value="jane@example.com" />
+						</div>
+					</div>
+				</CrudEditDrawer>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-edit-modal">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudEditModal</h2>
+				<p class="text-body-sm text-muted-foreground">Modal dialog for editing an existing record</p>
+				<Card padding>
+					<Button onclick={() => (crudEditModalOpen = true)}>Open Edit Modal</Button>
+				</Card>
+				<CrudEditModal
+					bind:open={crudEditModalOpen}
+					config={{ title: "Edit User", submitLabel: "Update" }}
+					loading={false}
+				>
+					<div class="space-y-4">
+						<div>
+							<Label for="edit-modal-name">Name</Label>
+							<Input name="edit-modal-name" value="Jane Smith" />
+						</div>
+						<div>
+							<Label for="edit-modal-email">Email</Label>
+							<Input name="edit-modal-email" type="email" value="jane@example.com" />
+						</div>
+					</div>
+				</CrudEditModal>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-delete">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudDeleteConfirm</h2>
+				<p class="text-body-sm text-muted-foreground">Confirmation dialog for destructive delete actions</p>
+				<Card padding>
+					<Button variant="destructive" onclick={() => (crudDeleteOpen = true)}>Delete User</Button>
+				</Card>
+				<CrudDeleteConfirm
+					bind:open={crudDeleteOpen}
+					title="Delete User"
+					description="Are you sure you want to delete this user?"
+					itemName="Alice Johnson"
+					onConfirm={() => new Promise((resolve) => setTimeout(resolve, 1000))}
+					confirmLabel="Delete User"
+				/>
+			</div>
+		</TabsContent>
+
+		<TabsContent value="crud-detail">
+			<div class="space-y-4">
+				<h2 class="text-title-2 text-foreground">CrudDetailDrawer</h2>
+				<p class="text-body-sm text-muted-foreground">Side drawer for viewing record details with labeled sections</p>
+				<Card padding>
+					<Button onclick={() => (crudDetailOpen = true)}>View User Details</Button>
+				</Card>
+				<CrudDetailDrawer
+					bind:open={crudDetailOpen}
+					title="User Details"
+					sections={mockItemSections}
+				>
+					<p class="text-body-sm text-muted-foreground">Additional notes or custom content can go here.</p>
+				</CrudDetailDrawer>
 			</div>
 		</TabsContent>
 	</Tabs>
