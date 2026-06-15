@@ -1,7 +1,7 @@
 <script lang="ts">
+import { X } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import Button from "../../Button.svelte";
-import { X } from "lucide-svelte";
 
 let {
 	open = $bindable(true),
