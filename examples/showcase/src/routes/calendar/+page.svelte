@@ -3,6 +3,7 @@
 	import { EventCalendar } from "bindrunes/boundrune";
 	import { Scheduler } from "bindrunes/boundrune";
 	import { BookingForm } from "bindrunes/boundrune";
+	import { AvailabilityGrid } from "bindrunes/boundrune";
 
 	const today = new Date().toISOString().split("T")[0]!;
 
@@ -23,6 +24,22 @@
 
 	let selectedDate = $state(today);
 	let selectedSlot = $state("");
+
+	const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+	const hours = Array.from({ length: 12 }, (_, i) => i + 9);
+
+	function makeInitialAvailability(): Record<string, Record<number, boolean>> {
+		const avail: Record<string, Record<number, boolean>> = {};
+		for (const day of days) {
+			avail[day] = {};
+			for (const h of hours) {
+				avail[day][h] = Math.random() > 0.4;
+			}
+		}
+		return avail;
+	}
+
+	let availability = $state(makeInitialAvailability());
 </script>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
@@ -47,6 +64,21 @@
 			time={timeSlots.find(s => s.id === selectedSlot)?.start ?? ""}
 			service="Consultation"
 			onSubmit={(data) => console.log("Booking:", data)}
+		/>
+	</div>
+
+	<div>
+		<h2 class="text-title-2 text-foreground mb-4">Availability Grid</h2>
+		<AvailabilityGrid
+			{hours}
+			{days}
+			{availability}
+			onToggle={(day, hour) => {
+				availability = {
+					...availability,
+					[day]: { ...availability[day], [hour]: !availability[day]?.[hour] },
+				};
+			}}
 		/>
 	</div>
 </div>
