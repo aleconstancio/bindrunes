@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, SiteFooter, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter } from "bindrunes/landing";
+	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, SiteFooter, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns } from "bindrunes/landing";
 	import { Zap, Shield, Clock, CheckCircle, Globe, Lock } from "lucide-svelte";
 
 	const features = [
@@ -60,6 +60,27 @@
 		{ icon: "CheckCircle", title: "Playwright", description: "E2E testing helpers and component test utilities." },
 	];
 
+	const featureComparisonPlans = [
+		{ name: "Free" },
+		{ name: "Pro", highlight: true },
+		{ name: "Enterprise" },
+	];
+
+	const featureComparisonFeatures = [
+		{ name: "Components", plans: { Free: "20+", Pro: "160+", Enterprise: "160+" } },
+		{ name: "Three-axis theming", plans: { Free: true, Pro: true, Enterprise: true } },
+		{ name: "Pre-built pages", plans: { Free: false, Pro: true, Enterprise: true } },
+		{ name: "Priority support", plans: { Free: false, Pro: true, Enterprise: true } },
+		{ name: "Custom branding", plans: { Free: false, Pro: false, Enterprise: true } },
+		{ name: "SLA guarantee", plans: { Free: false, Pro: false, Enterprise: true } },
+	];
+
+	const footerColumns = [
+		{ title: "Product", links: [{ label: "Documentation", href: "#" }, { label: "Components", href: "#" }, { label: "Pricing", href: "#" }, { label: "Changelog", href: "#" }] },
+		{ title: "Resources", links: [{ label: "Blog", href: "#" }, { label: "Guides", href: "#" }, { label: "Community", href: "#" }, { label: "Support", href: "#" }] },
+		{ title: "Company", links: [{ label: "About", href: "#" }, { label: "Careers", href: "#" }, { label: "Contact", href: "#" }, { label: "Partners", href: "#" }] },
+	];
+
 	function handleNewsletterSubmit(email: string) {
 		console.log("Newsletter signup:", email);
 	}
@@ -108,6 +129,12 @@
 
 	<TestimonialGrid {testimonials} />
 
+	<Testimonial
+		quote="bindrunes is the gold standard for Svelte component libraries. The three-axis theming system is a game changer."
+		author="Sarah Chen"
+		role="CTO at TechFlow"
+	/>
+
 	<TeamSection
 		title="Meet the team"
 		members={teamMembers}
@@ -130,6 +157,11 @@
 		]}
 	/>
 
+	<FeatureComparison
+		plans={featureComparisonPlans}
+		features={featureComparisonFeatures}
+	/>
+
 	<SecurityBadges
 		badges={[
 			{ label: "SOC 2", icon: "🔒", description: "Certified compliant" },
@@ -138,6 +170,20 @@
 			{ label: "ISO 27001", icon: "📋", description: "Security management" },
 		]}
 	/>
+
+	<LandingSection
+		id="section-demo"
+		size="xl"
+		background="muted"
+		spacing="wide"
+	>
+		<div class="text-center py-8">
+			<h2 class="text-title-1 text-foreground mb-4">Layout Wrapper Demo</h2>
+			<p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+				LandingSection provides a consistent layout container with configurable size, background, and spacing for building structured landing pages.
+			</p>
+		</div>
+	</LandingSection>
 
 	<IntegrationGrid
 		title="Works with your stack"
@@ -160,6 +206,15 @@
 		description="Join thousands of developers building with bindrunes."
 		ctaLabel="Start Building"
 		ctaHref="/auth/register"
+	/>
+
+	<SiteFooterColumns
+		columns={footerColumns}
+		copyright="2025 bindrunes. All rights reserved."
+		socialLinks={[
+			{ label: "GitHub", href: "https://github.com/aleconstancio/bindrunes" },
+			{ label: "npm", href: "https://www.npmjs.com/package/bindrunes" },
+		]}
 	/>
 
 	<SiteFooter

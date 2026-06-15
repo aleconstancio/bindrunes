@@ -6,6 +6,7 @@
 	import en from "bindrunes/i18n/en";
 	import ptBR from "bindrunes/i18n/pt-BR";
 	import { Globe } from "lucide-svelte";
+	import { Toaster } from "svelte-sonner";
 	import DesignSystemSwitcher from "$lib/components/DesignSystemSwitcher.svelte";
 
 	let { children } = $props();
@@ -100,3 +101,5 @@
 
 	{@render children()}
 </DemoLayout>
+
+<Toaster />

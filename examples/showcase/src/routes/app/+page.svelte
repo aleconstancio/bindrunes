@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button } from "bindrunes";
+	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver } from "bindrunes";
 	import { Home, Settings, Users, BarChart3, Search, Keyboard, Palette, Sliders } from "lucide-svelte";
 
 	const sidebar = createSidebarState(true);
@@ -36,12 +36,63 @@
 	let lastShortcut = $state("none");
 
 	// UI Composables demo state
-	let breakpoint = $state("unknown");
 	let clipboardText = $state("");
 	let localValue = $state("");
 	let toggled = $state(false);
 	let counter = $state(0);
 	let activeTab = $state("primitives");
+
+	// createAuth demo
+	const auth = createAuth();
+	let authEmail = $state("demo@example.com");
+	let authName = $state("Demo User");
+
+	// createAccess demo (derived from auth)
+	const access = createAccess(auth);
+
+	// createToast demo
+	const toast = createToast();
+
+	// createApiClient demo
+	const apiClient = createApiClient({
+		baseUrl: "https://jsonplaceholder.typicode.com",
+		onError: (err) => console.error("API error:", err),
+	});
+	let apiResult = $state("");
+	let apiLoading = $state(false);
+
+	// useDebounce demo
+	let searchInput = $state("");
+	const debouncedSearch = useDebounce(searchInput, 500);
+
+	// useEventListener demo
+	let mouseCoords = $state({ x: 0, y: 0 });
+	useEventListener("mousemove", (e) => {
+		mouseCoords = { x: e.clientX, y: e.clientY };
+	});
+
+	// useIntersectionObserver demo
+	let intersectionTarget = $state<HTMLElement | null>(null);
+	let isVisible = $state(false);
+	$effect(() => {
+		if (intersectionTarget) {
+			useIntersectionObserver(intersectionTarget, (intersecting) => {
+				isVisible = intersecting;
+			}, { threshold: 0.5 });
+		}
+	});
+
+	// useResizeObserver demo
+	let resizeTarget = $state<HTMLElement | null>(null);
+	let resizeSize = $state({ width: 0, height: 0 });
+	$effect(() => {
+		if (resizeTarget) {
+			useResizeObserver(resizeTarget, (entry) => {
+				const { width, height } = entry.contentRect;
+				resizeSize = { width: Math.round(width), height: Math.round(height) };
+			});
+		}
+	});
 </script>
 
 <svelte:window use:shortcut={[
@@ -188,6 +239,7 @@
 		<!-- Composables Tab -->
 		<TabsContent value="composables">
 			<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+				<!-- Existing UI Composables -->
 				<Card padding>
 					<div class="flex items-center gap-2 mb-4">
 						<Sliders class="h-5 w-5 text-primary" />
@@ -239,9 +291,168 @@
 							/>
 							<p class="text-body-xs text-muted-foreground mt-1">Value persists across page reloads</p>
 						</div>
+
+						<!-- useDebounce -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">useDebounce</p>
+							<input
+								type="text"
+								bind:value={searchInput}
+								placeholder="Type to search (debounced 500ms)..."
+								class="w-full h-9 px-3 rounded-[--radius] border border-border bg-background text-body-sm text-foreground"
+							/>
+							<p class="text-body-xs text-muted-foreground mt-1">Debounced value: <span class="font-mono text-foreground">{debouncedSearch.current || "(empty)"}</span></p>
+						</div>
+
+						<!-- useEventListener -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">useEventListener</p>
+							<p class="text-body-sm text-muted-foreground">Move your mouse anywhere on the page:</p>
+							<div class="mt-2 font-mono text-body-sm text-foreground">
+								x: {mouseCoords.x}, y: {mouseCoords.y}
+							</div>
+						</div>
 					</div>
 				</Card>
 
+				<!-- Auth & Access Composables -->
+				<Card padding>
+					<div class="flex items-center gap-2 mb-4">
+						<Users class="h-5 w-5 text-primary" />
+						<h3 class="text-title-2 text-foreground">Auth & Access</h3>
+					</div>
+					<div class="space-y-4">
+						<!-- createAuth -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">createAuth</p>
+							{#if auth.isAuthenticated}
+								<div class="space-y-2">
+									<div class="text-body-sm text-muted-foreground">
+										Logged in as <span class="font-medium text-foreground">{auth.user?.name}</span>
+										({auth.user?.email})
+									</div>
+									<div class="text-body-xs text-muted-foreground">
+										Roles: {auth.roles.join(", ") || "none"}
+									</div>
+									<Button size="sm" variant="outline" onclick={() => auth.logout()}>Logout</Button>
+								</div>
+							{:else}
+								<div class="space-y-2">
+									<input
+										type="text"
+										bind:value={authName}
+										placeholder="Name"
+										class="w-full h-8 px-2 rounded-[--radius] border border-border bg-background text-body-sm text-foreground"
+									/>
+									<input
+										type="email"
+										bind:value={authEmail}
+										placeholder="Email"
+										class="w-full h-8 px-2 rounded-[--radius] border border-border bg-background text-body-sm text-foreground"
+									/>
+									<Button size="sm" onclick={() => auth.login("demo-token-123", {
+										id: "1",
+										email: authEmail,
+										name: authName,
+										roles: ["admin", "editor"],
+										permissions: ["read", "write", "delete"],
+									})}>
+										Login as Demo User
+									</Button>
+								</div>
+							{/if}
+						</div>
+
+						<!-- createAccess -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">createAccess</p>
+							<div class="space-y-1 text-body-sm text-muted-foreground">
+								<div>isAuth: <Badge variant={access.isAuth ? "success" : "secondary"} size="sm">{access.isAuth}</Badge></div>
+								<div>isAdmin: <Badge variant={access.isAdmin ? "success" : "secondary"} size="sm">{access.isAdmin}</Badge></div>
+								<div>can(read): <Badge variant={access.can({ permissions: ["read"] }) ? "success" : "secondary"} size="sm">{access.can({ permissions: ["read"] })}</Badge></div>
+								<div>can(delete): <Badge variant={access.can({ permissions: ["delete"] }) ? "success" : "secondary"} size="sm">{access.can({ permissions: ["delete"] })}</Badge></div>
+							</div>
+						</div>
+
+						<!-- createToast -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">createToast</p>
+							<div class="flex flex-wrap gap-2">
+								<Button size="sm" onclick={() => toast.success("Operation completed!")}>Success</Button>
+								<Button size="sm" variant="outline" onclick={() => toast.error("Something went wrong")}>Error</Button>
+								<Button size="sm" variant="outline" onclick={() => toast.warning("Please check input")}>Warning</Button>
+								<Button size="sm" variant="outline" onclick={() => toast.info("Here is some info")}>Info</Button>
+							</div>
+						</div>
+
+						<!-- createApiClient -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">createApiClient</p>
+							<p class="text-body-xs text-muted-foreground mb-2">Configured with jsonplaceholder.typicode.com</p>
+							<Button
+								size="sm"
+								disabled={apiLoading}
+								onclick={async () => {
+									apiLoading = true;
+									try {
+										const data = await apiClient.get<{ title: string }[]>("/posts", { _limit: "1" });
+										apiResult = data[0]?.title ?? "No result";
+									} catch (e) {
+										apiResult = `Error: ${e}`;
+									} finally {
+										apiLoading = false;
+									}
+								}}
+							>
+								{apiLoading ? "Loading..." : "GET /posts"}
+							</Button>
+							{#if apiResult}
+								<p class="text-body-xs text-muted-foreground mt-2 font-mono">{apiResult}</p>
+							{/if}
+						</div>
+					</div>
+				</Card>
+
+				<!-- Observer Composables -->
+				<Card padding>
+					<div class="flex items-center gap-2 mb-4">
+						<BarChart3 class="h-5 w-5 text-primary" />
+						<h3 class="text-title-2 text-foreground">Observers</h3>
+					</div>
+					<div class="space-y-4">
+						<!-- useIntersectionObserver -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">useIntersectionObserver</p>
+							<p class="text-body-xs text-muted-foreground mb-2">Scroll this box into view to trigger:</p>
+							<div class="h-24 overflow-y-auto rounded-[--radius] border border-border">
+								<div class="h-32 flex items-center justify-center">
+									<div
+										bind:this={intersectionTarget}
+										class="px-4 py-2 rounded-[--radius] text-body-sm font-medium transition-colors {isVisible ? 'bg-success text-success-foreground' : 'bg-muted text-muted-foreground'}"
+									>
+										{isVisible ? "Visible!" : "Not visible yet"}
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- useResizeObserver -->
+						<div class="p-3 rounded-[--radius] bg-muted/50">
+							<p class="text-label-sm text-foreground mb-2">useResizeObserver</p>
+							<p class="text-body-xs text-muted-foreground mb-2">Drag the corner to resize:</p>
+							<div
+								bind:this={resizeTarget}
+								class="w-full h-24 rounded-[--radius] border-2 border-dashed border-border bg-background flex items-center justify-center cursor-se-resize resize overflow-hidden"
+							>
+								<span class="text-body-sm text-muted-foreground font-mono">
+									{resizeSize.width} × {resizeSize.height}
+								</span>
+							</div>
+						</div>
+					</div>
+				</Card>
+
+				<!-- Available Composables -->
 				<Card padding>
 					<h3 class="text-title-2 text-foreground mb-4">Available Composables</h3>
 					<div class="space-y-2 text-body-sm">
