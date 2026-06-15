@@ -32,6 +32,7 @@
 		{ href: "/themes", label: "Themes" },
 		{ href: "/aesthetics", label: "Aesthetics" },
 		{ href: "/components", label: "Components" },
+		{ href: "/playground", label: "Playground" },
 	];
 
 	function toggleLocale() {
