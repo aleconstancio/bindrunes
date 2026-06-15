@@ -23,16 +23,16 @@ let {
 } = $props();
 
 let newComment = $state("");
-let submitting = $state(false);
+let _submitting = $state(false);
 
-async function handleSubmit() {
+async function _handleSubmit() {
 	if (!newComment.trim() || !onSubmit) return;
-	submitting = true;
+	_submitting = true;
 	try {
 		await onSubmit(newComment.trim());
 		newComment = "";
 	} finally {
-		submitting = false;
+		_submitting = false;
 	}
 }
 </script>

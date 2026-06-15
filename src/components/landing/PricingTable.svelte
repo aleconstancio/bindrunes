@@ -1,5 +1,4 @@
 <script lang="ts">
-import { Check } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
 import Badge from "../Badge.svelte";

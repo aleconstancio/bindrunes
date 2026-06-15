@@ -38,7 +38,7 @@ let {
 
 let email = $state("");
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
 	if (onSubmit) await onSubmit(email);
 }

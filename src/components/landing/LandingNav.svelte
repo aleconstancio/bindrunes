@@ -1,12 +1,6 @@
 <script lang="ts">
-import { Menu, X } from "lucide-svelte";
 import { onMount } from "svelte";
-import { slide } from "svelte/transition";
 import type { TFunction } from "../../shared-types";
-import Button from "../Button.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
-import NavigationMenu from "../NavigationMenu.svelte";
-import ThemeToggle from "../ThemeToggle.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 interface NavLogo {
@@ -64,7 +58,7 @@ onMount(() => {
 	};
 });
 
-function handleKeydown(e: KeyboardEvent) {
+function _handleKeydown(e: KeyboardEvent) {
 	if (e.key === "Escape" && landing.menuOpen) {
 		landing.setMenuOpen(false);
 	}

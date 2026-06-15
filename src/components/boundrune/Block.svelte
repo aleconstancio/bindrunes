@@ -1,6 +1,5 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import MetaContainer from "../MetaContainer.svelte";
 
 type ContainerSize = "prose" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
 
@@ -24,13 +23,13 @@ let {
 	children?: Snippet;
 } = $props();
 
-const spacingY: Record<string, string> = {
+const _spacingY: Record<string, string> = {
 	compact: "py-8",
 	normal: "py-16",
 	wide: "py-24",
 };
 
-const bgClass: Record<string, string> = {
+const _bgClass: Record<string, string> = {
 	none: "",
 	muted: "bg-muted",
 	gradient: "bg-gradient-to-b from-background via-muted/30 to-background",

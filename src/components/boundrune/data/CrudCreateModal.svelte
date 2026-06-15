@@ -1,8 +1,6 @@
 <script lang="ts">
 import type { BaseIssue, BaseSchema } from "valibot";
 import type { FormState } from "../../../utils/createForm.svelte";
-import Dialog from "../../Dialog.svelte";
-import Form from "../../Form.svelte";
 import type { CrudConfig } from "../types";
 
 let {

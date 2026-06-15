@@ -1,6 +1,4 @@
 <script lang="ts">
-import MetaLayout from "../MetaLayout.svelte";
-
 let {
 	children,
 }: {

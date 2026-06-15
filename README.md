@@ -106,6 +106,22 @@ bun run lint          # Lint check
 
 We use Changesets for versioning. Push changes to `main` with a changeset, and the release workflow handles the rest.
 
+## Releases
+
+We use [Changesets](https://github.com/changesets/changesets) to manage versioning and package publishing.
+
+### 1. Adding a Changeset
+Whenever you make a user-facing change (bugfix, feature, chore, etc.), run:
+```bash
+bun run changeset
+```
+Follow the prompt to select the bump type (major, minor, patch) and write a short summary of the change.
+
+### 2. Auto-Publish Flow
+Our CI/CD pipeline ([release.yml](.github/workflows/release.yml)) automates publication:
+1. When changesets are pushed to `main`, Changesets opens a versioning PR containing all accumulated changes.
+2. Merging that PR into `main` automatically bumps the version, updates `CHANGELOG.md`, builds the project, and publishes the package to NPM with **Build Provenance** enabled.
+
 ## License
 
 MIT

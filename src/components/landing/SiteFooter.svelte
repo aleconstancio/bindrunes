@@ -1,8 +1,6 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
 import type { TFunction } from "../../shared-types";
-import DynamicIcon from "../DynamicIcon.svelte";
-import MetaContainer from "../MetaContainer.svelte";
 
 import type { FooterLink } from "./landing-types";
 
@@ -26,7 +24,7 @@ let {
 	t,
 }: Props = $props();
 
-const year = new Date().getFullYear();
+const _year = new Date().getFullYear();
 </script>
 
 <footer class="border-t border-border px-6 py-12 {className}">

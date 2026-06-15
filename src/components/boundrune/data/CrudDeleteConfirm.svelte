@@ -1,7 +1,4 @@
 <script lang="ts">
-import Button from "../../Button.svelte";
-import Dialog from "../../Dialog.svelte";
-
 let {
 	open = $bindable(false),
 	title = "Confirm deletion",
@@ -22,11 +19,11 @@ let {
 	confirmLabel?: string;
 } = $props();
 
-async function handleConfirm() {
+async function _handleConfirm() {
 	if (onConfirm) await onConfirm();
 }
 
-function handleCancel() {
+function _handleCancel() {
 	open = false;
 	onCancel?.();
 }

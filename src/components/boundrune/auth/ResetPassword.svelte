@@ -38,20 +38,20 @@ let {
 
 let password = $state("");
 let confirmPassword = $state("");
-let showPassword = $state(false);
-let showConfirm = $state(false);
-let validationError = $state("");
+let _showPassword = $state(false);
+let _showConfirm = $state(false);
+let _validationError = $state("");
 
-async function handleSubmit(e: SubmitEvent) {
+async function _handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
-	validationError = "";
+	_validationError = "";
 
 	if (password !== confirmPassword) {
-		validationError = "Passwords do not match.";
+		_validationError = "Passwords do not match.";
 		return;
 	}
 	if (password.length < 6) {
-		validationError = "Password must be at least 6 characters.";
+		_validationError = "Password must be at least 6 characters.";
 		return;
 	}
 
