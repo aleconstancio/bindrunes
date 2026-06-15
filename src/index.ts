@@ -19,6 +19,7 @@ export { default as Breadcrumb } from "./components/Breadcrumb.svelte";
 export { default as Button } from "./components/Button.svelte";
 export { default as Card } from "./components/Card.svelte";
 export { default as Checkbox } from "./components/Checkbox.svelte";
+export { default as CodeSnippet } from "./components/CodeSnippet.svelte";
 export { default as Collapsible } from "./components/Collapsible.svelte";
 export { default as Combobox } from "./components/Combobox.svelte";
 export { default as ContextMenu } from "./components/ContextMenu.svelte";
