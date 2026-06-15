@@ -46,9 +46,9 @@ let {
 
 let email = $state("");
 let password = $state("");
-let _showPassword = $state(false);
+let showPassword = $state(false);
 
-async function _handleSubmit(e: SubmitEvent) {
+async function handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
 	if (onSubmit) await onSubmit({ email, password });
 }

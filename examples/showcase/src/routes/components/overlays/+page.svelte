@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PageHeader, Card, Button, Dialog, Sheet, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Popconfirm } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
 
 	let dialogOpen = $state(false);
 	let sheetOpen = $state(false);
@@ -37,6 +37,18 @@
 				<p class="text-body-sm text-muted-foreground mb-4">Modal dialog with header, body, and footer snippets.</p>
 				<Button onclick={() => dialogOpen = true}>Open Dialog</Button>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Dialog, Button } from "bindrunes";\n\nlet dialogOpen = $state(false);\n\n<Button onclick={() => dialogOpen = true}>Open Dialog</Button>\n\n{#if dialogOpen}\n  <Dialog bind:open={dialogOpen}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Edit Profile</h2>\n      <p class="text-body-sm text-muted-foreground">Make changes to your profile here.</p>\n      <div class="flex justify-end gap-2">\n        <Button variant="outline" onclick={() => dialogOpen = false}>Cancel</Button>\n        <Button onclick={() => dialogOpen = false}>Save changes</Button>\n      </div>\n    </div>\n  </Dialog>\n{/if}`}
+						language="svelte"
+						title="Dialog"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="sheet">
@@ -55,6 +67,18 @@
 					{/each}
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Sheet, Button } from "bindrunes";\n\nlet sheetOpen = $state(false);\nlet sheetSide = $state("right");\n\n<Button onclick={() => sheetOpen = true}>Open Sheet</Button>\n\n{#if sheetOpen}\n  <Sheet bind:open={sheetOpen} side={sheetSide}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Sheet Panel</h2>\n      <p class="text-body-sm text-muted-foreground">This sheet slides in from the {sheetSide}.</p>\n      <Button variant="outline" onclick={() => sheetOpen = false}>Close</Button>\n    </div>\n  </Sheet>\n{/if}`}
+						language="svelte"
+						title="Sheet"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="alert">
@@ -81,6 +105,18 @@
 					</div>
 				</Card>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { DropdownMenu, ContextMenu, Button } from "bindrunes";\n\nconst dropdownItems = [\n  { value: "edit", label: "Edit" },\n  { value: "duplicate", label: "Duplicate" },\n  { value: "archive", label: "Archive" },\n  { value: "delete", label: "Delete" },\n];\n\n{#snippet dropdownTrigger()}\n  <Button variant="outline">Actions</Button>\n{/snippet}\n\n<DropdownMenu trigger={dropdownTrigger} items={dropdownItems} onSelect={(v) => console.log("Selected:", v)} />\n<ContextMenu trigger={contextTrigger} items={contextItems} />`}
+						language="svelte"
+						title="Menus"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="misc">

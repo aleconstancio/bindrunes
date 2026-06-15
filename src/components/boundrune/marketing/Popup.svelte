@@ -26,7 +26,7 @@ let {
 	class?: string;
 } = $props();
 
-function _handleClose() {
+function handleClose() {
 	open = false;
 	onDismiss?.();
 }

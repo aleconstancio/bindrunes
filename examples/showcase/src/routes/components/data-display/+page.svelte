@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader, Card, Avatar, Badge, Progress, Kbd, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { PageHeader, Card, Avatar, Badge, Progress, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
 
 	const avatarSizes = ["sm", "md", "lg", "xl"] as const;
 	const badgeVariants = ["primary", "secondary", "outline", "destructive", "soft"] as const;
@@ -31,6 +31,18 @@
 					{/each}
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Avatar } from "bindrunes";\n\n<Avatar size="sm" name="Jane Smith" />\n<Avatar size="md" name="Jane Smith" />\n<Avatar size="lg" name="Jane Smith" />\n<Avatar size="xl" name="Jane Smith" />`}
+						language="svelte"
+						title="Avatar"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="badge">
@@ -48,6 +60,18 @@
 					{/each}
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Badge } from "bindrunes";\n\n<Badge variant="primary">Primary</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="outline">Outline</Badge>\n<Badge variant="destructive">Destructive</Badge>\n<Badge variant="soft">Soft</Badge>\n\n<Badge size="sm" variant="primary">Small</Badge>\n<Badge size="md" variant="primary">Medium</Badge>\n<Badge size="lg" variant="primary">Large</Badge>`}
+						language="svelte"
+						title="Badge"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="progress">
@@ -68,6 +92,18 @@
 					</div>
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Progress } from "bindrunes";\n\n<p class="text-body-sm text-muted-foreground mb-1">Storage: 65%</p>\n<Progress value={65} />\n\n<p class="text-body-sm text-muted-foreground mb-1">Build: 100%</p>\n<Progress value={100} />`}
+						language="svelte"
+						title="Progress"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="kbd">
@@ -93,6 +129,18 @@
 					</div>
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Kbd } from "bindrunes";\n\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Copy:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd>\n</div>\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Save:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd>\n</div>`}
+						language="svelte"
+						title="Kbd"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 	</Tabs>
 </div>

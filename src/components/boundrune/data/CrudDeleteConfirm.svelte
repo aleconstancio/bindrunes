@@ -22,11 +22,11 @@ let {
 	confirmLabel?: string;
 } = $props();
 
-async function _handleConfirm() {
+async function handleConfirm() {
 	if (onConfirm) await onConfirm();
 }
 
-function _handleCancel() {
+function handleCancel() {
 	open = false;
 	onCancel?.();
 }

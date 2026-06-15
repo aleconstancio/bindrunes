@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader, Card, Breadcrumb, Stepper, Timeline, Pagination } from "bindrunes";
+	import { PageHeader, Card, Breadcrumb, Stepper, Timeline, Pagination, Collapsible, CodeSnippet } from "bindrunes";
 	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
 
 	let currentPage = $state(1);
@@ -35,6 +35,18 @@
 		<p class="text-body-sm text-muted-foreground mb-4">Hierarchical navigation path.</p>
 		<Breadcrumb items={breadcrumbItems} />
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Breadcrumb } from "bindrunes";\n\nconst breadcrumbItems = [\n  { label: "Home", href: "/" },\n  { label: "Components", href: "/components" },\n  { label: "Navigation" },\n];\n\n<Breadcrumb items={breadcrumbItems} />`}
+				language="svelte"
+				title="Breadcrumb"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- Stepper -->
 	<Card padding>
@@ -62,6 +74,18 @@
 			</button>
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Stepper } from "bindrunes";\n\nlet activeStep = $state(1);\n\nconst steps = [\n  { title: "Account", description: "Create your account" },\n  { title: "Profile", description: "Set up your profile" },\n  { title: "Preferences", description: "Configure settings" },\n  { title: "Complete", description: "You're all set!" },\n];\n\n<Stepper {steps} currentStep={activeStep} />\n<button onclick={() => activeStep = Math.min(steps.length - 1, activeStep + 1)}>Next</button>`}
+				language="svelte"
+				title="Stepper"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- Timeline -->
 	<Card padding>
@@ -69,6 +93,18 @@
 		<p class="text-body-sm text-muted-foreground mb-4">Chronological event display.</p>
 		<Timeline items={timelineItems} />
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Timeline } from "bindrunes";\n\nconst timelineItems = [\n  { title: "Project created", description: "New project initialized", time: "2 hours ago" },\n  { title: "Dependencies installed", description: "All packages resolved", time: "1 hour ago" },\n  { title: "Build completed", description: "Successfully compiled", time: "30 min ago" },\n];\n\n<Timeline items={timelineItems} />`}
+				language="svelte"
+				title="Timeline"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- Pagination -->
 	<Card padding>
@@ -76,4 +112,16 @@
 		<p class="text-body-sm text-muted-foreground mb-4">Page navigation control.</p>
 		<Pagination bind:currentPage totalPages={20} />
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Pagination } from "bindrunes";\n\nlet currentPage = $state(1);\n\n<Pagination bind:currentPage totalPages={20} />`}
+				language="svelte"
+				title="Pagination"
+			/>
+		</div>
+	</Collapsible>
 </div>

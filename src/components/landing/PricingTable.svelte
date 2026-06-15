@@ -7,6 +7,7 @@ import Card from "../Card.svelte";
 import MetaContainer from "../MetaContainer.svelte";
 import Switch from "../Switch.svelte";
 import { useLanding } from "./landing-context.svelte";
+import { Check } from "lucide-svelte";
 
 import type { Plan } from "./landing-types";
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes";
+	import { PageHeader, Collapsible, CodeSnippet } from "bindrunes";
 	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
 	import { ProductGrid } from "bindrunes/boundrune";
 	import { Cart } from "bindrunes/boundrune";
@@ -90,6 +90,18 @@
 					/>
 				</div>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { ProductGrid, Cart } from "bindrunes/boundrune";\n\nconst products = [\n  { id: "1", name: "Wireless Headphones", price: 79.99, originalPrice: 99.99, rating: 4.5, reviewCount: 128, badge: "Sale" },\n  { id: "2", name: "Smart Watch", price: 199.99, rating: 4.8, reviewCount: 256 },\n];\n\nlet cartItems = $state([\n  { id: "1", name: "Wireless Headphones", price: 79.99, quantity: 1 },\n]);\n\n<ProductGrid {products} columns={3} onAddToCart={(id) => console.log("Add to cart:", id)} />\n<Cart\n  items={cartItems}\n  onQuantityChange={(id, qty) => { /* update quantity */ }}\n  onRemove={(id) => { /* remove item */ }}\n  onCheckout={() => console.log("Checkout")}\n/>`}
+						language="svelte"
+						title="Products & Cart"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="checkout">
@@ -106,6 +118,18 @@
 					onSubmit={(data) => console.log("Order submitted:", data)}
 				/>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { Checkout } from "bindrunes/boundrune";\n\nconst checkoutItems = [\n  { name: "Wireless Headphones", quantity: 1, price: 79.99 },\n  { name: "USB-C Hub", quantity: 2, price: 49.99 },\n];\n\n<Checkout\n  items={checkoutItems}\n  currency="$"\n  shipping={5.99}\n  tax={6.40}\n  onSubmit={(data) => console.log("Order submitted:", data)}\n/>`}
+						language="svelte"
+						title="Checkout"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="order-summary">
@@ -121,6 +145,18 @@
 					tax={14.28}
 				/>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { OrderSummary } from "bindrunes/boundrune";\n\nconst summaryItems = [\n  { name: "Mechanical Keyboard", quantity: 1, price: 129.99 },\n  { name: "Desk Lamp", quantity: 3, price: 34.99 },\n];\n\n<OrderSummary\n  items={summaryItems}\n  currency="$"\n  shipping={8.50}\n  tax={14.28}\n/>`}
+						language="svelte"
+						title="Order Summary"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<TabsContent value="price-tag">
@@ -176,6 +212,18 @@
 					</div>
 				</div>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { PriceTag } from "bindrunes/boundrune";\n\n<!-- Basic price -->\n<PriceTag price={49.99} />\n\n<!-- With discount -->\n<PriceTag price={79.99} originalPrice={99.99} />\n\n<!-- Different sizes -->\n<PriceTag price={49.99} size="sm" />\n<PriceTag price={99.99} size="md" />\n<PriceTag price={199.99} size="lg" />\n\n<!-- Custom currency -->\n<PriceTag price={79.99} originalPrice={99.99} currency="EUR" />`}
+						language="svelte"
+						title="Price Tag"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 	</Tabs>
 </div>

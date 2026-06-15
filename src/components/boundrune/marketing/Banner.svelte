@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import Button from "../../Button.svelte";
+import { X } from "lucide-svelte";
 
 let {
 	open = $bindable(true),
@@ -22,7 +23,7 @@ let {
 	class?: string;
 } = $props();
 
-function _dismiss() {
+function dismiss() {
 	open = false;
 	onDismiss?.();
 }
@@ -48,7 +49,7 @@ function _dismiss() {
         <button
           type="button"
           class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
-          onclick={_dismiss}
+          onclick={dismiss}
           aria-label="Dismiss"
         >
           <X class="h-4 w-4" />

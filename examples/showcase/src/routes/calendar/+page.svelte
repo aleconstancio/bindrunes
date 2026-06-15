@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes";
+	import { PageHeader, Collapsible, CodeSnippet } from "bindrunes";
 	import { EventCalendar } from "bindrunes/boundrune";
 	import { Scheduler } from "bindrunes/boundrune";
 	import { BookingForm } from "bindrunes/boundrune";
@@ -56,6 +56,18 @@
 			<Scheduler date={selectedDate} slots={timeSlots} bind:selectedSlot />
 		</div>
 	</div>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { EventCalendar, Scheduler } from "bindrunes/boundrune";\n\nconst events = [\n  { id: "1", title: "Team Standup", date: "2025-01-15", color: "primary" },\n  { id: "2", title: "Lunch", date: "2025-01-15", color: "success" },\n];\n\nconst timeSlots = [\n  { id: "1", start: "9:00", end: "10:00", available: true },\n  { id: "2", start: "10:00", end: "11:00", available: true },\n  { id: "3", start: "11:00", end: "12:00", available: false },\n];\n\nlet selectedDate = $state("2025-01-15");\nlet selectedSlot = $state("");\n\n<EventCalendar {events} bind:selectedDate />\n<Scheduler date={selectedDate} slots={timeSlots} bind:selectedSlot />`}
+				language="svelte"
+				title="Calendar & Scheduler"
+			/>
+		</div>
+	</Collapsible>
 
 	<div class="max-w-md">
 		<h2 class="text-title-2 text-foreground mb-4">Booking Form</h2>
@@ -66,6 +78,18 @@
 			onSubmit={(data) => console.log("Booking:", data)}
 		/>
 	</div>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { BookingForm } from "bindrunes/boundrune";\n\n<BookingForm\n  date={selectedDate}\n  time={selectedSlot?.start ?? ""}\n  service="Consultation"\n  onSubmit={(data) => console.log("Booking:", data)}\n/>`}
+				language="svelte"
+				title="Booking Form"
+			/>
+		</div>
+	</Collapsible>
 
 	<div>
 		<h2 class="text-title-2 text-foreground mb-4">Availability Grid</h2>

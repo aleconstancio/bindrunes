@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver } from "bindrunes";
+	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, Collapsible, CodeSnippet } from "bindrunes";
 	import { Home, Settings, Users, BarChart3, Search, Keyboard, Palette, Sliders } from "lucide-svelte";
 
 	const sidebar = createSidebarState(true);
@@ -160,6 +160,18 @@
 					</div>
 				</Card>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { ErrorBoundary, Alert, Badge } from "bindrunes";\n\n<ErrorBoundary variant="minimal">\n  <div class="p-4 text-center">Content rendered inside ErrorBoundary</div>\n</ErrorBoundary>\n\n<Alert variant="info" title="Information" description="This is an informational alert." />\n<Alert variant="success" title="Success" description="Operation completed successfully." />\n\n<Badge>Default</Badge>\n<Badge variant="primary">Primary</Badge>\n<Badge variant="success">Success</Badge>`}
+						language="svelte"
+						title="Primitives"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<!-- Design System Tab -->
@@ -203,6 +215,18 @@
 					</ul>
 				</div>
 			</Card>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { createOmnibar, Omnibar, shortcut, Kbd } from "bindrunes";\n\nconst omnibar = createOmnibar({\n  options: [\n    { id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },\n    { id: "2", label: "Toggle Theme", description: "Switch light/dark mode", category: "Actions", action: () => {} },\n  ],\n});\n\n<svelte:window use:shortcut={{ key: "k", ctrl: true, callback: () => omnibar.open() }} />\n\n<Omnibar state={omnibar} />`}
+						language="svelte"
+						title="Omnibar"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 
 		<!-- Shortcuts Tab -->
@@ -483,6 +507,18 @@
 					</div>
 				</Card>
 			</div>
+			<Collapsible>
+				{#snippet trigger()}
+					<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+				{/snippet}
+				<div class="space-y-2 mt-2">
+					<CodeSnippet
+						code={`import { createAuth, createAccess, createToast, createApiClient } from "bindrunes";\n\n// Auth & Access\nconst auth = createAuth();\nauth.login("token", { id: "1", email: "user@example.com", name: "User", roles: ["admin"] });\nconst access = createAccess(auth);\nconsole.log(access.isAdmin); // derived from auth state\n\n// Toast notifications\nconst toast = createToast();\ntoast.success("Operation completed!");\ntoast.error("Something went wrong");\n\n// API Client\nconst api = createApiClient({ baseUrl: "https://api.example.com" });\nconst data = await api.get("/users");`}
+						language="svelte"
+						title="Composables"
+					/>
+				</div>
+			</Collapsible>
 		</TabsContent>
 	</Tabs>
 </div>

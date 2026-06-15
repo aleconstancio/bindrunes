@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader, Card } from "bindrunes";
+	import { PageHeader, Card, Collapsible, CodeSnippet } from "bindrunes";
 	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/boundrune";
 	import { RealtimeClient } from "bindrunes";
 	import type { RealtimeEvent } from "bindrunes";
@@ -122,6 +122,18 @@
 			{/if}
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { ChatThread, ChatInput, TypingIndicator } from "bindrunes/boundrune";\n\nlet isTyping = $state(false);\nlet messages = $state([]);\n\nfunction handleSend(message: string) {\n  messages = [...messages, { id: String(Date.now()), content: message, sender: "user", timestamp: "now" }];\n  isTyping = true;\n  setTimeout(() => {\n    isTyping = false;\n    messages = [...messages, { id: String(Date.now()), content: "Response", sender: "assistant", timestamp: "now" }];\n  }, 1500);\n}\n\n<ChatThread messages={messages} />\n{#if isTyping}\n  <TypingIndicator />\n{/if}\n<ChatInput onSend={handleSend} placeholder="Type a message..." />`}
+				language="svelte"
+				title="Chat Interface"
+			/>
+		</div>
+	</Collapsible>
 
 	<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[600px]">
 		<!-- Conversation List -->
@@ -190,4 +202,16 @@
 			{/each}
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { RealtimeClient } from "bindrunes";\nimport type { RealtimeEvent } from "bindrunes";\n\nconst client = new RealtimeClient({\n  url: "https://example.com/sse",\n  onEvent: (event) => console.log("Event:", event),\n  onError: (err) => console.error("Error:", err),\n});\n\nclient.connect();\n// Status: "connected" | "reconnecting" | "degraded" | "disconnected"\nconsole.log(client.status);\n\n// Cleanup\nclient.disconnect();`}
+				language="svelte"
+				title="RealtimeClient"
+			/>
+		</div>
+	</Collapsible>
 </div>

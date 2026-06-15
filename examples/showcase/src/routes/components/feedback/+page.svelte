@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PageHeader, Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState } from "bindrunes";
+	import { PageHeader, Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState, Collapsible, CodeSnippet } from "bindrunes";
 
 	let progressValue = $state(35);
 	let loading = $state(false);
@@ -31,6 +31,18 @@
 			<Alert variant="error" title="Error">Something went wrong. Please try again.</Alert>
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Alert } from "bindrunes";\n\n<Alert variant="info" title="Information">This is an informational message.</Alert>\n<Alert variant="success" title="Success">Your changes have been saved.</Alert>\n<Alert variant="warning" title="Warning">Please review before proceeding.</Alert>\n<Alert variant="error" title="Error">Something went wrong.</Alert>`}
+				language="svelte"
+				title="Alert"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- StatusChip -->
 	<Card padding>
@@ -42,18 +54,18 @@
 			<StatusChip status="error" />
 		</div>
 	</Card>
-
-	<!-- Badge -->
-	<Card padding>
-		<h3 class="text-title-3 text-foreground mb-4">Badge</h3>
-		<div class="flex flex-wrap gap-2">
-			<Badge variant="primary">Primary</Badge>
-			<Badge variant="secondary">Secondary</Badge>
-			<Badge variant="outline">Outline</Badge>
-			<Badge variant="destructive">Destructive</Badge>
-			<Badge variant="soft">Soft</Badge>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { StatusChip } from "bindrunes";\n\n<StatusChip status="active" />\n<StatusChip status="inactive" />\n<StatusChip status="pending" />\n<StatusChip status="error" />`}
+				language="svelte"
+				title="StatusChip"
+			/>
 		</div>
-	</Card>
+	</Collapsible>
 
 	<!-- Progress -->
 	<Card padding>
@@ -71,6 +83,18 @@
 			</Button>
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { Progress } from "bindrunes";\n\nlet progressValue = $state(35);\n\n<div class="flex justify-between mb-1">\n  <span class="text-body-sm text-foreground">Uploading...</span>\n  <span class="text-body-sm text-muted-foreground">{Math.round(progressValue)}%</span>\n</div>\n<Progress value={progressValue} />`}
+				language="svelte"
+				title="Progress"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- Skeleton -->
 	<Card padding>

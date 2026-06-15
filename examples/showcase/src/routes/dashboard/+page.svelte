@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
 	import { DashboardShell, DashboardShellRight, DashboardShellTopnav, Button, Card } from "bindrunes";
 	import { DashboardHome } from "bindrunes/boundrune";
 	import { ActivityFeed } from "bindrunes/boundrune";
@@ -100,6 +100,18 @@
 			</Button>
 		</div>
 	</Card>
+	<Collapsible>
+		{#snippet trigger()}
+			<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+		{/snippet}
+		<div class="space-y-2 mt-2">
+			<CodeSnippet
+				code={`import { DashboardShell, DashboardShellRight, DashboardShellTopnav } from "bindrunes/boundrune";\n\nconst navGroups = [\n  { label: "Main", items: [\n    { title: "Dashboard", to: "/dashboard", description: "Overview", icon: "📊" },\n    { title: "Analytics", to: "/dashboard", description: "Charts", icon: "📈" },\n  ]},\n];\n\n<!-- Default: Left sidebar -->\n<DashboardShell navigation={navGroups} appName="bindrunes" defaultTitle="Dashboard">\n  <!-- content -->\n</DashboardShell>\n\n<!-- Right sidebar -->\n<DashboardShellRight navigation={navGroups} appName="bindrunes" />\n\n<!-- Top navigation -->\n<DashboardShellTopnav navigation={navGroups} appName="bindrunes" />`}
+				language="svelte"
+				title="Dashboard Shell"
+			/>
+		</div>
+	</Collapsible>
 
 	<!-- Dashboard Preview -->
 	{#if activeVariant === "default"}
@@ -145,6 +157,18 @@
 				]}
 			/>
 		</DashboardShell>
+		<Collapsible>
+			{#snippet trigger()}
+				<button class="text-label-sm text-primary hover:underline cursor-pointer">Show Code</button>
+			{/snippet}
+			<div class="space-y-2 mt-2">
+				<CodeSnippet
+					code={`import { DashboardShell, DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "bindrunes/boundrune";\n\n<DashboardShell navigation={navGroups} appName="bindrunes" defaultTitle="Dashboard">\n  <DashboardHome title="Dashboard Overview" {stats}>\n    {#snippet chart()}\n      <!-- Chart content -->\n    {/snippet}\n    {#snippet recentActivity()}\n      <ActivityFeed items={activity} />\n    {/snippet}\n  </DashboardHome>\n\n  <QuickActions actions={quickActions} />\n\n  <DashboardFooter brand="bindrunes" links={footerLinks} />\n</DashboardShell>`}
+					language="svelte"
+					title="Dashboard Home"
+				/>
+			</div>
+		</Collapsible>
 	{:else if activeVariant === "right"}
 		<DashboardShellRight
 			navigation={navGroups}

@@ -23,9 +23,9 @@ let {
 } = $props();
 
 let newComment = $state("");
-let _submitting = $state(false);
+let submitting = $state(false);
 
-async function _handleSubmit() {
+async function handleSubmit() {
 	if (!newComment.trim() || !onSubmit) return;
 	_submitting = true;
 	try {
