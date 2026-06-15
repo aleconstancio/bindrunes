@@ -2,6 +2,8 @@
 
 All components are fully interactive Svelte 5 blocks that adapt to the active design axes.
 
+For detailed visual state specs (tokens, hover/focus/disabled states), see [Component States](component-states.md).
+
 ## Foundation & Forms
 
 | Component | Description |

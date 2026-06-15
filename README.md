@@ -65,6 +65,7 @@ export default defineConfig({
 |-------|-------------|
 | [Getting Started](docs/getting-started.md) | Install, setup, and troubleshooting |
 | [Components](docs/components.md) | Component references and details |
+| [Component States](docs/component-states.md) | Visual state specs for all components (tokens, hover/focus/disabled) |
 | [Composables](docs/composables.md) | Core composable APIs (caching, forms, auth) |
 | [Design System](docs/design-system.md) | Customizing themes, aesthetics, and density |
 | [Landing Pages](docs/landing.md) | Pre-built landing page sections |

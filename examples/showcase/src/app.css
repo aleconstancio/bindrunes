@@ -1,4 +1,1 @@
-@import "tailwindcss";
-@import "bindrunes/styles/global.css";
-@import "bindrunes/styles/landing.css";
-@import "bindrunes/styles/aesthetics/glass.css";
+@import "bindrunes/scaffold/app.css";

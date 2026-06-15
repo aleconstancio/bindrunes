@@ -1,6 +1,14 @@
 <script lang="ts">
-  import '../app.css';
-  let { children } = $props();
+import "../app.css";
+import { DemoLayout } from "bindrunes/scaffold";
+
+let { children } = $props();
 </script>
 
-{@render children()}
+<DemoLayout
+	title="bindrunes Landing Example"
+	description="Landing page example built with bindrunes"
+	shell="landing"
+>
+	{@render children()}
+</DemoLayout>

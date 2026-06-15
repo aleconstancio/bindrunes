@@ -37,6 +37,11 @@ demo:landing:
 demo:webapp:
     cd examples/webapp && bun run dev
 
+[group('demos')]
+# Run library watch + all demos concurrently
+dev:all:
+    just dev &  just demo &  just demo:webapp &  just demo:landing &  wait
+
 # ── Build ──
 
 [group('build')]

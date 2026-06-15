@@ -142,6 +142,9 @@ const plugin = {
 					toast: "var(--z-toast)",
 					tooltip: "var(--z-tooltip)",
 				},
+				spacing: {
+					"card-padding": "var(--card-padding, 1rem)",
+				},
 			},
 		},
 		plugins: [

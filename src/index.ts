@@ -110,6 +110,7 @@ export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
 export { cn } from "./utils/cn.ts";
 export { hexToOklch, oklchToHex } from "./utils/colorConvert.ts";
+export { checkContrast, oklchContrast, parseOklch } from "./utils/contrastCheck.ts";
 export { createAccess } from "./utils/createAccess.svelte.ts";
 // ── Composables: Design System ──
 export type { Aesthetic } from "./utils/createAesthetic.svelte.ts";
@@ -154,6 +155,7 @@ export type { CreateTableOptions } from "./utils/createTable.svelte.ts";
 export { createTable } from "./utils/createTable.svelte.ts";
 export type { Theme } from "./utils/createTheme.svelte.ts";
 export { createTheme } from "./utils/createTheme.svelte.ts";
+export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
 export { createToast } from "./utils/createToast.svelte.ts";
 export type { WizardOptions, WizardStep } from "./utils/createWizard.svelte.ts";
 export { createWizard } from "./utils/createWizard.svelte.ts";
@@ -169,9 +171,9 @@ export {
 	formatRelative,
 	formatTime,
 	getLocale,
-	LOCALE,
 	setLocale,
 } from "./utils/formatters.ts";
+export { hasAnyRole, hasPermission, hasRole } from "./utils/hasRole.svelte.ts";
 export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";
 export { invalidateQuery, setQueryData } from "./utils/queryCache.ts";

@@ -39,7 +39,7 @@ const vars: Record<Variant, string> = {
     {href}
     aria-label={interactive ? ariaLabel : undefined}
     class="block rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
-           {vars[variant]} {padding ? 'p-[--radius,0.5rem]' : ''}
+           {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
            {interactive ? 'bindrunes-card-interactive' : ''}
            {className}"
   >
@@ -51,7 +51,7 @@ const vars: Record<Variant, string> = {
   <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
   <div
     class="rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
-           {vars[variant]} {padding ? 'p-[--radius,0.5rem]' : ''}
+           {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
            {interactive ? 'bindrunes-card-interactive' : ''}
            {className}"
     role={interactive ? 'button' : undefined}

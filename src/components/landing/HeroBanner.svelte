@@ -50,14 +50,14 @@ const _tag = $derived(level === 1 ? "h1" : "h2");
     {/if}
     {#if level === 1}
       <h1
-        class="text-display-2 sm:text-display-1 md:text-display-1"
+        class="font-display text-display-2 sm:text-display-2 md:text-display-1"
         class:text-gradient-violet={titleGradient}
       >
         {@render title()}
       </h1>
     {:else}
       <h2
-        class="text-display-3 sm:text-display-2 md:text-display-1"
+        class="font-display text-display-3 sm:text-display-2 md:text-display-1"
         class:text-gradient-violet={titleGradient}
       >
         {@render title()}

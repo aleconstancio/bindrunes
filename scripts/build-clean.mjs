@@ -12,7 +12,10 @@ const FILE_PATTERNS = [
 	/\.test\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/\.spec\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/Harness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
+	/TestWrapper\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
 	/bindrunes-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
+	/test-setup\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
+	/test-utils\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 ];
 
 function shouldRemoveFile(name) {

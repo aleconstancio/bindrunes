@@ -13,6 +13,11 @@ Enable landing page styles by importing the stylesheet after Tailwind:
 @import "bindrunes/styles/landing.css";
 ```
 
+This enables:
+- `stagger-enter` — Staggered fade-slide-up animation for grid items (respects `prefers-reduced-motion`)
+- `section-reveal` — Scroll-triggered reveal animation using `animation-timeline: view()`
+- Landing typography balance (`text-wrap: balance` for headings, `pretty` for paragraphs)
+
 Ensure all landing content is contained inside a `<div class="landing-page">` wrapper.
 
 ---

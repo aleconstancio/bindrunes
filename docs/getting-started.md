@@ -70,6 +70,31 @@ Wrap your application in `<AppProvider>` to initialize dark mode, notifications,
 
 ---
 
+## Font Loading
+
+bindrunes uses three font families that you should load for the best experience:
+
+| Token | Font | Fallback |
+|-------|------|----------|
+| `--font-sans` | Inter | system-ui, sans-serif |
+| `--font-display` | Inter Display | Inter, system-ui, sans-serif |
+| `--font-mono` | JetBrains Mono | ui-monospace, SF Mono, monospace |
+
+**Recommended:** Use Google Fonts or self-host. Add to your HTML `<head>` or CSS:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+/>
+```
+
+If you skip font loading, the system falls back to `system-ui` (sans) and `ui-monospace` (mono). The design will still work but won't match the intended look.
+
+---
+
 ## Troubleshooting
 
 ### "Multiple Svelte instances"

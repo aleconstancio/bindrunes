@@ -11,7 +11,8 @@
 			"!**/coverage",
 			"!examples",
 			"!src/styles/tokens/tailwind.css",
-			"!src/styles/tokens.example.css"
+			"!src/styles/tokens.example.css",
+			"!src/components/scaffold/app.css"
 		]
 	},
 	"formatter": {
@@ -33,7 +34,7 @@
 				"useIterableCallbackReturn": "warn"
 			},
 			"style": {
-				"noNonNullAssertion": "warn",
+				"noNonNullAssertion": "error",
 				"useNodejsImportProtocol": "off"
 			}
 		}
@@ -71,7 +72,7 @@
 				"enabled": false
 			},
 			"formatter": {
-				"enabled": false
+				"enabled": true
 			}
 		},
 		{

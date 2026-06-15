@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
+		"noFallthroughCasesInSwitch": true,
 		"declaration": true,
 		"declarationMap": true,
 		"outDir": "./dist",

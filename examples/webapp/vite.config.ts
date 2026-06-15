@@ -8,6 +8,6 @@ export default defineConfig({
     exclude: ['bindrunes'],
   },
   server: {
-    port: 5176,
+    port: 5177,
   },
 });

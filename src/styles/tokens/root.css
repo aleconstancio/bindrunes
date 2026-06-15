@@ -22,7 +22,7 @@
 
 	/* State colors */
 	--destructive: oklch(0.62 0.22 25);
-	--destructive-foreground: oklch(0.98 0 0);
+	--destructive-foreground: oklch(0.14 0 0);
 	--destructive-soft: oklch(0.62 0.22 25 / 0.12);
 	--success: oklch(0.68 0.16 145);
 	--success-foreground: oklch(0.13 0 0);
@@ -66,6 +66,9 @@
 	--radius-md: 0.5rem;
 	--radius-lg: 0.875rem;
 	--radius-xl: 1.25rem;
+
+	/* Component-specific spacing */
+	--card-padding: 1rem;
 
 	/* Shadow scale */
 	--shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
