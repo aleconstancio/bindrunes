@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
 	import { createSidebarState } from "bindrunes";
 	import { DashboardShell } from "bindrunes";
 	import { TabbedSettings } from "bindrunes/boundrune";

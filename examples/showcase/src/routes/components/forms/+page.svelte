@@ -112,7 +112,7 @@
 				<Card padding>
 					<h3 class="text-title-3 text-foreground mb-3">Select</h3>
 					<p class="text-body-sm text-muted-foreground mb-4">Dropdown selection.</p>
-					<Select bind:value={selectValue} {options} label="Framework" placeholder="Pick one..." />
+					<Select bind:value={selectValue} options={selectOptions} label="Framework" placeholder="Pick one..." />
 				</Card>
 
 				<Card padding>

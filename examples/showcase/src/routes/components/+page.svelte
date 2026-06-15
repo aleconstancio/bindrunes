@@ -199,7 +199,7 @@
 		{ name: "CommentSection", category: "Marketing", description: "Comment section", demoPath: "" },
 		{ name: "ContentWithImage", category: "Marketing", description: "Image + text section", demoPath: "/marketing/blog" },
 		{ name: "CookieConsent", category: "Marketing", description: "Cookie consent banner", demoPath: "/marketing/blog" },
-		{ name: "DocsLayout", category: "Marketing", description: "Documentation layout", demoPath: "" },
+		{ name: "DocsLayout", category: "Marketing", description: "Documentation layout", demoPath: "/marketing/docs" },
 		{ name: "Maintenance", category: "Marketing", description: "Maintenance page banner", demoPath: "/marketing/blog" },
 		{ name: "Popup", category: "Marketing", description: "Modal popup", demoPath: "/marketing/blog" },
 		{ name: "ReleaseNotes", category: "Marketing", description: "Release notes display", demoPath: "/marketing/blog" },

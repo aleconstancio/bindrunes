@@ -2,7 +2,6 @@
 	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
 	import { DashboardShell, DashboardShellRight, DashboardShellTopnav, Button, Card } from "bindrunes";
 	import { DashboardHome } from "bindrunes/boundrune";
-	import { StatsOverview } from "bindrunes/boundrune";
 	import { ActivityFeed } from "bindrunes/boundrune";
 	import { QuickActions } from "bindrunes/boundrune";
 	import { DashboardFooter } from "bindrunes/boundrune";
