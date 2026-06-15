@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import NavigationMenu from "../../src/components/NavigationMenu.svelte";
+import NavigationMenu from "./NavigationMenu.svelte";
 
 describe("NavigationMenu", () => {
 	const links = [

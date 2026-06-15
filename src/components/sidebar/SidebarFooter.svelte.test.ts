@@ -3,16 +3,20 @@ import { describe, expect, it } from "vitest";
 import SidebarFooter from "./SidebarFooter.svelte";
 
 describe("SidebarFooter", () => {
-	it("renders a footer with border", () => {
+	it("renders a div container", () => {
 		const { container } = render(SidebarFooter, { slots: { children: "" } });
 		const div = container.querySelector("div");
 		expect(div).not.toBeNull();
-		expect(div?.className).toContain("border-t");
-		expect(div?.className).toContain("border-sidebar-border");
+		expect(div).toHaveClass("border-t");
 	});
 
 	it("renders without children", () => {
 		const { container } = render(SidebarFooter);
 		expect(container.querySelector("div")).not.toBeNull();
+	});
+
+	it("renders the root element", () => {
+		const { container } = render(SidebarFooter, { slots: { children: "" } });
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 });

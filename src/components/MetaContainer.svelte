@@ -30,6 +30,6 @@ const widthClass = $derived(
 );
 </script>
 
-<div class="mx-auto {widthClass} {padding ? 'px-6' : ''} {className}">
+<div data-size={size} class="mx-auto {widthClass} {padding ? 'px-6' : ''} {className}">
   {@render children?.()}
 </div>

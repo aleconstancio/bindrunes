@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Popover from "../../src/components/Popover.svelte";
+import Popover from "./Popover.svelte";
 
 describe("Popover", () => {
 	it("renders container", () => {

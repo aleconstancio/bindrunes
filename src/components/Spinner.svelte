@@ -15,6 +15,7 @@ const sizes = {
 </script>
 
 <svg
+  data-size={size}
   class="bindrunes-spin text-primary {sizes[size]} {className}"
   viewBox="0 0 24 24"
   fill="none"

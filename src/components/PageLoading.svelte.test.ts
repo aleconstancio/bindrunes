@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import PageLoading from "../../src/components/PageLoading.svelte";
+import PageLoading from "./PageLoading.svelte";
 
 describe("PageLoading", () => {
 	it('renders with role="status"', () => {

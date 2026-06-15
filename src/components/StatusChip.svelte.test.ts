@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import StatusChip from "../../src/components/StatusChip.svelte";
+import StatusChip from "./StatusChip.svelte";
 
 describe("StatusChip", () => {
 	it("renders label text", () => {
@@ -8,27 +8,36 @@ describe("StatusChip", () => {
 		expect(screen.getByText("Active")).toBeInTheDocument();
 	});
 
-	it("success variant applies success-soft styles", () => {
-		render(StatusChip, { props: { label: "Online", variant: "success" } });
-		const el = screen.getByText("Online");
-		expect(el.className).toContain("success-soft");
+	it("success variant sets data-variant", () => {
+		const { container } = render(StatusChip, { props: { label: "Online", variant: "success" } });
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "success");
 	});
 
-	it("destructive variant applies destructive styles", () => {
-		render(StatusChip, { props: { label: "Offline", variant: "destructive" } });
-		const el = screen.getByText("Offline");
-		expect(el.className).toContain("destructive");
+	it("destructive variant sets data-variant", () => {
+		const { container } = render(StatusChip, {
+			props: { label: "Offline", variant: "destructive" },
+		});
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "destructive");
 	});
 
-	it("info variant applies info-soft styles", () => {
-		render(StatusChip, { props: { label: "Info", variant: "info" } });
-		const el = screen.getByText("Info");
-		expect(el.className).toContain("info-soft");
+	it("info variant sets data-variant", () => {
+		const { container } = render(StatusChip, { props: { label: "Info", variant: "info" } });
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "info");
+	});
+
+	it("warning variant sets data-variant", () => {
+		const { container } = render(StatusChip, { props: { label: "Warning", variant: "warning" } });
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "warning");
+	});
+
+	it("neutral variant sets data-variant", () => {
+		const { container } = render(StatusChip, { props: { label: "Neutral", variant: "neutral" } });
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "neutral");
 	});
 
 	it("renders dot when dot prop is true", () => {
 		const { container } = render(StatusChip, { props: { label: "Live", dot: true } });
-		const dot = container.querySelector(".rounded-full");
+		const dot = container.querySelector(".led-dot");
 		expect(dot).toBeInTheDocument();
 	});
 

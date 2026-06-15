@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import LazyLoad from "../../src/components/LazyLoad.svelte";
+import LazyLoad from "./LazyLoad.svelte";
 
 describe("LazyLoad", () => {
 	it("shows loading state initially", () => {

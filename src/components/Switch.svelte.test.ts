@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import Switch from "../../src/components/Switch.svelte";
+import Switch from "./Switch.svelte";
 
 describe("Switch", () => {
 	it("renders label when provided", () => {

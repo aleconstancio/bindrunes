@@ -4,34 +4,36 @@ import { expectNoAxeViolations } from "../helpers/axe";
 import MetaContainer from "./MetaContainer.svelte";
 
 describe("MetaContainer", () => {
-	it('renders with default size="2xl" using container-2xl token', () => {
+	it('default size sets data-size="2xl"', () => {
 		const { container } = render(MetaContainer);
-		const el = container.querySelector('[class*="container-2xl"]');
-		expect(el).toBeTruthy();
+		expect(container.firstElementChild).toHaveAttribute("data-size", "2xl");
 	});
 
-	it("renders prose size", () => {
+	it('prose size sets data-size="prose"', () => {
 		const { container } = render(MetaContainer, { props: { size: "prose" } });
-		const el = container.querySelector('[class*="container-prose"]');
-		expect(el).toBeTruthy();
+		expect(container.firstElementChild).toHaveAttribute("data-size", "prose");
 	});
 
-	it('renders full width when size="full"', () => {
+	it('full width sets data-size="full"', () => {
 		const { container } = render(MetaContainer, { props: { size: "full" } });
-		const el = container.querySelector(".max-w-full");
-		expect(el).toBeTruthy();
+		expect(container.firstElementChild).toHaveAttribute("data-size", "full");
 	});
 
 	it("applies padding by default", () => {
 		const { container } = render(MetaContainer);
-		const el = container.querySelector(".px-6");
-		expect(el).toBeTruthy();
+		const el = container.firstElementChild;
+		expect(el).toHaveClass("px-6");
 	});
 
 	it("removes padding when padding=false", () => {
 		const { container } = render(MetaContainer, { props: { padding: false } });
-		const el = container.querySelector(".px-6");
-		expect(el).toBeNull();
+		const el = container.firstElementChild;
+		expect(el).not.toHaveClass("px-6");
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(MetaContainer, { class: "custom" });
+		expect(container.firstElementChild).toHaveClass("custom");
 	});
 
 	it("has no a11y violations", async () => {

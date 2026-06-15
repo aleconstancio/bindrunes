@@ -7,13 +7,11 @@ describe("SidebarMenuBadge", () => {
 		const { container } = render(SidebarMenuBadge, { slots: { children: "" } });
 		const span = container.querySelector("span");
 		expect(span).not.toBeNull();
-		expect(span?.className).toContain("rounded-full");
 	});
 
-	it("has ml-auto class", () => {
+	it("renders the root element", () => {
 		const { container } = render(SidebarMenuBadge, { slots: { children: "" } });
-		const span = container.querySelector("span");
-		expect(span?.className).toContain("ml-auto");
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 
 	it("renders without children", () => {

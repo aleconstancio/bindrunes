@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Suspense from "../../src/components/Suspense.svelte";
+import Suspense from "./Suspense.svelte";
 
 describe("Suspense", () => {
 	it("shows loading state by default", () => {

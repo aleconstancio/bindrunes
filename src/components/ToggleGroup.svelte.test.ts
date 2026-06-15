@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import ToggleGroup from "../../src/components/ToggleGroup.svelte";
+import ToggleGroup from "./ToggleGroup.svelte";
 
 describe("ToggleGroup", () => {
 	const options = [
@@ -8,19 +8,27 @@ describe("ToggleGroup", () => {
 		{ value: "grid", label: "Grid" },
 	];
 
-	it("renders all options", () => {
+	it("renders all options as buttons", () => {
 		render(ToggleGroup, { props: { options } });
 		expect(screen.getByText("List")).toBeInTheDocument();
 		expect(screen.getByText("Grid")).toBeInTheDocument();
 	});
 
-	it("accepts single mode", () => {
+	it("renders with single mode", () => {
 		const { container } = render(ToggleGroup, { props: { options, multiple: false } });
-		expect(container).toBeInTheDocument();
+		const group = container.firstElementChild;
+		expect(group).toBeInTheDocument();
 	});
 
-	it("accepts multiple mode", () => {
+	it("renders with multiple mode", () => {
 		const { container } = render(ToggleGroup, { props: { options, multiple: true } });
-		expect(container).toBeInTheDocument();
+		const group = container.firstElementChild;
+		expect(group).toBeInTheDocument();
+	});
+
+	it("renders the group element", () => {
+		const { container } = render(ToggleGroup, { props: { options } });
+		const group = container.firstElementChild;
+		expect(group).toBeInTheDocument();
 	});
 });

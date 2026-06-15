@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import FileUpload from "../../src/components/FileUpload.svelte";
+import FileUpload from "./FileUpload.svelte";
 
 describe("FileUpload", () => {
 	it("renders dropzone text", () => {

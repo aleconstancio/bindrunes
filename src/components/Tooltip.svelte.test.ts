@@ -1,6 +1,6 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Tooltip from "../../src/components/Tooltip.svelte";
+import Tooltip from "./Tooltip.svelte";
 
 describe("Tooltip", () => {
 	it("renders trigger element", () => {

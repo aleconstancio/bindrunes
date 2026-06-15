@@ -1,15 +1,23 @@
 import { expect } from "vitest";
-import { configureAxe } from "vitest-axe";
 
-const axe = configureAxe({
-	rules: {
-		"aria-required-children": { enabled: false },
-		"aria-required-parent": { enabled: false },
-		"color-contrast": { enabled: false },
-	},
-});
+let _axe: ReturnType<typeof import("vitest-axe")["configureAxe"]> | undefined;
+
+async function getAxe() {
+	if (!_axe) {
+		const { configureAxe } = await import("vitest-axe");
+		_axe = configureAxe({
+			rules: {
+				"aria-required-children": { enabled: false },
+				"aria-required-parent": { enabled: false },
+				"color-contrast": { enabled: false },
+			},
+		});
+	}
+	return _axe;
+}
 
 export async function expectNoAxeViolations(container: Element | string) {
+	const axe = await getAxe();
 	const results = await axe(container);
 	expect(
 		results.violations,

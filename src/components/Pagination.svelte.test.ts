@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import Pagination from "../../src/components/Pagination.svelte";
+import Pagination from "./Pagination.svelte";
 
 describe("Pagination", () => {
 	it("renders page numbers", () => {

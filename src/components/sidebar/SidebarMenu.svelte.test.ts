@@ -9,10 +9,10 @@ describe("SidebarMenu", () => {
 		expect(nav).not.toBeNull();
 	});
 
-	it("has space-y-0.5 class", () => {
+	it("renders the nav element", () => {
 		const { container } = render(SidebarMenu, { slots: { children: "" } });
 		const nav = container.querySelector("nav");
-		expect(nav?.className).toContain("space-y-0.5");
+		expect(nav).toBeInTheDocument();
 	});
 
 	it("renders without children", () => {

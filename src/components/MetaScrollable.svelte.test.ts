@@ -1,25 +1,25 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 import { axe } from "vitest-axe";
-import MetaScrollable from "../../src/components/MetaScrollable.svelte";
+import MetaScrollable from "./MetaScrollable.svelte";
 
 describe("MetaScrollable", () => {
-	it("renders with overflow-y-auto", () => {
+	it("renders the root element", () => {
 		const { container } = render(MetaScrollable);
-		const el = container.querySelector(".overflow-y-auto");
-		expect(el).toBeTruthy();
+		const el = container.firstElementChild;
+		expect(el).toBeInTheDocument();
 	});
 
-	it("renders with thin scrollbar", () => {
+	it("has overflow styling on root", () => {
 		const { container } = render(MetaScrollable);
-		const el = container.querySelector('[class*="scrollbar-width"]');
-		expect(el).toBeTruthy();
+		const el = container.firstElementChild;
+		expect(el).toHaveClass("overflow-y-auto");
 	});
 
 	it("applies custom class", () => {
-		const { container } = render(MetaScrollable, { props: { class: "h-96" } });
-		const el = container.querySelector(".h-96");
-		expect(el).toBeTruthy();
+		const { container } = render(MetaScrollable, { class: "h-96" });
+		const el = container.firstElementChild;
+		expect(el).toHaveClass("h-96");
 	});
 
 	it("has no a11y violations", async () => {

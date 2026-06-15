@@ -16,11 +16,48 @@ export default defineConfig({
 		},
 	},
 	test: {
-		environment: "jsdom",
-		include: ["src/**/*.{test,spec}.{js,ts}"],
-		exclude: ["node_modules", "dist", ".svelte-kit", "**/__package__/**"],
 		globals: true,
 		setupFiles: ["./src/test-setup.ts"],
+		exclude: ["node_modules", "dist", ".svelte-kit", "**/__package__/**"],
+		deps: {
+			optimizer: {
+				ssr: {
+					include: ["happy-dom"],
+				},
+			},
+		},
+		projects: [
+			{
+				extends: true,
+				test: {
+					name: "components",
+					include: ["src/components/**/*.{test,spec}.{js,ts}"],
+					environment: "happy-dom",
+					pool: "forks",
+					poolOptions: {
+						forks: {
+							maxForks: 2,
+							minForks: 2,
+						},
+					},
+				},
+			},
+			{
+				extends: true,
+				test: {
+					name: "utils",
+					include: ["src/utils/**/*.{test,spec}.{js,ts}", "src/helpers/**/*.{test,spec}.{js,ts}"],
+					environment: "happy-dom",
+					pool: "forks",
+					poolOptions: {
+						forks: {
+							maxForks: 2,
+							minForks: 2,
+						},
+					},
+				},
+			},
+		],
 		coverage: {
 			include: ["src/**"],
 			exclude: [
@@ -33,16 +70,12 @@ export default defineConfig({
 			],
 			thresholds: [
 				{
-					// Global floor — applies to all src/** except the overrides below.
 					lines: 80,
 					functions: 77,
 					statements: 80,
 					branches: 70,
 				},
 				{
-					// Stricter local threshold for the agentic-chat kernel
-					// (M1+ in v1.2.0). Logic-heavy contract surface — must be
-					// deeply covered.
 					include: ["src/utils/agentic/**", "src/types/agent.ts"],
 					lines: 90,
 					functions: 88,

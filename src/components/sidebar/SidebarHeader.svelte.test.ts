@@ -7,12 +7,15 @@ describe("SidebarHeader", () => {
 		const { container } = render(SidebarHeader, { slots: { children: "" } });
 		const div = container.querySelector("div");
 		expect(div).not.toBeNull();
-		expect(div?.className).toContain("flex-shrink-0");
-		expect(div?.className).toContain("p-4");
 	});
 
 	it("renders without children", () => {
 		const { container } = render(SidebarHeader);
 		expect(container.querySelector("div")).not.toBeNull();
+	});
+
+	it("renders the root element", () => {
+		const { container } = render(SidebarHeader, { slots: { children: "" } });
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 });

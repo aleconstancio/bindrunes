@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
-import Omnibar from "../../src/components/Omnibar.svelte";
-import { createOmnibar } from "../../src/utils/createOmnibar.svelte";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
+import { createOmnibar } from "../utils/createOmnibar.svelte";
+import Omnibar from "./Omnibar.svelte";
 
 describe("Omnibar (component)", () => {
 	it("renders nothing when closed", async () => {

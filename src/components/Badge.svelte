@@ -49,6 +49,8 @@ const sizeClasses: Record<Size, string> = {
 </script>
 
 <span
+  data-variant={variant}
+  data-size={size}
   class="inline-flex items-center gap-1 rounded-full font-medium
          transition-colors duration-[--duration-snappy]
          {variantClasses[variant]} {sizeClasses[size]}"

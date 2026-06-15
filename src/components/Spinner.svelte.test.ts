@@ -1,6 +1,6 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Spinner from "../../src/components/Spinner.svelte";
+import Spinner from "./Spinner.svelte";
 
 describe("Spinner", () => {
 	it("renders an svg element", () => {
@@ -8,21 +8,24 @@ describe("Spinner", () => {
 		expect(container.querySelector("svg")).toBeInTheDocument();
 	});
 
-	it("renders with default md size", () => {
+	it("default md size sets data-size", () => {
 		const { container } = render(Spinner);
-		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
-		expect(cls).toContain("h-6");
+		expect(container.querySelector("svg")).toHaveAttribute("data-size", "md");
 	});
 
-	it("sm size applies h-4", () => {
+	it("sm size sets data-size", () => {
 		const { container } = render(Spinner, { props: { size: "sm" } });
-		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
-		expect(cls).toContain("h-4");
+		expect(container.querySelector("svg")).toHaveAttribute("data-size", "sm");
 	});
 
-	it("lg size applies h-10", () => {
+	it("lg size sets data-size", () => {
 		const { container } = render(Spinner, { props: { size: "lg" } });
-		const cls = container.querySelector("svg")?.getAttribute("class") ?? "";
-		expect(cls).toContain("h-10");
+		expect(container.querySelector("svg")).toHaveAttribute("data-size", "lg");
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(Spinner, { class: "my-spinner" });
+		const svg = container.querySelector("svg");
+		expect(svg?.getAttribute("class")).toContain("my-spinner");
 	});
 });

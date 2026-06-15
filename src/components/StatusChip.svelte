@@ -38,7 +38,7 @@ const ledGlowColors: Record<Variant, string> = {
 };
 </script>
 
-<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-mono-xs uppercase
+<span data-variant={variant} class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-mono-xs uppercase
              transition-all duration-[--duration-snappy] led-status
              {vars[variant]}"
       style="--led-glow-color: {ledGlowColors[variant]}"

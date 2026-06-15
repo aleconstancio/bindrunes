@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Select from "../../src/components/Select.svelte";
+import Select from "./Select.svelte";
 
 describe("Select", () => {
 	const options = [

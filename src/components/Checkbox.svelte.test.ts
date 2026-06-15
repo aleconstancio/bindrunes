@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
-import Checkbox from "../../src/components/Checkbox.svelte";
+import Checkbox from "./Checkbox.svelte";
 
 describe("Checkbox", () => {
 	it("renders label when provided", () => {

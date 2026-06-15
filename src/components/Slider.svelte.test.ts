@@ -1,25 +1,26 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Slider from "../../src/components/Slider.svelte";
+import Slider from "./Slider.svelte";
 
 describe("Slider", () => {
-	it("renders without crashing", () => {
+	it("renders the slider root", () => {
 		const { container } = render(Slider);
-		expect(container).toBeInTheDocument();
+		const track = container.firstElementChild;
+		expect(track).toBeInTheDocument();
 	});
 
-	it("renders with custom min/max/step", () => {
-		const { container } = render(Slider, { props: { min: 0, max: 10, step: 2 } });
-		expect(container).toBeInTheDocument();
+	it("renders with custom min/max", () => {
+		const { container } = render(Slider, { min: 0, max: 10, step: 2 });
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 
 	it("renders disabled state", () => {
-		const { container } = render(Slider, { props: { disabled: true } });
-		expect(container).toBeInTheDocument();
+		const { container } = render(Slider, { disabled: true });
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 
 	it("applies custom class", () => {
-		const { container } = render(Slider, { props: { class: "custom" } });
-		expect(container.querySelector(".custom")).toBeInTheDocument();
+		const { container } = render(Slider, { class: "custom" });
+		expect(container.firstElementChild?.className).toContain("custom");
 	});
 });

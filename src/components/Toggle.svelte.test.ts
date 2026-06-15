@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Toggle from "../../src/components/Toggle.svelte";
+import Toggle from "./Toggle.svelte";
 
 describe("Toggle", () => {
 	it("renders without crashing", () => {

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import NavMenu from "../../src/components/dashboard/NavMenu.svelte";
+import NavMenu from "./dashboard/NavMenu.svelte";
 
 describe("NavMenu", () => {
 	const groups = [
@@ -18,5 +18,11 @@ describe("NavMenu", () => {
 	it("renders navigation items", () => {
 		render(NavMenu, { props: { groups } });
 		expect(screen.getByText("Home")).toBeInTheDocument();
+	});
+
+	it("renders the navigation element", () => {
+		const { container } = render(NavMenu, { props: { groups } });
+		const nav = container.querySelector("nav");
+		expect(nav).toBeInTheDocument();
 	});
 });

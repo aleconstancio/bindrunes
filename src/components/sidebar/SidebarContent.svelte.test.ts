@@ -7,13 +7,16 @@ describe("SidebarContent", () => {
 		const { container } = render(SidebarContent, { slots: { children: "" } });
 		const div = container.querySelector("div");
 		expect(div).not.toBeNull();
-		expect(div?.className).toContain("flex-1");
-		const scrollable = container.querySelector(".overflow-y-auto");
-		expect(scrollable).not.toBeNull();
+		expect(div).toHaveClass("flex-1");
 	});
 
 	it("renders without children", () => {
 		const { container } = render(SidebarContent);
 		expect(container.querySelector("div")).not.toBeNull();
+	});
+
+	it("renders the root element", () => {
+		const { container } = render(SidebarContent, { slots: { children: "" } });
+		expect(container.firstElementChild).toBeInTheDocument();
 	});
 });

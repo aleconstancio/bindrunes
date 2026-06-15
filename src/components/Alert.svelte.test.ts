@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Alert from "../../src/components/Alert.svelte";
+import Alert from "./Alert.svelte";
 
 describe("Alert", () => {
 	it("renders title and description", () => {
@@ -9,21 +9,28 @@ describe("Alert", () => {
 		expect(screen.getByText("Something went wrong")).toBeInTheDocument();
 	});
 
-	it("info variant applies border-l-[--info]", () => {
+	it("info variant sets data-variant", () => {
 		const { container } = render(Alert, { props: { title: "Info", variant: "info" } });
-		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain("border-l-[--info]");
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "info");
 	});
 
-	it("warning variant applies border-l-warning", () => {
+	it("warning variant sets data-variant", () => {
 		const { container } = render(Alert, { props: { title: "Warning", variant: "warning" } });
-		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain("border-l-[--warning]");
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "warning");
 	});
 
-	it("destructive variant applies border-l-[--destructive]", () => {
+	it("destructive variant sets data-variant", () => {
 		const { container } = render(Alert, { props: { title: "Error", variant: "destructive" } });
-		const div = container.querySelector('[class*="border-l-4"]');
-		expect(div?.className).toContain("border-l-[--destructive]");
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "destructive");
+	});
+
+	it("success variant sets data-variant", () => {
+		const { container } = render(Alert, { props: { title: "OK", variant: "success" } });
+		expect(container.firstElementChild).toHaveAttribute("data-variant", "success");
+	});
+
+	it("closable renders dismiss button", () => {
+		render(Alert, { props: { title: "Close me", closable: true } });
+		expect(screen.getByRole("button", { name: "Dismiss" })).toBeInTheDocument();
 	});
 });

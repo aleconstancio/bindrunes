@@ -2,6 +2,14 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { useClipboard } from "./useClipboard.svelte";
 
+function stubClipboard(mock: { writeText: ReturnType<typeof vi.fn> }) {
+	Object.defineProperty(navigator, "clipboard", {
+		value: mock,
+		writable: true,
+		configurable: true,
+	});
+}
+
 describe("useClipboard", () => {
 	afterEach(() => {
 		vi.useRealTimers();
@@ -16,9 +24,7 @@ describe("useClipboard", () => {
 
 	it("copy() sets copied to true on success", async () => {
 		vi.useFakeTimers();
-		Object.assign(navigator, {
-			clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
-		});
+		stubClipboard({ writeText: vi.fn().mockResolvedValue(undefined) });
 
 		const clipboard = await mountComposable(() => useClipboard());
 		const result = await clipboard.copy("hello");
@@ -29,9 +35,7 @@ describe("useClipboard", () => {
 
 	it("copy() resets copied after 2 seconds", async () => {
 		vi.useFakeTimers();
-		Object.assign(navigator, {
-			clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },
-		});
+		stubClipboard({ writeText: vi.fn().mockResolvedValue(undefined) });
 
 		const clipboard = await mountComposable(() => useClipboard());
 		await clipboard.copy("hello");
@@ -43,9 +47,7 @@ describe("useClipboard", () => {
 
 	it("copy() sets error on failure", async () => {
 		const failError = new Error("clipboard write failed");
-		Object.assign(navigator, {
-			clipboard: { writeText: vi.fn().mockRejectedValue(failError) },
-		});
+		stubClipboard({ writeText: vi.fn().mockRejectedValue(failError) });
 
 		const clipboard = await mountComposable(() => useClipboard());
 		const result = await clipboard.copy("hello");

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import EmptyState from "../../src/components/EmptyState.svelte";
+import EmptyState from "./EmptyState.svelte";
 
 describe("EmptyState", () => {
 	it("renders title", () => {

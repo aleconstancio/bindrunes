@@ -7,8 +7,12 @@ describe("ThemeStudio", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		document.documentElement.removeAttribute("data-aesthetic");
-		// Stub clipboard
-		(navigator as any).clipboard = { writeText: vi.fn() };
+		// Stub clipboard (happy-dom makes it read-only, so use defineProperty)
+		Object.defineProperty(navigator, "clipboard", {
+			value: { writeText: vi.fn() },
+			writable: true,
+			configurable: true,
+		});
 	});
 
 	it("renders all four tab buttons", () => {
