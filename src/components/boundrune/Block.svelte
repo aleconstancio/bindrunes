@@ -1,8 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import MetaContainer from "../MetaContainer.svelte";
-
-type ContainerSize = "prose" | "sm" | "md" | "lg" | "xl" | "2xl" | "full";
+import type { ContainerSize } from "../../../shared-types";
+import PageSection from "../PageSection.svelte";
 
 let {
 	id = undefined as string | undefined,
@@ -23,31 +22,14 @@ let {
 	footer?: Snippet;
 	children?: Snippet;
 } = $props();
-
-const spacingY: Record<string, string> = {
-	compact: "py-8",
-	normal: "py-16",
-	wide: "py-24",
-};
-
-const bgClass: Record<string, string> = {
-	none: "",
-	muted: "bg-muted",
-	gradient: "bg-gradient-to-b from-background via-muted/30 to-background",
-};
 </script>
 
-<section
-  {id}
-  class="px-6 {spacingY[spacing]} {bgClass[background]} {className}"
->
-  <MetaContainer {size}>
-    {#if header}
-      <div class="mb-8">{@render header()}</div>
-    {/if}
-    {@render children?.()}
-    {#if footer}
-      <div class="mt-8">{@render footer()}</div>
-    {/if}
-  </MetaContainer>
-</section>
+<PageSection {id} {size} {background} {spacing} reveal={false} class={className}>
+	{#if header}
+		<div class="mb-8">{@render header()}</div>
+	{/if}
+	{@render children?.()}
+	{#if footer}
+		<div class="mt-8">{@render footer()}</div>
+	{/if}
+</PageSection>

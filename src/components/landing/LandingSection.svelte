@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { ContainerSize } from "../../shared-types";
-import Block from "../boundrune/Block.svelte";
+import PageSection from "../PageSection.svelte";
 
 let {
 	id = undefined as string | undefined,
@@ -24,12 +24,12 @@ let {
 } = $props();
 </script>
 
-<Block {id} {size} {background} {spacing} class="section-reveal {className}">
-  {#if header}
-    {@render header()}
-  {/if}
-  {@render children?.()}
-  {#if footer}
-    {@render footer()}
-  {/if}
-</Block>
+<PageSection {id} {size} {background} {spacing} reveal={true} class={className}>
+	{#if header}
+		<div class="mb-8">{@render header()}</div>
+	{/if}
+	{@render children?.()}
+	{#if footer}
+		<div class="mt-8">{@render footer()}</div>
+	{/if}
+</PageSection>
