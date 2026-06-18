@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Component, Snippet } from "svelte";
+import type { Snippet } from "svelte";
 import type { NavLink } from "../../shared-types";
 import PageSection from "../PageSection.svelte";
 import PageShell from "../PageShell.svelte";
@@ -15,6 +15,7 @@ import type {
 	FAQItem,
 	Feature,
 	FooterLink,
+	Logo,
 	Metric,
 	Plan,
 	Step,
@@ -25,12 +26,6 @@ import PricingTable from "./PricingTable.svelte";
 import SiteFooter from "./SiteFooter.svelte";
 import StatsCounter from "./StatsCounter.svelte";
 import TestimonialGrid from "./TestimonialGrid.svelte";
-
-interface NavLogo {
-	href: string;
-	label: string;
-	icon?: Component | string;
-}
 
 interface NavCTA {
 	label: string;
@@ -81,7 +76,7 @@ let {
 	footerSnippet,
 	children,
 }: {
-	logo?: NavLogo;
+	logo?: Logo;
 	navLinks?: NavLink[];
 	cta?: NavCTA;
 	badge?: string;

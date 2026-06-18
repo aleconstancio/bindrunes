@@ -65,6 +65,12 @@ export interface FAQItem {
 	answer: string;
 }
 
+export interface Logo {
+	label: string;
+	icon?: Component | string;
+	href?: string;
+}
+
 export interface FooterLink {
 	label: string;
 	href: string;

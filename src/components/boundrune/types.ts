@@ -55,6 +55,7 @@ export interface TestimonialItem {
 	avatar?: string;
 }
 
+/** @deprecated Use Logo from bindrunes/landing instead */
 export interface LogoItem {
 	name: string;
 	url?: string;
