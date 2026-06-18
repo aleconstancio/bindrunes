@@ -253,7 +253,7 @@
 		"prosemirror-model": "^1.25.7",
 		"prosemirror-state": "^1.4.4",
 		"prosemirror-view": "^1.41.8",
-		"svelte-chartjs": "^3.1.5"
+		"svelte-chartjs": "^4.0.1"
 	},
 	"lint-staged": {
 		"*.{js,ts,svelte}": [
