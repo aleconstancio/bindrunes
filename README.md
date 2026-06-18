@@ -85,8 +85,15 @@ export default defineConfig({
 | `bindrunes/boundrune` | Pre-composed page patterns (12 categories) |
 | `bindrunes/dashboard` | Dashboard shell components |
 | `bindrunes/sidebar` | Sidebar navigation components |
+| `bindrunes/scaffold` | Pre-built scaffold/demo layouts |
+| `bindrunes/agentic` | Agentic chat kernel composables |
 | `bindrunes/tailwind` | Tailwind CSS v4 integration plugin |
 | `bindrunes/styles/*` | Presets and theme CSS |
+| `bindrunes/densities/*` | Density scale CSS |
+| `bindrunes/actions/*` | Svelte actions |
+| `bindrunes/utils/*` | Individual utility imports |
+| `bindrunes/components/*` | Individual component imports |
+| `bindrunes/i18n/*` | i18n translation files |
 
 ---
 

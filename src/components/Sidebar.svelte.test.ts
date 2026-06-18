@@ -1,8 +1,8 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import SidebarRailTestWrapper from "./SidebarRailTestWrapper.svelte";
-import SidebarTestHarness from "./SidebarTestHarness.svelte";
-import SidebarTriggerTestWrapper from "./SidebarTriggerTestWrapper.svelte";
+import SidebarRailTestWrapper from "./__tests__/harness/SidebarRailTestWrapper.svelte";
+import SidebarTestHarness from "./__tests__/harness/SidebarTestHarness.svelte";
+import SidebarTriggerTestWrapper from "./__tests__/harness/SidebarTriggerTestWrapper.svelte";
 import SidebarContent from "./sidebar/SidebarContent.svelte";
 import SidebarFooter from "./sidebar/SidebarFooter.svelte";
 import SidebarGroup from "./sidebar/SidebarGroup.svelte";

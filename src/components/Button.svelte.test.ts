@@ -2,8 +2,8 @@ import { render } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import { expectNoAxeViolations } from "../helpers/axe";
+import ButtonHarness from "./__tests__/harness/ButtonHarness.svelte";
 import Button from "./Button.svelte";
-import ButtonHarness from "./ButtonHarness.svelte";
 
 describe("Button", () => {
 	it("renders a button element by default", () => {

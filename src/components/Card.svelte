@@ -26,7 +26,7 @@ let {
 } = $props();
 
 const vars: Record<Variant, string> = {
-	surface: "bg-card text-card-foreground shadow-sm border border-border",
+	surface: "bg-card text-card-foreground shadow-[--shadow-sm] border border-border",
 	glass:
 		"bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--glass-blur,16px]",
 	outlined: "bg-transparent border border-border",

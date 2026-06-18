@@ -1,5 +1,6 @@
 import type { BaseIssue, BaseSchema, InferInput, InferOutput } from "valibot";
 import { safeParse } from "valibot";
+import { toError } from "./toError";
 import { validateWithSchema } from "./validateWithSchema";
 
 export interface CreateFormOptions<
@@ -109,7 +110,7 @@ export function createForm<
 		try {
 			await options.onSubmit(values as { [K in keyof TShape]: InferOutput<TShape[K]> });
 		} catch (err) {
-			options.onSubmitError?.(err instanceof Error ? err : new Error(String(err)));
+			options.onSubmitError?.(toError(err));
 			throw err;
 		} finally {
 			isSubmitting = false;

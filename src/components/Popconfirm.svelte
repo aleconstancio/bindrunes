@@ -46,7 +46,7 @@ function _handleCancel() {
 
 	<AlertDialog.Portal>
 		<AlertDialog.Overlay class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm duration-[--duration-slow] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
-		<AlertDialog.Content class="fixed left-1/2 top-1/2 z-[--z-overlay,30] w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[--radius] bg-card p-6 shadow-lg border border-border duration-[--duration-slow] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 {className}">
+		<AlertDialog.Content class="fixed left-1/2 top-1/2 z-[--z-overlay,30] w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded-[--radius] bg-card p-6 shadow-[--shadow-lg] border border-border duration-[--duration-slow] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 {className}">
 			<AlertDialog.Title class="text-title-2 mb-2 text-foreground">{title}</AlertDialog.Title>
 			{#if description}
 				<AlertDialog.Description class="text-body-md text-muted-foreground">{description}</AlertDialog.Description>

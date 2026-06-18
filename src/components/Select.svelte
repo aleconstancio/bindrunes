@@ -55,7 +55,7 @@ let selectId = $derived(`select-${name ?? "fallback"}`);
   </Select.Trigger>
 
   <Select.Content
-    class="z-[--z-overlay,30] mt-1 max-h-60 min-w-[--bits-select-anchor-width] overflow-auto rounded-[--radius] border border-border bg-card p-1 shadow-md"
+    class="z-[--z-overlay,30] mt-1 max-h-60 min-w-[--bits-select-anchor-width] overflow-auto rounded-[--radius] border border-border bg-card p-1 shadow-[--shadow-md]"
   >
     <Select.Group class="space-y-0.5">
       {#if options.length === 0 && emptySnippet}

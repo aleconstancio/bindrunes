@@ -21,6 +21,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 2
 - OKLCH color space for theming
 - bits-ui for accessible primitives
 - Prefer lightweight, tree-shakeable dependencies
+- **Props convention:** Use inline anonymous types in `$props()` for components with ≤8 props. Use `interface Props` for components with >8 props or complex/conditional prop groups. New components should follow this convention; don't mass-refactor existing ones.
 - The agentic kernel (`src/utils/agentic/`, `src/types/agent.ts`) follows the same `createX()` factory + readonly-getter contract as the rest of the library. **The `AgentRuntime` interface is the only thing consumers are expected to implement.**
 - **Meta-component context:** Use `createMetaContext` / `useMetaContext` (from `src/utils/createMetaContext.svelte.ts`) for all subsystem context. Never use raw `setContext`/`getContext`.
 - **Meta-component state:** Use `readonlyGetters` for state exposed to consumers. Mutations via explicit action methods only.

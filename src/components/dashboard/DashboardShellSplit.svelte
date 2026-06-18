@@ -82,8 +82,8 @@ function handleKeyDown(e: KeyboardEvent) {
 <div class="flex min-h-screen">
   <!-- List Panel -->
   <div
-    class="shrink-0 border-r border-border bg-background"
-    style="width: {width}; min-width: 280px;"
+    class="shrink-0 border-r border-border bg-background min-w-[280px]"
+    style="width: {width};"
   >
     <MetaScrollable class="h-full">
       {#if listPanel}

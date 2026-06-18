@@ -9,6 +9,34 @@
 import type { CompactionPlan, EvictionPolicy, Turn, Window, WindowId } from "../../types/agent";
 import { toWindowId } from "../../types/agent";
 
+// ── Internal mutable types ──
+// The public Window type uses ReadonlyArray and readonly fields.
+// The store mutates internals in place, so we use these types
+// to avoid `as` casts that defeat TypeScript's protection.
+
+interface MutableTurn extends Omit<Turn, "toolCalls"> {
+	toolCalls?: ReadonlyArray<{
+		readonly callId: string;
+		readonly name: string;
+		readonly args: unknown;
+		readonly result?: unknown;
+		readonly isError?: boolean;
+	}>;
+}
+
+interface MutableWindow<TState = unknown> {
+	id: WindowId;
+	parentId: WindowId | null;
+	state: TState;
+	turns: MutableTurn[];
+	semanticRefs: Window["semanticRefs"];
+	budget: { used: number; cap: number };
+	policy: EvictionPolicy;
+	lineage: { children: WindowId[] };
+	createdAt: number;
+	updatedAt: number;
+}
+
 export interface WindowStoreOptions {
 	readonly budgetCap?: number;
 	readonly defaultPolicy?: EvictionPolicy;
@@ -54,7 +82,7 @@ function emptyWindow<TState>(
 	budgetCap: number,
 	policy: EvictionPolicy,
 	createdAt: number,
-): Window<TState> {
+): MutableWindow<TState> {
 	return {
 		id,
 		parentId,
@@ -73,26 +101,26 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 	const budgetCap = options.budgetCap ?? 4096;
 	const defaultPolicy: EvictionPolicy = options.defaultPolicy ?? { kind: "none" };
 
-	const windows = $state<Window[]>([]);
+	const windows = $state<MutableWindow[]>([]);
 	let activeId = $state<WindowId | null>(null);
 
-	function addWindow<TState>(win: Window<TState>): void {
+	function addWindow<TState>(win: MutableWindow<TState>): void {
 		// Push to children list of parent.
 		if (win.parentId !== null) {
 			const parent = windows.find((w) => w.id === win.parentId);
-			if (parent) (parent.lineage.children as WindowId[]).push(win.id);
+			if (parent) parent.lineage.children.push(win.id);
 		}
-		(windows as Window[]).push(win as Window);
+		windows.push(win as MutableWindow);
 	}
 
 	function findIndex(id: WindowId): number {
 		return windows.findIndex((w) => w.id === id);
 	}
 
-	function refresh(win: Window): void {
+	function refresh(win: MutableWindow): void {
 		// Bump updatedAt and budget.used to reflect current turns.
-		(win as { updatedAt: number }).updatedAt = nowMs();
-		(win.budget as { used: number }).used = sumTokens(win.turns);
+		win.updatedAt = nowMs();
+		win.budget.used = sumTokens(win.turns);
 	}
 
 	return {
@@ -104,7 +132,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		},
 		get active() {
 			if (activeId === null) return null;
-			return windows.find((w) => w.id === activeId) ?? null;
+			return (windows.find((w) => w.id === activeId) as Window) ?? null;
 		},
 		get roots() {
 			return windows.filter((w) => w.parentId === null).map((w) => w.id);
@@ -121,13 +149,13 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		fork<TState>(fromId: WindowId, forkOptions?: ForkOptions<TState>): WindowId {
 			const idx = findIndex(fromId);
 			if (idx === -1) throw new Error(`createWindowStore.fork: window not found: ${fromId}`);
-			const source = windows[idx] as Window;
+			const source = windows[idx];
 			const childId = toWindowId(uid("w"));
 			const childState = (forkOptions?.state ?? source.state) as TState;
 			const child = emptyWindow(childId, fromId, childState, budgetCap, source.policy, nowMs());
 			// Snapshot the turns at fork time.
-			(child.turns as Turn[]).push(...source.turns.map((t) => ({ ...t })));
-			(child.budget as { used: number }).used = sumTokens(child.turns);
+			child.turns.push(...source.turns.map((t) => ({ ...t })));
+			child.budget.used = sumTokens(child.turns);
 			addWindow(child);
 			activeId = childId;
 			return childId;
@@ -148,8 +176,8 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 			if (idx === -1) {
 				throw new Error(`createWindowStore.appendTurn: window not found: ${targetId}`);
 			}
-			const win = windows[idx] as Window;
-			(win.turns as Turn[]).push(turn);
+			const win = windows[idx];
+			win.turns.push(turn);
 			refresh(win);
 		},
 
@@ -158,11 +186,11 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 			if (idx === -1) {
 				throw new Error(`createWindowStore.compact: window not found: ${windowId}`);
 			}
-			const win = windows[idx] as Window;
+			const win = windows[idx];
 			const dropSet = new Set(plan.dropTurnIds);
 			const kept = win.turns.filter((t) => !dropSet.has(t.id));
-			(win.turns as Turn[]).length = 0;
-			(win.turns as Turn[]).push(...kept);
+			win.turns.length = 0;
+			win.turns.push(...kept);
 
 			if (plan.summary) {
 				const summaryTurn: Turn = {
@@ -173,7 +201,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 					estimatedTokens: plan.estimatedTokensAfter,
 					memoryLayer: "episodic",
 				};
-				(win.turns as Turn[]).unshift(summaryTurn);
+				win.turns.unshift(summaryTurn);
 			}
 			refresh(win);
 		},
@@ -181,17 +209,17 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		remove(windowId: WindowId): void {
 			const idx = findIndex(windowId);
 			if (idx === -1) return;
-			const win = windows[idx] as Window;
+			const win = windows[idx];
 			// Detach from parent's children list.
 			if (win.parentId !== null) {
 				const parent = windows.find((w) => w.id === win.parentId);
 				if (parent) {
-					const list = parent.lineage.children as WindowId[];
+					const list = parent.lineage.children;
 					const i = list.indexOf(windowId);
 					if (i !== -1) list.splice(i, 1);
 				}
 			}
-			(windows as Window[]).splice(idx, 1);
+			windows.splice(idx, 1);
 			if (activeId === windowId) activeId = null;
 		},
 	};

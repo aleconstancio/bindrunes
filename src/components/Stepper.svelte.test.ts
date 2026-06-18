@@ -9,9 +9,9 @@ describe("Stepper", () => {
 		{ id: "c", label: "Step C" },
 	];
 
-	it("renders nothing for empty steps", () => {
+	it("renders no step labels for empty steps", () => {
 		const { container } = render(Stepper, { steps: [] });
-		expect(container.querySelector("span")).toBeNull();
+		expect(container.querySelectorAll('[role="listitem"]').length).toBe(0);
 	});
 
 	it("renders all step labels", () => {

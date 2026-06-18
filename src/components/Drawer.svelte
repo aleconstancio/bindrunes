@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { onDestroy, onMount } from "svelte";
 
 let {
 	open = $bindable(false),
@@ -21,13 +22,45 @@ let {
 	closeOnOverlayClick?: boolean;
 } = $props();
 
+let panelEl = $state<HTMLElement>();
+let previousFocus = $state<HTMLElement | null>(null);
+
 function handleOverlayClick() {
 	if (closeOnOverlayClick) open = false;
 }
 
 function handleKeydown(e: KeyboardEvent) {
 	if (e.key === "Escape") open = false;
+	if (e.key === "Tab" && panelEl) {
+		const focusable = panelEl.querySelectorAll<HTMLElement>(
+			'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+		);
+		if (focusable.length === 0) return;
+		const first = focusable[0];
+		const last = focusable[focusable.length - 1];
+		if (e.shiftKey) {
+			if (document.activeElement === first) {
+				e.preventDefault();
+				last.focus();
+			}
+		} else {
+			if (document.activeElement === last) {
+				e.preventDefault();
+				first.focus();
+			}
+		}
+	}
 }
+
+$effect(() => {
+	if (open) {
+		previousFocus = document.activeElement as HTMLElement;
+		queueMicrotask(() => panelEl?.focus());
+	} else if (previousFocus) {
+		previousFocus.focus();
+		previousFocus = null;
+	}
+});
 </script>
 
 {#if open}
@@ -41,6 +74,8 @@ function handleKeydown(e: KeyboardEvent) {
   ></div>
 
   <div
+    bind:this={panelEl}
+    tabindex="-1"
     class="fixed z-[--z-overlay,30] bg-background border-border flex flex-col
            {side === 'left' ? 'inset-y-0 left-0 w-full max-w-sm border-r' : ''}
            {side === 'right' ? 'inset-y-0 right-0 w-full max-w-sm border-l' : ''}

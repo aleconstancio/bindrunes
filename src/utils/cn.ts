@@ -29,7 +29,6 @@ const CONFLICT_PREFIXES = [
 	/^inset-[xy]-/,
 	/^z-/,
 	// Typography
-	/^text-/,
 	/^font-/,
 	/^leading-/,
 	/^tracking-/,
@@ -105,8 +104,6 @@ const CONFLICT_PREFIXES = [
 	/^snap-/,
 	// List style
 	/^list-/,
-	// Caret
-	/^accent-/,
 ];
 
 /**

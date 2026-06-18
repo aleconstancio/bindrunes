@@ -14,14 +14,20 @@ For detailed visual state specs (tokens, hover/focus/disabled states), see [Comp
 | `<PasswordInput>` | Input with show/hide password toggle. |
 | `<NumberInput>` | Increment/decrement buttons with min/max/step. |
 | `<TagInput>` | Multi-value chip input with keyboard support. |
-| `<Spinner>` / `<Skeleton>` | Loading placeholders and spinners. |
+| `<Spinner>` | Loading spinner indicator. |
+| `<Skeleton>` | Loading placeholder with shimmer animation. |
 | `<Badge>` / `<StatusChip>` | Status indicators with size/removable/icon props. |
-| `<Progress>` / `<Avatar>` / `<Kbd>` | Common design indicators wrapping `bits-ui` primitives. |
+| `<Progress>` / `<Avatar>` | Progress bars and user avatars wrapping `bits-ui` primitives. |
+| `<Label>` | Form field label with required indicator support. |
+| `<Kbd>` | Keyboard shortcut indicator. |
 | `<Form>` | Validation submit wrapper with optional toast feedbacks. |
+| `<FormField>` | Labeled form field wrapper with error display. |
 | `<Select>` / `<Switch>` / `<Checkbox>` | Standard form selection components. |
 | `<RadioGroup>` / `<ToggleGroup>` / `<Combobox>` | Multi-value input controllers. |
 | `<Slider>` / `<DatePicker>` / `<TimeField>` | Complex input selectors. |
 | `<PinInput>` / `<RatingGroup>` / `<FileUpload>` | Specialty fields (OTP/stars/drag-and-drop file loads). |
+| `<RichTextEditor>` | ProseMirror-based rich text editor with toolbar. |
+| `<CodeSnippet>` | Code block with copy-to-clipboard button and optional title. |
 
 ---
 
@@ -29,6 +35,7 @@ For detailed visual state specs (tokens, hover/focus/disabled states), see [Comp
 
 | Component | Description |
 |---|---|
+| `<Alert>` | Inline notification banners with variants (success/warning/destructive/info). |
 | `<Dialog>` | Modal boxes with size variants (sm/md/lg/xl/full), closeOnOverlayClick, header/footer snippets. |
 | `<Sheet>` | Slide-out drawers with size variants (sm/md/lg) and 4-side support. |
 | `<AlertDialog>` | Important confirmations with customizable content. |
@@ -38,10 +45,13 @@ For detailed visual state specs (tokens, hover/focus/disabled states), see [Comp
 | `<Tooltip>` | Hover tooltips with rich content support via snippet. |
 | `<Omnibar>` | Global command palette (Cmd+K launcher). |
 | `<Popconfirm>` | Quick inline confirmation tooltips. |
+| `<Collapsible>` | Expandable/collapsible content sections. |
+| `<Stepper>` | Step-by-step wizard navigation with ARIA list semantics. |
 | `<Tabs>` / `<Accordion>` | Sectioned layouts with vertical orientation support. |
 | `<DataTable>` / `<Pagination>` | Tabular data displays with pagination support. |
 | `<Breadcrumb>` / `<PageHeader>` / `<SectionHeader>` | Page structure and heading systems. |
 | `<Drawer>` | Mobile-friendly drawer with snap points and gesture dismissal. |
+| `<TreeView>` | Hierarchical tree display with expand/collapse. |
 
 ---
 
@@ -52,15 +62,39 @@ Primitives that expose layout slots and standardize container dimensions:
 - **`<MetaContainer>`**: Restricts content width to design scales (`prose` through `2xl` or `full`).
 - **`<MetaScrollable>`**: Container enforcing consistent overflow scrollbar behaviors.
 - **`<Block>`**: Section wrapper with `header`/`footer` snippets, size, background, and spacing props.
+- **`<ErrorBoundary>`**: Catches Svelte errors and renders a fallback UI snippet.
+- **`<DynamicIcon>`**: Resolves icon names to `lucide-svelte` components at runtime.
+- **`<LazyLoad>`**: Intersection-based lazy rendering for deferred content loading.
+- **`<ListPage>`**: Reusable page layout with `PageHeader` + content slot + empty state.
+- **`<SEO>`**: Sets document `<title>`, meta descriptions, and Open Graph properties.
 
 ---
 
 ## Dashboard Shell
 
 - **`<DashboardShell>`**: Layout wrapper supporting standard, right, and top navigation structures.
+- **`<DashboardShellRight>`**: Right-sidebar variant of the dashboard shell.
+- **`<DashboardShellTopnav>`**: Top-navigation variant of the dashboard shell.
 - **`<DashboardShellSplit>`**: Two-column master-detail layout with `emptyState` snippet.
-- **`<SidebarProvider>` / `<Sidebar>`**: Root context provider and sidebar panels. Supports collapsed rails.
+- **`<DashboardShellHeader>`**: Header area for dashboard shells.
+- **`<DashboardShellBrand>`**: Brand/logo area for dashboard shells.
 - **`<NavMenu>`**: Dynamic navigation lists with state markers.
+
+### Sidebar
+
+Sidebar sub-components (import from `bindrunes/sidebar`):
+
+- **`<SidebarProvider>`**: Root context provider for sidebar state.
+- **`<Sidebar>`**: Main sidebar panel with `side`, `variant`, and `collapsible` props.
+- **`<SidebarContent>`**: Scrollable content area inside the sidebar.
+- **`<SidebarHeader>`** / **`<SidebarFooter>`**: Header and footer areas.
+- **`<SidebarGroup>`**: Groups menu items with optional labels.
+- **`<SidebarMenu>`** / **`<SidebarMenuItem>`** / **`<SidebarMenuButton>`**: Menu item hierarchy.
+- **`<SidebarMenuBadge>`**: Badge indicator on menu items.
+- **`<SidebarMenuSkeleton>`**: Loading placeholder for menu items.
+- **`<SidebarRail>`**: Collapsed rail mode for compact sidebars.
+- **`<SidebarSeparator>`**: Visual divider between sidebar sections.
+- **`<SidebarTrigger>`**: Toggle button to open/close the sidebar.
 
 ---
 
@@ -68,6 +102,14 @@ Primitives that expose layout slots and standardize container dimensions:
 
 - **`<ThemeStudio>`**: Tabbed interface for editing themes, aesthetics, and density scales, and exporting CSS.
 - **`<ThemePreview>`** / **`<ThemeToggle>`**: Utility displays and dark-mode togglers.
+
+---
+
+## Feedback & Display
+
+- **`<ToastProvider>`**: Root provider for toast notifications (wraps `svelte-sonner`).
+- **`<Timeline>`**: Vertical timeline display with icons and timestamps.
+- **`<MetricCard>`**: KPI metric display with value, label, and change indicator.
 
 ---
 
@@ -168,7 +210,7 @@ Primitives that expose layout slots and standardize container dimensions:
 | `<MetricsBar>` | Key metrics display. |
 | `<StatsCounter>` | Animated number counters. |
 | `<FAQ>` | Accordion FAQ section. |
-| `<LogoCloud>` / `<LogoTicker>` | Partner logo display. |
+| `<LogoCloud>` | Partner logo display. |
 | `<TeamSection>` | Team member grid. |
 | `<IntegrationGrid>` | Integration partner display. |
 | `<FeatureComparison>` | Feature comparison table. |

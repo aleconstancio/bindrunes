@@ -1,3 +1,5 @@
+import { toError } from "./toError";
+
 type AsyncStatus = "idle" | "loading" | "success" | "error";
 
 export function createAsyncState() {
@@ -12,7 +14,7 @@ export function createAsyncState() {
 			status = "success";
 			return result;
 		} catch (e) {
-			error = e instanceof Error ? e : new Error(String(e));
+			error = toError(e);
 			status = "error";
 			throw e;
 		}

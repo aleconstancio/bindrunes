@@ -11,6 +11,7 @@ let {
 	class: className = "",
 	itemSnippet = undefined as Snippet<[{ option: SelectOption }]> | undefined,
 	emptySnippet = undefined as Snippet | undefined,
+	ariaLabel = undefined as string | undefined,
 }: {
 	value?: string;
 	placeholder?: string;
@@ -19,6 +20,7 @@ let {
 	class?: string;
 	itemSnippet?: Snippet<[{ option: SelectOption }]>;
 	emptySnippet?: Snippet;
+	ariaLabel?: string;
 } = $props();
 
 let inputValue = $state("");
@@ -31,10 +33,11 @@ let _filtered = $derived(
 <Combobox.Root bind:value bind:inputValue {disabled} class="relative {className}">
 	<Combobox.Input
 		{placeholder}
+		aria-label={ariaLabel}
 		class="flex w-full rounded-[--radius] border border-border bg-input px-3 py-2 text-body-md text-foreground placeholder:text-muted-foreground transition-colors duration-[--duration-snappy] focus:outline-none focus:ring-2 focus:ring-ring disabled:opacity-50 disabled:cursor-not-allowed"
 	/>
 	<Combobox.Portal>
-		<Combobox.Content class="z-[--z-overlay,30] mt-1 max-h-60 w-full overflow-auto rounded-[--radius] border bg-card p-1 shadow-md">
+		<Combobox.Content class="z-[--z-overlay,30] mt-1 max-h-60 w-full overflow-auto rounded-[--radius] border bg-card p-1 shadow-[--shadow-md]">
 			<Combobox.Viewport>
 				{#if _filtered.length === 0 && emptySnippet}
 					{@render emptySnippet()}

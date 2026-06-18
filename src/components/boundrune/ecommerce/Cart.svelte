@@ -31,8 +31,15 @@ let {
 	class?: string;
 } = $props();
 
-let subtotal = $derived(items.reduce((sum, item) => sum + item.price * item.quantity, 0));
-let itemCount = $derived(items.reduce((sum, item) => sum + item.quantity, 0));
+let { subtotal, itemCount } = $derived.by(() => {
+	let subtotal = 0;
+	let itemCount = 0;
+	for (const item of items) {
+		subtotal += item.price * item.quantity;
+		itemCount += item.quantity;
+	}
+	return { subtotal, itemCount };
+});
 </script>
 
 <Block size="md" spacing="compact" class={className}>

@@ -31,7 +31,7 @@ let errorId = $derived(name ? `${name}-error` : undefined);
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
   >
     <BitsSwitch.Thumb
-      class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-lg ring-0 transition-transform duration-[--duration-snappy]
+      class="pointer-events-none block h-4 w-4 rounded-full bg-background shadow-[--shadow-lg] ring-0 transition-transform duration-[--duration-snappy]
              data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0"
     />
   </BitsSwitch.Root>

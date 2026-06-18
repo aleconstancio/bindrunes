@@ -32,7 +32,7 @@ let {
       {side}
       {align}
       sideOffset={8}
-      class="z-[--z-overlay,30] min-w-[200px] rounded-[--radius] bg-card p-3 shadow-lg border border-border text-foreground {className}
+      class="z-[--z-overlay,30] min-w-[200px] rounded-[--radius] bg-card p-3 shadow-[--shadow-lg] border border-border text-foreground {className}
              data-[state=open]:animate-popover-fade-in data-[state=closed]:animate-popover-fade-out focus:outline-none"
     >
       {@render children?.()}

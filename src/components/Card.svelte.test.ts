@@ -1,7 +1,7 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
+import CardHarness from "./__tests__/harness/CardHarness.svelte";
 import Card from "./Card.svelte";
-import CardHarness from "./CardHarness.svelte";
 
 describe("Card", () => {
 	it("renders without crashing", () => {

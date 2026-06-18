@@ -53,7 +53,7 @@ CRUD operations, tables, import/export, and data management pages.
 | `ApiKeyManagement` | API key CRUD |
 | `UserManagement` | User admin table |
 | `BillingDashboard` | Billing and subscription |
-| `BlogListing` | Blog post list |
+| `TableHeader` | Sortable table header with column config |
 | `createCrudProvider` | Reactive CRUD context factory |
 
 ### Calendar
@@ -97,7 +97,8 @@ Landing page sections, blog, changelog, and promotional components.
 | `Banner` | Hero/promo banner |
 | `ContentWithImage` | Text + image section |
 | `SocialProof` | Testimonials/logos |
-| `BlogArticle` / `BlogListing` | Blog components |
+| `BlogArticle` | Blog post display |
+| `BlogListing` | Blog post listing |
 | `ChangelogPage` / `ReleaseNotes` | Changelog display |
 | `CommentSection` | Article comments |
 | `DocsLayout` | Documentation page shell |

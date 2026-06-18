@@ -1,4 +1,5 @@
 import { invalidateQuery } from "./queryCache";
+import { toError } from "./toError";
 
 export interface CreateMutationOptions<TData, TVariables = void> {
 	mutator: (variables: TVariables) => Promise<TData>;
@@ -49,7 +50,7 @@ export function createMutation<TData, TVariables = void>(
 			options.onSettled?.(result, null, vars);
 			return result;
 		} catch (err) {
-			const e = err instanceof Error ? err : new Error(String(err));
+			const e = toError(err);
 			error = e;
 			status = "error";
 			options.onError?.(e, vars);

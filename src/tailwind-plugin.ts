@@ -117,6 +117,7 @@ const plugin = {
 					lg: "var(--shadow-lg)",
 					"glow-primary": "var(--shadow-glow-primary)",
 					"glow-destructive": "var(--shadow-glow-destructive)",
+					"emphasis-resolved": "var(--shadow-emphasis-resolved)",
 					"inset-subtle": "var(--shadow-inset-subtle)",
 				},
 				transitionDuration: {

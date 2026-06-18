@@ -52,4 +52,18 @@ We use **Biome** for style and quality checking:
 
 1. Create a topic branch from `main`.
 2. Ensure `lint`, `check`, and `test` passes locally.
-3. Open a PR with a description of the changes. Commit logs must follow Conventional Commits (e.g. `feat: ...`, `fix: ...`).
+3. **Add a changeset** for any user-facing change:
+   ```bash
+   bun run changeset
+   ```
+   Select the bump type (major/minor/patch) and write a short summary. Changesets are required for all bug fixes, features, and chores that affect the published package.
+4. Open a PR with a description of the changes. Commit logs must follow Conventional Commits (e.g. `feat: ...`, `fix: ...`).
+
+---
+
+## Test Coverage Requirements
+
+- **Global floor**: 80% lines/statements, 77% functions, 70% branches.
+- **Agentic kernel** (`src/utils/agentic/**`, `src/types/agent.ts`): 90% lines, 88% functions, 85% branches. TDD is required for agentic code.
+- Run `bun run test:coverage` to check coverage locally. CI enforces these thresholds.
+- Use `vitest-axe` for all component tests: `await expectNoAxeViolations(container)`.

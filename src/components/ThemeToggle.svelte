@@ -18,12 +18,12 @@ let _buttonVariant = $derived(variant === "icon" ? "ghost" : variant);
 >
   <Sun
     size={16}
-    class="transition-all duration-[--duration-snappy] { darkMode.mode === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0 absolute' }"
-    style="color: var(--warning)"
+    aria-hidden="true"
+    class="transition-all duration-[--duration-snappy] text-warning { darkMode.mode === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0 absolute' }"
   />
   <Moon
     size={16}
-    class="transition-all duration-[--duration-snappy] { darkMode.mode === 'dark' ? 'scale-0 rotate-90 opacity-0 absolute' : 'scale-100 rotate-0 opacity-100' }"
-    style="color: var(--primary)"
+    aria-hidden="true"
+    class="transition-all duration-[--duration-snappy] text-primary { darkMode.mode === 'dark' ? 'scale-0 rotate-90 opacity-0 absolute' : 'scale-100 rotate-0 opacity-100' }"
   />
 </Button>

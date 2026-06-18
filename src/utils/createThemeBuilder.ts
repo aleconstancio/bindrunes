@@ -104,6 +104,9 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 	const shadowSm = "0 1px 0 oklch(0 0 0 / 0.04)";
 	const shadowMd = "0 1px 0 oklch(0 0 0 / 0.06)";
 	const shadowLg = "0 2px 4px oklch(0 0 0 / 0.08)";
+	const shadowGlowPrimary = `0 0 15px oklch(from ${primary} l 0.3 h / 0.15)`;
+	const shadowGlowDestructive = `0 0 15px oklch(from ${destructive} l 0.3 h / 0.15)`;
+	const shadowEmphasisResolved = "var(--shadow-md)";
 
 	// Spacing
 	const space0 = "0";
@@ -208,6 +211,9 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 		"--shadow-sm": shadowSm,
 		"--shadow-md": shadowMd,
 		"--shadow-lg": shadowLg,
+		"--shadow-glow-primary": shadowGlowPrimary,
+		"--shadow-glow-destructive": shadowGlowDestructive,
+		"--shadow-emphasis-resolved": shadowEmphasisResolved,
 		// Motion durations
 		"--duration-instant": durationInstant,
 		"--duration-snappy": durationSnappy,

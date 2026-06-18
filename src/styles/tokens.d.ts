@@ -133,6 +133,8 @@ declare const _shadowGlowPrimary: never;
 declare const _shadowGlowDestructive: never;
 /** Inset subtle shadow. Type: <shadow> */
 declare const _shadowInsetSubtle: never;
+/** Resolved shadow emphasis (follows density). Type: <shadow> */
+declare const _shadowEmphasisResolved: never;
 
 /** Duration instant (50ms). Type: <time>. Registered @property. */
 declare const _durationInstant: never;
@@ -228,3 +230,13 @@ declare const _zTooltip: never;
 
 /** Font sans family. Type: <family-name> */
 declare const _fontSans: never;
+/** Font display family. Type: <family-name> */
+declare const _fontDisplay: never;
+/** Font monospace family. Type: <family-name> */
+declare const _fontMono: never;
+
+/** Card padding. Type: <length> */
+declare const _cardPadding: never;
+
+/** Stagger animation step delay. Type: <time> */
+declare const _staggerStep: never;

@@ -26,7 +26,7 @@ let {
   <BitsDropdown.Trigger class="inline-flex cursor-pointer">{@render trigger?.()}</BitsDropdown.Trigger>
   <BitsDropdown.Content
     {side} {align}
-    class="z-[--z-overlay,30] min-w-40 rounded-[--radius] border border-border bg-card p-1 shadow-md
+    class="z-[--z-overlay,30] min-w-40 rounded-[--radius] border border-border bg-card p-1 shadow-[--shadow-md]
            data-[state=open]:animate-in data-[state=closed]:animate-out
            data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
            data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"

@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
-import ComposableHarness from "../ComposableHarness.svelte";
 import { createDensity } from "../utils/createDensity.svelte";
+import ComposableHarness from "./__tests__/harness/ComposableHarness.svelte";
 import DensityTab from "./DensityTab.svelte";
 
 describe("DensityTab", () => {

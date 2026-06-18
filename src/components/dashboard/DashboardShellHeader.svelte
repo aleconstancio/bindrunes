@@ -24,7 +24,7 @@ let {
 } = $props();
 </script>
 
-<header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-300">
+<header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-[--duration-fluid]">
 	<div class="flex items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
 		<div class="flex min-w-0 items-center gap-3">
 			{#if trigger}{@render trigger()}{/if}

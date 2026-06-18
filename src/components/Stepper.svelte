@@ -1,11 +1,15 @@
 <script lang="ts">
+import type { StepperStep } from "./stepper-types";
+
+export type { StepperStep };
+
 let {
-	steps = [] as { id: string; label: string }[],
+	steps = [] as StepperStep[],
 	currentStep = "" as string,
 	completedSteps = new Set<string>(),
 	class: className = "",
 }: {
-	steps?: { id: string; label: string }[];
+	steps?: StepperStep[];
 	currentStep?: string;
 	completedSteps?: Set<string>;
 	class?: string;
@@ -13,6 +17,13 @@ let {
 </script>
 
 <div class="flex items-center gap-2 {className}" role="list" aria-label="Progress">
+  <span class="sr-only" aria-live="polite">
+    {#if currentStep}
+      Step {steps.findIndex(s => s.id === currentStep) + 1} of {steps.length}: {steps.find(s => s.id === currentStep)?.label}
+    {:else}
+      Step 0 of {steps.length}
+    {/if}
+  </span>
   {#each steps as step, i}
     {@const isActive = step.id === currentStep}
     {@const isCompleted = completedSteps.has(step.id)}

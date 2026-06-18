@@ -7,6 +7,7 @@
 
 :root {
 	scroll-behavior: smooth;
+	--stagger-step: 100ms;
 }
 
 @layer base {
@@ -67,7 +68,7 @@
 
 	:global(.stagger-enter) {
 		animation: fade-slide-up 0.5s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) both;
-		animation-delay: calc(var(--stagger-index, 0) * 100ms);
+		animation-delay: calc(var(--stagger-index, 0) * var(--stagger-step));
 	}
 
 	:global(.stagger-enter.scale) {

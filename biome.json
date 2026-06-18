@@ -11,7 +11,7 @@
 			"!**/coverage",
 			"!examples",
 			"!src/styles/tokens/tailwind.css",
-			"!src/styles/tokens.example.css",
+			"!docs/tokens.example.css",
 			"!src/components/scaffold/app.css"
 		]
 	},

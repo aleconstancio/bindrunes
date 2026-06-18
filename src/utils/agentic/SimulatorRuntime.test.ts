@@ -160,6 +160,42 @@ describe("SimulatorRuntime", () => {
 			expect(kinds).toContain("tool_call");
 			expect(kinds.at(-1)).toBe("done");
 		});
+
+		it("scriptedRun.reasoning yields reasoning deltas before token response", async () => {
+			const script = scriptedRun("reasoning");
+			const rt = new SimulatorRuntime({ script });
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
+			const kinds = out.map((d) => d.kind);
+			expect(kinds).toContain("reasoning");
+			expect(kinds).toContain("token");
+			expect(kinds.at(-1)).toBe("done");
+		});
+
+		it("scriptedRun.longReply yields multiple token deltas", async () => {
+			const script = scriptedRun("longReply");
+			const rt = new SimulatorRuntime({ script });
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
+			const tokens = out.filter((d) => d.kind === "token");
+			expect(tokens.length).toBe(5);
+			const text = tokens.map((d) => d.text).join("");
+			expect(text).toBe("ABCDE");
+		});
+
+		it("scriptedRun.errors yields token followed by error delta", async () => {
+			const script = scriptedRun("errors");
+			const rt = new SimulatorRuntime({ script });
+			const out = await collect(
+				rt.complete({ messages: [] } as never, new AbortController().signal),
+			);
+			const kinds = out.map((d) => d.kind);
+			expect(kinds).toContain("token");
+			expect(kinds).toContain("error");
+			expect(kinds.at(-1)).toBe("error");
+		});
 	});
 
 	describe("error delta handling", () => {

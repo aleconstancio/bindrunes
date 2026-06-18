@@ -6,13 +6,14 @@ import { readdirSync, readFileSync, rmSync, statSync, unlinkSync, writeFileSync 
 import { join } from "node:path";
 
 const DIST = new URL("../dist", import.meta.url).pathname;
-const REMOVED_DIRS = ["__tests__", "tests"];
+const REMOVED_DIRS = ["__tests__", "tests", "helpers", "test", "test-fixtures"];
 
 const FILE_PATTERNS = [
 	/\.test\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/\.spec\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/Harness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
-	/TestWrapper\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
+	/[Tt]est[Ww]rapper\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
+	/[Tt]est[Hh]arness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
 	/bindrunes-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
 	/test-setup\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/test-utils\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
@@ -77,6 +78,8 @@ for (const sub of REMOVED_DIRS) {
 		// dir didn't exist — fine
 	}
 }
+
+rmSync(join(DIST, "components", "__tests__"), { recursive: true, force: true });
 
 console.log(
 	`[build-clean] removed ${removedFiles} file(s), fixed ${fixedFiles} file(s), removed ${removedDirs} dir(s) from dist/`,

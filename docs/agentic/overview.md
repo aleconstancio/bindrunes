@@ -24,7 +24,7 @@ The agentic chat kernel provides typesafe, reactive modules for building memory-
 
 | Module | Purpose |
 |--------|---------|
-| `agent.ts` | Pure type declarations for the agentic interchange surface. Defines `Window`, `Delta`, `AgentRuntime`, `Turn`, `CompactionPlan`, and related types. No runtime code. |
+| `agent.ts` | Type declarations for the agentic interchange surface. Defines `Window`, `Delta`, `AgentRuntime`, `Turn`, `CompactionPlan`, and related types. Also exports runtime helpers: `toWindowId()` (branded ID factory) and `isTerminalDelta()` (delta kind checker). |
 | `createWindowStore.svelte.ts` | Central state manager. Holds a graph of `Window` objects, tracks the active window, and exposes operations: `createRoot`, `fork`, `navigate`, `appendTurn`, `compact`, `remove`. Uses Svelte 5 runes for reactivity. |
 | `createTokenBudget.svelte.ts` | Tracks token usage across three memory layers (`working`, `episodic`, `semantic`). Provides `record`, `reset`, and computed `remaining`/`overflow` getters. |
 | `createConversationBranches.svelte.ts` | Pure derivation of branch tree from a flat list of Windows rooted at `rootId`. Computes leaves, paths, and sibling comparisons without mutating state. |

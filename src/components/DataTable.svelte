@@ -103,7 +103,7 @@ function _getSkeletonWidth(i: number): string {
         </tr>
       {:else}
         {#each rows as row, i}
-          <tr class="transition-colors border-b border-border {hoverable ? 'hover:bg-muted/50' : ''} {striped && i % 2 === 1 ? 'bg-muted/30' : ''} {rowClass ? rowClass(row, i) : ''} {selectedIndex === i ? 'bg-muted/60 ring-1 ring-inset ring-border translate-x-0.5 shadow-sm' : ''}"
+          <tr class="transition-colors border-b border-border {hoverable ? 'hover:bg-muted/50' : ''} {striped && i % 2 === 1 ? 'bg-muted/30' : ''} {rowClass ? rowClass(row, i) : ''} {selectedIndex === i ? 'bg-muted/60 ring-1 ring-inset ring-border translate-x-0.5 shadow-[--shadow-sm]' : ''}"
             class:cursor-pointer={!!onRowClick}
             onclick={() => onRowClick?.(row, i)}
             onkeydown={onRowClick ? (e: KeyboardEvent) => { if (e.key === 'Enter') onRowClick?.(row, i); } : undefined}

@@ -1,5 +1,6 @@
 import { AUTH_CONTEXT_KEY } from "../../../utils/auth-keys";
 import { createMetaContext, useMetaContext } from "../../../utils/createMetaContext.svelte";
+import { toError } from "../../../utils/toError";
 
 export interface AuthUser {
 	id: string | number;
@@ -54,7 +55,7 @@ export function createAuthProvider(options?: {
 					user = await options.onLogin(email, password);
 				}
 			} catch (err) {
-				error = err instanceof Error ? err.message : "Login failed";
+				error = toError(err).message || "Login failed";
 				throw err;
 			} finally {
 				loading = false;

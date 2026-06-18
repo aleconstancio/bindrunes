@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { describe, expect, it } from "vitest";
+import PricingHarness from "../__tests__/harness/landing/PricingHarness.svelte";
 import type { Plan } from "./landing-types";
-import PricingHarness from "./PricingHarness.svelte";
 
 const plans: Plan[] = [
 	{

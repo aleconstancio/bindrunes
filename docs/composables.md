@@ -27,6 +27,26 @@ const createUser = createMutation<User, NewUser>({
 - **`invalidateQuery(key)`**: Invalidates cached keys.
 - **`setQueryData(key, data)`**: Optimistically updates queries.
 
+### `createAsyncState`
+Reactive wrapper for async operations with loading, error, and data states.
+
+```ts
+import { createAsyncState } from "bindrunes";
+
+const user = createAsyncState(
+  () => fetch("/api/users/1").then(r => r.json()),
+  { immediate: true }
+);
+// user.isLoading, user.data, user.error
+```
+
+### `createTable`
+State machine for sorting, pagination, and filtering in tables.
+
+```ts
+const table = createTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
+```
+
 ---
 
 ## Forms
@@ -90,6 +110,17 @@ const auth = useAuthProvider();
 console.log(auth.isAuthenticated, auth.user);
 ```
 
+### `hasRole` / `hasAnyRole` / `hasPermission`
+Role-Based Access Control checks.
+
+```ts
+import { hasRole, hasAnyRole, hasPermission } from "bindrunes";
+
+hasRole(user, "admin");          // true if user has "admin" role
+hasAnyRole(user, ["admin", "editor"]);
+hasPermission(user, "users:write");
+```
+
 ### `createCrudProvider` / `useCrudProvider`
 Context provider for CRUD operations across components.
 
@@ -134,6 +165,38 @@ const myTheme = defineTheme("my-brand", { "--primary": "oklch(0.60 0.15 250)" })
 myTheme.apply();
 ```
 
+### `createThemeBuilder`
+Runtime theme token builder with all token categories (colors, spacing, shadows, borders, radii).
+
+```ts
+import { createThemeBuilder } from "bindrunes";
+
+const builder = createThemeBuilder("my-theme");
+builder.setToken("--primary", "oklch(0.60 0.15 250)");
+builder.exportCSS(); // Returns CSS string
+```
+
+### `createDarkMode`
+Reactive dark mode toggling with system preference detection.
+
+```ts
+import { createDarkMode } from "bindrunes";
+
+const dark = createDarkMode();
+dark.toggle();
+// dark.isDark, dark.mode ("light" | "dark" | "system")
+```
+
+### `createPrefersTheme`
+Detect and react to the OS-level color scheme preference.
+
+```ts
+import { createPrefersTheme } from "bindrunes";
+
+const prefers = createPrefersTheme();
+// prefers.current — "light" | "dark"
+```
+
 ---
 
 ## Localization & UI State
@@ -142,6 +205,19 @@ myTheme.apply();
 Reactive dictionary-based locale switching.
 ```ts
 const t = createI18n({ default: "en", dicts: { en: enDict } });
+```
+
+### `createI18nContext` / `useI18n`
+Context-based i18n for sharing a dictionary across a component tree.
+```ts
+import { createI18nContext, useI18n } from "bindrunes";
+
+// In a parent:
+createI18nContext({ default: "en", dicts: { en: enDict } });
+
+// In any child:
+const t = useI18n();
+t("greeting"); // Looks up "greeting" key in active dictionary
 ```
 
 ### `createTable`
@@ -186,6 +262,23 @@ Copy to clipboard with success/error feedback.
 import { useClipboard } from "bindrunes";
 const { copied, copy } = useClipboard();
 await copy("text to copy");
+```
+
+### `createMediaQuery`
+Reactive media query matching.
+```ts
+import { createMediaQuery } from "bindrunes";
+
+const isMobile = createMediaQuery("(max-width: 768px)");
+// isMobile.current — boolean
+```
+
+### `createPersistedDataAttribute`
+Persist a data attribute to localStorage and re-apply on load.
+```ts
+import { createPersistedDataAttribute } from "bindrunes";
+
+createPersistedDataAttribute("theme", "data-theme");
 ```
 
 ### `useResizeObserver`
@@ -278,15 +371,23 @@ export function getMyState() {
 
 ## General Utilities
 
+- **`cn(...classes)`**: Merge class names with Tailwind conflict resolution (last-wins per utility prefix).
+- **`shortcut(element, options)`**: Svelte action for keyboard shortcut binding.
 - **`createApiClient(config)`**: Fetch client wrapping JSON parsing and headers.
 - **`createStorage(prefix)`**: LocalStorage wrapper with key prefixing.
 - **`createEnv(config)`**: Env variables reader with fallback defaults.
 - **`useHead(metadata)`**: Updates document page headers and Open Graph properties.
 - **`useBreakpoint(width)`**: Detects viewport breakpoint matches.
 - **`RealtimeClient(config)`**: SSE client with reconnection behaviors.
+- **`handleSSEEvent(event, router)`**: SSE event router for dispatching typed events.
 - **`getChartTheme()`**: Reads theme colors for Chart.js integrations.
-- **`formatDate` / `formatNumber`**: Locale-aware string formatters.
+- **`formatDate` / `formatDateShort` / `formatDateTime` / `formatTime`**: Locale-aware date formatters.
+- **`formatNumber` / `formatPercentage` / `formatBytes` / `formatRelative`**: Number and byte formatters.
+- **`getLocale()` / `setLocale(locale)`**: Get/set the active locale for formatters.
 - **`hexToOklch` / `oklchToHex`**: Color space conversion utilities.
+- **`checkContrast` / `oklchContrast` / `parseOklch`**: Color contrast checking utilities.
+- **`semanticColors`**: Mapping of semantic color names to CSS custom properties.
+- **`defaultTableFallbacks`**: Default cell renderers and empty states for `DataTable`.
 - **`isBrowser`**: SSR-safe browser detection.
 - **`isSafeRedirect(url)`**: URL validation for open redirect prevention.
 - **`toError(err)`**: Normalize unknown errors to Error objects.

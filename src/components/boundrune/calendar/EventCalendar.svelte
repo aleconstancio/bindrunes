@@ -50,6 +50,19 @@ const eventColorMap: Record<string, string> = {
 	muted: "bg-muted text-muted-foreground",
 };
 
+let eventsByDate = $derived.by(() => {
+	const map = new Map<string, CalendarEvent[]>();
+	for (const event of events) {
+		const existing = map.get(event.date);
+		if (existing) {
+			existing.push(event);
+		} else {
+			map.set(event.date, [event]);
+		}
+	}
+	return map;
+});
+
 let calendarDays = $derived.by(() => {
 	const result: { date: number; isCurrentMonth: boolean; isToday: boolean; dateStr: string }[] = [];
 	const today = new Date().toISOString().split("T")[0];
@@ -74,10 +87,6 @@ function nextMonth() {
 function goToToday() {
 	currentDate = new Date();
 }
-
-function getEventsForDate(dateStr: string) {
-	return events.filter((e) => e.date === dateStr);
-}
 </script>
 
 <div class="space-y-4 {className}">
@@ -96,7 +105,7 @@ function getEventsForDate(dateStr: string) {
     {/each}
 
     {#each calendarDays as day}
-      {@const dayEvents = day.isCurrentMonth ? getEventsForDate(day.dateStr) : []}
+      {@const dayEvents = day.isCurrentMonth ? (eventsByDate.get(day.dateStr) ?? []) : []}
       <button
         type="button"
         class="bg-background p-1.5 min-h-[4rem] text-left cursor-pointer hover:bg-muted/50 transition-colors

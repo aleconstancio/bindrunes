@@ -1,7 +1,7 @@
 import { render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
-import Harness from "../ComposableHarness.svelte";
+import Harness from "../components/__tests__/harness/ComposableHarness.svelte";
 import { createDensity } from "./createDensity.svelte";
 
 describe("createDensity", () => {

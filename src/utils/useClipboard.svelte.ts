@@ -1,4 +1,5 @@
 import { isBrowser } from "./isBrowser";
+import { toError } from "./toError";
 
 export function useClipboard() {
 	let copied = $state(false);
@@ -18,7 +19,7 @@ export function useClipboard() {
 			}, 2000);
 			return true;
 		} catch (err) {
-			error = err instanceof Error ? err : new Error("Failed to copy");
+			error = toError(err);
 			return false;
 		}
 	}

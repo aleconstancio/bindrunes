@@ -81,6 +81,7 @@ export { default as StatusChip } from "./components/StatusChip.svelte";
 export { default as Stepper } from "./components/Stepper.svelte";
 export { default as Suspense } from "./components/Suspense.svelte";
 export { default as Switch } from "./components/Switch.svelte";
+export type { StepperStep } from "./components/stepper-types";
 export { default as TagInput } from "./components/TagInput.svelte";
 // ── Theme ──
 export { default as ThemeStudio } from "./components/ThemeStudio.svelte";
@@ -109,25 +110,32 @@ export type {
 } from "./shared-types";
 export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
+/** Merge class names with Tailwind conflict resolution (last-wins per utility prefix). */
 export { cn } from "./utils/cn.ts";
 export { hexToOklch, oklchToHex } from "./utils/colorConvert.ts";
 export { checkContrast, oklchContrast, parseOklch } from "./utils/contrastCheck.ts";
+/** Role-based access control checks (hasRole, hasAnyRole, hasPermission). */
 export { createAccess } from "./utils/createAccess.svelte.ts";
 // ── Composables: Design System ──
 export type { Aesthetic } from "./utils/createAesthetic.svelte.ts";
 export { createAesthetic } from "./utils/createAesthetic.svelte.ts";
 // ── Composables: API & Auth ──
+/** Typed fetch client with timeout, 401 handling, and domain API grouping. */
 export type { ApiClientOptions } from "./utils/createApiClient.ts";
 export { createApiClient } from "./utils/createApiClient.ts";
+/** Reactive wrapper for async operations with loading/error/data states. */
 export { createAsyncState } from "./utils/createAsyncState.svelte.ts";
+/** Reactive authentication token handling with login/logout/session. */
 export type { AuthStorage, User } from "./utils/createAuth.svelte.ts";
 export { createAuth } from "./utils/createAuth.svelte.ts";
+/** Reactive dark mode toggling with system preference detection. */
 export { createDarkMode } from "./utils/createDarkMode.svelte.ts";
 export type { Density } from "./utils/createDensity.svelte.ts";
 export { createDensity } from "./utils/createDensity.svelte.ts";
 // ── Utilities ──
 export { createEnv } from "./utils/createEnv.ts";
 // ── Composables: Forms & Validation ──
+/** Typesafe form state with Valibot schema validation and submit handling. */
 export type { CreateFormOptions, FormState, InferSchemaType } from "./utils/createForm.svelte.ts";
 export { createForm } from "./utils/createForm.svelte.ts";
 // ── Composables: i18n ──
@@ -136,7 +144,9 @@ export { createI18n } from "./utils/createI18n.svelte.ts";
 export { createI18nContext, useI18n } from "./utils/createI18nContext.svelte.ts";
 export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
 // ── Composables: Context ──
+/** Type-safe Svelte context wrapper using Symbol keys. */
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte";
+/** Server state mutation with optimistic updates and invalidation. */
 export type { CreateMutationOptions, MutationResult } from "./utils/createMutation.svelte.ts";
 export { createMutation } from "./utils/createMutation.svelte.ts";
 // ── Composables: Omnibar ──
@@ -149,6 +159,7 @@ export { createOmnibar } from "./utils/createOmnibar.svelte.ts";
 export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
 // ── Composables: Data Layer ──
+/** Cached server query with stale-time, refetch, and invalidation support. */
 export type { CreateQueryOptions, QueryResult } from "./utils/createQuery.svelte.ts";
 export { createQuery } from "./utils/createQuery.svelte.ts";
 export { createStorage } from "./utils/createStorage.ts";
@@ -157,6 +168,7 @@ export { createTable } from "./utils/createTable.svelte.ts";
 export type { Theme } from "./utils/createTheme.svelte.ts";
 export { createTheme } from "./utils/createTheme.svelte.ts";
 export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
+/** Toast notification composable (dynamic import of svelte-sonner). */
 export { createToast } from "./utils/createToast.svelte.ts";
 export type { WizardOptions, WizardStep } from "./utils/createWizard.svelte.ts";
 export { createWizard } from "./utils/createWizard.svelte.ts";
@@ -190,15 +202,17 @@ export { semanticColors } from "./utils/semanticColors.ts";
 export type { SSEEventRouter } from "./utils/sseBridge.svelte.ts";
 export { handleSSEEvent } from "./utils/sseBridge.svelte.ts";
 export { defaultTableFallbacks } from "./utils/tableFallbacks.ts";
+/** Normalize unknown errors to Error objects. */
 export { toError } from "./utils/toError.ts";
 export { isSafeRedirect } from "./utils/url.ts";
 // ── Composables: Components ──
 export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
 // ── Composables: Reactivity ──
-export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
+/** Copy to clipboard with success/error state. */
 export { useClipboard } from "./utils/useClipboard.svelte.ts";
-export { useCounter } from "./utils/useCounter.svelte.ts";
+/** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
+/** Generic event listener with auto-cleanup on unmount. */
 export { useEventListener } from "./utils/useEventListener.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";

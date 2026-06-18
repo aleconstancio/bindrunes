@@ -1,4 +1,5 @@
 import { getContext, hasContext } from "svelte";
+import { toError } from "./toError";
 
 // NOTE: This module uses raw `getContext`/`hasContext` instead of `useMetaContext`
 // because it is a plain .ts module (not a Svelte component or composable).
@@ -122,7 +123,7 @@ export async function fetchQuery<T>(
 				if (attempt < maxRetries) {
 					await new Promise((resolve) => setTimeout(resolve, defaultRetryDelay(attempt)));
 				} else {
-					entry.error = err instanceof Error ? err : new Error(String(err));
+					entry.error = toError(err);
 					entry.status = "error";
 					entry.fetchStatus = "idle";
 					entry.promise = null;

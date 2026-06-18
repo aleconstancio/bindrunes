@@ -1,6 +1,7 @@
 <!--
   @component
-  Captures global JavaScript errors via `window.addEventListener("error", ...)`.
+  Captures global JavaScript errors via `window.addEventListener("error", ...)` and
+  `window.addEventListener("unhandledrejection", ...)`.
 
   NOTE: This does NOT catch errors thrown by child Svelte components during rendering.
   Svelte 5 does not have a built-in error boundary primitive. This component only
@@ -10,6 +11,7 @@
 <script lang="ts">
 import { onMount } from "svelte";
 import type { TFunction } from "../shared-types";
+import { toError } from "../utils/toError";
 import Button from "./Button.svelte";
 
 type Variant = "default" | "minimal" | "page";
@@ -54,15 +56,28 @@ async function notifyError(title: string, description: string) {
 }
 
 onMount(() => {
-	const handler = (event: ErrorEvent) => {
-		error = event.error || new Error(event.message);
+	const errorHandler = (event: ErrorEvent) => {
+		error = toError(event.error ?? event.message);
 		errorInfo = event.message;
 		onError?.(error);
 		notifyError(fallbackTitle, errorInfo);
 		event.preventDefault();
 	};
-	window.addEventListener("error", handler);
-	return () => window.removeEventListener("error", handler);
+
+	const rejectionHandler = (event: PromiseRejectionEvent) => {
+		error = toError(event.reason);
+		errorInfo = String(event.reason);
+		onError?.(error);
+		notifyError(fallbackTitle, errorInfo);
+		event.preventDefault();
+	};
+
+	window.addEventListener("error", errorHandler);
+	window.addEventListener("unhandledrejection", rejectionHandler);
+	return () => {
+		window.removeEventListener("error", errorHandler);
+		window.removeEventListener("unhandledrejection", rejectionHandler);
+	};
 });
 
 function retry() {

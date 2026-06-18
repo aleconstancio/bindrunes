@@ -1,3 +1,5 @@
+import { toError } from "./toError";
+
 export type RealtimeStatus = "connected" | "reconnecting" | "degraded" | "disconnected";
 
 export interface RealtimeEvent {
@@ -123,7 +125,7 @@ export class RealtimeClient {
 					}
 				},
 				onerror: (err) => {
-					const error = err instanceof Error ? err : new Error(String(err));
+					const error = toError(err);
 					if (error.name === "AbortError") {
 						this.#status = "disconnected";
 						return;

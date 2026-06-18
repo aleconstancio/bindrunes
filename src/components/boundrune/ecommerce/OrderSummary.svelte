@@ -22,8 +22,13 @@ let {
 	class?: string;
 } = $props();
 
-let subtotal = $derived(items.reduce((sum, item) => sum + item.price * item.quantity, 0));
-let total = $derived(subtotal + shipping + tax);
+let { subtotal, total } = $derived.by(() => {
+	let subtotal = 0;
+	for (const item of items) {
+		subtotal += item.price * item.quantity;
+	}
+	return { subtotal, total: subtotal + shipping + tax };
+});
 </script>
 
 <Card padding class={className}>

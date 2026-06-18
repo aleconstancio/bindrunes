@@ -9,6 +9,7 @@ let {
 	max = 100,
 	step = 1,
 	disabled = false,
+	ariaLabel = undefined as string | undefined,
 	class: className = "",
 }: {
 	value?: number[];
@@ -16,6 +17,7 @@ let {
 	max?: number;
 	step?: number;
 	disabled?: boolean;
+	ariaLabel?: string;
 	class?: string;
 } = $props();
 </script>
@@ -24,6 +26,7 @@ let {
 	<BitsSlider.Range class="absolute h-2 rounded-full bg-primary" />
 	{#each value as _, i}
 		<BitsSlider.Thumb
+			aria-label={ariaLabel}
 			class="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 		/>
 	{/each}

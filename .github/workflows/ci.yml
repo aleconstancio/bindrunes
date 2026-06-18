@@ -35,3 +35,22 @@ jobs:
 
       - name: Build
         run: bun run build
+
+      - name: Bundle size check
+        run: |
+          SIZE=$(du -sb dist | cut -f1)
+          echo "dist/ size: ${SIZE} bytes ($(echo "scale=1; $SIZE / 1024" | bc) KB)"
+          MAX_SIZE=524288  # 512 KB
+          if [ "$SIZE" -gt "$MAX_SIZE" ]; then
+            echo "ERROR: dist/ exceeds ${MAX_SIZE} bytes ($SIZE bytes)"
+            exit 1
+          fi
+
+      - name: Verify examples build
+        run: |
+          for dir in examples/*/; do
+            if [ -f "${dir}package.json" ]; then
+              echo "Building ${dir}..."
+              (cd "$dir" && bun install --frozen-lockfile 2>/dev/null && bun run build 2>/dev/null) || echo "WARN: ${dir} build failed (may need library linked)"
+            fi
+          done

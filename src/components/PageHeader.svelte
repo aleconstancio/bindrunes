@@ -31,8 +31,7 @@ let {
         {#if backHref}
           <a
             href={backHref}
-            class="p-1.5 rounded transition-colors shrink-0"
-            style="color: var(--muted-foreground);"
+            class="p-1.5 rounded transition-colors shrink-0 text-muted-foreground"
             aria-label="Go back"
           >
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

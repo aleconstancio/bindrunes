@@ -95,6 +95,7 @@ function handleFileInput(e: Event) {
   ondrop={handleDrop}
   role="button"
   tabindex="0"
+  aria-label="Drop zone for file upload"
   onclick={handleClick}
   onkeydown={handleKeydown}
 >
@@ -104,6 +105,7 @@ function handleFileInput(e: Event) {
     accept={accept?.join(',')}
     {multiple}
     class="hidden"
+    aria-label="Upload file"
     onchange={handleFileInput}
   />
   {#if dropzone}

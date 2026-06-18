@@ -34,12 +34,8 @@ export default defineConfig({
 					include: ["src/components/**/*.{test,spec}.{js,ts}"],
 					environment: "happy-dom",
 					pool: "forks",
-					poolOptions: {
-						forks: {
-							maxForks: 2,
-							minForks: 2,
-						},
-					},
+					maxForks: 2,
+					minForks: 2,
 				},
 			},
 			{
@@ -49,12 +45,8 @@ export default defineConfig({
 					include: ["src/utils/**/*.{test,spec}.{js,ts}", "src/helpers/**/*.{test,spec}.{js,ts}"],
 					environment: "happy-dom",
 					pool: "forks",
-					poolOptions: {
-						forks: {
-							maxForks: 2,
-							minForks: 2,
-						},
-					},
+					maxForks: 2,
+					minForks: 2,
 				},
 			},
 		],

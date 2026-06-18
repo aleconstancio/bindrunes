@@ -16,6 +16,7 @@
 		"provenance": true
 	},
 	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -32,6 +33,56 @@
 			"svelte": "./dist/components/boundrune/index.js",
 			"default": "./dist/components/boundrune/index.js"
 		},
+		"./boundrune/auth": {
+			"types": "./dist/components/boundrune/auth/index.d.ts",
+			"svelte": "./dist/components/boundrune/auth/index.js",
+			"default": "./dist/components/boundrune/auth/index.js"
+		},
+		"./boundrune/calendar": {
+			"types": "./dist/components/boundrune/calendar/index.d.ts",
+			"svelte": "./dist/components/boundrune/calendar/index.js",
+			"default": "./dist/components/boundrune/calendar/index.js"
+		},
+		"./boundrune/chat": {
+			"types": "./dist/components/boundrune/chat/index.d.ts",
+			"svelte": "./dist/components/boundrune/chat/index.js",
+			"default": "./dist/components/boundrune/chat/index.js"
+		},
+		"./boundrune/dashboard": {
+			"types": "./dist/components/boundrune/dashboard/index.d.ts",
+			"svelte": "./dist/components/boundrune/dashboard/index.js",
+			"default": "./dist/components/boundrune/dashboard/index.js"
+		},
+		"./boundrune/data": {
+			"types": "./dist/components/boundrune/data/index.d.ts",
+			"svelte": "./dist/components/boundrune/data/index.js",
+			"default": "./dist/components/boundrune/data/index.js"
+		},
+		"./boundrune/ecommerce": {
+			"types": "./dist/components/boundrune/ecommerce/index.d.ts",
+			"svelte": "./dist/components/boundrune/ecommerce/index.js",
+			"default": "./dist/components/boundrune/ecommerce/index.js"
+		},
+		"./boundrune/marketing": {
+			"types": "./dist/components/boundrune/marketing/index.d.ts",
+			"svelte": "./dist/components/boundrune/marketing/index.js",
+			"default": "./dist/components/boundrune/marketing/index.js"
+		},
+		"./boundrune/media": {
+			"types": "./dist/components/boundrune/media/index.d.ts",
+			"svelte": "./dist/components/boundrune/media/index.js",
+			"default": "./dist/components/boundrune/media/index.js"
+		},
+		"./boundrune/portfolio": {
+			"types": "./dist/components/boundrune/portfolio/index.d.ts",
+			"svelte": "./dist/components/boundrune/portfolio/index.js",
+			"default": "./dist/components/boundrune/portfolio/index.js"
+		},
+		"./boundrune/settings": {
+			"types": "./dist/components/boundrune/settings/index.d.ts",
+			"svelte": "./dist/components/boundrune/settings/index.js",
+			"default": "./dist/components/boundrune/settings/index.js"
+		},
 		"./dashboard": {
 			"types": "./dist/components/dashboard/index.d.ts",
 			"svelte": "./dist/components/dashboard/index.js",
@@ -47,6 +98,10 @@
 			"svelte": "./dist/components/scaffold/index.js",
 			"default": "./dist/components/scaffold/index.js"
 		},
+		"./scaffold/*": {
+			"types": "./dist/components/scaffold/*.d.ts",
+			"default": "./dist/components/scaffold/*"
+		},
 		"./agentic": {
 			"types": "./dist/utils/agentic/index.d.ts",
 			"svelte": "./dist/utils/agentic/index.js",
@@ -56,12 +111,98 @@
 			"types": "./dist/tailwind-plugin.d.ts",
 			"default": "./dist/tailwind-plugin.js"
 		},
-		"./styles/*": "./src/styles/*",
-		"./densities/*": "./src/styles/densities/*",
-		"./actions/*": "./dist/actions/*",
-		"./utils/*": "./dist/utils/*",
-		"./components/*": "./dist/components/*",
-		"./i18n/*": "./dist/i18n/*"
+		"./styles/*": {
+			"default": "./src/styles/*"
+		},
+		"./densities/*": {
+			"default": "./src/styles/densities/*"
+		},
+		"./actions/*": {
+			"types": "./dist/actions/*.d.ts",
+			"default": "./dist/actions/*"
+		},
+		"./utils/*": {
+			"types": "./dist/utils/*.d.ts",
+			"default": "./dist/utils/*"
+		},
+		"./components/*": {
+			"types": "./dist/components/*.d.ts",
+			"default": "./dist/components/*"
+		},
+		"./i18n/*": {
+			"types": "./dist/i18n/*.d.ts",
+			"default": "./dist/i18n/*"
+		},
+		"./Button": {
+			"types": "./dist/components/Button.d.ts",
+			"svelte": "./dist/components/Button.svelte",
+			"default": "./dist/components/Button.svelte"
+		},
+		"./Card": {
+			"types": "./dist/components/Card.d.ts",
+			"svelte": "./dist/components/Card.svelte",
+			"default": "./dist/components/Card.svelte"
+		},
+		"./Input": {
+			"types": "./dist/components/Input.d.ts",
+			"svelte": "./dist/components/Input.svelte",
+			"default": "./dist/components/Input.svelte"
+		},
+		"./Dialog": {
+			"types": "./dist/components/Dialog.d.ts",
+			"svelte": "./dist/components/Dialog.svelte",
+			"default": "./dist/components/Dialog.svelte"
+		},
+		"./Form": {
+			"types": "./dist/components/Form.d.ts",
+			"svelte": "./dist/components/Form.svelte",
+			"default": "./dist/components/Form.svelte"
+		},
+		"./Select": {
+			"types": "./dist/components/Select.d.ts",
+			"svelte": "./dist/components/Select.svelte",
+			"default": "./dist/components/Select.svelte"
+		},
+		"./Badge": {
+			"types": "./dist/components/Badge.d.ts",
+			"svelte": "./dist/components/Badge.svelte",
+			"default": "./dist/components/Badge.svelte"
+		},
+		"./Alert": {
+			"types": "./dist/components/Alert.d.ts",
+			"svelte": "./dist/components/Alert.svelte",
+			"default": "./dist/components/Alert.svelte"
+		},
+		"./Sheet": {
+			"types": "./dist/components/Sheet.d.ts",
+			"svelte": "./dist/components/Sheet.svelte",
+			"default": "./dist/components/Sheet.svelte"
+		},
+		"./Switch": {
+			"types": "./dist/components/Switch.d.ts",
+			"svelte": "./dist/components/Switch.svelte",
+			"default": "./dist/components/Switch.svelte"
+		},
+		"./Checkbox": {
+			"types": "./dist/components/Checkbox.d.ts",
+			"svelte": "./dist/components/Checkbox.svelte",
+			"default": "./dist/components/Checkbox.svelte"
+		},
+		"./Tooltip": {
+			"types": "./dist/components/Tooltip.d.ts",
+			"svelte": "./dist/components/Tooltip.svelte",
+			"default": "./dist/components/Tooltip.svelte"
+		},
+		"./Popover": {
+			"types": "./dist/components/Popover.d.ts",
+			"svelte": "./dist/components/Popover.svelte",
+			"default": "./dist/components/Popover.svelte"
+		},
+		"./DropdownMenu": {
+			"types": "./dist/components/DropdownMenu.d.ts",
+			"svelte": "./dist/components/DropdownMenu.svelte",
+			"default": "./dist/components/DropdownMenu.svelte"
+		}
 	},
 	"files": [
 		"dist",

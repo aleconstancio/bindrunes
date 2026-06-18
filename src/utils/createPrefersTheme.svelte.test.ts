@@ -1,7 +1,7 @@
 import { render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import Harness from "../ComposableHarness.svelte";
+import Harness from "../components/__tests__/harness/ComposableHarness.svelte";
 import { createPrefersTheme } from "./createPrefersTheme.svelte";
 
 describe("createPrefersTheme", () => {

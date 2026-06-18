@@ -34,7 +34,6 @@ export { default as StatsOverview } from "./dashboard/StatsOverview.svelte";
 export { default as AdvancedTable } from "./data/AdvancedTable.svelte";
 export { default as ApiKeyManagement } from "./data/ApiKeyManagement.svelte";
 export { default as BillingDashboard } from "./data/BillingDashboard.svelte";
-export { default as BlogListing } from "./data/BlogListing.svelte";
 export { default as CrudCreateDrawer } from "./data/CrudCreateDrawer.svelte";
 export { default as CrudCreateForm } from "./data/CrudCreateForm.svelte";
 export { default as CrudCreateModal } from "./data/CrudCreateModal.svelte";
@@ -64,6 +63,7 @@ export { default as ProductGrid } from "./ecommerce/ProductGrid.svelte";
 // ── Marketing ──
 export { default as Banner } from "./marketing/Banner.svelte";
 export { default as BlogArticle } from "./marketing/BlogArticle.svelte";
+export { default as BlogListing } from "./marketing/BlogListing.svelte";
 export { default as ChangelogPage } from "./marketing/ChangelogPage.svelte";
 export { default as CommentSection } from "./marketing/CommentSection.svelte";
 export { default as ContentWithImage } from "./marketing/ContentWithImage.svelte";

@@ -33,7 +33,7 @@ function onBitsValueChange(v: typeof bitsValue) {
 	{/if}
 	<DatePicker.Input class="flex w-full rounded-[--radius] border bg-input px-3 py-2 text-body-md text-foreground transition-colors duration-[--duration-snappy] focus:outline-none focus:ring-2 focus:ring-ring" />
 	<DatePicker.Portal>
-		<DatePicker.Content class="z-[--z-overlay,30] mt-1 rounded-[--radius] border bg-card p-3 shadow-md">
+		<DatePicker.Content class="z-[--z-overlay,30] mt-1 rounded-[--radius] border bg-card p-3 shadow-[--shadow-md]">
 			<DatePicker.Calendar />
 		</DatePicker.Content>
 	</DatePicker.Portal>
