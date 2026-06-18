@@ -121,6 +121,14 @@ Sidebar sub-components (import from `bindrunes/sidebar`):
 ### Page Templates
 - **`<DashboardPage>`** — Full app shell with sidebar navigation, header, and content area. Accepts `appName`, `navigation`, `pathname`, and snippet overrides for sidebar header/footer.
 - **`<CrudPage>`** — List + detail split layout. Accepts `title`, `selectedItem`, and snippets for list/detail panels.
+- **`<AuthPage>`** — Auth layout with view switching (login/register/forgot/2FA).
+- **`<SettingsPage>`** — Settings with tabbed sidebar navigation.
+- **`<ChatPage>`** — Chat layout with conversation list sidebar.
+- **`<CalendarPage>`** — Calendar layout with optional sidebar.
+- **`<EcommercePage>`** — E-commerce layout with cart sidebar.
+- **`<BlogPage>`** — Blog layout with optional sidebar.
+- **`<PortfolioPage>`** — Portfolio showcase layout.
+- **`<MediaPage>`** — Media library layout with optional sidebar.
 
 ### Auth
 - `<LoginForm>` / `<RegisterForm>` / `<ForgotPassword>` / `<ResetPassword>` — Authentication forms with snippet customization.

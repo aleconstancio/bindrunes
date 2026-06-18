@@ -80,6 +80,12 @@ All section props are optional — omit a section and it won't render.
 | `plans` | `Plan[]` | Pricing table data |
 | `testimonials` | `TestimonialData[]` | Testimonials |
 | `stats` | `StatData[]` | Animated stats |
+| `logos` | `Logo[]` | Partner logos for LogoCloud section |
+| `logosTitle` | `string` | Title for LogoCloud section |
+| `integrations` | `Integration[]` | Integrations for IntegrationGrid section |
+| `team` | `TeamMember[]` | Team members for TeamSection section |
+| `newsletter` | `{ title?, description? }` | Newsletter section config |
+| `video` | `{ url, poster?, caption? }` | Video embed section config |
 | `faqItems` | `FAQItem[]` | FAQ accordion data |
 | `ctaTitle` | `string` | CTA banner title |
 | `ctaDescription` | `string` | CTA banner description |

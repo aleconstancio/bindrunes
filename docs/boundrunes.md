@@ -72,8 +72,7 @@ Real-time messaging components.
 | Component | Description |
 |-----------|-------------|
 | `ChatThread` | Message thread view |
-| `ChatMessage` | Single message bubble |
-| `ChatBubble` | Styled message bubble |
+| `ChatBubble` | Styled message bubble with variants and optional timestamp |
 | `ChatInput` | Message composer |
 | `ConversationList` | Sidebar conversation list |
 | `TypingIndicator` | Typing dots animation |

@@ -54,10 +54,10 @@ export function getSubsystemContext() {
 Pages are composed from three layers:
 - **`PageShell`** — Layout primitive with composable topbar/left/right/main zones. Handles sidebar width and collapsibility.
 - **`PageSection`** — Content zone wrapper with container sizing, spacing, and section-reveal animation.
-- **Page Templates** — Pre-composed full-page components (`MarketingPage`, `DashboardPage`, `CrudPage`) that accept data props and render complete pages.
+- **Page Templates** — Pre-composed full-page components (`MarketingPage`, `DashboardPage`, `CrudPage`, `AuthPage`, `SettingsPage`, `ChatPage`, `CalendarPage`, `EcommercePage`, `BlogPage`, `PortfolioPage`, `MediaPage`) that accept data props and render complete pages.
 
 ```
-PageTemplate (MarketingPage, DashboardPage, CrudPage)
+PageTemplate (MarketingPage, DashboardPage, CrudPage, AuthPage, SettingsPage, ChatPage, CalendarPage, EcommercePage, BlogPage, PortfolioPage, MediaPage)
   └── PageShell (topbar, left, right, main)
        └── PageSection (spacing, container, animation)
             └── Content components (FeatureGrid, DataTable, etc.)
