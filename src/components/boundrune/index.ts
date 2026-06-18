@@ -2,6 +2,7 @@
 
 // ── Auth ──
 export { default as AuthLayout } from "./auth/AuthLayout.svelte";
+export { default as AuthPage } from "./auth/AuthPage.svelte";
 export type { AuthProviderState, AuthUser } from "./auth/auth-context.svelte";
 export { createAuthProvider, useAuthProvider } from "./auth/auth-context.svelte";
 export { default as EmailVerification } from "./auth/EmailVerification.svelte";
@@ -94,6 +95,7 @@ export { default as DangerZone } from "./settings/DangerZone.svelte";
 export { default as NotificationSettings } from "./settings/NotificationSettings.svelte";
 export { default as ProfileSettings } from "./settings/ProfileSettings.svelte";
 export { default as SecuritySettings } from "./settings/SecuritySettings.svelte";
+export { default as SettingsPage } from "./settings/SettingsPage.svelte";
 export { default as SettingsSection } from "./settings/SettingsSection.svelte";
 export { default as TabbedSettings } from "./settings/TabbedSettings.svelte";
 // ── Types ──
