@@ -72,6 +72,11 @@ let {
 	navSnippet,
 	featuresSnippet,
 	pricingSnippet,
+	metricsSnippet,
+	howItWorksSnippet,
+	testimonialsSnippet,
+	statsSnippet,
+	ctaSnippet,
 	faqSnippet,
 	footerSnippet,
 	children,
@@ -107,6 +112,11 @@ let {
 	navSnippet?: Snippet;
 	featuresSnippet?: Snippet;
 	pricingSnippet?: Snippet;
+	metricsSnippet?: Snippet;
+	howItWorksSnippet?: Snippet;
+	testimonialsSnippet?: Snippet;
+	statsSnippet?: Snippet;
+	ctaSnippet?: Snippet;
 	faqSnippet?: Snippet;
 	footerSnippet?: Snippet;
 	children?: Snippet;
@@ -149,9 +159,13 @@ const sectionIds = $derived(
 	{/if}
 
 	{#if metrics?.length}
-		<PageSection id="metrics" size="xl">
-			<MetricsBar {metrics} />
-		</PageSection>
+		{#if metricsSnippet}
+			{@render metricsSnippet()}
+		{:else}
+			<PageSection id="metrics" size="xl">
+				<MetricsBar {metrics} />
+			</PageSection>
+		{/if}
 	{/if}
 
 	{#if features?.length}
@@ -168,12 +182,16 @@ const sectionIds = $derived(
 	{/if}
 
 	{#if steps?.length}
-		<PageSection id="how-it-works" size="xl">
-			<h2 class="text-center text-display-3 text-foreground">How it works</h2>
-			<div class="mt-10">
-				<HowItWorks {steps} showConnector />
-			</div>
-		</PageSection>
+		{#if howItWorksSnippet}
+			{@render howItWorksSnippet()}
+		{:else}
+			<PageSection id="how-it-works" size="xl">
+				<h2 class="text-center text-display-3 text-foreground">How it works</h2>
+				<div class="mt-10">
+					<HowItWorks {steps} showConnector />
+				</div>
+			</PageSection>
+		{/if}
 	{/if}
 
 	{#if plans?.length}
@@ -190,18 +208,26 @@ const sectionIds = $derived(
 	{/if}
 
 	{#if testimonials?.length}
-		<PageSection id="testimonials" size="xl">
-			<h2 class="text-center text-display-3 text-foreground">What our customers say</h2>
-			<div class="mt-10">
-				<TestimonialGrid {testimonials} />
-			</div>
-		</PageSection>
+		{#if testimonialsSnippet}
+			{@render testimonialsSnippet()}
+		{:else}
+			<PageSection id="testimonials" size="xl">
+				<h2 class="text-center text-display-3 text-foreground">What our customers say</h2>
+				<div class="mt-10">
+					<TestimonialGrid {testimonials} />
+				</div>
+			</PageSection>
+		{/if}
 	{/if}
 
 	{#if stats?.length}
-		<PageSection id="stats" size="xl">
-			<StatsCounter {stats} />
-		</PageSection>
+		{#if statsSnippet}
+			{@render statsSnippet()}
+		{:else}
+			<PageSection id="stats" size="xl">
+				<StatsCounter {stats} />
+			</PageSection>
+		{/if}
 	{/if}
 
 	{#if faqItems?.length}
@@ -218,7 +244,11 @@ const sectionIds = $derived(
 	{/if}
 
 	{#if ctaTitle}
-		<CtaBanner title={ctaTitle} description={ctaDescription} {ctaLabel} {ctaHref} />
+		{#if ctaSnippet}
+			{@render ctaSnippet()}
+		{:else}
+			<CtaBanner title={ctaTitle} description={ctaDescription} {ctaLabel} {ctaHref} />
+		{/if}
 	{/if}
 
 	{#if children}
