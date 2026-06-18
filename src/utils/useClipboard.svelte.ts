@@ -4,6 +4,15 @@ import { toError } from "./toError";
 export function useClipboard() {
 	let copied = $state(false);
 	let error = $state<Error | null>(null);
+	let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+	$effect(() => {
+		return () => {
+			if (timeoutId !== undefined) {
+				clearTimeout(timeoutId);
+			}
+		};
+	});
 
 	async function copy(text: string): Promise<boolean> {
 		if (!isBrowser) return false;
@@ -14,7 +23,7 @@ export function useClipboard() {
 		try {
 			await navigator.clipboard.writeText(text);
 			copied = true;
-			setTimeout(() => {
+			timeoutId = setTimeout(() => {
 				copied = false;
 			}, 2000);
 			return true;

@@ -28,12 +28,19 @@
 	const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 	const hours = Array.from({ length: 12 }, (_, i) => i + 9);
 
+	// Simple deterministic LCG
+	let _seed = 42;
+	function seededRandom(): number {
+		_seed = (_seed * 1103515245 + 12345) & 0x7fffffff;
+		return (_seed % 100) / 100;
+	}
+
 	function makeInitialAvailability(): Record<string, Record<number, boolean>> {
 		const avail: Record<string, Record<number, boolean>> = {};
 		for (const day of days) {
 			avail[day] = {};
 			for (const h of hours) {
-				avail[day][h] = Math.random() > 0.4;
+				avail[day][h] = seededRandom() > 0.4;
 			}
 		}
 		return avail;

@@ -67,7 +67,7 @@ async function handleSubmit(e: SubmitEvent) {
 
     <form onsubmit={handleSubmit} novalidate class="space-y-4">
       {#if error}
-        <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
+        <div role="alert" class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
           {error}
         </div>
       {/if}

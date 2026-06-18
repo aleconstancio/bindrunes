@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import type { TFunction } from "../shared-types";
 import Button from "./Button.svelte";
 import EmptyState from "./EmptyState.svelte";
@@ -19,10 +20,10 @@ let {
 }: {
 	t?: TFunction;
 	state?: DataState<unknown>;
-	loadingContent?: import("svelte").Snippet;
-	empty?: import("svelte").Snippet;
-	error?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	loadingContent?: Snippet;
+	empty?: Snippet;
+	error?: Snippet;
+	children?: Snippet;
 } = $props();
 
 function retry() {

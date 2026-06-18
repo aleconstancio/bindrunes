@@ -1,11 +1,17 @@
 <script lang="ts">
 import { RangeCalendar } from "bits-ui";
 
+const defaultWeekdays = ["S", "M", "T", "W", "T", "F", "S"];
+
 let {
 	value = $bindable<{ start: Date; end: Date } | undefined>(undefined),
+	locale = undefined as string | undefined,
+	weekdays = defaultWeekdays as string[],
 	class: className = "",
 }: {
 	value?: { start: Date; end: Date } | undefined;
+	locale?: string;
+	weekdays?: string[];
 	class?: string;
 } = $props();
 </script>
@@ -20,7 +26,7 @@ let {
 		<RangeCalendar.Grid class="w-full">
 			<RangeCalendar.GridHead>
 				<RangeCalendar.GridRow class="grid grid-cols-7 mb-1">
-					{#each ['S', 'M', 'T', 'W', 'T', 'F', 'S'] as day}
+					{#each weekdays as day}
 						<RangeCalendar.HeadCell class="text-center text-body-sm text-muted-foreground font-medium">{day}</RangeCalendar.HeadCell>
 					{/each}
 				</RangeCalendar.GridRow>

@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { SIDEBAR_WIDTH, SIDEBAR_WIDTH_MOBILE } from "./sidebar-constants";
 import { createSidebarState } from "./sidebar-context.svelte";
 
@@ -17,7 +18,7 @@ let {
 	defaultOpen?: boolean;
 	collapsible?: Collapsible;
 	style?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 // svelte-ignore state_referenced_locally

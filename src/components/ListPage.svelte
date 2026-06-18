@@ -1,4 +1,5 @@
 <script lang="ts" generics="TData">
+import type { Snippet } from "svelte";
 import Alert from "./Alert.svelte";
 import Card from "./Card.svelte";
 import EmptyState from "./EmptyState.svelte";
@@ -33,9 +34,9 @@ let {
 	emptyTitle?: string;
 	emptyDescription?: string;
 	class?: string;
-	headerActions?: import("svelte").Snippet;
-	filters?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	headerActions?: Snippet;
+	filters?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

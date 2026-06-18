@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	label = "",
 	value = "",
@@ -14,7 +16,7 @@ let {
 	variant?: "default" | "success" | "warning" | "destructive";
 	progress?: number;
 	progressMax?: number;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 const borderTop: Record<string, string> = {

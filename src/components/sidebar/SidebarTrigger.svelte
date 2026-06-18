@@ -1,7 +1,8 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { getSidebarContext } from "./sidebar-context.svelte";
 
-let { children }: { children?: import("svelte").Snippet } = $props();
+let { children }: { children?: Snippet } = $props();
 
 const _ctx = getSidebarContext();
 </script>

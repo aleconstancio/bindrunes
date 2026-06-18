@@ -1,10 +1,12 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	label = "",
 	action,
 }: {
 	label?: string;
-	action?: import("svelte").Snippet;
+	action?: Snippet;
 } = $props();
 </script>
 

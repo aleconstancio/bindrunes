@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Tabs } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsTabs = Tabs;
 
@@ -10,7 +11,7 @@ let {
 }: {
 	value?: string;
 	disabled?: boolean;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

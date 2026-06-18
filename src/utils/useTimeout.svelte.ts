@@ -1,5 +1,3 @@
-import { onDestroy } from "svelte";
-
 export function useTimeout(callback: () => void, delay: number) {
 	let id: ReturnType<typeof setTimeout> | undefined;
 	let fired = $state(false);
@@ -20,7 +18,10 @@ export function useTimeout(callback: () => void, delay: number) {
 	}
 
 	start();
-	onDestroy(clear);
+
+	$effect(() => {
+		return () => clear();
+	});
 
 	return {
 		get fired() {

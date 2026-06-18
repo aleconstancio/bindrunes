@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import type { TFunction } from "../shared-types";
 import type { FormState } from "../utils/createForm.svelte";
 import Button from "./Button.svelte";
@@ -40,7 +41,7 @@ let {
 	successMessage?: string;
 	errorMessage?: string;
 	disableToast?: boolean;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 let submitting = $state(false);

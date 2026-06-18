@@ -29,7 +29,7 @@
 	<ProjectGrid {projects} columns={3} />
 
 	<div class="space-y-4">
-		<h2 class="text-display-3 text-foreground">Case Study</h2>
+		<h2 id="case-study" class="text-display-3 text-foreground">Case Study</h2>
 
 		<CaseStudy
 			title="Redesigning the Checkout Flow"

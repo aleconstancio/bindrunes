@@ -100,6 +100,7 @@
 		},
 		"./scaffold/*": {
 			"types": "./dist/components/scaffold/*.d.ts",
+			"svelte": "./dist/components/scaffold/*.svelte",
 			"default": "./dist/components/scaffold/*"
 		},
 		"./agentic": {
@@ -119,18 +120,22 @@
 		},
 		"./actions/*": {
 			"types": "./dist/actions/*.d.ts",
+			"svelte": "./dist/actions/*.svelte",
 			"default": "./dist/actions/*"
 		},
 		"./utils/*": {
 			"types": "./dist/utils/*.d.ts",
+			"svelte": "./dist/utils/*.svelte.js",
 			"default": "./dist/utils/*"
 		},
 		"./components/*": {
 			"types": "./dist/components/*.d.ts",
+			"svelte": "./dist/components/*.svelte",
 			"default": "./dist/components/*"
 		},
 		"./i18n/*": {
 			"types": "./dist/i18n/*.d.ts",
+			"svelte": "./dist/i18n/*.js",
 			"default": "./dist/i18n/*"
 		},
 		"./Button": {
@@ -218,6 +223,7 @@
 	},
 	"dependencies": {
 		"bits-ui": "^2.18.1",
+		"tailwind-merge": "^3.6.0",
 		"valibot": "^1.4.1"
 	},
 	"devDependencies": {

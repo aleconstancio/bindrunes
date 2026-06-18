@@ -1,4 +1,3 @@
-import { onDestroy } from "svelte";
 import { isBrowser } from "./isBrowser";
 
 export function useResizeObserver(
@@ -24,7 +23,9 @@ export function useResizeObserver(
 
 	if (element) setup();
 
-	onDestroy(cleanup);
+	$effect(() => {
+		return () => cleanup();
+	});
 
 	return {
 		destroy() {

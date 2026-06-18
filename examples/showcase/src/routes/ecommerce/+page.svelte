@@ -58,7 +58,7 @@
 	<PageHeader title="E-commerce" description="Products, cart, checkout, order summary, and price display" />
 
 	<p class="text-body-sm text-muted-foreground">
-		See also: <a href="#checkout" on:click={() => activeTab = 'checkout'} class="text-primary hover:underline">Checkout flow</a> tab above.
+		See also: <a href="#checkout" onclick={() => activeTab = 'checkout'} class="text-primary hover:underline">Checkout flow</a> tab above.
 	</p>
 
 	<Tabs bind:value={activeTab}>

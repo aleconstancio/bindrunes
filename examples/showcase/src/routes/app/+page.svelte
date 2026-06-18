@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, Collapsible, CodeSnippet } from "bindrunes";
+	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, useToggle, useCounter, Collapsible, CodeSnippet } from "bindrunes";
 	import { Home, Settings, Users, BarChart3, Search, Keyboard, Palette, Sliders } from "lucide-svelte";
 
 	const sidebar = createSidebarState(true);
@@ -36,10 +36,10 @@
 	let lastShortcut = $state("none");
 
 	// UI Composables demo state
+	const toggled = useToggle(false);
+	const counter = useCounter(0);
 	let clipboardText = $state("");
 	let localValue = $state("");
-	let toggled = $state(false);
-	let counter = $state(0);
 	let activeTab = $state("primitives");
 
 	// createAuth demo
@@ -274,10 +274,10 @@
 						<div class="p-3 rounded-[--radius] bg-muted/50">
 							<p class="text-label-sm text-foreground mb-2">useToggle</p>
 							<div class="flex items-center gap-3">
-								<Button size="sm" onclick={() => toggled = !toggled}>
-									{toggled ? "ON" : "OFF"}
+								<Button size="sm" onclick={() => toggled.toggle()}>
+									{toggled.value ? "ON" : "OFF"}
 								</Button>
-								<span class="text-body-sm text-muted-foreground">State: {toggled}</span>
+								<span class="text-body-sm text-muted-foreground">State: {toggled.value}</span>
 							</div>
 						</div>
 
@@ -285,9 +285,9 @@
 						<div class="p-3 rounded-[--radius] bg-muted/50">
 							<p class="text-label-sm text-foreground mb-2">useCounter</p>
 							<div class="flex items-center gap-3">
-								<Button size="sm" variant="outline" onclick={() => counter--}>−</Button>
-								<span class="text-body-lg text-foreground font-mono w-12 text-center">{counter}</span>
-								<Button size="sm" variant="outline" onclick={() => counter++}>+</Button>
+								<Button size="sm" variant="outline" onclick={() => counter.decrement()}>−</Button>
+								<span class="text-body-lg text-foreground font-mono w-12 text-center">{counter.count}</span>
+								<Button size="sm" variant="outline" onclick={() => counter.increment()}>+</Button>
 							</div>
 						</div>
 

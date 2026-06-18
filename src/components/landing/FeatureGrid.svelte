@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Card from "../Card.svelte";
 import DynamicIcon from "../DynamicIcon.svelte";
 import MetaContainer from "../MetaContainer.svelte";
@@ -8,9 +9,9 @@ interface Props {
 	features: { icon: string; title: string; description: string }[];
 	columns?: number;
 	variant?: "card" | "inline";
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 	class?: string;
-	featureSnippet?: import("svelte").Snippet<
+	featureSnippet?: Snippet<
 		[{ feature: { icon: string; title: string; description: string }; index: number }]
 	>;
 }

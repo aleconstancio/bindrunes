@@ -1,12 +1,14 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	label,
 	action,
 	children,
 }: {
 	label?: string;
-	action?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	action?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

@@ -144,9 +144,6 @@ declare const _durationSnappy: never;
 declare const _durationFluid: never;
 /** Slow transition duration (360ms). Type: <time>. Registered @property. */
 declare const _durationSlow: never;
-/** Default easing curve. Type: <easing-function>. */
-declare const _easingDefault: never;
-
 /** Standard easing. Type: <easing-function> */
 declare const _easeStandard: never;
 /** Emphasized easing. Type: <easing-function> */

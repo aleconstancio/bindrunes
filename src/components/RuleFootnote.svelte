@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	title = "Regra Crítica",
 	description = "",
@@ -6,7 +8,7 @@ let {
 }: {
 	title?: string;
 	description?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { AlertDialog } from "bits-ui";
+import type { Snippet } from "svelte";
 import Button from "./Button.svelte";
 
 let {
@@ -24,8 +25,8 @@ let {
 	onCancel?: () => void;
 	open?: boolean;
 	class?: string;
-	trigger?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	trigger?: Snippet;
+	children?: Snippet;
 } = $props();
 
 function _handleConfirm() {

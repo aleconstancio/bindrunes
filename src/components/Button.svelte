@@ -29,6 +29,7 @@ let {
 	class: className = "",
 	style = undefined as string | undefined,
 	children,
+	...restProps
 }: {
 	variant?: Variant;
 	size?: Size;
@@ -82,6 +83,7 @@ const transitionStyle =
     class:w-full={fullWidth}
     data-loading={loading || undefined}
     style="{transitionStyle}{style ? `; ${style}` : ''}"
+    {...restProps}
   >
     {#if loading}
       <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full {iconOnly ? '' : 'mr-1.5'}"></span>
@@ -97,6 +99,7 @@ const transitionStyle =
     class="{base} {variantClasses[variant]} {sizeClasses[size]} {fullWidth ? 'w-full' : ''} {iconOnly ? 'px-0 aspect-square' : ''} {className}"
     data-loading={loading || undefined}
     style="{transitionStyle}{style ? `; ${style}` : ''}"
+    {...restProps}
   >
     {#if loading}
       <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full {iconOnly ? '' : 'mr-1.5'}"></span>

@@ -1,5 +1,3 @@
-import { onDestroy } from "svelte";
-
 export function useInterval(callback: () => void, delay: number | null) {
 	let id: ReturnType<typeof setInterval> | undefined;
 
@@ -24,7 +22,10 @@ export function useInterval(callback: () => void, delay: number | null) {
 	}
 
 	start();
-	onDestroy(stop);
+
+	$effect(() => {
+		return () => stop();
+	});
 
 	return { stop, reset };
 }

@@ -4,6 +4,7 @@
  * Import alongside global.css for landing pages:
  * @import "bindrunes/styles/landing.css";
  * ══════════════════════════════════════════════════ */
+@import "./utilities.css";
 
 :root {
 	scroll-behavior: smooth;
@@ -11,14 +12,14 @@
 }
 
 @layer base {
-	:global(.landing-page) h1,
-	:global(.landing-page) h2,
-	:global(.landing-page) h3 {
+	.landing-page h1,
+	.landing-page h2,
+	.landing-page h3 {
 		text-wrap: balance;
 	}
 
-	:global(.landing-page) p,
-	:global(.landing-page) li {
+	.landing-page p,
+	.landing-page li {
 		text-wrap: pretty;
 	}
 }
@@ -55,29 +56,29 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	:global(.section-reveal) {
+	.section-reveal {
 		animation: fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards;
 	}
 
 	@supports (animation-timeline: scroll()) {
-		:global(.section-reveal) {
+		.section-reveal {
 			animation-timeline: view();
 			animation-range: entry 0% entry 30%;
 		}
 	}
 
-	:global(.stagger-enter) {
+	.stagger-enter {
 		animation: fade-slide-up 0.5s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) both;
 		animation-delay: calc(var(--stagger-index, 0) * var(--stagger-step));
 	}
 
-	:global(.stagger-enter.scale) {
+	.stagger-enter.scale {
 		animation-name: scale-in;
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	:global(.stagger-enter) {
+	.stagger-enter {
 		animation: none;
 		opacity: 1;
 	}

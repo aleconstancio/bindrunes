@@ -26,8 +26,8 @@ interface Props {
 let {
 	plans,
 	showToggle = true,
-	currency = "BRL",
-	locale = "pt-BR",
+	currency = "USD",
+	locale = "en-US",
 	customCard,
 	customFeature,
 	children,
@@ -44,11 +44,11 @@ const formatCurrency = (n: number) =>
 <MetaContainer size="xl" class={className}>
   {#if showToggle}
     <div class="flex items-center justify-center gap-3">
-      <span class="text-label-md {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Mensal'}</span>
+      <span class="text-label-md {!landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.monthly') ?? 'Monthly'}</span>
       <Switch checked={landing.billingAnnual} onchange={() => landing.setBillingAnnual(!landing.billingAnnual)} />
-      <span class="text-label-md {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Anual'}</span>
+      <span class="text-label-md {landing.billingAnnual ? 'text-foreground' : 'text-muted-foreground'}">{t?.('landing.PricingTable.annual') ?? 'Annual'}</span>
       {#if !landing.billingAnnual}
-        <Badge variant="primary">{t?.('landing.PricingTable.saveUpTo') ?? 'Economize até 20%'}</Badge>
+        <Badge variant="primary">{t?.('landing.PricingTable.saveUpTo') ?? 'Save up to 20%'}</Badge>
       {/if}
     </div>
   {/if}
@@ -65,7 +65,7 @@ const formatCurrency = (n: number) =>
                 {#if plan.highlight}
                   <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
                     <div class="inline-flex items-center rounded-full border border-primary/30 bg-primary px-3 py-1 text-mono-xs uppercase text-primary-foreground shadow-lg">
-                      {plan.badge ?? (t?.('landing.PricingTable.mostChosen') ?? 'Mais escolhido')}
+                      {plan.badge ?? (t?.('landing.PricingTable.mostChosen') ?? 'Most popular')}
                     </div>
                   </div>
                 {/if}
@@ -75,10 +75,10 @@ const formatCurrency = (n: number) =>
                 <div class="text-center pricing-price">
                   {#if landing.billingAnnual}
                     <p class="text-display-2 text-foreground sm:text-display-1">{formatCurrency(plan.annual)}</p>
-                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perYear') ?? 'por ano'} <span class="text-body-sm text-primary font-medium">({t?.('landing.PricingTable.save') ?? 'economize R$ '}{(plan.monthly * 12 - plan.annual).toLocaleString(locale)})</span></p>
+                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perYear') ?? 'per year'} <span class="text-body-sm text-primary font-medium">({t?.('landing.PricingTable.save') ?? 'save '}{formatCurrency(plan.monthly * 12 - plan.annual)})</span></p>
                   {:else}
                     <p class="text-display-2 text-foreground sm:text-display-1">{formatCurrency(plan.monthly)}</p>
-                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perMonth') ?? 'por mês'}</p>
+                    <p class="text-body-md text-muted-foreground">{t?.('landing.PricingTable.perMonth') ?? 'per month'}</p>
                   {/if}
                 </div>
                 <ul class="space-y-3 pricing-features">

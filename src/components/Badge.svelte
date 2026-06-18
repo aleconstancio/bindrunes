@@ -21,6 +21,7 @@ let {
 	onRemove = undefined as (() => void) | undefined,
 	icon,
 	children,
+	...restProps
 }: {
 	variant?: Variant;
 	size?: Size;
@@ -54,7 +55,8 @@ const sizeClasses: Record<Size, string> = {
   class="inline-flex items-center gap-1 rounded-full font-medium
          transition-colors duration-[--duration-snappy]
          {variantClasses[variant]} {sizeClasses[size]}"
->
+   {...restProps}
+ >
   {#if icon}
     <span class="shrink-0">{@render icon()}</span>
   {/if}

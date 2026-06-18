@@ -12,6 +12,7 @@ let {
 	side = "bottom" as "top" | "right" | "bottom" | "left",
 	align = "start" as "start" | "center" | "end",
 	itemSnippet = undefined as Snippet<[{ item: SelectOption }]> | undefined,
+	open = $bindable(false),
 }: {
 	trigger?: Snippet;
 	items?: SelectOption[];
@@ -19,10 +20,11 @@ let {
 	side?: "top" | "right" | "bottom" | "left";
 	align?: "start" | "center" | "end";
 	itemSnippet?: Snippet<[{ item: SelectOption }]>;
+	open?: boolean;
 } = $props();
 </script>
 
-<BitsDropdown.Root>
+<BitsDropdown.Root bind:open>
   <BitsDropdown.Trigger class="inline-flex cursor-pointer">{@render trigger?.()}</BitsDropdown.Trigger>
   <BitsDropdown.Content
     {side} {align}

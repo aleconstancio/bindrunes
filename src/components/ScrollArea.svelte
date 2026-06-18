@@ -1,5 +1,6 @@
 <script lang="ts">
 import { ScrollArea } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsScrollArea = ScrollArea;
 
@@ -8,7 +9,7 @@ let {
 	children,
 }: {
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

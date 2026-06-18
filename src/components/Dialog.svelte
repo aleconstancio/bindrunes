@@ -26,7 +26,7 @@ let {
 	actions?: Snippet;
 } = $props();
 
-const sizeClasses: Record<string, string> = {
+const sizeClasses: Record<"sm" | "md" | "lg" | "xl" | "full", string> = {
 	sm: "max-w-sm",
 	md: "max-w-md",
 	lg: "max-w-lg",

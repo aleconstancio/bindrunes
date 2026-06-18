@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	isActive = false,
 	href = undefined as string | undefined,
@@ -8,7 +10,7 @@ let {
 	isActive?: boolean;
 	href?: string;
 	onclick?: (e: MouseEvent) => void;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 let tag = $derived(href ? "a" : onclick ? "button" : "div");

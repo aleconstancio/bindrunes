@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-160+ components · 47 composables · 12 Boundrune categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
+220+ components · 46 composables · 12 Boundrune categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
 
 ## Features
 
@@ -93,6 +93,7 @@ export default defineConfig({
 | `bindrunes/actions/*` | Svelte actions |
 | `bindrunes/utils/*` | Individual utility imports |
 | `bindrunes/components/*` | Individual component imports |
+| `bindrunes/Button` | Direct component import (tree-shakeable) |
 | `bindrunes/i18n/*` | i18n translation files |
 
 ---

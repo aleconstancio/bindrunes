@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	label = undefined as string | undefined,
 	value = $bindable(""),
@@ -19,6 +21,7 @@ let {
 		| "time"
 		| "textarea",
 	name = undefined as string | undefined,
+	id = undefined as string | undefined,
 	prefix,
 	suffix,
 	class: className = "",
@@ -42,16 +45,19 @@ let {
 		| "time"
 		| "textarea";
 	name?: string;
-	prefix?: import("svelte").Snippet;
-	suffix?: import("svelte").Snippet;
+	id?: string;
+	prefix?: Snippet;
+	suffix?: Snippet;
 	class?: string;
 } = $props();
 
-let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` : undefined);
+const inputId = id ?? name;
+
+let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-helper` : undefined);
 </script>
 
 {#if label}
-  <label class="block text-label-md mb-2 text-muted-foreground" for={name}>
+  <label class="block text-label-md mb-2 text-muted-foreground" for={inputId}>
     {label}
     {#if required}<span class="text-destructive">*</span>{/if}
   </label>
@@ -66,7 +72,7 @@ let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` :
 
   {#if type === 'textarea'}
     <textarea
-      id={name}
+      id={inputId}
       {name}
       {placeholder}
       {disabled}
@@ -86,7 +92,7 @@ let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` :
     ></textarea>
   {:else}
     <input
-      id={name}
+      id={inputId}
       {type}
       {name}
       {placeholder}
@@ -114,7 +120,7 @@ let describedBy = $derived(error ? `${name}-error` : helper ? `${name}-helper` :
 </div>
 
 {#if error}
-  <p id="{name}-error" class="mt-1.5 text-body-sm text-destructive">{error}</p>
+  <p id="{inputId}-error" class="mt-1.5 text-body-sm text-destructive">{error}</p>
 {:else if helper}
-  <p id="{name}-helper" class="mt-1.5 text-body-sm text-muted-foreground">{helper}</p>
+  <p id="{inputId}-helper" class="mt-1.5 text-body-sm text-muted-foreground">{helper}</p>
 {/if}

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Collapsible } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsCollapsible = Collapsible;
 
@@ -12,9 +13,9 @@ let {
 }: {
 	open?: boolean;
 	disabled?: boolean;
-	trigger?: import("svelte").Snippet;
+	trigger?: Snippet;
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

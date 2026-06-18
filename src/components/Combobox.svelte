@@ -25,9 +25,14 @@ let {
 
 let inputValue = $state("");
 
-let _filtered = $derived(
-	options.filter((o) => o.label.toLowerCase().includes(inputValue.toLowerCase())),
-);
+function normalize(str: string): string {
+	return str
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.toLowerCase();
+}
+
+let _filtered = $derived(options.filter((o) => normalize(o.label).includes(normalize(inputValue))));
 </script>
 
 <Combobox.Root bind:value bind:inputValue {disabled} class="relative {className}">

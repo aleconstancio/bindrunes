@@ -17,7 +17,7 @@ let {
 	side?: "top" | "right" | "bottom" | "left";
 	openDelay?: number;
 	closeDelay?: number;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

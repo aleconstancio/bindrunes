@@ -13,6 +13,7 @@ let {
 	auth: existingAuth,
 	fallback = "/login",
 	unauthorizedFallback = "/403",
+	navigate,
 	children,
 }: {
 	storage?: AuthStorage;
@@ -22,7 +23,8 @@ let {
 	auth?: ReturnType<typeof createAuth>;
 	fallback?: string;
 	unauthorizedFallback?: string;
-	children?: import("svelte").Snippet;
+	navigate?: (url: string) => void;
+	children?: Snippet;
 } = $props();
 
 const safeFallback = $derived(isSafeRedirect(fallback) ? fallback : "/login");
@@ -57,11 +59,19 @@ $effect(() => {
 	if (typeof window === "undefined") return;
 	if (!auth.isAuthenticated) {
 		if (window.location.pathname !== safeFallback) {
-			window.location.href = safeFallback;
+			if (navigate) {
+				navigate(safeFallback);
+			} else {
+				window.location.href = safeFallback;
+			}
 		}
 	} else if (!accessGranted) {
 		if (window.location.pathname !== safeUnauthorized) {
-			window.location.href = safeUnauthorized;
+			if (navigate) {
+				navigate(safeUnauthorized);
+			} else {
+				window.location.href = safeUnauthorized;
+			}
 		}
 	}
 });

@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	icon,
 	title = undefined as string | undefined,
@@ -6,10 +8,10 @@ let {
 	action,
 	class: className = "",
 }: {
-	icon?: import("svelte").Snippet;
+	icon?: Snippet;
 	title?: string;
 	description?: string;
-	action?: import("svelte").Snippet;
+	action?: Snippet;
 	class?: string;
 } = $props();
 </script>

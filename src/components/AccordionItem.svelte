@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Accordion } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsAccordion = Accordion;
 
@@ -13,8 +14,8 @@ let {
 	value: string;
 	disabled?: boolean;
 	class?: string;
-	trigger?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	trigger?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

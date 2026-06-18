@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Progress from "./Progress.svelte";
 
 type FileEntry = {
@@ -16,7 +17,7 @@ let {
 	multiple = true,
 	onUpload = undefined as ((files: File[]) => Promise<void>) | undefined,
 	class: className = "",
-	dropzone = undefined as import("svelte").Snippet | undefined,
+	dropzone = undefined as Snippet | undefined,
 }: {
 	accept?: string[];
 	maxFiles?: number;
@@ -24,7 +25,7 @@ let {
 	multiple?: boolean;
 	onUpload?: (files: File[]) => Promise<void>;
 	class?: string;
-	dropzone?: import("svelte").Snippet;
+	dropzone?: Snippet;
 } = $props();
 
 let files = $state<FileEntry[]>([]);

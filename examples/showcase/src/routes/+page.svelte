@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, Badge, ThemeToggle } from "bindrunes";
+	import { Card, Badge } from "bindrunes";
 	import {
 		Layout,
 		Shield,

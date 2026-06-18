@@ -79,8 +79,6 @@ for (const sub of REMOVED_DIRS) {
 	}
 }
 
-rmSync(join(DIST, "components", "__tests__"), { recursive: true, force: true });
-
 console.log(
 	`[build-clean] removed ${removedFiles} file(s), fixed ${fixedFiles} file(s), removed ${removedDirs} dir(s) from dist/`,
 );

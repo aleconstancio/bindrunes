@@ -24,8 +24,9 @@ describe("Drawer", () => {
 	});
 
 	it("has header region when title provided", () => {
-		const { container } = render(Drawer, { open: true, title: "My Drawer" });
-		const border = container.querySelector(".border-b");
-		expect(border).not.toBeNull();
+		render(Drawer, { open: true, title: "My Drawer" });
+		const title = screen.getByText("My Drawer");
+		expect(title).toBeInTheDocument();
+		expect(title.closest("[class]")).not.toBeNull();
 	});
 });

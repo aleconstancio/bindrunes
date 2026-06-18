@@ -1,7 +1,7 @@
 # bindrunes — Agent Laws
 
 ## Architecture
-Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 88 exported components, 20+ createX() composables, 6 themes.
+Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components, 46 createX()/useX() composables, 6 themes.
 
 ## Three Orthogonal Axes (v1.0+)
 - Theme (`data-theme=editorial|dracula|nord|catppuccin|rose-pine|github`) → color identity

@@ -9,6 +9,7 @@
   For child component errors, use try/catch in async code or handle errors at the data layer.
 -->
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import type { TFunction } from "../shared-types";
 import { toError } from "../utils/toError";
@@ -39,7 +40,7 @@ let {
 	onError?: (error: Error) => void;
 	onRetry?: () => void;
 	disableToast?: boolean;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 let error = $state<Error | null>(null);

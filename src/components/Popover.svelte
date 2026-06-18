@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Popover } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsPopover = Popover;
 
@@ -15,18 +16,16 @@ let {
 	side?: "top" | "right" | "bottom" | "left";
 	align?: "start" | "center" | "end";
 	class?: string;
-	trigger?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	trigger?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 
 <div class="relative inline-block">
   <BitsPopover.Root bind:open>
-    <div role="button" aria-haspopup="true" aria-expanded={open} class="inline-flex">
-      <BitsPopover.Trigger class="inline-flex focus:outline-none bg-transparent border-0 p-0 cursor-pointer">
-        {@render trigger?.()}
-      </BitsPopover.Trigger>
-    </div>
+    <BitsPopover.Trigger class="inline-flex focus:outline-none bg-transparent border-0 p-0 cursor-pointer">
+      {@render trigger?.()}
+    </BitsPopover.Trigger>
 
     <BitsPopover.Content
       {side}

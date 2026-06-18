@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Toggle } from "bits-ui";
+import type { Snippet } from "svelte";
 
 const BitsToggle = Toggle;
 
@@ -13,7 +14,7 @@ let {
 	pressed?: boolean;
 	disabled?: boolean;
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 	ariaLabel?: string;
 } = $props();
 </script>

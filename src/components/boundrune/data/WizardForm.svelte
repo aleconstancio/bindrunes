@@ -46,6 +46,7 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
                      {i < currentStep ? 'bg-primary text-primary-foreground border-primary' : ''}
                      {i === currentStep ? 'bg-primary text-primary-foreground border-primary' : ''}
                      {i > currentStep ? 'bg-muted text-muted-foreground border-border' : ''}"
+              aria-current={i === currentStep ? "step" : undefined}
             >
               {i < currentStep ? '✓' : i + 1}
             </div>
@@ -56,7 +57,11 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
           {/if}
         {/each}
       </div>
-      <div class="h-1 bg-muted rounded-full overflow-hidden">
+      <div class="h-1 bg-muted rounded-full overflow-hidden"
+           role="progressbar"
+           aria-valuenow={currentStep + 1}
+           aria-valuemin="1"
+           aria-valuemax={steps.length}>
         <div class="h-full bg-primary transition-all duration-[--duration-fluid]" style="width: {progress}%"></div>
       </div>
     </div>

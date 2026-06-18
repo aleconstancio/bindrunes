@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { Component } from "svelte";
+import type { Component, Snippet } from "svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import { derivePageInfo } from "../../utils/navigation";
 import MetaLayout from "../MetaLayout.svelte";
@@ -24,7 +24,7 @@ let {
 	scopeDescription = undefined as string | undefined,
 	ruleTitle = undefined as string | undefined,
 	ruleDescription = undefined as string | undefined,
-	ruleChildren = undefined as import("svelte").Snippet | undefined,
+	ruleChildren = undefined as Snippet | undefined,
 	headerPrefix = "",
 	defaultTitle = "Home",
 	defaultDescription = "",
@@ -52,7 +52,7 @@ let {
 	scopeDescription?: string;
 	ruleTitle?: string;
 	ruleDescription?: string;
-	ruleChildren?: import("svelte").Snippet;
+	ruleChildren?: Snippet;
 	headerPrefix?: string;
 	defaultTitle?: string;
 	defaultDescription?: string;
@@ -62,10 +62,10 @@ let {
 	statusChip?: { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean };
 	onNavigate?: (to: string) => void;
 	t?: TFunction;
-	sidebarHeader?: import("svelte").Snippet;
-	sidebarFooter?: import("svelte").Snippet;
-	headerActions?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	sidebarHeader?: Snippet;
+	sidebarFooter?: Snippet;
+	headerActions?: Snippet;
+	children?: Snippet;
 } = $props();
 
 let pagePath = $derived(

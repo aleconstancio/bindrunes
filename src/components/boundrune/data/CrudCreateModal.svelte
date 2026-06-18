@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import type { BaseIssue, BaseSchema } from "valibot";
 import type { FormState } from "../../../utils/createForm.svelte";
 import Dialog from "../../Dialog.svelte";
@@ -24,7 +25,7 @@ let {
 	onSuccess?: () => void;
 	onError?: (err: Error) => void;
 	loading?: boolean;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { ModeWatcher } from "mode-watcher";
+import type { Snippet } from "svelte";
 import { type Aesthetic, createAesthetic } from "../utils/createAesthetic.svelte";
 import { createDensity, type Density } from "../utils/createDensity.svelte";
 import { createTheme, type Theme } from "../utils/createTheme.svelte";
@@ -13,7 +14,7 @@ let {
 	themeDefault?: Theme;
 	aestheticDefault?: Aesthetic;
 	densityDefault?: Density;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 // svelte-ignore state_referenced_locally

@@ -266,7 +266,7 @@
 	<PageHeader title="Data Components" description="CRUD tables, forms, wizards, import/export, and data fetching" />
 
 	<Tabs bind:value={activeTab}>
-		<TabsList>
+		<TabsList class="overflow-x-auto">
 			<TabsTrigger value="wizard">Wizard</TabsTrigger>
 			<TabsTrigger value="export">Export</TabsTrigger>
 			<TabsTrigger value="import">Import</TabsTrigger>

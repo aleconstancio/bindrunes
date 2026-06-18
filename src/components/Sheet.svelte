@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Dialog } from "bits-ui";
+import type { Snippet } from "svelte";
 
 type SheetSize = "sm" | "md" | "lg";
 
@@ -20,9 +21,9 @@ let {
 	title?: string;
 	ariaLabel?: string;
 	class?: string;
-	header?: import("svelte").Snippet;
-	footer?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	header?: Snippet;
+	footer?: Snippet;
+	children?: Snippet;
 } = $props();
 
 const sideSizeMap: Record<SheetSize, Record<string, string>> = {
@@ -76,7 +77,9 @@ const positionStyles: Record<string, string> = {
             class="p-1 rounded text-muted-foreground hover:text-foreground transition-colors cursor-pointer select-none"
             aria-label="Close"
           >
-            ×
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11.5 3.5l-7 7M3.5 3.5l7 7" />
+            </svg>
           </Dialog.Close>
         </div>
       {/if}

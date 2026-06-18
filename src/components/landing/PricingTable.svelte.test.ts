@@ -45,15 +45,15 @@ describe("PricingTable", () => {
 		expect(screen.getByText("Buy")).toBeInTheDocument();
 	});
 
-	it('renders "Mais escolhido" badge for highlighted plan', async () => {
+	it('renders "Most popular" badge for highlighted plan', async () => {
 		render(PricingHarness, { plans });
 		await tick();
-		expect(screen.getByText("Mais escolhido")).toBeInTheDocument();
+		expect(screen.getByText("Most popular")).toBeInTheDocument();
 	});
 
 	it("renders without toggle when showToggle=false", async () => {
 		render(PricingHarness, { plans, showToggle: false });
 		await tick();
-		expect(screen.queryByText("Mensal")).not.toBeInTheDocument();
+		expect(screen.queryByText("Monthly")).not.toBeInTheDocument();
 	});
 });

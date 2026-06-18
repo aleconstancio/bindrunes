@@ -77,11 +77,10 @@ Sizes: sm (24rem), md (32rem), lg (40rem), xl (48rem), full (100vw).
 
 | Variant | Background | Text | Border | Icon Color |
 |---------|-----------|------|--------|------------|
-| default | `--card` | `--card-foreground` | `--border` | — |
-| destructive | `--destructive-soft` | `--destructive` | `--destructive` | `--destructive` |
-| success | `--success-soft` | `--success` | `--success` | `--success` |
-| warning | `--warning-soft` | `--warning` | `--warning` | `--warning` |
-| info | `--info-soft` | `--info` | `--info` | `--info` |
+| info | `--card` | `--foreground` | `border-l-4 --info` | `--muted-foreground` |
+| success | `--card` | `--foreground` | `border-l-4 --success` | `--muted-foreground` |
+| warning | `--card` | `--foreground` | `border-l-4 --warning` | `--muted-foreground` |
+| destructive | `--card` | `--foreground` | `border-l-4 --destructive` | `--muted-foreground` |
 
 ---
 

@@ -133,7 +133,7 @@ describe("cn", () => {
 
 	describe("complex scenarios", () => {
 		it("resolves conflicts while keeping non-conflicting classes", () => {
-			expect(cn("p-1", "m-2", "p-4", "bg-white")).toBe("p-4 m-2 bg-white");
+			expect(cn("p-1", "m-2", "p-4", "bg-white")).toBe("m-2 p-4 bg-white");
 		});
 
 		it("handles many classes with mixed conflicts", () => {

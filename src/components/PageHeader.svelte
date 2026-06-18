@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Breadcrumb from "./Breadcrumb.svelte";
 
 let {
@@ -15,8 +16,8 @@ let {
 	backHref?: string;
 	breadcrumbs?: { label: string; href?: string }[];
 	class?: string;
-	actions?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
+	actions?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

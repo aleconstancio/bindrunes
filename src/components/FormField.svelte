@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	label = "",
 	error = undefined as string | undefined,
@@ -12,7 +14,7 @@ let {
 	hint?: string;
 	required?: boolean;
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

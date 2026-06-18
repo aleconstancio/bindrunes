@@ -14,22 +14,22 @@ describe("Popover", () => {
 		expect(wrapper).toBeInTheDocument();
 	});
 
-	it("renders trigger wrapper with role button", () => {
+	it("renders trigger with aria-haspopup", () => {
 		const { container } = render(Popover);
-		const triggerWrapper = container.querySelector('[role="button"]');
-		expect(triggerWrapper).toBeInTheDocument();
-		expect(triggerWrapper).toHaveAttribute("aria-haspopup", "true");
+		const trigger = container.querySelector("button.inline-flex");
+		expect(trigger).toBeInTheDocument();
+		expect(trigger).toHaveAttribute("aria-haspopup", "dialog");
 	});
 
 	it("aria-expanded is false when closed", () => {
 		const { container } = render(Popover);
-		const trigger = container.querySelector('[role="button"]');
+		const trigger = container.querySelector("button.inline-flex");
 		expect(trigger?.getAttribute("aria-expanded")).toBe("false");
 	});
 
 	it("clicking the trigger does not throw", async () => {
 		const { container } = render(Popover);
-		const trigger = container.querySelector('[role="button"]')!;
+		const trigger = container.querySelector("button.inline-flex")!;
 		await fireEvent.click(trigger);
 		expect(trigger).toBeInTheDocument();
 	});

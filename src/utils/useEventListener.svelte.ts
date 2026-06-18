@@ -1,4 +1,3 @@
-import { onDestroy } from "svelte";
 import { isBrowser } from "./isBrowser";
 
 export function useEventListener<K extends keyof WindowEventMap>(
@@ -17,7 +16,10 @@ export function useEventListener<K extends keyof WindowEventMap>(
 	}
 
 	setup();
-	onDestroy(cleanup);
+
+	$effect(() => {
+		return () => cleanup();
+	});
 
 	return {
 		destroy() {

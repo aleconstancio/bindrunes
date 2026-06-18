@@ -48,5 +48,26 @@ bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis de
 - `bindrunes/boundrune` — Pre-composed page patterns (12 categories)
 - `bindrunes/dashboard` — Dashboard shell components
 - `bindrunes/sidebar` — Sidebar navigation components
+- `bindrunes/scaffold` — Pre-built scaffold/demo layouts
+- `bindrunes/agentic` — Agentic chat kernel composables
 - `bindrunes/tailwind` — Tailwind CSS v4 integration plugin
 - `bindrunes/styles/*` — Presets and theme CSS
+- `bindrunes/densities/*` — Density scale CSS
+- `bindrunes/actions/*` — Svelte actions
+- `bindrunes/utils/*` — Individual utility imports
+- `bindrunes/components/*` — Individual component imports
+- `bindrunes/i18n/*` — i18n translation files
+- `bindrunes/Button` — Direct component import (tree-shakeable)
+- `bindrunes/Card` — Direct component import (tree-shakeable)
+- `bindrunes/Input` — Direct component import (tree-shakeable)
+- `bindrunes/Dialog` — Direct component import (tree-shakeable)
+- `bindrunes/Form` — Direct component import (tree-shakeable)
+- `bindrunes/Select` — Direct component import (tree-shakeable)
+- `bindrunes/Badge` — Direct component import (tree-shakeable)
+- `bindrunes/Alert` — Direct component import (tree-shakeable)
+- `bindrunes/Sheet` — Direct component import (tree-shakeable)
+- `bindrunes/Switch` — Direct component import (tree-shakeable)
+- `bindrunes/Checkbox` — Direct component import (tree-shakeable)
+- `bindrunes/Tooltip` — Direct component import (tree-shakeable)
+- `bindrunes/Popover` — Direct component import (tree-shakeable)
+- `bindrunes/DropdownMenu` — Direct component import (tree-shakeable)

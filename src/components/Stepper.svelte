@@ -31,17 +31,15 @@ let {
     <div class="flex items-center gap-2" role="listitem">
       {#if i > 0}
         <div
-          class="h-px w-8 transition-colors"
-          style="background: {isCompleted ? 'var(--primary)' : 'var(--border)'};"
+          class="h-px w-8 transition-colors {isCompleted ? 'bg-primary' : 'bg-border'}"
           aria-hidden="true"
         ></div>
       {/if}
 
       <div class="flex items-center gap-2">
         <div
-          class="h-7 w-7 rounded-full flex items-center justify-center text-body-sm font-semibold transition-colors"
-          style="background: {isCompleted || isActive ? 'var(--primary)' : 'var(--muted)'};
-                 color: {isCompleted || isActive ? 'var(--primary-foreground)' : 'var(--muted-foreground)'};"
+          class="h-7 w-7 rounded-full flex items-center justify-center text-body-sm font-semibold transition-colors
+                 {isCompleted || isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}"
           aria-current={isActive ? "step" : undefined}
         >
           {#if isCompleted}
@@ -51,8 +49,7 @@ let {
           {/if}
         </div>
         <span
-          class="text-label-md font-medium"
-          style="color: {isActive ? 'var(--foreground)' : 'var(--muted-foreground)'};"
+          class="text-label-md font-medium {isActive ? 'text-foreground' : 'text-muted-foreground'}"
         >
           {step.label}
         </span>

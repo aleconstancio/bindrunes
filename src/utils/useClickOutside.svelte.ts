@@ -1,5 +1,3 @@
-import { onDestroy } from "svelte";
-
 export function useClickOutside(
 	element: HTMLElement | null,
 	callback: () => void,
@@ -24,7 +22,9 @@ export function useClickOutside(
 
 	if (element) setup();
 
-	onDestroy(cleanup);
+	$effect(() => {
+		return () => cleanup();
+	});
 
 	return {
 		setEnabled(value: boolean) {

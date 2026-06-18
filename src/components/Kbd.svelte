@@ -1,10 +1,12 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	class: className = "",
 	children,
 }: {
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

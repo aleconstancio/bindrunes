@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 type Variant = "surface" | "glass" | "outlined" | "ghost";
 
 let {
@@ -12,6 +14,7 @@ let {
 	children,
 	footer,
 	class: className = "",
+	...restProps
 }: {
 	variant?: Variant;
 	interactive?: boolean;
@@ -19,9 +22,9 @@ let {
 	href?: string;
 	ariaLabel?: string;
 	onclick?: (e: MouseEvent) => void;
-	header?: import("svelte").Snippet;
-	children?: import("svelte").Snippet;
-	footer?: import("svelte").Snippet;
+	header?: Snippet;
+	children?: Snippet;
+	footer?: Snippet;
 	class?: string;
 } = $props();
 
@@ -42,6 +45,7 @@ const vars: Record<Variant, string> = {
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
            {interactive ? 'bindrunes-card-interactive' : ''}
            {className}"
+    {...restProps}
   >
     {#if header}<div class="mb-2">{@render header()}</div>{/if}
     {#if children}<div>{@render children()}</div>{/if}
@@ -59,6 +63,7 @@ const vars: Record<Variant, string> = {
     tabindex={interactive ? 0 : undefined}
     onclick={interactive ? onclick : undefined}
     onkeydown={interactive ? (e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') onclick?.(e as unknown as MouseEvent); } : undefined}
+    {...restProps}
   >
     {#if header}<div class="mb-2">{@render header()}</div>{/if}
     {#if children}<div>{@render children()}</div>{/if}

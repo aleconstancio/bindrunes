@@ -1,4 +1,3 @@
-import { onDestroy } from "svelte";
 import { isBrowser } from "./isBrowser";
 
 export function useIntersectionObserver(
@@ -25,7 +24,9 @@ export function useIntersectionObserver(
 
 	if (element) setup();
 
-	onDestroy(cleanup);
+	$effect(() => {
+		return () => cleanup();
+	});
 
 	return {
 		destroy() {

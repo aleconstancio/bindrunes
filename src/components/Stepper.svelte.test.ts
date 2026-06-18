@@ -49,8 +49,8 @@ describe("Stepper", () => {
 
 	it("renders connector line between steps", () => {
 		const { container } = render(Stepper, { steps, currentStep: "a" });
-		// 2 connectors for 3 steps
-		const connectors = container.querySelectorAll('div[style*="background"]');
+		// 2 connectors for 3 steps (h-px w-8 elements)
+		const connectors = container.querySelectorAll(".h-px.w-8");
 		expect(connectors.length).toBeGreaterThan(0);
 	});
 

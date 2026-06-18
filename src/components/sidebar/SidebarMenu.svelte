@@ -1,8 +1,10 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
+
 let {
 	children,
 }: {
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

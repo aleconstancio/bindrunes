@@ -1,10 +1,11 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import MetaLayout from "../MetaLayout.svelte";
 
 let {
 	children,
 }: {
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 

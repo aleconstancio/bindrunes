@@ -56,14 +56,13 @@ export function createForm<
 	});
 
 	let errors = $derived.by(() => {
-		const errs: { [K in keyof TShape]?: string } = {};
-		for (const field in options.schema) {
-			if (touched[field] || values[field] !== initial[field] || isSubmitted) {
-				const allErrors = validateWithSchema(options.schema, values);
-				return allErrors as { [K in keyof TShape]?: string };
-			}
-		}
-		return errs;
+		const shouldValidate =
+			isSubmitted ||
+			Object.keys(options.schema).some(
+				(field) => touched[field] || values[field] !== initial[field],
+			);
+		if (!shouldValidate) return {};
+		return validateWithSchema(options.schema, values) as { [K in keyof TShape]?: string };
 	});
 
 	let isValid = $derived.by(() => {

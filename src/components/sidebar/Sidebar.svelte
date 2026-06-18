@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { getSidebarContext } from "./sidebar-context.svelte";
 
 let {
@@ -12,7 +13,7 @@ let {
 	variant?: "sidebar" | "floating" | "inset";
 	collapsible?: "offcanvas" | "icon" | "none";
 	class?: string;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 const ctx = getSidebarContext();

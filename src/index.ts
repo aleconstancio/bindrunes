@@ -210,6 +210,7 @@ export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
 // ── Composables: Reactivity ──
 /** Copy to clipboard with success/error state. */
 export { useClipboard } from "./utils/useClipboard.svelte.ts";
+export { useCounter } from "./utils/useCounter.svelte.ts";
 /** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */

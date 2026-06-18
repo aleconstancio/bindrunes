@@ -1,4 +1,5 @@
 <script lang="ts" generics="TResult">
+import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import PageLoading from "./PageLoading.svelte";
 
@@ -15,7 +16,7 @@ let {
 	loadingLines?: number;
 	loadingRows?: number;
 	onLoaded?: (result: TResult) => void;
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 let loaded = $state(false);

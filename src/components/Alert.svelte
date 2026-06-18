@@ -12,6 +12,7 @@ let {
 	onClose = undefined as (() => void) | undefined,
 	icon,
 	action,
+	...restProps
 }: {
 	variant?: Variant;
 	title?: string;
@@ -30,7 +31,7 @@ const borderColors: Record<Variant, string> = {
 };
 </script>
 
-<div data-variant={variant} class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {borderColors[variant]}">
+<div role={variant === "destructive" ? "alert" : "status"} data-variant={variant} class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {borderColors[variant]}" {...restProps}>
   <div class="flex items-start gap-3">
     {#if icon}
       <div class="mt-0.5 text-muted-foreground">{@render icon()}</div>
