@@ -10,6 +10,7 @@
 
 - **Three-axis design system** — Fully orthogonal theme (color), aesthetic (form), and density (spacing) scales.
 - **Svelte 5 runes** — Built exclusively with `$state`, `$derived`, and `$effect`. No legacy stores.
+- **Page composition** — `PageShell` layout primitive + `MarketingPage`, `DashboardPage`, `CrudPage` templates for no-brainer page building.
 - **12 Boundrune categories** — Pre-composed page patterns for App, Auth, Dashboard, Settings, Landing, Marketing, Portfolio, Data, E-commerce, Media, Calendar, and Chat.
 - **B2B SaaS focus** — Shells, sidebars, data tables, CRUD operations, and pre-built landing sections.
 - **Lightweight validation** — Built with Valibot, not Zod.

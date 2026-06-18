@@ -35,6 +35,7 @@ export { default as DropdownMenu } from "./components/DropdownMenu.svelte";
 export { default as DynamicIcon } from "./components/DynamicIcon.svelte";
 export { default as EmptyState } from "./components/EmptyState.svelte";
 export { default as ErrorBoundary } from "./components/ErrorBoundary.svelte";
+export { default as ErrorMessage } from "./components/ErrorMessage.svelte";
 export { default as FileUpload } from "./components/FileUpload.svelte";
 // ── Forms ──
 export { default as Form } from "./components/Form.svelte";
@@ -55,6 +56,8 @@ export { default as NumberInput } from "./components/NumberInput.svelte";
 export { default as Omnibar } from "./components/Omnibar.svelte";
 export { default as PageHeader } from "./components/PageHeader.svelte";
 export { default as PageLoading } from "./components/PageLoading.svelte";
+export { default as PageSection } from "./components/PageSection.svelte";
+export { default as PageShell } from "./components/PageShell.svelte";
 export { default as Pagination } from "./components/Pagination.svelte";
 export { default as PasswordInput } from "./components/PasswordInput.svelte";
 export { default as PinInput } from "./components/PinInput.svelte";
@@ -101,6 +104,8 @@ export type {
 	ContainerSize,
 	NavGroup,
 	NavItem,
+	NavLink,
+	OrderLineItem,
 	PaginationState,
 	SelectOption,
 	SemanticVariant,

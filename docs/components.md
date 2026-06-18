@@ -58,6 +58,8 @@ For detailed visual state specs (tokens, hover/focus/disabled states), see [Comp
 ## Meta-Components
 
 Primitives that expose layout slots and standardize container dimensions:
+- **`<PageShell>`**: Layout primitive with composable topbar, left sidebar, right sidebar, and main zones. Handles sidebar width and collapsibility.
+- **`<PageSection>`**: Content zone wrapper with container sizing, spacing, and section-reveal animation.
 - **`<MetaLayout>`**: Positional layout slots (`header`, `content`, `footer`, `separator`).
 - **`<MetaContainer>`**: Restricts content width to design scales (`prose` through `2xl` or `full`).
 - **`<MetaScrollable>`**: Container enforcing consistent overflow scrollbar behaviors.
@@ -116,6 +118,10 @@ Sidebar sub-components (import from `bindrunes/sidebar`):
 ## Boundrune (Page Blocks)
 *Import from `bindrunes/boundrune`*
 
+### Page Templates
+- **`<DashboardPage>`** — Full app shell with sidebar navigation, header, and content area. Accepts `appName`, `navigation`, `pathname`, and snippet overrides for sidebar header/footer.
+- **`<CrudPage>`** — List + detail split layout. Accepts `title`, `selectedItem`, and snippets for list/detail panels.
+
 ### Auth
 - `<LoginForm>` / `<RegisterForm>` / `<ForgotPassword>` / `<ResetPassword>` — Authentication forms with snippet customization.
 - `<AuthLayout>` — Split-screen layout (branding left, form right).
@@ -172,9 +178,8 @@ Sidebar sub-components (import from `bindrunes/sidebar`):
 
 ### Chat
 - `<ChatThread>` — Scrollable message list.
-- `<ChatMessage>` — Individual message with sender/timestamp.
 - `<ChatInput>` — Message input with send button.
-- `<ChatBubble>` — Styled message bubble with variants.
+- `<ChatBubble>` — Styled message bubble with variants and optional timestamp.
 - `<ConversationList>` — Chat sidebar with unread counts.
 - `<TypingIndicator>` — Animated typing dots.
 

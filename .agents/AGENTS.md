@@ -45,6 +45,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components,
 ## Routing
 - Design system, themes, aesthetics → `docs/design-system.md`
 - Component/composable tasks → `docs/components.md` or `docs/composables.md`
+- Page composition (PageShell, PageSection, MarketingPage, DashboardPage) → `docs/landing.md`
 - Architecture decisions → `docs/architecture.md`
 - Security patterns → `docs/security.md`
 - Agentic-chat kernel → `docs/agentic/overview.md`

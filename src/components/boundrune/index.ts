@@ -1,4 +1,4 @@
-// ── Dashboard ──
+// ── Page Templates ──
 
 // ── Auth ──
 export { default as AuthLayout } from "./auth/AuthLayout.svelte";
@@ -13,6 +13,7 @@ export { default as SocialLogin } from "./auth/SocialLogin.svelte";
 export { default as TwoFactorAuth } from "./auth/TwoFactorAuth.svelte";
 // ── Layout ──
 export { default as Block } from "./Block.svelte";
+export { default as CrudPage } from "./CrudPage.svelte";
 // ── Calendar ──
 export { default as AvailabilityGrid } from "./calendar/AvailabilityGrid.svelte";
 export { default as BookingForm } from "./calendar/BookingForm.svelte";
@@ -21,10 +22,10 @@ export { default as Scheduler } from "./calendar/Scheduler.svelte";
 // ── Chat ──
 export { default as ChatBubble } from "./chat/ChatBubble.svelte";
 export { default as ChatInput } from "./chat/ChatInput.svelte";
-export { default as ChatMessage } from "./chat/ChatMessage.svelte";
 export { default as ChatThread } from "./chat/ChatThread.svelte";
 export { default as ConversationList } from "./chat/ConversationList.svelte";
 export { default as TypingIndicator } from "./chat/TypingIndicator.svelte";
+export { default as DashboardPage } from "./DashboardPage.svelte";
 export { default as ActivityFeed } from "./dashboard/ActivityFeed.svelte";
 export { default as DashboardFooter } from "./dashboard/DashboardFooter.svelte";
 export { default as DashboardHome } from "./dashboard/DashboardHome.svelte";
@@ -43,6 +44,9 @@ export { default as CrudDetailSection } from "./data/CrudDetailSection.svelte";
 export { default as CrudEditDrawer } from "./data/CrudEditDrawer.svelte";
 export { default as CrudEditForm } from "./data/CrudEditForm.svelte";
 export { default as CrudEditModal } from "./data/CrudEditModal.svelte";
+export { default as CrudForm } from "./data/CrudForm.svelte";
+export { default as CrudFormDrawer } from "./data/CrudFormDrawer.svelte";
+export { default as CrudFormModal } from "./data/CrudFormModal.svelte";
 export { default as CrudListPage } from "./data/CrudListPage.svelte";
 export type { CrudItem, CrudProviderState } from "./data/crud-context.svelte";
 export { createCrudProvider, useCrudProvider } from "./data/crud-context.svelte";

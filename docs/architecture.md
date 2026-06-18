@@ -50,6 +50,19 @@ export function getSubsystemContext() {
 - **Aesthetics** override corner radius, shadows, and easing scales exclusively (`data-aesthetic`).
 - **Density** overrides spacing margins and paddings exclusively (`data-density`).
 
+### 4. Page Composition Architecture
+Pages are composed from three layers:
+- **`PageShell`** — Layout primitive with composable topbar/left/right/main zones. Handles sidebar width and collapsibility.
+- **`PageSection`** — Content zone wrapper with container sizing, spacing, and section-reveal animation.
+- **Page Templates** — Pre-composed full-page components (`MarketingPage`, `DashboardPage`, `CrudPage`) that accept data props and render complete pages.
+
+```
+PageTemplate (MarketingPage, DashboardPage, CrudPage)
+  └── PageShell (topbar, left, right, main)
+       └── PageSection (spacing, container, animation)
+            └── Content components (FeatureGrid, DataTable, etc.)
+```
+
 ---
 
 ## Bundling & Exports
