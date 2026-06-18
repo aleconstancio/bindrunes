@@ -18,11 +18,13 @@ export { default as CrudPage } from "./CrudPage.svelte";
 // ── Calendar ──
 export { default as AvailabilityGrid } from "./calendar/AvailabilityGrid.svelte";
 export { default as BookingForm } from "./calendar/BookingForm.svelte";
+export { default as CalendarPage } from "./calendar/CalendarPage.svelte";
 export { default as EventCalendar } from "./calendar/EventCalendar.svelte";
 export { default as Scheduler } from "./calendar/Scheduler.svelte";
 // ── Chat ──
 export { default as ChatBubble } from "./chat/ChatBubble.svelte";
 export { default as ChatInput } from "./chat/ChatInput.svelte";
+export { default as ChatPage } from "./chat/ChatPage.svelte";
 export { default as ChatThread } from "./chat/ChatThread.svelte";
 export { default as ConversationList } from "./chat/ConversationList.svelte";
 export { default as TypingIndicator } from "./chat/TypingIndicator.svelte";
