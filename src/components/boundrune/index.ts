@@ -63,6 +63,7 @@ export { default as WizardForm } from "./data/WizardForm.svelte";
 export { default as Cart } from "./ecommerce/Cart.svelte";
 export { default as CartItem } from "./ecommerce/CartItem.svelte";
 export { default as Checkout } from "./ecommerce/Checkout.svelte";
+export { default as EcommercePage } from "./ecommerce/EcommercePage.svelte";
 export { default as OrderSummary } from "./ecommerce/OrderSummary.svelte";
 export { default as PriceTag } from "./ecommerce/PriceTag.svelte";
 export { default as ProductCard } from "./ecommerce/ProductCard.svelte";
@@ -71,6 +72,7 @@ export { default as ProductGrid } from "./ecommerce/ProductGrid.svelte";
 export { default as Banner } from "./marketing/Banner.svelte";
 export { default as BlogArticle } from "./marketing/BlogArticle.svelte";
 export { default as BlogListing } from "./marketing/BlogListing.svelte";
+export { default as BlogPage } from "./marketing/BlogPage.svelte";
 export { default as ChangelogPage } from "./marketing/ChangelogPage.svelte";
 export { default as CommentSection } from "./marketing/CommentSection.svelte";
 export { default as ContentWithImage } from "./marketing/ContentWithImage.svelte";
@@ -86,10 +88,12 @@ export { default as AudioPlayer } from "./media/AudioPlayer.svelte";
 export { default as FileCard } from "./media/FileCard.svelte";
 export { default as ImageUpload } from "./media/ImageUpload.svelte";
 export { default as MediaGallery } from "./media/MediaGallery.svelte";
+export { default as MediaPage } from "./media/MediaPage.svelte";
 export { default as VideoPlayer } from "./media/VideoPlayer.svelte";
 // ── Portfolio ──
 export { default as CaseStudy } from "./portfolio/CaseStudy.svelte";
 export { default as Portfolio } from "./portfolio/Portfolio.svelte";
+export { default as PortfolioPage } from "./portfolio/PortfolioPage.svelte";
 export { default as ProjectCard } from "./portfolio/ProjectCard.svelte";
 export { default as ProjectGrid } from "./portfolio/ProjectGrid.svelte";
 // ── Settings ──
