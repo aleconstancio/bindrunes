@@ -10,7 +10,16 @@ import HeroBanner from "./HeroBanner.svelte";
 import HowItWorks from "./HowItWorks.svelte";
 import LandingNav from "./LandingNav.svelte";
 import { createLandingState } from "./landing-context.svelte";
-import type { CTA, FAQItem, Feature, FooterLink, Metric, Plan, Step } from "./landing-types";
+import type {
+	CTA,
+	FAQItem,
+	Feature,
+	FooterLink,
+	Metric,
+	Plan,
+	Step,
+	Testimonial,
+} from "./landing-types";
 import MetricsBar from "./MetricsBar.svelte";
 import PricingTable from "./PricingTable.svelte";
 import SiteFooter from "./SiteFooter.svelte";
@@ -27,14 +36,6 @@ interface NavCTA {
 	label: string;
 	href: string;
 	variant?: "primary" | "outline";
-}
-
-interface TestimonialData {
-	quote: string;
-	author: string;
-	role: string;
-	avatar?: string;
-	avatarFallback?: string;
 }
 
 interface StatData {
@@ -96,7 +97,7 @@ let {
 	featureVariant?: "card" | "inline";
 	steps?: Step[];
 	plans?: Plan[];
-	testimonials?: TestimonialData[];
+	testimonials?: Testimonial[];
 	stats?: StatData[];
 	faqItems?: FAQItem[];
 	ctaTitle?: string;

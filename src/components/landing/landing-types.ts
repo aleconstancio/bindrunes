@@ -52,6 +52,14 @@ export interface Integration {
 	href?: string;
 }
 
+export interface Testimonial {
+	quote: string;
+	author: string;
+	role: string;
+	avatar?: string;
+	avatarFallback?: string;
+}
+
 export interface FAQItem {
 	question: string;
 	answer: string;

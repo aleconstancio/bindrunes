@@ -47,6 +47,7 @@ export interface SearchFilter {
 
 // ── Marketing ──
 
+/** @deprecated Use Testimonial from bindrunes/landing instead */
 export interface TestimonialItem {
 	quote: string;
 	author: string;
