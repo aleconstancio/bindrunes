@@ -5,12 +5,14 @@ import PageShell from "../../PageShell.svelte";
 
 let {
 	title = "Shop",
+	cartCollapsible = "icon" as "icon" | "full" | "none",
 	class: className = "",
 	cartSnippet,
 	header,
 	children,
 }: {
 	title?: string;
+	cartCollapsible?: "icon" | "full" | "none";
 	class?: string;
 	cartSnippet?: Snippet;
 	header?: Snippet;
@@ -34,7 +36,7 @@ let {
 	topbar={topbar}
 	right={cartSnippet ? rightPanel : undefined}
 	rightWidth="360px"
-	rightCollapsible="icon"
+	rightCollapsible={cartCollapsible}
 	class={className}
 >
 	{#snippet main()}

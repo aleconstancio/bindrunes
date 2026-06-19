@@ -13,7 +13,7 @@ let {
 	navigation = [],
 	pathname = "",
 	onNavigate,
-	sidebarCollapsible = "icon" as "icon" | "full",
+	sidebarCollapsible = "icon" as "icon" | "full" | "none",
 	sidebarHeader,
 	sidebarFooter,
 	headerActions,
@@ -29,7 +29,7 @@ let {
 	navigation?: NavGroup[];
 	pathname?: string;
 	onNavigate?: (to: string) => void;
-	sidebarCollapsible?: "icon" | "full";
+	sidebarCollapsible?: "icon" | "full" | "none";
 	sidebarHeader?: Snippet;
 	sidebarFooter?: Snippet;
 	headerActions?: Snippet;

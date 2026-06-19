@@ -8,7 +8,7 @@ export interface DashboardPageProps {
 	navigation?: NavGroup[];
 	pathname?: string;
 	onNavigate?: (to: string) => void;
-	sidebarCollapsible?: "icon" | "full";
+	sidebarCollapsible?: "icon" | "full" | "none";
 	sidebarHeader?: Snippet;
 	sidebarFooter?: Snippet;
 	headerActions?: Snippet;

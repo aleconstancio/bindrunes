@@ -5,14 +5,14 @@ import PageShell from "../../PageShell.svelte";
 
 let {
 	title = "Chat",
-
+	sidebarCollapsible = "icon" as "icon" | "full" | "none",
 	class: className = "",
 	conversationList,
 	chatHeader,
 	children,
 }: {
 	title?: string;
-
+	sidebarCollapsible?: "icon" | "full" | "none";
 	class?: string;
 	conversationList?: Snippet;
 	chatHeader?: Snippet;
@@ -34,7 +34,7 @@ let {
 	topbar={topbar}
 	left={conversationList ? leftPanel : undefined}
 	leftWidth="300px"
-	leftCollapsible="icon"
+	leftCollapsible={sidebarCollapsible}
 	class={className}
 >
 	{#snippet main()}
