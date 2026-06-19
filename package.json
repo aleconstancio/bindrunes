@@ -2,6 +2,7 @@
 	"name": "bindrunes-monorepo",
 	"private": true,
 	"type": "module",
+	"packageManager": "bun@1.3.0",
 	"workspaces": [
 		"packages/*",
 		"examples/*"

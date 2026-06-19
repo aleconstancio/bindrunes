@@ -6,27 +6,28 @@
 	"license": "MIT",
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
 		},
 		"./server": {
-			"types": "./dist/server/index.d.ts",
-			"default": "./dist/server/index.js"
+			"types": "./src/server/index.ts",
+			"default": "./src/server/index.ts"
 		},
 		"./client": {
-			"types": "./dist/client/index.d.ts",
-			"default": "./dist/client/index.js"
+			"types": "./src/client/index.ts",
+			"default": "./src/client/index.ts"
 		},
 		"./cli": {
-			"types": "./dist/cli/index.d.ts",
-			"default": "./dist/cli/index.js"
+			"types": "./src/cli/index.ts",
+			"default": "./src/cli/index.ts"
 		}
 	},
 	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch",
+		"build": "echo 'workspace package - no build needed'",
+		"dev": "echo 'workspace package - no build needed'",
 		"lint": "biome check .",
-		"check": "tsc --noEmit"
+		"check": "tsc --noEmit",
+		"test": "vitest run"
 	},
 	"dependencies": {
 		"bindrunes": "workspace:*",
@@ -47,7 +48,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.16",
-		"typescript": "^6.0.3"
+		"@sveltejs/package": "^2.5.8",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.9"
 	},
 	"engines": {
 		"bun": ">=1.3.0",
