@@ -18,8 +18,8 @@ let {
 	sidebarFooter,
 	headerActions,
 	statusChip,
-	resolvedTitle,
-	resolvedDescription,
+	title,
+	description,
 	class: className = "",
 	children,
 }: {
@@ -34,8 +34,8 @@ let {
 	sidebarFooter?: Snippet;
 	headerActions?: Snippet;
 	statusChip?: { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean };
-	resolvedTitle?: string;
-	resolvedDescription?: string;
+	title?: string;
+	description?: string;
 	class?: string;
 	children?: Snippet;
 } = $props();
@@ -43,8 +43,8 @@ let {
 
 {#snippet topbar()}
 	<DashboardShellHeader
-		resolvedTitle={resolvedTitle ?? appName}
-		resolvedDescription={resolvedDescription}
+		resolvedTitle={title ?? appName}
+		resolvedDescription={description}
 		{headerActions}
 		{statusChip}
 	/>
