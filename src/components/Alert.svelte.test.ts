@@ -33,4 +33,18 @@ describe("Alert", () => {
 		render(Alert, { props: { title: "Close me", closable: true } });
 		expect(screen.getByRole("button", { name: "Dismiss" })).toBeInTheDocument();
 	});
+
+	it("has role=alert for destructive variant", () => {
+		const { getByRole } = render(Alert, {
+			props: { variant: "destructive", children: "Error" },
+		});
+		expect(getByRole("alert")).toBeTruthy();
+	});
+
+	it("has role=status for non-destructive variant", () => {
+		const { getByRole } = render(Alert, {
+			props: { variant: "default", children: "Info" },
+		});
+		expect(getByRole("status")).toBeTruthy();
+	});
 });

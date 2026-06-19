@@ -29,9 +29,11 @@ const borderColors: Record<Variant, string> = {
 	warning: "border-l-[--warning]",
 	destructive: "border-l-[--destructive]",
 };
+
+let role = $derived(variant === "destructive" ? "alert" : "status");
 </script>
 
-<div role={variant === "destructive" ? "alert" : "status"} data-variant={variant} class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {borderColors[variant]}" {...restProps}>
+<div {role} data-variant={variant} class="rounded-[--radius] border border-border border-l-4 bg-card p-4 {borderColors[variant]}" {...restProps}>
   <div class="flex items-start gap-3">
     {#if icon}
       <div class="mt-0.5 text-muted-foreground">{@render icon()}</div>

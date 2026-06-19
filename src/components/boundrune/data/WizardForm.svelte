@@ -60,7 +60,7 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
       <div class="h-1 bg-muted rounded-full overflow-hidden"
            role="progressbar"
            aria-valuenow={currentStep + 1}
-           aria-valuemin="1"
+           aria-valuemin="0"
            aria-valuemax={steps.length}>
         <div class="h-full bg-primary transition-all duration-[--duration-fluid]" style="width: {progress}%"></div>
       </div>

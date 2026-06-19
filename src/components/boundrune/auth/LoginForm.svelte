@@ -19,7 +19,7 @@ let {
 	onRegister = undefined as (() => void) | undefined,
 	registerLabel = "Create an account",
 	loading = false,
-	error = "",
+	error = undefined as string | undefined,
 	class: className = "",
 	header = undefined as Snippet | undefined,
 	beforeFields = undefined as Snippet | undefined,
@@ -78,6 +78,7 @@ async function handleSubmit(e: SubmitEvent) {
         <label for="email" class="text-label-md text-foreground">{emailLabel}</label>
         <Input
           name="email"
+          id="email"
           type="email"
           bind:value={email}
           required
@@ -91,6 +92,7 @@ async function handleSubmit(e: SubmitEvent) {
         <div class="relative mt-1">
           <Input
             name="password"
+            id="password"
             type={showPassword ? "text" : "password"}
             bind:value={password}
             required
