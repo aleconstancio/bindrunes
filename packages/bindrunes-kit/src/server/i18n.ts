@@ -42,3 +42,12 @@ export function createServerI18n(options: CreateServerI18nOptions) {
 
 	return { detectLocale, getPathLocale, handle };
 }
+
+declare global {
+	namespace App {
+		interface Locals {
+			locale: string;
+			pathLocale: string | null;
+		}
+	}
+}

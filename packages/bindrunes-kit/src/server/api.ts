@@ -21,7 +21,6 @@ export function createServerApiClient(options: ServerApiClientOptions) {
 			requestHeaders["Authorization"] = `Bearer ${event.locals.session.user.id}`;
 		}
 
-		const contentType = fetchOptions.headers?.toString() ?? "";
 		if (fetchOptions.body && !requestHeaders["Content-Type"]) {
 			requestHeaders["Content-Type"] = "application/json";
 		}

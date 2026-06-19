@@ -35,7 +35,7 @@ export function createServerAuth(options: CreateServerAuthOptions) {
 	}
 
 	function deleteSession(event: RequestEvent) {
-		event.cookies.delete(cookieName, { path: "/" });
+		event.cookies.delete(cookieName, { path: "/", maxAge: 0 });
 	}
 
 	const handle: Handle = async ({ event, resolve }) => {
@@ -44,4 +44,12 @@ export function createServerAuth(options: CreateServerAuthOptions) {
 	};
 
 	return { getSession, setSession, deleteSession, handle };
+}
+
+declare global {
+	namespace App {
+		interface Locals {
+			session: SessionData | null;
+		}
+	}
 }
