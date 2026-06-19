@@ -31,9 +31,9 @@
 	];
 
 	const stats = [
-		{ value: "160+", label: "Components" },
-		{ value: "47", label: "Composables" },
-		{ value: "6", label: "Themes" },
+		{ value: "230+", label: "Components" },
+		{ value: "50+", label: "Composables" },
+		{ value: "72", label: "Theme Combinations" },
 		{ value: "12", label: "Boundrune Categories" },
 	];
 
@@ -53,7 +53,7 @@
 				bindrunes
 			</h1>
 			<p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-				160+ components · 47 composables · 12 Boundrune categories · 6 themes.
+				230+ components · 50+ composables · 72 theme combinations · 12 Boundrune categories.
 				A complete design system for building modern Svelte applications.
 			</p>
 			<div class="flex items-center justify-center gap-4 pt-4">
