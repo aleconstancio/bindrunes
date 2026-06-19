@@ -1,12 +1,12 @@
 <script lang="ts">
-interface CommandItem {
+export interface CommandItem {
 	id: string;
 	label: string;
 	keywords?: string[];
 	icon?: import("svelte").Snippet;
 }
 
-interface Props {
+export interface Props {
 	items?: CommandItem[];
 	placeholder?: string;
 	open?: boolean;
@@ -40,7 +40,11 @@ $effect(() => {
 	if (open) {
 		selectedIndex = 0;
 		query = "";
+		document.body.style.overflow = "hidden";
 		requestAnimationFrame(() => inputEl?.focus());
+		return () => {
+			document.body.style.overflow = "";
+		};
 	}
 });
 
@@ -79,8 +83,7 @@ $effect(() => {
   <div class="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] {className}">
     <div
       class="fixed inset-0 bg-black/50"
-      role="button"
-      tabindex="-1"
+      data-testid="command-palette-overlay"
       onclick={() => { open = false; onClose?.(); }}
       onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { open = false; onClose?.(); } }}
     ></div>
@@ -104,6 +107,7 @@ $effect(() => {
           role="combobox"
           aria-expanded={true}
           aria-controls="command-palette-list"
+          aria-activedescendant="command-item-{selectedIndex}"
         />
       </div>
       <div id="command-palette-list" class="max-h-[300px] overflow-y-auto p-2" role="listbox">
@@ -112,6 +116,7 @@ $effect(() => {
         {:else}
           {#each filteredItems as item, i}
             <button
+              id="command-item-{i}"
               class="w-full flex items-center gap-3 px-3 py-2 text-body-md rounded-[--radius-md] text-left
                      {i === selectedIndex ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}"
               onclick={() => { onSelect?.(item); open = false; onClose?.(); }}

@@ -163,3 +163,19 @@ export interface TooltipProps {
 	closeDelay?: number;
 	children?: Snippet;
 }
+
+export interface CommandItem {
+	id: string;
+	label: string;
+	keywords?: string[];
+	icon?: Snippet;
+}
+
+export interface CommandPaletteProps {
+	items?: CommandItem[];
+	placeholder?: string;
+	open?: boolean;
+	onSelect?: (item: CommandItem) => void;
+	onClose?: () => void;
+	class?: string;
+}

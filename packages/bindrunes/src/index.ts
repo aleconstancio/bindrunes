@@ -22,12 +22,15 @@ export { default as Checkbox } from "./components/Checkbox.svelte";
 export { default as CodeSnippet } from "./components/CodeSnippet.svelte";
 export { default as Collapsible } from "./components/Collapsible.svelte";
 export { default as Combobox } from "./components/Combobox.svelte";
+export { default as CommandPalette } from "./components/CommandPalette.svelte";
 export { default as ContextMenu } from "./components/ContextMenu.svelte";
 // ── Shared Types ──
 export type {
 	BadgeProps,
 	ButtonProps,
 	CardProps,
+	CommandItem,
+	CommandPaletteProps,
 	DataTableProps,
 	DialogProps,
 	InputProps,

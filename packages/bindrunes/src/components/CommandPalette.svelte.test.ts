@@ -83,9 +83,9 @@ describe("CommandPalette", () => {
 
 	it("closes on overlay click", async () => {
 		render(CommandPalette, { props: { open: true } });
-		const overlay = screen.getAllByRole("button").find((b) => b.className.includes("bg-black/50"));
+		const overlay = screen.getByTestId("command-palette-overlay");
 		expect(overlay).toBeTruthy();
-		await fireEvent.click(overlay!);
+		await fireEvent.click(overlay);
 		expect(screen.queryByRole("dialog")).toBeNull();
 	});
 
