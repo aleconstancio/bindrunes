@@ -13,7 +13,7 @@ describe("OTPInput", () => {
 		render(OTPInput, { props: { length: 4, onChange } });
 		const inputs = screen.getAllByRole("textbox");
 		await fireEvent.input(inputs[0], { target: { value: "1" } });
-		expect(onChange).toHaveBeenCalledWith("1***");
+		expect(onChange).toHaveBeenCalledWith("1");
 	});
 
 	it("handles paste", async () => {

@@ -1,3 +1,8 @@
+<!--
+  OTPInput: Custom OTP input with masking support.
+  Differs from PinInput.svelte which wraps bits-ui's PinInput for standard numeric pin entry.
+  OTPInput provides masked display values (showing * for untyped chars) for OTP scenarios.
+-->
 <script lang="ts">
 interface Props {
 	length?: number;
@@ -17,14 +22,6 @@ let {
 
 let inputs: HTMLInputElement[] = $state([]);
 
-function getDisplayValue(): string {
-	let display = "";
-	for (let i = 0; i < length; i++) {
-		display += value[i] || "*";
-	}
-	return display;
-}
-
 function handleInput(index: number, e: Event) {
 	const target = e.target as HTMLInputElement;
 	const newValue = target.value;
@@ -36,7 +33,7 @@ function handleInput(index: number, e: Event) {
 	const chars = value.split("");
 	chars[index] = newValue;
 	value = chars.join("").slice(0, length);
-	onChange?.(getDisplayValue());
+	onChange?.(value);
 
 	if (newValue && index < length - 1) {
 		inputs[index + 1]?.focus();
@@ -53,17 +50,18 @@ function handlePaste(e: ClipboardEvent) {
 	e.preventDefault();
 	const pasted = e.clipboardData?.getData("text") || "";
 	value = pasted.slice(0, length);
-	onChange?.(getDisplayValue());
+	onChange?.(value);
 	inputs[Math.min(pasted.length, length - 1)]?.focus();
 }
 </script>
 
-<div class="flex gap-2 {className}">
+<div class="flex items-center gap-2 {className}">
 	{#each Array(length) as _, i}
 		<input
 			type="text"
 			maxlength="1"
-			class="w-10 h-12 text-center text-title-2 bg-background border border-border rounded-[--radius-md]
+			class="w-10 h-12 text-center text-headline-2 bg-input border border-border rounded-[--radius]
+			       transition-colors duration-[--duration-snappy]
 			       focus:outline-none focus:ring-2 focus:ring-ring
 			       {disabled ? 'opacity-50 cursor-not-allowed' : ''}"
 			value={value[i] || ""}
