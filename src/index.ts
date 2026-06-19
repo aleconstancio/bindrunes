@@ -118,7 +118,6 @@ export type {
 	NavGroup,
 	NavItem,
 	NavLink,
-	OrderLineItem,
 	PaginationState,
 	SelectOption,
 	SemanticVariant,

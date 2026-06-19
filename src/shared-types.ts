@@ -11,6 +11,11 @@ export interface SelectOption {
 }
 
 // ── Navigation ──
+export interface NavLink {
+	label: string;
+	href: string;
+}
+
 export interface NavItem {
 	title: string;
 	to: string;
