@@ -25,6 +25,7 @@ let {
 	prefix,
 	suffix,
 	class: className = "",
+	...restProps
 }: {
 	label?: string;
 	value?: string;
@@ -49,6 +50,7 @@ let {
 	prefix?: Snippet;
 	suffix?: Snippet;
 	class?: string;
+	[key: string]: unknown;
 } = $props();
 
 const inputId = $derived(id ?? `input-${Math.random().toString(36).slice(2, 10)}`);
@@ -89,6 +91,7 @@ let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-hel
              {prefix ? 'pl-10' : ''} {suffix ? 'pr-10' : ''}
              {className}"
       rows={4}
+      {...restProps}
     ></textarea>
   {:else}
     <input
@@ -109,6 +112,7 @@ let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-hel
              {error ? 'border-destructive' : 'border-border'}
              {prefix ? 'pl-10' : ''} {suffix ? 'pr-10' : ''}
              {className}"
+      {...restProps}
     />
   {/if}
 

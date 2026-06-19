@@ -13,6 +13,7 @@ let {
 	footer,
 	children,
 	actions,
+	...restProps
 }: {
 	open?: boolean;
 	title?: string;
@@ -24,6 +25,7 @@ let {
 	footer?: Snippet;
 	children?: Snippet;
 	actions?: Snippet;
+	[key: string]: unknown;
 } = $props();
 
 const sizeClasses: Record<"sm" | "md" | "lg" | "xl" | "full", string> = {
@@ -57,6 +59,7 @@ function handleOverlayClick() {
              data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-48
              data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-48
              duration-[--duration-slow] contain-layout"
+      {...restProps}
     >
       {#if header}
         <div class="mb-4">{@render header()}</div>
