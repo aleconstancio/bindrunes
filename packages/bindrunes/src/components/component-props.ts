@@ -1,6 +1,20 @@
 import type { Snippet } from "svelte";
 import type { Column, SelectOption, SortState, TFunction } from "../shared-types";
 
+export interface DataGridProps {
+	columns?: Column[];
+	rows?: ReadonlyArray<Record<string, unknown>>;
+	rowKey?: string;
+	selectable?: boolean;
+	selectedIds?: string[];
+	onSelectionChange?: (ids: string[]) => void;
+	sort?: SortState | null;
+	onSort?: (sort: SortState | null) => void;
+	onRowClick?: (row: Record<string, unknown>) => void;
+	emptyText?: string;
+	class?: string;
+}
+
 export type ButtonVariant =
 	| "primary"
 	| "secondary"

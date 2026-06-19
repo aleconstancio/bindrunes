@@ -31,6 +31,7 @@ export type {
 	CardProps,
 	CommandItem,
 	CommandPaletteProps,
+	DataGridProps,
 	DataTableProps,
 	DialogProps,
 	InputProps,
@@ -42,6 +43,7 @@ export type {
 // ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";
 // ── Data Table ──
+export { default as DataGrid } from "./components/DataGrid.svelte";
 export { default as DataTable } from "./components/DataTable.svelte";
 // ── Data Entry ──
 export { default as DatePicker } from "./components/DatePicker.svelte";

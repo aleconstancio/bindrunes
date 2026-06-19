@@ -4,26 +4,34 @@ import type { Column, SortState } from "../shared-types";
 interface Props {
 	columns?: Column[];
 	rows?: ReadonlyArray<Record<string, unknown>>;
+	rowKey?: string;
 	selectable?: boolean;
 	selectedIds?: string[];
 	onSelectionChange?: (ids: string[]) => void;
 	sort?: SortState | null;
 	onSort?: (sort: SortState | null) => void;
 	onRowClick?: (row: Record<string, unknown>) => void;
+	emptyText?: string;
 	class?: string;
 }
 
 let {
 	columns = [],
 	rows = [],
+	rowKey = "id",
 	selectable = false,
 	selectedIds = [],
 	onSelectionChange,
 	sort = null,
 	onSort,
 	onRowClick,
+	emptyText = "No data available",
 	class: className = "",
 }: Props = $props();
+
+function getRowId(row: Record<string, unknown>): string {
+	return String(row[rowKey]);
+}
 
 function toggleSort(key: string) {
 	if (!sort || sort.key !== key) {
@@ -45,8 +53,8 @@ function toggleRowSelection(id: string) {
 
 function toggleAllSelection() {
 	if (!selectable) return;
-	const allSelected = rows.length > 0 && rows.every((r) => selectedIds.includes(r.id as string));
-	onSelectionChange?.(allSelected ? [] : rows.map((r) => r.id as string));
+	const allSelected = rows.length > 0 && rows.every((r) => selectedIds.includes(getRowId(r)));
+	onSelectionChange?.(allSelected ? [] : rows.map((r) => getRowId(r)));
 }
 </script>
 
@@ -58,7 +66,7 @@ function toggleAllSelection() {
 					<th class="w-10 px-3 py-2">
 						<input
 							type="checkbox"
-							checked={rows.length > 0 && rows.every((r) => selectedIds.includes(r.id as string))}
+							checked={rows.length > 0 && rows.every((r) => selectedIds.includes(getRowId(r)))}
 							onchange={toggleAllSelection}
 							class="rounded border-border"
 						/>
@@ -91,35 +99,50 @@ function toggleAllSelection() {
 			</tr>
 		</thead>
 		<tbody>
-			{#each rows as row}
-				<tr
-					class="border-b border-border hover:bg-muted/50 {onRowClick ? 'cursor-pointer' : ''}"
-					tabindex={onRowClick ? 0 : undefined}
-					onkeydown={(e) => {
-						if (onRowClick && (e.key === "Enter" || e.key === " ")) {
-							e.preventDefault();
-							onRowClick(row);
-						}
-					}}
-					onclick={() => onRowClick?.(row)}
-				>
-					{#if selectable}
-						<td class="px-3 py-2">
-							<input
-								type="checkbox"
-								checked={selectedIds.includes(row.id as string)}
-								onchange={() => toggleRowSelection(row.id as string)}
-								class="rounded border-border"
-							/>
-						</td>
-					{/if}
-					{#each columns as column}
-						<td class="px-3 py-2 text-body-md">
-							{column.render ? column.render(row[column.key], row) : row[column.key]}
-						</td>
-					{/each}
+			{#if rows.length === 0}
+				<tr>
+					<td
+						colspan={columns.length + (selectable ? 1 : 0)}
+						class="px-3 py-12 text-center text-body-sm text-muted-foreground"
+					>
+						{emptyText}
+					</td>
 				</tr>
-			{/each}
+			{:else}
+				{#each rows as row}
+					<tr
+						class="border-b border-border hover:bg-muted/50 {onRowClick ? 'cursor-pointer' : ''}"
+						tabindex={onRowClick ? 0 : undefined}
+						onkeydown={(e) => {
+							if (onRowClick && (e.key === "Enter" || e.key === " ")) {
+								e.preventDefault();
+								onRowClick(row);
+							}
+						}}
+						onclick={() => onRowClick?.(row)}
+					>
+						{#if selectable}
+							<td class="px-3 py-2">
+								<input
+									type="checkbox"
+									checked={selectedIds.includes(getRowId(row))}
+									onchange={() => toggleRowSelection(getRowId(row))}
+									class="rounded border-border"
+								/>
+							</td>
+						{/if}
+						{#each columns as column, columnIndex}
+							<td class="px-3 py-2 text-body-md">
+								{#if column.cell}
+									{@render column.cell(row, columnIndex)}
+								{:else}
+									{row[column.key] ?? ""}
+								{/if}
+							</td>
+						{/each}
+					</tr>
+				{/each}
+			{/if}
 		</tbody>
 	</table>
 </div>
