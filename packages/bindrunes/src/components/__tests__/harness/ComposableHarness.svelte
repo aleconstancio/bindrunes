@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 
 let {
@@ -8,7 +9,7 @@ let {
 }: {
 	setup: () => unknown;
 	state: { current: unknown };
-	children?: import("svelte").Snippet;
+	children?: Snippet;
 } = $props();
 
 onMount(() => {

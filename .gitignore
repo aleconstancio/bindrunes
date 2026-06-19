@@ -3,6 +3,7 @@ coverage/
 dist/
 .svelte-kit/
 .worktrees/
+.turbo/
 
 # Build artifacts
 *.tsbuildinfo
