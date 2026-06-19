@@ -23,6 +23,14 @@ export { default as CodeSnippet } from "./components/CodeSnippet.svelte";
 export { default as Collapsible } from "./components/Collapsible.svelte";
 export { default as Combobox } from "./components/Combobox.svelte";
 export { default as ContextMenu } from "./components/ContextMenu.svelte";
+// ── Shared Types ──
+export type {
+	BadgeProps,
+	ButtonProps,
+	CardProps,
+	DialogProps,
+	InputProps,
+} from "./components/component-props";
 // ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";
 // ── Data Table ──
@@ -98,7 +106,6 @@ export { default as Tooltip } from "./components/Tooltip.svelte";
 export { default as TreeView } from "./components/TreeView.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
-// ── Shared Types ──
 export type {
 	Column,
 	ContainerSize,
@@ -218,9 +225,11 @@ export { useClipboard } from "./utils/useClipboard.svelte.ts";
 export { useCounter } from "./utils/useCounter.svelte.ts";
 /** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
+export { useDebouncedCallback } from "./utils/useDebouncedCallback.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */
 export { useEventListener } from "./utils/useEventListener.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
+export { useInfiniteScroll } from "./utils/useInfiniteScroll.svelte.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
 export { useInterval } from "./utils/useInterval.svelte.ts";
 export { useLocalStorage } from "./utils/useLocalStorage.svelte.ts";
@@ -230,4 +239,5 @@ export { useThrottle } from "./utils/useThrottle.svelte.ts";
 export { useTimeout } from "./utils/useTimeout.svelte.ts";
 export { useToggle } from "./utils/useToggle.svelte.ts";
 export { useUrlParams } from "./utils/useUrlParams.svelte.ts";
+export { useVirtualList } from "./utils/useVirtualList.svelte.ts";
 export { validateWithSchema } from "./utils/validateWithSchema.ts";
