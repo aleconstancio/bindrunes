@@ -92,7 +92,22 @@ All section props are optional — omit a section and it won't render.
 | `footerLinks` | `FooterLink[]` | Footer links |
 | `copyright` | `string` | Footer copyright |
 | `bottomLinks` | `FooterLink[]` | Footer bottom links |
-| `*Snippet` | `Snippet` | Override any section's rendering |
+| `heroSnippet` | `Snippet` | Override hero section |
+| `navSnippet` | `Snippet` | Override navigation |
+| `metricsSnippet` | `Snippet` | Override metrics section |
+| `featuresSnippet` | `Snippet` | Override features section |
+| `howItWorksSnippet` | `Snippet` | Override how-it-works section |
+| `pricingSnippet` | `Snippet` | Override pricing section |
+| `testimonialsSnippet` | `Snippet` | Override testimonials section |
+| `statsSnippet` | `Snippet` | Override stats section |
+| `faqSnippet` | `Snippet` | Override FAQ section |
+| `ctaSnippet` | `Snippet` | Override CTA section |
+| `footerSnippet` | `Snippet` | Override footer |
+| `logosSnippet` | `Snippet` | Override logo cloud section |
+| `integrationsSnippet` | `Snippet` | Override integrations section |
+| `teamSnippet` | `Snippet` | Override team section |
+| `newsletterSnippet` | `Snippet` | Override newsletter section |
+| `videoSnippet` | `Snippet` | Override video section |
 
 ---
 

@@ -119,16 +119,260 @@ Sidebar sub-components (import from `bindrunes/sidebar`):
 *Import from `bindrunes/boundrune`*
 
 ### Page Templates
-- **`<DashboardPage>`** — Full app shell with sidebar navigation, header, and content area. Accepts `appName`, `navigation`, `pathname`, and snippet overrides for sidebar header/footer.
-- **`<CrudPage>`** — List + detail split layout. Accepts `title`, `selectedItem`, and snippets for list/detail panels.
-- **`<AuthPage>`** — Auth layout with view switching (login/register/forgot/2FA).
-- **`<SettingsPage>`** — Settings with tabbed sidebar navigation.
-- **`<ChatPage>`** — Chat layout with conversation list sidebar.
-- **`<CalendarPage>`** — Calendar layout with optional sidebar.
-- **`<EcommercePage>`** — E-commerce layout with cart sidebar.
-- **`<BlogPage>`** — Blog layout with optional sidebar.
-- **`<PortfolioPage>`** — Portfolio showcase layout.
-- **`<MediaPage>`** — Media library layout with optional sidebar.
+
+#### DashboardPage
+Full app shell with sidebar navigation, header, and content area.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `appName` | `string` | `""` | Application name in sidebar brand |
+| `appSubtitle` | `string` | — | Subtitle below app name |
+| `brandIcon` | `string \| Component` | — | Icon for the sidebar brand |
+| `title` | `string` | — | Page title in the header |
+| `description` | `string` | — | Subtitle in the header |
+| `navigation` | `NavGroup[]` | `[]` | Sidebar navigation groups |
+| `pathname` | `string` | `""` | Current path for active state |
+| `onNavigate` | `(to: string) => void` | — | Navigation callback |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
+| `sidebarHeader` | `Snippet` | — | Override sidebar header area |
+| `sidebarFooter` | `Snippet` | — | Override sidebar footer area |
+| `headerActions` | `Snippet` | — | Actions slot in the header |
+| `statusChip` | `{ variant?, label?, dot?, animate? }` | — | Status chip in the header |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Main content area |
+
+**Usage:**
+```svelte
+<DashboardPage appName="MyApp" navigation={groups} pathname={route}>
+  <p>Dashboard content</p>
+</DashboardPage>
+```
+
+#### CrudPage
+List + detail split layout with sidebar navigation.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `""` | Page title in the header |
+| `appName` | `string` | `""` | Application name in sidebar brand |
+| `appSubtitle` | `string` | — | Subtitle below app name |
+| `brandIcon` | `string \| Component` | — | Icon for the sidebar brand |
+| `navigation` | `NavGroup[]` | `[]` | Sidebar navigation groups |
+| `pathname` | `string` | `""` | Current path for active state |
+| `onNavigate` | `(to: string) => void` | — | Navigation callback |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"none"` | Sidebar collapse behavior |
+| `sidebarHeader` | `Snippet` | — | Override sidebar header area |
+| `sidebarFooter` | `Snippet` | — | Override sidebar footer area |
+| `headerActions` | `Snippet` | — | Actions slot in the header |
+| `statusChip` | `{ variant?, label?, dot?, animate? }` | — | Status chip in the header |
+| `selectedItem` | `Record<string, unknown>` | — | Currently selected record |
+| `emptyTitle` | `string` | `"Select an item"` | Empty state title |
+| `emptyDescription` | `string` | `"Choose an item from the list to view its details."` | Empty state description |
+| `listPanel` | `Snippet` | — | Custom list panel content |
+| `detailPanel` | `Snippet` | — | Custom detail panel content |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Fallback content when no detail panel |
+
+**Usage:**
+```svelte
+<CrudPage title="Users" selectedItem={user}>
+  {#snippet listPanel()}
+    <AdvancedTable {rows} />
+  {/snippet}
+  {#snippet detailPanel()}
+    <UserProfile {user} />
+  {/snippet}
+</CrudPage>
+```
+
+#### AuthPage
+Auth layout with view switching (login/register/forgot/reset/2FA/verify-email).
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `view` | `AuthView` | `"login"` | Current auth view |
+| `brandImage` | `string` | — | Brand image for the left panel |
+| `brandTitle` | `string` | — | Brand title for the left panel |
+| `brandDescription` | `string` | — | Brand description for the left panel |
+| `onLoginSubmit` | `(data: { email, password }) => void` | — | Login form submit handler |
+| `onRegisterSubmit` | `(data: { name, email, password }) => void` | — | Register form submit handler |
+| `onForgotSubmit` | `(email: string) => void` | — | Forgot password submit handler |
+| `onResetSubmit` | `(data: { password }) => void` | — | Reset password submit handler |
+| `onTwoFactorSubmit` | `(code: string) => void` | — | 2FA code submit handler |
+| `onForgotPassword` | `() => void` | — | Navigate to forgot-password view |
+| `onRegister` | `() => void` | — | Navigate to register view |
+| `onLogin` | `() => void` | — | Navigate to login view |
+| `onUseBackup` | `() => void` | — | Switch to backup code input |
+| `verifyEmail` | `string` | — | Email for verification view |
+| `onResendEmail` | `() => void` | — | Resend verification email |
+| `socialLogin` | `{ onGoogle?, onGitHub?, onApple?, providers? }` | — | Social login providers |
+| `loading` | `boolean` | `false` | Show loading state on forms |
+| `error` | `string` | — | Error message to display |
+| `header` | `Snippet` | — | Header slot above form fields |
+| `beforeFields` | `Snippet` | — | Slot between header and form fields |
+| `afterFields` | `Snippet` | — | Slot between form fields and footer |
+| `footer` | `Snippet` | — | Footer slot below form |
+| `children` | `Snippet` | — | Additional content appended after the form |
+
+**Usage:**
+```svelte
+<AuthPage view="login" onLoginSubmit={handleLogin} loading={isLoading}>
+  {#snippet footer()}
+    <p class="text-sm text-muted-foreground">Need help? Contact support.</p>
+  {/snippet}
+</AuthPage>
+```
+
+#### SettingsPage
+Settings layout with tabbed sidebar navigation.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Settings"` | Page title |
+| `activeTab` | `string` | `""` | Currently active tab ID (bindable) |
+| `tabs` | `SettingsTab[]` | `[]` | Tab definitions with `id`, `label`, and optional `icon` snippet |
+| `header` | `Snippet` | — | Header slot above tabs |
+| `footer` | `Snippet` | — | Footer slot below tabs |
+| `tabContent` | `Snippet<[SettingsTab]>` | — | Render function for each tab's content |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Additional content |
+
+**Usage:**
+```svelte
+<SettingsPage bind:activeTab tabs={settingsTabs}>
+  {#snippet tabContent(tab)}
+    {#if tab.id === 'profile'}<ProfileForm />{/if}
+  {/snippet}
+</SettingsPage>
+```
+
+#### ChatPage
+Chat layout with collapsible conversation list sidebar.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Chat"` | Page title |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
+| `conversationList` | `Snippet` | — | Conversation list sidebar content |
+| `chatHeader` | `Snippet` | — | Header slot above messages |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Chat message area |
+
+**Usage:**
+```svelte
+<ChatPage conversationList={conversations}>
+  {#snippet chatHeader()}
+    <span class="font-medium">Alice</span>
+  {/snippet}
+  <ChatThread messages={msgs} />
+</ChatPage>
+```
+
+#### CalendarPage
+Calendar layout with optional sidebar.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Calendar"` | Page title |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
+| `sidebar` | `Snippet` | — | Sidebar content (e.g., mini calendar, filters) |
+| `header` | `Snippet` | — | Header actions slot |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Main calendar content |
+
+**Usage:**
+```svelte
+<CalendarPage>
+  {#snippet sidebar()}
+    <MiniCalendar />
+  {/snippet}
+  <EventCalendar events={events} />
+</CalendarPage>
+```
+
+#### EcommercePage
+E-commerce layout with collapsible cart sidebar on the right.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Shop"` | Page title |
+| `cartCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Cart sidebar collapse behavior |
+| `cartSnippet` | `Snippet` | — | Cart sidebar content |
+| `header` | `Snippet` | — | Header actions slot |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Main product content |
+
+**Usage:**
+```svelte
+<EcommercePage>
+  {#snippet cartSnippet()}
+    <Cart items={cartItems} />
+  {/snippet}
+  <ProductGrid {products} />
+</EcommercePage>
+```
+
+#### BlogPage
+Blog layout with optional sidebar.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Blog"` | Page title |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
+| `sidebar` | `Snippet` | — | Sidebar content (e.g., categories, tags) |
+| `header` | `Snippet` | — | Header actions slot |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Main blog content |
+
+**Usage:**
+```svelte
+<BlogPage>
+  {#snippet sidebar()}
+    <CategoryNav {categories} />
+  {/snippet}
+  <BlogListing {posts} />
+</BlogPage>
+```
+
+#### PortfolioPage
+Portfolio showcase layout with centered header.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Portfolio"` | Page title |
+| `description` | `string` | — | Subtitle below title |
+| `header` | `Snippet` | — | Override the default title/description header |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Portfolio grid content |
+
+**Usage:**
+```svelte
+<PortfolioPage title="My Work" description="Selected projects">
+  <ProjectGrid {projects} />
+</PortfolioPage>
+```
+
+#### MediaPage
+Media library layout with optional sidebar.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | `"Media"` | Page title |
+| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
+| `sidebar` | `Snippet` | — | Sidebar content (e.g., folder tree, filters) |
+| `header` | `Snippet` | — | Header actions slot |
+| `class` | `string` | `""` | Additional CSS classes |
+| `children` | `Snippet` | — | Main media grid content |
+
+**Usage:**
+```svelte
+<MediaPage>
+  {#snippet sidebar()}
+    <FolderTree {folders} />
+  {/snippet}
+  <MediaGallery {files} />
+</MediaPage>
+```
 
 ### Auth
 - `<LoginForm>` / `<RegisterForm>` / `<ForgotPassword>` / `<ResetPassword>` — Authentication forms with snippet customization.
