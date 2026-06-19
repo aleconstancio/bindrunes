@@ -216,104 +216,86 @@ const sectionIds = $derived(
 		</PageSection>
 	{/if}
 
-	{#if steps?.length}
-		{#if howItWorksSnippet}
-			{@render howItWorksSnippet()}
-		{:else}
-			<PageSection id="how-it-works" size="xl">
-				<h2 class="text-center text-display-3 text-foreground">How it works</h2>
-				<div class="mt-10">
-					<HowItWorks {steps} showConnector />
-				</div>
-			</PageSection>
-		{/if}
+	{#if howItWorksSnippet}
+		{@render howItWorksSnippet()}
+	{:else if steps?.length}
+		<PageSection id="how-it-works" size="xl">
+			<h2 class="text-center text-display-3 text-foreground">How it works</h2>
+			<div class="mt-10">
+				<HowItWorks {steps} showConnector />
+			</div>
+		</PageSection>
 	{/if}
 
-	{#if video}
-		{#if videoSnippet}
-			{@render videoSnippet()}
-		{:else}
-			<PageSection id="video" size="lg">
-				<VideoEmbed videoUrl={video.url} posterUrl={video.poster} />
-			</PageSection>
-		{/if}
+	{#if videoSnippet}
+		{@render videoSnippet()}
+	{:else if video}
+		<PageSection id="video" size="lg">
+			<VideoEmbed videoUrl={video.url} posterUrl={video.poster} />
+		</PageSection>
 	{/if}
 
-	{#if plans?.length}
-		{#if pricingSnippet}
-			{@render pricingSnippet()}
-		{:else}
-			<PageSection id="pricing" size="xl" background="muted">
-				<h2 class="text-center text-display-3 text-foreground">Pricing</h2>
-				<div class="mt-10">
-					<PricingTable {plans} />
-				</div>
-			</PageSection>
-		{/if}
+	{#if pricingSnippet}
+		{@render pricingSnippet()}
+	{:else if plans?.length}
+		<PageSection id="pricing" size="xl" background="muted">
+			<h2 class="text-center text-display-3 text-foreground">Pricing</h2>
+			<div class="mt-10">
+				<PricingTable {plans} />
+			</div>
+		</PageSection>
 	{/if}
 
-	{#if testimonials?.length}
-		{#if testimonialsSnippet}
-			{@render testimonialsSnippet()}
-		{:else}
-			<PageSection id="testimonials" size="xl">
-				<h2 class="text-center text-display-3 text-foreground">What our customers say</h2>
-				<div class="mt-10">
-					<TestimonialGrid {testimonials} />
-				</div>
-			</PageSection>
-		{/if}
+	{#if testimonialsSnippet}
+		{@render testimonialsSnippet()}
+	{:else if testimonials?.length}
+		<PageSection id="testimonials" size="xl">
+			<h2 class="text-center text-display-3 text-foreground">What our customers say</h2>
+			<div class="mt-10">
+				<TestimonialGrid {testimonials} />
+			</div>
+		</PageSection>
 	{/if}
 
-	{#if team?.length}
-		{#if teamSnippet}
-			{@render teamSnippet()}
-		{:else}
-			<PageSection id="team" size="xl">
-				<TeamSection members={team} />
-			</PageSection>
-		{/if}
+	{#if teamSnippet}
+		{@render teamSnippet()}
+	{:else if team?.length}
+		<PageSection id="team" size="xl">
+			<TeamSection members={team} />
+		</PageSection>
 	{/if}
 
-	{#if stats?.length}
-		{#if statsSnippet}
-			{@render statsSnippet()}
-		{:else}
-			<PageSection id="stats" size="xl">
-				<StatsCounter {stats} />
-			</PageSection>
-		{/if}
+	{#if statsSnippet}
+		{@render statsSnippet()}
+	{:else if stats?.length}
+		<PageSection id="stats" size="xl">
+			<StatsCounter {stats} />
+		</PageSection>
 	{/if}
 
-	{#if faqItems?.length}
-		{#if faqSnippet}
-			{@render faqSnippet()}
-		{:else}
-			<PageSection id="faq" size="lg">
-				<h2 class="text-center text-display-3 text-foreground">Frequently asked questions</h2>
-				<div class="mt-10">
-					<FAQ items={faqItems} />
-				</div>
-			</PageSection>
-		{/if}
+	{#if faqSnippet}
+		{@render faqSnippet()}
+	{:else if faqItems?.length}
+		<PageSection id="faq" size="lg">
+			<h2 class="text-center text-display-3 text-foreground">Frequently asked questions</h2>
+			<div class="mt-10">
+				<FAQ items={faqItems} />
+			</div>
+		</PageSection>
 	{/if}
 
-	{#if ctaTitle}
-		{#if ctaSnippet}
-			{@render ctaSnippet()}
-		{:else}
-			<CtaBanner title={ctaTitle} description={ctaDescription} {ctaLabel} {ctaHref} />
-		{/if}
+	{#if ctaSnippet}
+		{@render ctaSnippet()}
+	{:else if ctaTitle}
+		<CtaBanner title={ctaTitle} description={ctaDescription} {ctaLabel} {ctaHref} />
 	{/if}
 
-	{#if newsletter}
-		{#if newsletterSnippet}
-			{@render newsletterSnippet()}
-		{:else}
-			<PageSection id="newsletter" size="lg" background="muted">
-				<Newsletter title={newsletter.title ?? ""} description={newsletter.description} />
-			</PageSection>
-		{/if}
+	{#if newsletterSnippet}
+		{@render newsletterSnippet()}
+	{:else if newsletter}
+		<PageSection id="newsletter" size="lg" background="muted">
+			<Newsletter title={newsletter.title ?? ""} description={newsletter.description} />
+		</PageSection>
 	{/if}
 
 	{#if children}
