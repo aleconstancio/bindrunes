@@ -37,6 +37,8 @@ function formatJSON(data: unknown): string {
 <div class="border border-border rounded-[--radius-lg] overflow-hidden {className}">
 	<button
 		class="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-muted/50"
+		aria-expanded={expanded}
+		aria-label="Toggle {name} details"
 		onclick={() => {
 			expanded = !expanded;
 			onToggle?.();

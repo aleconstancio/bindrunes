@@ -23,6 +23,20 @@ describe("ToolCallDisplay", () => {
 		expect(screen.getByText((content, element) => content.includes("*.ts"))).toBeTruthy();
 	});
 
+	it("expands to show result", async () => {
+		render(ToolCallDisplay, {
+			props: {
+				name: "search_files",
+				args: { query: "*.ts" },
+				result: { count: 5 },
+				status: "completed",
+			},
+		});
+		await fireEvent.click(screen.getByText("search_files"));
+		expect(screen.getByText((content) => content.includes("count"))).toBeTruthy();
+		expect(screen.getByText((content) => content.includes("5"))).toBeTruthy();
+	});
+
 	it("shows error state", () => {
 		render(ToolCallDisplay, {
 			props: { name: "failed_tool", status: "error" },
