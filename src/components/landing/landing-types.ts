@@ -75,3 +75,16 @@ export interface FooterLink {
 	label: string;
 	href: string;
 }
+
+export interface NavCTA {
+	label: string;
+	href: string;
+	variant?: "primary" | "outline";
+}
+
+export interface StatData {
+	value: number;
+	label: string;
+	suffix?: string;
+	prefix?: string;
+}

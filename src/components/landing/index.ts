@@ -18,7 +18,9 @@ export type {
 	FooterLink,
 	Integration,
 	Metric,
+	NavCTA,
 	Plan,
+	StatData,
 	Step,
 	TeamMember,
 } from "./landing-types";

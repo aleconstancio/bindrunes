@@ -8,37 +8,33 @@ import FAQ from "./FAQ.svelte";
 import FeatureGrid from "./FeatureGrid.svelte";
 import HeroBanner from "./HeroBanner.svelte";
 import HowItWorks from "./HowItWorks.svelte";
+import IntegrationGrid from "./IntegrationGrid.svelte";
 import LandingNav from "./LandingNav.svelte";
+import LogoCloud from "./LogoCloud.svelte";
 import { createLandingState } from "./landing-context.svelte";
 import type {
 	CTA,
 	FAQItem,
 	Feature,
 	FooterLink,
+	Integration,
 	Logo,
 	Metric,
+	NavCTA,
 	Plan,
+	StatData,
 	Step,
+	TeamMember,
 	Testimonial,
 } from "./landing-types";
 import MetricsBar from "./MetricsBar.svelte";
+import Newsletter from "./Newsletter.svelte";
 import PricingTable from "./PricingTable.svelte";
 import SiteFooter from "./SiteFooter.svelte";
 import StatsCounter from "./StatsCounter.svelte";
+import TeamSection from "./TeamSection.svelte";
 import TestimonialGrid from "./TestimonialGrid.svelte";
-
-interface NavCTA {
-	label: string;
-	href: string;
-	variant?: "primary" | "outline";
-}
-
-interface StatData {
-	value: number;
-	label: string;
-	suffix?: string;
-	prefix?: string;
-}
+import VideoEmbed from "./VideoEmbed.svelte";
 
 let {
 	logo,
@@ -68,6 +64,12 @@ let {
 	copyright,
 	bottomLinks = [],
 	class: className = "",
+	logos,
+	logosTitle,
+	integrations,
+	team,
+	newsletter,
+	video,
 	heroSnippet,
 	navSnippet,
 	featuresSnippet,
@@ -76,6 +78,11 @@ let {
 	howItWorksSnippet,
 	testimonialsSnippet,
 	statsSnippet,
+	logosSnippet,
+	integrationsSnippet,
+	teamSnippet,
+	newsletterSnippet,
+	videoSnippet,
 	ctaSnippet,
 	faqSnippet,
 	footerSnippet,
@@ -108,6 +115,12 @@ let {
 	copyright?: string;
 	bottomLinks?: FooterLink[];
 	class?: string;
+	logos?: Logo[];
+	logosTitle?: string;
+	integrations?: Integration[];
+	team?: TeamMember[];
+	newsletter?: { title?: string; description?: string };
+	video?: { url: string; poster?: string };
 	heroSnippet?: Snippet;
 	navSnippet?: Snippet;
 	featuresSnippet?: Snippet;
@@ -116,6 +129,11 @@ let {
 	howItWorksSnippet?: Snippet;
 	testimonialsSnippet?: Snippet;
 	statsSnippet?: Snippet;
+	logosSnippet?: Snippet;
+	integrationsSnippet?: Snippet;
+	teamSnippet?: Snippet;
+	newsletterSnippet?: Snippet;
+	videoSnippet?: Snippet;
 	ctaSnippet?: Snippet;
 	faqSnippet?: Snippet;
 	footerSnippet?: Snippet;
@@ -127,11 +145,16 @@ createLandingState();
 const sectionIds = $derived(
 	[
 		metrics?.length ? "metrics" : null,
+		logos?.length ? "logos" : null,
 		features?.length ? "features" : null,
+		integrations?.length ? "integrations" : null,
 		steps?.length ? "how-it-works" : null,
+		video ? "video" : null,
 		plans?.length ? "pricing" : null,
 		testimonials?.length ? "testimonials" : null,
+		team?.length ? "team" : null,
 		stats?.length ? "stats" : null,
+		newsletter ? "newsletter" : null,
 		faqItems?.length ? "faq" : null,
 	].filter(Boolean) as string[],
 );
@@ -158,27 +181,39 @@ const sectionIds = $derived(
 		/>
 	{/if}
 
-	{#if metrics?.length}
-		{#if metricsSnippet}
-			{@render metricsSnippet()}
-		{:else}
-			<PageSection id="metrics" size="xl">
-				<MetricsBar {metrics} />
-			</PageSection>
-		{/if}
+	{#if metricsSnippet}
+		{@render metricsSnippet()}
+	{:else if metrics?.length}
+		<PageSection id="metrics" size="xl">
+			<MetricsBar {metrics} />
+		</PageSection>
 	{/if}
 
-	{#if features?.length}
-		{#if featuresSnippet}
-			{@render featuresSnippet()}
-		{:else}
-			<PageSection id="features" size="xl">
-				<h2 class="text-center text-display-3 text-foreground">Features</h2>
-				<div class="mt-10">
-					<FeatureGrid {features} columns={featureColumns} variant={featureVariant} />
-				</div>
-			</PageSection>
-		{/if}
+	{#if logosSnippet}
+		{@render logosSnippet()}
+	{:else if logos?.length}
+		<PageSection id="logos" size="xl" reveal={false}>
+			<LogoCloud title={logosTitle} logos={logos} />
+		</PageSection>
+	{/if}
+
+	{#if featuresSnippet}
+		{@render featuresSnippet()}
+	{:else if features?.length}
+		<PageSection id="features" size="xl">
+			<h2 class="text-center text-display-3 text-foreground">Features</h2>
+			<div class="mt-10">
+				<FeatureGrid {features} columns={featureColumns} variant={featureVariant} />
+			</div>
+		</PageSection>
+	{/if}
+
+	{#if integrationsSnippet}
+		{@render integrationsSnippet()}
+	{:else if integrations?.length}
+		<PageSection id="integrations" size="xl">
+			<IntegrationGrid {integrations} />
+		</PageSection>
 	{/if}
 
 	{#if steps?.length}
@@ -190,6 +225,16 @@ const sectionIds = $derived(
 				<div class="mt-10">
 					<HowItWorks {steps} showConnector />
 				</div>
+			</PageSection>
+		{/if}
+	{/if}
+
+	{#if video}
+		{#if videoSnippet}
+			{@render videoSnippet()}
+		{:else}
+			<PageSection id="video" size="lg">
+				<VideoEmbed videoUrl={video.url} posterUrl={video.poster} />
 			</PageSection>
 		{/if}
 	{/if}
@@ -216,6 +261,16 @@ const sectionIds = $derived(
 				<div class="mt-10">
 					<TestimonialGrid {testimonials} />
 				</div>
+			</PageSection>
+		{/if}
+	{/if}
+
+	{#if team?.length}
+		{#if teamSnippet}
+			{@render teamSnippet()}
+		{:else}
+			<PageSection id="team" size="xl">
+				<TeamSection members={team} />
 			</PageSection>
 		{/if}
 	{/if}
@@ -248,6 +303,16 @@ const sectionIds = $derived(
 			{@render ctaSnippet()}
 		{:else}
 			<CtaBanner title={ctaTitle} description={ctaDescription} {ctaLabel} {ctaHref} />
+		{/if}
+	{/if}
+
+	{#if newsletter}
+		{#if newsletterSnippet}
+			{@render newsletterSnippet()}
+		{:else}
+			<PageSection id="newsletter" size="lg" background="muted">
+				<Newsletter title={newsletter.title ?? ""} description={newsletter.description} />
+			</PageSection>
 		{/if}
 	{/if}
 
