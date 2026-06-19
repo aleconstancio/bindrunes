@@ -1,10 +1,10 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import Tooltip from "./Tooltip.svelte";
+import TooltipHarness from "./__tests__/TooltipHarness.svelte";
 
 describe("Tooltip", () => {
 	it("renders trigger element", () => {
-		const { container } = render(Tooltip, {
+		const { container } = render(TooltipHarness, {
 			content: "Help text",
 			slots: { children: "Hover me" },
 		});
@@ -13,7 +13,7 @@ describe("Tooltip", () => {
 	});
 
 	it("renders content prop", () => {
-		const { container } = render(Tooltip, {
+		const { container } = render(TooltipHarness, {
 			content: "Help text",
 			slots: { children: "Hover me" },
 		});
@@ -21,7 +21,7 @@ describe("Tooltip", () => {
 	});
 
 	it("renders the tooltip provider wrapper", () => {
-		const { container } = render(Tooltip, {
+		const { container } = render(TooltipHarness, {
 			content: "Info",
 			slots: { children: "Hover" },
 		});
@@ -29,7 +29,7 @@ describe("Tooltip", () => {
 	});
 
 	it("renders with default side top", () => {
-		const { container } = render(Tooltip, {
+		const { container } = render(TooltipHarness, {
 			content: "Tip",
 			slots: { children: "Hover" },
 		});

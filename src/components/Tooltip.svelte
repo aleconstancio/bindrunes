@@ -8,20 +8,15 @@ let {
 	content = "",
 	contentSnippet = undefined as Snippet | undefined,
 	side = "top" as "top" | "right" | "bottom" | "left",
-	openDelay = 700,
-	closeDelay = 300,
 	children,
 }: {
 	content?: string;
 	contentSnippet?: Snippet;
 	side?: "top" | "right" | "bottom" | "left";
-	openDelay?: number;
-	closeDelay?: number;
 	children?: Snippet;
 } = $props();
 </script>
 
-<BitsTooltip.Provider {openDelay} {closeDelay}>
 <BitsTooltip.Root>
   <BitsTooltip.Trigger class="inline-flex">{@render children?.()}</BitsTooltip.Trigger>
   <BitsTooltip.Content
@@ -38,4 +33,3 @@ let {
     {/if}
   </BitsTooltip.Content>
 </BitsTooltip.Root>
-</BitsTooltip.Provider>

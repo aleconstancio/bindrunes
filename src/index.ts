@@ -108,6 +108,7 @@ export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as Toggle } from "./components/Toggle.svelte";
 export { default as ToggleGroup } from "./components/ToggleGroup.svelte";
 export { default as Tooltip } from "./components/Tooltip.svelte";
+export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
 export { default as TreeView } from "./components/TreeView.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";

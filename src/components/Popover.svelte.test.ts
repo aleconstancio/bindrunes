@@ -8,12 +8,6 @@ describe("Popover", () => {
 		expect(container).toBeInTheDocument();
 	});
 
-	it("has relative positioning", () => {
-		const { container } = render(Popover);
-		const wrapper = container.querySelector(".relative.inline-block");
-		expect(wrapper).toBeInTheDocument();
-	});
-
 	it("renders trigger with aria-haspopup", () => {
 		const { container } = render(Popover);
 		const trigger = container.querySelector("button.inline-flex");

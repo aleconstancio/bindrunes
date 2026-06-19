@@ -21,23 +21,21 @@ let {
 } = $props();
 </script>
 
-<div class="relative inline-block">
-  <BitsPopover.Root bind:open>
-    <BitsPopover.Trigger class="inline-flex focus:outline-none bg-transparent border-0 p-0 cursor-pointer">
-      {@render trigger?.()}
-    </BitsPopover.Trigger>
+<BitsPopover.Root bind:open>
+  <BitsPopover.Trigger class="inline-flex focus:outline-none bg-transparent border-0 p-0 cursor-pointer">
+    {@render trigger?.()}
+  </BitsPopover.Trigger>
 
-    <BitsPopover.Content
-      {side}
-      {align}
-      sideOffset={8}
-      class="z-[--z-overlay,30] min-w-[200px] rounded-[--radius] bg-card p-3 shadow-[--shadow-lg] border border-border text-foreground {className}
-             data-[state=open]:animate-popover-fade-in data-[state=closed]:animate-popover-fade-out focus:outline-none"
-    >
-      {@render children?.()}
-    </BitsPopover.Content>
-  </BitsPopover.Root>
-</div>
+  <BitsPopover.Content
+    {side}
+    {align}
+    sideOffset={8}
+    class="z-[--z-overlay,30] min-w-[200px] rounded-[--radius] bg-card p-3 shadow-[--shadow-lg] border border-border text-foreground {className}
+           data-[state=open]:animate-popover-fade-in data-[state=closed]:animate-popover-fade-out focus:outline-none"
+  >
+    {@render children?.()}
+  </BitsPopover.Content>
+</BitsPopover.Root>
 
 <style>
   :global(.animate-popover-fade-in) {
