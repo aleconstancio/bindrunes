@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"bindrunes": "workspace:*",
+		"bindrunes-kit": "workspace:*",
 		"lucide-svelte": "^1.0.1",
 		"mode-watcher": "^0.5.1",
 		"svelte": "^5.0.0",
