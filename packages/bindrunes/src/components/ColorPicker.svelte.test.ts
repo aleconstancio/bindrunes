@@ -28,7 +28,7 @@ describe("ColorPicker", () => {
 		const { rerender } = render(ColorPicker, {
 			props: { value: "oklch(0.5 0.2 180)" },
 		});
-		const input = screen.getByRole("textbox");
+		const input = screen.getByRole("textbox") as HTMLInputElement;
 		expect(input.value).toBe("oklch(0.5 0.2 180)");
 
 		await rerender({ value: "oklch(0.8 0.05 90)" });
@@ -41,7 +41,7 @@ describe("ColorPicker", () => {
 		const hueSlider = sliders[0];
 
 		await fireEvent.input(hueSlider, { target: { value: "120" } });
-		const textInput = screen.getByRole("textbox");
+		const textInput = screen.getByRole("textbox") as HTMLInputElement;
 		expect(textInput.value).toContain("120");
 	});
 
