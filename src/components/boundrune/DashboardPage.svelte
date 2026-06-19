@@ -2,9 +2,9 @@
 import type { Component, Snippet } from "svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import PageShell from "../PageShell.svelte";
-import DashboardShellBrand from "./DashboardShellBrand.svelte";
-import DashboardShellHeader from "./DashboardShellHeader.svelte";
-import NavMenu from "./NavMenu.svelte";
+import DashboardShellBrand from "./dashboard/DashboardShellBrand.svelte";
+import DashboardShellHeader from "./dashboard/DashboardShellHeader.svelte";
+import NavMenu from "./dashboard/NavMenu.svelte";
 
 let {
 	appName = "",

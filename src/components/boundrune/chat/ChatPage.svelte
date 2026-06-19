@@ -5,14 +5,14 @@ import PageShell from "../../PageShell.svelte";
 
 let {
 	title = "Chat",
-	selectedConversation = undefined as string | undefined,
+
 	class: className = "",
 	conversationList,
 	chatHeader,
 	children,
 }: {
 	title?: string;
-	selectedConversation?: string;
+
 	class?: string;
 	conversationList?: Snippet;
 	chatHeader?: Snippet;

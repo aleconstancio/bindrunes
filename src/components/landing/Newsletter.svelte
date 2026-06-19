@@ -19,8 +19,8 @@ interface Props {
 let {
 	title,
 	description,
-	placeholder = "seu@email.com",
-	buttonText = "Inscrever",
+	placeholder = "you@email.com",
+	buttonText = "Subscribe",
 	onSubmit,
 	children,
 	class: className = "",

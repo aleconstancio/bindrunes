@@ -11,7 +11,7 @@ export interface BlogPost {
 export interface ChangelogEntry {
 	version: string;
 	date: string;
-	changes: {
+	entries: {
 		type: "added" | "fixed" | "changed";
 		description: string;
 	}[];
