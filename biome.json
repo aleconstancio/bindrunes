@@ -76,6 +76,15 @@
 			}
 		},
 		{
+			"includes": ["packages/bindrunes-kit/templates/**"],
+			"linter": {
+				"enabled": false
+			},
+			"formatter": {
+				"enabled": false
+			}
+		},
+		{
 			"includes": ["**/*.test.ts", "**/*.spec.ts", "**/*.test.svelte.ts"],
 			"linter": {
 				"rules": {
