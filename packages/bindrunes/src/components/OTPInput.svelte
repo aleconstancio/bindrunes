@@ -1,7 +1,6 @@
 <!--
-  OTPInput: Custom OTP input with masking support.
+  OTPInput: Custom OTP input for multi-character entry.
   Differs from PinInput.svelte which wraps bits-ui's PinInput for standard numeric pin entry.
-  OTPInput provides masked display values (showing * for untyped chars) for OTP scenarios.
 -->
 <script lang="ts">
 interface Props {
@@ -41,8 +40,15 @@ function handleInput(index: number, e: Event) {
 }
 
 function handleKeydown(index: number, e: KeyboardEvent) {
-	if (e.key === "Backspace" && !value[index] && index > 0) {
-		inputs[index - 1]?.focus();
+	if (e.key === "Backspace") {
+		if (value[index]) {
+			const chars = value.split("");
+			chars[index] = "";
+			value = chars.join("");
+			onChange?.(value);
+		} else if (index > 0) {
+			inputs[index - 1]?.focus();
+		}
 	}
 }
 
@@ -55,7 +61,8 @@ function handlePaste(e: ClipboardEvent) {
 }
 </script>
 
-<div class="flex items-center gap-2 {className}">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class="flex items-center gap-2 {className}" onpaste={handlePaste}>
 	{#each Array(length) as _, i}
 		<input
 			type="text"
@@ -67,7 +74,6 @@ function handlePaste(e: ClipboardEvent) {
 			value={value[i] || ""}
 			oninput={(e) => handleInput(i, e)}
 			onkeydown={(e) => handleKeydown(i, e)}
-			onpaste={handlePaste}
 			{disabled}
 			bind:this={inputs[i]}
 			aria-label="OTP digit {i + 1}"
