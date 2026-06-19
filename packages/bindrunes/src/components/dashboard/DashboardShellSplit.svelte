@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { isBrowser } from "../../utils/isBrowser";
 import MetaScrollable from "../MetaScrollable.svelte";
 
 let {
@@ -26,7 +27,7 @@ let {
 let width = $state(listWidth);
 
 function handleResize(e: MouseEvent) {
-	if (!resizable) return;
+	if (!resizable || !isBrowser) return;
 	const startX = e.clientX;
 	const startWidth = parseInt(width, 10);
 
@@ -45,7 +46,7 @@ function handleResize(e: MouseEvent) {
 }
 
 function handleTouchStart(e: TouchEvent) {
-	if (!resizable || e.touches.length === 0) return;
+	if (!resizable || !isBrowser || e.touches.length === 0) return;
 	const touch = e.touches[0];
 	const startX = touch.clientX;
 	const startWidth = parseInt(width, 10);

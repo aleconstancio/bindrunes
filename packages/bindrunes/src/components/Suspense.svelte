@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { TFunction } from "../shared-types";
+import { isBrowser } from "../utils/isBrowser";
 import Button from "./Button.svelte";
 import EmptyState from "./EmptyState.svelte";
 
@@ -27,7 +28,9 @@ let {
 } = $props();
 
 function retry() {
-	window.location.reload();
+	if (isBrowser) {
+		window.location.reload();
+	}
 }
 </script>
 

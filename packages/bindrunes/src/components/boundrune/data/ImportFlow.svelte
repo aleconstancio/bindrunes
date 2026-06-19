@@ -1,6 +1,7 @@
 <script lang="ts">
 import { FileSpreadsheet, Upload } from "lucide-svelte";
 import type { Snippet } from "svelte";
+import { isBrowser } from "../../utils/isBrowser";
 import Button from "../../Button.svelte";
 import Card from "../../Card.svelte";
 import Dialog from "../../Dialog.svelte";
@@ -58,8 +59,8 @@ async function handleUpload() {
         ondragover={(e) => { e.preventDefault(); dragOver = true; }}
         ondragleave={() => dragOver = false}
         ondrop={handleDrop}
-        onclick={() => document.getElementById('file-input')?.click()}
-        onkeydown={(e) => { if (e.key === 'Enter') document.getElementById('file-input')?.click(); }}
+        onclick={() => isBrowser && document.getElementById('file-input')?.click()}
+        onkeydown={(e) => { if (e.key === 'Enter' && isBrowser) document.getElementById('file-input')?.click(); }}
       >
         <Upload class="h-10 w-10 mx-auto text-muted-foreground mb-3" />
         <p class="text-body-md text-foreground font-medium">Drop your file here or click to browse</p>

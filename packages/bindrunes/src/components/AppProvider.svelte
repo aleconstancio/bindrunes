@@ -1,6 +1,7 @@
 <script lang="ts">
 import { ModeWatcher } from "mode-watcher";
 import type { Snippet } from "svelte";
+import { isBrowser } from "../utils/isBrowser";
 import { type Aesthetic, createAesthetic } from "../utils/createAesthetic.svelte";
 import { createDensity, type Density } from "../utils/createDensity.svelte";
 import { createTheme, type Theme } from "../utils/createTheme.svelte";
@@ -25,5 +26,7 @@ const _aesthetic = createAesthetic({ default: aestheticDefault ?? "editorial" })
 const _density = createDensity({ default: densityDefault ?? "comfortable" });
 </script>
 
-<ModeWatcher />
+{#if isBrowser}
+  <ModeWatcher />
+{/if}
 {@render children?.()}

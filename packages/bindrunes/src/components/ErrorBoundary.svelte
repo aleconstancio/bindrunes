@@ -12,6 +12,7 @@
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import type { TFunction } from "../shared-types";
+import { isBrowser } from "../utils/isBrowser";
 import { toError } from "../utils/toError";
 import Button from "./Button.svelte";
 
@@ -86,7 +87,7 @@ function retry() {
 	errorInfo = "";
 	if (onRetry) {
 		onRetry();
-	} else {
+	} else if (isBrowser) {
 		window.location.reload();
 	}
 }
