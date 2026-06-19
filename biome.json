@@ -10,6 +10,7 @@
 			"!**/node_modules",
 			"!**/coverage",
 			"!examples",
+			"!docs-site/**/*.css",
 			"!src/styles/tokens/tailwind.css",
 			"!docs/tokens.example.css",
 			"!src/components/scaffold/app.css"
