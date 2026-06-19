@@ -62,10 +62,10 @@ export default defineConfig({
 			],
 			thresholds: [
 				{
-					lines: 80,
-					functions: 77,
-					statements: 80,
-					branches: 70,
+					lines: 85,
+					functions: 82,
+					statements: 85,
+					branches: 75,
 				},
 				{
 					include: ["src/utils/agentic/**", "src/types/agent.ts"],
