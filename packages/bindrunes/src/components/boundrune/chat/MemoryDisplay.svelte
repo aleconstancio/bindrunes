@@ -1,9 +1,5 @@
 <script lang="ts">
-interface MemoryRef {
-	id: string;
-	preview: string;
-	tokens: number;
-}
+import type { MemoryRef } from "./types";
 
 interface Props {
 	working?: MemoryRef[];

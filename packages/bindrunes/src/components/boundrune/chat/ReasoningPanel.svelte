@@ -1,8 +1,5 @@
 <script lang="ts">
-interface ReasoningStep {
-	text: string;
-	confidence?: number;
-}
+import type { ReasoningStep } from "./types";
 
 interface Props {
 	steps?: ReasoningStep[];

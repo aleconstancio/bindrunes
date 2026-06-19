@@ -2,13 +2,7 @@
 import type { Snippet } from "svelte";
 import ScrollArea from "../../ScrollArea.svelte";
 import ChatMessage from "./ChatMessage.svelte";
-
-interface Message {
-	id: string;
-	content: string;
-	sender: "user" | "assistant";
-	timestamp?: string;
-}
+import type { Message } from "./types";
 
 let {
 	messages = [] as Message[],

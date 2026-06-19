@@ -6,32 +6,7 @@ import MemoryDisplay from "./MemoryDisplay.svelte";
 import ReasoningPanel from "./ReasoningPanel.svelte";
 import ToolCallDisplay from "./ToolCallDisplay.svelte";
 import TypingIndicator from "./TypingIndicator.svelte";
-
-interface Message {
-	id: string;
-	content: string;
-	sender: "user" | "assistant";
-	timestamp?: string;
-}
-
-interface ToolCall {
-	id: string;
-	name: string;
-	args?: unknown;
-	result?: unknown;
-	status: "pending" | "completed" | "error";
-}
-
-interface ReasoningStep {
-	text: string;
-	confidence?: number;
-}
-
-interface MemoryRef {
-	id: string;
-	preview: string;
-	tokens: number;
-}
+import type { MemoryRef, Message, ReasoningStep, ToolCall } from "./types";
 
 interface Props {
 	messages?: Message[];
