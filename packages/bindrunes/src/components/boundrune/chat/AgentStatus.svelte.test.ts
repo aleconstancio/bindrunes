@@ -10,14 +10,20 @@ describe("AgentStatus", () => {
 				tokenUsage: { prompt: 1000, completion: 500 },
 			},
 		});
-		expect(screen.getByText("thinking")).toBeTruthy();
-		expect(screen.getByText("1500")).toBeTruthy();
+		expect(screen.getByText("thinking")).toBeInTheDocument();
+		expect(screen.getByText("1500")).toBeInTheDocument();
 	});
 
-	it("shows cancel button when on Cancel provided", () => {
+	it("shows cancel button when onCancel provided", () => {
 		const onCancel = vi.fn();
 		render(AgentStatus, { props: { state: "executing", onCancel } });
-		expect(screen.getByText("Stop")).toBeTruthy();
+		expect(screen.getByText("Stop")).toBeInTheDocument();
+	});
+
+	it("hides cancel button when state is idle", () => {
+		const onCancel = vi.fn();
+		render(AgentStatus, { props: { state: "idle", onCancel } });
+		expect(screen.queryByText("Stop")).not.toBeInTheDocument();
 	});
 
 	it("calls onCancel when clicked", async () => {
