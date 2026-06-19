@@ -7,7 +7,7 @@ export { default as Accordion } from "./components/Accordion.svelte";
 export { default as AccordionItem } from "./components/AccordionItem.svelte";
 // ── Feedback ──
 export { default as Alert } from "./components/Alert.svelte";
-// ── Auth & Access ──
+// ── Overlays ──
 export { default as AlertDialog } from "./components/AlertDialog.svelte";
 // ── App Shell ──
 export { default as AppProvider } from "./components/AppProvider.svelte";
@@ -28,8 +28,13 @@ export type {
 	BadgeProps,
 	ButtonProps,
 	CardProps,
+	DataTableProps,
 	DialogProps,
 	InputProps,
+	SelectProps,
+	SwitchProps,
+	TabsProps,
+	TooltipProps,
 } from "./components/component-props";
 // ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";

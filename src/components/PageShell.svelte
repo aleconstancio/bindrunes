@@ -8,10 +8,12 @@ let {
 	leftWidth = "260px",
 	leftCollapsible = "icon" as "icon" | "full" | "none",
 	leftOpen = $bindable(true),
+	leftTrigger,
 	right,
 	rightWidth = "320px",
 	rightCollapsible = "icon" as "icon" | "full" | "none",
 	rightOpen = $bindable(true),
+	rightTrigger,
 	class: className = "",
 	main,
 	children,
@@ -21,10 +23,12 @@ let {
 	leftWidth?: string;
 	leftCollapsible?: "icon" | "full" | "none";
 	leftOpen?: boolean;
+	leftTrigger?: Snippet<[(...args: unknown[]) => void]>;
 	right?: Snippet;
 	rightWidth?: string;
 	rightCollapsible?: "icon" | "full" | "none";
 	rightOpen?: boolean;
+	rightTrigger?: Snippet<[(...args: unknown[]) => void]>;
 	class?: string;
 	main?: Snippet;
 	children?: Snippet;
@@ -60,6 +64,11 @@ const showRight = $derived(rightCollapsible !== "none" && right);
 				<MetaScrollable class="h-full">
 					{@render left!()}
 				</MetaScrollable>
+				{#if leftTrigger && leftCollapsible !== "none" && leftOpen}
+					<div class="p-2 border-t border-border">
+						{@render leftTrigger(toggleLeft)}
+					</div>
+				{/if}
 			</aside>
 		{/if}
 
@@ -81,6 +90,11 @@ const showRight = $derived(rightCollapsible !== "none" && right);
 				<MetaScrollable class="h-full">
 					{@render right!()}
 				</MetaScrollable>
+				{#if rightTrigger && rightCollapsible !== "none" && rightOpen}
+					<div class="p-2 border-t border-border">
+						{@render rightTrigger(toggleRight)}
+					</div>
+				{/if}
 			</aside>
 		{/if}
 	</div>
