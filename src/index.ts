@@ -219,6 +219,7 @@ export { toError } from "./utils/toError.ts";
 export { isSafeRedirect } from "./utils/url.ts";
 // ── Composables: Components ──
 export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
+export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
 // ── Composables: Reactivity ──
 /** Copy to clipboard with success/error state. */
 export { useClipboard } from "./utils/useClipboard.svelte.ts";

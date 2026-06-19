@@ -2,10 +2,10 @@
 /** @deprecated Use DashboardShell from bindrunes/dashboard instead. This component will be removed in v2.0. */
 import type { Component, Snippet } from "svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
+import DashboardShellBrand from "../dashboard/DashboardShellBrand.svelte";
+import DashboardShellHeader from "../dashboard/DashboardShellHeader.svelte";
+import NavMenu from "../dashboard/NavMenu.svelte";
 import PageShell from "../PageShell.svelte";
-import DashboardShellBrand from "./dashboard/DashboardShellBrand.svelte";
-import DashboardShellHeader from "./dashboard/DashboardShellHeader.svelte";
-import NavMenu from "./dashboard/NavMenu.svelte";
 
 let {
 	appName = "",

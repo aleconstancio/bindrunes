@@ -91,8 +91,8 @@ let {
 		{:else if children}
 			{@render children()}
 		{:else if selectedItem}
-			<div class="p-6">
-				<pre class="text-body-sm">{JSON.stringify(selectedItem, null, 2)}</pre>
+			<div class="flex items-center justify-center h-full text-muted-foreground p-6">
+				<p class="text-body-md">Select an item from the list to view details.</p>
 			</div>
 		{:else}
 			<div class="flex items-center justify-center h-full">
