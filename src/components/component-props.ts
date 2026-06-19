@@ -1,4 +1,5 @@
 import type { Snippet } from "svelte";
+import type { Column, SelectOption, SortState, TFunction } from "../shared-types";
 
 export type ButtonVariant =
 	| "primary"
@@ -105,4 +106,60 @@ export interface DialogProps {
 	footer?: Snippet;
 	children?: Snippet;
 	actions?: Snippet;
+}
+
+export interface DataTableProps {
+	columns?: Column[];
+	rows?: ReadonlyArray<Record<string, unknown>>;
+	currentPage?: number;
+	totalPages?: number;
+	onPageChange?: (page: number) => void;
+	sort?: SortState | null;
+	onSort?: (sort: SortState | null) => void;
+	hoverable?: boolean;
+	striped?: boolean;
+	loading?: boolean;
+	onRowClick?: (row: Record<string, unknown>, index: number) => void;
+	emptyText?: string;
+	selectedIndex?: number;
+	rowClass?: (row: Record<string, unknown>, index: number) => string;
+	t?: TFunction;
+}
+
+export interface SelectProps {
+	t?: TFunction;
+	value?: string;
+	label?: string;
+	placeholder?: string;
+	options?: SelectOption[];
+	disabled?: boolean;
+	required?: boolean;
+	error?: string;
+	name?: string;
+	itemSnippet?: Snippet<[{ option: SelectOption }]>;
+	emptySnippet?: Snippet;
+}
+
+export interface TabsProps {
+	value?: string;
+	orientation?: "horizontal" | "vertical";
+	class?: string;
+	children?: Snippet;
+}
+
+export interface SwitchProps {
+	checked?: boolean;
+	disabled?: boolean;
+	error?: string;
+	label?: string;
+	name?: string;
+}
+
+export interface TooltipProps {
+	content?: string;
+	contentSnippet?: Snippet;
+	side?: "top" | "right" | "bottom" | "left";
+	openDelay?: number;
+	closeDelay?: number;
+	children?: Snippet;
 }
