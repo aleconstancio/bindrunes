@@ -13,6 +13,13 @@ describe("MemoryDisplay", () => {
 		expect(screen.getByText("Semantic Memory")).toBeTruthy();
 	});
 
+	it("renders without props", () => {
+		render(MemoryDisplay);
+		expect(screen.queryByText("Working Memory")).toBeNull();
+		expect(screen.queryByText("Episodic Memory")).toBeNull();
+		expect(screen.queryByText("Semantic Memory")).toBeNull();
+	});
+
 	it("selects memory item", async () => {
 		const working = [{ id: "1", preview: "Context", tokens: 100 }];
 		const onSelect = vi.fn();

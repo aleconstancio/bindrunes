@@ -3,7 +3,6 @@ interface MemoryRef {
 	id: string;
 	preview: string;
 	tokens: number;
-	pinned?: boolean;
 }
 
 interface Props {
@@ -34,7 +33,7 @@ const layerColors = {
     <div>
       <h4 class="text-label-sm text-muted-foreground mb-2">Working Memory</h4>
       <div class="space-y-2">
-        {#each working as ref}
+        {#each working as ref (ref.id)}
           <button
             class="w-full text-left p-3 border-l-2 {layerColors.working} bg-muted/20 
                    rounded-r-[--radius-md] hover:bg-muted/40 transition-colors"
@@ -52,7 +51,7 @@ const layerColors = {
     <div>
       <h4 class="text-label-sm text-muted-foreground mb-2">Episodic Memory</h4>
       <div class="space-y-2">
-        {#each episodic as ref}
+        {#each episodic as ref (ref.id)}
           <button
             class="w-full text-left p-3 border-l-2 {layerColors.episodic} bg-muted/20 
                    rounded-r-[--radius-md] hover:bg-muted/40 transition-colors"
@@ -70,7 +69,7 @@ const layerColors = {
     <div>
       <h4 class="text-label-sm text-muted-foreground mb-2">Semantic Memory</h4>
       <div class="space-y-2">
-        {#each semantic as ref}
+        {#each semantic as ref (ref.id)}
           <button
             class="w-full text-left p-3 border-l-2 {layerColors.semantic} bg-muted/20 
                    rounded-r-[--radius-md] hover:bg-muted/40 transition-colors"
