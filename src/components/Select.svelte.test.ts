@@ -23,4 +23,11 @@ describe("Select", () => {
 		const trigger = container.querySelector("[data-select-trigger]");
 		expect(trigger).toBeInTheDocument();
 	});
+
+	it("has aria-describedby when error is present", () => {
+		const { container } = render(Select, { props: { error: "Required", options } });
+		const trigger = container.querySelector("[data-select-trigger]");
+		const errorEl = screen.getByText("Required");
+		expect(trigger?.getAttribute("aria-describedby")).toBe(errorEl.id);
+	});
 });

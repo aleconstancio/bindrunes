@@ -32,16 +32,17 @@ let {
 let _selectedLabel = $derived(options.find((o) => o.value === value)?.label || placeholder);
 
 let selectId = $derived(`select-${name ?? "fallback"}`);
-let errorId = $derived(`select-error-${name ?? "fallback"}`);
+let errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`);
 </script>
 
 {#if label}
   <label class="block text-label-md mb-2 text-muted-foreground" for={selectId}>{label}</label>
 {/if}
 
-<Select.Root bind:value {disabled} {required} {...error ? { "aria-describedby": errorId } : {}}>
+<Select.Root bind:value {disabled} {required}>
   <Select.Trigger
     id={selectId}
+    {...error ? { "aria-describedby": errorId } : {}}
     class="flex w-full items-center justify-between rounded-[--radius] border bg-input px-3 py-2 text-body-md cursor-pointer
            text-foreground transition-colors duration-[--duration-snappy]
            focus:outline-none focus:ring-2 focus:ring-ring

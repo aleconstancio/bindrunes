@@ -7,7 +7,7 @@ let {
 	checked = $bindable(false),
 	indeterminate = $bindable(false),
 	disabled = false,
-	error = "",
+	error = undefined as string | undefined,
 	name = undefined as string | undefined,
 	ariaDescribedby = undefined as string | undefined,
 	label = undefined as string | undefined,
@@ -23,10 +23,10 @@ let {
 	required?: boolean;
 } = $props();
 
-const errorId = name ? `checkbox-error-${name}` : undefined;
-const describedBy = error
-	? [ariaDescribedby, errorId].filter(Boolean).join(" ") || undefined
-	: ariaDescribedby;
+const errorId = $derived(name ? `checkbox-error-${name}` : undefined);
+const describedBy = $derived(
+	error ? [ariaDescribedby, errorId].filter(Boolean).join(" ") || undefined : ariaDescribedby,
+);
 </script>
 
 <div class="inline-flex flex-col">
@@ -50,11 +50,14 @@ const describedBy = error
         </svg>
       </BitsCheckbox.Indicator>
     </BitsCheckbox.Root>
+    {#if name}
+      <input type="hidden" {name} value={checked ? "on" : "off"} />
+    {/if}
     {#if label}
       <span class="text-label-md text-foreground">{label}</span>
     {/if}
   </label>
   {#if error && errorId}
-    <p id={errorId} class="mt-1 text-body-sm text-destructive">{error}</p>
+    <p id={errorId} role="alert" class="mt-1 text-body-sm text-destructive">{error}</p>
   {/if}
 </div>

@@ -28,4 +28,17 @@ describe("Checkbox", () => {
 		await userEvent.click(root);
 		expect(root.getAttribute("data-state")).toBe("unchecked");
 	});
+
+	it("passes name via hidden input", () => {
+		const { container } = render(Checkbox, { props: { name: "terms" } });
+		const hiddenInput = container.querySelector('input[type="hidden"][name="terms"]');
+		expect(hiddenInput).toBeInTheDocument();
+	});
+
+	it("renders error with role alert", () => {
+		render(Checkbox, { props: { name: "terms", error: "Required" } });
+		const errorEl = screen.getByText("Required");
+		expect(errorEl).toBeInTheDocument();
+		expect(errorEl.getAttribute("role")).toBe("alert");
+	});
 });

@@ -41,6 +41,13 @@ describe("Input", () => {
 		expect(screen.getByText("*")).toBeInTheDocument();
 	});
 
+	it("uses custom id when provided", () => {
+		const { getByLabelText } = render(Input, {
+			props: { label: "Email", id: "custom-id" },
+		});
+		expect(getByLabelText("Email").id).toBe("custom-id");
+	});
+
 	it("a11y: input with name has no violations", async () => {
 		const { container } = render(Input, {
 			name: "email",

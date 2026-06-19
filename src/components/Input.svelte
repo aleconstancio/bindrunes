@@ -51,7 +51,7 @@ let {
 	class?: string;
 } = $props();
 
-const inputId = id ?? name;
+const inputId = $derived(id ?? `input-${Math.random().toString(36).slice(2, 10)}`);
 
 let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-helper` : undefined);
 </script>
