@@ -1,11 +1,5 @@
 <script lang="ts">
-interface Column {
-	key: string;
-	label: string;
-	sortable?: boolean;
-	width?: string;
-	render?: (value: unknown, row: Record<string, unknown>) => string;
-}
+import type { Column, SortState } from "../shared-types";
 
 interface Props {
 	columns?: Column[];
@@ -13,8 +7,8 @@ interface Props {
 	selectable?: boolean;
 	selectedIds?: string[];
 	onSelectionChange?: (ids: string[]) => void;
-	sort?: { key: string; direction: "asc" | "desc" } | null;
-	onSort?: (sort: { key: string; direction: "asc" | "desc" } | null) => void;
+	sort?: SortState | null;
+	onSort?: (sort: SortState | null) => void;
 	onRowClick?: (row: Record<string, unknown>) => void;
 	class?: string;
 }
@@ -72,6 +66,14 @@ function toggleAllSelection() {
 				{/if}
 				{#each columns as column}
 					<th
+						role="columnheader"
+						aria-sort={column.sortable && sort?.key === column.key
+							? sort.direction === "asc"
+								? "ascending"
+								: "descending"
+							: column.sortable
+								? "none"
+								: undefined}
 						class="px-3 py-2 text-left text-label-sm text-muted-foreground font-medium {column.sortable
 							? 'cursor-pointer hover:text-foreground'
 							: ''}"
@@ -92,6 +94,13 @@ function toggleAllSelection() {
 			{#each rows as row}
 				<tr
 					class="border-b border-border hover:bg-muted/50 {onRowClick ? 'cursor-pointer' : ''}"
+					tabindex={onRowClick ? 0 : undefined}
+					onkeydown={(e) => {
+						if (onRowClick && (e.key === "Enter" || e.key === " ")) {
+							e.preventDefault();
+							onRowClick(row);
+						}
+					}}
 					onclick={() => onRowClick?.(row)}
 				>
 					{#if selectable}
