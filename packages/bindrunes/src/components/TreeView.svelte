@@ -14,7 +14,7 @@ interface Props {
 	selectedId?: string;
 	onSelect?: (id: string) => void;
 	expandedIds?: string[];
-	onToggle?: (id: string) => void;
+	onToggle?: (id: string, expanded: boolean) => void;
 	class?: string;
 }
 
@@ -36,7 +36,8 @@ function isExpanded(id: string): boolean {
 
 function toggleNode(id: string) {
 	if (onToggle) {
-		onToggle(id);
+		const newExpanded = !isExpanded(id);
+		onToggle(id, newExpanded);
 	} else {
 		if (internalExpanded.includes(id)) {
 			internalExpanded = internalExpanded.filter((e) => e !== id);
@@ -50,6 +51,9 @@ function toggleNode(id: string) {
 {#snippet TreeNode(node, depth = 0)}
 	<div class="flex flex-col">
 		<button
+			role="treeitem"
+			aria-expanded={node.children?.length ? isExpanded(node.id) : undefined}
+			aria-selected={selectedId === node.id}
 			class="flex items-center gap-2 px-2 py-1 text-body-md rounded-[--radius-md] text-left
 			       {selectedId === node.id ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}
 			       {node.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}"
@@ -80,7 +84,7 @@ function toggleNode(id: string) {
 	</div>
 {/snippet}
 
-<div class="flex flex-col {className}">
+<div class="flex flex-col {className}" role="tree">
 	{#each nodes as node}
 		{@render TreeNode(node)}
 	{/each}

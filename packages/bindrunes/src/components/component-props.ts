@@ -185,6 +185,27 @@ export interface CommandItem {
 	icon?: Snippet;
 }
 
+export interface TreeViewProps {
+	nodes?: Array<{
+		id: string;
+		label: string;
+		children?: Array<{
+			id: string;
+			label: string;
+			children?: unknown[];
+			icon?: Snippet;
+			disabled?: boolean;
+		}>;
+		icon?: Snippet;
+		disabled?: boolean;
+	}>;
+	selectedId?: string;
+	onSelect?: (id: string) => void;
+	expandedIds?: string[];
+	onToggle?: (id: string, expanded: boolean) => void;
+	class?: string;
+}
+
 export interface CommandPaletteProps {
 	items?: CommandItem[];
 	placeholder?: string;
