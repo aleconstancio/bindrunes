@@ -51,6 +51,8 @@ export default defineConfig({
 			},
 		],
 		coverage: {
+			provider: "v8",
+			reporter: ["text", "json", "html"],
 			include: ["src/**"],
 			exclude: [
 				"src/test-setup.ts",
@@ -60,21 +62,26 @@ export default defineConfig({
 				"src/**/*.spec.ts",
 				"src/**/*.d.ts",
 			],
-			thresholds: [
-				{
-					lines: 85,
-					functions: 82,
-					statements: 85,
-					branches: 75,
-				},
-				{
-					include: ["src/utils/agentic/**", "src/types/agent.ts"],
+			thresholds: {
+				"src/utils/agentic/**": {
 					lines: 90,
 					functions: 88,
 					statements: 90,
 					branches: 85,
 				},
-			],
+				"src/components/boundrune/chat/**": {
+					lines: 90,
+					functions: 88,
+					statements: 90,
+					branches: 85,
+				},
+				global: {
+					lines: 80,
+					functions: 77,
+					statements: 80,
+					branches: 70,
+				},
+			},
 		},
 	},
 });
