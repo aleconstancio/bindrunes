@@ -26,11 +26,9 @@
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(data),
 			});
-			if (!res.ok) {
-				const body = await res.json();
-				throw new Error(body.message ?? "Registration failed");
-			}
-			const { token, user } = await res.json();
+			const body = await res.json();
+			if (!res.ok) throw new Error(body.message ?? "Registration failed");
+			const { token, user } = body;
 			if (token) auth.setToken(token);
 			if (user) auth.setUser(user);
 			window.location.href = "/app";
