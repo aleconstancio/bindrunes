@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes";
-	import { CaseStudy, ProjectGrid } from "bindrunes/boundrune";
+	import { CaseStudy, ProjectGrid, PortfolioPage } from "bindrunes/boundrune";
 
 	const projects = [
 		{ id: "1", title: "E-commerce Platform", description: "A full-stack e-commerce solution with real-time inventory.", image: "", tags: ["Svelte", "Node.js", "PostgreSQL"] },
@@ -19,9 +18,7 @@
 	];
 </script>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-	<PageHeader title="Portfolio" description="Project showcase and case studies" />
-
+<PortfolioPage title="Portfolio" description="Project showcase and case studies">
 	<p class="text-body-sm text-muted-foreground">
 		Jump to: <a href="#case-study" class="text-primary hover:underline">Case Study</a>
 	</p>
@@ -70,4 +67,4 @@
 			</p>
 		</CaseStudy>
 	</div>
-</div>
+</PortfolioPage>
