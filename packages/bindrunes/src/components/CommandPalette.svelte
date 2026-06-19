@@ -4,7 +4,6 @@ interface CommandItem {
 	label: string;
 	keywords?: string[];
 	icon?: import("svelte").Snippet;
-	action?: () => void;
 }
 
 interface Props {
@@ -27,6 +26,7 @@ let {
 
 let query = $state("");
 let selectedIndex = $state(0);
+let inputEl = $state<HTMLInputElement | null>(null);
 
 const filteredItems = $derived(
 	items.filter(
@@ -35,6 +35,14 @@ const filteredItems = $derived(
 			item.keywords?.some((k) => k.toLowerCase().includes(query.toLowerCase())),
 	),
 );
+
+$effect(() => {
+	if (open) {
+		selectedIndex = 0;
+		query = "";
+		requestAnimationFrame(() => inputEl?.focus());
+	}
+});
 
 function handleKeydown(e: KeyboardEvent) {
 	if (e.key === "ArrowDown") {
@@ -69,13 +77,18 @@ $effect(() => {
 
 {#if open}
   <div class="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] {className}">
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div class="fixed inset-0 bg-black/50" onclick={() => { open = false; onClose?.(); }}></div>
+    <div
+      class="fixed inset-0 bg-black/50"
+      role="button"
+      tabindex="-1"
+      onclick={() => { open = false; onClose?.(); }}
+      onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { open = false; onClose?.(); } }}
+    ></div>
     <div
       class="relative w-full max-w-lg bg-background border border-border rounded-[--radius-lg] shadow-lg overflow-hidden"
       role="dialog"
       aria-modal="true"
+      aria-label="Command palette"
     >
       <div class="flex items-center border-b border-border px-4">
         <svg class="w-4 h-4 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -83,6 +96,7 @@ $effect(() => {
           <path d="m21 21-4.35-4.35"></path>
         </svg>
         <input
+          bind:this={inputEl}
           class="flex-1 bg-transparent px-3 py-3 text-body-md outline-none placeholder:text-muted-foreground"
           {placeholder}
           bind:value={query}
