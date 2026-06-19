@@ -31,11 +31,33 @@ vi.mock("mode-watcher", () => ({
 const iconFn = (() => "") as unknown as (() => string) & { size: number };
 iconFn.size = 16;
 
-const lucideProxy = new Proxy(
-	{},
-	{
-		get: (_target, _prop) => iconFn,
-	},
-);
-
-vi.mock("lucide-svelte", () => lucideProxy);
+vi.mock("lucide-svelte", () => ({
+	default: iconFn,
+	ArrowLeft: iconFn,
+	Check: iconFn,
+	Copy: iconFn,
+	Download: iconFn,
+	Eye: iconFn,
+	EyeOff: iconFn,
+	FileJson: iconFn,
+	FileSpreadsheet: iconFn,
+	FileText: iconFn,
+	KeyRound: iconFn,
+	LogIn: iconFn,
+	Mail: iconFn,
+	Menu: iconFn,
+	Minus: iconFn,
+	Moon: iconFn,
+	Pause: iconFn,
+	Play: iconFn,
+	Plus: iconFn,
+	Search: iconFn,
+	Send: iconFn,
+	Shield: iconFn,
+	Sun: iconFn,
+	Trash2: iconFn,
+	Upload: iconFn,
+	UserPlus: iconFn,
+	Volume2: iconFn,
+	X: iconFn,
+}));
