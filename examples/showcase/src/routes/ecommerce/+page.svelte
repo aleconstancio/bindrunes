@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { PageHeader, Collapsible, CodeSnippet } from "bindrunes";
+	import { Collapsible, CodeSnippet } from "bindrunes";
 	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { EcommercePage } from "bindrunes/boundrune";
 	import { ProductGrid } from "bindrunes/boundrune";
 	import { Cart } from "bindrunes/boundrune";
 	import { Checkout } from "bindrunes/boundrune";
@@ -21,7 +22,6 @@
 		{ id: "2", name: "Smart Watch", price: 199.99, quantity: 1 },
 	]);
 
-	// Checkout demo state
 	let checkoutStep = $state<"address" | "payment">("address");
 	let checkoutName = $state("Jane Smith");
 	let checkoutEmail = $state("jane@example.com");
@@ -36,14 +36,12 @@
 		{ name: "USB-C Hub", quantity: 2, price: 49.99 },
 	];
 
-	// Order summary demo state
 	let summaryItems = $state([
 		{ name: "Mechanical Keyboard", quantity: 1, price: 129.99 },
 		{ name: "Desk Lamp", quantity: 3, price: 34.99 },
 		{ name: "Webcam HD", quantity: 1, price: 59.99 },
 	]);
 
-	// PriceTag demo data
 	const priceExamples = [
 		{ price: 79.99, originalPrice: 99.99, label: "Sale item" },
 		{ price: 199.99, originalPrice: undefined, label: "Regular price" },
@@ -54,16 +52,26 @@
 	let activeTab = $state("products");
 </script>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-	<PageHeader title="E-commerce" description="Products, cart, checkout, order summary, and price display" />
-
-	<p class="text-body-sm text-muted-foreground">
-		See also: <a href="#checkout" onclick={() => activeTab = 'checkout'} class="text-primary hover:underline">Checkout flow</a> tab above.
-	</p>
+<EcommercePage title="E-commerce" cartCollapsible="full">
+	{#snippet cartSnippet()}
+		<div class="max-w-sm space-y-4">
+			<h2 class="text-title-2 text-foreground">Cart</h2>
+			<Cart
+				items={cartItems}
+				onQuantityChange={(id, qty) => {
+					cartItems = cartItems.map(i => i.id === id ? { ...i, quantity: qty } : i);
+				}}
+				onRemove={(id) => {
+					cartItems = cartItems.filter(i => i.id !== id);
+				}}
+				onCheckout={() => console.log("Checkout")}
+			/>
+		</div>
+	{/snippet}
 
 	<Tabs bind:value={activeTab}>
 		<TabsList>
-			<TabsTrigger value="products">Products & Cart</TabsTrigger>
+			<TabsTrigger value="products">Products</TabsTrigger>
 			<TabsTrigger value="checkout">Checkout</TabsTrigger>
 			<TabsTrigger value="order-summary">Order Summary</TabsTrigger>
 			<TabsTrigger value="price-tag">Price Tag</TabsTrigger>
@@ -74,20 +82,6 @@
 				<div>
 					<h2 class="text-title-2 text-foreground mb-4">Product Grid</h2>
 					<ProductGrid {products} columns={3} onAddToCart={(id) => console.log("Add to cart:", id)} />
-				</div>
-
-				<div class="max-w-md">
-					<h2 class="text-title-2 text-foreground mb-4">Cart</h2>
-					<Cart
-						items={cartItems}
-						onQuantityChange={(id, qty) => {
-							cartItems = cartItems.map(i => i.id === id ? { ...i, quantity: qty } : i);
-						}}
-						onRemove={(id) => {
-							cartItems = cartItems.filter(i => i.id !== id);
-						}}
-						onCheckout={() => console.log("Checkout")}
-					/>
 				</div>
 			</div>
 			<Collapsible>
@@ -226,4 +220,4 @@
 			</Collapsible>
 		</TabsContent>
 	</Tabs>
-</div>
+</EcommercePage>
