@@ -1,4 +1,5 @@
 <script lang="ts">
+/** @deprecated Use DashboardShell from bindrunes/dashboard instead. This component will be removed in v2.0. */
 import type { Component, Snippet } from "svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import PageShell from "../PageShell.svelte";

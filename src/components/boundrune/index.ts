@@ -28,6 +28,7 @@ export { default as ChatPage } from "./chat/ChatPage.svelte";
 export { default as ChatThread } from "./chat/ChatThread.svelte";
 export { default as ConversationList } from "./chat/ConversationList.svelte";
 export { default as TypingIndicator } from "./chat/TypingIndicator.svelte";
+/** @deprecated Use DashboardShell from bindrunes/dashboard instead */
 export { default as DashboardPage } from "./DashboardPage.svelte";
 export { default as ActivityFeed } from "./dashboard/ActivityFeed.svelte";
 export { default as DashboardFooter } from "./dashboard/DashboardFooter.svelte";
