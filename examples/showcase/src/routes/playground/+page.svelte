@@ -1,244 +1,133 @@
 <script lang="ts">
-	import { PageHeader, Card, Select, Switch, Button, Badge, Input, Alert, StatusChip, CodeSnippet } from "bindrunes";
+  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet } from "bindrunes";
 
-	interface PropDef {
-		type: "select" | "switch" | "text";
-		options?: string[];
-		default: string | boolean;
-	}
+  const components = [
+    {
+      name: "Button",
+      props: {
+        variant: { type: "select", options: ["primary", "secondary", "outline", "ghost", "destructive", "link", "soft", "subtle"], default: "primary" },
+        size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
+        disabled: { type: "switch", default: false },
+        loading: { type: "switch", default: false },
+        fullWidth: { type: "switch", default: false },
+      },
+      slot: "Click me",
+    },
+    {
+      name: "Badge",
+      props: {
+        variant: { type: "select", options: ["primary", "secondary", "outline", "soft", "destructive"], default: "primary" },
+        size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
+      },
+      slot: "Label",
+    },
+    {
+      name: "Card",
+      props: {
+        variant: { type: "select", options: ["surface", "glass", "outlined", "ghost"], default: "surface" },
+        padding: { type: "switch", default: true },
+        interactive: { type: "switch", default: false },
+      },
+      slot: "Card content goes here.",
+    },
+    {
+      name: "Input",
+      props: {
+        placeholder: { type: "text", default: "Enter text..." },
+        disabled: { type: "switch", default: false },
+        required: { type: "switch", default: false },
+      },
+      slot: "",
+    },
+  ];
 
-	interface ComponentDef {
-		name: string;
-		props: Record<string, PropDef>;
-	}
+  let selectedIdx = $state(0);
+  let propValues = $state<Record<string, any>>({});
 
-	const components: ComponentDef[] = [
-		{
-			name: "Button",
-			props: {
-				variant: { type: "select", options: ["primary", "secondary", "outline", "ghost", "destructive", "link", "soft", "subtle"], default: "primary" },
-				size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
-				disabled: { type: "switch", default: false },
-				loading: { type: "switch", default: false },
-			},
-		},
-		{
-			name: "Badge",
-			props: {
-				variant: { type: "select", options: ["default", "primary", "secondary", "success", "warning", "destructive", "info", "outline"], default: "default" },
-				size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
-			},
-		},
-		{
-			name: "Card",
-			props: {
-				variant: { type: "select", options: ["surface", "glass", "outlined", "ghost"], default: "surface" },
-				padding: { type: "switch", default: true },
-				interactive: { type: "switch", default: false },
-			},
-		},
-		{
-			name: "Input",
-			props: {
-				placeholder: { type: "text", default: "Type something..." },
-				disabled: { type: "switch", default: false },
-				required: { type: "switch", default: false },
-			},
-		},
-		{
-			name: "Alert",
-			props: {
-				variant: { type: "select", options: ["info", "success", "warning", "destructive"], default: "info" },
-				title: { type: "text", default: "Alert title" },
-				closable: { type: "switch", default: false },
-			},
-		},
-		{
-			name: "StatusChip",
-			props: {
-				variant: { type: "select", options: ["success", "warning", "destructive", "info", "neutral"], default: "info" },
-				label: { type: "text", default: "Status" },
-				dot: { type: "switch", default: true },
-				animate: { type: "switch", default: false },
-			},
-		},
-	];
+  const current = $derived(components[selectedIdx]);
 
-	const selectOptions = components.map((c) => ({ value: c.name, label: c.name }));
+  $effect(() => {
+    const c = components[selectedIdx];
+    const initial: Record<string, any> = {};
+    for (const [key, prop] of Object.entries(c.props)) {
+      initial[key] = prop.default;
+    }
+    propValues = initial;
+  });
 
-	let selectedName = $state("Button");
-	let propValues: Record<string, Record<string, string | boolean>> = $state({});
-
-	function getComponentDef(name: string): ComponentDef {
-		return components.find((c) => c.name === name)!;
-	}
-
-	function getProps(name: string): Record<string, string | boolean> {
-		if (!propValues[name]) {
-			const def = getComponentDef(name);
-			propValues[name] = {};
-			for (const [key, prop] of Object.entries(def.props)) {
-				propValues[name][key] = prop.default;
-			}
-		}
-		return propValues[name];
-	}
-
-	function setProp(name: string, key: string, value: string | boolean) {
-		if (!propValues[name]) {
-			getProps(name);
-		}
-		propValues[name][key] = value;
-	}
-
-	function buildCode(name: string, props: Record<string, string | boolean>): string {
-		const attrParts: string[] = [];
-		for (const [key, value] of Object.entries(props)) {
-			const def = getComponentDef(name).props[key];
-			if (def.type === "switch") {
-				if (value) attrParts.push(`${key}`);
-			} else if (def.type === "text") {
-				if (value) attrParts.push(`${key}="${value}"`);
-			} else {
-				attrParts.push(`${key}="${value}"`);
-			}
-		}
-		const attrs = attrParts.length > 0 ? " " + attrParts.join(" ") : "";
-		const content = name === "Input" ? "" : name === "Alert" ? "" : name === "StatusChip" ? "" : `>Content`;
-		if (name === "Input") return `<Input${attrs} />`;
-		if (name === "Alert") return `<Alert${attrs} />`;
-		if (name === "StatusChip") return `<StatusChip${attrs} />`;
-		return `<${name}${attrs}${content}</${name}>`;
-	}
+  const generatedCode = $derived(() => {
+    const c = components[selectedIdx];
+    const props = Object.entries(propValues)
+      .filter(([, v]) => v !== undefined && v !== "" && v !== false)
+      .map(([k, v]) => {
+        if (typeof v === "boolean") return v ? k : "";
+        return `${k}="${v}"`;
+      })
+      .filter(Boolean)
+      .join(" ");
+    const propStr = props ? ` ${props}` : "";
+    const slotContent = c.slot ? `\n  ${c.slot}\n` : "";
+    return `import { ${c.name} } from "bindrunes";\n\n<${c.name}${propStr}>${slotContent}</${c.name}>`;
+  });
 </script>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-	<PageHeader
-		title="Playground"
-		description="Select a component, tweak its props, and see the result live with generated code"
-	/>
+  <PageHeader title="Playground" description="Tweak component props and see live results with generated code" />
 
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-		<!-- Controls Panel -->
-		<div class="space-y-6">
-			<Card padding>
-				<h3 class="text-title-3 text-foreground mb-4">Component</h3>
-				<Select
-					bind:value={selectedName}
-					options={selectOptions}
-					label="Select component"
-					name="component-select"
-				/>
-			</Card>
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Controls -->
+    <div class="space-y-4">
+      <h3 class="text-title-3 text-foreground">Component</h3>
+      <Select
+        bind:value={() => current.name, (v) => {
+          const idx = components.findIndex((c) => c.name === v);
+          if (idx >= 0) selectedIdx = idx;
+        }}
+        options={components.map((c) => ({ label: c.name, value: c.name }))}
+      />
 
-			<Card padding>
-				<h3 class="text-title-3 text-foreground mb-4">Props</h3>
-				<div class="space-y-4">
-					{#each Object.entries(getComponentDef(selectedName).props) as [key, def]}
-						{@const currentProps = getProps(selectedName)}
-						{#if def.type === "select" && def.options}
-							<Select
-								value={currentProps[key] as string}
-								options={def.options.map((o) => ({ value: o, label: o }))}
-								label={key}
-								name={key}
-								onchange={(e) => setProp(selectedName, key, (e.target as HTMLSelectElement).value)}
-							/>
-						{:else if def.type === "switch"}
-							<Switch
-								checked={currentProps[key] as boolean}
-								label={key}
-								name={key}
-								onchange={(e) => setProp(selectedName, key, (e.target as HTMLInputElement).checked)}
-							/>
-						{:else if def.type === "text"}
-							<div>
-								<label class="block text-label-md mb-2 text-muted-foreground" for={key}>{key}</label>
-								<input
-									id={key}
-									type="text"
-									value={currentProps[key] as string}
-									oninput={(e) => setProp(selectedName, key, (e.target as HTMLInputElement).value)}
-									class="w-full rounded-[--radius] border border-border bg-input px-3 py-2 text-body-md text-foreground placeholder:text-muted-foreground transition-colors duration-[--duration-snappy] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 focus:ring-offset-background"
-								/>
-							</div>
-						{/if}
-					{/each}
-				</div>
-			</Card>
-		</div>
+      <div class="space-y-3 pt-4">
+        <h4 class="text-title-3 text-foreground">Props</h4>
+        {#each Object.entries(current.props) as [key, prop]}
+          <div class="space-y-1">
+            <label class="text-label-sm text-muted-foreground">{key}</label>
+            {#if prop.type === "select"}
+              <Select
+                bind:value={() => propValues[key], (v) => (propValues[key] = v)}
+                options={prop.options.map((o: string) => ({ label: o, value: o }))}
+              />
+            {:else if prop.type === "switch"}
+              <Switch bind:checked={() => propValues[key], (v) => (propValues[key] = v)} />
+            {:else if prop.type === "text"}
+              <Input bind:value={() => propValues[key], (v) => (propValues[key] = v)} />
+            {/if}
+          </div>
+        {/each}
+      </div>
+    </div>
 
-		<!-- Preview & Code -->
-		<div class="lg:col-span-2 space-y-6">
-			<Card padding>
-				<h3 class="text-title-3 text-foreground mb-4">Preview</h3>
-				<div class="flex items-center justify-center min-h-[120px] rounded-[--radius-md] border border-dashed border-border bg-muted/30 p-8">
-					{#if selectedName === "Button"}
-						{@const p = getProps("Button")}
-						<Button
-							variant={p.variant as any}
-							size={p.size as any}
-							disabled={p.disabled as boolean}
-							loading={p.loading as boolean}
-						>
-							Click me
-						</Button>
-					{:else if selectedName === "Badge"}
-						{@const p = getProps("Badge")}
-						<Badge
-							variant={p.variant as any}
-							size={p.size as any}
-						>
-							Label
-						</Badge>
-					{:else if selectedName === "Card"}
-						{@const p = getProps("Card")}
-						<Card
-							variant={p.variant as any}
-							padding={p.padding as boolean}
-							interactive={p.interactive as boolean}
-						>
-							Card content
-						</Card>
-					{:else if selectedName === "Input"}
-						{@const p = getProps("Input")}
-						<div class="w-full max-w-xs">
-							<Input
-								placeholder={p.placeholder as string}
-								disabled={p.disabled as boolean}
-								required={p.required as boolean}
-								label="Field"
-							/>
-						</div>
-					{:else if selectedName === "Alert"}
-						{@const p = getProps("Alert")}
-						<div class="w-full">
-							<Alert
-								variant={p.variant as any}
-								title={p.title as string}
-								closable={p.closable as boolean}
-							/>
-						</div>
-					{:else if selectedName === "StatusChip"}
-						{@const p = getProps("StatusChip")}
-						<StatusChip
-							variant={p.variant as any}
-							label={p.label as string}
-							dot={p.dot as boolean}
-							animate={p.animate as boolean}
-						/>
-					{/if}
-				</div>
-			</Card>
+    <!-- Preview -->
+    <div class="space-y-4">
+      <h3 class="text-title-3 text-foreground">Preview</h3>
+      <Card padding class="min-h-[200px] flex items-center justify-center">
+        {#if current.name === "Button"}
+          <Button {...propValues}>{current.slot}</Button>
+        {:else if current.name === "Badge"}
+          <Badge {...propValues}>{current.slot}</Badge>
+        {:else if current.name === "Card"}
+          <Card {...propValues}>{current.slot}</Card>
+        {:else if current.name === "Input"}
+          <div class="w-full">
+            <Input {...propValues} />
+          </div>
+        {/if}
+      </Card>
+    </div>
 
-			<Card padding>
-				<h3 class="text-title-3 text-foreground mb-4">Generated Code</h3>
-				<CodeSnippet
-					code={buildCode(selectedName, getProps(selectedName))}
-					language="svelte"
-					title="App.svelte"
-				/>
-			</Card>
-		</div>
-	</div>
+    <!-- Code -->
+    <div class="space-y-4">
+      <h3 class="text-title-3 text-foreground">Generated Code</h3>
+      <CodeSnippet code={generatedCode()} language="svelte" title="App.svelte" />
+    </div>
+  </div>
 </div>
