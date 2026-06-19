@@ -25,7 +25,7 @@ interface ActivityLog {
 
 let {
 	users = [],
-	settings = { maintenanceMode: false, allowSignUp: true },
+	settings: incomingSettings = { maintenanceMode: false, allowSignUp: true },
 	activityLogs = [],
 	onUserAction = undefined as ((userId: string, action: string) => void) | undefined,
 	onSettingsUpdate = undefined as ((settings: Settings) => void) | undefined,
@@ -39,8 +39,21 @@ let {
 	class?: string;
 } = $props();
 
-let maintenanceMode = $state(settings.maintenanceMode);
-let allowSignUp = $state(settings.allowSignUp);
+// svelte-ignore state_referenced_locally
+let maintenanceMode = $state(incomingSettings.maintenanceMode);
+// svelte-ignore state_referenced_locally
+let allowSignUp = $state(incomingSettings.allowSignUp);
+
+$effect(() => {
+	// svelte-ignore state_referenced_locally
+	maintenanceMode = incomingSettings.maintenanceMode;
+	// svelte-ignore state_referenced_locally
+	allowSignUp = incomingSettings.allowSignUp;
+});
+
+$effect(() => {
+	onSettingsUpdate?.({ maintenanceMode, allowSignUp });
+});
 
 const userColumns = [
 	{ key: "name", label: "Name" },
@@ -54,7 +67,7 @@ const userColumns = [
 
 	<Card padding>
 		<h2 class="text-title-2 text-foreground mb-4">User Management</h2>
-		<DataTable columns={userColumns} rows={users as unknown as Record<string, unknown>[]} />
+		<DataTable columns={userColumns} rows={users as (User & Record<string, unknown>)[]} />
 	</Card>
 
 	<Card padding>
