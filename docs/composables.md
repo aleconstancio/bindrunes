@@ -333,6 +333,40 @@ useInterval(() => fetchData(), 5000);
 useTimeout(() => redirect(), 30000);
 ```
 
+### `useDebouncedCallback`
+Creates a debounced version of a callback. Delays execution until `delay` ms after the last call.
+```ts
+import { useDebouncedCallback } from "bindrunes";
+
+const debouncedSearch = useDebouncedCallback((query: string) => {
+  searchAPI(query);
+}, 300);
+```
+
+### `useInfiniteScroll`
+Triggers a callback when a sentinel element enters the viewport. Use for infinite scroll patterns.
+```ts
+import { useInfiniteScroll } from "bindrunes";
+
+useInfiniteScroll(sentinelElement, {
+  onLoadMore: async () => {
+    const more = await loadNextPage();
+    return more; // false to stop observing
+  },
+});
+```
+
+### `useVirtualList`
+Virtual list for rendering large datasets. Only renders items visible in viewport plus overscan buffer.
+```ts
+import { useVirtualList } from "bindrunes";
+
+const { visibleItems, containerStyle, scrollTo } = useVirtualList(items, {
+  itemHeight: 40,
+  overscan: 5,
+});
+```
+
 ### `useReducedMotion`
 Detect `prefers-reduced-motion` media query.
 ```ts

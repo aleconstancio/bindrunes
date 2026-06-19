@@ -6,10 +6,13 @@
 src/
 ├── index.ts                # Barrel exports
 ├── shared-types.ts         # Global types
+├── actions/                # Svelte actions (e.g. shortcut binding)
 ├── components/             # Primitives & layouts (dashboard, sidebar, etc.)
+│   └── scaffold/           # Page-level scaffolding components
 ├── i18n/                   # Translation dictionaries
 ├── styles/                 # Global styles, token sheets, & presets
 └── utils/                  # Composables, context helpers, API clients, & formatters
+    └── agentic/            # Agentic subsystem (LLM tool calling, agent loops)
 ```
 
 ---
@@ -61,6 +64,23 @@ PageTemplate (MarketingPage, DashboardPage, CrudPage, AuthPage, SettingsPage, Ch
   └── PageShell (topbar, left, right, main)
        └── PageSection (spacing, container, animation)
             └── Content components (FeatureGrid, DataTable, etc.)
+```
+
+---
+
+## Agentic Subsystem
+
+The `src/utils/agentic/` module provides composable building blocks for LLM-powered agent workflows. It includes tool-calling primitives, agent loop orchestration, and structured output helpers. These composables follow the same `createX()` pattern as the rest of the library and are designed to be composed into higher-level agent pipelines.
+
+---
+
+## Testing Convention
+
+Composable tests use the `.svelte.test.ts` extension to ensure they run within Svelte's reactive context (enabling `$state`, `$derived`, `$effect`). Co-locate tests next to their source files:
+
+```
+src/utils/composables.svelte.ts
+src/utils/composables.svelte.test.ts
 ```
 
 ---
