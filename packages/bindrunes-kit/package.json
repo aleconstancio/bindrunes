@@ -16,6 +16,10 @@
 			"types": "./dist/server/index.d.ts",
 			"default": "./dist/server/index.js"
 		},
+		"./client": {
+			"types": "./dist/client/index.d.ts",
+			"default": "./dist/client/index.js"
+		},
 		"./cli": {
 			"types": "./dist/cli/index.d.ts",
 			"default": "./dist/cli/index.js"
