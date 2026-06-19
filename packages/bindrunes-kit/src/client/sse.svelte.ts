@@ -56,6 +56,7 @@ export function createSSEClient(options: CreateSSEClientOptions) {
 	}
 
 	function connect() {
+		if (typeof window === "undefined") return;
 		if (eventSource) disconnect();
 
 		status = "connecting";
@@ -146,5 +147,6 @@ export function createSSEClient(options: CreateSSEClientOptions) {
 		},
 		connect,
 		disconnect,
+		destroy: disconnect,
 	};
 }

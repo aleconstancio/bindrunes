@@ -14,14 +14,14 @@
 	} from "bindrunes/sidebar";
 import type { Snippet } from "svelte";
 	import { afterNavigate, goto } from "$app/navigation";
-	import { page } from "$app/stores";
+	import { page } from "$app/state";
 
 	let { children }: { children?: Snippet } = $props();
 
-	let pathname = $state($page.url.pathname);
+	let pathname = $state(page.url.pathname);
 
 	afterNavigate(() => {
-		pathname = $page.url.pathname;
+		pathname = page.url.pathname;
 	});
 
 	const navigation = [

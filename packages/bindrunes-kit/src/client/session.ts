@@ -22,8 +22,8 @@ export function createSession(options: CreateSessionOptions = {}) {
 	} = options;
 
 	let lastActivity = $state(Date.now());
-	let isExpired = $derived(false);
-	let showWarning = $derived(false);
+	let isExpired = $state(false);
+	let showWarning = $state(false);
 
 	let activityTimer: ReturnType<typeof setInterval> | null = null;
 	let refreshTimer: ReturnType<typeof setInterval> | null = null;
@@ -114,5 +114,6 @@ export function createSession(options: CreateSessionOptions = {}) {
 		startTracking,
 		stopTracking,
 		reset,
+		destroy: stopTracking,
 	};
 }

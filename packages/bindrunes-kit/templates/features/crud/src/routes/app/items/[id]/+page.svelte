@@ -3,9 +3,9 @@
 	import { Badge, Button, Card, PageHeader, Spinner } from "bindrunes";
 	import { createMutation, createQuery, invalidateQuery } from "bindrunes-kit/client";
 	import { goto } from "$app/navigation";
-import { page } from "$app/stores";
+import { page } from "$app/state";
 
-	const itemId = $derived($page.params.id);
+	const itemId = $derived(page.params.id);
 
 	interface Item {
 		id: string;

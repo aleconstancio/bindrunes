@@ -67,13 +67,14 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		onLogin,
 		onLogout,
 		tokenStorage = "cookie",
-		tokenKey = "bindrunes-token",
+		tokenKey = "bindrunes-session",
 	} = options;
 
 	let user = $state<User | null>(null);
 	let tenant = $state<Tenant | null>(null);
 	let loading = $state(true);
 	let error = $state<string | null>(null);
+	let token = $state<string | null>(null);
 
 	const isAuthenticated = $derived(user !== null);
 
@@ -86,18 +87,20 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		return match ? match[1] : null;
 	}
 
-	function setToken(token: string) {
+	function setToken(value: string) {
 		if (typeof document === "undefined") return;
+		token = value;
 		if (tokenStorage === "localStorage") {
-			localStorage.setItem(tokenKey, token);
+			localStorage.setItem(tokenKey, value);
 		} else {
 			// biome-ignore lint/suspicious/noDocumentCookie: cookie-based token storage is a core feature
-			document.cookie = `${tokenKey}=${token}; path=/; SameSite=Lax`;
+			document.cookie = `${tokenKey}=${value}; path=/; SameSite=Lax`;
 		}
 	}
 
 	function clearToken() {
 		if (typeof document === "undefined") return;
+		token = null;
 		if (tokenStorage === "localStorage") {
 			localStorage.removeItem(tokenKey);
 		} else {
@@ -112,16 +115,23 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 	}
 
 	async function bootstrap() {
+		if (typeof window === "undefined") {
+			loading = false;
+			return;
+		}
+
 		if (!fetchProfile) {
 			loading = false;
 			return;
 		}
 
-		const token = getToken();
-		if (!token) {
+		const storedToken = getToken();
+		if (!storedToken) {
 			loading = false;
 			return;
 		}
+
+		token = storedToken;
 
 		try {
 			const profile = await fetchProfile();
@@ -229,7 +239,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 			return error;
 		},
 		get token() {
-			return getToken();
+			return token;
 		},
 		login,
 		logout,

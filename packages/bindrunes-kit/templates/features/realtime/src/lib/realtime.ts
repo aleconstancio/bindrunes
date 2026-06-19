@@ -80,6 +80,8 @@ export function createRealtime(url: string, options?: Partial<CreateSSEClientOpt
 		unsubscribe,
 		close,
 		reconnect,
-		status: sse.status,
+		get status() {
+			return sse.status;
+		},
 	};
 }

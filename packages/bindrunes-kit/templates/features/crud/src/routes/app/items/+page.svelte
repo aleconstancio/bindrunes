@@ -3,7 +3,7 @@
 	import { Badge, Button, Card, DataTable, PageHeader, Spinner } from "bindrunes";
 	import { createMutation, createQuery } from "bindrunes-kit/client";
 	import { goto } from "$app/navigation";
-import { page } from "$app/stores";
+import { page } from "$app/state";
 
 	interface Item {
 		id: string;

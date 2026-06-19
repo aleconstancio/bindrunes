@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "^2.0.0",
+    "bindrunes": "^1.0.0",
+    "bindrunes-kit": "^1.0.0",
     "svelte": "^5.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/adapter-auto": "^3.0.0",
