@@ -4,6 +4,9 @@
 	"type": "module",
 	"private": true,
 	"license": "MIT",
+	"bin": {
+		"create-bindrunes": "./src/cli/index.ts"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
