@@ -1,3 +1,4 @@
+export { default as AgentStatus } from "./AgentStatus.svelte";
 export { default as ChatBubble } from "./ChatBubble.svelte";
 export { default as ChatInput } from "./ChatInput.svelte";
 export { default as ChatMessage } from "./ChatMessage.svelte";
