@@ -1,27 +1,6 @@
-// src/tailwind-plugin.ts
-//
-// Tailwind CSS v4 plugin for bindrunes design tokens.
-//
-// DUPLICATION NOTICE:
-// This plugin intentionally duplicates the token bindings from src/styles/tokens/tailwind.css.
-// Two entry points exist for different consumer workflows:
-//
-//   1. CSS-first (recommended): Import `bindrunes/styles/global.css` or `bindrunes/tailwind` in CSS.
-//      The `@theme inline` block in tailwind.css registers tokens with Tailwind v4.
-//
-//   2. JS plugin only: Use `bindrunes/tailwind` as a Tailwind plugin without importing CSS.
-//      This plugin provides the same tokens via JS config.
-//
-// When adding/removing/renaming tokens, update BOTH files:
-//   - src/styles/tokens/tailwind.css (CSS @theme inline)
-//   - src/tailwind-plugin.ts (JS plugin config)
-//
-// v1.0 changes:
-//   - Added new color tokens (info, soft-state, overlay, border-strong/subtle, surfaces)
-//   - Added font-display, font-mono
-//   - Added transitionDuration: instant
-//   - Renamed thoth-* keyframe references to bindrunes-* (to be done in utilities.css)
-//   - Updated mono utility to use --font-mono
+// WARNING: This file intentionally duplicates token bindings from tokens/tailwind.css.
+// Every token change requires updating BOTH files. A shared token source (JSON/TS)
+// is a future improvement.
 import type { Config } from "tailwindcss";
 
 const plugin = {
