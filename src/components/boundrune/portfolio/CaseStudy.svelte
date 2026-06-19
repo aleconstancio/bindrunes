@@ -1,4 +1,5 @@
 <script lang="ts">
+import type { Snippet } from "svelte";
 import Badge from "../../Badge.svelte";
 import Block from "../Block.svelte";
 
@@ -11,6 +12,7 @@ let {
 	duration = "",
 	results = [] as { label: string; value: string }[],
 	class: className = "",
+	children,
 }: {
 	title?: string;
 	subtitle?: string;
@@ -20,6 +22,7 @@ let {
 	duration?: string;
 	results?: { label: string; value: string }[];
 	class?: string;
+	children?: Snippet;
 } = $props();
 </script>
 
@@ -53,7 +56,7 @@ let {
     </div>
 
     <div class="prose prose-gray dark:prose-invert max-w-none">
-      <slot />
+      {@render children?.()}
     </div>
 
     {#if results.length > 0}

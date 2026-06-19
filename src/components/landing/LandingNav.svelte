@@ -3,7 +3,7 @@ import { Menu, X } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import { slide } from "svelte/transition";
-import type { TFunction } from "../../shared-types";
+import type { NavLink, TFunction } from "../../shared-types";
 import Button from "../Button.svelte";
 import DynamicIcon from "../DynamicIcon.svelte";
 import NavigationMenu from "../NavigationMenu.svelte";
@@ -14,11 +14,6 @@ interface NavLogo {
 	href: string;
 	label: string;
 	icon?: import("svelte").Component | string;
-}
-
-interface NavLink {
-	label: string;
-	href: string;
 }
 
 interface NavCTA {
@@ -113,7 +108,7 @@ function _handleKeydown(e: KeyboardEvent) {
 	</div>
 
 	{#if landing.menuOpen}
-		<div transition:slide={{ duration: 220 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" role="menu" tabindex="-1" onkeydown={handleKeydown}>
+		<div transition:slide={{ duration: 220 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" role="menu" tabindex="-1" onkeydown={_handleKeydown}>
 			<div class="flex flex-col gap-5">
 				{#each links as link}
 					<a

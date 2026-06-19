@@ -4,7 +4,16 @@ export function createPrefersTheme() {
 	const mql = createMediaQuery({ query: "(prefers-color-scheme: dark)" });
 
 	$effect(() => {
-		document.documentElement.classList.toggle("dark", mql.matches);
+		const root = document.documentElement;
+		const original = root.classList.contains("dark");
+		root.classList.toggle("dark", mql.matches);
+		return () => {
+			if (original) {
+				root.classList.add("dark");
+			} else {
+				root.classList.remove("dark");
+			}
+		};
 	});
 
 	return {

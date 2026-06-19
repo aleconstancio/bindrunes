@@ -19,8 +19,17 @@ export function createPersistedDataAttribute<T extends string>(
 	);
 
 	$effect(() => {
-		document.documentElement.setAttribute(options.attributeName, value);
+		const root = document.documentElement;
+		const original = root.getAttribute(options.attributeName);
+		root.setAttribute(options.attributeName, value);
 		storage.set(options.storageKey, value);
+		return () => {
+			if (original === null) {
+				root.removeAttribute(options.attributeName);
+			} else {
+				root.setAttribute(options.attributeName, original);
+			}
+		};
 	});
 
 	return {
