@@ -22,4 +22,16 @@ describe("ReasoningPanel", () => {
 		expect(screen.getByText("Step 1")).toBeTruthy();
 		expect(screen.getByText("Step 2")).toBeTruthy();
 	});
+
+	it("renders confidence indicator when confidence is provided", () => {
+		const steps = [{ text: "Analyzing...", confidence: 0.95 }];
+		render(ReasoningPanel, { props: { steps } });
+		expect(screen.getByText("95% confidence")).toBeTruthy();
+	});
+
+	it("does not render confidence indicator when confidence is omitted", () => {
+		const steps = [{ text: "Thinking..." }];
+		render(ReasoningPanel, { props: { steps } });
+		expect(screen.queryByText("confidence")).toBeNull();
+	});
 });
