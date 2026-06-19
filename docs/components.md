@@ -29,6 +29,194 @@ For detailed visual state specs (tokens, hover/focus/disabled states), see [Comp
 | `<RichTextEditor>` | ProseMirror-based rich text editor with toolbar. |
 | `<CodeSnippet>` | Code block with copy-to-clipboard button and optional title. |
 
+### Button
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"primary" \| "secondary" \| "outline" \| "ghost" \| "destructive" \| "link" \| "soft" \| "subtle"` | `"primary"` | Visual style |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Button size |
+| `href` | `string` | — | Render as `<a>` instead of `<button>` |
+| `loading` | `boolean` | `false` | Show spinner and disable interaction |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `fullWidth` | `boolean` | `false` | Stretch to container width |
+| `iconOnly` | `boolean` | `false` | Square button for icon-only content |
+| `type` | `"button" \| "submit" \| "reset"` | `"button"` | Native button type |
+
+```svelte
+<Button variant="primary" size="lg">Get Started</Button>
+<Button href="/signup" variant="outline">Sign Up</Button>
+```
+
+### Card
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"surface" \| "glass" \| "outlined" \| "ghost"` | `"surface"` | Visual style |
+| `interactive` | `boolean` | `false` | Hover/active states, role="button" |
+| `padding` | `boolean` | `true` | Apply default padding |
+| `href` | `string` | — | Render as link |
+| `header` | `Snippet` | — | Header slot |
+| `footer` | `Snippet` | — | Footer slot (with border separator) |
+
+```svelte
+<Card variant="glass" interactive onclick={handleClick}>
+  {#snippet header()}<h3>Title</h3>{/snippet}
+  <p>Content goes here.</p>
+</Card>
+```
+
+### Input
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | `""` | Bound input value |
+| `label` | `string` | — | Label text above input |
+| `type` | `"text" \| "email" \| "password" \| "number" \| "tel" \| "url" \| "search" \| "date" \| "time" \| "textarea"` | `"text"` | Input type |
+| `placeholder` | `string` | `""` | Placeholder text |
+| `error` | `string` | — | Error message (turns border red) |
+| `helper` | `string` | — | Helper text below input |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `required` | `boolean` | `false` | Show required indicator on label |
+| `prefix` / `suffix` | `Snippet` | — | Icons or text inside input |
+
+```svelte
+<Input label="Email" type="email" placeholder="you@example.com" required />
+<Input label="Bio" type="textarea" placeholder="Tell us about yourself" />
+```
+
+### Badge
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | `"default" \| "primary" \| "secondary" \| "success" \| "warning" \| "destructive" \| "info" \| "outline"` | `"default"` | Color style |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Badge size |
+| `removable` | `boolean` | `false` | Show close button |
+| `onRemove` | `() => void` | — | Callback when removed |
+| `icon` | `Snippet` | — | Leading icon slot |
+
+```svelte
+<Badge variant="success" size="sm">Active</Badge>
+<Badge variant="destructive" removable onRemove={handleRemove}>Error</Badge>
+```
+
+### Dialog
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | `false` | Bindable open state |
+| `title` | `string` | — | Dialog title |
+| `size` | `"sm" \| "md" \| "lg" \| "xl" \| "full"` | `"md"` | Max-width variant |
+| `closeOnOverlayClick` | `boolean` | `true` | Close when clicking backdrop |
+| `header` | `Snippet` | — | Custom header (replaces icon+title) |
+| `footer` | `Snippet` | — | Footer slot with border separator |
+| `actions` | `Snippet` | — | Action buttons slot |
+| `icon` | `Snippet` | — | Icon above title |
+
+```svelte
+<Dialog bind:open title="Delete item?" size="sm">
+  <p>This action cannot be undone.</p>
+  {#snippet actions()}
+    <Button variant="ghost" onclick={() => open = false}>Cancel</Button>
+    <Button variant="destructive" onclick={handleDelete}>Delete</Button>
+  {/snippet}
+</Dialog>
+```
+
+### Sheet
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `open` | `boolean` | `false` | Bindable open state |
+| `side` | `"left" \| "right" \| "top" \| "bottom"` | `"right"` | Slide direction |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Width/height variant |
+| `title` | `string` | — | Header title |
+| `header` | `Snippet` | — | Custom header slot |
+| `footer` | `Snippet` | — | Footer slot with border separator |
+
+```svelte
+<Sheet bind:open side="right" title="Filters">
+  <FilterPanel />
+  {#snippet footer()}
+    <Button onclick={() => open = false}>Apply</Button>
+  {/snippet}
+</Sheet>
+```
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | `""` | Bindable active tab ID |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Tab layout direction |
+
+Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
+
+| TabsTrigger Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | `""` | Tab ID to activate |
+| `disabled` | `boolean` | `false` | Disable this tab |
+
+```svelte
+<Tabs bind:value="account">
+  <TabsList>
+    <TabsTrigger value="account">Account</TabsTrigger>
+    <TabsTrigger value="security">Security</TabsTrigger>
+  </TabsList>
+  <TabsContent value="account">Account settings</TabsContent>
+  <TabsContent value="security">Security settings</TabsContent>
+</Tabs>
+```
+
+### Select
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | `string` | `""` | Bindable selected value |
+| `options` | `SelectOption[]` | `[]` | Options array (`{ value, label, disabled? }`) |
+| `label` | `string` | — | Label text above select |
+| `placeholder` | `string` | `"Select..."` | Placeholder when nothing selected |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `required` | `boolean` | `false` | Required field |
+| `error` | `string` | — | Error message |
+| `itemSnippet` | `Snippet<[{ option }]>` | — | Custom option renderer |
+
+```svelte
+<Select label="Role" options={roles} bind:value={role} />
+<Select label="Country" options={countries} error={!country ? 'Required' : ''} />
+```
+
+### Switch
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | `false` | Bindable toggle state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | — | Label text next to switch |
+| `name` | `string` | — | Form field name |
+| `error` | `string` | — | Error message |
+
+```svelte
+<Switch label="Dark mode" bind:checked={darkMode} />
+<Switch label="Notifications" bind:checked={notify} disabled />
+```
+
+### Checkbox
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | `boolean` | `false` | Bindable checked state |
+| `indeterminate` | `boolean` | `false` | Bindable indeterminate state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `label` | `string` | — | Label text next to checkbox |
+| `required` | `boolean` | `false` | Required field |
+| `name` | `string` | — | Form field name |
+| `error` | `string` | — | Error message |
+
+```svelte
+<Checkbox label="I agree to the terms" bind:checked={agreed} required />
+<Checkbox label="Select all" bind:indeterminate={someSelected} />
+```
+
 ---
 
 ## Overlays & Navigation
