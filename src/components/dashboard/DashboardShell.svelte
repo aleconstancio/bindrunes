@@ -5,7 +5,6 @@ import { derivePageInfo } from "../../utils/navigation";
 import MetaLayout from "../MetaLayout.svelte";
 import MetaScrollable from "../MetaScrollable.svelte";
 import RuleFootnote from "../RuleFootnote.svelte";
-import StatusChip from "../StatusChip.svelte";
 import { Sidebar, SidebarProvider, SidebarTrigger } from "../sidebar";
 import ThemeToggle from "../ThemeToggle.svelte";
 import DashboardShellBrand from "./DashboardShellBrand.svelte";
@@ -13,7 +12,7 @@ import DashboardShellHeader from "./DashboardShellHeader.svelte";
 import NavMenu from "./NavMenu.svelte";
 
 let {
-	variant = "default" as "default" | "right" | "topnav",
+	variant = "default" as "default" | "right",
 	appName = "",
 	appSubtitle = undefined as string | undefined,
 	brandIcon = undefined as string | Component | undefined,
@@ -41,7 +40,7 @@ let {
 	headerActions,
 	children,
 }: {
-	variant?: "default" | "right" | "topnav";
+	variant?: "default" | "right";
 	appName?: string;
 	appSubtitle?: string;
 	brandIcon?: string | Component;
@@ -86,105 +85,64 @@ let sidebarCollapsibleProp = $derived(
 let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebarCollapsibleProp);
 </script>
 
-{#if variant === 'topnav'}
-	<div class="flex flex-col min-h-screen">
-		<header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-[--duration-fluid]">
-			<div class="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-				<div class="flex items-center gap-6">
-					<DashboardShellBrand {brandIcon} {appName} />
-					<nav class="hidden md:flex items-center gap-1">
-						{#each navigation as group}
-							{#each group.items as item}
-								<a
-									href={item.to}
-									class="px-3 py-1.5 text-label-md rounded transition-colors"
-									class:text-foreground={pagePath.startsWith(item.to)}
-									class:text-muted-foreground={!pagePath.startsWith(item.to)}
-									class:bg-muted={pagePath.startsWith(item.to)}
-									class:bg-transparent={!pagePath.startsWith(item.to)}
-								>
-									{item.title}
-								</a>
-							{/each}
-						{/each}
-					</nav>
+<SidebarProvider
+	defaultOpen
+	collapsible={sidebarCollapsibleComputed}
+	style={variant === 'right' ? 'flex-direction: row-reverse' : ''}
+>
+	<Sidebar
+		side={variant === 'right' ? 'right' : 'left'}
+		class={variant === 'right' ? 'border-l border-r-0' : ''}
+	>
+		<MetaLayout position="header">
+			{#if sidebarHeader}
+				{@render sidebarHeader()}
+			{:else}
+				<DashboardShellBrand {brandIcon} {appName} {appSubtitle} />
+			{/if}
+		</MetaLayout>
+
+		<MetaLayout position="content">
+			{#if variant === 'default' && scopeLabel}
+				<div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
+					<p class="font-mono text-mono-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">{scopeLabel}</p>
+					{#if scopeTitle}<p class="text-label-md font-semibold mt-1 text-foreground">{scopeTitle}</p>{/if}
+					{#if scopeDescription}<p class="text-body-sm mt-0.5 text-muted-foreground">{scopeDescription}</p>{/if}
 				</div>
-				<div class="flex items-center gap-3">
-					{#if headerActions}
-						{@render headerActions()}
-					{:else if statusChip?.label}
-						<StatusChip variant={statusChip.variant ?? 'info'} label={statusChip.label} dot={statusChip.dot ?? true} animate={statusChip.animate ?? false} />
-					{/if}
-					<ThemeToggle />
-				</div>
-			</div>
-		</header>
+			{/if}
+			<NavMenu groups={navigation} pathname={pagePath} onNavigate={onNavigate} />
+		</MetaLayout>
+
+		<MetaLayout position="footer">
+			{#if sidebarFooter}
+				{@render sidebarFooter()}
+			{:else if variant === 'default'}
+				<ThemeToggle />
+				{#if resolvedRuleTitle}
+					<RuleFootnote title={resolvedRuleTitle} description={ruleDescription}>
+						{#if ruleChildren}{@render ruleChildren()}{/if}
+					</RuleFootnote>
+				{/if}
+			{/if}
+		</MetaLayout>
+	</Sidebar>
+
+	<div class="flex-1 flex flex-col min-w-0 h-screen">
+		<DashboardShellHeader
+			{headerPrefix}
+			{resolvedTitle}
+			{resolvedDescription}
+			{headerActions}
+			{statusChip}
+		>
+			{#snippet trigger()}
+				<SidebarTrigger />
+			{/snippet}
+		</DashboardShellHeader>
 		<main class="flex-1 min-w-0">
 			<MetaScrollable class="h-full">
 				{@render children?.()}
 			</MetaScrollable>
 		</main>
 	</div>
-{:else}
-	<SidebarProvider
-		defaultOpen
-		collapsible={sidebarCollapsibleComputed}
-		style={variant === 'right' ? 'flex-direction: row-reverse' : ''}
-	>
-		<Sidebar
-			side={variant === 'right' ? 'right' : 'left'}
-			class={variant === 'right' ? 'border-l border-r-0' : ''}
-		>
-			<MetaLayout position="header">
-				{#if sidebarHeader}
-					{@render sidebarHeader()}
-				{:else}
-					<DashboardShellBrand {brandIcon} {appName} {appSubtitle} />
-				{/if}
-			</MetaLayout>
-
-			<MetaLayout position="content">
-				{#if variant === 'default' && scopeLabel}
-					<div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
-						<p class="font-mono text-mono-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">{scopeLabel}</p>
-						{#if scopeTitle}<p class="text-label-md font-semibold mt-1 text-foreground">{scopeTitle}</p>{/if}
-						{#if scopeDescription}<p class="text-body-sm mt-0.5 text-muted-foreground">{scopeDescription}</p>{/if}
-					</div>
-				{/if}
-				<NavMenu groups={navigation} pathname={pagePath} onNavigate={onNavigate} />
-			</MetaLayout>
-
-			<MetaLayout position="footer">
-				{#if sidebarFooter}
-					{@render sidebarFooter()}
-				{:else if variant === 'default'}
-					<ThemeToggle />
-					{#if resolvedRuleTitle}
-						<RuleFootnote title={resolvedRuleTitle} description={ruleDescription}>
-							{#if ruleChildren}{@render ruleChildren()}{/if}
-						</RuleFootnote>
-					{/if}
-				{/if}
-			</MetaLayout>
-		</Sidebar>
-
-		<div class="flex-1 flex flex-col min-w-0 h-screen">
-			<DashboardShellHeader
-				{headerPrefix}
-				{resolvedTitle}
-				{resolvedDescription}
-				{headerActions}
-				{statusChip}
-			>
-				{#snippet trigger()}
-					<SidebarTrigger />
-				{/snippet}
-			</DashboardShellHeader>
-		<main class="flex-1 min-w-0">
-			<MetaScrollable class="h-full">
-				{@render children?.()}
-			</MetaScrollable>
-		</main>
-		</div>
-	</SidebarProvider>
-{/if}
+</SidebarProvider>

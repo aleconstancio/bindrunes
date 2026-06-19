@@ -1,42 +1,37 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
-import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
+import type { NavGroup, StatusVariant } from "../../shared-types";
 import DashboardShell from "./DashboardShell.svelte";
 
 let {
+	appName,
+	appSubtitle,
+	brandIcon,
+	navigation,
+	pathname,
+	onNavigate,
+	headerActions,
+	statusChip,
+	sidebarCollapsible = "icon",
+	sidebarHeader,
+	sidebarFooter,
 	children,
-	...rest
 }: {
-	children?: Snippet;
-	variant?: never;
 	appName?: string;
 	appSubtitle?: string;
 	brandIcon?: string | Component;
 	navigation?: NavGroup[];
 	pathname?: string;
-	scopeLabel?: string;
-	scopeTitle?: string;
-	scopeDescription?: string;
-	ruleTitle?: string;
-	ruleDescription?: string;
-	ruleChildren?: Snippet;
-	headerPrefix?: string;
-	defaultTitle?: string;
-	defaultDescription?: string;
-	pageTitle?: string;
-	pageDescription?: string;
-	sidebarCollapsible?: "icon" | "full";
-	statusChip?: { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean };
 	onNavigate?: (to: string) => void;
-	t?: TFunction;
+	headerActions?: Snippet;
+	statusChip?: { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean };
+	sidebarCollapsible?: "icon" | "full";
 	sidebarHeader?: Snippet;
 	sidebarFooter?: Snippet;
-	headerActions?: Snippet;
+	children?: Snippet;
 } = $props();
 </script>
 
-<DashboardShell variant="right" {...rest}>
-  {#if children}
-    {@render children()}
-  {/if}
+<DashboardShell variant="right" {appName} {appSubtitle} {brandIcon} {navigation} {pathname} {onNavigate} {headerActions} {statusChip} {sidebarCollapsible} {sidebarHeader} {sidebarFooter}>
+	{@render children?.()}
 </DashboardShell>
