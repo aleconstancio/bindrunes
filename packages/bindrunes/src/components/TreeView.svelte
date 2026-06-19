@@ -1,97 +1,87 @@
 <script lang="ts">
-import { ChevronRight } from "lucide-svelte";
 import type { Snippet } from "svelte";
 
 interface TreeNode {
 	id: string;
 	label: string;
-	icon?: string;
-	expanded?: boolean;
-	disabled?: boolean;
 	children?: TreeNode[];
+	icon?: Snippet;
+	disabled?: boolean;
+}
+
+interface Props {
+	nodes?: TreeNode[];
+	selectedId?: string;
+	onSelect?: (id: string) => void;
+	expandedIds?: string[];
+	onToggle?: (id: string) => void;
+	class?: string;
 }
 
 let {
-	nodes = [] as TreeNode[],
-	selected = $bindable(undefined as string | undefined),
-	onSelect = undefined as ((id: string) => void) | undefined,
+	nodes = [],
+	selectedId,
+	onSelect,
+	expandedIds = [],
+	onToggle,
 	class: className = "",
-	itemSnippet = undefined as
-		| Snippet<[{ node: TreeNode; depth: number; isExpanded: boolean; isSelected: boolean }]>
-		| undefined,
-}: {
-	nodes?: TreeNode[];
-	selected?: string;
-	onSelect?: (id: string) => void;
-	class?: string;
-	itemSnippet?: Snippet<
-		[{ node: TreeNode; depth: number; isExpanded: boolean; isSelected: boolean }]
-	>;
-} = $props();
+}: Props = $props();
 
-let expandedIds = $state(new Set<string>());
-
-function toggleExpand(id: string) {
-	const next = new Set(expandedIds);
-	if (next.has(id)) next.delete(id);
-	else next.add(id);
-	expandedIds = next;
-}
-
-function handleSelect(id: string) {
-	selected = id;
-	onSelect?.(id);
-}
+let internalExpanded = $state<string[]>([]);
 
 function isExpanded(id: string): boolean {
-	return expandedIds.has(id);
+	if (onToggle) return expandedIds.includes(id);
+	return internalExpanded.includes(id);
+}
+
+function toggleNode(id: string) {
+	if (onToggle) {
+		onToggle(id);
+	} else {
+		if (internalExpanded.includes(id)) {
+			internalExpanded = internalExpanded.filter((e) => e !== id);
+		} else {
+			internalExpanded = [...internalExpanded, id];
+		}
+	}
 }
 </script>
 
-<div class="space-y-0.5 {className}" role="tree">
-  {#each nodes as node}
-    {#if itemSnippet}
-      {@render itemSnippet({ node, depth: 0, isExpanded: isExpanded(node.id), isSelected: selected === node.id })}
-    {:else}
-      <div>
-        <button
-          type="button"
-          class="flex items-center gap-1.5 w-full rounded-[--radius] px-2 py-1.5 text-body-md text-left
-                 hover:bg-muted transition-colors cursor-pointer
-                 {selected === node.id ? 'bg-muted text-foreground font-medium' : 'text-muted-foreground'}
-                 {node.disabled ? 'opacity-50 cursor-not-allowed' : ''}"
-          onclick={() => {
-            if (node.children?.length) toggleExpand(node.id);
-            handleSelect(node.id);
-          }}
-          disabled={node.disabled}
-          aria-expanded={node.children?.length ? isExpanded(node.id) : undefined}
-          aria-selected={selected === node.id}
-          role="treeitem"
-        >
-          {#if node.children?.length}
-            <ChevronRight
-              class="h-4 w-4 shrink-0 transition-transform duration-[--duration-snappy]
-                     {isExpanded(node.id) ? 'rotate-90' : ''}"
-            />
-          {:else}
-            <span class="w-4"></span>
-          {/if}
-          <span class="truncate">{node.label}</span>
-        </button>
-        {#if node.children?.length && isExpanded(node.id)}
-          <div class="ml-4" role="group">
-            {#each node.children as child}
-              <svelte:self
-                nodes={[child]}
-                bind:selected
-                {onSelect}
-                {itemSnippet}
-              />
-            {/each}
-          </div>
-        {/if}
-      </div>
-    {/if}
-  {/each}
+{#snippet TreeNode(node, depth = 0)}
+	<div class="flex flex-col">
+		<button
+			class="flex items-center gap-2 px-2 py-1 text-body-md rounded-[--radius-md] text-left
+			       {selectedId === node.id ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}
+			       {node.disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}"
+			style:padding-left="{depth * 1.5 + 0.5}rem"
+			onclick={() => {
+				if (!node.disabled) {
+					if (node.children?.length) toggleNode(node.id);
+					onSelect?.(node.id);
+				}
+			}}
+			disabled={node.disabled}
+		>
+			{#if node.children?.length}
+				<span class="text-xs transition-transform {isExpanded(node.id) ? 'rotate-90' : ''}">▶</span>
+			{:else}
+				<span class="w-3"></span>
+			{/if}
+			{#if node.icon}
+				{@render node.icon()}
+			{/if}
+			{node.label}
+		</button>
+		{#if node.children?.length && isExpanded(node.id)}
+			{#each node.children as child}
+				{@render TreeNode(child, depth + 1)}
+			{/each}
+		{/if}
+	</div>
+{/snippet}
+
+<div class="flex flex-col {className}">
+	{#each nodes as node}
+		{@render TreeNode(node)}
+	{/each}
 </div>
