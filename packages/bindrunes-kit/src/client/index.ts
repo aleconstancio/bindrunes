@@ -7,6 +7,8 @@ export {
 } from "bindrunes";
 export type { CreateClientAuthOptions, Tenant, User } from "./auth.svelte";
 export { createClientAuth } from "./auth.svelte";
+export { createAutosave } from "./autosave.svelte";
 export { createSession } from "./session";
 export type { CreateSSEClientOptions, SSEStatus } from "./sse.svelte";
 export { createSSEClient } from "./sse.svelte";
+export { createWebSocketSession } from "./websocket.svelte";
