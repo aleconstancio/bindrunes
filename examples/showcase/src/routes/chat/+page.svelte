@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Card, Collapsible, CodeSnippet } from "bindrunes";
-	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/boundrune";
+	import { PageHeader, Card, Button, Collapsible, CodeSnippet } from "bindrunes";
+	import { ChatPage, ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/boundrune";
 	import { RealtimeClient } from "bindrunes";
 	import type { RealtimeEvent } from "bindrunes";
 
@@ -113,12 +113,12 @@
 	<!-- Typing Indicator demo embedded in chat -->
 	<Card padding class="max-w-2xl mx-auto">
 		<h3 class="text-title-3 text-foreground mb-2">TypingIndicator</h3>
-		<p class="text-sm text-muted-foreground mb-4">Animated dots shown while the assistant is composing a reply.</p>
+		<p class="text-body-sm text-muted-foreground mb-4">Animated dots shown while the assistant is composing a reply.</p>
 		<div class="space-y-3 rounded-lg border border-border p-4 bg-background min-h-[60px]">
 			{#if isTyping}
 				<TypingIndicator />
 			{:else}
-				<p class="text-sm text-muted-foreground italic">Send a message to see the typing indicator…</p>
+				<p class="text-body-sm text-muted-foreground italic">Send a message to see the typing indicator…</p>
 			{/if}
 		</div>
 	</Card>
@@ -135,18 +135,19 @@
 		</div>
 	</Collapsible>
 
-	<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[600px]">
-		<!-- Conversation List -->
-		<Card padding class="lg:col-span-1 overflow-hidden flex flex-col">
-			<h3 class="text-title-3 text-foreground mb-3">Conversations</h3>
-			<div class="flex-1 overflow-y-auto">
+	<ChatPage title="Chat">
+		{#snippet conversationList()}
+			<div class="p-4">
+				<h3 class="text-title-3 text-foreground mb-3">Conversations</h3>
 				<ConversationList {conversations} bind:selectedId={selectedConversation} />
 			</div>
-		</Card>
+		{/snippet}
 
-		<!-- Chat Area -->
-		<Card padding class="lg:col-span-3 overflow-hidden flex flex-col">
-			<h3 class="text-title-3 text-foreground mb-3">Chat</h3>
+		{#snippet chatHeader()}
+			<h3 class="text-title-3 text-foreground">Chat</h3>
+		{/snippet}
+
+		<div class="flex flex-col h-full">
 			<ChatThread messages={chatMessages} class="flex-1 min-h-0" />
 			{#if isTyping}
 				<div class="px-4 pb-2">
@@ -154,8 +155,8 @@
 				</div>
 			{/if}
 			<ChatInput onSend={handleSend} placeholder="Type a message..." />
-		</Card>
-	</div>
+		</div>
+	</ChatPage>
 
 	<!-- RealtimeClient mock -->
 	<Card padding class="max-w-2xl mx-auto">
@@ -163,14 +164,14 @@
 			<h3 class="text-title-3 text-foreground">RealtimeClient (Mock)</h3>
 			<div class="flex items-center gap-2">
 				<span class="inline-block w-2.5 h-2.5 rounded-full {statusColors[realtimeStatus]}"></span>
-				<span class="text-sm text-muted-foreground capitalize">{realtimeStatus}</span>
+				<span class="text-body-sm text-muted-foreground capitalize">{realtimeStatus}</span>
 			</div>
 		</div>
-		<p class="text-sm text-muted-foreground mb-4">Simulated SSE event stream with status tracking.</p>
+		<p class="text-body-sm text-muted-foreground mb-4">Simulated SSE event stream with status tracking.</p>
 
 		{#if !mockConnected}
 			<button
-				class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 text-sm font-medium transition-colors"
+				class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 text-body-sm font-medium transition-colors"
 				onclick={startMockRealtime}
 			>
 				Start Stream
@@ -178,18 +179,18 @@
 		{:else}
 			<div class="flex items-center gap-3 mb-4">
 				<button
-					class="inline-flex items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 px-4 py-2 text-sm font-medium transition-colors"
+					class="inline-flex items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 px-4 py-2 text-body-sm font-medium transition-colors"
 					onclick={stopMockRealtime}
 				>
 					Stop Stream
 				</button>
 				{#if mockGapDetected}
-					<span class="text-xs text-orange-600 dark:text-orange-400 font-medium">Sync gap detected</span>
+					<span class="text-label-xs text-orange-600 dark:text-orange-400 font-medium">Sync gap detected</span>
 				{/if}
 			</div>
 		{/if}
 
-		<div class="rounded-lg border border-border bg-muted/30 p-3 max-h-[240px] overflow-y-auto font-mono text-xs space-y-1.5">
+		<div class="rounded-lg border border-border bg-muted/30 p-3 max-h-[240px] overflow-y-auto font-mono text-label-xs space-y-1.5">
 			{#if mockEventLog.length === 0}
 				<p class="text-muted-foreground italic">No events yet.</p>
 			{/if}
