@@ -21,6 +21,13 @@ describe("Popover", () => {
 		expect(trigger?.getAttribute("aria-expanded")).toBe("false");
 	});
 
+	it("trigger is a direct button (no redundant wrapper div)", () => {
+		const { container } = render(Popover);
+		const trigger = container.querySelector("button.inline-flex");
+		expect(trigger?.tagName).toBe("BUTTON");
+		expect(trigger).not.toHaveAttribute("role", "button");
+	});
+
 	it("clicking the trigger does not throw", async () => {
 		const { container } = render(Popover);
 		const trigger = container.querySelector("button.inline-flex")!;

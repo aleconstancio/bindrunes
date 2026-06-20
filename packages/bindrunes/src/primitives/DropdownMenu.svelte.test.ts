@@ -30,4 +30,16 @@ describe("DropdownMenu", () => {
 		const { container } = render(DropdownMenu);
 		expect(container.firstElementChild).toBeInTheDocument();
 	});
+
+	it("defaults open to false (content not rendered)", () => {
+		const { container } = render(DropdownMenu, { props: { items } });
+		expect(container.querySelector("[data-dropdown-menu-content]")).not.toBeInTheDocument();
+	});
+
+	it("renders content when open is true", () => {
+		const { container } = render(DropdownMenu, {
+			props: { open: true, items },
+		});
+		expect(container.querySelector("[data-dropdown-menu-content]")).toBeInTheDocument();
+	});
 });

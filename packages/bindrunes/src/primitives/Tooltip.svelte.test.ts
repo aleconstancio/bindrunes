@@ -28,6 +28,15 @@ describe("Tooltip", () => {
 		expect(container.firstElementChild).toBeInTheDocument();
 	});
 
+	it("does not create its own provider (uses app-level TooltipProvider)", () => {
+		const { container } = render(TooltipHarness, {
+			content: "Info",
+			slots: { children: "Hover" },
+		});
+		const providerWrappers = container.querySelectorAll("[data-tooltip-provider]");
+		expect(providerWrappers.length).toBeLessThanOrEqual(1);
+	});
+
 	it("renders with default side top", () => {
 		const { container } = render(TooltipHarness, {
 			content: "Tip",

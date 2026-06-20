@@ -27,6 +27,30 @@ describe("Dialog", () => {
 		);
 	});
 
+	it("applies size classes for sm", () => {
+		render(Dialog, { open: true, size: "sm" });
+		const content = document.querySelector('[role="dialog"]');
+		expect(content?.className).toContain("max-w-sm");
+	});
+
+	it("applies size classes for lg", () => {
+		render(Dialog, { open: true, size: "lg" });
+		const content = document.querySelector('[role="dialog"]');
+		expect(content?.className).toContain("max-w-lg");
+	});
+
+	it("applies size classes for full", () => {
+		render(Dialog, { open: true, size: "full" });
+		const content = document.querySelector('[role="dialog"]');
+		expect(content?.className).toContain("max-w-[90vw]");
+	});
+
+	it("defaults to md size", () => {
+		render(Dialog, { open: true });
+		const content = document.querySelector('[role="dialog"]');
+		expect(content?.className).toContain("max-w-md");
+	});
+
 	it("a11y: open dialog has no violations", async () => {
 		const { container } = render(Dialog, { open: true, title: "Confirm" });
 		await expectNoAxeViolations(container);
