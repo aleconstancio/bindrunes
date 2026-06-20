@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import ScrollArea from "../../ScrollArea.svelte";
+import ScrollArea from "../../primitives/ScrollArea.svelte";
 
 interface DocSection {
 	id: string;

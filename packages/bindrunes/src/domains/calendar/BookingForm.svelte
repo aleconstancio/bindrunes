@@ -1,7 +1,7 @@
 <script lang="ts">
-import Button from "../../Button.svelte";
-import Card from "../../Card.svelte";
-import Input from "../../Input.svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
+import Input from "../../primitives/Input.svelte";
 
 let {
 	date = "",

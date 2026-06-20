@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Button from "../../Button.svelte";
-import Separator from "../../Separator.svelte";
+import Button from "../../primitives/Button.svelte";
+import Separator from "../../primitives/Separator.svelte";
 
 let {
 	onGoogle = undefined as (() => void) | undefined,

@@ -1,7 +1,7 @@
 <script lang="ts">
-import AlertDialog from "../../AlertDialog.svelte";
-import Button from "../../Button.svelte";
-import Card from "../../Card.svelte";
+import AlertDialog from "../../primitives/AlertDialog.svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
 import Block from "../Block.svelte";
 
 let {

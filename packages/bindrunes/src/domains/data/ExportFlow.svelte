@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Download, FileJson, FileSpreadsheet, FileText } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import DropdownMenu from "../../DropdownMenu.svelte";
+import Button from "../../primitives/Button.svelte";
+import DropdownMenu from "../../primitives/DropdownMenu.svelte";
 
 let {
 	onExport = undefined as ((format: string) => void) | undefined,

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Accordion from "../Accordion.svelte";
-import AccordionItem from "../AccordionItem.svelte";
-import MetaContainer from "../MetaContainer.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Accordion from "../../primitives/Accordion.svelte";
+import AccordionItem from "../../primitives/AccordionItem.svelte";
 import type { FAQItem } from "./landing-types";
 
 interface Props {

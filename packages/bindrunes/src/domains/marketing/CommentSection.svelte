@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Button from "../../Button.svelte";
+import Button from "../../primitives/Button.svelte";
 import Block from "../Block.svelte";
 import type { CommentItem } from "../types";
 

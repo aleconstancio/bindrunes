@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import ScrollArea from "../../ScrollArea.svelte";
+import ScrollArea from "../../primitives/ScrollArea.svelte";
 import ChatMessage from "./ChatMessage.svelte";
 import type { Message } from "./types";
 

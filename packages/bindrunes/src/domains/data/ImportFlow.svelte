@@ -1,10 +1,10 @@
 <script lang="ts">
 import { FileSpreadsheet, Upload } from "lucide-svelte";
 import type { Snippet } from "svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
+import Dialog from "../../primitives/Dialog.svelte";
 import { isBrowser } from "../../utils/isBrowser";
-import Button from "../../Button.svelte";
-import Card from "../../Card.svelte";
-import Dialog from "../../Dialog.svelte";
 import Block from "../Block.svelte";
 
 let {

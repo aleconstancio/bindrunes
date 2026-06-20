@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { BaseIssue, BaseSchema } from "valibot";
-import type { FormState } from "../../../utils/useForm.svelte";
-import Form from "../../Form.svelte";
-import Sheet from "../../Sheet.svelte";
+import Form from "../../components/Form.svelte";
+import Sheet from "../../primitives/Sheet.svelte";
+import type { FormState } from "../../utils/useForm.svelte";
 import type { CrudConfig } from "../types";
 
 let {

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Mail } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Button from "../../primitives/Button.svelte";
 import Block from "../Block.svelte";
 
 let {

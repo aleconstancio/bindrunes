@@ -1,6 +1,6 @@
 <script lang="ts">
-import Badge from "../../Badge.svelte";
-import Button from "../../Button.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import Button from "../../primitives/Button.svelte";
 
 let {
 	name = "",

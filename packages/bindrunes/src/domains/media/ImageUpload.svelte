@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Upload, X } from "lucide-svelte";
-import Button from "../../Button.svelte";
+import Button from "../../primitives/Button.svelte";
 
 let {
 	accept = "image/*",

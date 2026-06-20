@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Avatar from "../Avatar.svelte";
+import Avatar from "../../primitives/Avatar.svelte";
 import { getInitials } from "./landing-utils";
 
 interface Props {

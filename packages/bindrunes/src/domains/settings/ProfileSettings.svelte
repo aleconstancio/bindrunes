@@ -1,8 +1,8 @@
 <script lang="ts">
-import Avatar from "../../Avatar.svelte";
-import Button from "../../Button.svelte";
-import Card from "../../Card.svelte";
-import Input from "../../Input.svelte";
+import Avatar from "../../primitives/Avatar.svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
+import Input from "../../primitives/Input.svelte";
 import Block from "../Block.svelte";
 
 let {

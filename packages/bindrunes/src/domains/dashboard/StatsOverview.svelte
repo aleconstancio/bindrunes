@@ -1,6 +1,6 @@
 <script lang="ts">
-import Badge from "../../Badge.svelte";
-import Card from "../../Card.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import Card from "../../primitives/Card.svelte";
 
 interface Stat {
 	label: string;

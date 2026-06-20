@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
 import type { Integration } from "./landing-types";
 import { getGridClass } from "./landing-utils";
 

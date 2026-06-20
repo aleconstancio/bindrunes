@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Copy, Trash2 } from "lucide-svelte";
 import type { Snippet } from "svelte";
-import Badge from "../../Badge.svelte";
-import Button from "../../Button.svelte";
-import Card from "../../Card.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
 import Block from "../Block.svelte";
 
 interface ApiKey {

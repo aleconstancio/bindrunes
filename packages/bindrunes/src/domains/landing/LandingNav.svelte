@@ -3,11 +3,11 @@ import { Menu, X } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
 import { slide } from "svelte/transition";
+import ThemeToggle from "../../components/ThemeToggle.svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
+import Button from "../../primitives/Button.svelte";
+import NavigationMenu from "../../primitives/NavigationMenu.svelte";
 import type { NavLink, TFunction } from "../../shared-types";
-import Button from "../Button.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
-import NavigationMenu from "../NavigationMenu.svelte";
-import ThemeToggle from "../ThemeToggle.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 interface NavLogo {

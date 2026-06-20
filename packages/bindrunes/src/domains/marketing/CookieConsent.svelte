@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Button from "../../Button.svelte";
+import Button from "../../primitives/Button.svelte";
 
 let {
 	visible = $bindable(true),

@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Tabs from "../../Tabs.svelte";
-import TabsContent from "../../TabsContent.svelte";
-import TabsList from "../../TabsList.svelte";
-import TabsTrigger from "../../TabsTrigger.svelte";
+import Tabs from "../../primitives/Tabs.svelte";
+import TabsContent from "../../primitives/TabsContent.svelte";
+import TabsList from "../../primitives/TabsList.svelte";
+import TabsTrigger from "../../primitives/TabsTrigger.svelte";
 import Block from "../Block.svelte";
 
 interface SettingsTab {

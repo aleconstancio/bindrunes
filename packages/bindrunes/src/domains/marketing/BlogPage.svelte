@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import DashboardShellHeader from "../../dashboard/DashboardShellHeader.svelte";
-import PageShell from "../../PageShell.svelte";
+import DashboardShellHeader from "../../layouts/dashboard/DashboardShellHeader.svelte";
+import PageShell from "../../layouts/PageShell.svelte";
 
 let {
 	title = "Blog",

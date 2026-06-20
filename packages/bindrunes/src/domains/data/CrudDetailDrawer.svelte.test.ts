@@ -36,7 +36,7 @@ describe("CrudDetailDrawer", () => {
 
 	it("a11y: open drawer has no violations", async () => {
 		const { container } = render(CrudDetailDrawer, { open: true, title: "Test" });
-		const { expectNoAxeViolations } = await import("../../../helpers/axe");
+		const { expectNoAxeViolations } = await import("../../helpers/axe");
 		await expectNoAxeViolations(container);
 	});
 });

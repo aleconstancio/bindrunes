@@ -50,7 +50,7 @@ describe("CrudDeleteConfirm", () => {
 
 	it("a11y: open dialog has no violations", async () => {
 		const { container } = render(CrudDeleteConfirm, { open: true });
-		const { expectNoAxeViolations } = await import("../../../helpers/axe");
+		const { expectNoAxeViolations } = await import("../../helpers/axe");
 		await expectNoAxeViolations(container);
 	});
 });

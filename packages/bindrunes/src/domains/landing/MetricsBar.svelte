@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Card from "../Card.svelte";
+import Card from "../../primitives/Card.svelte";
 import type { Metric } from "./landing-types";
 import { getGridClass } from "./landing-utils";
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Avatar from "../Avatar.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
+import Avatar from "../../primitives/Avatar.svelte";
 import type { TeamMember } from "./landing-types";
 import { getGridClass, getInitials } from "./landing-utils";
 

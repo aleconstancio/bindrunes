@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Shield } from "lucide-svelte";
-import Button from "../../Button.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
-import PinInput from "../../PinInput.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Button from "../../primitives/Button.svelte";
+import PinInput from "../../primitives/PinInput.svelte";
 import Block from "../Block.svelte";
 
 let {

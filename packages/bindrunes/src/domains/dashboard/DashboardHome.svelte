@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
-import Card from "../../Card.svelte";
-import MetricCard from "../../MetricCard.svelte";
+import MetricCard from "../../components/MetricCard.svelte";
+import Card from "../../primitives/Card.svelte";
 import Block from "../Block.svelte";
 
 interface Stat {

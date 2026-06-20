@@ -1,5 +1,5 @@
 <script lang="ts">
-import MetaContainer from "../../MetaContainer.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
 
 interface Badge {
 	label: string;

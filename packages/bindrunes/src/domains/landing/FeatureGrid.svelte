@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Card from "../Card.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
-import MetaContainer from "../MetaContainer.svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Card from "../../primitives/Card.svelte";
 import { getGridClass } from "./landing-utils";
 
 interface Props {

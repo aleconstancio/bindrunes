@@ -1,5 +1,5 @@
 <script lang="ts">
-import Card from "../../Card.svelte";
+import Card from "../../primitives/Card.svelte";
 
 interface OrderItem {
 	name: string;

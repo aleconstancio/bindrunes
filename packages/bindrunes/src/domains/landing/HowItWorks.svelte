@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Check } from "lucide-svelte";
 import type { Snippet } from "svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
+import Card from "../../primitives/Card.svelte";
 import type { TFunction } from "../../shared-types";
-import Card from "../Card.svelte";
-import DynamicIcon from "../DynamicIcon.svelte";
 
 import type { Step } from "./landing-types";
 

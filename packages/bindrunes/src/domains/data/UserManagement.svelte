@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { Column, SortState } from "../../../shared-types";
-import Avatar from "../../Avatar.svelte";
-import Badge from "../../Badge.svelte";
+import Avatar from "../../primitives/Avatar.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import type { Column, SortState } from "../../shared-types";
 import CrudListPage from "./CrudListPage.svelte";
 
 interface User {

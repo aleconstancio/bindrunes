@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { Column, SortState } from "../../../shared-types";
-import Button from "../../Button.svelte";
-import EmptyState from "../../EmptyState.svelte";
-import PageHeader from "../../PageHeader.svelte";
+import EmptyState from "../../components/EmptyState.svelte";
+import PageHeader from "../../layouts/PageHeader.svelte";
+import Button from "../../primitives/Button.svelte";
+import type { Column, SortState } from "../../shared-types";
 import Block from "../Block.svelte";
 import AdvancedTable from "./AdvancedTable.svelte";
 import { useCrud } from "./crud-context.svelte";

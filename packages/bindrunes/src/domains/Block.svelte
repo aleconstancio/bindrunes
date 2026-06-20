@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { ContainerSize } from "../../../shared-types";
-import PageSection from "../PageSection.svelte";
+import type { ContainerSize } from "../../shared-types";
+import PageSection from "../layouts/PageSection.svelte";
 
 let {
 	id = undefined as string | undefined,

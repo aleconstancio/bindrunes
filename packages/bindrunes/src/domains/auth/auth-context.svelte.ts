@@ -1,6 +1,6 @@
-import { AUTH_CONTEXT_KEY } from "../../../utils/auth-keys";
-import { createMetaContext, useMetaContext } from "../../../utils/createMetaContext.svelte";
-import { toError } from "../../../utils/toError";
+import { AUTH_CONTEXT_KEY } from "../../utils/auth-keys";
+import { createMetaContext, useMetaContext } from "../../utils/createMetaContext.svelte";
+import { toError } from "../../utils/toError";
 
 export interface AuthUser {
 	id: string | number;

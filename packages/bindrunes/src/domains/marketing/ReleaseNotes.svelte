@@ -1,5 +1,5 @@
 <script lang="ts">
-import Badge from "../../Badge.svelte";
+import Badge from "../../primitives/Badge.svelte";
 import Block from "../Block.svelte";
 
 interface ReleaseNote {

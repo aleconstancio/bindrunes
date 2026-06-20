@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Check, X } from "lucide-svelte";
-import MetaContainer from "../../MetaContainer.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
 
 interface Feature {
 	name: string;

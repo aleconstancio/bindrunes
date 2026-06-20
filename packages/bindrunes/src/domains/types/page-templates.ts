@@ -1,5 +1,5 @@
 import type { Component, Snippet } from "svelte";
-import type { NavGroup, StatusVariant } from "../../../shared-types";
+import type { NavGroup, StatusVariant } from "../../shared-types";
 import type { AuthView } from "./auth";
 
 export interface DashboardPageProps {

@@ -82,7 +82,7 @@ describe("LoginForm", () => {
 
 	it("a11y: login form has no violations", async () => {
 		const { container } = render(LoginForm);
-		const { expectNoAxeViolations } = await import("../../../helpers/axe");
+		const { expectNoAxeViolations } = await import("../../helpers/axe");
 		await expectNoAxeViolations(container);
 	});
 });

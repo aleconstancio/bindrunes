@@ -1,12 +1,12 @@
 <script lang="ts">
 import { Check } from "lucide-svelte";
 import type { Snippet } from "svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import Button from "../../primitives/Button.svelte";
+import Card from "../../primitives/Card.svelte";
+import Switch from "../../primitives/Switch.svelte";
 import type { TFunction } from "../../shared-types";
-import Badge from "../Badge.svelte";
-import Button from "../Button.svelte";
-import Card from "../Card.svelte";
-import MetaContainer from "../MetaContainer.svelte";
-import Switch from "../Switch.svelte";
 import { useLanding } from "./landing-context.svelte";
 
 import type { Plan } from "./landing-types";

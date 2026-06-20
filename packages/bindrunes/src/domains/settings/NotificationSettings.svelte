@@ -1,6 +1,6 @@
 <script lang="ts">
-import Card from "../../Card.svelte";
-import Switch from "../../Switch.svelte";
+import Card from "../../primitives/Card.svelte";
+import Switch from "../../primitives/Switch.svelte";
 import Block from "../Block.svelte";
 
 interface NotificationPreference {

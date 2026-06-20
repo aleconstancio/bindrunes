@@ -1,6 +1,6 @@
 <script lang="ts">
-import Button from "../../Button.svelte";
-import Dialog from "../../Dialog.svelte";
+import Button from "../../primitives/Button.svelte";
+import Dialog from "../../primitives/Dialog.svelte";
 
 let {
 	open = $bindable(false),

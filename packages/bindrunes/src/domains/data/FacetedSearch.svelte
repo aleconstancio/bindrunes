@@ -1,6 +1,6 @@
 <script lang="ts">
-import Input from "../../Input.svelte";
-import Select from "../../Select.svelte";
+import Input from "../../primitives/Input.svelte";
+import Select from "../../primitives/Select.svelte";
 
 let {
 	searchValue = $bindable(""),

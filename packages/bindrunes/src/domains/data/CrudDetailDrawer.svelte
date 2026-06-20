@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Badge from "../../Badge.svelte";
-import Sheet from "../../Sheet.svelte";
-import Skeleton from "../../Skeleton.svelte";
+import Badge from "../../primitives/Badge.svelte";
+import Sheet from "../../primitives/Sheet.svelte";
+import Skeleton from "../../primitives/Skeleton.svelte";
 
 let {
 	open = $bindable(false),

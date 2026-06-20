@@ -1,5 +1,5 @@
 <script lang="ts">
-import Button from "../../Button.svelte";
+import Button from "../../primitives/Button.svelte";
 
 interface QuickAction {
 	label: string;

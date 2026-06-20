@@ -101,7 +101,7 @@ describe("RegisterForm", () => {
 
 	it("a11y: register form has no violations", async () => {
 		const { container } = render(RegisterForm);
-		const { expectNoAxeViolations } = await import("../../../helpers/axe");
+		const { expectNoAxeViolations } = await import("../../helpers/axe");
 		await expectNoAxeViolations(container);
 	});
 });

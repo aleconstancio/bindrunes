@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
+import DynamicIcon from "../../layouts/DynamicIcon.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
 import type { TFunction } from "../../shared-types";
-import DynamicIcon from "../DynamicIcon.svelte";
-import MetaContainer from "../MetaContainer.svelte";
 import type { FooterLink } from "./landing-types";
 
 interface Props {

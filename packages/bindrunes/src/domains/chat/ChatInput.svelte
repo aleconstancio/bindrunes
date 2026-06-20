@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Send } from "lucide-svelte";
-import Button from "../../Button.svelte";
+import Button from "../../primitives/Button.svelte";
 
 let {
 	placeholder = "Type a message...",

@@ -1,9 +1,9 @@
 <script lang="ts">
 import { ArrowLeft, Mail } from "lucide-svelte";
 import type { Snippet } from "svelte";
-import Button from "../../Button.svelte";
-import Input from "../../Input.svelte";
-import MetaContainer from "../../MetaContainer.svelte";
+import MetaContainer from "../../layouts/MetaContainer.svelte";
+import Button from "../../primitives/Button.svelte";
+import Input from "../../primitives/Input.svelte";
 import Block from "../Block.svelte";
 
 let {
