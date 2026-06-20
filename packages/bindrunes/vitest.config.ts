@@ -64,33 +64,44 @@ export default defineConfig({
 		coverage: {
 			provider: "v8",
 			reporter: ["text", "json", "html"],
-			include: ["src/**"],
-			exclude: [
-				"src/test-setup.ts",
-				"src/test-utils.ts",
-				"src/helpers/**",
-				"src/**/*.test.ts",
-				"src/**/*.spec.ts",
-				"src/**/*.d.ts",
-			],
+			include: ["src/**/*.{ts,svelte}"],
+			exclude: ["src/test/**", "src/**/*.test.ts", "src/**/*.d.ts"],
 			thresholds: {
-				"src/utils/agentic/**": {
+				"src/primitives/**": {
 					lines: 90,
+					branches: 85,
 					functions: 88,
 					statements: 90,
-					branches: 85,
 				},
-				"src/domains/chat/**": {
+				"src/layouts/**": {
 					lines: 90,
+					branches: 85,
 					functions: 88,
 					statements: 90,
+				},
+				"src/domains/**": {
+					lines: 90,
 					branches: 85,
+					functions: 88,
+					statements: 90,
+				},
+				"src/templates/**": {
+					lines: 90,
+					branches: 85,
+					functions: 88,
+					statements: 90,
+				},
+				"src/utils/agentic/**": {
+					lines: 95,
+					branches: 90,
+					functions: 92,
+					statements: 95,
 				},
 				global: {
-					lines: 80,
-					functions: 77,
-					statements: 80,
-					branches: 70,
+					lines: 90,
+					branches: 85,
+					functions: 88,
+					statements: 90,
 				},
 			},
 		},
