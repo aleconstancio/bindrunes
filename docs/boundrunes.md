@@ -1,17 +1,49 @@
 # Boundrunes
 
-Pre-composed page patterns organized by domain. Each category provides a full set of components for building common B2B SaaS pages without starting from scratch.
+Pre-composed page patterns organized by domain. Each domain provides a full set of components for building common B2B SaaS pages without starting from scratch.
 
 ## Import
 
+Individual domain components are imported from `bindrunes/domains/<domain>`:
+
 ```ts
-import { LoginForm, AuthLayout } from "bindrunes/boundrune";
+import { LoginForm, AuthLayout } from "bindrunes/domains/auth";
+import { DashboardHome, StatsOverview } from "bindrunes/domains/dashboard";
+```
+
+Pre-composed page templates that wire entire domains together are available from `bindrunes/templates`:
+
+```ts
+import { AuthTemplate } from "bindrunes/templates";
+```
+
+## Templates
+
+Full-page template components that compose domain components into ready-to-use pages:
+
+| Template | Description |
+|----------|-------------|
+| `AuthTemplate` | Complete auth flow (login, register, forgot password, etc.) |
+| `DashboardTemplate` | Dashboard shell with stats, activity, and quick actions |
+| `CrudTemplate` | CRUD list, create, edit, detail, and delete pages |
+| `CalendarTemplate` | Calendar with scheduling and booking |
+| `ChatTemplate` | Chat thread, input, and conversation list |
+| `EcommerceTemplate` | Product grid, cart, and checkout flow |
+| `MarketingTemplate` | Landing page with hero, features, testimonials, and CTA |
+| `MediaTemplate` | Media gallery with upload and player |
+| `PortfolioTemplate` | Portfolio grid and case studies |
+| `SettingsTemplate` | Tabbed settings with profile, security, and notifications |
+
+```ts
+import { AuthTemplate } from "bindrunes/templates";
 ```
 
 ## Categories
 
 ### Auth
-Authentication flows — login, registration, password reset, email verification, 2FA, and social login.
+Authentication flows -- login, registration, password reset, email verification, 2FA, and social login.
+
+**Import from `bindrunes/domains/auth`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -24,9 +56,12 @@ Authentication flows — login, registration, password reset, email verification
 | `TwoFactorAuth` | 2FA code entry |
 | `SocialLogin` | OAuth provider buttons |
 | `createAuthProvider` | Reactive auth context factory |
+| `useAuth` | Auth context hook |
 
 ### Dashboard
-Dashboard shell components — stats, activity feeds, quick actions, and home layout.
+Dashboard shell components -- stats, activity feeds, quick actions, and home layout.
+
+**Import from `bindrunes/domains/dashboard`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -38,6 +73,8 @@ Dashboard shell components — stats, activity feeds, quick actions, and home la
 
 ### Data
 CRUD operations, tables, import/export, and data management pages.
+
+**Import from `bindrunes/domains/data`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -54,10 +91,14 @@ CRUD operations, tables, import/export, and data management pages.
 | `UserManagement` | User admin table |
 | `BillingDashboard` | Billing and subscription |
 | `TableHeader` | Sortable table header with column config |
+| `Form` / `FormField` | Reusable form components |
 | `createCrudProvider` | Reactive CRUD context factory |
+| `useCrud` | CRUD context hook |
 
 ### Calendar
 Scheduling and event management.
+
+**Import from `bindrunes/domains/calendar`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -69,16 +110,26 @@ Scheduling and event management.
 ### Chat
 Real-time messaging components.
 
+**Import from `bindrunes/domains/chat`:**
+
 | Component | Description |
 |-----------|-------------|
 | `ChatThread` | Message thread view |
 | `ChatBubble` | Styled message bubble with variants and optional timestamp |
 | `ChatInput` | Message composer |
+| `ChatMessage` | Individual message component |
 | `ConversationList` | Sidebar conversation list |
 | `TypingIndicator` | Typing dots animation |
+| `AgentChatPage` | AI agent chat page |
+| `AgentStatus` | Agent status indicator |
+| `MemoryDisplay` | Agent memory display |
+| `ReasoningPanel` | AI reasoning panel |
+| `ToolCallDisplay` | Tool call display |
 
 ### E-commerce
 Product display, cart, and checkout.
+
+**Import from `bindrunes/domains/ecommerce`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -88,8 +139,40 @@ Product display, cart, and checkout.
 | `OrderSummary` | Order review |
 | `PriceTag` | Formatted price display |
 
+### Landing
+Landing page building blocks -- hero sections, feature grids, pricing, testimonials, and more.
+
+**Import from `bindrunes/domains/landing`:**
+
+| Component | Description |
+|-----------|-------------|
+| `HeroBanner` | Hero section with headline and CTA |
+| `FeatureGrid` | Feature cards grid |
+| `FeatureComparison` | Feature comparison table |
+| `ComparisonTable` | Product/plan comparison |
+| `PricingTable` | Pricing plans display |
+| `Testimonial` / `TestimonialGrid` | Customer testimonials |
+| `LogoCloud` | Customer/partner logos |
+| `FAQ` | Frequently asked questions |
+| `HowItWorks` | Step-by-step how it works |
+| `MetricsBar` | Key metrics display |
+| `StatsCounter` | Animated stats counters |
+| `Newsletter` | Newsletter signup |
+| `IntegrationGrid` | Integration partners |
+| `TeamSection` | Team members |
+| `VideoEmbed` | Embedded video |
+| `CtaBanner` | Call-to-action banner |
+| `SecurityBadges` | Security compliance badges |
+| `LandingNav` | Landing page navigation |
+| `LandingSection` | Generic landing section wrapper |
+| `SiteFooter` / `SiteFooterColumns` | Footer components |
+| `createLandingState` | Landing page state factory |
+| `useLanding` | Landing context hook |
+
 ### Marketing
-Landing page sections, blog, changelog, and promotional components.
+Blog, changelog, and promotional components.
+
+**Import from `bindrunes/domains/marketing`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -109,6 +192,8 @@ Landing page sections, blog, changelog, and promotional components.
 ### Media
 File handling, uploads, and media players.
 
+**Import from `bindrunes/domains/media`:**
+
 | Component | Description |
 |-----------|-------------|
 | `MediaGallery` | Image/video gallery |
@@ -120,6 +205,8 @@ File handling, uploads, and media players.
 ### Portfolio
 Case studies and project showcases.
 
+**Import from `bindrunes/domains/portfolio`:**
+
 | Component | Description |
 |-----------|-------------|
 | `Portfolio` | Portfolio grid page |
@@ -127,7 +214,9 @@ Case studies and project showcases.
 | `CaseStudy` | Case study detail |
 
 ### Settings
-Account settings pages — profile, security, notifications, danger zone.
+Account settings pages -- profile, security, notifications, danger zone.
+
+**Import from `bindrunes/domains/settings`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -138,19 +227,9 @@ Account settings pages — profile, security, notifications, danger zone.
 | `NotificationSettings` | Notification preferences |
 | `DangerZone` | Account deletion/deactivation |
 
-## Shared Layout
-
-All categories use `Block` as the base layout primitive:
-
-```svelte
-<Block size="lg" spacing="compact">
-  <!-- category content -->
-</Block>
-```
-
 ## Types
 
-Shared types are exported from `bindrunes/boundrune`:
+Shared domain types are exported from `bindrunes/domains`:
 
 ```ts
 import type {
@@ -160,8 +239,9 @@ import type {
   TableColumnConfig,
   SearchFilter,
   PortfolioItem,
-  TestimonialItem,
   CommentItem,
   ScheduleItem,
-} from "bindrunes/boundrune";
+} from "bindrunes/domains";
 ```
+
+> **Note:** `TestimonialItem` and `LogoItem` are deprecated in `bindrunes/domains`. Use `Testimonial` and related types from `bindrunes/landing` instead.
