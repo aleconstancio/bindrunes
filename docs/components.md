@@ -11,6 +11,11 @@ Components are organized into four layers following the architecture:
 - **Domains** (`bindrunes/domains`) -- Domain-specific feature components
 - **Templates** (`bindrunes/templates`) -- Pre-composed full-page layouts
 
+> **Note:** Several components from other layers are re-exported from the main `bindrunes`
+> entry point for convenience (e.g. `Form`, `FormField`, `DataTable`, `PageHeader`,
+> `SectionHeader`). The sections below list each component under the layer it physically
+> belongs to.
+
 ---
 
 ## Primitives
@@ -33,12 +38,11 @@ Components are organized into four layers following the architecture:
 | `<Progress>` / `<Avatar>` | Progress bars and user avatars wrapping `bits-ui` primitives. |
 | `<Label>` | Form field label with required indicator support. |
 | `<Kbd>` | Keyboard shortcut indicator. |
-| `<Form>` | Validation submit wrapper with optional toast feedbacks. |
-| `<FormField>` | Labeled form field wrapper with error display. |
 | `<Select>` / `<Switch>` / `<Checkbox>` | Standard form selection components. |
 | `<RadioGroup>` / `<ToggleGroup>` / `<Combobox>` | Multi-value input controllers. |
 | `<Slider>` / `<DatePicker>` / `<TimeField>` | Complex input selectors. |
 | `<PinInput>` / `<RatingGroup>` / `<FileUpload>` | Specialty fields (OTP/stars/drag-and-drop file loads). |
+| `<ColorPicker>` / `<RangeCalendar>` | Color selection and range calendar inputs. |
 | `<RichTextEditor>` | ProseMirror-based rich text editor with toolbar. |
 | `<CodeSnippet>` | Code block with copy-to-clipboard button and optional title. |
 
@@ -243,16 +247,21 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 | `<Popover>` | Hover-triggered content panels. |
 | `<DropdownMenu>` | Context-sensitive dropdowns with item snippets. |
 | `<ContextMenu>` | Right-click context menus. |
-| `<Tooltip>` | Hover tooltips with rich content support via snippet. |
-| `<Omnibar>` | Global command palette (Cmd+K launcher). |
+| `<Tooltip>` / `<TooltipProvider>` | Hover tooltips with rich content support via snippet and global provider. |
+| `<Omnibar>` / `<CommandPalette>` | Global command palette (Cmd+K launcher). |
 | `<Popconfirm>` | Quick inline confirmation tooltips. |
 | `<Collapsible>` | Expandable/collapsible content sections. |
 | `<Stepper>` | Step-by-step wizard navigation with ARIA list semantics. |
 | `<Tabs>` / `<Accordion>` | Sectioned layouts with vertical orientation support. |
-| `<DataTable>` / `<Pagination>` | Tabular data displays with pagination support. |
-| `<Breadcrumb>` / `<PageHeader>` / `<SectionHeader>` | Page structure and heading systems. |
+| `<Pagination>` | Tabular data pagination controls. |
+| `<Breadcrumb>` | Breadcrumb navigation trail. |
 | `<Drawer>` | Mobile-friendly drawer with snap points and gesture dismissal. |
 | `<TreeView>` | Hierarchical tree display with expand/collapse. |
+| `<AppProvider>` / `<AuthGuard>` | App shell provider and route protection. |
+| `<Separator>` / `<ScrollArea>` | Visual dividers and styled scroll containers. |
+| `<EmptyState>` / `<ErrorMessage>` / `<PageLoading>` | Empty, error, and loading states. |
+| `<OTPInput>` / `<Suspense>` | OTP input and suspense loading wrapper. |
+| `<Toggle>` / `<NavigationMenu>` | Toggle button and navigation menu. |
 
 ---
 
@@ -268,11 +277,12 @@ Primitives that expose layout slots and standardize container dimensions:
 - **`<MetaLayout>`**: Positional layout slots (`header`, `content`, `footer`, `separator`).
 - **`<MetaContainer>`**: Restricts content width to design scales (`prose` through `2xl` or `full`).
 - **`<MetaScrollable>`**: Container enforcing consistent overflow scrollbar behaviors.
-- **`<Block>`**: Section wrapper with `header`/`footer` snippets, size, background, and spacing props. *(in `bindrunes/domains`)*
+- **`<PageHeader>`**: Page-level header with title, description, and actions slot.
+- **`<SectionHeader>`**: Section heading with optional description and actions.
+- **`<ListPage>`**: Reusable page layout with `PageHeader` + content slot + empty state.
 - **`<ErrorBoundary>`**: Catches Svelte errors and renders a fallback UI snippet.
 - **`<DynamicIcon>`**: Resolves icon names to `lucide-svelte` components at runtime.
 - **`<LazyLoad>`**: Intersection-based lazy rendering for deferred content loading.
-- **`<ListPage>`**: Reusable page layout with `PageHeader` + content slot + empty state.
 - **`<SEO>`**: Sets document `<title>`, meta descriptions, and Open Graph properties.
 
 ### Dashboard Shell
@@ -291,6 +301,7 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 
 - **`<SidebarProvider>`**: Root context provider for sidebar state.
 - **`<Sidebar>`**: Main sidebar panel with `side`, `variant`, and `collapsible` props.
+- **`<SidebarLayout>`**: Full sidebar layout wrapper combining provider, sidebar, and content.
 - **`<SidebarContent>`**: Scrollable content area inside the sidebar.
 - **`<SidebarHeader>`** / **`<SidebarFooter>`**: Header and footer areas.
 - **`<SidebarGroup>`**: Groups menu items with optional labels.
@@ -315,8 +326,12 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 ### Feedback & Display
 
 - **`<ToastProvider>`**: Root provider for toast notifications (wraps `svelte-sonner`).
-- **`<Timeline>`**: Vertical timeline display with icons and timestamps.
 - **`<MetricCard>`**: KPI metric display with value, label, and change indicator.
+- **`<Timeline>`**: Vertical timeline display with icons and timestamps.
+
+### Block
+
+- **`<Block>`** (`bindrunes/domains`): Section wrapper with `header`/`footer` snippets, size, background, and spacing props.
 
 ### Auth (`bindrunes/domains/auth`)
 - `<AuthLayout>` -- Split-screen layout (branding left, form right).
@@ -330,17 +345,22 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 - `<StatsOverview>` -- Responsive metric cards with change indicators.
 - `<QuickActions>` -- Action button bar.
 - `<ActivityFeed>` -- Real-time event feed with timestamps and avatars.
+- `<DashboardFooter>` -- Dashboard footer area.
 
 ### Settings (`bindrunes/domains/settings`)
 - `<TabbedSettings>` -- Settings with vertical sidebar tabs.
 - `<ProfileSettings>` -- Avatar + name/email form.
 - `<SecuritySettings>` -- Password change + 2FA toggle.
 - `<NotificationSettings>` -- Toggle grid for notification preferences.
+- `<SettingsSection>` -- Reusable settings section wrapper.
 - `<DangerZone>` -- Account deactivation, deletion, transfer with confirmation.
 
 ### Data (`bindrunes/domains/data`)
 - `<CrudListPage>` -- Composed PageHeader + FacetedSearch + AdvancedTable + EmptyState.
 - `<AdvancedTable>` -- Table with search, sort, pagination, bulk selection.
+- `<DataTable>` -- Data table with column definitions and sorting.
+- `<FacetedSearch>` -- Faceted filter bar for data tables.
+- `<Form>` / `<FormField>` -- Validation submit wrapper with labeled field display.
 - `<CrudCreateForm>` / `<CrudCreateModal>` / `<CrudCreateDrawer>` -- Create entities.
 - `<CrudEditForm>` / `<CrudEditModal>` / `<CrudEditDrawer>` -- Edit entities.
 - `<CrudDetailSection>` / `<CrudDetailDrawer>` -- View entity details.
@@ -375,12 +395,19 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 ### Chat (`bindrunes/domains/chat`)
 - `<ChatThread>` -- Scrollable message list.
 - `<ChatInput>` -- Message input with send button.
+- `<ChatMessage>` -- Individual message display with role and timestamp.
 - `<ChatBubble>` -- Styled message bubble with variants and optional timestamp.
 - `<ConversationList>` -- Chat sidebar with unread counts.
 - `<TypingIndicator>` -- Animated typing dots.
+- `<AgentChatPage>` -- Full agent chat page layout.
+- `<AgentStatus>` -- Agent status display.
+- `<MemoryDisplay>` -- Agent memory display.
+- `<ReasoningPanel>` -- Agent reasoning display panel.
+- `<ToolCallDisplay>` -- Agent tool call display.
 
 ### Marketing (`bindrunes/domains/marketing`)
 - `<BlogArticle>` / `<BlogListing>` -- Blog post display and listing.
+- `<BlogPage>` -- Blog page layout.
 - `<ChangelogPage>` / `<ReleaseNotes>` -- Version history and release notes.
 - `<CommentSection>` -- Comment list with reply form.
 - `<ContentWithImage>` -- Text + image alternating sections.
@@ -420,6 +447,9 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 | `<SiteFooter>` / `<SiteFooterColumns>` | Footer with links. |
 | `<LandingNav>` | Sticky navigation bar. |
 | `<LandingSection>` | Generic section wrapper. |
+
+### Admin (`bindrunes/domains/admin`)
+- `<AdminDashboard>` -- Admin dashboard with overview metrics and management links.
 
 ---
 
