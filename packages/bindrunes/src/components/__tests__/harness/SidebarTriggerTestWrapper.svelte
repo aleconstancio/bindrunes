@@ -1,6 +1,6 @@
 <script lang="ts">
-import SidebarProvider from "../../sidebar/SidebarProvider.svelte";
-import SidebarTrigger from "../../sidebar/SidebarTrigger.svelte";
+import SidebarProvider from "../../../layouts/sidebar/SidebarProvider.svelte";
+import SidebarTrigger from "../../../layouts/sidebar/SidebarTrigger.svelte";
 </script>
 
 <SidebarProvider>

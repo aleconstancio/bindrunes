@@ -1,6 +1,6 @@
 <script lang="ts">
-import Sidebar from "../../sidebar/Sidebar.svelte";
-import { createSidebarState } from "../../sidebar/sidebar-context.svelte";
+import Sidebar from "../../../layouts/sidebar/Sidebar.svelte";
+import { createSidebarState } from "../../../layouts/sidebar/sidebar-context.svelte";
 
 let { side = "left", variant = "sidebar", collapsible = "icon" } = $props();
 createSidebarState(true);

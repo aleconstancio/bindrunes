@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import NavMenu from "./dashboard/NavMenu.svelte";
+import NavMenu from "../layouts/dashboard/NavMenu.svelte";
 
 describe("NavMenu", () => {
 	const groups = [

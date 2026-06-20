@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
+import RuleFootnote from "../../components/RuleFootnote.svelte";
+import ThemeToggle from "../../components/ThemeToggle.svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import { derivePageInfo } from "../../utils/navigation";
 import MetaLayout from "../MetaLayout.svelte";
 import MetaScrollable from "../MetaScrollable.svelte";
-import RuleFootnote from "../RuleFootnote.svelte";
 import { Sidebar, SidebarProvider, SidebarTrigger } from "../sidebar";
-import ThemeToggle from "../ThemeToggle.svelte";
 import DashboardShellBrand from "./DashboardShellBrand.svelte";
 import DashboardShellHeader from "./DashboardShellHeader.svelte";
 import NavMenu from "./NavMenu.svelte";

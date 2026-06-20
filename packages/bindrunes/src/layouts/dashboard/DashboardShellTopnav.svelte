@@ -1,9 +1,9 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
+import StatusChip from "../../components/StatusChip.svelte";
+import ThemeToggle from "../../components/ThemeToggle.svelte";
 import type { NavGroup, StatusVariant } from "../../shared-types";
 import MetaScrollable from "../MetaScrollable.svelte";
-import StatusChip from "../StatusChip.svelte";
-import ThemeToggle from "../ThemeToggle.svelte";
 import DashboardShellBrand from "./DashboardShellBrand.svelte";
 
 let {

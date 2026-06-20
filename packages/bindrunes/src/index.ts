@@ -21,34 +21,19 @@ export type {
 // ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";
 export { default as DataTable } from "./components/DataTable.svelte";
-export { default as DynamicIcon } from "./components/DynamicIcon.svelte";
 export { default as EmptyState } from "./components/EmptyState.svelte";
-export { default as ErrorBoundary } from "./components/ErrorBoundary.svelte";
 export { default as ErrorMessage } from "./components/ErrorMessage.svelte";
 // ── Forms ──
 export { default as Form } from "./components/Form.svelte";
 export { default as FormField } from "./components/FormField.svelte";
 export { default as Kbd } from "./components/Kbd.svelte";
 export { default as Label } from "./components/Label.svelte";
-export { default as LazyLoad } from "./components/LazyLoad.svelte";
-// ── Pages ──
-export { default as ListPage } from "./components/ListPage.svelte";
-// ── Layout ──
-export { default as MetaContainer } from "./components/MetaContainer.svelte";
-export { default as MetaLayout } from "./components/MetaLayout.svelte";
-export { default as MetaScrollable } from "./components/MetaScrollable.svelte";
 export { default as MetricCard } from "./components/MetricCard.svelte";
 export { default as Omnibar } from "./components/Omnibar.svelte";
-export { default as PageHeader } from "./components/PageHeader.svelte";
 export { default as PageLoading } from "./components/PageLoading.svelte";
-export { default as PageSection } from "./components/PageSection.svelte";
-export { default as PageShell } from "./components/PageShell.svelte";
 export { default as Popconfirm } from "./components/Popconfirm.svelte";
 export { default as RangeCalendar } from "./components/RangeCalendar.svelte";
 export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
-// ── SEO & Head ──
-export { default as SEO } from "./components/SEO.svelte";
-export { default as SectionHeader } from "./components/SectionHeader.svelte";
 export { default as StatusChip } from "./components/StatusChip.svelte";
 export { default as Suspense } from "./components/Suspense.svelte";
 // ── Theme ──
@@ -59,6 +44,21 @@ export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
+export { default as DynamicIcon } from "./layouts/DynamicIcon.svelte";
+export { default as ErrorBoundary } from "./layouts/ErrorBoundary.svelte";
+export { default as LazyLoad } from "./layouts/LazyLoad.svelte";
+// ── Pages ──
+export { default as ListPage } from "./layouts/ListPage.svelte";
+// ── Layout ──
+export { default as MetaContainer } from "./layouts/MetaContainer.svelte";
+export { default as MetaLayout } from "./layouts/MetaLayout.svelte";
+export { default as MetaScrollable } from "./layouts/MetaScrollable.svelte";
+export { default as PageHeader } from "./layouts/PageHeader.svelte";
+export { default as PageSection } from "./layouts/PageSection.svelte";
+export { default as PageShell } from "./layouts/PageShell.svelte";
+// ── SEO & Head ──
+export { default as SEO } from "./layouts/SEO.svelte";
+export { default as SectionHeader } from "./layouts/SectionHeader.svelte";
 // ── Foundation ──
 export { default as Accordion } from "./primitives/Accordion.svelte";
 export { default as AccordionItem } from "./primitives/AccordionItem.svelte";

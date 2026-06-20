@@ -1,6 +1,6 @@
 <script lang="ts">
-import SidebarProvider from "../../sidebar/SidebarProvider.svelte";
-import SidebarRail from "../../sidebar/SidebarRail.svelte";
+import SidebarProvider from "../../../layouts/sidebar/SidebarProvider.svelte";
+import SidebarRail from "../../../layouts/sidebar/SidebarRail.svelte";
 </script>
 
 <SidebarProvider>

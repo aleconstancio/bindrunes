@@ -1,20 +1,20 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
+import SidebarContent from "../layouts/sidebar/SidebarContent.svelte";
+import SidebarFooter from "../layouts/sidebar/SidebarFooter.svelte";
+import SidebarGroup from "../layouts/sidebar/SidebarGroup.svelte";
+import SidebarHeader from "../layouts/sidebar/SidebarHeader.svelte";
+import SidebarLayout from "../layouts/sidebar/SidebarLayout.svelte";
+import SidebarMenu from "../layouts/sidebar/SidebarMenu.svelte";
+import SidebarMenuBadge from "../layouts/sidebar/SidebarMenuBadge.svelte";
+import SidebarMenuButton from "../layouts/sidebar/SidebarMenuButton.svelte";
+import SidebarMenuItem from "../layouts/sidebar/SidebarMenuItem.svelte";
+import SidebarMenuSkeleton from "../layouts/sidebar/SidebarMenuSkeleton.svelte";
+import SidebarProvider from "../layouts/sidebar/SidebarProvider.svelte";
+import SidebarSeparator from "../layouts/sidebar/SidebarSeparator.svelte";
 import SidebarRailTestWrapper from "./__tests__/harness/SidebarRailTestWrapper.svelte";
 import SidebarTestHarness from "./__tests__/harness/SidebarTestHarness.svelte";
 import SidebarTriggerTestWrapper from "./__tests__/harness/SidebarTriggerTestWrapper.svelte";
-import SidebarContent from "./sidebar/SidebarContent.svelte";
-import SidebarFooter from "./sidebar/SidebarFooter.svelte";
-import SidebarGroup from "./sidebar/SidebarGroup.svelte";
-import SidebarHeader from "./sidebar/SidebarHeader.svelte";
-import SidebarLayout from "./sidebar/SidebarLayout.svelte";
-import SidebarMenu from "./sidebar/SidebarMenu.svelte";
-import SidebarMenuBadge from "./sidebar/SidebarMenuBadge.svelte";
-import SidebarMenuButton from "./sidebar/SidebarMenuButton.svelte";
-import SidebarMenuItem from "./sidebar/SidebarMenuItem.svelte";
-import SidebarMenuSkeleton from "./sidebar/SidebarMenuSkeleton.svelte";
-import SidebarProvider from "./sidebar/SidebarProvider.svelte";
-import SidebarSeparator from "./sidebar/SidebarSeparator.svelte";
 
 describe("Sidebar standalone components", () => {
 	it("SidebarLayout renders in header position", () => {

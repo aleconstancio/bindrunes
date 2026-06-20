@@ -1,5 +1,5 @@
 <script lang="ts" generics="TData">
-import ListPage from "../../ListPage.svelte";
+import ListPage from "../../../layouts/ListPage.svelte";
 
 let {
 	title = "",

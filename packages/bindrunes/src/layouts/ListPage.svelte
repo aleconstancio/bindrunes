@@ -1,11 +1,11 @@
 <script lang="ts" generics="TData">
 import type { Snippet } from "svelte";
-import Alert from "./Alert.svelte";
-import Card from "./Card.svelte";
-import EmptyState from "./EmptyState.svelte";
-import Input from "./Input.svelte";
+import EmptyState from "../components/EmptyState.svelte";
+import PageLoading from "../components/PageLoading.svelte";
+import Alert from "../primitives/Alert.svelte";
+import Card from "../primitives/Card.svelte";
+import Input from "../primitives/Input.svelte";
 import PageHeader from "./PageHeader.svelte";
-import PageLoading from "./PageLoading.svelte";
 
 let {
 	title = "",

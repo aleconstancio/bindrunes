@@ -11,10 +11,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
+import Button from "../primitives/Button.svelte";
 import type { TFunction } from "../shared-types";
 import { isBrowser } from "../utils/isBrowser";
 import { toError } from "../utils/toError";
-import Button from "./Button.svelte";
 
 type Variant = "default" | "minimal" | "page";
 

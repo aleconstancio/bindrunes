@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
+import DashboardShell from "../layouts/dashboard/DashboardShell.svelte";
 import AlertDialog from "./AlertDialog.svelte";
 import Avatar from "./Avatar.svelte";
-import DashboardShell from "./dashboard/DashboardShell.svelte";
 import Kbd from "./Kbd.svelte";
 import Label from "./Label.svelte";
 import MetricCard from "./MetricCard.svelte";

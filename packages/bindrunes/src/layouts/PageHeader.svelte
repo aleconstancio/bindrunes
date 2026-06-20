@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Breadcrumb from "./Breadcrumb.svelte";
+import Breadcrumb from "../primitives/Breadcrumb.svelte";
 
 let {
 	title = "",

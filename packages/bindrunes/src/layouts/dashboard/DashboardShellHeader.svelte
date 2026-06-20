@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import StatusChip from "../../components/StatusChip.svelte";
 import type { StatusVariant } from "../../shared-types";
-import StatusChip from "../StatusChip.svelte";
 
 let {
 	headerPrefix = "",

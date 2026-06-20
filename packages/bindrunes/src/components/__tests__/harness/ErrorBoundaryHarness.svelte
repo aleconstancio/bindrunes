@@ -1,5 +1,5 @@
 <script lang="ts">
-import ErrorBoundary from "../../ErrorBoundary.svelte";
+import ErrorBoundary from "../../../layouts/ErrorBoundary.svelte";
 
 let { text = "", ...rest } = $props();
 </script>
