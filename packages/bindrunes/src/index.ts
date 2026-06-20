@@ -2,29 +2,6 @@
 
 export type { ShortcutOptions } from "./actions/shortcut.ts";
 export { shortcut } from "./actions/shortcut.ts";
-// ── Foundation ──
-export { default as Accordion } from "./components/Accordion.svelte";
-export { default as AccordionItem } from "./components/AccordionItem.svelte";
-// ── Feedback ──
-export { default as Alert } from "./components/Alert.svelte";
-// ── Overlays ──
-export { default as AlertDialog } from "./components/AlertDialog.svelte";
-// ── App Shell ──
-export { default as AppProvider } from "./components/AppProvider.svelte";
-export { default as AuthGuard } from "./components/AuthGuard.svelte";
-export { default as Avatar } from "./components/Avatar.svelte";
-export { default as Badge } from "./components/Badge.svelte";
-// ── Navigation ──
-export { default as Breadcrumb } from "./components/Breadcrumb.svelte";
-export { default as Button } from "./components/Button.svelte";
-export { default as Card } from "./components/Card.svelte";
-export { default as Checkbox } from "./components/Checkbox.svelte";
-export { default as CodeSnippet } from "./components/CodeSnippet.svelte";
-export { default as Collapsible } from "./components/Collapsible.svelte";
-export { default as ColorPicker } from "./components/ColorPicker.svelte";
-export { default as Combobox } from "./components/Combobox.svelte";
-export { default as CommandPalette } from "./components/CommandPalette.svelte";
-export { default as ContextMenu } from "./components/ContextMenu.svelte";
 // ── Shared Types ──
 export type {
 	BadgeProps,
@@ -43,23 +20,14 @@ export type {
 } from "./components/component-props";
 // ── Charts ──
 export { default as DataChart } from "./components/DataChart.svelte";
-// ── Data Table ──
-export { default as DataGrid } from "./components/DataGrid.svelte";
 export { default as DataTable } from "./components/DataTable.svelte";
-// ── Data Entry ──
-export { default as DatePicker } from "./components/DatePicker.svelte";
-export { default as Dialog } from "./components/Dialog.svelte";
-export { default as Drawer } from "./components/Drawer.svelte";
-export { default as DropdownMenu } from "./components/DropdownMenu.svelte";
 export { default as DynamicIcon } from "./components/DynamicIcon.svelte";
 export { default as EmptyState } from "./components/EmptyState.svelte";
 export { default as ErrorBoundary } from "./components/ErrorBoundary.svelte";
 export { default as ErrorMessage } from "./components/ErrorMessage.svelte";
-export { default as FileUpload } from "./components/FileUpload.svelte";
 // ── Forms ──
 export { default as Form } from "./components/Form.svelte";
 export { default as FormField } from "./components/FormField.svelte";
-export { default as Input } from "./components/Input.svelte";
 export { default as Kbd } from "./components/Kbd.svelte";
 export { default as Label } from "./components/Label.svelte";
 export { default as LazyLoad } from "./components/LazyLoad.svelte";
@@ -70,55 +38,87 @@ export { default as MetaContainer } from "./components/MetaContainer.svelte";
 export { default as MetaLayout } from "./components/MetaLayout.svelte";
 export { default as MetaScrollable } from "./components/MetaScrollable.svelte";
 export { default as MetricCard } from "./components/MetricCard.svelte";
-export { default as NavigationMenu } from "./components/NavigationMenu.svelte";
-export { default as NumberInput } from "./components/NumberInput.svelte";
 export { default as Omnibar } from "./components/Omnibar.svelte";
-export { default as OTPInput } from "./components/OTPInput.svelte";
 export { default as PageHeader } from "./components/PageHeader.svelte";
 export { default as PageLoading } from "./components/PageLoading.svelte";
 export { default as PageSection } from "./components/PageSection.svelte";
 export { default as PageShell } from "./components/PageShell.svelte";
-export { default as Pagination } from "./components/Pagination.svelte";
-export { default as PasswordInput } from "./components/PasswordInput.svelte";
-export { default as PinInput } from "./components/PinInput.svelte";
 export { default as Popconfirm } from "./components/Popconfirm.svelte";
-export { default as Popover } from "./components/Popover.svelte";
-export { default as Progress } from "./components/Progress.svelte";
-export { default as RadioGroup } from "./components/RadioGroup.svelte";
 export { default as RangeCalendar } from "./components/RangeCalendar.svelte";
-export { default as RatingGroup } from "./components/RatingGroup.svelte";
-// ── Rich Text Editor ──
-export { default as RichTextEditor } from "./components/RichTextEditor.svelte";
 export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
-export { default as ScrollArea } from "./components/ScrollArea.svelte";
 // ── SEO & Head ──
 export { default as SEO } from "./components/SEO.svelte";
 export { default as SectionHeader } from "./components/SectionHeader.svelte";
-export { default as Select } from "./components/Select.svelte";
-export { default as Separator } from "./components/Separator.svelte";
-export { default as Sheet } from "./components/Sheet.svelte";
-export { default as Skeleton } from "./components/Skeleton.svelte";
-export { default as Slider } from "./components/Slider.svelte";
-export { default as Spinner } from "./components/Spinner.svelte";
 export { default as StatusChip } from "./components/StatusChip.svelte";
-export { default as Stepper } from "./components/Stepper.svelte";
 export { default as Suspense } from "./components/Suspense.svelte";
-export { default as Switch } from "./components/Switch.svelte";
-export type { StepperStep } from "./components/stepper-types";
-export { default as TagInput } from "./components/TagInput.svelte";
 // ── Theme ──
 export { default as ThemeStudio } from "./components/ThemeStudio.svelte";
 export { default as ThemeToggle } from "./components/ThemeToggle.svelte";
-export { default as TimeField } from "./components/TimeField.svelte";
 export { default as Timeline } from "./components/Timeline.svelte";
 export { default as ToastProvider } from "./components/ToastProvider.svelte";
-export { default as Toggle } from "./components/Toggle.svelte";
-export { default as ToggleGroup } from "./components/ToggleGroup.svelte";
-export { default as Tooltip } from "./components/Tooltip.svelte";
 export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
-export { default as TreeView } from "./components/TreeView.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
+// ── Foundation ──
+export { default as Accordion } from "./primitives/Accordion.svelte";
+export { default as AccordionItem } from "./primitives/AccordionItem.svelte";
+// ── Feedback ──
+export { default as Alert } from "./primitives/Alert.svelte";
+// ── Overlays ──
+export { default as AlertDialog } from "./primitives/AlertDialog.svelte";
+// ── App Shell ──
+export { default as AppProvider } from "./primitives/AppProvider.svelte";
+export { default as AuthGuard } from "./primitives/AuthGuard.svelte";
+export { default as Avatar } from "./primitives/Avatar.svelte";
+export { default as Badge } from "./primitives/Badge.svelte";
+// ── Navigation ──
+export { default as Breadcrumb } from "./primitives/Breadcrumb.svelte";
+export { default as Button } from "./primitives/Button.svelte";
+export { default as Card } from "./primitives/Card.svelte";
+export { default as Checkbox } from "./primitives/Checkbox.svelte";
+export { default as CodeSnippet } from "./primitives/CodeSnippet.svelte";
+export { default as Collapsible } from "./primitives/Collapsible.svelte";
+export { default as ColorPicker } from "./primitives/ColorPicker.svelte";
+export { default as Combobox } from "./primitives/Combobox.svelte";
+export { default as CommandPalette } from "./primitives/CommandPalette.svelte";
+export { default as ContextMenu } from "./primitives/ContextMenu.svelte";
+// ── Data Table ──
+export { default as DataGrid } from "./primitives/DataGrid.svelte";
+// ── Data Entry ──
+export { default as DatePicker } from "./primitives/DatePicker.svelte";
+export { default as Dialog } from "./primitives/Dialog.svelte";
+export { default as Drawer } from "./primitives/Drawer.svelte";
+export { default as DropdownMenu } from "./primitives/DropdownMenu.svelte";
+export { default as FileUpload } from "./primitives/FileUpload.svelte";
+export { default as Input } from "./primitives/Input.svelte";
+export { default as NavigationMenu } from "./primitives/NavigationMenu.svelte";
+export { default as NumberInput } from "./primitives/NumberInput.svelte";
+export { default as OTPInput } from "./primitives/OTPInput.svelte";
+export { default as Pagination } from "./primitives/Pagination.svelte";
+export { default as PasswordInput } from "./primitives/PasswordInput.svelte";
+export { default as PinInput } from "./primitives/PinInput.svelte";
+export { default as Popover } from "./primitives/Popover.svelte";
+export { default as Progress } from "./primitives/Progress.svelte";
+export { default as RadioGroup } from "./primitives/RadioGroup.svelte";
+export { default as RatingGroup } from "./primitives/RatingGroup.svelte";
+// ── Rich Text Editor ──
+export { default as RichTextEditor } from "./primitives/RichTextEditor.svelte";
+export { default as ScrollArea } from "./primitives/ScrollArea.svelte";
+export { default as Select } from "./primitives/Select.svelte";
+export { default as Separator } from "./primitives/Separator.svelte";
+export { default as Sheet } from "./primitives/Sheet.svelte";
+export { default as Skeleton } from "./primitives/Skeleton.svelte";
+export { default as Slider } from "./primitives/Slider.svelte";
+export { default as Spinner } from "./primitives/Spinner.svelte";
+export { default as Stepper } from "./primitives/Stepper.svelte";
+export { default as Switch } from "./primitives/Switch.svelte";
+export type { StepperStep } from "./primitives/stepper-types";
+export { default as TagInput } from "./primitives/TagInput.svelte";
+export { default as TimeField } from "./primitives/TimeField.svelte";
+export { default as Toggle } from "./primitives/Toggle.svelte";
+export { default as ToggleGroup } from "./primitives/ToggleGroup.svelte";
+export { default as Tooltip } from "./primitives/Tooltip.svelte";
+export { default as TreeView } from "./primitives/TreeView.svelte";
 export type {
 	Column,
 	ContainerSize,

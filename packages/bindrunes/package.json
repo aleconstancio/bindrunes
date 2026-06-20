@@ -140,24 +140,24 @@
 			"default": "./dist/i18n/*"
 		},
 		"./Button": {
-			"types": "./dist/components/Button.d.ts",
-			"svelte": "./dist/components/Button.svelte",
-			"default": "./dist/components/Button.svelte"
+			"types": "./dist/primitives/Button.d.ts",
+			"svelte": "./dist/primitives/Button.svelte",
+			"default": "./dist/primitives/Button.svelte"
 		},
 		"./Card": {
-			"types": "./dist/components/Card.d.ts",
-			"svelte": "./dist/components/Card.svelte",
-			"default": "./dist/components/Card.svelte"
+			"types": "./dist/primitives/Card.d.ts",
+			"svelte": "./dist/primitives/Card.svelte",
+			"default": "./dist/primitives/Card.svelte"
 		},
 		"./Input": {
-			"types": "./dist/components/Input.d.ts",
-			"svelte": "./dist/components/Input.svelte",
-			"default": "./dist/components/Input.svelte"
+			"types": "./dist/primitives/Input.d.ts",
+			"svelte": "./dist/primitives/Input.svelte",
+			"default": "./dist/primitives/Input.svelte"
 		},
 		"./Dialog": {
-			"types": "./dist/components/Dialog.d.ts",
-			"svelte": "./dist/components/Dialog.svelte",
-			"default": "./dist/components/Dialog.svelte"
+			"types": "./dist/primitives/Dialog.d.ts",
+			"svelte": "./dist/primitives/Dialog.svelte",
+			"default": "./dist/primitives/Dialog.svelte"
 		},
 		"./Form": {
 			"types": "./dist/components/Form.d.ts",
@@ -165,49 +165,49 @@
 			"default": "./dist/components/Form.svelte"
 		},
 		"./Select": {
-			"types": "./dist/components/Select.d.ts",
-			"svelte": "./dist/components/Select.svelte",
-			"default": "./dist/components/Select.svelte"
+			"types": "./dist/primitives/Select.d.ts",
+			"svelte": "./dist/primitives/Select.svelte",
+			"default": "./dist/primitives/Select.svelte"
 		},
 		"./Badge": {
-			"types": "./dist/components/Badge.d.ts",
-			"svelte": "./dist/components/Badge.svelte",
-			"default": "./dist/components/Badge.svelte"
+			"types": "./dist/primitives/Badge.d.ts",
+			"svelte": "./dist/primitives/Badge.svelte",
+			"default": "./dist/primitives/Badge.svelte"
 		},
 		"./Alert": {
-			"types": "./dist/components/Alert.d.ts",
-			"svelte": "./dist/components/Alert.svelte",
-			"default": "./dist/components/Alert.svelte"
+			"types": "./dist/primitives/Alert.d.ts",
+			"svelte": "./dist/primitives/Alert.svelte",
+			"default": "./dist/primitives/Alert.svelte"
 		},
 		"./Sheet": {
-			"types": "./dist/components/Sheet.d.ts",
-			"svelte": "./dist/components/Sheet.svelte",
-			"default": "./dist/components/Sheet.svelte"
+			"types": "./dist/primitives/Sheet.d.ts",
+			"svelte": "./dist/primitives/Sheet.svelte",
+			"default": "./dist/primitives/Sheet.svelte"
 		},
 		"./Switch": {
-			"types": "./dist/components/Switch.d.ts",
-			"svelte": "./dist/components/Switch.svelte",
-			"default": "./dist/components/Switch.svelte"
+			"types": "./dist/primitives/Switch.d.ts",
+			"svelte": "./dist/primitives/Switch.svelte",
+			"default": "./dist/primitives/Switch.svelte"
 		},
 		"./Checkbox": {
-			"types": "./dist/components/Checkbox.d.ts",
-			"svelte": "./dist/components/Checkbox.svelte",
-			"default": "./dist/components/Checkbox.svelte"
+			"types": "./dist/primitives/Checkbox.d.ts",
+			"svelte": "./dist/primitives/Checkbox.svelte",
+			"default": "./dist/primitives/Checkbox.svelte"
 		},
 		"./Tooltip": {
-			"types": "./dist/components/Tooltip.d.ts",
-			"svelte": "./dist/components/Tooltip.svelte",
-			"default": "./dist/components/Tooltip.svelte"
+			"types": "./dist/primitives/Tooltip.d.ts",
+			"svelte": "./dist/primitives/Tooltip.svelte",
+			"default": "./dist/primitives/Tooltip.svelte"
 		},
 		"./Popover": {
-			"types": "./dist/components/Popover.d.ts",
-			"svelte": "./dist/components/Popover.svelte",
-			"default": "./dist/components/Popover.svelte"
+			"types": "./dist/primitives/Popover.d.ts",
+			"svelte": "./dist/primitives/Popover.svelte",
+			"default": "./dist/primitives/Popover.svelte"
 		},
 		"./DropdownMenu": {
-			"types": "./dist/components/DropdownMenu.d.ts",
-			"svelte": "./dist/components/DropdownMenu.svelte",
-			"default": "./dist/components/DropdownMenu.svelte"
+			"types": "./dist/primitives/DropdownMenu.d.ts",
+			"svelte": "./dist/primitives/DropdownMenu.svelte",
+			"default": "./dist/primitives/DropdownMenu.svelte"
 		}
 	},
 	"files": [

@@ -41,6 +41,17 @@ export default defineConfig({
 			{
 				extends: true,
 				test: {
+					name: "primitives",
+					include: ["src/primitives/**/*.{test,spec}.{js,ts}"],
+					environment: "happy-dom",
+					pool: "forks",
+					maxForks: 2,
+					minForks: 2,
+				},
+			},
+			{
+				extends: true,
+				test: {
 					name: "utils",
 					include: ["src/utils/**/*.{test,spec}.{js,ts}", "src/helpers/**/*.{test,spec}.{js,ts}"],
 					environment: "happy-dom",
