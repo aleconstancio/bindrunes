@@ -1,10 +1,10 @@
 <script lang="ts">
+import Card from "../primitives/Card.svelte";
 import { hexToOklch } from "../utils/colorConvert";
 import { createThemeBuilder } from "../utils/createThemeBuilder";
 import { useAesthetic } from "../utils/useAesthetic.svelte";
 import { useDensity } from "../utils/useDensity.svelte";
 import AestheticTab from "./AestheticTab.svelte";
-import Card from "./Card.svelte";
 import DensityTab from "./DensityTab.svelte";
 import ExportTab from "./ExportTab.svelte";
 import ThemeColorTab from "./ThemeColorTab.svelte";

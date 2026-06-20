@@ -1,12 +1,12 @@
 <script lang="ts">
 import { Search } from "lucide-svelte";
 import type { Snippet } from "svelte";
-import DataTable from "../../components/DataTable.svelte";
 import Button from "../../primitives/Button.svelte";
 import Input from "../../primitives/Input.svelte";
 import Pagination from "../../primitives/Pagination.svelte";
 import type { Column, SortState } from "../../shared-types";
 import Block from "../Block.svelte";
+import DataTable from "./DataTable.svelte";
 
 let {
 	columns = [] as Column[],

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { AlertDialog } from "bits-ui";
 import type { Snippet } from "svelte";
-import Button from "./Button.svelte";
+import Button from "../primitives/Button.svelte";
 
 let {
 	title = "Are you sure?",

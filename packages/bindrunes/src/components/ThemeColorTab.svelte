@@ -1,6 +1,6 @@
 <script lang="ts">
-import Button from "./Button.svelte";
-import Input from "./Input.svelte";
+import Button from "../primitives/Button.svelte";
+import Input from "../primitives/Input.svelte";
 
 let {
 	baseTheme = "editorial",

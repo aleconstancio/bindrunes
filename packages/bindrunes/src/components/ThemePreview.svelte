@@ -1,9 +1,9 @@
 <script lang="ts">
-import Alert from "./Alert.svelte";
-import Badge from "./Badge.svelte";
-import Button from "./Button.svelte";
-import Card from "./Card.svelte";
-import Input from "./Input.svelte";
+import Alert from "../primitives/Alert.svelte";
+import Badge from "../primitives/Badge.svelte";
+import Button from "../primitives/Button.svelte";
+import Card from "../primitives/Card.svelte";
+import Input from "../primitives/Input.svelte";
 </script>
 
 <Card variant="glass" class="p-6">

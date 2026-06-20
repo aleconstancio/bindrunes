@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Moon, Sun } from "lucide-svelte";
+import Button from "../primitives/Button.svelte";
 import { useDarkMode } from "../utils/useDarkMode.svelte";
-import Button from "./Button.svelte";
 
 let { variant = "outline" as "icon" | "outline" } = $props();
 

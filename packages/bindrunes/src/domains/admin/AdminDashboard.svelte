@@ -1,8 +1,8 @@
 <script lang="ts">
-import DataTable from "../../components/DataTable.svelte";
 import Badge from "../../primitives/Badge.svelte";
 import Card from "../../primitives/Card.svelte";
 import Switch from "../../primitives/Switch.svelte";
+import DataTable from "../data/DataTable.svelte";
 
 interface User {
 	id: string;
