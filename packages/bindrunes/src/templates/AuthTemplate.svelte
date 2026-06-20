@@ -1,14 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { AuthView } from "../types/auth";
-import AuthLayout from "./AuthLayout.svelte";
-import EmailVerification from "./EmailVerification.svelte";
-import ForgotPassword from "./ForgotPassword.svelte";
-import LoginForm from "./LoginForm.svelte";
-import RegisterForm from "./RegisterForm.svelte";
-import ResetPassword from "./ResetPassword.svelte";
-import SocialLogin from "./SocialLogin.svelte";
-import TwoFactorAuth from "./TwoFactorAuth.svelte";
+import AuthLayout from "../domains/auth/AuthLayout.svelte";
+import EmailVerification from "../domains/auth/EmailVerification.svelte";
+import ForgotPassword from "../domains/auth/ForgotPassword.svelte";
+import LoginForm from "../domains/auth/LoginForm.svelte";
+import RegisterForm from "../domains/auth/RegisterForm.svelte";
+import ResetPassword from "../domains/auth/ResetPassword.svelte";
+import SocialLogin from "../domains/auth/SocialLogin.svelte";
+import TwoFactorAuth from "../domains/auth/TwoFactorAuth.svelte";
+import type { AuthView } from "../domains/types/auth";
 
 let {
 	view = "login" as AuthView,

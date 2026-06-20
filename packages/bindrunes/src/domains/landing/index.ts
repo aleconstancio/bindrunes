@@ -24,7 +24,7 @@ export type {
 	Step,
 	TeamMember,
 } from "./landing-types";
-export { default as MarketingPage } from "./MarketingPage.svelte";
+// MarketingPage moved to templates/MarketingTemplate.svelte
 export { default as MetricsBar } from "./MetricsBar.svelte";
 export { default as Newsletter } from "./Newsletter.svelte";
 export { default as PricingTable } from "./PricingTable.svelte";

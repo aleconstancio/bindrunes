@@ -1,49 +1,46 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import DashboardShellHeader from "../../dashboard/DashboardShellHeader.svelte";
-import PageShell from "../../PageShell.svelte";
+import DashboardShellHeader from "../domains/dashboard/DashboardShellHeader.svelte";
+import PageShell from "../layouts/PageShell.svelte";
 
 let {
-	title = "Chat",
+	title = "Media",
 	sidebarCollapsible = "icon" as "icon" | "full" | "none",
 	class: className = "",
-	conversationList,
-	chatHeader,
+	sidebar,
+	header,
 	children,
 }: {
 	title?: string;
 	sidebarCollapsible?: "icon" | "full" | "none";
 	class?: string;
-	conversationList?: Snippet;
-	chatHeader?: Snippet;
+	sidebar?: Snippet;
+	header?: Snippet;
 	children?: Snippet;
 } = $props();
 </script>
 
 {#snippet topbar()}
-	<DashboardShellHeader resolvedTitle={title} />
+	<DashboardShellHeader resolvedTitle={title} {header} />
 {/snippet}
 
 {#snippet leftPanel()}
-	{#if conversationList}
-		{@render conversationList()}
+	{#if sidebar}
+		<div class="p-4">
+			{@render sidebar()}
+		</div>
 	{/if}
 {/snippet}
 
 <PageShell
 	topbar={topbar}
-	left={conversationList ? leftPanel : undefined}
+	left={sidebar ? leftPanel : undefined}
 	leftWidth="300px"
 	leftCollapsible={sidebarCollapsible}
 	class={className}
 >
 	{#snippet main()}
-		{#if chatHeader}
-			<div class="border-b border-border px-6 py-3">
-				{@render chatHeader()}
-			</div>
-		{/if}
-		<div class="flex-1 overflow-y-auto p-6">
+		<div class="p-6">
 			{@render children?.()}
 		</div>
 	{/snippet}

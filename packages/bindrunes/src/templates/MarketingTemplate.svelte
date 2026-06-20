@@ -1,17 +1,14 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import type { NavLink } from "../../shared-types";
-import PageSection from "../PageSection.svelte";
-import PageShell from "../PageShell.svelte";
-import CtaBanner from "./CtaBanner.svelte";
-import FAQ from "./FAQ.svelte";
-import FeatureGrid from "./FeatureGrid.svelte";
-import HeroBanner from "./HeroBanner.svelte";
-import HowItWorks from "./HowItWorks.svelte";
-import IntegrationGrid from "./IntegrationGrid.svelte";
-import LandingNav from "./LandingNav.svelte";
-import LogoCloud from "./LogoCloud.svelte";
-import { createLandingState } from "./landing-context.svelte";
+import CtaBanner from "../domains/landing/CtaBanner.svelte";
+import FAQ from "../domains/landing/FAQ.svelte";
+import FeatureGrid from "../domains/landing/FeatureGrid.svelte";
+import HeroBanner from "../domains/landing/HeroBanner.svelte";
+import HowItWorks from "../domains/landing/HowItWorks.svelte";
+import IntegrationGrid from "../domains/landing/IntegrationGrid.svelte";
+import LandingNav from "../domains/landing/LandingNav.svelte";
+import LogoCloud from "../domains/landing/LogoCloud.svelte";
+import { createLandingState } from "../domains/landing/landing-context.svelte";
 import type {
 	CTA,
 	FAQItem,
@@ -26,15 +23,18 @@ import type {
 	Step,
 	TeamMember,
 	Testimonial,
-} from "./landing-types";
-import MetricsBar from "./MetricsBar.svelte";
-import Newsletter from "./Newsletter.svelte";
-import PricingTable from "./PricingTable.svelte";
-import SiteFooter from "./SiteFooter.svelte";
-import StatsCounter from "./StatsCounter.svelte";
-import TeamSection from "./TeamSection.svelte";
-import TestimonialGrid from "./TestimonialGrid.svelte";
-import VideoEmbed from "./VideoEmbed.svelte";
+} from "../domains/landing/landing-types";
+import MetricsBar from "../domains/landing/MetricsBar.svelte";
+import Newsletter from "../domains/landing/Newsletter.svelte";
+import PricingTable from "../domains/landing/PricingTable.svelte";
+import SiteFooter from "../domains/landing/SiteFooter.svelte";
+import StatsCounter from "../domains/landing/StatsCounter.svelte";
+import TeamSection from "../domains/landing/TeamSection.svelte";
+import TestimonialGrid from "../domains/landing/TestimonialGrid.svelte";
+import VideoEmbed from "../domains/landing/VideoEmbed.svelte";
+import PageSection from "../layouts/PageSection.svelte";
+import PageShell from "../layouts/PageShell.svelte";
+import type { NavLink } from "../shared-types";
 
 let {
 	logo,

@@ -2,7 +2,7 @@
 
 // ── Auth ──
 export { default as AuthLayout } from "./auth/AuthLayout.svelte";
-export { default as AuthPage } from "./auth/AuthPage.svelte";
+// AuthPage moved to templates/AuthTemplate.svelte
 export type { AuthProviderState, AuthUser } from "./auth/auth-context.svelte";
 export { createAuthProvider, useAuthProvider } from "./auth/auth-context.svelte";
 export { default as EmailVerification } from "./auth/EmailVerification.svelte";
@@ -14,22 +14,22 @@ export { default as SocialLogin } from "./auth/SocialLogin.svelte";
 export { default as TwoFactorAuth } from "./auth/TwoFactorAuth.svelte";
 // ── Layout ──
 export { default as Block } from "./Block.svelte";
-export { default as CrudPage } from "./CrudPage.svelte";
+// CrudPage moved to templates/CrudTemplate.svelte
 // ── Calendar ──
 export { default as AvailabilityGrid } from "./calendar/AvailabilityGrid.svelte";
 export { default as BookingForm } from "./calendar/BookingForm.svelte";
-export { default as CalendarPage } from "./calendar/CalendarPage.svelte";
+// CalendarPage moved to templates/CalendarTemplate.svelte
 export { default as EventCalendar } from "./calendar/EventCalendar.svelte";
 export { default as Scheduler } from "./calendar/Scheduler.svelte";
 // ── Chat ──
 export { default as ChatBubble } from "./chat/ChatBubble.svelte";
 export { default as ChatInput } from "./chat/ChatInput.svelte";
-export { default as ChatPage } from "./chat/ChatPage.svelte";
+// ChatPage moved to templates/ChatTemplate.svelte
 export { default as ChatThread } from "./chat/ChatThread.svelte";
 export { default as ConversationList } from "./chat/ConversationList.svelte";
 export { default as TypingIndicator } from "./chat/TypingIndicator.svelte";
-/** @deprecated Use DashboardShell from bindrunes/dashboard instead */
-export { default as DashboardPage } from "./DashboardPage.svelte";
+// DashboardPage moved to templates/DashboardTemplate.svelte
+
 export { default as ActivityFeed } from "./dashboard/ActivityFeed.svelte";
 export { default as DashboardFooter } from "./dashboard/DashboardFooter.svelte";
 export { default as DashboardHome } from "./dashboard/DashboardHome.svelte";
@@ -64,7 +64,7 @@ export { default as WizardForm } from "./data/WizardForm.svelte";
 export { default as Cart } from "./ecommerce/Cart.svelte";
 export { default as CartItem } from "./ecommerce/CartItem.svelte";
 export { default as Checkout } from "./ecommerce/Checkout.svelte";
-export { default as EcommercePage } from "./ecommerce/EcommercePage.svelte";
+// EcommercePage moved to templates/EcommerceTemplate.svelte
 export { default as OrderSummary } from "./ecommerce/OrderSummary.svelte";
 export { default as PriceTag } from "./ecommerce/PriceTag.svelte";
 export { default as ProductCard } from "./ecommerce/ProductCard.svelte";
@@ -89,12 +89,12 @@ export { default as AudioPlayer } from "./media/AudioPlayer.svelte";
 export { default as FileCard } from "./media/FileCard.svelte";
 export { default as ImageUpload } from "./media/ImageUpload.svelte";
 export { default as MediaGallery } from "./media/MediaGallery.svelte";
-export { default as MediaPage } from "./media/MediaPage.svelte";
+// MediaPage moved to templates/MediaTemplate.svelte
 export { default as VideoPlayer } from "./media/VideoPlayer.svelte";
 // ── Portfolio ──
 export { default as CaseStudy } from "./portfolio/CaseStudy.svelte";
 export { default as Portfolio } from "./portfolio/Portfolio.svelte";
-export { default as PortfolioPage } from "./portfolio/PortfolioPage.svelte";
+// PortfolioPage moved to templates/PortfolioTemplate.svelte
 export { default as ProjectCard } from "./portfolio/ProjectCard.svelte";
 export { default as ProjectGrid } from "./portfolio/ProjectGrid.svelte";
 // ── Settings ──
@@ -102,7 +102,7 @@ export { default as DangerZone } from "./settings/DangerZone.svelte";
 export { default as NotificationSettings } from "./settings/NotificationSettings.svelte";
 export { default as ProfileSettings } from "./settings/ProfileSettings.svelte";
 export { default as SecuritySettings } from "./settings/SecuritySettings.svelte";
-export { default as SettingsPage } from "./settings/SettingsPage.svelte";
+// SettingsPage moved to templates/SettingsTemplate.svelte
 export { default as SettingsSection } from "./settings/SettingsSection.svelte";
 export { default as TabbedSettings } from "./settings/TabbedSettings.svelte";
 // ── Types ──

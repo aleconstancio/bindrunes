@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
-import type { NavGroup, StatusVariant } from "../../shared-types";
-import DashboardShellBrand from "../dashboard/DashboardShellBrand.svelte";
-import DashboardShellHeader from "../dashboard/DashboardShellHeader.svelte";
-import NavMenu from "../dashboard/NavMenu.svelte";
-import EmptyState from "../EmptyState.svelte";
-import PageShell from "../PageShell.svelte";
+import EmptyState from "../components/EmptyState.svelte";
+import DashboardShellBrand from "../domains/dashboard/DashboardShellBrand.svelte";
+import DashboardShellHeader from "../domains/dashboard/DashboardShellHeader.svelte";
+import NavMenu from "../domains/dashboard/NavMenu.svelte";
+import PageShell from "../layouts/PageShell.svelte";
+import type { NavGroup, StatusVariant } from "../shared-types";
 
 let {
 	title = "",

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import PageSection from "../../PageSection.svelte";
+import PageSection from "../layouts/PageSection.svelte";
 
 let {
 	title = "Portfolio",

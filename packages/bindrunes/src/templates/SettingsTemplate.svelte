@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import DashboardShellHeader from "../../dashboard/DashboardShellHeader.svelte";
-import PageShell from "../../PageShell.svelte";
-import TabbedSettings from "./TabbedSettings.svelte";
+import DashboardShellHeader from "../domains/dashboard/DashboardShellHeader.svelte";
+import TabbedSettings from "../domains/settings/TabbedSettings.svelte";
+import PageShell from "../layouts/PageShell.svelte";
 
 interface SettingsTab {
 	id: string;

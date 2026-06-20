@@ -47,7 +47,6 @@ export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/inde
 export { default as DynamicIcon } from "./layouts/DynamicIcon.svelte";
 export { default as ErrorBoundary } from "./layouts/ErrorBoundary.svelte";
 export { default as LazyLoad } from "./layouts/LazyLoad.svelte";
-// ── Pages ──
 export { default as ListPage } from "./layouts/ListPage.svelte";
 // ── Layout ──
 export { default as MetaContainer } from "./layouts/MetaContainer.svelte";
@@ -132,6 +131,19 @@ export type {
 	StatusVariant,
 	TFunction,
 } from "./shared-types";
+// ── Pages ──
+//
+// ── Templates ──
+export { default as AuthTemplate } from "./templates/AuthTemplate.svelte";
+export { default as CalendarTemplate } from "./templates/CalendarTemplate.svelte";
+export { default as ChatTemplate } from "./templates/ChatTemplate.svelte";
+export { default as CrudTemplate } from "./templates/CrudTemplate.svelte";
+export { default as DashboardTemplate } from "./templates/DashboardTemplate.svelte";
+export { default as EcommerceTemplate } from "./templates/EcommerceTemplate.svelte";
+export { default as MarketingTemplate } from "./templates/MarketingTemplate.svelte";
+export { default as MediaTemplate } from "./templates/MediaTemplate.svelte";
+export { default as PortfolioTemplate } from "./templates/PortfolioTemplate.svelte";
+export { default as SettingsTemplate } from "./templates/SettingsTemplate.svelte";
 export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
 /** Merge class names with Tailwind conflict resolution (last-wins per utility prefix). */
