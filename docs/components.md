@@ -4,7 +4,20 @@ All components are fully interactive Svelte 5 blocks that adapt to the active de
 
 For detailed visual state specs (tokens, hover/focus/disabled states), see [Component States](component-states.md).
 
-## Foundation & Forms
+Components are organized into four layers following the architecture:
+
+- **Primitives** (`bindrunes`) -- Low-level UI building blocks
+- **Layouts** (`bindrunes/layouts`) -- Structural and navigation components
+- **Domains** (`bindrunes/domains`) -- Domain-specific feature components
+- **Templates** (`bindrunes/templates`) -- Pre-composed full-page layouts
+
+---
+
+## Primitives
+
+*Import from `bindrunes`*
+
+### Foundation & Forms
 
 | Component | Description |
 |---|---|
@@ -219,7 +232,7 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 ---
 
-## Overlays & Navigation
+### Overlays & Navigation
 
 | Component | Description |
 |---|---|
@@ -243,7 +256,11 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 ---
 
-## Meta-Components
+## Layouts
+
+*Import from `bindrunes/layouts`*
+
+### Meta-Components
 
 Primitives that expose layout slots and standardize container dimensions:
 - **`<PageShell>`**: Layout primitive with composable topbar, left sidebar, right sidebar, and main zones. Handles sidebar width and collapsibility.
@@ -251,16 +268,14 @@ Primitives that expose layout slots and standardize container dimensions:
 - **`<MetaLayout>`**: Positional layout slots (`header`, `content`, `footer`, `separator`).
 - **`<MetaContainer>`**: Restricts content width to design scales (`prose` through `2xl` or `full`).
 - **`<MetaScrollable>`**: Container enforcing consistent overflow scrollbar behaviors.
-- **`<Block>`**: Section wrapper with `header`/`footer` snippets, size, background, and spacing props.
+- **`<Block>`**: Section wrapper with `header`/`footer` snippets, size, background, and spacing props. *(in `bindrunes/domains`)*
 - **`<ErrorBoundary>`**: Catches Svelte errors and renders a fallback UI snippet.
 - **`<DynamicIcon>`**: Resolves icon names to `lucide-svelte` components at runtime.
 - **`<LazyLoad>`**: Intersection-based lazy rendering for deferred content loading.
 - **`<ListPage>`**: Reusable page layout with `PageHeader` + content slot + empty state.
 - **`<SEO>`**: Sets document `<title>`, meta descriptions, and Open Graph properties.
 
----
-
-## Dashboard Shell
+### Dashboard Shell
 
 - **`<DashboardShell>`**: Layout wrapper supporting standard, right, and top navigation structures.
 - **`<DashboardShellRight>`**: Right-sidebar variant of the dashboard shell.
@@ -272,7 +287,7 @@ Primitives that expose layout slots and standardize container dimensions:
 
 ### Sidebar
 
-Sidebar sub-components (import from `bindrunes/sidebar`):
+Sidebar sub-components (import from `bindrunes/layouts`):
 
 - **`<SidebarProvider>`**: Root context provider for sidebar state.
 - **`<Sidebar>`**: Main sidebar panel with `side`, `variant`, and `collapsible` props.
@@ -288,27 +303,133 @@ Sidebar sub-components (import from `bindrunes/sidebar`):
 
 ---
 
-## Theming UI
+## Domains
+
+*Import from `bindrunes/domains` or `bindrunes/domains/<name>`*
+
+### Theming UI
 
 - **`<ThemeStudio>`**: Tabbed interface for editing themes, aesthetics, and density scales, and exporting CSS.
 - **`<ThemePreview>`** / **`<ThemeToggle>`**: Utility displays and dark-mode togglers.
 
----
-
-## Feedback & Display
+### Feedback & Display
 
 - **`<ToastProvider>`**: Root provider for toast notifications (wraps `svelte-sonner`).
 - **`<Timeline>`**: Vertical timeline display with icons and timestamps.
 - **`<MetricCard>`**: KPI metric display with value, label, and change indicator.
 
+### Auth (`bindrunes/domains/auth`)
+- `<AuthLayout>` -- Split-screen layout (branding left, form right).
+- `<LoginForm>` / `<RegisterForm>` / `<ForgotPassword>` / `<ResetPassword>` -- Authentication forms with snippet customization.
+- `<SocialLogin>` -- OAuth buttons (Google, GitHub, Apple).
+- `<EmailVerification>` -- "Check your inbox" page with resend.
+- `<TwoFactorAuth>` -- 6-digit TOTP input with backup codes.
+
+### Dashboard (`bindrunes/domains/dashboard`)
+- `<DashboardHome>` -- Stats grid + chart + recent activity.
+- `<StatsOverview>` -- Responsive metric cards with change indicators.
+- `<QuickActions>` -- Action button bar.
+- `<ActivityFeed>` -- Real-time event feed with timestamps and avatars.
+
+### Settings (`bindrunes/domains/settings`)
+- `<TabbedSettings>` -- Settings with vertical sidebar tabs.
+- `<ProfileSettings>` -- Avatar + name/email form.
+- `<SecuritySettings>` -- Password change + 2FA toggle.
+- `<NotificationSettings>` -- Toggle grid for notification preferences.
+- `<DangerZone>` -- Account deactivation, deletion, transfer with confirmation.
+
+### Data (`bindrunes/domains/data`)
+- `<CrudListPage>` -- Composed PageHeader + FacetedSearch + AdvancedTable + EmptyState.
+- `<AdvancedTable>` -- Table with search, sort, pagination, bulk selection.
+- `<CrudCreateForm>` / `<CrudCreateModal>` / `<CrudCreateDrawer>` -- Create entities.
+- `<CrudEditForm>` / `<CrudEditModal>` / `<CrudEditDrawer>` -- Edit entities.
+- `<CrudDetailSection>` / `<CrudDetailDrawer>` -- View entity details.
+- `<CrudDeleteConfirm>` -- Deletion confirmation dialog.
+- `<WizardForm>` -- Multi-step form with step indicator and progress.
+- `<UserManagement>` -- Pre-configured table for user entities.
+- `<ApiKeyManagement>` -- API key list with create/revoke/copy.
+- `<BillingDashboard>` -- Current plan, usage meter, invoices.
+- `<ImportFlow>` / `<ExportFlow>` -- File import/export dialogs.
+
+### E-commerce (`bindrunes/domains/ecommerce`)
+- `<ProductCard>` -- Product display with image, price, rating, add-to-cart.
+- `<ProductGrid>` -- Responsive product grid with sort/filter.
+- `<Cart>` / `<CartItem>` -- Shopping cart with quantity controls.
+- `<Checkout>` -- Checkout form with order summary.
+- `<OrderSummary>` -- Order total breakdown.
+- `<PriceTag>` -- Price display with discount calculation.
+
+### Media (`bindrunes/domains/media`)
+- `<ImageUpload>` -- Drag-and-drop image upload with preview.
+- `<VideoPlayer>` -- Video element with controls.
+- `<AudioPlayer>` -- Audio player with play/pause, progress, seek.
+- `<MediaGallery>` -- Image gallery with thumbnail navigation.
+- `<FileCard>` -- File display with type icon and actions.
+
+### Calendar (`bindrunes/domains/calendar`)
+- `<EventCalendar>` -- Monthly calendar with event dots and date selection.
+- `<Scheduler>` -- Time slot picker grid.
+- `<BookingForm>` -- Appointment booking form.
+- `<AvailabilityGrid>` -- Weekly availability toggle grid.
+
+### Chat (`bindrunes/domains/chat`)
+- `<ChatThread>` -- Scrollable message list.
+- `<ChatInput>` -- Message input with send button.
+- `<ChatBubble>` -- Styled message bubble with variants and optional timestamp.
+- `<ConversationList>` -- Chat sidebar with unread counts.
+- `<TypingIndicator>` -- Animated typing dots.
+
+### Marketing (`bindrunes/domains/marketing`)
+- `<BlogArticle>` / `<BlogListing>` -- Blog post display and listing.
+- `<ChangelogPage>` / `<ReleaseNotes>` -- Version history and release notes.
+- `<CommentSection>` -- Comment list with reply form.
+- `<ContentWithImage>` -- Text + image alternating sections.
+- `<SocialProof>` -- Testimonials and logo cloud.
+- `<Schedule>` -- Timeline/schedule display.
+- `<Banner>` / `<Popup>` / `<Maintenance>` -- Announcement components.
+- `<CookieConsent>` -- GDPR consent banner.
+- `<DocsLayout>` -- Documentation layout with sidebar nav.
+
+### Portfolio (`bindrunes/domains/portfolio`)
+- `<Portfolio>` -- Project grid with filters.
+- `<ProjectCard>` -- Project display card.
+- `<ProjectGrid>` -- Responsive project grid.
+- `<CaseStudy>` -- Detailed case study layout.
+
+### Landing (`bindrunes/domains/landing`)
+
+| Component | Description |
+|---|---|
+| `<HeroBanner>` | Hero section with badge, title, description, CTAs. |
+| `<FeatureGrid>` | Feature cards in 2/3/4 column grid. |
+| `<HowItWorks>` | Step-by-step process with connectors. |
+| `<PricingTable>` | 3-tier pricing with monthly/annual toggle. |
+| `<Testimonial>` / `<TestimonialGrid>` | Customer testimonials. |
+| `<MetricsBar>` | Key metrics display. |
+| `<StatsCounter>` | Animated number counters. |
+| `<FAQ>` | Accordion FAQ section. |
+| `<LogoCloud>` | Partner logo display. |
+| `<TeamSection>` | Team member grid. |
+| `<IntegrationGrid>` | Integration partner display. |
+| `<FeatureComparison>` | Feature comparison table. |
+| `<Newsletter>` | Email signup form. |
+| `<CtaBanner>` | Full-width call-to-action section. |
+| `<VideoEmbed>` | Video demo section. |
+| `<ComparisonTable>` | vs Competitors comparison. |
+| `<SecurityBadges>` | SOC2/GDPR/HIPAA badge display. |
+| `<SiteFooter>` / `<SiteFooterColumns>` | Footer with links. |
+| `<LandingNav>` | Sticky navigation bar. |
+| `<LandingSection>` | Generic section wrapper. |
+
 ---
 
-## Boundrune (Page Blocks)
-*Import from `bindrunes/boundrune`*
+## Templates
 
-### Page Templates
+*Import from `bindrunes/templates`*
 
-#### DashboardPage
+Pre-composed full-page templates that combine primitives, layouts, and domain components into ready-to-use page layouts.
+
+### DashboardTemplate
 Full app shell with sidebar navigation, header, and content area.
 
 | Prop | Type | Default | Description |
@@ -331,12 +452,12 @@ Full app shell with sidebar navigation, header, and content area.
 
 **Usage:**
 ```svelte
-<DashboardPage appName="MyApp" navigation={groups} pathname={route}>
+<DashboardTemplate appName="MyApp" navigation={groups} pathname={route}>
   <p>Dashboard content</p>
-</DashboardPage>
+</DashboardTemplate>
 ```
 
-#### CrudPage
+### CrudTemplate
 List + detail split layout with sidebar navigation.
 
 | Prop | Type | Default | Description |
@@ -363,17 +484,17 @@ List + detail split layout with sidebar navigation.
 
 **Usage:**
 ```svelte
-<CrudPage title="Users" selectedItem={user}>
+<CrudTemplate title="Users" selectedItem={user}>
   {#snippet listPanel()}
     <AdvancedTable {rows} />
   {/snippet}
   {#snippet detailPanel()}
     <UserProfile {user} />
   {/snippet}
-</CrudPage>
+</CrudTemplate>
 ```
 
-#### AuthPage
+### AuthTemplate
 Auth layout with view switching (login/register/forgot/reset/2FA/verify-email).
 
 | Prop | Type | Default | Description |
@@ -404,14 +525,14 @@ Auth layout with view switching (login/register/forgot/reset/2FA/verify-email).
 
 **Usage:**
 ```svelte
-<AuthPage view="login" onLoginSubmit={handleLogin} loading={isLoading}>
+<AuthTemplate view="login" onLoginSubmit={handleLogin} loading={isLoading}>
   {#snippet footer()}
     <p class="text-sm text-muted-foreground">Need help? Contact support.</p>
   {/snippet}
-</AuthPage>
+</AuthTemplate>
 ```
 
-#### SettingsPage
+### SettingsTemplate
 Settings layout with tabbed sidebar navigation.
 
 | Prop | Type | Default | Description |
@@ -427,14 +548,14 @@ Settings layout with tabbed sidebar navigation.
 
 **Usage:**
 ```svelte
-<SettingsPage bind:activeTab tabs={settingsTabs}>
+<SettingsTemplate bind:activeTab tabs={settingsTabs}>
   {#snippet tabContent(tab)}
     {#if tab.id === 'profile'}<ProfileForm />{/if}
   {/snippet}
-</SettingsPage>
+</SettingsTemplate>
 ```
 
-#### ChatPage
+### ChatTemplate
 Chat layout with collapsible conversation list sidebar.
 
 | Prop | Type | Default | Description |
@@ -448,15 +569,15 @@ Chat layout with collapsible conversation list sidebar.
 
 **Usage:**
 ```svelte
-<ChatPage conversationList={conversations}>
+<ChatTemplate conversationList={conversations}>
   {#snippet chatHeader()}
     <span class="font-medium">Alice</span>
   {/snippet}
   <ChatThread messages={msgs} />
-</ChatPage>
+</ChatTemplate>
 ```
 
-#### CalendarPage
+### CalendarTemplate
 Calendar layout with optional sidebar.
 
 | Prop | Type | Default | Description |
@@ -470,15 +591,15 @@ Calendar layout with optional sidebar.
 
 **Usage:**
 ```svelte
-<CalendarPage>
+<CalendarTemplate>
   {#snippet sidebar()}
     <MiniCalendar />
   {/snippet}
   <EventCalendar events={events} />
-</CalendarPage>
+</CalendarTemplate>
 ```
 
-#### EcommercePage
+### EcommerceTemplate
 E-commerce layout with collapsible cart sidebar on the right.
 
 | Prop | Type | Default | Description |
@@ -492,37 +613,27 @@ E-commerce layout with collapsible cart sidebar on the right.
 
 **Usage:**
 ```svelte
-<EcommercePage>
+<EcommerceTemplate>
   {#snippet cartSnippet()}
     <Cart items={cartItems} />
   {/snippet}
   <ProductGrid {products} />
-</EcommercePage>
+</EcommerceTemplate>
 ```
 
-#### BlogPage
-Blog layout with optional sidebar.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | `string` | `"Blog"` | Page title |
-| `sidebarCollapsible` | `"icon" \| "full" \| "none"` | `"icon"` | Sidebar collapse behavior |
-| `sidebar` | `Snippet` | — | Sidebar content (e.g., categories, tags) |
-| `header` | `Snippet` | — | Header actions slot |
-| `class` | `string` | `""` | Additional CSS classes |
-| `children` | `Snippet` | — | Main blog content |
+### MarketingTemplate
+Marketing landing page layout.
 
 **Usage:**
 ```svelte
-<BlogPage>
-  {#snippet sidebar()}
-    <CategoryNav {categories} />
-  {/snippet}
-  <BlogListing {posts} />
-</BlogPage>
+<MarketingTemplate>
+  <HeroBanner />
+  <FeatureGrid />
+  <PricingTable />
+</MarketingTemplate>
 ```
 
-#### PortfolioPage
+### PortfolioTemplate
 Portfolio showcase layout with centered header.
 
 | Prop | Type | Default | Description |
@@ -535,12 +646,12 @@ Portfolio showcase layout with centered header.
 
 **Usage:**
 ```svelte
-<PortfolioPage title="My Work" description="Selected projects">
+<PortfolioTemplate title="My Work" description="Selected projects">
   <ProjectGrid {projects} />
-</PortfolioPage>
+</PortfolioTemplate>
 ```
 
-#### MediaPage
+### MediaTemplate
 Media library layout with optional sidebar.
 
 | Prop | Type | Default | Description |
@@ -554,119 +665,13 @@ Media library layout with optional sidebar.
 
 **Usage:**
 ```svelte
-<MediaPage>
+<MediaTemplate>
   {#snippet sidebar()}
     <FolderTree {folders} />
   {/snippet}
   <MediaGallery {files} />
-</MediaPage>
+</MediaTemplate>
 ```
-
-### Auth
-- `<LoginForm>` / `<RegisterForm>` / `<ForgotPassword>` / `<ResetPassword>` — Authentication forms with snippet customization.
-- `<AuthLayout>` — Split-screen layout (branding left, form right).
-- `<SocialLogin>` — OAuth buttons (Google, GitHub, Apple).
-- `<EmailVerification>` — "Check your inbox" page with resend.
-- `<TwoFactorAuth>` — 6-digit TOTP input with backup codes.
-
-### Dashboard
-- `<DashboardHome>` — Stats grid + chart + recent activity.
-- `<StatsOverview>` — Responsive metric cards with change indicators.
-- `<QuickActions>` — Action button bar.
-- `<ActivityFeed>` — Real-time event feed with timestamps and avatars.
-
-### Settings
-- `<TabbedSettings>` — Settings with vertical sidebar tabs.
-- `<ProfileSettings>` — Avatar + name/email form.
-- `<SecuritySettings>` — Password change + 2FA toggle.
-- `<NotificationSettings>` — Toggle grid for notification preferences.
-- `<DangerZone>` — Account deactivation, deletion, transfer with confirmation.
-
-### Data
-- `<CrudListPage>` — Composed PageHeader + FacetedSearch + AdvancedTable + EmptyState.
-- `<AdvancedTable>` — Table with search, sort, pagination, bulk selection.
-- `<CrudCreateForm>` / `<CrudCreateModal>` / `<CrudCreateDrawer>` — Create entities.
-- `<CrudEditForm>` / `<CrudEditModal>` / `<CrudEditDrawer>` — Edit entities.
-- `<CrudDetailSection>` / `<CrudDetailDrawer>` — View entity details.
-- `<CrudDeleteConfirm>` — Deletion confirmation dialog.
-- `<WizardForm>` — Multi-step form with step indicator and progress.
-- `<UserManagement>` — Pre-configured table for user entities.
-- `<ApiKeyManagement>` — API key list with create/revoke/copy.
-- `<BillingDashboard>` — Current plan, usage meter, invoices.
-- `<ImportFlow>` / `<ExportFlow>` — File import/export dialogs.
-
-### E-commerce
-- `<ProductCard>` — Product display with image, price, rating, add-to-cart.
-- `<ProductGrid>` — Responsive product grid with sort/filter.
-- `<Cart>` / `<CartItem>` — Shopping cart with quantity controls.
-- `<Checkout>` — Checkout form with order summary.
-- `<OrderSummary>` — Order total breakdown.
-- `<PriceTag>` — Price display with discount calculation.
-
-### Media
-- `<ImageUpload>` — Drag-and-drop image upload with preview.
-- `<VideoPlayer>` — Video element with controls.
-- `<AudioPlayer>` — Audio player with play/pause, progress, seek.
-- `<MediaGallery>` — Image gallery with thumbnail navigation.
-- `<FileCard>` — File display with type icon and actions.
-
-### Calendar
-- `<EventCalendar>` — Monthly calendar with event dots and date selection.
-- `<Scheduler>` — Time slot picker grid.
-- `<BookingForm>` — Appointment booking form.
-- `<AvailabilityGrid>` — Weekly availability toggle grid.
-
-### Chat
-- `<ChatThread>` — Scrollable message list.
-- `<ChatInput>` — Message input with send button.
-- `<ChatBubble>` — Styled message bubble with variants and optional timestamp.
-- `<ConversationList>` — Chat sidebar with unread counts.
-- `<TypingIndicator>` — Animated typing dots.
-
-### Marketing
-- `<BlogArticle>` / `<BlogListing>` — Blog post display and listing.
-- `<ChangelogPage>` / `<ReleaseNotes>` — Version history and release notes.
-- `<CommentSection>` — Comment list with reply form.
-- `<ContentWithImage>` — Text + image alternating sections.
-- `<SocialProof>` — Testimonials and logo cloud.
-- `<Schedule>` — Timeline/schedule display.
-- `<Banner>` / `<Popup>` / `<Maintenance>` — Announcement components.
-- `<CookieConsent>` — GDPR consent banner.
-- `<DocsLayout>` — Documentation layout with sidebar nav.
-
-### Portfolio
-- `<Portfolio>` — Project grid with filters.
-- `<ProjectCard>` — Project display card.
-- `<ProjectGrid>` — Responsive project grid.
-- `<CaseStudy>` — Detailed case study layout.
-
----
-
-## Landing Sections
-*Import from `bindrunes/landing`*
-
-| Component | Description |
-|---|---|
-| `<HeroBanner>` | Hero section with badge, title, description, CTAs. |
-| `<FeatureGrid>` | Feature cards in 2/3/4 column grid. |
-| `<HowItWorks>` | Step-by-step process with connectors. |
-| `<PricingTable>` | 3-tier pricing with monthly/annual toggle. |
-| `<Testimonial>` / `<TestimonialGrid>` | Customer testimonials. |
-| `<MetricsBar>` | Key metrics display. |
-| `<StatsCounter>` | Animated number counters. |
-| `<FAQ>` | Accordion FAQ section. |
-| `<LogoCloud>` | Partner logo display. |
-| `<TeamSection>` | Team member grid. |
-| `<IntegrationGrid>` | Integration partner display. |
-| `<FeatureComparison>` | Feature comparison table. |
-| `<Newsletter>` | Email signup form. |
-| `<CtaBanner>` | Full-width call-to-action section. |
-| `<VideoEmbed>` | Video demo section. |
-| `<ComparisonTable>` | vs Competitors comparison. |
-| `<SecurityBadges>` | SOC2/GDPR/HIPAA badge display. |
-| `<SiteFooter>` / `<SiteFooterColumns>` | Footer with links. |
-| `<LandingNav>` | Sticky navigation bar. |
-| `<LandingSection>` | Generic section wrapper. |
 
 ---
 

@@ -1,24 +1,24 @@
 # Composables
 
-All composables follow the `createX()` or `useX()` pattern using Svelte 5 runes (`$state`, `$derived`, `$effect`).
+All composables follow the `useX()` pattern using Svelte 5 runes (`$state`, `$derived`, `$effect`). Context providers use the `createX()` / `useX()` dual pattern.
 
 ---
 
 ## Data Layer
 
-### `createQuery` & `createMutation`
+### `useQuery` & `useMutation`
 Manage server queries and state mutations with caching, retry strategies, and loading statuses.
 
 ```ts
-import { createQuery, createMutation } from "bindrunes";
+import { useQuery, useMutation } from "bindrunes";
 
-const users = createQuery<User[]>({
+const users = useQuery<User[]>({
   key: "/api/users",
   fetcher: () => fetch("/api/users").then(r => r.json()),
   staleTime: 30_000
 });
 
-const createUser = createMutation<User, NewUser>({
+const createUser = useMutation<User, NewUser>({
   mutator: (user) => api.post("/users", user),
   onSuccess: () => invalidateQuery("/api/users")
 });
@@ -40,25 +40,27 @@ const user = createAsyncState(
 // user.isLoading, user.data, user.error
 ```
 
-### `createTable`
+### `useTable`
 State machine for sorting, pagination, and filtering in tables.
 
 ```ts
-const table = createTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
+import { useTable } from "bindrunes";
+
+const table = useTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
 ```
 
 ---
 
 ## Forms
 
-### `createForm` & `createWizard`
+### `useForm` & `useWizard`
 Typesafe form and multi-step wizard state with Valibot schema validations.
 
 ```ts
-import { createForm } from "bindrunes";
+import { useForm } from "bindrunes";
 import { string, minLength } from "valibot";
 
-const form = createForm({
+const form = useForm({
   schema: {
     name: string([minLength(1, "Name required")])
   },
@@ -79,25 +81,25 @@ const errors = validateWithSchema(schema, values);
 
 ## Auth & RBAC
 
-### `createAuth` & `createAccess`
+### `useAuth` & `useAccess`
 Reactive authentication token handling and Role-Based Access Controls.
 
 ```ts
-import { createAuth, createAccess } from "bindrunes";
+import { useAuth, useAccess } from "bindrunes";
 
-const auth = createAuth();
-const access = createAccess(auth);
+const auth = useAuth();
+const access = useAccess(auth);
 
 if (access.hasRole("admin") && access.hasPermission("users:write")) {
   // admin actions
 }
 ```
 
-### `createAuthProvider` / `useAuthProvider`
-Context provider for auth state across components.
+### `createAuthProvider` / `useAuth`
+Context provider for auth state across components. `createAuthProvider` is called in the root layout; `useAuth` retrieves the state in any child component.
 
 ```ts
-import { createAuthProvider, useAuthProvider } from "bindrunes/boundrune";
+import { createAuthProvider, useAuth } from "bindrunes/domains/auth";
 
 // In root layout:
 const auth = createAuthProvider({
@@ -106,7 +108,7 @@ const auth = createAuthProvider({
 });
 
 // In any child component:
-const auth = useAuthProvider();
+const auth = useAuth();
 console.log(auth.isAuthenticated, auth.user);
 ```
 
@@ -121,17 +123,17 @@ hasAnyRole(user, ["admin", "editor"]);
 hasPermission(user, "users:write");
 ```
 
-### `createCrudProvider` / `useCrudProvider`
+### `createCrudProvider` / `useCrud`
 Context provider for CRUD operations across components.
 
 ```ts
-import { createCrudProvider, useCrudProvider } from "bindrunes/boundrune";
+import { createCrudProvider, useCrud } from "bindrunes/domains/data";
 
 // In parent:
 const crud = createCrudProvider();
 
 // In child:
-const crud = useCrudProvider();
+const crud = useCrud();
 crud.setItems(data);
 crud.toggleSelect(id);
 ```
@@ -140,15 +142,15 @@ crud.toggleSelect(id);
 
 ## Design System
 
-### `createTheme` / `createAesthetic` / `createDensity`
+### `useTheme` / `useAesthetic` / `useDensity`
 Runtime switching of the three design axes.
 
 ```ts
-import { createTheme, createAesthetic, createDensity } from "bindrunes";
+import { useTheme, useAesthetic, useDensity } from "bindrunes";
 
-const theme = createTheme({ default: "editorial" });
-const aesthetic = createAesthetic({ default: "glass" });
-const density = createDensity({ default: "comfortable" });
+const theme = useTheme({ default: "editorial" });
+const aesthetic = useAesthetic({ default: "glass" });
+const density = useDensity({ default: "comfortable" });
 
 theme.setTheme("dracula");
 aesthetic.setAesthetic("bento");
@@ -176,13 +178,13 @@ builder.setToken("--primary", "oklch(0.60 0.15 250)");
 builder.exportCSS(); // Returns CSS string
 ```
 
-### `createDarkMode`
+### `useDarkMode`
 Reactive dark mode toggling with system preference detection.
 
 ```ts
-import { createDarkMode } from "bindrunes";
+import { useDarkMode } from "bindrunes";
 
-const dark = createDarkMode();
+const dark = useDarkMode();
 dark.toggle();
 // dark.isDark, dark.mode ("light" | "dark" | "system")
 ```
@@ -220,20 +222,21 @@ const t = useI18n();
 t("greeting"); // Looks up "greeting" key in active dictionary
 ```
 
-### `createTable`
+### `useTable`
 State machine for sorting, pagination, and filtering in tables.
 ```ts
-const table = createTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
+import { useTable } from "bindrunes";
+const table = useTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
 ```
 
 ### `createOmnibar`
 State container for global launcher keyboard controls (Cmd+K).
 
-### `createToast`
+### `useToast`
 Toast notification composable (dynamic import of svelte-sonner).
 ```ts
-import { createToast } from "bindrunes";
-const toast = createToast({ defaultDuration: 4000 });
+import { useToast } from "bindrunes";
+const toast = useToast({ defaultDuration: 4000 });
 toast.success("Saved!");
 ```
 
@@ -396,7 +399,7 @@ const KEY = Symbol("my-context");
 export function createMyState() {
   return createMetaContext(KEY, () => { /* state */ });
 }
-export function getMyState() {
+export function useMyContext() {
   return useMetaContext(KEY);
 }
 ```
