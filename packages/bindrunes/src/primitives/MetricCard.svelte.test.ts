@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import { expectNoAxeViolations } from "../../helpers/axe";
+import { expectNoAxeViolations } from "../helpers/axe";
 import MetricCard from "./MetricCard.svelte";
 
 describe("MetricCard", () => {

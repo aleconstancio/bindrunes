@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { expectNoAxeViolations } from "../helpers/axe";
+import { expectNoAxeViolations } from "../../helpers/axe";
 import DataTable from "./DataTable.svelte";
 
 const columns = [
