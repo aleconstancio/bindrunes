@@ -80,7 +80,7 @@ export default defineConfig({
 					statements: 90,
 					branches: 85,
 				},
-				"src/components/boundrune/chat/**": {
+				"src/domains/chat/**": {
 					lines: 90,
 					functions: 88,
 					statements: 90,

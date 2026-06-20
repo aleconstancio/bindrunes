@@ -25,64 +25,64 @@
 			"default": "./dist/index.js"
 		},
 		"./landing": {
-			"types": "./dist/components/landing/index.d.ts",
-			"svelte": "./dist/components/landing/index.js",
-			"default": "./dist/components/landing/index.js"
+			"types": "./dist/domains/landing/index.d.ts",
+			"svelte": "./dist/domains/landing/index.js",
+			"default": "./dist/domains/landing/index.js"
 		},
 		"./boundrune": {
-			"types": "./dist/components/boundrune/index.d.ts",
-			"svelte": "./dist/components/boundrune/index.js",
-			"default": "./dist/components/boundrune/index.js"
+			"types": "./dist/domains/index.d.ts",
+			"svelte": "./dist/domains/index.js",
+			"default": "./dist/domains/index.js"
 		},
 		"./boundrune/auth": {
-			"types": "./dist/components/boundrune/auth/index.d.ts",
-			"svelte": "./dist/components/boundrune/auth/index.js",
-			"default": "./dist/components/boundrune/auth/index.js"
+			"types": "./dist/domains/auth/index.d.ts",
+			"svelte": "./dist/domains/auth/index.js",
+			"default": "./dist/domains/auth/index.js"
 		},
 		"./boundrune/calendar": {
-			"types": "./dist/components/boundrune/calendar/index.d.ts",
-			"svelte": "./dist/components/boundrune/calendar/index.js",
-			"default": "./dist/components/boundrune/calendar/index.js"
+			"types": "./dist/domains/calendar/index.d.ts",
+			"svelte": "./dist/domains/calendar/index.js",
+			"default": "./dist/domains/calendar/index.js"
 		},
 		"./boundrune/chat": {
-			"types": "./dist/components/boundrune/chat/index.d.ts",
-			"svelte": "./dist/components/boundrune/chat/index.js",
-			"default": "./dist/components/boundrune/chat/index.js"
+			"types": "./dist/domains/chat/index.d.ts",
+			"svelte": "./dist/domains/chat/index.js",
+			"default": "./dist/domains/chat/index.js"
 		},
 		"./boundrune/dashboard": {
-			"types": "./dist/components/boundrune/dashboard/index.d.ts",
-			"svelte": "./dist/components/boundrune/dashboard/index.js",
-			"default": "./dist/components/boundrune/dashboard/index.js"
+			"types": "./dist/domains/dashboard/index.d.ts",
+			"svelte": "./dist/domains/dashboard/index.js",
+			"default": "./dist/domains/dashboard/index.js"
 		},
 		"./boundrune/data": {
-			"types": "./dist/components/boundrune/data/index.d.ts",
-			"svelte": "./dist/components/boundrune/data/index.js",
-			"default": "./dist/components/boundrune/data/index.js"
+			"types": "./dist/domains/data/index.d.ts",
+			"svelte": "./dist/domains/data/index.js",
+			"default": "./dist/domains/data/index.js"
 		},
 		"./boundrune/ecommerce": {
-			"types": "./dist/components/boundrune/ecommerce/index.d.ts",
-			"svelte": "./dist/components/boundrune/ecommerce/index.js",
-			"default": "./dist/components/boundrune/ecommerce/index.js"
+			"types": "./dist/domains/ecommerce/index.d.ts",
+			"svelte": "./dist/domains/ecommerce/index.js",
+			"default": "./dist/domains/ecommerce/index.js"
 		},
 		"./boundrune/marketing": {
-			"types": "./dist/components/boundrune/marketing/index.d.ts",
-			"svelte": "./dist/components/boundrune/marketing/index.js",
-			"default": "./dist/components/boundrune/marketing/index.js"
+			"types": "./dist/domains/marketing/index.d.ts",
+			"svelte": "./dist/domains/marketing/index.js",
+			"default": "./dist/domains/marketing/index.js"
 		},
 		"./boundrune/media": {
-			"types": "./dist/components/boundrune/media/index.d.ts",
-			"svelte": "./dist/components/boundrune/media/index.js",
-			"default": "./dist/components/boundrune/media/index.js"
+			"types": "./dist/domains/media/index.d.ts",
+			"svelte": "./dist/domains/media/index.js",
+			"default": "./dist/domains/media/index.js"
 		},
 		"./boundrune/portfolio": {
-			"types": "./dist/components/boundrune/portfolio/index.d.ts",
-			"svelte": "./dist/components/boundrune/portfolio/index.js",
-			"default": "./dist/components/boundrune/portfolio/index.js"
+			"types": "./dist/domains/portfolio/index.d.ts",
+			"svelte": "./dist/domains/portfolio/index.js",
+			"default": "./dist/domains/portfolio/index.js"
 		},
 		"./boundrune/settings": {
-			"types": "./dist/components/boundrune/settings/index.d.ts",
-			"svelte": "./dist/components/boundrune/settings/index.js",
-			"default": "./dist/components/boundrune/settings/index.js"
+			"types": "./dist/domains/settings/index.d.ts",
+			"svelte": "./dist/domains/settings/index.js",
+			"default": "./dist/domains/settings/index.js"
 		},
 		"./dashboard": {
 			"types": "./dist/components/dashboard/index.d.ts",
@@ -95,14 +95,14 @@
 			"default": "./dist/components/sidebar/index.js"
 		},
 		"./scaffold": {
-			"types": "./dist/components/scaffold/index.d.ts",
-			"svelte": "./dist/components/scaffold/index.js",
-			"default": "./dist/components/scaffold/index.js"
+			"types": "./dist/playground/index.d.ts",
+			"svelte": "./dist/playground/index.js",
+			"default": "./dist/playground/index.js"
 		},
 		"./scaffold/*": {
-			"types": "./dist/components/scaffold/*.d.ts",
-			"svelte": "./dist/components/scaffold/*.svelte",
-			"default": "./dist/components/scaffold/*"
+			"types": "./dist/playground/*.d.ts",
+			"svelte": "./dist/playground/*.svelte",
+			"default": "./dist/playground/*"
 		},
 		"./agentic": {
 			"types": "./dist/utils/agentic/index.d.ts",
