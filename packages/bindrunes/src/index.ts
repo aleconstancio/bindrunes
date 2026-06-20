@@ -30,9 +30,6 @@ export { default as RangeCalendar } from "./components/RangeCalendar.svelte";
 export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
 export { default as StatusChip } from "./components/StatusChip.svelte";
 export { default as Suspense } from "./components/Suspense.svelte";
-// ── Theme ──
-export { default as ThemeStudio } from "./components/ThemeStudio.svelte";
-export { default as ThemeToggle } from "./components/ThemeToggle.svelte";
 export { default as Timeline } from "./components/Timeline.svelte";
 export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
@@ -113,6 +110,9 @@ export { default as Stepper } from "./primitives/Stepper.svelte";
 export { default as Switch } from "./primitives/Switch.svelte";
 export type { StepperStep } from "./primitives/stepper-types";
 export { default as TagInput } from "./primitives/TagInput.svelte";
+// ── Theme ──
+export { default as ThemeStudio } from "./primitives/ThemeStudio.svelte";
+export { default as ThemeToggle } from "./primitives/ThemeToggle.svelte";
 export { default as TimeField } from "./primitives/TimeField.svelte";
 export { default as Toggle } from "./primitives/Toggle.svelte";
 export { default as ToggleGroup } from "./primitives/ToggleGroup.svelte";

@@ -1,6 +1,8 @@
 // primitives/index.ts
 export { default as Accordion } from "./Accordion.svelte";
 export { default as AccordionItem } from "./AccordionItem.svelte";
+// ── Theme Components ──
+export { default as AestheticTab } from "./AestheticTab.svelte";
 export { default as Alert } from "./Alert.svelte";
 export { default as AlertDialog } from "./AlertDialog.svelte";
 export { default as Avatar } from "./Avatar.svelte";
@@ -17,9 +19,11 @@ export { default as CommandPalette } from "./CommandPalette.svelte";
 export { default as ContextMenu } from "./ContextMenu.svelte";
 export { default as DataGrid } from "./DataGrid.svelte";
 export { default as DatePicker } from "./DatePicker.svelte";
+export { default as DensityTab } from "./DensityTab.svelte";
 export { default as Dialog } from "./Dialog.svelte";
 export { default as Drawer } from "./Drawer.svelte";
 export { default as DropdownMenu } from "./DropdownMenu.svelte";
+export { default as ExportTab } from "./ExportTab.svelte";
 export { default as FileUpload } from "./FileUpload.svelte";
 export { default as Input } from "./Input.svelte";
 export { default as NavigationMenu } from "./NavigationMenu.svelte";
@@ -47,6 +51,10 @@ export { default as TabsContent } from "./TabsContent.svelte";
 export { default as TabsList } from "./TabsList.svelte";
 export { default as TabsTrigger } from "./TabsTrigger.svelte";
 export { default as TagInput } from "./TagInput.svelte";
+export { default as ThemeColorTab } from "./ThemeColorTab.svelte";
+export { default as ThemePreview } from "./ThemePreview.svelte";
+export { default as ThemeStudio } from "./ThemeStudio.svelte";
+export { default as ThemeToggle } from "./ThemeToggle.svelte";
 export { default as TimeField } from "./TimeField.svelte";
 export { default as Toggle } from "./Toggle.svelte";
 export { default as ToggleGroup } from "./ToggleGroup.svelte";
