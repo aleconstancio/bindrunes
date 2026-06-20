@@ -22,7 +22,6 @@ export { default as PageLoading } from "./components/PageLoading.svelte";
 export { default as RangeCalendar } from "./components/RangeCalendar.svelte";
 export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
 export { default as StatusChip } from "./components/StatusChip.svelte";
-export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
@@ -114,6 +113,7 @@ export { default as ThemeStudio } from "./primitives/ThemeStudio.svelte";
 export { default as ThemeToggle } from "./primitives/ThemeToggle.svelte";
 export { default as TimeField } from "./primitives/TimeField.svelte";
 export { default as Timeline } from "./primitives/Timeline.svelte";
+export { default as ToastProvider } from "./primitives/ToastProvider.svelte";
 export { default as Toggle } from "./primitives/Toggle.svelte";
 export { default as ToggleGroup } from "./primitives/ToggleGroup.svelte";
 export { default as Tooltip } from "./primitives/Tooltip.svelte";
