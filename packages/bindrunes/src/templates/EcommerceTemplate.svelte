@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import DashboardShellHeader from "../domains/dashboard/DashboardShellHeader.svelte";
+import DashboardShellHeader from "../layouts/dashboard/DashboardShellHeader.svelte";
 import PageShell from "../layouts/PageShell.svelte";
 
 let {
