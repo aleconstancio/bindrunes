@@ -3,7 +3,7 @@ import { createPersistedDataAttribute } from "./createPersistedDataAttribute.sve
 const AESTHETICS = ["editorial", "glass", "bento", "expressive"] as const;
 export type Aesthetic = (typeof AESTHETICS)[number];
 
-export function createAesthetic(options?: { default?: Aesthetic }) {
+export function useAesthetic(options?: { default?: Aesthetic }) {
 	const state = createPersistedDataAttribute({
 		storageKey: "aesthetic",
 		attributeName: "data-aesthetic",

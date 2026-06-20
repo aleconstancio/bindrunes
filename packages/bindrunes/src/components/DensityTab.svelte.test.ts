@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
-import { createDensity } from "../utils/createDensity.svelte";
+import { useDensity } from "../utils/useDensity.svelte";
 import ComposableHarness from "./__tests__/harness/ComposableHarness.svelte";
 import DensityTab from "./DensityTab.svelte";
 
@@ -15,7 +15,7 @@ describe("DensityTab", () => {
 		render(ComposableHarness, {
 			props: {
 				setup: () => ({
-					density: createDensity(),
+					density: useDensity(),
 					render: DensityTab,
 				}),
 				state,
@@ -23,7 +23,7 @@ describe("DensityTab", () => {
 		});
 		await tick();
 		return state.current as {
-			density: ReturnType<typeof createDensity>;
+			density: ReturnType<typeof useDensity>;
 			render: typeof DensityTab;
 		};
 	}

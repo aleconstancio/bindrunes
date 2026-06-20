@@ -2,9 +2,9 @@ import { render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
 import Harness from "../components/__tests__/harness/ComposableHarness.svelte";
-import { createDensity } from "./createDensity.svelte";
+import { useDensity } from "./useDensity.svelte";
 
-describe("createDensity", () => {
+describe("useDensity", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		document.documentElement.removeAttribute("data-density");
@@ -13,10 +13,10 @@ describe("createDensity", () => {
 	async function mountDensity(opts?: { default?: string }) {
 		const state: { current: unknown } = { current: null };
 		render(Harness, {
-			props: { setup: () => createDensity(opts as any), state },
+			props: { setup: () => useDensity(opts as any), state },
 		});
 		await tick();
-		return state.current as ReturnType<typeof createDensity>;
+		return state.current as ReturnType<typeof useDensity>;
 	}
 
 	it("defaults to comfortable", async () => {

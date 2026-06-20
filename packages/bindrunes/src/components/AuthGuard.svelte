@@ -1,9 +1,9 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import { AUTH_CONTEXT_KEY } from "../utils/auth-keys.ts";
-import { type AuthStorage, createAuth } from "../utils/createAuth.svelte.ts";
 import { useMetaContext } from "../utils/createMetaContext.svelte";
 import { isSafeRedirect } from "../utils/url.ts";
+import { type AuthStorage, useAuth } from "../utils/useAuth.svelte.ts";
 
 let {
 	storage = undefined as AuthStorage | undefined,
@@ -20,7 +20,7 @@ let {
 	roles?: string[];
 	permissions?: string[];
 	requireAll?: boolean;
-	auth?: ReturnType<typeof createAuth>;
+	auth?: ReturnType<typeof useAuth>;
 	fallback?: string;
 	unauthorizedFallback?: string;
 	navigate?: (url: string) => void;
@@ -37,7 +37,7 @@ const auth = untrack(() => {
 	try {
 		return useMetaContext(AUTH_CONTEXT_KEY);
 	} catch {
-		return createAuth({ storage });
+		return useAuth({ storage });
 	}
 });
 

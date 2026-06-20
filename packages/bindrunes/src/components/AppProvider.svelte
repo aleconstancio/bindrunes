@@ -2,9 +2,9 @@
 import { ModeWatcher } from "mode-watcher";
 import type { Snippet } from "svelte";
 import { isBrowser } from "../utils/isBrowser";
-import { type Aesthetic, createAesthetic } from "../utils/createAesthetic.svelte";
-import { createDensity, type Density } from "../utils/createDensity.svelte";
-import { createTheme, type Theme } from "../utils/createTheme.svelte";
+import { type Aesthetic, useAesthetic } from "../utils/useAesthetic.svelte";
+import { type Density, useDensity } from "../utils/useDensity.svelte";
+import { type Theme, useTheme } from "../utils/useTheme.svelte";
 
 let {
 	themeDefault = undefined as Theme | undefined,
@@ -19,11 +19,11 @@ let {
 } = $props();
 
 // svelte-ignore state_referenced_locally
-const _theme = createTheme({ default: themeDefault ?? "editorial" });
+const _theme = useTheme({ default: themeDefault ?? "editorial" });
 // svelte-ignore state_referenced_locally
-const _aesthetic = createAesthetic({ default: aestheticDefault ?? "editorial" });
+const _aesthetic = useAesthetic({ default: aestheticDefault ?? "editorial" });
 // svelte-ignore state_referenced_locally
-const _density = createDensity({ default: densityDefault ?? "comfortable" });
+const _density = useDensity({ default: densityDefault ?? "comfortable" });
 </script>
 
 {#if isBrowser}

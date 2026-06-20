@@ -3,7 +3,7 @@ import { createPersistedDataAttribute } from "./createPersistedDataAttribute.sve
 const DENSITIES = ["compact", "comfortable", "spacious"] as const;
 export type Density = (typeof DENSITIES)[number];
 
-export function createDensity(options?: { default?: Density }) {
+export function useDensity(options?: { default?: Density }) {
 	const state = createPersistedDataAttribute({
 		storageKey: "density",
 		attributeName: "data-density",

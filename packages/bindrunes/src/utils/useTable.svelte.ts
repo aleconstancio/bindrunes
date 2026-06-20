@@ -17,7 +17,7 @@ type CreateTableOptions<T> = {
 	onPageChange?: (page: number) => void;
 };
 
-export function createTable<T extends Record<string, unknown>>(options: CreateTableOptions<T>) {
+export function useTable<T extends Record<string, unknown>>(options: CreateTableOptions<T>) {
 	const {
 		columns,
 		initialState,

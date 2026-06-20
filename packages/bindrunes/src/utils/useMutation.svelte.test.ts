@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createMutation } from "./createMutation.svelte";
+import { useMutation } from "./useMutation.svelte";
 
-describe("createMutation", () => {
+describe("useMutation", () => {
 	it("initial state is idle with no data or error", async () => {
-		const mutation = await mountComposable(() => createMutation({ mutator: vi.fn() }));
+		const mutation = await mountComposable(() => useMutation({ mutator: vi.fn() }));
 		expect(mutation.status).toBe("idle");
 		expect(mutation.data).toBeUndefined();
 		expect(mutation.error).toBeNull();
@@ -20,7 +20,7 @@ describe("createMutation", () => {
 				resolveMutator = resolve;
 			}),
 		);
-		const mutation = await mountComposable(() => createMutation({ mutator }));
+		const mutation = await mountComposable(() => useMutation({ mutator }));
 
 		const promise = mutation.mutate("test");
 		expect(mutation.isLoading).toBe(true);
@@ -31,7 +31,7 @@ describe("createMutation", () => {
 
 	it("mutate() transitions through loading to success on resolve", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockResolvedValue("result") }),
+			useMutation({ mutator: vi.fn().mockResolvedValue("result") }),
 		);
 
 		await mutation.mutate("test");
@@ -42,7 +42,7 @@ describe("createMutation", () => {
 
 	it("mutate() returns the promised data", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockResolvedValue(42) }),
+			useMutation({ mutator: vi.fn().mockResolvedValue(42) }),
 		);
 
 		const result = await mutation.mutate("test");
@@ -51,7 +51,7 @@ describe("createMutation", () => {
 
 	it("mutate() sets isSuccess after successful mutation", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockResolvedValue("ok") }),
+			useMutation({ mutator: vi.fn().mockResolvedValue("ok") }),
 		);
 
 		await mutation.mutate("test");
@@ -62,7 +62,7 @@ describe("createMutation", () => {
 	it("mutate() transitions through loading to error on reject", async () => {
 		const error = new Error("fail");
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockRejectedValue(error) }),
+			useMutation({ mutator: vi.fn().mockRejectedValue(error) }),
 		);
 
 		await expect(mutation.mutate("test")).rejects.toThrow("fail");
@@ -74,7 +74,7 @@ describe("createMutation", () => {
 	it("mutate() stores the error object on failure", async () => {
 		const error = new Error("oops");
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockRejectedValue(error) }),
+			useMutation({ mutator: vi.fn().mockRejectedValue(error) }),
 		);
 
 		await expect(mutation.mutate("test")).rejects.toThrow();
@@ -83,7 +83,7 @@ describe("createMutation", () => {
 
 	it("mutate() stores the data on success", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockResolvedValue("stored") }),
+			useMutation({ mutator: vi.fn().mockResolvedValue("stored") }),
 		);
 
 		await mutation.mutate("test");
@@ -91,11 +91,11 @@ describe("createMutation", () => {
 	});
 });
 
-describe("createMutation — callbacks", () => {
+describe("useMutation — callbacks", () => {
 	it("calls onMutate before the mutator runs", async () => {
 		const callOrder: string[] = [];
 		const mutation = await mountComposable(() =>
-			createMutation<string, string>({
+			useMutation<string, string>({
 				mutator: async () => {
 					callOrder.push("mutator");
 					return "ok";
@@ -113,7 +113,7 @@ describe("createMutation — callbacks", () => {
 	it("calls onSuccess with data and variables after success", async () => {
 		const onSuccess = vi.fn();
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: vi.fn().mockResolvedValue("data"),
 				onSuccess,
 			}),
@@ -127,7 +127,7 @@ describe("createMutation — callbacks", () => {
 		const error = new Error("fail");
 		const onError = vi.fn();
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: vi.fn().mockRejectedValue(error),
 				onError,
 			}),
@@ -140,7 +140,7 @@ describe("createMutation — callbacks", () => {
 	it("calls onSettled with data after success", async () => {
 		const onSettled = vi.fn();
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: vi.fn().mockResolvedValue("result"),
 				onSettled,
 			}),
@@ -154,7 +154,7 @@ describe("createMutation — callbacks", () => {
 		const error = new Error("fail");
 		const onSettled = vi.fn();
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: vi.fn().mockRejectedValue(error),
 				onSettled,
 			}),
@@ -166,7 +166,7 @@ describe("createMutation — callbacks", () => {
 
 	it("re-throws the error when mutator rejects", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: vi.fn().mockRejectedValue(new Error("boom")),
 			}),
 		);
@@ -175,10 +175,10 @@ describe("createMutation — callbacks", () => {
 	});
 });
 
-describe("createMutation — reset", () => {
+describe("useMutation — reset", () => {
 	it("reset() clears data, error, and returns status to idle after success", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockResolvedValue("data") }),
+			useMutation({ mutator: vi.fn().mockResolvedValue("data") }),
 		);
 
 		await mutation.mutate("test");
@@ -192,7 +192,7 @@ describe("createMutation — reset", () => {
 
 	it("reset() clears data, error, and returns status to idle after error", async () => {
 		const mutation = await mountComposable(() =>
-			createMutation({ mutator: vi.fn().mockRejectedValue(new Error("fail")) }),
+			useMutation({ mutator: vi.fn().mockRejectedValue(new Error("fail")) }),
 		);
 
 		await expect(mutation.mutate("test")).rejects.toThrow();

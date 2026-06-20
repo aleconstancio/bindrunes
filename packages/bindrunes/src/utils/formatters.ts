@@ -4,7 +4,7 @@
  *
  * NOTE: `LOCALE` is module-level state. In SSR environments with concurrent
  * requests, calling `setLocale()` will affect all requests sharing the same
- * module instance. Prefer using `createI18n()` for scoped, reactive locale
+ * module instance. Prefer using `useI18n()` for scoped, reactive locale
  * management in components.
  */
 let _locale = typeof navigator !== "undefined" ? navigator.language : "en";

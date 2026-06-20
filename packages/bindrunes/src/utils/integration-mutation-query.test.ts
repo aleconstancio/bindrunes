@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { invalidateQuery, setQueryData } from "../utils/queryCache";
-import { createMutation } from "./createMutation.svelte";
-import { createQuery } from "./createQuery.svelte";
+import { useMutation } from "./useMutation.svelte";
+import { useQuery } from "./useQuery.svelte";
 
 describe("mutation → invalidate → query integration", () => {
 	afterEach(() => {
@@ -17,14 +17,14 @@ describe("mutation → invalidate → query integration", () => {
 
 		// Create query — uses cached data
 		const query = await mountComposable(() =>
-			createQuery({ key: "int-key", fetcher, staleTime: 60000 }),
+			useQuery({ key: "int-key", fetcher, staleTime: 60000 }),
 		);
 		await vi.waitFor(() => expect(query.isSuccess).toBe(true));
 		expect(query.data).toEqual({ id: 1, name: "initial" });
 
 		// Create mutation
 		const mutation = await mountComposable(() =>
-			createMutation({
+			useMutation({
 				mutator: async (data: any) => data,
 			}),
 		);
@@ -41,7 +41,7 @@ describe("mutation → invalidate → query integration", () => {
 
 	it("mutation success → setQueryData can update cache optimistically", async () => {
 		const query = await mountComposable(() =>
-			createQuery({
+			useQuery({
 				key: "optimistic-key",
 				fetcher: vi.fn().mockResolvedValue({ count: 0 }),
 				staleTime: 60000,

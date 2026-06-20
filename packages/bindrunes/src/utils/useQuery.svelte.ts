@@ -26,7 +26,7 @@ export interface QueryResult<TData> {
 	refetch(): Promise<void>;
 }
 
-export function createQuery<TData>(options: CreateQueryOptions<TData>): QueryResult<TData> {
+export function useQuery<TData>(options: CreateQueryOptions<TData>): QueryResult<TData> {
 	const initialEntry = getEntry<TData>(options.key);
 	let _data = $state<TData | undefined>(initialEntry?.data as TData | undefined);
 	let _error = $state<Error | null>(initialEntry?.error ?? null);

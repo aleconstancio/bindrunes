@@ -12,7 +12,7 @@ export type WizardOptions<TValues extends Record<string, unknown> = Record<strin
 	onSubmit: (values: TValues) => Promise<void> | void;
 };
 
-export function createWizard<TValues extends Record<string, unknown>>(
+export function useWizard<TValues extends Record<string, unknown>>(
 	options: WizardOptions<TValues>,
 ) {
 	const { steps, onSubmit } = options;

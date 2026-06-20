@@ -1,6 +1,6 @@
 import { mode, setMode, toggleMode } from "mode-watcher";
 
-export function createDarkMode() {
+export function useDarkMode() {
 	let currentMode = $state<"light" | "dark" | undefined>(undefined);
 
 	if (typeof window !== "undefined") {

@@ -1,7 +1,7 @@
 import { mode } from "mode-watcher";
 import { describe, expect, it, vi } from "vitest";
 import { getCache } from "../utils/queryCache";
-import { createDarkMode } from "./createDarkMode.svelte";
+import { useDarkMode } from "./useDarkMode.svelte";
 
 // Mock mode-watcher
 vi.mock("mode-watcher", () => {
@@ -27,7 +27,7 @@ vi.mock("mode-watcher", () => {
 
 describe("Audited Fixes tests", () => {
 	it("should react to dark mode store changes", () => {
-		const dm = createDarkMode();
+		const dm = useDarkMode();
 		expect(dm.isDark).toBe(false);
 		expect(dm.mode).toBe("light");
 

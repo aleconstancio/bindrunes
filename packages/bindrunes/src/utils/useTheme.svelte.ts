@@ -3,7 +3,7 @@ import { createPersistedDataAttribute } from "./createPersistedDataAttribute.sve
 const THEMES = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 export type Theme = (typeof THEMES)[number];
 
-export function createTheme(options?: { default?: Theme }) {
+export function useTheme(options?: { default?: Theme }) {
 	const state = createPersistedDataAttribute({
 		storageKey: "theme",
 		attributeName: "data-theme",

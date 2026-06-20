@@ -21,7 +21,7 @@ export interface MutationResult<TData, TVariables> {
 	reset(): void;
 }
 
-export function createMutation<TData, TVariables = void>(
+export function useMutation<TData, TVariables = void>(
 	options: CreateMutationOptions<TData, TVariables>,
 ): MutationResult<TData, TVariables> {
 	let data = $state<TData | undefined>();

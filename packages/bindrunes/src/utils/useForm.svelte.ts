@@ -36,7 +36,7 @@ export type InferSchemaType<
 	[K in keyof T]: InferOutput<T[K]>;
 };
 
-export function createForm<
+export function useForm<
 	TShape extends Record<string, BaseSchema<unknown, unknown, BaseIssue<unknown>>>,
 >(options: CreateFormOptions<TShape>): FormState<TShape> {
 	let initial = { ...options.initialValues } as { [K in keyof TShape]: InferOutput<TShape[K]> };

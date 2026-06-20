@@ -1,9 +1,9 @@
 import { tick } from "svelte";
 import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createWizard } from "./createWizard.svelte";
+import { useWizard } from "./useWizard.svelte";
 
-describe("createWizard", () => {
+describe("useWizard", () => {
 	const steps = [
 		{ id: "personal", label: "Personal Info" },
 		{ id: "preferences", label: "Preferences" },
@@ -12,7 +12,7 @@ describe("createWizard", () => {
 
 	it("initializes with first step", async () => {
 		const wizard = await mountComposable(() =>
-			createWizard({
+			useWizard({
 				steps,
 				initialValues: { name: "" },
 				onSubmit: vi.fn(),
@@ -24,7 +24,7 @@ describe("createWizard", () => {
 	});
 
 	it("navigates to next step", async () => {
-		const wizard = await mountComposable(() => createWizard({ steps, onSubmit: vi.fn() }));
+		const wizard = await mountComposable(() => useWizard({ steps, onSubmit: vi.fn() }));
 		wizard.next();
 		await tick();
 		expect(wizard.currentStep.id).toBe("preferences");
@@ -32,21 +32,21 @@ describe("createWizard", () => {
 	});
 
 	it("navigates back", async () => {
-		const wizard = await mountComposable(() => createWizard({ steps, onSubmit: vi.fn() }));
+		const wizard = await mountComposable(() => useWizard({ steps, onSubmit: vi.fn() }));
 		wizard.next();
 		wizard.back();
 		expect(wizard.currentStep.id).toBe("personal");
 	});
 
 	it("goes to specific step", async () => {
-		const wizard = await mountComposable(() => createWizard({ steps, onSubmit: vi.fn() }));
+		const wizard = await mountComposable(() => useWizard({ steps, onSubmit: vi.fn() }));
 		wizard.goTo("confirm");
 		expect(wizard.currentStep.id).toBe("confirm");
 	});
 
 	it("sets field values", async () => {
 		const wizard = await mountComposable(() =>
-			createWizard({
+			useWizard({
 				steps,
 				initialValues: { name: "" },
 				onSubmit: vi.fn(),
@@ -58,7 +58,7 @@ describe("createWizard", () => {
 
 	it("submits on last step", async () => {
 		const onSubmit = vi.fn();
-		const wizard = await mountComposable(() => createWizard({ steps, onSubmit }));
+		const wizard = await mountComposable(() => useWizard({ steps, onSubmit }));
 		wizard.goTo("confirm");
 		await wizard.submit();
 		expect(onSubmit).toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe("createWizard", () => {
 
 	it("resets to initial state", async () => {
 		const wizard = await mountComposable(() =>
-			createWizard({
+			useWizard({
 				steps,
 				initialValues: { name: "" },
 				onSubmit: vi.fn(),
@@ -81,7 +81,7 @@ describe("createWizard", () => {
 	});
 
 	it("identifies last step", async () => {
-		const wizard = await mountComposable(() => createWizard({ steps, onSubmit: vi.fn() }));
+		const wizard = await mountComposable(() => useWizard({ steps, onSubmit: vi.fn() }));
 		wizard.goTo("confirm");
 		expect(wizard.isLastStep).toBe(true);
 	});

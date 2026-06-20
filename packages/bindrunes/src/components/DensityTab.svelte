@@ -1,10 +1,10 @@
 <script lang="ts">
-import type { createDensity } from "../utils/createDensity.svelte";
+import type { useDensity } from "../utils/useDensity.svelte";
 
 let {
 	density,
 }: {
-	density: ReturnType<typeof createDensity>;
+	density: ReturnType<typeof useDensity>;
 } = $props();
 </script>
 

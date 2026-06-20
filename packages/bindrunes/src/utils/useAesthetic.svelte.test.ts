@@ -2,9 +2,9 @@ import { render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
 import Harness from "../components/__tests__/harness/ComposableHarness.svelte";
-import { createAesthetic } from "./createAesthetic.svelte";
+import { useAesthetic } from "./useAesthetic.svelte";
 
-describe("createAesthetic", () => {
+describe("useAesthetic", () => {
 	beforeEach(() => {
 		localStorage.clear();
 		document.documentElement.removeAttribute("data-aesthetic");
@@ -13,10 +13,10 @@ describe("createAesthetic", () => {
 	async function mountAesthetic(opts?: { default?: string }) {
 		const state: { current: unknown } = { current: null };
 		render(Harness, {
-			props: { setup: () => createAesthetic(opts as any), state },
+			props: { setup: () => useAesthetic(opts as any), state },
 		});
 		await tick();
-		return state.current as ReturnType<typeof createAesthetic>;
+		return state.current as ReturnType<typeof useAesthetic>;
 	}
 
 	it("defaults to editorial", async () => {

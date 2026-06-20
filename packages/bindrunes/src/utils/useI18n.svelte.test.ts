@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createI18n } from "./createI18n.svelte";
+import { createI18n } from "./useI18n.svelte";
 
 const testOptions = {
 	default: "en",

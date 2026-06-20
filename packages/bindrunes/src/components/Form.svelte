@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { TFunction } from "../shared-types";
-import type { FormState } from "../utils/createForm.svelte";
+import type { FormState } from "../utils/useForm.svelte";
 import Button from "./Button.svelte";
 
 let {

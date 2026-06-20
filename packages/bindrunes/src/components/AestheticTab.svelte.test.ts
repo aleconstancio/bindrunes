@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
-import { createAesthetic } from "../utils/createAesthetic.svelte";
+import { useAesthetic } from "../utils/useAesthetic.svelte";
 import ComposableHarness from "./__tests__/harness/ComposableHarness.svelte";
 import AestheticTab from "./AestheticTab.svelte";
 
@@ -16,7 +16,7 @@ describe("AestheticTab", () => {
 		render(ComposableHarness, {
 			props: {
 				setup: () => ({
-					aesthetic: createAesthetic(),
+					aesthetic: useAesthetic(),
 					render: AestheticTab,
 				}),
 				state,
@@ -24,7 +24,7 @@ describe("AestheticTab", () => {
 		});
 		await tick();
 		return state.current as {
-			aesthetic: ReturnType<typeof createAesthetic>;
+			aesthetic: ReturnType<typeof useAesthetic>;
 			render: typeof AestheticTab;
 		};
 	}

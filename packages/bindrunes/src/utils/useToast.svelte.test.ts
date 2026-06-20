@@ -1,6 +1,6 @@
 import { toast as sonnerToast } from "svelte-sonner";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { createToast } from "./createToast.svelte";
+import { useToast } from "./useToast.svelte";
 
 vi.mock("svelte-sonner", () => ({
 	toast: {
@@ -12,7 +12,7 @@ vi.mock("svelte-sonner", () => ({
 	},
 }));
 
-describe("createToast", () => {
+describe("useToast", () => {
 	beforeEach(() => {
 		vi.clearAllMocks();
 	});
@@ -22,7 +22,7 @@ describe("createToast", () => {
 	});
 
 	it("exposes success, error, warning, info, dismiss", () => {
-		const t = createToast();
+		const t = useToast();
 		expect(typeof t.success).toBe("function");
 		expect(typeof t.error).toBe("function");
 		expect(typeof t.warning).toBe("function");
@@ -31,7 +31,7 @@ describe("createToast", () => {
 	});
 
 	it("success calls sonner with default duration and position", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.success("hi");
 		expect(sonnerToast.success).toHaveBeenCalledWith("hi", {
 			duration: 4000,
@@ -40,7 +40,7 @@ describe("createToast", () => {
 	});
 
 	it("error calls sonner with 5000ms default duration", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.error("oops");
 		expect(sonnerToast.error).toHaveBeenCalledWith("oops", {
 			duration: 5000,
@@ -49,7 +49,7 @@ describe("createToast", () => {
 	});
 
 	it("warning and info use default 4000ms duration", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.warning("warn");
 		expect(sonnerToast.warning).toHaveBeenCalledWith("warn", {
 			duration: 4000,
@@ -63,7 +63,7 @@ describe("createToast", () => {
 	});
 
 	it("passes custom duration from options", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.success("hi", { duration: 1000 });
 		expect(sonnerToast.success).toHaveBeenCalledWith("hi", {
 			duration: 1000,
@@ -72,7 +72,7 @@ describe("createToast", () => {
 	});
 
 	it("uses defaultDuration from constructor", async () => {
-		const t = createToast({ defaultDuration: 2000 });
+		const t = useToast({ defaultDuration: 2000 });
 		await t.success("hi");
 		expect(sonnerToast.success).toHaveBeenCalledWith("hi", {
 			duration: 2000,
@@ -81,7 +81,7 @@ describe("createToast", () => {
 	});
 
 	it("uses position from constructor", async () => {
-		const t = createToast({ position: "top-right" });
+		const t = useToast({ position: "top-right" });
 		await t.success("hi");
 		expect(sonnerToast.success).toHaveBeenCalledWith("hi", {
 			duration: 4000,
@@ -90,7 +90,7 @@ describe("createToast", () => {
 	});
 
 	it("forwards action and description options", async () => {
-		const t = createToast();
+		const t = useToast();
 		const onClick = vi.fn();
 		await t.success("hi", { description: "desc", action: { label: "go", onClick } });
 		expect(sonnerToast.success).toHaveBeenCalledWith("hi", {
@@ -102,13 +102,13 @@ describe("createToast", () => {
 	});
 
 	it("dismiss forwards id to sonner", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.dismiss("abc");
 		expect(sonnerToast.dismiss).toHaveBeenCalledWith("abc");
 	});
 
 	it("dismiss without id", async () => {
-		const t = createToast();
+		const t = useToast();
 		await t.dismiss();
 		expect(sonnerToast.dismiss).toHaveBeenCalledWith(undefined);
 	});

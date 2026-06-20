@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createAuth } from "./createAuth.svelte";
+import { useAuth } from "./useAuth.svelte";
 
 function makeStorage(
 	overrides: Partial<{
@@ -32,24 +32,24 @@ const sampleUser = {
 	tenantId: "t1",
 };
 
-describe("createAuth", () => {
+describe("useAuth", () => {
 	it("initializes with null token when storage returns null", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		expect(auth.token).toBeNull();
 		expect(auth.isAuthenticated).toBe(false);
 	});
 
 	it("initializes with token from storage", async () => {
 		const storage = makeStorage({ getToken: () => "tok_existing" });
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		expect(auth.token).toBe("tok_existing");
 		expect(auth.isAuthenticated).toBe(true);
 	});
 
 	it("login sets token and calls storage.setToken", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok_new");
 		expect(auth.token).toBe("tok_new");
 		expect(auth.isAuthenticated).toBe(true);
@@ -58,7 +58,7 @@ describe("createAuth", () => {
 
 	it("login with user sets user, calls setUser, derives roles/permissions/tenantId", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", sampleUser);
 		expect(auth.user).toEqual(sampleUser);
 		expect(storage.setUser).toHaveBeenCalledWith(sampleUser);
@@ -70,7 +70,7 @@ describe("createAuth", () => {
 	it("logout clears token, calls storage.clearToken, calls onLogout", async () => {
 		const onLogout = vi.fn();
 		const storage = makeStorage({ getToken: () => "tok_active", clearUser: vi.fn() });
-		const auth = await mountComposable(() => createAuth({ storage: storage as never, onLogout }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never, onLogout }));
 		auth.logout();
 		expect(auth.token).toBeNull();
 		expect(auth.user).toBeNull();
@@ -81,7 +81,7 @@ describe("createAuth", () => {
 
 	it("refreshToken updates token and persists to storage", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.refreshToken("tok_refreshed");
 		expect(auth.token).toBe("tok_refreshed");
 		expect(storage.setToken).toHaveBeenCalledWith("tok_refreshed");
@@ -89,7 +89,7 @@ describe("createAuth", () => {
 
 	it("isAuthenticated transitions false → true → false through login/logout", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		expect(auth.isAuthenticated).toBe(false);
 		auth.login("tok");
 		expect(auth.isAuthenticated).toBe(true);
@@ -99,14 +99,14 @@ describe("createAuth", () => {
 
 	it("uses default localStorage storage when no storage option provided", async () => {
 		localStorage.setItem("bindrunes_token", "tok_ls");
-		const auth = await mountComposable(() => createAuth());
+		const auth = await mountComposable(() => useAuth());
 		expect(auth.token).toBe("tok_ls");
 		localStorage.clear();
 	});
 
 	it("setUser updates user and persists", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.setUser(sampleUser);
 		expect(auth.user).toEqual(sampleUser);
 		expect(storage.setUser).toHaveBeenCalledWith(sampleUser);
@@ -114,7 +114,7 @@ describe("createAuth", () => {
 
 	it("hasRole returns true for present role, false for missing", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", sampleUser);
 		expect(auth.hasRole("admin")).toBe(true);
 		expect(auth.hasRole("nobody")).toBe(false);
@@ -122,7 +122,7 @@ describe("createAuth", () => {
 
 	it("hasAnyRole returns true if any role in list is present", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", sampleUser);
 		expect(auth.hasAnyRole(["nobody", "admin"])).toBe(true);
 		expect(auth.hasAnyRole(["nobody", "ghost"])).toBe(false);
@@ -130,7 +130,7 @@ describe("createAuth", () => {
 
 	it("hasPermission returns true for explicit permission", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", { ...sampleUser, permissions: ["read", "write"] });
 		expect(auth.hasPermission("read")).toBe(true);
 		expect(auth.hasPermission("nonexistent")).toBe(false);
@@ -138,14 +138,14 @@ describe("createAuth", () => {
 
 	it("hasPermission returns true for * wildcard", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", { ...sampleUser, permissions: ["*"] });
 		expect(auth.hasPermission("anything")).toBe(true);
 	});
 
 	it("hasAllRequired returns true only if all permissions are met", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", { ...sampleUser, permissions: ["read", "write"] });
 		expect(auth.hasAllRequired(["read", "write"])).toBe(true);
 		expect(auth.hasAllRequired(["read", "admin"])).toBe(false);
@@ -153,7 +153,7 @@ describe("createAuth", () => {
 
 	it("hasAnyPermission returns true if any in list is granted", async () => {
 		const storage = makeStorage();
-		const auth = await mountComposable(() => createAuth({ storage: storage as never }));
+		const auth = await mountComposable(() => useAuth({ storage: storage as never }));
 		auth.login("tok", { ...sampleUser, permissions: ["read"] });
 		expect(auth.hasAnyPermission(["read", "admin"])).toBe(true);
 		expect(auth.hasAnyPermission(["admin", "ghost"])).toBe(false);
@@ -161,7 +161,7 @@ describe("createAuth", () => {
 
 	it("uses default storage with corrupt user JSON", async () => {
 		localStorage.setItem("bindrunes_user", "{not json");
-		const auth = await mountComposable(() => createAuth());
+		const auth = await mountComposable(() => useAuth());
 		expect(auth.user).toBeNull();
 		localStorage.clear();
 	});

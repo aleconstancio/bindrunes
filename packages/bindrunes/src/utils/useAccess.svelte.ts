@@ -1,6 +1,6 @@
-import type { createAuth } from "./createAuth.svelte";
+import type { useAuth } from "./useAuth.svelte";
 
-export function createAccess(auth: ReturnType<typeof createAuth>) {
+export function useAccess(auth: ReturnType<typeof useAuth>) {
 	return {
 		get isAuth() {
 			return auth.isAuthenticated;

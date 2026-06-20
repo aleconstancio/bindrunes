@@ -1,8 +1,8 @@
 <script lang="ts">
 import { hexToOklch } from "../utils/colorConvert";
-import { createAesthetic } from "../utils/createAesthetic.svelte";
-import { createDensity } from "../utils/createDensity.svelte";
 import { createThemeBuilder } from "../utils/createThemeBuilder";
+import { useAesthetic } from "../utils/useAesthetic.svelte";
+import { useDensity } from "../utils/useDensity.svelte";
 import AestheticTab from "./AestheticTab.svelte";
 import Card from "./Card.svelte";
 import DensityTab from "./DensityTab.svelte";
@@ -35,8 +35,8 @@ let cssOutput = $derived(theme.toCSS('[data-theme="custom"]'));
 
 let copied = $state(false);
 
-const aesthetic = createAesthetic();
-const density = createDensity();
+const aesthetic = useAesthetic();
+const density = useDensity();
 
 function handleCopy() {
 	navigator.clipboard.writeText(cssOutput);

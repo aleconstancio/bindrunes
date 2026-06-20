@@ -24,7 +24,7 @@ async function getSonnerToast() {
 	return toast;
 }
 
-export function createToast(options?: CreateToastOptions) {
+export function useToast(options?: CreateToastOptions) {
 	const defaults = {
 		duration: options?.defaultDuration ?? 4000,
 		position: options?.position ?? "bottom-right",

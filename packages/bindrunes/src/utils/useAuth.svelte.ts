@@ -79,8 +79,8 @@ const DEFAULT_STORAGE: AuthStorage = {
  *
  * Usage:
  * <script>
- *   import { createAuth } from 'bindrunes';
- *   const auth = createAuth({ storage: { getToken, setToken, clearToken } });
+ *   import { useAuth } from 'bindrunes';
+ *   const auth = useAuth({ storage: { getToken, setToken, clearToken } });
  * </script>
  *
  * {#if auth.isAuthenticated}
@@ -89,7 +89,7 @@ const DEFAULT_STORAGE: AuthStorage = {
  *   <Login onLogin={auth.login} />
  * {/if}
  */
-export function createAuth(options?: {
+export function useAuth(options?: {
 	storage?: AuthStorage;
 	toast?: ToastFn;
 	onLogout?: (t?: TFunction) => void;

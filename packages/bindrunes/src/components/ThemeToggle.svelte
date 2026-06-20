@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Moon, Sun } from "lucide-svelte";
-import { createDarkMode } from "../utils/createDarkMode.svelte";
+import { useDarkMode } from "../utils/useDarkMode.svelte";
 import Button from "./Button.svelte";
 
 let { variant = "outline" as "icon" | "outline" } = $props();
 
-const darkMode = createDarkMode();
+const darkMode = useDarkMode();
 
 let _buttonVariant = $derived(variant === "icon" ? "ghost" : variant);
 </script>

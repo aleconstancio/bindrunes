@@ -1,9 +1,9 @@
 import { tick } from "svelte";
 import { describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createTable } from "./createTable.svelte";
+import { useTable } from "./useTable.svelte";
 
-describe("createTable", () => {
+describe("useTable", () => {
 	const columns: {
 		key: "name" | "email" | "status";
 		label: string;
@@ -22,16 +22,14 @@ describe("createTable", () => {
 	];
 
 	it("creates table with initial state", async () => {
-		const table = await mountComposable(() => createTable({ data, columns }));
+		const table = await mountComposable(() => useTable({ data, columns }));
 		expect(table.data).toBeDefined();
 		expect(table.totalRows).toBe(3);
 		expect(table.totalPages).toBe(1);
 	});
 
 	it("sorts by column ascending then descending", async () => {
-		const table = await mountComposable(() =>
-			createTable({ data, columns, getRowId: (r) => r.id }),
-		);
+		const table = await mountComposable(() => useTable({ data, columns, getRowId: (r) => r.id }));
 		table.sortColumn("name");
 		const firstNames = table.data.map((r: any) => r.name);
 		expect(firstNames[0]).toBe("Alice");
@@ -44,9 +42,7 @@ describe("createTable", () => {
 	});
 
 	it.skip("filters data (known issue: runes reactivity not flushing through mountComposable)", async () => {
-		const table = await mountComposable(() =>
-			createTable({ data, columns, getRowId: (r) => r.id }),
-		);
+		const table = await mountComposable(() => useTable({ data, columns, getRowId: (r) => r.id }));
 		table.setFilter("status", "active");
 		await tick();
 		await tick();
@@ -63,7 +59,7 @@ describe("createTable", () => {
 			status: "active",
 		}));
 		const table = await mountComposable(() =>
-			createTable({ data: bigData, columns, getRowId: (r) => r.id }),
+			useTable({ data: bigData, columns, getRowId: (r) => r.id }),
 		);
 		expect(table.totalPages).toBe(2);
 		expect(table.data.length).toBe(20);
@@ -74,9 +70,7 @@ describe("createTable", () => {
 	});
 
 	it("toggles row selection", async () => {
-		const table = await mountComposable(() =>
-			createTable({ data, columns, getRowId: (r) => r.id }),
-		);
+		const table = await mountComposable(() => useTable({ data, columns, getRowId: (r) => r.id }));
 		expect(table.selected.size).toBe(0);
 
 		table.toggleRow("1");
@@ -88,9 +82,7 @@ describe("createTable", () => {
 	});
 
 	it("toggles all rows on page", async () => {
-		const table = await mountComposable(() =>
-			createTable({ data, columns, getRowId: (r) => r.id }),
-		);
+		const table = await mountComposable(() => useTable({ data, columns, getRowId: (r) => r.id }));
 		table.toggleAll();
 		expect(table.isAllSelected).toBe(true);
 		expect(table.selected.size).toBe(3);
@@ -102,7 +94,7 @@ describe("createTable", () => {
 
 	it("resets to initial state", async () => {
 		const table = await mountComposable(() =>
-			createTable({
+			useTable({
 				data,
 				columns,
 				getRowId: (r) => r.id,
@@ -121,7 +113,7 @@ describe("createTable", () => {
 
 	it("respects initial state", async () => {
 		const table = await mountComposable(() =>
-			createTable({
+			useTable({
 				data,
 				columns,
 				getRowId: (r) => r.id,
