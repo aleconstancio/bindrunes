@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { BaseIssue, BaseSchema } from "valibot";
-import Form from "../../components/Form.svelte";
 import type { FormState } from "../../utils/useForm.svelte";
 import Block from "../Block.svelte";
 import type { CrudConfig } from "../types";
+import Form from "./Form.svelte";
 
 let {
 	config,

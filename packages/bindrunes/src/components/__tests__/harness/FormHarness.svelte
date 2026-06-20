@@ -1,5 +1,5 @@
 <script lang="ts">
-import Form from "../../Form.svelte";
+import Form from "../../../domains/data/Form.svelte";
 
 let { text = "", ...rest } = $props();
 </script>

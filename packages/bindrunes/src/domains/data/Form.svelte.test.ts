@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
-import FormHarness from "./__tests__/harness/FormHarness.svelte";
+import FormHarness from "../../components/__tests__/harness/FormHarness.svelte";
 
 describe("Form", () => {
 	it("renders a form element", () => {

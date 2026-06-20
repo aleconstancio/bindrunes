@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import Button from "../primitives/Button.svelte";
 import type { TFunction } from "../shared-types";
 import type { FormState } from "../utils/useForm.svelte";
-import Button from "./Button.svelte";
 
 let {
 	t = undefined as TFunction | undefined,

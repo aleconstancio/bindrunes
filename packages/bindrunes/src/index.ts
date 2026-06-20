@@ -23,9 +23,6 @@ export { default as DataChart } from "./components/DataChart.svelte";
 export { default as DataTable } from "./components/DataTable.svelte";
 export { default as EmptyState } from "./components/EmptyState.svelte";
 export { default as ErrorMessage } from "./components/ErrorMessage.svelte";
-// ── Forms ──
-export { default as Form } from "./components/Form.svelte";
-export { default as FormField } from "./components/FormField.svelte";
 export { default as Kbd } from "./components/Kbd.svelte";
 export { default as Label } from "./components/Label.svelte";
 export { default as MetricCard } from "./components/MetricCard.svelte";
@@ -44,6 +41,9 @@ export { default as ToastProvider } from "./components/ToastProvider.svelte";
 export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
+// ── Forms ──
+export { default as Form } from "./domains/data/Form.svelte";
+export { default as FormField } from "./domains/data/FormField.svelte";
 export { default as DynamicIcon } from "./layouts/DynamicIcon.svelte";
 export { default as ErrorBoundary } from "./layouts/ErrorBoundary.svelte";
 export { default as LazyLoad } from "./layouts/LazyLoad.svelte";

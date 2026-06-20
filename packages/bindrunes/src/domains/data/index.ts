@@ -15,6 +15,8 @@ export type { CrudItem, CrudProviderState } from "./crud-context.svelte";
 export { createCrudProvider, useCrud } from "./crud-context.svelte";
 export { default as ExportFlow } from "./ExportFlow.svelte";
 export { default as FacetedSearch } from "./FacetedSearch.svelte";
+export { default as Form } from "./Form.svelte";
+export { default as FormField } from "./FormField.svelte";
 export { default as ImportFlow } from "./ImportFlow.svelte";
 export { default as TableHeader } from "./TableHeader.svelte";
 export { default as UserManagement } from "./UserManagement.svelte";
