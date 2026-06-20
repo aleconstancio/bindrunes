@@ -19,4 +19,16 @@ if (typeof window !== "undefined" && typeof document !== "undefined") {
 	}
 	window.IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
 	window.HTMLElement.prototype.hasPointerCapture = () => false;
+
+	// @internationalized/date needs Intl.DateTimeFormat().resolvedOptions().calendar
+	if (typeof Intl !== "undefined" && Intl.DateTimeFormat) {
+		const origResolved = Intl.DateTimeFormat.prototype.resolvedOptions;
+		Intl.DateTimeFormat.prototype.resolvedOptions = function () {
+			const result = origResolved.call(this);
+			if (!result.calendar) {
+				result.calendar = "gregory";
+			}
+			return result;
+		};
+	}
 }
