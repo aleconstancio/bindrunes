@@ -160,6 +160,9 @@ export { createApiClient } from "./utils/createApiClient.ts";
 export { createAsyncState } from "./utils/createAsyncState.svelte.ts";
 // ── Utilities ──
 export { createEnv } from "./utils/createEnv.ts";
+// ── Composables: i18n ──
+export type { Dict, I18nOptions, I18nResult } from "./utils/createI18n.svelte.ts";
+export { createI18n } from "./utils/createI18n.svelte.ts";
 export { createI18nContext, useI18n } from "./utils/createI18nContext.svelte.ts";
 export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
 // ── Composables: Context ──
@@ -238,9 +241,6 @@ export { useEventListener } from "./utils/useEventListener.svelte.ts";
 export type { CreateFormOptions, FormState, InferSchemaType } from "./utils/useForm.svelte.ts";
 export { useForm } from "./utils/useForm.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
-// ── Composables: i18n ──
-export type { Dict, I18nOptions, I18nResult } from "./utils/useI18n.svelte.ts";
-export { createI18n } from "./utils/useI18n.svelte.ts";
 export { useInfiniteScroll } from "./utils/useInfiniteScroll.svelte.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
 export { useInterval } from "./utils/useInterval.svelte.ts";
