@@ -1,5 +1,25 @@
 # Contributing to bindrunes
 
+## Quick Start
+
+```bash
+# Clone the repo
+git clone https://github.com/aleconstancio/bindrunes.git
+cd bindrunes
+
+# Install dependencies
+bun install
+
+# Start the dev server (showcase app)
+bun run dev
+
+# Run tests
+bun run test
+
+# Run lint
+bun run lint
+```
+
 ## Getting Started
 
 ```bash
