@@ -4,18 +4,18 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-220+ components · 46 composables · 12 Boundrune categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
+200+ components · 46 composables · 10 domain categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
 
 ## Features
 
 - **Three-axis design system** — Fully orthogonal theme (color), aesthetic (form), and density (spacing) scales.
 - **Svelte 5 runes** — Built exclusively with `$state`, `$derived`, and `$effect`. No legacy stores.
-- **Page composition** — `PageShell` layout primitive + `MarketingPage`, `DashboardPage`, `CrudPage` templates for no-brainer page building.
-- **12 Boundrune categories** — Pre-composed page patterns for App, Auth, Dashboard, Settings, Landing, Marketing, Portfolio, Data, E-commerce, Media, Calendar, and Chat.
+- **Page composition** — `PageShell` layout primitive + `MarketingTemplate`, `DashboardTemplate`, `CrudTemplate` templates for no-brainer page building.
+- **10 domain categories** — Pre-composed page patterns for Auth, Calendar, Chat, Data, E-commerce, Landing, Marketing, Media, Portfolio, and Settings.
 - **B2B SaaS focus** — Shells, sidebars, data tables, CRUD operations, and pre-built landing sections.
 - **Lightweight validation** — Built with Valibot, not Zod.
 - **OKLCH color space** — Perceptually uniform theming with 6 curated presets.
-- **47 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
+- **46 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
 
 ## Install
 
@@ -81,21 +81,15 @@ export default defineConfig({
 
 | Path | Description |
 |------|-------------|
-| `bindrunes` | Core components & composables |
-| `bindrunes/landing` | Marketing landing page sections |
-| `bindrunes/boundrune` | Pre-composed page patterns (12 categories) |
-| `bindrunes/dashboard` | Dashboard shell components |
-| `bindrunes/sidebar` | Sidebar navigation components |
-| `bindrunes/scaffold` | Pre-built scaffold/demo layouts |
+| `bindrunes` | Primitives, composables, and utilities |
+| `bindrunes/layouts` | Layout components, dashboard shells, and sidebar |
+| `bindrunes/domains` | Domain components (auth, calendar, chat, data, e-commerce, landing, marketing, media, portfolio, settings) |
+| `bindrunes/domains/*` | Individual domain imports (e.g. `bindrunes/domains/landing`) |
+| `bindrunes/templates` | Pre-composed page templates (10 categories) |
 | `bindrunes/agentic` | Agentic chat kernel composables |
+| `bindrunes/playground` | Playground and demo components |
 | `bindrunes/tailwind` | Tailwind CSS v4 integration plugin |
-| `bindrunes/styles/*` | Presets and theme CSS |
-| `bindrunes/densities/*` | Density scale CSS |
-| `bindrunes/actions/*` | Svelte actions |
-| `bindrunes/utils/*` | Individual utility imports |
-| `bindrunes/components/*` | Individual component imports |
-| `bindrunes/Button` | Direct component import (tree-shakeable) |
-| `bindrunes/i18n/*` | i18n translation files |
+| `bindrunes/styles/*` | Theme and global CSS |
 
 ---
 
