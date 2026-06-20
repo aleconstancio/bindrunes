@@ -2,6 +2,9 @@
 
 export type { ShortcutOptions } from "./actions/shortcut.ts";
 export { shortcut } from "./actions/shortcut.ts";
+// ── App Shell ──
+export { default as AppProvider } from "./components/AppProvider.svelte";
+export { default as AuthGuard } from "./components/AuthGuard.svelte";
 // ── Shared Types ──
 export type {
 	BadgeProps,
@@ -65,9 +68,6 @@ export { default as AccordionItem } from "./primitives/AccordionItem.svelte";
 export { default as Alert } from "./primitives/Alert.svelte";
 // ── Overlays ──
 export { default as AlertDialog } from "./primitives/AlertDialog.svelte";
-// ── App Shell ──
-export { default as AppProvider } from "./primitives/AppProvider.svelte";
-export { default as AuthGuard } from "./primitives/AuthGuard.svelte";
 export { default as Avatar } from "./primitives/Avatar.svelte";
 export { default as Badge } from "./primitives/Badge.svelte";
 // ── Navigation ──
