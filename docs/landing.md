@@ -1,6 +1,6 @@
 # Landing Pages
 
-Marketing layout blocks designed for SaaS platforms. Import from `bindrunes/landing`.
+Marketing layout blocks designed for SaaS platforms. Import landing primitives from `bindrunes/domains/landing` and the full template from `bindrunes/templates`.
 
 ## Setup
 
@@ -22,13 +22,13 @@ Ensure all landing content is contained inside a `<div class="landing-page">` wr
 
 ---
 
-## MarketingPage — Data-Driven Landing Pages
+## MarketingTemplate — Data-Driven Landing Pages
 
 The fastest way to build a landing page. Pass your data, get a complete page.
 
 ```svelte
 <script lang="ts">
-  import { MarketingPage } from "bindrunes/landing";
+  import { MarketingTemplate } from "bindrunes/templates";
   import { ArrowRight, Zap, Shield, Clock } from "lucide-svelte";
 
   const features = [
@@ -43,7 +43,7 @@ The fastest way to build a landing page. Pass your data, get a complete page.
   ];
 </script>
 
-<MarketingPage
+<MarketingTemplate
   logo={{ href: "/", label: "MySaaS" }}
   navLinks={[{ label: "Features", href: "#features" }, { label: "Pricing", href: "#pricing" }]}
   cta={{ label: "Get Started", href: "/signup" }}
@@ -118,7 +118,7 @@ Wraps content sections with container, spacing, and animation. Import from `bind
 ```svelte
 <script lang="ts">
   import { PageSection } from "bindrunes";
-  import { FeatureGrid } from "bindrunes/landing";
+  import { FeatureGrid } from "bindrunes/domains/landing";
 </script>
 
 <PageSection id="features" size="xl" background="muted" spacing="wide">
@@ -147,7 +147,7 @@ For full control, compose sections manually:
 
 ```svelte
 <script lang="ts">
-  import { createLandingState, LandingNav, HeroBanner, FeatureGrid, PricingTable, SiteFooter } from "bindrunes/landing";
+  import { createLandingState, LandingNav, HeroBanner, FeatureGrid, PricingTable, SiteFooter } from "bindrunes/domains/landing";
   const landing = createLandingState();
 </script>
 
