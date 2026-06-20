@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Command } from "bits-ui";
-import type { OmnibarState } from "../utils/createOmnibar.svelte";
+import type { OmnibarState } from "../../utils/createOmnibar.svelte";
 
 let {
 	state,

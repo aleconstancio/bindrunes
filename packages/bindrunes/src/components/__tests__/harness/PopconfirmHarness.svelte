@@ -1,5 +1,5 @@
 <script lang="ts">
-import Popconfirm from "../../Popconfirm.svelte";
+import Popconfirm from "../../../primitives/Popconfirm.svelte";
 
 let {
 	title = "Are you sure?",

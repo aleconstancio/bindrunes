@@ -1,5 +1,5 @@
 <script lang="ts">
-import Label from "../../Label.svelte";
+import Label from "../../../primitives/Label.svelte";
 
 let { forEl = undefined as string | undefined, text = "Email" } = $props();
 </script>

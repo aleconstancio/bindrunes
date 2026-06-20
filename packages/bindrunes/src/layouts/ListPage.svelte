@@ -1,9 +1,9 @@
 <script lang="ts" generics="TData">
 import type { Snippet } from "svelte";
-import EmptyState from "../components/EmptyState.svelte";
 import PageLoading from "../components/PageLoading.svelte";
 import Alert from "../primitives/Alert.svelte";
 import Card from "../primitives/Card.svelte";
+import EmptyState from "../primitives/EmptyState.svelte";
 import Input from "../primitives/Input.svelte";
 import PageHeader from "./PageHeader.svelte";
 

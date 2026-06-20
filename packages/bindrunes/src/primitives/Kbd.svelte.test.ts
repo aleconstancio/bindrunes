@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import { expectNoAxeViolations } from "../helpers/axe";
-import KbdHarness from "./__tests__/harness/KbdHarness.svelte";
+import { expectNoAxeViolations } from "../../helpers/axe";
+import KbdHarness from "../components/__tests__/harness/KbdHarness.svelte";
 
 describe("Kbd", () => {
 	it("renders without crashing", () => {

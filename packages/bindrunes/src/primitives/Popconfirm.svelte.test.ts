@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import PopconfirmHarness from "./__tests__/harness/PopconfirmHarness.svelte";
+import PopconfirmHarness from "../components/__tests__/harness/PopconfirmHarness.svelte";
 
 describe("Popconfirm", () => {
 	it("renders without crashing", () => {

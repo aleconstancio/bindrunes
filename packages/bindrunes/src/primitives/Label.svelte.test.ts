@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
-import { expectNoAxeViolations } from "../helpers/axe";
-import LabelHarness from "./__tests__/harness/LabelHarness.svelte";
+import { expectNoAxeViolations } from "../../helpers/axe";
+import LabelHarness from "../components/__tests__/harness/LabelHarness.svelte";
 
 describe("Label", () => {
 	it("renders without crashing", () => {

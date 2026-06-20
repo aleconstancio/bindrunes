@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import EmptyState from "../../components/EmptyState.svelte";
 import PageHeader from "../../layouts/PageHeader.svelte";
 import Button from "../../primitives/Button.svelte";
+import EmptyState from "../../primitives/EmptyState.svelte";
 import type { Column, SortState } from "../../shared-types";
 import Block from "../Block.svelte";
 import AdvancedTable from "./AdvancedTable.svelte";
