@@ -160,6 +160,7 @@ export { createApiClient } from "./utils/createApiClient.ts";
 export { createAsyncState } from "./utils/createAsyncState.svelte.ts";
 // ── Utilities ──
 export { createEnv } from "./utils/createEnv.ts";
+export { createForm } from "./utils/createForm.svelte";
 // ── Composables: i18n ──
 export type { Dict, I18nOptions, I18nResult } from "./utils/createI18n.svelte.ts";
 export { createI18n } from "./utils/createI18n.svelte.ts";
@@ -168,6 +169,7 @@ export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
 // ── Composables: Context ──
 /** Type-safe Svelte context wrapper using Symbol keys. */
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte";
+export { createMutation } from "./utils/createMutation.svelte";
 // ── Composables: Omnibar ──
 export type {
 	CreateOmnibarOptions,
@@ -177,6 +179,8 @@ export type {
 export { createOmnibar } from "./utils/createOmnibar.svelte.ts";
 export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
+// ── create* Aliases ──
+export { createQuery } from "./utils/createQuery.svelte";
 export { createStorage } from "./utils/createStorage.ts";
 export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
 export { defineTheme } from "./utils/defineTheme.svelte.ts";
