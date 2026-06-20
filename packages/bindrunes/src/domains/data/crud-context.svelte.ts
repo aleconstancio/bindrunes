@@ -130,6 +130,6 @@ export function createCrudProvider<T extends CrudItem = CrudItem>(
 	return createMetaContext(CRUD_KEY, () => state);
 }
 
-export function useCrudProvider<T extends CrudItem = CrudItem>(): CrudProviderState<T> {
+export function useCrud<T extends CrudItem = CrudItem>(): CrudProviderState<T> {
 	return useMetaContext<CrudProviderState<T>>(CRUD_KEY);
 }

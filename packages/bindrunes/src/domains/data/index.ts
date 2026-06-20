@@ -12,7 +12,7 @@ export { default as CrudEditForm } from "./CrudEditForm.svelte";
 export { default as CrudEditModal } from "./CrudEditModal.svelte";
 export { default as CrudListPage } from "./CrudListPage.svelte";
 export type { CrudItem, CrudProviderState } from "./crud-context.svelte";
-export { createCrudProvider, useCrudProvider } from "./crud-context.svelte";
+export { createCrudProvider, useCrud } from "./crud-context.svelte";
 export { default as ExportFlow } from "./ExportFlow.svelte";
 export { default as FacetedSearch } from "./FacetedSearch.svelte";
 export { default as ImportFlow } from "./ImportFlow.svelte";

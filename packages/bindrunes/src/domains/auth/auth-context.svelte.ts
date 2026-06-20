@@ -79,6 +79,6 @@ export function createAuthProvider(options?: {
 	return createMetaContext(AUTH_CONTEXT_KEY, () => state);
 }
 
-export function useAuthProvider(): AuthProviderState {
+export function useAuth(): AuthProviderState {
 	return useMetaContext<AuthProviderState>(AUTH_CONTEXT_KEY);
 }

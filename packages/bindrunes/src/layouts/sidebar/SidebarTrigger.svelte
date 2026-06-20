@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { getSidebarContext } from "./sidebar-context.svelte";
+import { useSidebar } from "./sidebar-context.svelte";
 
 let { children }: { children?: Snippet } = $props();
 
-const _ctx = getSidebarContext();
+const _ctx = useSidebar();
 </script>
 
 <button

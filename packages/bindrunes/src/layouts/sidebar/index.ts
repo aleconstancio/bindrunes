@@ -14,4 +14,4 @@ export { default as SidebarRail } from "./SidebarRail.svelte";
 export { default as SidebarSeparator } from "./SidebarSeparator.svelte";
 export { default as SidebarTrigger } from "./SidebarTrigger.svelte";
 export { SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, SIDEBAR_WIDTH_MOBILE } from "./sidebar-constants";
-export { createSidebarState, getSidebarContext } from "./sidebar-context.svelte";
+export { createSidebarState, useSidebar } from "./sidebar-context.svelte";

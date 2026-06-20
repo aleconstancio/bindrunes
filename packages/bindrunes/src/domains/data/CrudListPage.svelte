@@ -6,7 +6,7 @@ import EmptyState from "../../EmptyState.svelte";
 import PageHeader from "../../PageHeader.svelte";
 import Block from "../Block.svelte";
 import AdvancedTable from "./AdvancedTable.svelte";
-import { useCrudProvider } from "./crud-context.svelte";
+import { useCrud } from "./crud-context.svelte";
 import FacetedSearch from "./FacetedSearch.svelte";
 
 let {
@@ -60,9 +60,9 @@ let {
 } = $props();
 
 // Try to use CrudProvider context, fall back to props
-let crud = $state<ReturnType<typeof useCrudProvider> | null>(null);
+let crud = $state<ReturnType<typeof useCrud> | null>(null);
 try {
-	crud = useCrudProvider();
+	crud = useCrud();
 } catch {
 	// No context — use props
 }

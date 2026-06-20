@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { getSidebarContext } from "./sidebar-context.svelte";
+import { useSidebar } from "./sidebar-context.svelte";
 
 let {
 	side = "left" as "left" | "right",
@@ -16,7 +16,7 @@ let {
 	children?: Snippet;
 } = $props();
 
-const ctx = getSidebarContext();
+const ctx = useSidebar();
 </script>
 
 {#if collapsible === 'offcanvas'}

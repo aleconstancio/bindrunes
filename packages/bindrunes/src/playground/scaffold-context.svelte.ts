@@ -66,6 +66,6 @@ export function createDemoState(config: {
 	return createMetaContext(KEY, () => state);
 }
 
-export function useDemoState(): DemoState {
+export function useDemo(): DemoState {
 	return useMetaContext<DemoState>(KEY);
 }

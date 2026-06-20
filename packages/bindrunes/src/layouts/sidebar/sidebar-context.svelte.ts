@@ -7,7 +7,7 @@ export type SidebarState = ReturnType<typeof createSidebarState>;
 
 const KEY = Symbol("bindrunes-sidebar");
 
-export function getSidebarContext(): SidebarState {
+export function useSidebar(): SidebarState {
 	return useMetaContext<SidebarState>(KEY);
 }
 

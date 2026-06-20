@@ -1,6 +1,6 @@
 export { default as AuthLayout } from "./AuthLayout.svelte";
 export type { AuthProviderState, AuthUser } from "./auth-context.svelte";
-export { createAuthProvider, useAuthProvider } from "./auth-context.svelte";
+export { createAuthProvider, useAuth } from "./auth-context.svelte";
 export { default as EmailVerification } from "./EmailVerification.svelte";
 export { default as ForgotPassword } from "./ForgotPassword.svelte";
 export { default as LoginForm } from "./LoginForm.svelte";
