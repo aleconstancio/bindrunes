@@ -46,7 +46,7 @@ export const components: PlaygroundComponent[] = [
     name: "Alert",
     category: "Foundation",
     props: {
-      variant: { type: "select", options: ["info", "success", "warning", "error"], default: "info" },
+      variant: { type: "select", options: ["info", "success", "warning", "destructive"], default: "info" },
       title: { type: "text", default: "Information" }
     },
     slot: "This is an informational message."
@@ -57,6 +57,30 @@ export const components: PlaygroundComponent[] = [
     props: {
       size: { type: "select", options: ["sm", "md", "lg", "xl"], default: "md" },
       name: { type: "text", default: "John Doe" }
+    }
+  },
+  {
+    name: "Separator",
+    category: "Foundation",
+    props: {
+      orientation: { type: "select", options: ["horizontal", "vertical"], default: "horizontal" }
+    }
+  },
+  {
+    name: "Skeleton",
+    category: "Foundation",
+    props: {
+      lines: { type: "number", default: 3 },
+      width: { type: "text", default: "100%" }
+    }
+  },
+  {
+    name: "Progress",
+    category: "Foundation",
+    props: {
+      value: { type: "number", default: 60 },
+      max: { type: "number", default: 100 },
+      showValue: { type: "switch", default: true }
     }
   },
   // Forms
@@ -99,6 +123,56 @@ export const components: PlaygroundComponent[] = [
     props: {
       striped: { type: "switch", default: false },
       hoverable: { type: "switch", default: true }
+    }
+  },
+  // Overlays
+  {
+    name: "Dialog",
+    category: "Overlays",
+    props: {
+      title: { type: "text", default: "Dialog Title" }
+    },
+    slot: "Dialog content goes here."
+  },
+  {
+    name: "Tooltip",
+    category: "Overlays",
+    props: {
+      side: { type: "select", options: ["top", "right", "bottom", "left"], default: "top" },
+      content: { type: "text", default: "Tooltip content" }
+    },
+    slot: "Hover me"
+  },
+  // Navigation
+  {
+    name: "Tabs",
+    category: "Navigation",
+    props: {
+      defaultValue: { type: "text", default: "tab1" }
+    }
+  },
+  {
+    name: "Pagination",
+    category: "Navigation",
+    props: {
+      totalPages: { type: "number", default: 10 },
+      currentPage: { type: "number", default: 1 }
+    }
+  },
+  // Feedback
+  {
+    name: "Spinner",
+    category: "Feedback",
+    props: {
+      size: { type: "select", options: ["sm", "md", "lg"], default: "md" }
+    }
+  },
+  {
+    name: "EmptyState",
+    category: "Feedback",
+    props: {
+      title: { type: "text", default: "No items found" },
+      description: { type: "text", default: "Create your first item to get started." }
     }
   }
 ];

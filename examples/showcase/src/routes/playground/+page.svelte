@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet } from "bindrunes";
+  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet, Alert, Avatar, Separator, Skeleton, Progress, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState } from "bindrunes";
   import { components, categories, type PlaygroundComponent } from "$lib/playground-data";
 
   let selectedCategory = $state(categories[0]);
   let selectedIdx = $state(0);
   let propValues = $state<Record<string, unknown>>({});
+  let dialogOpen = $state(false);
 
   const filteredComponents = $derived(
     components.filter(c => c.category === selectedCategory)
@@ -123,6 +124,58 @@
           </div>
         {:else if current?.name === "Switch"}
           <Switch disabled={propValues.disabled} />
+        {:else if current?.name === "Alert"}
+          <div class="w-full">
+            <Alert variant={propValues.variant} title={propValues.title}>{current.slot}</Alert>
+          </div>
+        {:else if current?.name === "Avatar"}
+          <Avatar size={propValues.size} name={propValues.name} />
+        {:else if current?.name === "Separator"}
+          <div class="w-full {propValues.orientation === 'vertical' ? 'h-8' : ''}">
+            <Separator orientation={propValues.orientation} />
+          </div>
+        {:else if current?.name === "Skeleton"}
+          <div class="w-full">
+            <Skeleton lines={propValues.lines} width={propValues.width} />
+          </div>
+        {:else if current?.name === "Progress"}
+          <div class="w-full">
+            <Progress value={propValues.value} max={propValues.max} showValue={propValues.showValue} />
+          </div>
+        {:else if current?.name === "Dialog"}
+          <Dialog title={propValues.title} open={dialogOpen}>
+            <p class="text-body-md text-muted-foreground">{current.slot}</p>
+          </Dialog>
+          <Button onclick={() => (dialogOpen = true)}>Open Dialog</Button>
+        {:else if current?.name === "Tooltip"}
+          <TooltipProvider>
+            <Tooltip content={propValues.content} side={propValues.side}>
+              <Button variant="outline">{current.slot}</Button>
+            </Tooltip>
+          </TooltipProvider>
+        {:else if current?.name === "Tabs"}
+          <div class="w-full">
+            <Tabs value={propValues.defaultValue}>
+              <TabsList>
+                <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+                <TabsTrigger value="tab2">Tab 2</TabsTrigger>
+                <TabsTrigger value="tab3">Tab 3</TabsTrigger>
+              </TabsList>
+              <TabsContent value="tab1"><p class="text-body-sm text-muted-foreground">Content for Tab 1</p></TabsContent>
+              <TabsContent value="tab2"><p class="text-body-sm text-muted-foreground">Content for Tab 2</p></TabsContent>
+              <TabsContent value="tab3"><p class="text-body-sm text-muted-foreground">Content for Tab 3</p></TabsContent>
+            </Tabs>
+          </div>
+        {:else if current?.name === "Pagination"}
+          <div class="w-full">
+            <Pagination totalPages={propValues.totalPages} currentPage={propValues.currentPage} />
+          </div>
+        {:else if current?.name === "Spinner"}
+          <Spinner size={propValues.size} />
+        {:else if current?.name === "EmptyState"}
+          <div class="w-full">
+            <EmptyState title={propValues.title} description={propValues.description} />
+          </div>
         {:else}
           <p class="text-body-sm text-muted-foreground">Preview not available</p>
         {/if}
