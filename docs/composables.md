@@ -222,13 +222,6 @@ const t = useI18n();
 t("greeting"); // Looks up "greeting" key in active dictionary
 ```
 
-### `useTable`
-State machine for sorting, pagination, and filtering in tables.
-```ts
-import { useTable } from "bindrunes";
-const table = useTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
-```
-
 ### `createOmnibar`
 State container for global launcher keyboard controls (Cmd+K).
 
