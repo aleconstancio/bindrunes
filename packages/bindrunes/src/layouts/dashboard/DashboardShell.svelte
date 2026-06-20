@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
-import RuleFootnote from "../../components/RuleFootnote.svelte";
+import RuleFootnote from "../../primitives/RuleFootnote.svelte";
 import ThemeToggle from "../../primitives/ThemeToggle.svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
 import { derivePageInfo } from "../../utils/navigation";

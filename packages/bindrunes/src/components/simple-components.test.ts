@@ -1,15 +1,15 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 import DashboardShell from "../layouts/dashboard/DashboardShell.svelte";
+import { Tabs } from "../layouts/tabs/index";
 import AlertDialog from "../primitives/AlertDialog.svelte";
 import Avatar from "../primitives/Avatar.svelte";
 import Kbd from "../primitives/Kbd.svelte";
 import Label from "../primitives/Label.svelte";
 import MetricCard from "../primitives/MetricCard.svelte";
+import RuleFootnote from "../primitives/RuleFootnote.svelte";
 import Separator from "../primitives/Separator.svelte";
 import Skeleton from "../primitives/Skeleton.svelte";
-import RuleFootnote from "./RuleFootnote.svelte";
-import { Tabs } from "./tabs/index";
 
 describe("Simple components", () => {
 	describe("AlertDialog", () => {

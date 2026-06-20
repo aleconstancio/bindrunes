@@ -18,13 +18,6 @@ export type {
 	TabsProps,
 	TooltipProps,
 } from "./components/component-props";
-export { default as PageLoading } from "./components/PageLoading.svelte";
-export { default as RangeCalendar } from "./components/RangeCalendar.svelte";
-export { default as RuleFootnote } from "./components/RuleFootnote.svelte";
-export { default as StatusChip } from "./components/StatusChip.svelte";
-export { default as TooltipProvider } from "./components/TooltipProvider.svelte";
-// ── Data Display ──
-export { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/tabs/index.ts";
 // ── Charts ──
 export { default as DataChart } from "./domains/data/DataChart.svelte";
 export { default as DataTable } from "./domains/data/DataTable.svelte";
@@ -45,6 +38,8 @@ export { default as PageShell } from "./layouts/PageShell.svelte";
 // ── SEO & Head ──
 export { default as SEO } from "./layouts/SEO.svelte";
 export { default as SectionHeader } from "./layouts/SectionHeader.svelte";
+// ── Data Display ──
+export { Tabs, TabsContent, TabsList, TabsTrigger } from "./layouts/tabs/index.ts";
 // ── Foundation ──
 export { default as Accordion } from "./primitives/Accordion.svelte";
 export { default as AccordionItem } from "./primitives/AccordionItem.svelte";
@@ -86,6 +81,7 @@ export { default as NavigationMenu } from "./primitives/NavigationMenu.svelte";
 export { default as NumberInput } from "./primitives/NumberInput.svelte";
 export { default as Omnibar } from "./primitives/Omnibar.svelte";
 export { default as OTPInput } from "./primitives/OTPInput.svelte";
+export { default as PageLoading } from "./primitives/PageLoading.svelte";
 export { default as Pagination } from "./primitives/Pagination.svelte";
 export { default as PasswordInput } from "./primitives/PasswordInput.svelte";
 export { default as PinInput } from "./primitives/PinInput.svelte";
@@ -93,9 +89,11 @@ export { default as Popconfirm } from "./primitives/Popconfirm.svelte";
 export { default as Popover } from "./primitives/Popover.svelte";
 export { default as Progress } from "./primitives/Progress.svelte";
 export { default as RadioGroup } from "./primitives/RadioGroup.svelte";
+export { default as RangeCalendar } from "./primitives/RangeCalendar.svelte";
 export { default as RatingGroup } from "./primitives/RatingGroup.svelte";
 // ── Rich Text Editor ──
 export { default as RichTextEditor } from "./primitives/RichTextEditor.svelte";
+export { default as RuleFootnote } from "./primitives/RuleFootnote.svelte";
 export { default as ScrollArea } from "./primitives/ScrollArea.svelte";
 export { default as Select } from "./primitives/Select.svelte";
 export { default as Separator } from "./primitives/Separator.svelte";
@@ -103,6 +101,7 @@ export { default as Sheet } from "./primitives/Sheet.svelte";
 export { default as Skeleton } from "./primitives/Skeleton.svelte";
 export { default as Slider } from "./primitives/Slider.svelte";
 export { default as Spinner } from "./primitives/Spinner.svelte";
+export { default as StatusChip } from "./primitives/StatusChip.svelte";
 export { default as Stepper } from "./primitives/Stepper.svelte";
 export { default as Suspense } from "./primitives/Suspense.svelte";
 export { default as Switch } from "./primitives/Switch.svelte";
@@ -117,6 +116,7 @@ export { default as ToastProvider } from "./primitives/ToastProvider.svelte";
 export { default as Toggle } from "./primitives/Toggle.svelte";
 export { default as ToggleGroup } from "./primitives/ToggleGroup.svelte";
 export { default as Tooltip } from "./primitives/Tooltip.svelte";
+export { default as TooltipProvider } from "./primitives/TooltipProvider.svelte";
 export { default as TreeView } from "./primitives/TreeView.svelte";
 export type {
 	Column,

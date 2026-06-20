@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import TooltipProvider from "../../primitives/TooltipProvider.svelte";
 import Tooltip from "../Tooltip.svelte";
-import TooltipProvider from "../TooltipProvider.svelte";
 
 let {
 	content = "",

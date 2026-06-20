@@ -1,7 +1,7 @@
 <script lang="ts" generics="TResult">
 import type { Snippet } from "svelte";
 import { onMount } from "svelte";
-import PageLoading from "../components/PageLoading.svelte";
+import PageLoading from "../primitives/PageLoading.svelte";
 
 let {
 	load = undefined as (() => Promise<TResult>) | undefined,

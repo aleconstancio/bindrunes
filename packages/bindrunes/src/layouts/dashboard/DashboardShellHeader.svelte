@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import StatusChip from "../../components/StatusChip.svelte";
+import StatusChip from "../../primitives/StatusChip.svelte";
 import type { StatusVariant } from "../../shared-types";
 
 let {

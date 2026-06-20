@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
-import StatusChip from "../../components/StatusChip.svelte";
+import StatusChip from "../../primitives/StatusChip.svelte";
 import ThemeToggle from "../../primitives/ThemeToggle.svelte";
 import type { NavGroup, StatusVariant } from "../../shared-types";
 import MetaScrollable from "../MetaScrollable.svelte";

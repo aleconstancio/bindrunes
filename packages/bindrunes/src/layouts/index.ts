@@ -20,7 +20,6 @@ export { default as PageSection } from "./PageSection.svelte";
 export { default as PageShell } from "./PageShell.svelte";
 export { default as SEO } from "./SEO.svelte";
 export { default as SectionHeader } from "./SectionHeader.svelte";
-
 // Sidebar components
 export {
 	Sidebar,
@@ -39,3 +38,5 @@ export {
 	SidebarSeparator,
 	SidebarTrigger,
 } from "./sidebar/index.ts";
+// Tabs components
+export { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs/index.ts";
