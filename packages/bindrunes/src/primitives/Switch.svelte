@@ -9,18 +9,20 @@ let {
 	error = "",
 	label = undefined as string | undefined,
 	name = undefined as string | undefined,
+	class: className = "",
 }: {
 	checked?: boolean;
 	disabled?: boolean;
 	error?: string;
 	label?: string;
 	name?: string;
+	class?: string;
 } = $props();
 
 let errorId = $derived(name ? `${name}-error` : undefined);
 </script>
 
-<label class="inline-flex items-center gap-3 cursor-pointer">
+<label class="inline-flex items-center gap-3 cursor-pointer {className}">
   <BitsSwitch.Root
     {disabled}
     aria-invalid={error ? true : undefined}

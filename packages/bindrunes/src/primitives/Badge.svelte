@@ -20,6 +20,7 @@ let {
 	removable = false,
 	onRemove = undefined as (() => void) | undefined,
 	icon,
+	class: className = "",
 	children,
 	...restProps
 }: {
@@ -28,6 +29,7 @@ let {
 	removable?: boolean;
 	onRemove?: () => void;
 	icon?: Snippet;
+	class?: string;
 	children?: Snippet;
 } = $props();
 
@@ -54,7 +56,7 @@ const sizeClasses: Record<Size, string> = {
   data-size={size}
   class="inline-flex items-center gap-1 rounded-full font-medium
          transition-colors duration-[--duration-snappy]
-         {variantClasses[variant]} {sizeClasses[size]}"
+         {variantClasses[variant]} {sizeClasses[size]} {className}"
    {...restProps}
  >
   {#if icon}
