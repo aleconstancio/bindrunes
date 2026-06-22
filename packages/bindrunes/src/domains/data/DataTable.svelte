@@ -1,7 +1,7 @@
 <script lang="ts">
-import Pagination from "../primitives/Pagination.svelte";
-import type { Column, SortState } from "../shared-types";
-import { defaultTableFallbacks } from "../utils/tableFallbacks";
+import Pagination from "../../primitives/Pagination.svelte";
+import type { Column, SortState } from "../../shared-types";
+import { defaultTableFallbacks } from "../../utils/tableFallbacks";
 
 let {
 	columns = [] as Column[],

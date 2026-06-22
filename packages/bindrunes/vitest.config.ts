@@ -74,6 +74,17 @@ export default defineConfig({
 			{
 				extends: true,
 				test: {
+					name: "domains",
+					include: ["src/domains/**/*.{test,spec}.{js,ts}"],
+					environment: "happy-dom",
+					pool: "forks",
+					maxForks: 2,
+					minForks: 2,
+				},
+			},
+			{
+				extends: true,
+				test: {
 					name: "layouts",
 					include: ["src/layouts/**/*.{test,spec}.{js,ts}"],
 					environment: "happy-dom",
