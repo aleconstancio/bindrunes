@@ -169,6 +169,16 @@ export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
 // ── Composables: Context ──
 /** Type-safe Svelte context wrapper using Symbol keys. */
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte";
+export type {
+	CreateMultiTenantOptions,
+	MultiTenantResult,
+	Tenant,
+} from "./utils/createMultiTenant.svelte";
+export {
+	createMultiTenant,
+	createMultiTenantContext,
+	useMultiTenantContext,
+} from "./utils/createMultiTenant.svelte";
 export { createMutation } from "./utils/createMutation.svelte";
 // ── Composables: Omnibar ──
 export type {
