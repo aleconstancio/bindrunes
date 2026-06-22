@@ -1,6 +1,14 @@
 import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 
-const AESTHETICS = ["editorial", "glass", "bento", "expressive"] as const;
+const AESTHETICS = [
+	"editorial",
+	"glass",
+	"bento",
+	"expressive",
+	"neon",
+	"brutalist",
+	"organic",
+] as const;
 export type Aesthetic = (typeof AESTHETICS)[number];
 
 export function useAesthetic(options?: { default?: Aesthetic }) {

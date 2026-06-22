@@ -1,0 +1,30 @@
+/* ── organic aesthetic ── */
+/* Soft, flowing, natural shapes. Pill corners, spring motion, paper texture. */
+
+[data-aesthetic="organic"] {
+	/* Radius — pill */
+	--radius: 1.5rem;
+	--radius-md: 1.5rem;
+	--radius-lg: 2rem;
+	--radius-xl: 2.5rem;
+
+	/* Shadow — soft, natural */
+	--shadow-xs: 0 1px 4px oklch(0 0 0 / 0.03);
+	--shadow-sm: 0 2px 8px -2px oklch(0 0 0 / 0.05);
+	--shadow-md: 0 4px 16px -4px oklch(0 0 0 / 0.08);
+	--shadow-lg: 0 8px 24px -6px oklch(0 0 0 / 0.1);
+
+	/* Motion — spring, flowing */
+	--duration-snappy: 200ms;
+	--duration-fluid: 350ms;
+	--duration-slow: 500ms;
+	--ease-spring: linear(0, 0.4 7%, 0.9 25%, 1);
+
+	/* Aesthetic hooks */
+	--button-treatment: gradient;
+	--button-bg: linear-gradient(135deg, var(--primary), var(--accent));
+	--card-treatment: tinted;
+	--surface-texture: paper;
+	--hero-translate: 20px;
+	--shadow-emphasis: medium;
+}

@@ -231,13 +231,15 @@ export { useAccess } from "./utils/useAccess.svelte.ts";
 // ── Composables: Design System ──
 export type { Aesthetic } from "./utils/useAesthetic.svelte.ts";
 export { useAesthetic } from "./utils/useAesthetic.svelte.ts";
+// ── Composables: Reactivity ──
+/** Animation class names for enter, exit, slide, fade, and scale transitions. */
+export { useAnimation } from "./utils/useAnimation.svelte.ts";
 /** Reactive authentication token handling with login/logout/session. */
 export type { AuthStorage, User } from "./utils/useAuth.svelte.ts";
 export { useAuth } from "./utils/useAuth.svelte.ts";
 // ── Composables: Components ──
 export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
 export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
-// ── Composables: Reactivity ──
 /** Copy to clipboard with success/error state. */
 export { useClipboard } from "./utils/useClipboard.svelte.ts";
 export { useCounter } from "./utils/useCounter.svelte.ts";

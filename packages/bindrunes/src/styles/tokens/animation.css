@@ -1,0 +1,89 @@
+/* ── Animation tokens ── */
+/* Composable animation presets that use the motion tokens from aesthetics. */
+
+:root {
+	/* Base animation durations (overridden by aesthetics) */
+	--animate-enter: var(--duration-fluid) var(--ease-standard) both;
+	--animate-exit: var(--duration-snappy) var(--ease-accelerated) both;
+
+	/* Transform presets */
+	--animate-slide-up-distance: 8px;
+	--animate-scale-in-from: 0.95;
+
+	/* Composed animations */
+	--animate-slide-up: translateY(var(--animate-slide-up-distance)) var(--animate-enter);
+	--animate-fade-in: opacity 0 var(--animate-enter);
+	--animate-scale-in: scale(var(--animate-scale-in-from)) var(--animate-enter);
+	--animate-slide-down: translateY(calc(-1 * var(--animate-slide-up-distance))) var(--animate-enter);
+	--animate-slide-left: translateX(var(--animate-slide-up-distance)) var(--animate-enter);
+	--animate-slide-right: translateX(calc(-1 * var(--animate-slide-up-distance)))
+		var(--animate-enter);
+}
+
+/* CSS classes for use in components */
+.animate-enter {
+	animation: bindrunes-fade-in var(--animate-enter);
+}
+
+.animate-exit {
+	animation: bindrunes-fade-in var(--animate-exit) reverse;
+}
+
+.animate-slide-up {
+	animation: bindrunes-slide-up var(--animate-slide-up);
+}
+
+.animate-fade-in {
+	animation: bindrunes-fade-in var(--animate-fade-in);
+}
+
+.animate-scale-in {
+	animation: bindrunes-scale-in var(--animate-scale-in);
+}
+
+@keyframes bindrunes-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes bindrunes-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(var(--animate-slide-up-distance));
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes bindrunes-scale-in {
+	from {
+		opacity: 0;
+		transform: scale(var(--animate-scale-in-from));
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	:root {
+		--animate-enter: 0ms both;
+		--animate-exit: 0ms both;
+	}
+
+	.animate-enter,
+	.animate-exit,
+	.animate-slide-up,
+	.animate-fade-in,
+	.animate-scale-in {
+		animation: none;
+	}
+}
