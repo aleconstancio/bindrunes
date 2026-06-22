@@ -14,6 +14,19 @@ export interface Tenant {
 	name?: string;
 }
 
+export interface OAuthProvider {
+	/** OAuth provider name (e.g. "google", "github") */
+	name: string;
+	/** OAuth authorize endpoint URL */
+	authorizeUrl: string;
+	/** OAuth client ID */
+	clientId: string;
+	/** Optional scopes to request */
+	scopes?: string[];
+	/** Optional state parameter for CSRF protection */
+	state?: string;
+}
+
 export interface CreateClientAuthOptions {
 	fetchProfile?: () => Promise<User | null>;
 	login?: (email: string, password: string) => Promise<{ token?: string; user?: User }>;
@@ -24,6 +37,10 @@ export interface CreateClientAuthOptions {
 	onLogout?: () => void;
 	tokenStorage?: "cookie" | "localStorage";
 	tokenKey?: string;
+	/** Map of OAuth provider names to their configuration */
+	oauthProviders?: Record<string, OAuthProvider>;
+	/** Base URL of the OAuth callback endpoint (default: current origin + "/auth/callback") */
+	oauthCallbackUrl?: string;
 }
 
 const userSchema = object({
@@ -68,6 +85,8 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		onLogout,
 		tokenStorage = "cookie",
 		tokenKey = "bindrunes-session",
+		oauthProviders = {},
+		oauthCallbackUrl,
 	} = options;
 
 	let user = $state<User | null>(null);
@@ -75,11 +94,16 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 	let loading = $state(true);
 	let error = $state<string | null>(null);
 	let token = $state<string | null>(null);
+	let sessionEnabled = $state(true);
+	let sessionTimeoutMs = $state(0);
+	let sessionTimeoutTimer = $state<ReturnType<typeof setTimeout> | null>(null);
+	let sessionTimeoutCallback = $state<(() => void) | null>(null);
 
 	const isAuthenticated = $derived(user !== null);
 
 	function getToken(): string | null {
 		if (typeof document === "undefined") return null;
+		if (!sessionEnabled) return null;
 		if (tokenStorage === "localStorage") {
 			return localStorage.getItem(tokenKey);
 		}
@@ -90,6 +114,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 	function setToken(value: string) {
 		if (typeof document === "undefined") return;
 		token = value;
+		if (!sessionEnabled) return;
 		if (tokenStorage === "localStorage") {
 			localStorage.setItem(tokenKey, value);
 		} else {
@@ -114,7 +139,20 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		return success ? (output as User) : null;
 	}
 
-	async function bootstrap() {
+	function resetSessionTimeout() {
+		if (sessionTimeoutTimer) {
+			clearTimeout(sessionTimeoutTimer);
+			sessionTimeoutTimer = null;
+		}
+		if (sessionTimeoutMs > 0 && user) {
+			sessionTimeoutTimer = setTimeout(() => {
+				sessionTimeoutCallback?.();
+				logout();
+			}, sessionTimeoutMs);
+		}
+	}
+
+	function bootstrap() {
 		if (typeof window === "undefined") {
 			loading = false;
 			return;
@@ -133,21 +171,24 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 
 		token = storedToken;
 
-		try {
-			const profile = await fetchProfile();
-			const parsed = profile ? parseUser(profile) : null;
-			if (parsed) {
-				user = parsed;
-				onLogin?.(parsed);
-			} else {
+		fetchProfile()
+			.then((profile) => {
+				const parsed = profile ? parseUser(profile) : null;
+				if (parsed) {
+					user = parsed;
+					onLogin?.(parsed);
+					resetSessionTimeout();
+				} else {
+					clearToken();
+				}
+			})
+			.catch((err) => {
+				error = err instanceof Error ? err.message : "Failed to load profile";
 				clearToken();
-			}
-		} catch (err) {
-			error = err instanceof Error ? err.message : "Failed to load profile";
-			clearToken();
-		} finally {
-			loading = false;
-		}
+			})
+			.finally(() => {
+				loading = false;
+			});
 	}
 
 	async function login(email: string, password: string) {
@@ -168,6 +209,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 				if (parsed) {
 					user = parsed;
 					onLogin?.(parsed);
+					resetSessionTimeout();
 				}
 			} else if (fetchProfile) {
 				const profile = await fetchProfile();
@@ -175,6 +217,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 				if (parsed) {
 					user = parsed;
 					onLogin?.(parsed);
+					resetSessionTimeout();
 				}
 			}
 
@@ -187,7 +230,66 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		}
 	}
 
+	function loginWithOAuth(provider: string, redirectUrl?: string) {
+		const config = oauthProviders[provider];
+		if (!config) {
+			throw new Error(`OAuth provider "${provider}" not configured`);
+		}
+
+		if (typeof window === "undefined") return;
+
+		const callbackUrl =
+			redirectUrl || oauthCallbackUrl || `${window.location.origin}/auth/callback`;
+		const state = config.state || crypto.randomUUID();
+
+		const params = new URLSearchParams({
+			client_id: config.clientId,
+			redirect_uri: callbackUrl,
+			response_type: "code",
+			state,
+		});
+
+		if (config.scopes && config.scopes.length > 0) {
+			params.set("scope", config.scopes.join(" "));
+		}
+
+		// Persist state for CSRF validation on callback
+		if (tokenStorage === "localStorage") {
+			localStorage.setItem(`${tokenKey}-oauth-state`, state);
+		} else {
+			// biome-ignore lint/suspicious/noDocumentCookie: CSRF state is required for OAuth security
+			document.cookie = `${tokenKey}-oauth-state=${state}; path=/; SameSite=Lax`;
+		}
+
+		window.location.href = `${config.authorizeUrl}?${params.toString()}`;
+	}
+
+	function persistSession(enabled: boolean) {
+		sessionEnabled = enabled;
+		if (!enabled) {
+			clearToken();
+		}
+	}
+
+	function onSessionTimeout(callback: () => void) {
+		sessionTimeoutCallback = callback;
+	}
+
+	function setSessionTimeout(ms: number) {
+		sessionTimeoutMs = ms;
+		if (ms > 0 && user) {
+			resetSessionTimeout();
+		} else if (sessionTimeoutTimer) {
+			clearTimeout(sessionTimeoutTimer);
+			sessionTimeoutTimer = null;
+		}
+	}
+
 	async function logout() {
+		if (sessionTimeoutTimer) {
+			clearTimeout(sessionTimeoutTimer);
+			sessionTimeoutTimer = null;
+		}
 		try {
 			await logoutFn?.();
 		} finally {
@@ -205,6 +307,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 			const result = await refreshFn();
 			if (result.token) {
 				setToken(result.token);
+				resetSessionTimeout();
 			}
 		} catch {
 			await logout();
@@ -212,8 +315,46 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		}
 	}
 
+	/**
+	 * Wraps a fetch call with automatic token refresh on 401 responses.
+	 */
+	async function fetchWithAuth(url: string, init?: RequestInit): Promise<Response> {
+		const doFetch = async (withToken: boolean) => {
+			const headers = new Headers(init?.headers);
+			if (withToken && token) {
+				headers.set("Authorization", `Bearer ${token}`);
+			}
+			return fetch(url, { ...init, headers });
+		};
+
+		let response = await doFetch(true);
+
+		if (response.status === 401 && refreshFn) {
+			try {
+				const result = await refreshFn();
+				if (result.token) {
+					setToken(result.token);
+					resetSessionTimeout();
+					// Retry the request with the new token
+					response = await doFetch(true);
+				} else {
+					await logout();
+					onUnauthorized?.();
+				}
+			} catch {
+				await logout();
+				onUnauthorized?.();
+			}
+		}
+
+		return response;
+	}
+
 	function setUser(newUser: User | null) {
 		user = newUser;
+		if (newUser) {
+			resetSessionTimeout();
+		}
 	}
 
 	function setTenant(newTenant: Tenant | null) {
@@ -244,6 +385,11 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 		login,
 		logout,
 		refresh,
+		loginWithOAuth,
+		fetchWithAuth,
+		persistSession,
+		onSessionTimeout,
+		setSessionTimeout,
 		setUser,
 		setTenant,
 		setToken,

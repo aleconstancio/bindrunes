@@ -57,6 +57,14 @@ describe("useAesthetic", () => {
 
 	it("exposes the full aesthetic list", async () => {
 		const a = await mountAesthetic();
-		expect(a.aesthetics).toEqual(["editorial", "glass", "bento", "expressive"]);
+		expect(a.aesthetics).toEqual([
+			"editorial",
+			"glass",
+			"bento",
+			"expressive",
+			"neon",
+			"brutalist",
+			"organic",
+		]);
 	});
 });

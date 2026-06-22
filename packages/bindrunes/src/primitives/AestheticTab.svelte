@@ -37,8 +37,14 @@ let {
 							Translucent surfaces, ambient bloom
 						{:else if a === 'bento'}
 							Rounded corners, soft shadows
-						{:else}
+						{:else if a === 'expressive'}
 							Dramatic shadows, gradient buttons
+						{:else if a === 'neon'}
+							Vivid glow effects, high-contrast accents
+						{:else if a === 'brutalist'}
+							Raw edges, monospace type, stark contrast
+						{:else if a === 'organic'}
+							Soft curves, earthy tones, gentle transitions
 						{/if}
 					</p>
 				</div>
