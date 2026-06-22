@@ -1,4 +1,5 @@
 export { createServerApiClient } from "./api";
+export { createErrorResponse, createJsonResponse, createTypedHandler } from "./apiHandler";
 export type { OAuthProfile, OAuthProvider, SessionData } from "./auth";
 export {
 	clearSessionCookie,
