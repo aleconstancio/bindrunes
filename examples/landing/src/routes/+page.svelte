@@ -1,5 +1,5 @@
 <script lang="ts">
-import { MarketingPage } from "bindrunes/landing";
+import { MarketingTemplate } from "bindrunes/templates";
 import { ArrowRight, Zap, Shield, Clock, CheckCircle } from "lucide-svelte";
 
 const features = [
@@ -22,7 +22,7 @@ const faqItems = [
 ];
 </script>
 
-<MarketingPage
+<MarketingTemplate
   logo={{ href: "/", label: "Minha SaaS" }}
   navLinks={[
     { label: "Recursos", href: "#features" },

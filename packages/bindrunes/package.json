@@ -1,6 +1,6 @@
 {
 	"name": "bindrunes",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
@@ -48,6 +48,29 @@
 			"types": "./dist/playground/index.d.ts",
 			"svelte": "./dist/playground/index.js",
 			"default": "./dist/playground/index.js"
+		},
+		"./scaffold": {
+			"types": "./dist/playground/index.d.ts",
+			"svelte": "./dist/playground/index.js",
+			"default": "./dist/playground/index.js"
+		},
+		"./scaffold/app.css": {
+			"default": "./src/playground/app.css"
+		},
+		"./landing": {
+			"types": "./dist/domains/landing/index.d.ts",
+			"svelte": "./dist/domains/landing/index.js",
+			"default": "./dist/domains/landing/index.js"
+		},
+		"./i18n/*": {
+			"types": "./dist/i18n/*.d.ts",
+			"svelte": "./dist/i18n/*.js",
+			"default": "./dist/i18n/*.js"
+		},
+		"./boundrune": {
+			"types": "./dist/domains/index.d.ts",
+			"svelte": "./dist/domains/index.js",
+			"default": "./dist/domains/index.js"
 		},
 		"./tailwind": {
 			"types": "./dist/tailwind-plugin.d.ts",
