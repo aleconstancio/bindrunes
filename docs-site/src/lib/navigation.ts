@@ -33,6 +33,14 @@ export const docsNav: NavItem[] = [
 		label: "Testing",
 		href: "/docs/testing",
 	},
+	{
+		label: "Changelog",
+		href: "/docs/changelog",
+	},
+	{
+		label: "Contributing",
+		href: "/docs/contributing",
+	},
 ];
 
 export const kitNav: NavItem[] = [

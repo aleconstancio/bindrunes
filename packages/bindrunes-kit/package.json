@@ -39,7 +39,7 @@
 	},
 	"dependencies": {
 		"bindrunes": "workspace:*",
-		"valibot": "^1.0.0"
+		"valibot": "^1.4.1"
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0",

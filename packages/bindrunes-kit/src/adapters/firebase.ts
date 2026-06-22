@@ -8,7 +8,7 @@ export interface FirebaseAdapterOptions {
 }
 
 export function firebaseConfig(options?: FirebaseAdapterOptions) {
-	const { site = "your-project", trailingSlash = true } = options ?? {};
+	const _options = options ?? {};
 
 	return {
 		adapter: "adapter-static",

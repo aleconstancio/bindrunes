@@ -19,7 +19,7 @@ function parseOklch(input: string): { lightness: number; chroma: number; hue: nu
 	const l = parseFloat(match[1]);
 	const c = parseFloat(match[2]);
 	const h = parseFloat(match[3]);
-	if (isNaN(l) || isNaN(c) || isNaN(h)) return null;
+	if (Number.isNaN(l) || Number.isNaN(c) || Number.isNaN(h)) return null;
 	if (l < 0 || l > 1 || c < 0 || c > 0.4 || h < 0 || h > 360) return null;
 	return { lightness: l, chroma: c, hue: h };
 }

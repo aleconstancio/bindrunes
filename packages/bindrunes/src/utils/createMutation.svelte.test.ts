@@ -52,7 +52,7 @@ describe("createMutation", () => {
 		const order: string[] = [];
 		const mutation = await mountComposable(() =>
 			createMutation({
-				mutator: async () => {
+				mutator: async (_vars: string) => {
 					order.push("mutator");
 					return "ok";
 				},

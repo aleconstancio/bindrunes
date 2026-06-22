@@ -55,6 +55,18 @@ import { Badge, Button, Card, PageSection } from "bindrunes";
           <p class="text-body-sm text-muted-foreground mt-2">Vitest, testing-library, accessibility checks, and coverage targets.</p>
         </Card>
       </a>
+      <a href="/docs/changelog" class="block">
+        <Card variant="glass" interactive padding>
+          <h3 class="text-title-1">Changelog</h3>
+          <p class="text-body-sm text-muted-foreground mt-2">All notable changes to the bindrunes package.</p>
+        </Card>
+      </a>
+      <a href="/docs/contributing" class="block">
+        <Card variant="glass" interactive padding>
+          <h3 class="text-title-1">Contributing</h3>
+          <p class="text-body-sm text-muted-foreground mt-2">Setup, coding guidelines, and PR process.</p>
+        </Card>
+      </a>
     </div>
   </PageSection>
 </div>

@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-import { cp, mkdir, readFile, unlink, writeFile } from "node:fs/promises";
+import { cp, mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
-import { fileURLToPath } from "node:url";
 
 const __dirname = new URL(".", import.meta.url).pathname;
 const TEMPLATES_DIR = join(__dirname, "..", "..", "templates");
@@ -228,7 +227,7 @@ async function copyFeatureFiles(targetDir: string, feature: Feature): Promise<vo
 }
 
 async function readdirRecursive(dir: string): Promise<string[]> {
-	const { readdir, stat } = await import("node:fs/promises");
+	const { readdir } = await import("node:fs/promises");
 	const entries = await readdir(dir, { withFileTypes: true });
 	const results: string[] = [];
 

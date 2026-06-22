@@ -31,7 +31,7 @@ describe("AuthLayout", () => {
 	});
 
 	it("renders children", () => {
-		render(AuthLayout, {}, { props: { children: "Child content" } });
+		render(AuthLayout, { slots: { children: "Child content" } });
 	});
 
 	it("applies class prop", () => {

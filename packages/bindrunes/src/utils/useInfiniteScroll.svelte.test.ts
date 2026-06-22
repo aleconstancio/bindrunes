@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/svelte";
+import { render, waitFor } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
 import MountSvelte from "../helpers/mount.svelte";
 import { useInfiniteScroll } from "./useInfiniteScroll.svelte";
@@ -26,7 +26,6 @@ describe("useInfiniteScroll", () => {
 		vi.stubGlobal(
 			"IntersectionObserver",
 			class {
-				constructor() {}
 				observe = observeSpy;
 				unobserve = vi.fn();
 				disconnect = disconnectSpy;

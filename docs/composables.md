@@ -28,17 +28,18 @@ const createUser = useMutation<User, NewUser>({
 - **`setQueryData(key, data)`**: Optimistically updates queries.
 
 ### `createAsyncState`
-Reactive wrapper for async operations with loading, error, and data states.
+Reactive state machine for async operations. Create an instance, then call `.run()` to execute async functions.
 
 ```ts
 import { createAsyncState } from "bindrunes";
 
-const user = createAsyncState(
-  () => fetch("/api/users/1").then(r => r.json()),
-  { immediate: true }
-);
-// user.isLoading, user.data, user.error
+const state = createAsyncState();
+const user = await state.run(() => fetch("/api/users/1").then(r => r.json()));
+
+state.reset(); // Return to idle
 ```
+
+**Reactive properties:** `status` (`"idle" | "loading" | "success" | "error"`), `isLoading`, `isSuccess`, `isError`, `error`.
 
 ### `useTable`
 State machine for sorting, pagination, and filtering in tables.

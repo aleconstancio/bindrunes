@@ -20,7 +20,7 @@ describe("ToolCallDisplay", () => {
 			},
 		});
 		await fireEvent.click(screen.getByText("search_files"));
-		expect(screen.getByText((content, element) => content.includes("*.ts"))).toBeTruthy();
+		expect(screen.getByText((content, _element) => content.includes("*.ts"))).toBeTruthy();
 	});
 
 	it("expands to show result", async () => {

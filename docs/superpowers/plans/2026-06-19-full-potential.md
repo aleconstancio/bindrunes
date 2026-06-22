@@ -1,12 +1,14 @@
-# bindrunes Full Potential Implementation Plan
+# bindrunes Full Potential — Phase 1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Complete all 30 audit items, build the interactive playground, and raise test coverage to 85/75/82/85.
+**Goal:** Complete all 30 audit items, expand the interactive playground, and add missing tests.
 
-**Architecture:** Three parallel workstreams: (A) UX/DX audit fixes across tokens, components, a11y, docs, showcase, (B) interactive playground page, (C) test coverage threshold bump and missing tests.
+**Architecture:** Three parallel workstreams: (A) UX/DX audit fixes across tokens, components, a11y, docs, showcase, (B) playground expansion, (C) missing test coverage.
 
 **Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, valibot, Vitest, happy-dom
+
+**Note:** All `src/` paths are relative to `packages/bindrunes/`. All component files were recently moved from `src/components/` to `src/primitives/` (primitives) or `src/domains/` (domain components).
 
 ---
 
@@ -15,23 +17,23 @@
 ### Task 1: Token Architecture Cleanup
 
 **Files:**
-- Modify: `src/styles/themes/editorial.css`
-- Modify: `src/styles/tokens/root.css`
-- Modify: `src/styles/tokens.d.ts`
-- Modify: `src/styles/landing.css`
-- Modify: `src/tailwind-plugin.ts`
+- Modify: `packages/bindrunes/src/styles/themes/editorial.css`
+- Modify: `packages/bindrunes/src/styles/tokens/root.css`
+- Modify: `packages/bindrunes/src/styles/tokens.d.ts`
+- Modify: `packages/bindrunes/src/styles/landing.css`
+- Modify: `packages/bindrunes/src/tailwind-plugin.ts`
 
 - [ ] **Step 1: Read editorial.css to identify the duplicate dark block**
 
-Read `src/styles/themes/editorial.css` and find the dark block that duplicates root.css.
+Read `packages/bindrunes/src/styles/themes/editorial.css` and find the dark block that duplicates root.css.
 
 - [ ] **Step 2: Remove duplicate dark block from editorial.css**
 
-Remove the `:root[data-theme="editorial"].dark` block (or equivalent) that is byte-for-byte identical to `:root` in `src/styles/tokens/root.css`.
+Remove the `:root[data-theme="editorial"].dark` block (or equivalent) that is byte-for-byte identical to `:root` in `packages/bindrunes/src/styles/tokens/root.css`.
 
 - [ ] **Step 3: Add :root z-index entries to root.css**
 
-Add to `src/styles/tokens/root.css` inside the `:root` block:
+Add to `packages/bindrunes/src/styles/tokens/root.css` inside the `:root` block:
 
 ```css
 --z-sidebar: 40;
@@ -44,11 +46,11 @@ Add to `src/styles/tokens/root.css` inside the `:root` block:
 
 - [ ] **Step 4: Remove orphaned _easingDefault from tokens.d.ts**
 
-Remove the line `declare const _easingDefault: never;` from `src/styles/tokens.d.ts`.
+Remove the line `declare const _easingDefault: never;` from `packages/bindrunes/src/styles/tokens.d.ts`.
 
 - [ ] **Step 5: Add utilities.css import to landing.css**
 
-Add at the top of `src/styles/landing.css`:
+Add at the top of `packages/bindrunes/src/styles/landing.css`:
 
 ```css
 @import "./utilities.css";
@@ -56,7 +58,7 @@ Add at the top of `src/styles/landing.css`:
 
 - [ ] **Step 6: Add warning comment to tailwind-plugin.ts**
 
-Add a prominent comment at the top of `src/tailwind-plugin.ts`:
+Add a prominent comment at the top of `packages/bindrunes/src/tailwind-plugin.ts`:
 
 ```ts
 // WARNING: This file intentionally duplicates token bindings from tokens/tailwind.css.
@@ -74,18 +76,18 @@ Add a comment above `--radius` and `--radius-md` in root.css:
 
 - [ ] **Step 8: Run lint**
 
-Run: `bun run lint`
+Run: `cd packages/bindrunes && bun run lint`
 Expected: Pass
 
 - [ ] **Step 9: Run tests**
 
-Run: `bun run test`
+Run: `cd packages/bindrunes && bun run test`
 Expected: All tests pass
 
 - [ ] **Step 10: Commit**
 
 ```bash
-git add src/styles/themes/editorial.css src/styles/tokens/root.css src/styles/tokens.d.ts src/styles/landing.css src/tailwind-plugin.ts
+git add packages/bindrunes/src/styles/themes/editorial.css packages/bindrunes/src/styles/tokens/root.css packages/bindrunes/src/styles/tokens.d.ts packages/bindrunes/src/styles/landing.css packages/bindrunes/src/tailwind-plugin.ts
 git commit -m "fix: token architecture cleanup — remove duplicates, add z-index roots, fix imports"
 ```
 
@@ -94,16 +96,16 @@ git commit -m "fix: token architecture cleanup — remove duplicates, add z-inde
 ### Task 2: Component API Contracts — Input, Select, Checkbox
 
 **Files:**
-- Modify: `src/components/Input.svelte`
-- Modify: `src/components/Select.svelte`
-- Modify: `src/components/Checkbox.svelte`
-- Modify: `src/components/Input.svelte.test.ts`
-- Modify: `src/components/Select.svelte.test.ts`
-- Modify: `src/components/Checkbox.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Input.svelte`
+- Modify: `packages/bindrunes/src/primitives/Select.svelte`
+- Modify: `packages/bindrunes/src/primitives/Checkbox.svelte`
+- Modify: `packages/bindrunes/src/primitives/Input.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Select.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Checkbox.svelte.test.ts`
 
 - [ ] **Step 1: Read Input.svelte to understand current name/id coupling**
 
-Read `src/components/Input.svelte`.
+Read `packages/bindrunes/src/primitives/Input.svelte`.
 
 - [ ] **Step 2: Add `id` prop to Input**
 
@@ -123,7 +125,7 @@ Use `inputId` for the input element's `id` and the label's `for` attribute. Keep
 
 - [ ] **Step 3: Add aria-describedby to Select on error**
 
-Read `src/components/Select.svelte`. When `error` is present, add `aria-describedby` pointing to the error element's ID. Generate an error ID:
+Read `packages/bindrunes/src/primitives/Select.svelte`. When `error` is present, add `aria-describedby` pointing to the error element's ID. Generate an error ID:
 
 ```ts
 const errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`);
@@ -133,7 +135,7 @@ Add `id={errorId}` to the error text element and `aria-describedby={errorId}` to
 
 - [ ] **Step 4: Add `name` and `error` props to Checkbox**
 
-Read `src/components/Checkbox.svelte`. Add:
+Read `packages/bindrunes/src/primitives/Checkbox.svelte`. Add:
 
 ```ts
 name = undefined as string | undefined,
@@ -144,7 +146,7 @@ Add `name` to the hidden input or checkbox element. Add error text rendering bel
 
 - [ ] **Step 5: Update Input tests**
 
-Read `src/components/Input.svelte.test.ts`. Add test for custom `id` prop:
+Read `packages/bindrunes/src/primitives/Input.svelte.test.ts`. Add test for custom `id` prop:
 
 ```ts
 it("uses custom id when provided", () => {
@@ -157,21 +159,21 @@ it("uses custom id when provided", () => {
 
 - [ ] **Step 6: Update Select tests**
 
-Read `src/components/Select.svelte.test.ts`. Add test for aria-describedby on error.
+Read `packages/bindrunes/src/primitives/Select.svelte.test.ts`. Add test for aria-describedby on error.
 
 - [ ] **Step 7: Update Checkbox tests**
 
-Read `src/components/Checkbox.svelte.test.ts`. Add tests for `name` prop and error rendering.
+Read `packages/bindrunes/src/primitives/Checkbox.svelte.test.ts`. Add tests for `name` prop and error rendering.
 
 - [ ] **Step 8: Run tests**
 
-Run: `bun run test src/components/Input.svelte.test.ts src/components/Select.svelte.test.ts src/components/Checkbox.svelte.test.ts`
+Run: `cd packages/bindrunes && bun run test src/primitives/Input.svelte.test.ts src/primitives/Select.svelte.test.ts src/primitives/Checkbox.svelte.test.ts`
 Expected: All pass
 
 - [ ] **Step 9: Commit**
 
 ```bash
-git add src/components/Input.svelte src/components/Select.svelte src/components/Checkbox.svelte src/components/Input.svelte.test.ts src/components/Select.svelte.test.ts src/components/Checkbox.svelte.test.ts
+git add packages/bindrunes/src/primitives/Input.svelte packages/bindrunes/src/primitives/Select.svelte packages/bindrunes/src/primitives/Checkbox.svelte packages/bindrunes/src/primitives/Input.svelte.test.ts packages/bindrunes/src/primitives/Select.svelte.test.ts packages/bindrunes/src/primitives/Checkbox.svelte.test.ts
 git commit -m "fix: Input id prop, Select aria-describedby, Checkbox name+error props"
 ```
 
@@ -180,20 +182,21 @@ git commit -m "fix: Input id prop, Select aria-describedby, Checkbox name+error 
 ### Task 3: Component API Contracts — DropdownMenu, Dialog, Tooltip, Popover
 
 **Files:**
-- Modify: `src/components/DropdownMenu.svelte`
-- Modify: `src/components/Dialog.svelte`
-- Add: Shared `TooltipProvider.svelte`
-- Modify: `src/components/Tooltip.svelte`
-- Modify: `src/components/Popover.svelte`
-- Modify: `src/index.ts`
-- Modify: `src/components/DropdownMenu.svelte.test.ts`
-- Modify: `src/components/Dialog.svelte.test.ts`
-- Modify: `src/components/Tooltip.svelte.test.ts`
-- Modify: `src/components/Popover.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/DropdownMenu.svelte`
+- Modify: `packages/bindrunes/src/primitives/Dialog.svelte`
+- Modify: `packages/bindrunes/src/primitives/Tooltip.svelte`
+- Modify: `packages/bindrunes/src/primitives/Popover.svelte`
+- Modify: `packages/bindrunes/src/index.ts`
+- Modify: `packages/bindrunes/src/primitives/DropdownMenu.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Dialog.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Tooltip.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Popover.svelte.test.ts`
+
+Note: `TooltipProvider.svelte` already exists at `src/primitives/TooltipProvider.svelte` and is already exported.
 
 - [ ] **Step 1: Add $bindable open to DropdownMenu**
 
-Read `src/components/DropdownMenu.svelte`. Change the `open` prop to use `$bindable()`:
+Read `packages/bindrunes/src/primitives/DropdownMenu.svelte`. Change the `open` prop to use `$bindable()`:
 
 ```ts
 open = $bindable(false),
@@ -201,61 +204,38 @@ open = $bindable(false),
 
 - [ ] **Step 2: Type Dialog sizeClasses properly**
 
-Read `src/components/Dialog.svelte`. Change `sizeClasses` type from `Record<string, string>` to:
+Read `packages/bindrunes/src/primitives/Dialog.svelte`. Change `sizeClasses` type from `Record<string, string>` to:
 
 ```ts
 sizeClasses?: Record<"sm" | "md" | "lg" | "xl" | "full", string>;
 ```
 
-- [ ] **Step 3: Extract shared TooltipProvider**
+- [ ] **Step 3: Update Tooltip to remove per-instance Provider**
 
-Read `src/components/Tooltip.svelte`. Create `src/components/TooltipProvider.svelte`:
+Read `packages/bindrunes/src/primitives/Tooltip.svelte`. If it wraps content in `<TooltipPrimitive.Provider>`, remove that wrapper. The shared `TooltipProvider` component already exists and should be used at the app/layout level instead.
 
-```svelte
-<script lang="ts">
-import type { Snippet } from "svelte";
-import { Tooltip as TooltipPrimitive } from "bits-ui";
+- [ ] **Step 4: Remove Popover redundant wrapper div**
 
-let {
-  delayDuration = 200,
-  children,
-}: {
-  delayDuration?: number;
-  children?: Snippet;
-} = $props();
-</script>
+Read `packages/bindrunes/src/primitives/Popover.svelte`. Remove the `<div role="button" aria-haspopup aria-expanded>` wrapper. Let bits-ui's `Popover.Trigger` handle accessibility directly.
 
-<TooltipPrimitive.Provider {delayDuration}>
-  {@render children?.()}
-</TooltipPrimitive.Provider>
-```
-
-- [ ] **Step 4: Update Tooltip to remove per-instance Provider**
-
-In `src/components/Tooltip.svelte`, remove the `<TooltipPrimitive.Provider>` wrapper. Export the TooltipProvider from `src/index.ts`.
-
-- [ ] **Step 5: Remove Popover redundant wrapper div**
-
-Read `src/components/Popover.svelte`. Remove the `<div role="button" aria-haspopup aria-expanded>` wrapper. Let bits-ui's `Popover.Trigger` handle accessibility directly.
-
-- [ ] **Step 6: Standardize Snippet imports**
+- [ ] **Step 5: Standardize Snippet imports**
 
 Check all modified components for inline `import("svelte").Snippet` and replace with top-level `import type { Snippet } from "svelte"`.
 
-- [ ] **Step 7: Update tests**
+- [ ] **Step 6: Update tests**
 
 Update tests for each modified component to verify new behavior.
 
-- [ ] **Step 8: Run tests**
+- [ ] **Step 7: Run tests**
 
-Run: `bun run test`
+Run: `cd packages/bindrunes && bun run test`
 Expected: All pass
 
-- [ ] **Step 9: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
-git add src/components/DropdownMenu.svelte src/components/Dialog.svelte src/components/Tooltip.svelte src/components/Popover.svelte src/components/TooltipProvider.svelte src/index.ts
-git commit -m "fix: DropdownMenu bindable open, Dialog typed sizeClasses, shared TooltipProvider, Popover a11y cleanup"
+git add packages/bindrunes/src/primitives/DropdownMenu.svelte packages/bindrunes/src/primitives/Dialog.svelte packages/bindrunes/src/primitives/Tooltip.svelte packages/bindrunes/src/primitives/Popover.svelte packages/bindrunes/src/primitives/DropdownMenu.svelte.test.ts packages/bindrunes/src/primitives/Dialog.svelte.test.ts packages/bindrunes/src/primitives/Tooltip.svelte.test.ts packages/bindrunes/src/primitives/Popover.svelte.test.ts
+git commit -m "fix: DropdownMenu bindable open, Dialog typed sizeClasses, Tooltip Provider cleanup, Popover a11y"
 ```
 
 ---
@@ -263,14 +243,14 @@ git commit -m "fix: DropdownMenu bindable open, Dialog typed sizeClasses, shared
 ### Task 4: Accessibility Gaps
 
 **Files:**
-- Modify: `src/components/Alert.svelte`
-- Modify: `src/components/boundrune/data/WizardForm.svelte`
-- Modify: `src/components/boundrune/auth/LoginForm.svelte`
-- Modify: `src/components/Alert.svelte.test.ts`
+- Modify: `packages/bindrunes/src/primitives/Alert.svelte`
+- Modify: `packages/bindrunes/src/domains/data/WizardForm.svelte`
+- Modify: `packages/bindrunes/src/domains/auth/LoginForm.svelte`
+- Modify: `packages/bindrunes/src/primitives/Alert.svelte.test.ts`
 
 - [ ] **Step 1: Add role to Alert**
 
-Read `src/components/Alert.svelte`. Add:
+Read `packages/bindrunes/src/primitives/Alert.svelte`. Add:
 
 ```ts
 role = $derived(variant === "destructive" ? "alert" : "status");
@@ -280,11 +260,11 @@ Apply `role` to the root element.
 
 - [ ] **Step 2: Add ARIA to WizardForm**
 
-Read `src/components/boundrune/data/WizardForm.svelte`. Add `aria-current="step"` to the active step indicator. Add `role="progressbar"` with `aria-valuenow`, `aria-valuemin="0"`, `aria-valuemax="100"` to the progress bar.
+Read `packages/bindrunes/src/domains/data/WizardForm.svelte`. Add `aria-current="step"` to the active step indicator. Add `role="progressbar"` with `aria-valuenow`, `aria-valuemin="0"`, `aria-valuemax="100"` to the progress bar.
 
 - [ ] **Step 3: Fix LoginForm error announcements**
 
-Read `src/components/boundrune/auth/LoginForm.svelte`. Add `role="alert"` to the error `<div>`. Connect labels to inputs via matching `for`/`id` attributes.
+Read `packages/bindrunes/src/domains/auth/LoginForm.svelte`. Add `role="alert"` to the error `<div>`. Connect labels to inputs via matching `for`/`id` attributes.
 
 - [ ] **Step 4: Update Alert tests**
 
@@ -308,13 +288,13 @@ it("has role=status for non-destructive variant", () => {
 
 - [ ] **Step 5: Run tests**
 
-Run: `bun run test`
+Run: `cd packages/bindrunes && bun run test`
 Expected: All pass
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/components/Alert.svelte src/components/boundrune/data/WizardForm.svelte src/components/boundrune/auth/LoginForm.svelte src/components/Alert.svelte.test.ts
+git add packages/bindrunes/src/primitives/Alert.svelte packages/bindrunes/src/domains/data/WizardForm.svelte packages/bindrunes/src/domains/auth/LoginForm.svelte packages/bindrunes/src/primitives/Alert.svelte.test.ts
 git commit -m "fix: Alert role, WizardForm ARIA, LoginForm error announcements and label connections"
 ```
 
@@ -324,8 +304,8 @@ git commit -m "fix: Alert role, WizardForm ARIA, LoginForm error announcements a
 
 **Files:**
 - Modify: `docs/component-states.md`
-- Modify: `src/components/landing/PricingTable.svelte`
-- Modify: `src/styles/landing.css`
+- Modify: `packages/bindrunes/src/domains/landing/PricingTable.svelte`
+- Modify: `packages/bindrunes/src/styles/landing.css`
 
 - [ ] **Step 1: Update Alert docs in component-states.md**
 
@@ -333,24 +313,24 @@ Read `docs/component-states.md`. Find the Alert variant section (around line 78-
 
 - [ ] **Step 2: Fix PricingTable Portuguese fallbacks**
 
-Read `src/components/landing/PricingTable.svelte`. Change:
+Read `packages/bindrunes/src/domains/landing/PricingTable.svelte`. Change:
 - "Mensal" → "Monthly"
-- "Anual" → "Annual"  
+- "Anual" → "Annual"
 - "Economize até 20%" → "Save up to 20%"
 
 - [ ] **Step 3: Remove :global() from landing.css**
 
-Read `src/styles/landing.css`. Remove `:global()` wrappers from `.landing-page`, `.section-reveal`, `.stagger-enter` selectors.
+Read `packages/bindrunes/src/styles/landing.css`. Remove `:global()` wrappers from `.landing-page`, `.section-reveal`, `.stagger-enter` selectors.
 
 - [ ] **Step 4: Run lint**
 
-Run: `bun run lint`
+Run: `cd packages/bindrunes && bun run lint`
 Expected: Pass
 
 - [ ] **Step 5: Commit**
 
 ```bash
-git add docs/component-states.md src/components/landing/PricingTable.svelte src/styles/landing.css
+git add docs/component-states.md packages/bindrunes/src/domains/landing/PricingTable.svelte packages/bindrunes/src/styles/landing.css
 git commit -m "fix: docs drift — Alert states, PricingTable English, landing.css :global cleanup"
 ```
 
@@ -412,16 +392,16 @@ git commit -m "fix: showcase UX — dead imports, legacy syntax, tab overflow, b
 ### Task 7: $$restProps Forwarding
 
 **Files:**
-- Modify: `src/components/Button.svelte`
-- Modify: `src/components/Card.svelte`
-- Modify: `src/components/Input.svelte`
-- Modify: `src/components/Dialog.svelte`
-- Modify: `src/components/Alert.svelte`
-- Modify: `src/components/Badge.svelte`
+- Modify: `packages/bindrunes/src/primitives/Button.svelte`
+- Modify: `packages/bindrunes/src/primitives/Card.svelte`
+- Modify: `packages/bindrunes/src/primitives/Input.svelte`
+- Modify: `packages/bindrunes/src/primitives/Dialog.svelte`
+- Modify: `packages/bindrunes/src/primitives/Alert.svelte`
+- Modify: `packages/bindrunes/src/primitives/Badge.svelte`
 
 - [ ] **Step 1: Add $$restProps to Button**
 
-Read `src/components/Button.svelte`. Add `...restProps` to the `$props()` destructuring. Spread onto the root `<button>` or `<a>` element:
+Read `packages/bindrunes/src/primitives/Button.svelte`. Add `...restProps` to the `$props()` destructuring. Spread onto the root `<button>` or `<a>` element:
 
 ```svelte
 <button ...restProps class={buttonClasses} ...>
@@ -431,33 +411,33 @@ Filter out `class` from restProps to avoid conflicts with the computed `buttonCl
 
 - [ ] **Step 2: Add $$restProps to Card**
 
-Read `src/components/Card.svelte`. Spread `...restProps` onto the root element.
+Read `packages/bindrunes/src/primitives/Card.svelte`. Spread `...restProps` onto the root element.
 
 - [ ] **Step 3: Add $$restProps to Input**
 
-Read `src/components/Input.svelte`. Spread `...restProps` onto the `<input>` element (not the wrapper).
+Read `packages/bindrunes/src/primitives/Input.svelte`. Spread `...restProps` onto the `<input>` element (not the wrapper).
 
 - [ ] **Step 4: Add $$restProps to Dialog**
 
-Read `src/components/Dialog.svelte`. Spread `...restProps` onto the `Dialog.Content` element.
+Read `packages/bindrunes/src/primitives/Dialog.svelte`. Spread `...restProps` onto the `Dialog.Content` element.
 
 - [ ] **Step 5: Add $$restProps to Alert**
 
-Read `src/components/Alert.svelte`. Spread `...restProps` onto the root element.
+Read `packages/bindrunes/src/primitives/Alert.svelte`. Spread `...restProps` onto the root element.
 
 - [ ] **Step 6: Add $$restProps to Badge**
 
-Read `src/components/Badge.svelte`. Spread `...restProps` onto the root element.
+Read `packages/bindrunes/src/primitives/Badge.svelte`. Spread `...restProps` onto the root element.
 
 - [ ] **Step 7: Run tests**
 
-Run: `bun run test`
+Run: `cd packages/bindrunes && bun run test`
 Expected: All pass
 
 - [ ] **Step 8: Commit**
 
 ```bash
-git add src/components/Button.svelte src/components/Card.svelte src/components/Input.svelte src/components/Dialog.svelte src/components/Alert.svelte src/components/Badge.svelte
+git add packages/bindrunes/src/primitives/Button.svelte packages/bindrunes/src/primitives/Card.svelte packages/bindrunes/src/primitives/Input.svelte packages/bindrunes/src/primitives/Dialog.svelte packages/bindrunes/src/primitives/Alert.svelte packages/bindrunes/src/primitives/Badge.svelte
 git commit -m "feat: add $$restProps forwarding to Button, Card, Input, Dialog, Alert, Badge"
 ```
 
@@ -465,234 +445,218 @@ git commit -m "feat: add $$restProps forwarding to Button, Card, Input, Dialog, 
 
 ## Workstream B: Interactive Playground
 
-### Task 8: Build Interactive Playground
+### Task 8: Expand Interactive Playground
+
+The playground already exists at `examples/showcase/src/routes/playground/+page.svelte` with Button, Badge, Card, Input, Checkbox, Select, Switch, and DataTable. Expand it to 15+ components.
 
 **Files:**
-- Create: `examples/showcase/src/routes/playground/+page.svelte`
-- Modify: `examples/showcase/src/routes/+layout.svelte`
+- Modify: `examples/showcase/src/lib/playground-data.ts`
+- Modify: `examples/showcase/src/routes/playground/+page.svelte`
 
-- [ ] **Step 1: Read showcase layout to understand nav structure**
+- [ ] **Step 1: Read current playground data and page**
 
-Read `examples/showcase/src/routes/+layout.svelte`.
+Read `examples/showcase/src/lib/playground-data.ts` and `examples/showcase/src/routes/playground/+page.svelte`.
 
-- [ ] **Step 2: Create playground page**
+- [ ] **Step 2: Add Foundation components to playground-data.ts**
 
-Create `examples/showcase/src/routes/playground/+page.svelte`:
-
-```svelte
-<script lang="ts">
-  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet } from "bindrunes";
-
-  const components = [
-    {
-      name: "Button",
-      props: {
-        variant: { type: "select", options: ["primary", "secondary", "outline", "ghost", "destructive", "link", "soft", "subtle"], default: "primary" },
-        size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
-        disabled: { type: "switch", default: false },
-        loading: { type: "switch", default: false },
-        fullWidth: { type: "switch", default: false },
-      },
-      slot: "Click me",
-    },
-    {
-      name: "Badge",
-      props: {
-        variant: { type: "select", options: ["primary", "secondary", "outline", "soft", "destructive"], default: "primary" },
-        size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
-      },
-      slot: "Label",
-    },
-    {
-      name: "Card",
-      props: {
-        variant: { type: "select", options: ["surface", "glass", "outlined", "ghost"], default: "surface" },
-        padding: { type: "switch", default: true },
-        interactive: { type: "switch", default: false },
-      },
-      slot: "Card content goes here.",
-    },
-    {
-      name: "Input",
-      props: {
-        placeholder: { type: "text", default: "Enter text..." },
-        disabled: { type: "switch", default: false },
-        required: { type: "switch", default: false },
-      },
-      slot: "",
-    },
-  ];
-
-  let selectedIdx = $state(0);
-  let propValues = $state<Record<string, any>>({});
-
-  const current = $derived(components[selectedIdx]);
-
-  $effect(() => {
-    const c = components[selectedIdx];
-    const initial: Record<string, any> = {};
-    for (const [key, prop] of Object.entries(c.props)) {
-      initial[key] = prop.default;
-    }
-    propValues = initial;
-  });
-
-  const generatedCode = $derived(() => {
-    const c = components[selectedIdx];
-    const props = Object.entries(propValues)
-      .filter(([, v]) => v !== undefined && v !== "" && v !== false)
-      .map(([k, v]) => {
-        if (typeof v === "boolean") return v ? k : "";
-        return `${k}="${v}"`;
-      })
-      .filter(Boolean)
-      .join(" ");
-    const propStr = props ? ` ${props}` : "";
-    const slotContent = c.slot ? `\n  ${c.slot}\n` : "";
-    return `import { ${c.name} } from "bindrunes";\n\n<${c.name}${propStr}>${slotContent}</${c.name}>`;
-  });
-</script>
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-  <PageHeader title="Playground" description="Tweak component props and see live results with generated code" />
-
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <!-- Controls -->
-    <div class="space-y-4">
-      <h3 class="text-title-3 text-foreground">Component</h3>
-      <Select
-        value={current.name}
-        options={components.map((c) => ({ label: c.name, value: c.name }))}
-        onChange={(_, val) => {
-          const idx = components.findIndex((c) => c.name === val);
-          if (idx >= 0) selectedIdx = idx;
-        }}
-      />
-
-      <div class="space-y-3 pt-4">
-        <h4 class="text-title-3 text-foreground">Props</h4>
-        {#each Object.entries(current.props) as [key, prop]}
-          <div class="space-y-1">
-            <label class="text-label-sm text-muted-foreground">{key}</label>
-            {#if prop.type === "select"}
-              <Select
-                value={propValues[key]}
-                options={prop.options.map((o: string) => ({ label: o, value: o }))}
-                onChange={(_, val) => (propValues[key] = val)}
-              />
-            {:else if prop.type === "switch"}
-              <Switch checked={propValues[key]} onChange={(v) => (propValues[key] = v)} />
-            {:else if prop.type === "text"}
-              <Input value={propValues[key]} onInput={(v) => (propValues[key] = v)} />
-            {/if}
-          </div>
-        {/each}
-      </div>
-    </div>
-
-    <!-- Preview -->
-    <div class="space-y-4">
-      <h3 class="text-title-3 text-foreground">Preview</h3>
-      <Card padding class="min-h-[200px] flex items-center justify-center">
-        {#if current.name === "Button"}
-          <Button {...propValues}>{current.slot}</Button>
-        {:else if current.name === "Badge"}
-          <Badge {...propValues}>{current.slot}</Badge>
-        {:else if current.name === "Card"}
-          <Card {...propValues}>{current.slot}</Card>
-        {:else if current.name === "Input"}
-          <div class="w-full">
-            <Input {...propValues} />
-          </div>
-        {/if}
-      </Card>
-    </div>
-
-    <!-- Code -->
-    <div class="space-y-4">
-      <h3 class="text-title-3 text-foreground">Generated Code</h3>
-      <CodeSnippet code={generatedCode()} language="svelte" title="App.svelte" />
-    </div>
-  </div>
-</div>
-```
-
-- [ ] **Step 3: Add playground to navigation**
-
-In `examples/showcase/src/routes/+layout.svelte`, add to the nav array:
+Add to the `components` array in `playground-data.ts`:
 
 ```ts
-{ href: "/playground", label: "Playground" },
+{
+  name: "Alert",
+  category: "Foundation",
+  props: {
+    variant: { type: "select", options: ["info", "success", "warning", "destructive"], default: "info" },
+    title: { type: "text", default: "Information" }
+  },
+  slot: "This is an informational message."
+},
+{
+  name: "Separator",
+  category: "Foundation",
+  props: {
+    orientation: { type: "select", options: ["horizontal", "vertical"], default: "horizontal" }
+  }
+},
+{
+  name: "Skeleton",
+  category: "Foundation",
+  props: {
+    class: { type: "text", default: "h-4 w-[250px]" }
+  }
+},
+{
+  name: "Progress",
+  category: "Foundation",
+  props: {
+    value: { type: "number", default: 60 },
+    max: { type: "number", default: 100 }
+  }
+},
 ```
 
-- [ ] **Step 4: Verify**
+- [ ] **Step 3: Add Overlays components**
+
+```ts
+{
+  name: "Dialog",
+  category: "Overlays",
+  props: {
+    title: { type: "text", default: "Dialog Title" }
+  },
+  slot: "Dialog content goes here."
+},
+{
+  name: "Tooltip",
+  category: "Overlays",
+  props: {
+    side: { type: "select", options: ["top", "right", "bottom", "left"], default: "top" }
+  },
+  slot: "Hover me"
+},
+{
+  name: "Sheet",
+  category: "Overlays",
+  props: {
+    side: { type: "select", options: ["top", "right", "bottom", "left"], default: "right" }
+  }
+},
+```
+
+- [ ] **Step 4: Add Navigation components**
+
+```ts
+{
+  name: "Breadcrumb",
+  category: "Navigation",
+  props: {},
+  slot: ""
+},
+{
+  name: "Tabs",
+  category: "Navigation",
+  props: {
+    defaultValue: { type: "text", default: "tab1" }
+  }
+},
+{
+  name: "Pagination",
+  category: "Navigation",
+  props: {
+    totalPages: { type: "number", default: 10 },
+    currentPage: { type: "number", default: 1 }
+  }
+},
+```
+
+- [ ] **Step 5: Add Feedback components**
+
+```ts
+{
+  name: "Spinner",
+  category: "Feedback",
+  props: {
+    size: { type: "select", options: ["sm", "md", "lg"], default: "md" }
+  }
+},
+{
+  name: "EmptyState",
+  category: "Feedback",
+  props: {
+    title: { type: "text", default: "No items found" },
+    description: { type: "text", default: "Create your first item to get started." }
+  }
+},
+```
+
+- [ ] **Step 6: Update playground page preview section**
+
+In `examples/showcase/src/routes/playground/+page.svelte`, add preview cases for the new components in the `{#if current?.name === ...}` chain. Import the necessary bindrunes components.
+
+- [ ] **Step 7: Verify**
 
 Run: `cd examples/showcase && bun run check`
 Expected: No type errors
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 8: Commit**
 
 ```bash
-git add examples/showcase/src/routes/playground/+page.svelte examples/showcase/src/routes/+layout.svelte
-git commit -m "feat: add interactive playground with component selector, prop controls, and code generation"
+git add examples/showcase/src/lib/playground-data.ts examples/showcase/src/routes/playground/+page.svelte
+git commit -m "feat: expand playground to 15+ components across Foundation, Overlays, Navigation, Feedback"
 ```
 
 ---
 
 ## Workstream C: Test Coverage
 
-### Task 9: Raise Coverage Thresholds and Add Missing Tests
+### Task 9: Add Missing Tests for Primitives
+
+8 primitive components lack test files: AccordionItem, DatePicker, RangeCalendar, RuleFootnote, TabsContent, TabsList, TimeField, TooltipProvider.
 
 **Files:**
-- Modify: `vitest.config.ts`
-- Create/Modify: Various `*.svelte.test.ts` files for components missing tests
+- Create: `packages/bindrunes/src/primitives/AccordionItem.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/DatePicker.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/RangeCalendar.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/RuleFootnote.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/TabsContent.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/TabsList.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/TimeField.svelte.test.ts`
+- Create: `packages/bindrunes/src/primitives/TooltipProvider.svelte.test.ts`
 
-- [ ] **Step 1: Raise coverage thresholds in vitest.config.ts**
+- [ ] **Step 1: Read an existing primitive test for the pattern**
 
-Read `vitest.config.ts`. Change the global thresholds from:
+Read `packages/bindrunes/src/primitives/Badge.svelte.test.ts` to understand the test pattern (imports, render, assertions).
+
+- [ ] **Step 2: Write AccordionItem smoke test**
+
+Create `packages/bindrunes/src/primitives/AccordionItem.svelte.test.ts`:
 
 ```ts
-lines: 80,
-functions: 77,
-statements: 80,
-branches: 70,
+import { render } from "@testing-library/svelte";
+import AccordionItem from "./AccordionItem.svelte";
+
+describe("AccordionItem", () => {
+  it("renders content", () => {
+    const { getByText } = render(AccordionItem, {
+      props: { value: "item-1" },
+      slots: { default: "Accordion content" },
+    });
+    expect(getByText("Accordion content")).toBeTruthy();
+  });
+
+  it("passes a11y check", async () => {
+    const { container } = render(AccordionItem, {
+      props: { value: "item-1" },
+      slots: { default: "Content" },
+    });
+    await expect(container).toBeAccessible();
+  });
+});
 ```
 
-To:
+- [ ] **Step 3: Run AccordionItem test to verify it passes**
 
-```ts
-lines: 85,
-functions: 82,
-statements: 85,
-branches: 75,
-```
+Run: `cd packages/bindrunes && bun run test src/primitives/AccordionItem.svelte.test.ts`
+Expected: PASS
 
-- [ ] **Step 2: Run tests to see current coverage**
+- [ ] **Step 4: Write remaining smoke tests**
 
-Run: `bun run test:ci 2>&1 | tail -30`
-Note any failures due to new thresholds.
+Create minimal smoke tests for: DatePicker, RangeCalendar, RuleFootnote, TabsContent, TabsList, TimeField, TooltipProvider. Each test should:
+1. Import the component
+2. Render with minimal required props
+3. Assert content renders
+4. Run a11y check
 
-- [ ] **Step 3: Identify components without tests**
+- [ ] **Step 5: Run all new tests**
 
-Run: `ls src/components/*.svelte | while read f; do test="${f}.test.ts"; if [ ! -f "$test" ]; then echo "MISSING: $f"; fi; done`
-
-- [ ] **Step 4: Add tests for components missing coverage**
-
-For each component without a test file, create a minimal test file following the existing pattern (render, check a11y, verify key behavior). Priority order:
-1. PageShell, PageSection (layout primitives)
-2. Breadcrumb, NavigationMenu, Pagination
-3. Separator, Skeleton, Progress
-
-- [ ] **Step 5: Run tests with new thresholds**
-
-Run: `bun run test:ci`
-Expected: All pass with new thresholds
+Run: `cd packages/bindrunes && bun run test src/primitives/AccordionItem.svelte.test.ts src/primitives/DatePicker.svelte.test.ts src/primitives/RangeCalendar.svelte.test.ts src/primitives/RuleFootnote.svelte.test.ts src/primitives/TabsContent.svelte.test.ts src/primitives/TabsList.svelte.test.ts src/primitives/TimeField.svelte.test.ts src/primitives/TooltipProvider.svelte.test.ts`
+Expected: All pass
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add vitest.config.ts src/components/*.test.ts
-git commit -m "test: raise coverage thresholds to 85/75/82/85, add missing component tests"
+git add packages/bindrunes/src/primitives/*.svelte.test.ts
+git commit -m "test: add smoke tests for 8 untested primitives"
 ```
 
 ---
@@ -701,20 +665,20 @@ git commit -m "test: raise coverage thresholds to 85/75/82/85, add missing compo
 
 - [ ] **Step 1: Run full lint**
 
-Run: `bun run lint`
+Run: `cd packages/bindrunes && bun run lint`
 Expected: No errors
 
 - [ ] **Step 2: Run type check**
 
-Run: `bun run check`
+Run: `cd packages/bindrunes && bun run check`
 Expected: No errors
 
 - [ ] **Step 3: Run full test suite**
 
-Run: `bun run test:ci`
-Expected: All tests pass with new thresholds
+Run: `cd packages/bindrunes && bun run test`
+Expected: All tests pass
 
 - [ ] **Step 4: Build library**
 
-Run: `bun run build`
+Run: `cd packages/bindrunes && bun run build`
 Expected: Build succeeds

@@ -52,7 +52,7 @@ describe("AlertDialog", () => {
 	});
 
 	it("applies custom class", () => {
-		const { container } = render(AlertDialog, {
+		const { container: _container } = render(AlertDialog, {
 			props: { open: true, class: "my-alert" },
 		});
 		expect(document.querySelector('[role="alertdialog"]')).toBeInTheDocument();

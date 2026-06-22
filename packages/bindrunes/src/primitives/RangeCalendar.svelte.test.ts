@@ -7,14 +7,16 @@ vi.mock("bits-ui", async (importOriginal) => {
 	return {
 		...actual,
 		RangeCalendar: {
-			Root: actual.RangeCalendar?.Root ?? (({ children }: { children?: unknown }) => children?.()),
-			Header: ({ children }: { children?: unknown }) => children?.(),
-			Grid: ({ children }: { children?: unknown }) => children?.(),
-			GridHead: ({ children }: { children?: unknown }) => children?.(),
-			GridRow: ({ children }: { children?: unknown }) => children?.(),
-			HeadCell: ({ children }: { children?: unknown }) => children?.(),
-			GridBody: ({ children }: { children?: unknown }) => children?.(),
-			Cell: ({ children }: { children?: unknown }) => children?.(),
+			Root:
+				actual.RangeCalendar?.Root ??
+				(({ children }: { children?: (...args: any[]) => any }) => children?.()),
+			Header: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			Grid: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			GridHead: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			GridRow: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			HeadCell: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			GridBody: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
+			Cell: ({ children }: { children?: (...args: any[]) => any }) => children?.(),
 			Day: () => "",
 		},
 	};

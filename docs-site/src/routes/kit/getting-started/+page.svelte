@@ -18,6 +18,62 @@ import { Badge, CodeSnippet } from "bindrunes";
     </section>
 
     <section>
+      <h2 class="text-title-1 text-foreground mb-4">End-to-End Tutorial</h2>
+
+      <h3 class="text-title-2 text-foreground mb-3">1. Scaffold</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Run the CLI and follow the prompts:
+      </p>
+      <CodeSnippet language="bash" title="Scaffold">
+{`$ npx create-bindrunes my-app
+✔ What do you want to name your project? my-app
+✔ Which mode? (full-stack / spa) full-stack
+✔ Enable authentication? (yes / no) yes
+✔ Enable i18n? (yes / no) yes
+✔ Package manager? bun`}
+      </CodeSnippet>
+      <p class="text-body text-muted-foreground mt-3">
+        The CLI generates a SvelteKit project with bindrunes pre-configured.
+      </p>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">2. Install & Run</h3>
+      <CodeSnippet language="bash" title="Terminal">
+{`cd my-app
+bun install
+bun run dev`}
+      </CodeSnippet>
+      <p class="text-body text-muted-foreground mt-3">
+        The dev server starts at <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">http://localhost:5173</code>. Open it in your browser.
+      </p>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">3. Edit a Page</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Open <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">src/routes/+page.svelte</code> and start building:
+      </p>
+      <CodeSnippet language="svelte" title="src/routes/+page.svelte">
+{`<script lang="ts">
+  import { Button, Card, Input, PageSection } from "bindrunes";
+</script>
+
+<PageSection size="2xl" spacing="wide" reveal={false}>
+  <Card variant="glass" interactive padding>
+    <Input placeholder="Enter text..." />
+    <Button variant="primary">Submit</Button>
+  </Card>
+</PageSection>`}
+      </CodeSnippet>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">4. Build & Deploy</h3>
+      <CodeSnippet language="bash" title="Terminal">
+{`bun run build    # Build for production
+bun run preview  # Preview production build`}
+      </CodeSnippet>
+      <p class="text-body text-muted-foreground mt-3">
+        Deploy to Vercel, Netlify, Cloudflare Pages, or any Node.js hosting provider.
+      </p>
+    </section>
+
+    <section>
       <h2 class="text-title-1 text-foreground mb-4">Project Structure</h2>
       <CodeSnippet language="text" title="Generated project">
 {`my-app/

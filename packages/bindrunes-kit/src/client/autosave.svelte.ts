@@ -9,7 +9,7 @@ interface CreateAutosaveOptions<T> {
 }
 
 export function createAutosave<T>(options: CreateAutosaveOptions<T>) {
-	const { data, save, delay = 1000, onError, onSave } = options;
+	const { data, save, onError, onSave } = options;
 
 	let status = $state<AutosaveStatus>("idle");
 	let lastSaved = $state<Date | null>(null);
@@ -20,19 +20,6 @@ export function createAutosave<T>(options: CreateAutosaveOptions<T>) {
 	const isSaved = $derived(status === "saved");
 
 	let timer: ReturnType<typeof setTimeout> | null = null;
-	let lastDataHash = "";
-
-	function hashData(d: T): string {
-		return JSON.stringify(d);
-	}
-
-	function scheduleSave() {
-		if (timer) clearTimeout(timer);
-		status = "dirty";
-		timer = setTimeout(async () => {
-			await doSave();
-		}, delay);
-	}
 
 	async function doSave() {
 		status = "saving";
@@ -42,7 +29,6 @@ export function createAutosave<T>(options: CreateAutosaveOptions<T>) {
 			await save(currentData);
 			status = "saved";
 			lastSaved = new Date();
-			lastDataHash = hashData(currentData);
 			onSave?.(currentData);
 		} catch (err) {
 			status = "error";
@@ -59,9 +45,6 @@ export function createAutosave<T>(options: CreateAutosaveOptions<T>) {
 	function destroy() {
 		if (timer) clearTimeout(timer);
 	}
-
-	// Initialize hash
-	lastDataHash = hashData(data());
 
 	return {
 		get status() {

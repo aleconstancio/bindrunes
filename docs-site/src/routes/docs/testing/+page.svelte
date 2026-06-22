@@ -44,6 +44,103 @@ import { Badge, CodeSnippet } from "bindrunes";
     </section>
 
     <section>
+      <h2 class="text-title-1 text-foreground mb-4">Testing Patterns</h2>
+
+      <h3 class="text-title-2 text-foreground mb-3">Render Tests</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Basic smoke tests verify that components render without errors and display expected content.
+      </p>
+      <CodeSnippet language="ts" title="Button.svelte.test.ts">
+{`import { describe, it } from "vitest";
+import { render } from "@testing-library/svelte";
+import Button from "./Button.svelte";
+
+describe("Button", () => {
+  it("renders children", () => {
+    const { getByText } = render(Button, {
+      props: { children: "Submit" }
+    });
+  });
+
+  it("applies variant styles", () => {
+    const { container } = render(Button, {
+      props: { variant: "destructive", children: "Delete" }
+    });
+  });
+});`}
+      </CodeSnippet>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">Accessibility Tests</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Every component must pass automated axe checks. Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">vitest-axe</code> assertions.
+      </p>
+      <CodeSnippet language="ts" title="a11y pattern">
+{`import { render } from "@testing-library/svelte";
+import { expectNoAxeViolations } from "../helpers/axe";
+
+it("passes accessibility checks", async () => {
+  const { container } = render(Button, {
+    props: { children: "A11y" }
+  });
+  await expectNoAxeViolations(container);
+});`}
+      </CodeSnippet>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">Smoke Tests</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Verify that a component renders all key states without throwing.
+      </p>
+      <CodeSnippet language="ts" title="Smoke test pattern">
+{`import { describe, it } from "vitest";
+import { render } from "@testing-library/svelte";
+import Card from "./Card.svelte";
+
+describe("Card smoke", () => {
+  it("renders default", () => {
+    render(Card, { props: { children: "Content" } });
+  });
+
+  it("renders all variants", () => {
+    for (const variant of ["surface", "glass", "outlined", "ghost"]) {
+      render(Card, {
+        props: { variant, children: "Content" }
+      });
+    }
+  });
+});`}
+      </CodeSnippet>
+
+      <h3 class="text-title-2 text-foreground mt-6 mb-3">Composable Tests</h3>
+      <p class="text-body text-muted-foreground mb-3">
+        Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">mountComposable</code> to test composables inside a Svelte context.
+      </p>
+      <CodeSnippet language="ts" title="Composable test pattern">
+{`import { describe, it } from "vitest";
+import { mountComposable } from "../helpers/composable";
+import { createCounter } from "./counter.svelte";
+
+describe("createCounter", () => {
+  it("increments", () => {
+    const counter = mountComposable(createCounter);
+    counter.increment();
+    expect(counter.count).toBe(1);
+  });
+});`}
+      </CodeSnippet>
+    </section>
+
+    <section>
+      <h2 class="text-title-1 text-foreground mb-4">Testing Svelte 5 Components</h2>
+      <ul class="text-body text-muted-foreground space-y-3 list-disc list-inside">
+        <li><strong>Runes:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$state</code>, <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$derived</code>, <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$effect</code> — never legacy stores.</li>
+        <li><strong>Snippets:</strong> Pass content via <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">{`{#snippet name()}...{/snippet}`}</code> blocks.</li>
+        <li><strong>Event handling:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">onclick</code> props instead of <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">on:click</code>.</li>
+        <li><strong>Props:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">let { children } = $props()</code> — not <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">export let</code>.</li>
+        <li><strong>Biome:</strong> Ensure <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bun run lint</code> passes. Tabs, double quotes, semicolons.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2 class="text-title-1 text-foreground mb-4">Example Pattern</h2>
       <CodeSnippet language="ts" title="Button.svelte.test.ts">
 {`import { describe, it } from "vitest";
@@ -75,7 +172,9 @@ describe("Button", () => {
       </ul>
       <CodeSnippet language="bash" title="Commands">
 {`bun run test           # Run tests
-bun run test:coverage  # Coverage report`}
+bun run test:coverage  # Coverage report
+bun run lint           # Check formatting
+bun run check          # TypeScript check`}
       </CodeSnippet>
     </section>
   </div>

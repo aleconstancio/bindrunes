@@ -3,7 +3,7 @@ export interface RailwayAdapterOptions {
 }
 
 export function railwayConfig(options?: RailwayAdapterOptions) {
-	const { port = 3000 } = options ?? {};
+	const _options = options ?? {};
 	return {
 		adapter: "adapter-node",
 		config: { out: "build" },

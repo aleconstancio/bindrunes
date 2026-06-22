@@ -1,4 +1,3 @@
-import type { Window } from "../../types/agent";
 import type { WindowStore } from "./createWindowStore.svelte";
 
 export interface PersistenceAdapter {

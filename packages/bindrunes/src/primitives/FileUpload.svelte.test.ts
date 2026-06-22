@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import FileUpload from "./FileUpload.svelte";
 
 describe("FileUpload", () => {
@@ -142,7 +142,7 @@ describe("FileUpload", () => {
 	});
 
 	it("file input change triggers addFiles", async () => {
-		const { container } = render(FileUpload);
+		const { container: _container } = render(FileUpload);
 		const input = document.querySelector('input[type="file"]') as HTMLInputElement;
 		const file = new File(["test"], "test.txt", { type: "text/plain" });
 		Object.defineProperty(input, "files", { value: [file] });
