@@ -1,0 +1,17 @@
+[
+	{
+		"name": "bindrunes (main)",
+		"path": "packages/bindrunes/dist/index.js",
+		"limit": "15 kB"
+	},
+	{
+		"name": "bindrunes/layouts",
+		"path": "packages/bindrunes/dist/layouts/index.js",
+		"limit": "8 kB"
+	},
+	{
+		"name": "bindrunes/domains",
+		"path": "packages/bindrunes/dist/domains/index.js",
+		"limit": "12 kB"
+	}
+]

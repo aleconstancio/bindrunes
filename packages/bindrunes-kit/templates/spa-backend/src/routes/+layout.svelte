@@ -1,7 +1,8 @@
 <script lang="ts">
-import "../app.css";
-import { AppProvider } from "bindrunes";
-let { children } = $props();
+  import "../app.css";
+  import { AppProvider } from "bindrunes";
+
+  let { children } = $props();
 </script>
 
 <AppProvider>

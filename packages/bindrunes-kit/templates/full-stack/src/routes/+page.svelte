@@ -1,20 +1,13 @@
 <script lang="ts">
-import { PageSection, Button } from "bindrunes";
-let { data } = $props();
+  import { Button, Card, PageSection } from "bindrunes";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>
   <div class="text-center space-y-6">
-    <h1 class="text-display-1 text-foreground">Welcome</h1>
+    <h1 class="text-display-1 text-foreground">Welcome to bindrunes</h1>
     <p class="text-body-lg text-muted-foreground">
-      {#if data.session}
-        Hello, {data.session.user.name ?? data.session.user.email}!
-      {:else}
-        Sign in to get started.
-      {/if}
+      Your app is ready. Start building.
     </p>
-    {#if !data.session}
-      <Button href="/login">Sign In</Button>
-    {/if}
+    <Button variant="primary" size="lg">Get Started</Button>
   </div>
 </PageSection>
