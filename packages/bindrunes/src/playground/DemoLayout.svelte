@@ -1,6 +1,6 @@
 <script lang="ts">
-import type { Snippet } from "svelte";
 import { AppProvider, SEO } from "bindrunes";
+import type { Snippet } from "svelte";
 import DemoFooter from "./DemoFooter.svelte";
 import DemoNav from "./DemoNav.svelte";
 import { createDemoState } from "./scaffold-context.svelte";
@@ -35,7 +35,7 @@ let {
 	description = "Component demo for bindrunes",
 	shell = "default",
 	theme = "editorial",
-	aesthetic = "editorial",
+	aesthetic = "minimal",
 	density = "comfortable",
 	nav = [],
 	footer = {},

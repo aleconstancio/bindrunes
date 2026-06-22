@@ -1,4 +1,4 @@
-/* bindrunes — Default :root token values (aesthetic=editorial, density=comfortable) */
+/* bindrunes — Default :root token values (aesthetic=minimal, density=comfortable) */
 :root {
 	/* Surfaces (warm grey) */
 	--background: oklch(0.13 0.01 270);
@@ -107,7 +107,7 @@
 	--space-16: 5rem;
 	--space-20: 6rem;
 
-	/* Aesthetic-coupled hooks (editorial default) */
+	/* Aesthetic-coupled hooks (minimal default) */
 	--button-treatment: flat;
 	--button-bg: var(--primary);
 	--button-bg-destructive: var(--destructive);

@@ -18,7 +18,7 @@ export function createServerApiClient(options: ServerApiClientOptions) {
 		const requestHeaders: Record<string, string> = { ...headers };
 
 		if (auth && event?.locals.session) {
-			requestHeaders["Authorization"] = `Bearer ${event.locals.session.user.id}`;
+			requestHeaders.Authorization = `Bearer ${event.locals.session.user.id}`;
 		}
 
 		if (fetchOptions.body && !requestHeaders["Content-Type"]) {

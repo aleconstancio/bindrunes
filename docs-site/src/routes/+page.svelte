@@ -7,7 +7,7 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     <Badge variant="primary" size="lg">Svelte 5 + Tailwind v4</Badge>
     <h1 class="mt-6 text-display-1 text-foreground">bindrunes</h1>
     <p class="mt-4 text-body-lg text-muted-foreground max-w-2xl mx-auto">
-      248+ components · 53+ composables · 72 theme combinations · The complete design system for B2B SaaS.
+      248+ components · 53+ composables · 126 theme combinations · The complete design system for B2B SaaS.
     </p>
     <div class="mt-8 flex items-center justify-center gap-4">
       <Button href="/docs/getting-started" variant="primary" size="lg">Get Started</Button>
@@ -54,7 +54,7 @@ bun run dev`}
       </Card>
       <Card variant="glass" padding>
         <h3 class="text-title-1">3-Axis Design System</h3>
-        <p class="text-body-sm text-muted-foreground mt-2">Theme × Aesthetic × Density = 72 unique combinations. OKLCH colors, CSS custom properties.</p>
+        <p class="text-body-sm text-muted-foreground mt-2">Theme × Aesthetic × Density = 126 unique combinations. OKLCH colors, CSS custom properties.</p>
       </Card>
       <Card variant="glass" padding>
         <h3 class="text-title-1">SvelteKit Integration</h3>
@@ -74,7 +74,7 @@ bun run dev`}
         <div class="text-body-sm text-muted-foreground mt-1">Composables</div>
       </div>
       <div>
-        <div class="text-display-1 text-foreground">72</div>
+        <div class="text-display-1 text-foreground">126</div>
         <div class="text-body-sm text-muted-foreground mt-1">Theme Combinations</div>
       </div>
       <div>

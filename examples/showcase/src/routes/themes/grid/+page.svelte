@@ -2,7 +2,7 @@
 import { Card, Badge, Button } from "bindrunes";
 
 const themes = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
-const aesthetics = ["editorial", "glass", "bento", "expressive"] as const;
+const aesthetics = ["minimal", "glass", "bento", "expressive"] as const;
 const densities = ["compact", "comfortable", "spacious"] as const;
 </script>
 

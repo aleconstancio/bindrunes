@@ -21,7 +21,7 @@ let {
 // svelte-ignore state_referenced_locally
 const _theme = useTheme({ default: themeDefault ?? "editorial" });
 // svelte-ignore state_referenced_locally
-const _aesthetic = useAesthetic({ default: aestheticDefault ?? "editorial" });
+const _aesthetic = useAesthetic({ default: aestheticDefault ?? "minimal" });
 // svelte-ignore state_referenced_locally
 const _density = useDensity({ default: densityDefault ?? "comfortable" });
 </script>

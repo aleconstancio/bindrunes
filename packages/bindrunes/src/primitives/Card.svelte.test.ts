@@ -1,5 +1,6 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
+import { expectNoAxeViolations } from "../helpers/axe";
 import CardHarness from "./__tests__/harness/CardHarness.svelte";
 import Card from "./Card.svelte";
 
@@ -164,5 +165,10 @@ describe("Card", () => {
 	it("href card does not have tabindex", () => {
 		const { container } = render(Card, { href: "/x" });
 		expect(container.firstElementChild?.getAttribute("tabindex")).toBeNull();
+	});
+
+	it("passes accessibility checks", async () => {
+		const { container } = render(CardHarness, { childrenText: "Content" });
+		await expectNoAxeViolations(container);
 	});
 });

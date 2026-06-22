@@ -1,7 +1,7 @@
 import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 
 const AESTHETICS = [
-	"editorial",
+	"minimal",
 	"glass",
 	"bento",
 	"expressive",
@@ -16,7 +16,7 @@ export function useAesthetic(options?: { default?: Aesthetic }) {
 		storageKey: "aesthetic",
 		attributeName: "data-aesthetic",
 		values: AESTHETICS,
-		default: options?.default ?? "editorial",
+		default: options?.default ?? "minimal",
 	});
 
 	return {

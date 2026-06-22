@@ -183,7 +183,7 @@
 				</div>
 				<p class="text-body-sm text-muted-foreground mb-6">
 					Customize themes, aesthetics, and density in real-time. Switch between 6 themes,
-					4 aesthetics (editorial, glass, bento, expressive), and 3 density scales.
+					4 aesthetics (minimal, glass, bento, expressive), and 3 density scales.
 					Export your custom CSS when ready.
 				</p>
 				<ThemeStudio />

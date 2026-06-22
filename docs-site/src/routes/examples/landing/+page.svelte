@@ -64,7 +64,7 @@ import { Badge, Button, Card, PageSection } from "bindrunes";
         For marketing pages, use the expressive aesthetic with spacious density:
       </p>
       <code class="block p-4 rounded-lg bg-surface-1 border border-border font-mono text-sm text-muted-foreground">
-        editorial x expressive x spacious
+        minimal x expressive x spacious
       </code>
       <p class="text-body text-muted-foreground mt-3">
         This gives you dramatic shadows, gradient buttons, mesh textures, and generous whitespace.

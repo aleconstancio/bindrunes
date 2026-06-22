@@ -5,7 +5,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components,
 
 ## Three Orthogonal Axes (v1.0+)
 - Theme (`data-theme=editorial|dracula|nord|catppuccin|rose-pine|github`) → color identity
-- Aesthetic (`data-aesthetic=editorial|glass|bento|expressive`) → form (radius/shadow/motion)
+- Aesthetic (`data-aesthetic=minimal|glass|bento|expressive`) → form (radius/shadow/motion)
 - Density (`data-density=compact|comfortable|spacious`) → spacing scale
 
 ## Token Rules
@@ -41,6 +41,11 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components,
 - Don't use raw `setContext`/`getContext` — use `createMetaContext`/`useMetaContext`
 - Don't hardcode `max-w-4xl`/`max-w-6xl` etc. — use `<MetaContainer size="...">`
 - Don't use `<SidebarLayout>` — use `<MetaLayout>` (SidebarLayout is deprecated)
+
+## Internal Components
+The following components are internal to ThemeStudio and should NOT be imported directly:
+- `AestheticTab`, `DensityTab`, `ExportTab`, `ThemeColorTab`, `ThemePreview`
+These are sub-components of `ThemeStudio` and are not part of the public API.
 
 ## Routing
 - Design system, themes, aesthetics → `docs/design-system.md`

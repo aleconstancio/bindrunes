@@ -31,7 +31,7 @@ let {
 				<div>
 					<p class="text-label-md text-foreground">{a}</p>
 					<p class="text-body-sm text-muted-foreground">
-						{#if a === 'editorial'}
+						{#if a === 'minimal'}
 							Flat surfaces, hairline borders, snappy motion
 						{:else if a === 'glass'}
 							Translucent surfaces, ambient bloom

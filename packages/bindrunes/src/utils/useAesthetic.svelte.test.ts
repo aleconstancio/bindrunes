@@ -19,14 +19,14 @@ describe("useAesthetic", () => {
 		return state.current as ReturnType<typeof useAesthetic>;
 	}
 
-	it("defaults to editorial", async () => {
+	it("defaults to minimal", async () => {
 		const a = await mountAesthetic();
-		expect(a.aesthetic).toBe("editorial");
+		expect(a.aesthetic).toBe("minimal");
 	});
 
 	it("sets data-aesthetic attribute on document element", async () => {
 		await mountAesthetic();
-		expect(document.documentElement.getAttribute("data-aesthetic")).toBe("editorial");
+		expect(document.documentElement.getAttribute("data-aesthetic")).toBe("minimal");
 	});
 
 	it("setAesthetic updates value and attribute", async () => {
@@ -58,7 +58,7 @@ describe("useAesthetic", () => {
 	it("exposes the full aesthetic list", async () => {
 		const a = await mountAesthetic();
 		expect(a.aesthetics).toEqual([
-			"editorial",
+			"minimal",
 			"glass",
 			"bento",
 			"expressive",

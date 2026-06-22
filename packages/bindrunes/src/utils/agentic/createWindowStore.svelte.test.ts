@@ -183,6 +183,22 @@ describe("createWindowStore", () => {
 			const win = store.windows.find((w) => w.id === root)!;
 			expect(win.turns).toHaveLength(1);
 		});
+
+		it("compact without summary does not add a system turn", () => {
+			const root = store.createRoot({});
+			store.appendTurn(root, makeTurn("user", "a"));
+			store.appendTurn(root, makeTurn("assistant", "b"));
+			const plan: CompactionPlan = {
+				strategyId: "sliding",
+				dropTurnIds: [],
+				pinnedTurnIds: [],
+				estimatedTokensAfter: 20,
+			};
+			store.compact(root, plan);
+			const win = store.windows.find((w) => w.id === root)!;
+			const systemTurns = win.turns.filter((t) => t.role === "system");
+			expect(systemTurns).toHaveLength(0);
+		});
 	});
 
 	describe("remove()", () => {
@@ -263,6 +279,27 @@ describe("createWindowStore", () => {
 			expect(store.activeId).toBe(root);
 		});
 
+		it("remove() handles child whose parent was already removed", () => {
+			const root = store.createRoot({});
+			const child = store.fork(root);
+			store.remove(root);
+			expect(store.windows).toHaveLength(1);
+			// child still has parentId pointing to removed root
+			store.remove(child);
+			expect(store.windows).toHaveLength(0);
+		});
+
+		it("remove() detaches child from parent's children list even when parent lineage is empty", () => {
+			const root = store.createRoot({});
+			const child = store.fork(root);
+			const rootWin = store.windows.find((w) => w.id === root)!;
+			// Manually empty the lineage to hit the i === -1 branch
+			rootWin.lineage.children.length = 0;
+			store.remove(child);
+			expect(store.windows).toHaveLength(1);
+			expect(store.windows[0]!.id).toBe(root);
+		});
+
 		it("remove() clears activeId when the active window is removed", () => {
 			const root = store.createRoot({});
 			store.remove(root);
@@ -276,6 +313,13 @@ describe("createWindowStore", () => {
 		it("appendTurn with no active window and no id throws", () => {
 			const fresh = createWindowStore({});
 			expect(() => fresh.appendTurn(undefined, makeTurn("user", "x"))).toThrow();
+		});
+
+		it("fork without options uses source state", () => {
+			const root = store.createRoot({ count: 42 });
+			const child = store.fork(root);
+			const childWin = store.windows.find((w) => w.id === child)!;
+			expect(childWin.state).toEqual({ count: 42 });
 		});
 
 		it("compact on an unknown window throws", () => {

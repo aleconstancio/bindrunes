@@ -127,7 +127,11 @@ const bindrunesConfig = {
 	},
 } satisfies Config;
 
-function bindrunesPlugin({ addUtilities }: { addUtilities: (utilities: Record<string, Record<string, string>>) => void }) {
+function bindrunesPlugin({
+	addUtilities,
+}: {
+	addUtilities: (utilities: Record<string, Record<string, string>>) => void;
+}) {
 	addUtilities({
 		".glass-panel": {
 			background: "var(--glass-surface, oklch(1 0 0 / 0.04))",
@@ -164,8 +168,7 @@ function bindrunesPlugin({ addUtilities }: { addUtilities: (utilities: Record<st
 			animation: "bindrunes-pulse-glow 3s infinite ease-in-out",
 		},
 		".section-reveal": {
-			animation:
-				"fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards",
+			animation: "fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards",
 		},
 	});
 }

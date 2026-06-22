@@ -241,5 +241,22 @@ describe("SimulatorRuntime", () => {
 				expect(last.finishReason).toBe("cancel");
 			}
 		});
+
+		it("resolves immediately when signal is already aborted at delay start", async () => {
+			const rt = new SimulatorRuntime({
+				script: [
+					{ kind: "token", text: "a" },
+					{ kind: "token", text: "b" },
+				],
+				delayMs: 100,
+			});
+			const ac = new AbortController();
+			ac.abort();
+			const start = Date.now();
+			const out = await collect(rt.complete({ messages: [] } as never, ac.signal));
+			const elapsed = Date.now() - start;
+			expect(elapsed).toBeLessThan(50);
+			expect(out).toEqual([]);
+		});
 	});
 });

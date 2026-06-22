@@ -1,8 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createWebSocketSession } from "./websocket.svelte";
 
-type WsHandler = (data: unknown) => void;
-
 class MockWebSocket {
 	static instances: MockWebSocket[] = [];
 	static OPEN = 1;

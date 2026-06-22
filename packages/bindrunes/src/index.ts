@@ -160,7 +160,7 @@ export { createApiClient } from "./utils/createApiClient.ts";
 export { createAsyncState } from "./utils/createAsyncState.svelte.ts";
 // ── Utilities ──
 export { createEnv } from "./utils/createEnv.ts";
-export { createForm } from "./utils/createForm.svelte";
+export { createForm } from "./utils/createForm.svelte.ts";
 // ── Composables: i18n ──
 export type { Dict, I18nOptions, I18nResult } from "./utils/createI18n.svelte.ts";
 export { createI18n } from "./utils/createI18n.svelte.ts";
@@ -168,18 +168,18 @@ export { createI18nContext, useI18n } from "./utils/createI18nContext.svelte.ts"
 export { createMediaQuery } from "./utils/createMediaQuery.svelte.ts";
 // ── Composables: Context ──
 /** Type-safe Svelte context wrapper using Symbol keys. */
-export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte";
+export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte.ts";
 export type {
 	CreateMultiTenantOptions,
 	MultiTenantResult,
 	Tenant,
-} from "./utils/createMultiTenant.svelte";
+} from "./utils/createMultiTenant.svelte.ts";
 export {
 	createMultiTenant,
 	createMultiTenantContext,
 	useMultiTenantContext,
-} from "./utils/createMultiTenant.svelte";
-export { createMutation } from "./utils/createMutation.svelte";
+} from "./utils/createMultiTenant.svelte.ts";
+export { createMutation } from "./utils/createMutation.svelte.ts";
 // ── Composables: Omnibar ──
 export type {
 	CreateOmnibarOptions,
@@ -190,9 +190,10 @@ export { createOmnibar } from "./utils/createOmnibar.svelte.ts";
 export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
 // ── create* Aliases ──
-export { createQuery } from "./utils/createQuery.svelte";
+export { createQuery } from "./utils/createQuery.svelte.ts";
 export { createStorage } from "./utils/createStorage.ts";
 export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
+export { createTransition } from "./utils/createTransition.svelte.ts";
 export { defineTheme } from "./utils/defineTheme.svelte.ts";
 export { extendTheme } from "./utils/extendTheme.svelte.ts";
 export {

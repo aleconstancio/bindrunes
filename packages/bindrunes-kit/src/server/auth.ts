@@ -23,12 +23,7 @@ interface CreateServerAuthOptions {
 }
 
 export function createServerAuth(options: CreateServerAuthOptions) {
-	const {
-		cookieName = "bindrunes-session",
-		maxAge = 60 * 60 * 24 * 7,
-		validate,
-		refresh,
-	} = options;
+	const { cookieName = "bindrunes-session", maxAge = 60 * 60 * 24 * 7, validate } = options;
 
 	async function getSession(event: RequestEvent): Promise<SessionData | null> {
 		const token = event.cookies.get(cookieName);
@@ -114,7 +109,7 @@ export function createOAuthHandler(
 
 		async handleCallback(
 			code: string,
-			state?: string,
+			_state?: string,
 		): Promise<{ token: string; profile: OAuthProfile } | null> {
 			try {
 				const result = await authorize(code);

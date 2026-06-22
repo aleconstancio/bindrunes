@@ -38,13 +38,13 @@ describe("AestheticTab", () => {
 	it("renders all aesthetic options", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
-		expect(screen.getByText("editorial")).toBeInTheDocument();
+		expect(screen.getByText("minimal")).toBeInTheDocument();
 		expect(screen.getByText("glass")).toBeInTheDocument();
 		expect(screen.getByText("bento")).toBeInTheDocument();
 		expect(screen.getByText("expressive")).toBeInTheDocument();
 	});
 
-	it("shows description for editorial", async () => {
+	it("shows description for minimal", async () => {
 		const a = await mountAesthetic();
 		render(a.render, { aesthetic: a.aesthetic });
 		expect(screen.getByText(/Flat surfaces/)).toBeInTheDocument();

@@ -211,5 +211,50 @@ describe("createConversationBranches", () => {
 			const cmp = branches.compareSiblings(toWindowId("a"), toWindowId("ghost"));
 			expect(cmp.commonAncestor).toBe(toWindowId("root"));
 		});
+
+		it("cycle in parent references is handled (buildPath returns null)", () => {
+			// root=a, b→c→d→c (cycle in parentId chain, unreachable from root's perspective)
+			const windows: ReadonlyArray<Window> = [
+				w("a", null, ["b"], 1),
+				w("b", "a", ["c"], 2),
+				w("c", "d", ["d"], 3),
+				w("d", "c", [], 4),
+			];
+			const branches = createConversationBranches({
+				rootId: toWindowId("a"),
+				windows,
+			});
+			expect(branches.branches).toEqual([]);
+			expect(branches.leaves).toEqual([toWindowId("d")]);
+		});
+
+		it("compareSiblings with both windows unreachable returns root", () => {
+			const windows: ReadonlyArray<Window> = [w("root", null, [], 1)];
+			const branches = createConversationBranches({
+				rootId: toWindowId("root"),
+				windows,
+			});
+			const cmp = branches.compareSiblings(toWindowId("ghost1"), toWindowId("ghost2"));
+			expect(cmp.commonAncestor).toBe(toWindowId("root"));
+			expect(cmp.divergedAt).toBe(0);
+		});
+
+		it("compareSiblings with shared path prefix finds correct divergence", () => {
+			// root -> x -> a
+			//            -> b
+			const windows: ReadonlyArray<Window> = [
+				w("root", null, ["x"], 1),
+				w("x", "root", ["a", "b"], 2),
+				w("a", "x", [], 3),
+				w("b", "x", [], 4),
+			];
+			const branches = createConversationBranches({
+				rootId: toWindowId("root"),
+				windows,
+			});
+			const cmp = branches.compareSiblings(toWindowId("a"), toWindowId("b"));
+			expect(cmp.commonAncestor).toBe(toWindowId("x"));
+			expect(cmp.divergedAt).toBe(2);
+		});
 	});
 });

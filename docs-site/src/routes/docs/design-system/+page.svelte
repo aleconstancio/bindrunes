@@ -32,7 +32,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4 font-medium">Aesthetic</td>
               <td class="py-2 pr-4 font-mono text-xs">data-aesthetic</td>
-              <td class="py-2 pr-4">editorial, glass, bento, expressive</td>
+              <td class="py-2 pr-4">minimal, glass, bento, expressive</td>
               <td class="py-2">Form (radius, shadow, motion)</td>
             </tr>
             <tr>
@@ -80,7 +80,7 @@ import { Badge, CodeSnippet } from "bindrunes";
       <h2 class="text-title-1 text-foreground mb-4">Aesthetic Presets</h2>
       <div class="space-y-4">
         <div class="p-4 rounded-lg bg-surface-1 border border-border">
-          <h3 class="text-title-2 text-foreground mb-1">editorial (default)</h3>
+          <h3 class="text-title-2 text-foreground mb-1">minimal (default)</h3>
           <p class="text-body-sm text-muted-foreground">0.5rem radius, flat buttons, snappy 120ms transitions. Calm, flat, hairline aesthetic.</p>
         </div>
         <div class="p-4 rounded-lg bg-surface-1 border border-border">
@@ -167,7 +167,7 @@ myBrand.apply();`}
       <h2 class="text-title-1 text-foreground mb-4">Three-Axis Combinations</h2>
       <div class="space-y-3">
         <div class="p-3 rounded-lg bg-surface-1 border border-border">
-          <code class="text-sm font-medium text-foreground">editorial x editorial x comfortable</code>
+          <code class="text-sm font-medium text-foreground">minimal x minimal x comfortable</code>
           <p class="text-body-sm text-muted-foreground mt-1">Clean, minimal, professional. The baseline experience.</p>
         </div>
         <div class="p-3 rounded-lg bg-surface-1 border border-border">
@@ -183,7 +183,7 @@ myBrand.apply();`}
           <p class="text-body-sm text-muted-foreground mt-1">Friendly pastels with generous spacing and rounded corners. Perfect for consumer apps.</p>
         </div>
         <div class="p-3 rounded-lg bg-surface-1 border border-border">
-          <code class="text-sm font-medium text-foreground">github x editorial x compact</code>
+          <code class="text-sm font-medium text-foreground">github x minimal x compact</code>
           <p class="text-body-sm text-muted-foreground mt-1">Neutral, high-contrast, dense. Excellent for admin panels and internal tools.</p>
         </div>
       </div>

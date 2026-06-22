@@ -4,7 +4,7 @@
 	import { Palette } from "lucide-svelte";
 
 	const themeState = createTheme({ default: "editorial" });
-	const aestheticState = createAesthetic({ default: "editorial" });
+	const aestheticState = createAesthetic({ default: "minimal" });
 	const densityState = createDensity({ default: "comfortable" });
 
 	const themeColors: Record<string, string> = {
@@ -17,7 +17,7 @@
 	};
 
 	const aestheticIcons: Record<string, string> = {
-		editorial: "\u2022",
+		minimal: "\u2022",
 		glass: "\u25E6",
 		bento: "\u25A3",
 		expressive: "\u2726",

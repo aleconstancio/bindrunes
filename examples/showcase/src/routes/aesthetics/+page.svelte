@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { PageHeader, Badge, Button, Card, Input, Alert } from "bindrunes";
 
-	const aesthetics = ["editorial", "glass", "bento", "expressive"] as const;
+	const aesthetics = ["minimal", "glass", "bento", "expressive"] as const;
 
 	const aestheticDescriptions: Record<string, string> = {
-		editorial: "Flat surfaces, hairline borders, snappy 120ms transitions.",
+		minimal: "Flat surfaces, hairline borders, snappy 120ms transitions.",
 		glass: "Translucent surfaces, ambient bloom, fluid 250ms transitions.",
 		bento: "Rounded corners, soft shadows, bouncy 220ms spring transitions.",
 		expressive: "Dramatic shadows, gradient buttons, dramatic 300ms transitions.",
 	};
 
-	let activeAesthetic = $state<string>("editorial");
+	let activeAesthetic = $state<string>("minimal");
 </script>
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">

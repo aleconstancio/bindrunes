@@ -19,7 +19,7 @@
 				{ type: "added" as const, description: "160+ components across 12 Boundrune categories" },
 				{ type: "added" as const, description: "47 composables (data, forms, auth, UI, i18n)" },
 				{ type: "added" as const, description: "6 themes: editorial, dracula, nord, catppuccin, rose-pine, github" },
-				{ type: "added" as const, description: "4 aesthetics: editorial, glass, bento, expressive" },
+				{ type: "added" as const, description: "4 aesthetics: minimal, glass, bento, expressive" },
 				{ type: "added" as const, description: "3 density modes: compact, comfortable, spacious" },
 				{ type: "added" as const, description: "Three-axis design system with orthogonal theme/aesthetic/density" },
 				{ type: "added" as const, description: "Svelte 5 runes throughout (no legacy stores)" },

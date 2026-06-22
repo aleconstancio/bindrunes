@@ -14,7 +14,9 @@
 			"!src/styles/tokens/tailwind.css",
 			"!docs/tokens.example.css",
 			"!src/components/scaffold/app.css",
-			"!packages/bindrunes-kit/templates"
+			"!packages/bindrunes-kit/templates",
+			"!packages/bindrunes/src/playground/app.css",
+			"!packages/bindrunes/src/styles/tokens/tailwind.css"
 		]
 	},
 	"formatter": {

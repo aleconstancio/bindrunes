@@ -239,7 +239,7 @@
 	// Composables
 	const composables = [
 		{ name: "createTheme", category: "Design", description: "6 themes: editorial, dracula, nord, catppuccin, rose-pine, github", demoPath: "/app" },
-		{ name: "createAesthetic", category: "Design", description: "4 aesthetics: editorial, glass, bento, expressive", demoPath: "/app" },
+		{ name: "createAesthetic", category: "Design", description: "4 aesthetics: minimal, glass, bento, expressive", demoPath: "/app" },
 		{ name: "createDensity", category: "Design", description: "3 densities: compact, comfortable, spacious", demoPath: "/app" },
 		{ name: "createDarkMode", category: "Design", description: "Light/dark mode via mode-watcher", demoPath: "/" },
 		{ name: "createQuery", category: "Data", description: "Reactivity query cache with stale time, retry, refetch-on-focus", demoPath: "/data/list" },

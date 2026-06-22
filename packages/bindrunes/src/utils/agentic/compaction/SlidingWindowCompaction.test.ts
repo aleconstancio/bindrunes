@@ -50,6 +50,39 @@ describe("SlidingWindowCompaction", () => {
 		expect(plan.estimatedTokensAfter).toBe(30);
 	});
 
+	it("plan keeps all turns when exactly at window size", () => {
+		const strategy = new SlidingWindowCompaction(3);
+		const window = makeWindow(3);
+		const plan = strategy.plan(window);
+
+		expect(plan.dropTurnIds).toEqual([]);
+		expect(plan.pinnedTurnIds).toEqual([]);
+		expect(plan.estimatedTokensAfter).toBe(30);
+	});
+
+	it("plan with zero turns", () => {
+		const strategy = new SlidingWindowCompaction(3);
+		const window = makeWindow(0);
+		const plan = strategy.plan(window);
+
+		expect(plan.dropTurnIds).toEqual([]);
+		expect(plan.estimatedTokensAfter).toBe(0);
+	});
+
+	it("apply with empty dropTurnIds returns unchanged window", async () => {
+		const strategy = new SlidingWindowCompaction(10);
+		const window = makeWindow(3);
+		const result = await strategy.apply(window, {
+			strategyId: "sliding-window",
+			dropTurnIds: [],
+			pinnedTurnIds: [],
+			estimatedTokensAfter: 30,
+		});
+
+		expect(result.turns).toHaveLength(3);
+		expect(result.turns[0].id).toBe("turn-0");
+	});
+
 	it("apply removes dropped turns from window", async () => {
 		const strategy = new SlidingWindowCompaction(3);
 		const window = makeWindow(5);

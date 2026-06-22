@@ -58,4 +58,52 @@ describe("SummarizeCompaction", () => {
 		expect(result.turns[0].content).toContain("Summary of conversation");
 		expect(result.turns[0].role).toBe("system");
 	});
+
+	it("plan keeps all turns when exactly at keepLast", () => {
+		const strategy = new SummarizeCompaction({
+			keepLast: 3,
+			summarize: vi.fn(),
+		});
+		const window = makeWindow(3);
+		const plan = strategy.plan(window);
+
+		expect(plan.dropTurnIds).toEqual([]);
+		expect(plan.pinnedTurnIds).toEqual(["turn-0", "turn-1", "turn-2"]);
+		expect(plan.estimatedTokensAfter).toBe(30);
+	});
+
+	it("plan with zero turns", () => {
+		const strategy = new SummarizeCompaction({
+			keepLast: 3,
+			summarize: vi.fn(),
+		});
+		const window = makeWindow(0);
+		const plan = strategy.plan(window);
+
+		expect(plan.dropTurnIds).toEqual([]);
+		expect(plan.pinnedTurnIds).toEqual([]);
+		expect(plan.estimatedTokensAfter).toBe(0);
+	});
+
+	it("apply summary turn has episodic memoryLayer", async () => {
+		const summarize = vi.fn().mockResolvedValue("test summary");
+		const strategy = new SummarizeCompaction({ keepLast: 1, summarize });
+		const window = makeWindow(3);
+		const plan = strategy.plan(window);
+		const result = await strategy.apply(window, plan);
+
+		expect(result.turns[0].memoryLayer).toBe("episodic");
+		expect(result.turns[0].role).toBe("system");
+	});
+
+	it("apply with no dropped turns still calls summarize with empty array", async () => {
+		const summarize = vi.fn().mockResolvedValue("");
+		const strategy = new SummarizeCompaction({ keepLast: 5, summarize });
+		const window = makeWindow(3);
+		const plan = strategy.plan(window);
+		const result = await strategy.apply(window, plan);
+
+		expect(summarize).toHaveBeenCalledWith([]);
+		expect(result.turns).toHaveLength(4); // 1 summary + 3 kept
+	});
 });

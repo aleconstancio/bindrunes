@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { createWindowStore } from "./createWindowStore.svelte";
-import { createPersistenceAdapter, type PersistenceAdapter } from "./persistence.svelte";
+import { createPersistenceAdapter } from "./persistence.svelte";
 
 function makeTurn(content: string) {
 	return {
@@ -13,7 +13,7 @@ function makeTurn(content: string) {
 	};
 }
 
-function createMemoryAdapter(): PersistenceAdapter & { store: Map<string, string> } {
+function createMemoryAdapter() {
 	const store = new Map<string, string>();
 	return {
 		store,
@@ -168,6 +168,65 @@ describe("createPersistenceAdapter", () => {
 		expect(loaded.toolCalls![0].name).toBe("search");
 		expect(loaded.createdAt).toBe(12345);
 		expect(loaded.memoryLayer).toBe("episodic");
+	});
+
+	it("load returns early when adapter returns null (no key found)", async () => {
+		const adapter = createMemoryAdapter();
+		adapter.load.mockResolvedValueOnce(null);
+		const store = createWindowStore();
+
+		const persist = createPersistenceAdapter(store, adapter, "nonexistent");
+		await persist.load();
+
+		expect(store.windows).toHaveLength(0);
+		expect(store.activeId).toBeNull();
+	});
+
+	it("load navigates to first window when activeId is set", async () => {
+		const adapter = createMemoryAdapter();
+		const store = createWindowStore();
+		const id1 = store.createRoot({ seq: 1 });
+		store.appendTurn(id1, makeTurn("first"));
+		const id2 = store.createRoot({ seq: 2 });
+		store.appendTurn(id2, makeTurn("second"));
+
+		const persist = createPersistenceAdapter(store, adapter, "nav-key");
+		await persist.save();
+
+		const freshStore = createWindowStore();
+		const freshPersist = createPersistenceAdapter(freshStore, adapter, "nav-key");
+		await freshPersist.load();
+
+		expect(freshStore.windows).toHaveLength(2);
+		expect(freshStore.activeId).toBeTruthy();
+	});
+
+	it("save serializes toolCalls with isError flag", async () => {
+		const adapter = createMemoryAdapter();
+		const store = createWindowStore();
+		const id = store.createRoot({});
+		store.appendTurn(id, {
+			id: "tc-turn",
+			role: "tool",
+			content: "error result",
+			toolCalls: [
+				{ callId: "tc1", name: "fail", args: {}, result: { error: "oops" }, isError: true },
+			],
+			createdAt: Date.now(),
+			estimatedTokens: 5,
+			memoryLayer: "working",
+		});
+
+		const persist = createPersistenceAdapter(store, adapter, "tc-key");
+		await persist.save();
+
+		const freshStore = createWindowStore();
+		const freshPersist = createPersistenceAdapter(freshStore, adapter, "tc-key");
+		await freshPersist.load();
+
+		const loaded = freshStore.windows[0].turns[0];
+		expect(loaded.toolCalls).toHaveLength(1);
+		expect(loaded.toolCalls![0].isError).toBe(true);
 	});
 
 	it("load clears existing windows before restoring", async () => {

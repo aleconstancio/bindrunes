@@ -7,7 +7,7 @@ The bindrunes design system has three orthogonal customization axes, backed by a
 | Axis | Attribute | Presets | Controls | Composable |
 |---|---|---|---|---|
 | **Theme** | `data-theme` | `editorial` (default), `dracula`, `nord`, `catppuccin`, `rose-pine`, `github` | Color identity | `createTheme()` |
-| **Aesthetic** | `data-aesthetic` | `editorial` (default), `glass`, `bento`, `expressive` | Form (radius, shadow, motion) | `createAesthetic()` |
+| **Aesthetic** | `data-aesthetic` | `minimal` (default), `glass`, `bento`, `expressive` | Form (radius, shadow, motion) | `createAesthetic()` |
 | **Density** | `data-density` | `compact`, `comfortable` (default), `spacious` | Spacing scale | `createDensity()` |
 
 ---
@@ -23,7 +23,7 @@ The bindrunes design system has three orthogonal customization axes, backed by a
 - **github**: Accessible, universal palette.
 
 ### 2. Aesthetic Presets
-- **editorial**: 0.5rem radius, flat buttons, snappy 120ms transitions.
+- **minimal**: 0.5rem radius, flat buttons, snappy 120ms transitions.
 - **glass**: 0.625rem radius, gradient buttons, fluid 250ms transitions, grain texture.
 - **bento**: 0.875rem radius, inner-light buttons, bouncy 220ms spring transitions.
 - **expressive**: 1.0rem radius, gradient buttons, dramatic 300ms transitions, mesh texture.
@@ -189,7 +189,7 @@ Light mode uses `oklch(0.98 0.005 250)` background and `oklch(0.3 0.18 250)` pri
 
 Aesthetics control **form** only — radius, shadows, motion, button treatment, and surface texture. They never modify colors.
 
-### editorial (default)
+### minimal (default)
 
 The calm, flat, hairline aesthetic. Inspired by Linear, Vercel, and Geist.
 
@@ -529,7 +529,7 @@ This means any theme × aesthetic × density combination is guaranteed to be val
 ### How Cascade Works
 
 1. **`tokens.contract`** — Declares the type and shape of every CSS custom property.
-2. **`tokens.defaults`** — Sets fallback values for all tokens in `:root` (editorial theme, editorial aesthetic, comfortable density).
+2. **`tokens.defaults`** — Sets fallback values for all tokens in `:root` (editorial theme, minimal aesthetic, comfortable density).
 3. **`tokens.aesthetic`** — Overrides form-related tokens (`--radius-*`, `--shadow-*`, `--duration-*`, `--ease-*`, `--button-*`, `--card-treatment`, `--surface-texture`).
 4. **`tokens.theme`** — Overrides color tokens (`--background`, `--primary`, `--border`, etc.) scoped under `[data-theme="..."]`.
 5. **`tokens.density`** — Overrides spacing tokens (`--space-*`) scoped under `[data-density="..."]`.
@@ -679,7 +679,7 @@ Define a custom aesthetic under the `[data-aesthetic]` selector:
   import { createAesthetic } from "bindrunes";
 
   const aesthetic = createAesthetic({
-    default: "editorial",
+    default: "minimal",
     storageKey: "app-aesthetic",
   });
 
@@ -707,7 +707,7 @@ These tokens are read by component styles to adapt their rendering:
 
 Any theme can be combined with any aesthetic and any density. Here are recommended combinations:
 
-### `editorial × editorial × comfortable` (default)
+### `minimal × minimal × comfortable` (default)
 Clean, minimal, professional. The baseline experience.
 
 ### `dracula × glass × comfortable`
@@ -719,13 +719,13 @@ Soft blue-grey with rounded corners, tight spacing. Ideal for data-heavy dashboa
 ### `catppuccin × bento × spacious`
 Friendly pastels with generous spacing and rounded corners. Perfect for consumer apps.
 
-### `rose-pine × editorial × comfortable`
+### `rose-pine × minimal × comfortable`
 Warm, earthy, calm. Great for reading apps, journals, and personal projects.
 
-### `github × editorial × compact`
+### `github × minimal × compact`
 Neutral, high-contrast, dense. Excellent for admin panels and internal tools.
 
-### `editorial × expressive × spacious`
+### `minimal × expressive × spacious`
 Dramatic indigo with bold shadows and generous whitespace. Marketing and landing pages.
 
 ### `dracula × expressive × comfortable`
@@ -752,7 +752,7 @@ Import the core styles and any desired aesthetics in `app.css`:
 <script lang="ts">
   import { createTheme, createAesthetic, createDensity } from "bindrunes";
   const theme = createTheme({ default: "editorial" });
-  const aesthetic = createAesthetic({ default: "editorial" });
+  const aesthetic = createAesthetic({ default: "minimal" });
   const density = createDensity({ default: "comfortable" });
 </script>
 

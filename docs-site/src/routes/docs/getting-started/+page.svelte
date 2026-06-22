@@ -71,7 +71,7 @@ export default defineConfig({
 
 <AppProvider
   themeDefault="editorial"
-  aestheticDefault="editorial"
+  aestheticDefault="minimal"
   densityDefault="comfortable"
 >
   {@render children()}

@@ -53,7 +53,7 @@ export function createDemoState(config: {
 			return config.theme ?? "editorial";
 		},
 		get aesthetic() {
-			return config.aesthetic ?? "editorial";
+			return config.aesthetic ?? "minimal";
 		},
 		get density() {
 			return config.density ?? "comfortable";
