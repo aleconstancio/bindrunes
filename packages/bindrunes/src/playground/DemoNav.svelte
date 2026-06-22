@@ -2,7 +2,7 @@
 import { Menu, X } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import { slide } from "svelte/transition";
-import ThemeToggle from "../ThemeToggle.svelte";
+import ThemeToggle from "../primitives/ThemeToggle.svelte";
 import type { DemoNavLink } from "./scaffold-types";
 
 interface Props {

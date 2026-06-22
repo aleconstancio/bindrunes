@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { AppProvider, SEO } from "../../index";
+import { AppProvider, SEO } from "bindrunes";
 import DemoFooter from "./DemoFooter.svelte";
 import DemoNav from "./DemoNav.svelte";
 import { createDemoState } from "./scaffold-context.svelte";
