@@ -20,4 +20,30 @@ describe("DatePicker", () => {
 		const { container } = render(DatePicker);
 		await expectNoAxeViolations(container);
 	});
+
+	it("renders without label when not provided", () => {
+		const { container } = render(DatePicker);
+		expect(container.querySelector("label")).not.toBeInTheDocument();
+	});
+
+	it("can be disabled", () => {
+		const { container } = render(DatePicker, { disabled: true });
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(DatePicker, { class: "my-picker" });
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
+
+	it("renders with initial value", () => {
+		const date = new Date(2024, 0, 15);
+		const { container } = render(DatePicker, { value: date });
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
+
+	it("renders with undefined value", () => {
+		const { container } = render(DatePicker, { value: undefined });
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
 });

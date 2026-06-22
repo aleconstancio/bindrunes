@@ -108,4 +108,61 @@ describe("Card", () => {
 		const { container } = render(CardHarness, { childrenText: "BODY" });
 		expect(container.textContent).toContain("BODY");
 	});
+
+	it("href with interactive and ariaLabel", () => {
+		const { container } = render(Card, { href: "/x", interactive: true, ariaLabel: "Card link" });
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("aria-label")).toBe("Card link");
+	});
+
+	it("href without interactive does not set ariaLabel", () => {
+		const { container } = render(Card, { href: "/x", ariaLabel: "Card link" });
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("aria-label")).toBeNull();
+	});
+
+	it("interactive with href renders anchor", () => {
+		const { container } = render(Card, { href: "/x", interactive: true });
+		const el = container.firstElementChild!;
+		expect(el.tagName).toBe("A");
+	});
+
+	it("interactive with href sets aria-label", () => {
+		const { container } = render(Card, { href: "/x", interactive: true, ariaLabel: "Link" });
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("aria-label")).toBe("Link");
+	});
+
+	it("non-interactive without href does not set role", () => {
+		const { container } = render(Card);
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("role")).toBeNull();
+	});
+
+	it("non-interactive without href does not set tabindex", () => {
+		const { container } = render(Card);
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("tabindex")).toBeNull();
+	});
+
+	it("non-interactive does not set onclick", () => {
+		const { container } = render(Card);
+		const el = container.firstElementChild!;
+		expect(el.getAttribute("onclick")).toBeNull();
+	});
+
+	it("padding=true adds padding", () => {
+		const { container } = render(Card, { padding: true });
+		expect(container.firstElementChild?.className).toContain("p-[");
+	});
+
+	it("href card does not have role=button", () => {
+		const { container } = render(Card, { href: "/x" });
+		expect(container.firstElementChild?.getAttribute("role")).toBeNull();
+	});
+
+	it("href card does not have tabindex", () => {
+		const { container } = render(Card, { href: "/x" });
+		expect(container.firstElementChild?.getAttribute("tabindex")).toBeNull();
+	});
 });

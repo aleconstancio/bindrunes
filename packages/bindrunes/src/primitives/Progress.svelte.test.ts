@@ -82,4 +82,41 @@ describe("Progress", () => {
 		const root = container.querySelector('[role="progressbar"]')!;
 		expect(root.className).toContain("h-3");
 	});
+
+	it("shows label when provided", () => {
+		const { container } = render(Progress, { label: "Uploading" });
+		expect(container.textContent).toContain("Uploading");
+	});
+
+	it("shows percentage when showValue is true", () => {
+		const { container } = render(Progress, { value: 50, showValue: true });
+		expect(container.textContent).toContain("50%");
+	});
+
+	it("does not show percentage when indeterminate", () => {
+		const { container } = render(Progress, { showValue: true, indeterminate: true });
+		expect(container.textContent).not.toContain("%");
+	});
+
+	it("hides label and value when not provided", () => {
+		const { container } = render(Progress);
+		expect(container.textContent).not.toContain("%");
+	});
+
+	it("indeterminate mode renders progress bar", () => {
+		const { container } = render(Progress, { indeterminate: true });
+		const root = container.querySelector('[role="progressbar"]');
+		expect(root).toBeInTheDocument();
+	});
+
+	it("percentage caps at 100", () => {
+		const { container } = render(Progress, { value: 200, max: 100, showValue: true });
+		expect(container.textContent).toContain("100%");
+	});
+
+	it("shows both label and value", () => {
+		const { container } = render(Progress, { label: "Progress", value: 75, showValue: true });
+		expect(container.textContent).toContain("Progress");
+		expect(container.textContent).toContain("75%");
+	});
 });

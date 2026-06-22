@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
-import ErrorBoundaryHarness from "./__tests__/harness/ErrorBoundaryHarness.svelte";
+import ErrorBoundaryHarness from "../components/__tests__/harness/ErrorBoundaryHarness.svelte";
 
 describe("ErrorBoundary", () => {
 	it("renders slot content when no error", () => {

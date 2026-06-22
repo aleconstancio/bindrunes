@@ -62,4 +62,69 @@ describe("NumberInput", () => {
 		expect(screen.getByRole("button", { name: "Increase value" })).toBeDisabled();
 		expect(screen.getByRole("button", { name: "Decrease value" })).toBeDisabled();
 	});
+
+	it("size sm applies small classes", () => {
+		render(NumberInput, { size: "sm" });
+		const input = screen.getByRole("spinbutton");
+		expect(input.className).toContain("h-8");
+	});
+
+	it("size md applies medium classes", () => {
+		render(NumberInput, { size: "md" });
+		const input = screen.getByRole("spinbutton");
+		expect(input.className).toContain("h-10");
+	});
+
+	it("size lg applies large classes", () => {
+		render(NumberInput, { size: "lg" });
+		const input = screen.getByRole("spinbutton");
+		expect(input.className).toContain("h-12");
+	});
+
+	it("does not render label when not provided", () => {
+		const { container } = render(NumberInput);
+		expect(container.querySelector("label")).not.toBeInTheDocument();
+	});
+
+	it("sets name on input", () => {
+		render(NumberInput, { name: "qty" });
+		const input = screen.getByRole("spinbutton");
+		expect(input).toHaveAttribute("name", "qty");
+	});
+
+	it("sets min and max on input", () => {
+		render(NumberInput, { min: 0, max: 100 });
+		const input = screen.getByRole("spinbutton");
+		expect(input).toHaveAttribute("min", "0");
+		expect(input).toHaveAttribute("max", "100");
+	});
+
+	it("increment without max goes unbounded", async () => {
+		render(NumberInput, { value: 999, step: 1 });
+		const increaseBtn = screen.getByRole("button", { name: "Increase value" });
+		await userEvent.click(increaseBtn);
+		const input = screen.getByRole("spinbutton");
+		expect(input).toHaveValue(1000);
+	});
+
+	it("decrement without min goes unbounded", async () => {
+		render(NumberInput, { value: -999, step: 1 });
+		const decreaseBtn = screen.getByRole("button", { name: "Decrease value" });
+		await userEvent.click(decreaseBtn);
+		const input = screen.getByRole("spinbutton");
+		expect(input).toHaveValue(-1000);
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(NumberInput, { class: "my-num" });
+		expect(container.firstElementChild?.className).toContain("my-num");
+	});
+
+	it("step=5 increments by 5", async () => {
+		render(NumberInput, { value: 0, step: 5 });
+		const increaseBtn = screen.getByRole("button", { name: "Increase value" });
+		await userEvent.click(increaseBtn);
+		const input = screen.getByRole("spinbutton");
+		expect(input).toHaveValue(5);
+	});
 });

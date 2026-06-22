@@ -71,6 +71,17 @@ export default defineConfig({
 					minForks: 2,
 				},
 			},
+			{
+				extends: true,
+				test: {
+					name: "layouts",
+					include: ["src/layouts/**/*.{test,spec}.{js,ts}"],
+					environment: "happy-dom",
+					pool: "forks",
+					maxForks: 2,
+					minForks: 2,
+				},
+			},
 		],
 		coverage: {
 			provider: "v8",

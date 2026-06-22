@@ -29,4 +29,36 @@ describe("Skeleton", () => {
 		const { container } = render(Skeleton);
 		await expectNoAxeViolations(container);
 	});
+
+	it("string width applies to all lines", () => {
+		const { container } = render(Skeleton, { props: { width: "50%" } });
+		const lines = container.querySelectorAll(".animate-shimmer");
+		lines.forEach((line) => {
+			expect((line as HTMLElement).style.width).toBe("50%");
+		});
+	});
+
+	it("array width applies per-line widths", () => {
+		const { container } = render(Skeleton, {
+			props: { width: ["100%", "80%", "60%"], lines: 3 },
+		});
+		const lines = container.querySelectorAll(".animate-shimmer");
+		expect((lines[0] as HTMLElement).style.width).toBe("100%");
+		expect((lines[1] as HTMLElement).style.width).toBe("80%");
+		expect((lines[2] as HTMLElement).style.width).toBe("60%");
+	});
+
+	it("array width with fewer entries falls back", () => {
+		const { container } = render(Skeleton, {
+			props: { width: ["50%"], lines: 3 },
+		});
+		const lines = container.querySelectorAll(".animate-shimmer");
+		expect((lines[0] as HTMLElement).style.width).toBe("50%");
+		expect((lines[2] as HTMLElement).style.width).toBe("50%");
+	});
+
+	it("renders 1 line", () => {
+		const { container } = render(Skeleton, { props: { lines: 1 } });
+		expect(container.querySelectorAll(".animate-shimmer")).toHaveLength(1);
+	});
 });

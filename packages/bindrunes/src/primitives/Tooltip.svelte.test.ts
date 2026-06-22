@@ -44,4 +44,21 @@ describe("Tooltip", () => {
 		});
 		expect(container.firstElementChild).toBeInTheDocument();
 	});
+
+	it("renders with empty content string", () => {
+		const { container } = render(TooltipHarness, {
+			content: "",
+			slots: { children: "Hover" },
+		});
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
+
+	it("renders with side prop", () => {
+		const { container } = render(TooltipHarness, {
+			content: "Tip",
+			side: "bottom",
+			slots: { children: "Hover" },
+		});
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
 });

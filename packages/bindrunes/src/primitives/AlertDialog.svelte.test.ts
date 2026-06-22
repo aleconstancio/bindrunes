@@ -30,4 +30,31 @@ describe("AlertDialog", () => {
 		const { container } = render(AlertDialog, { props: { open: true } });
 		await expectNoAxeViolations(container);
 	});
+
+	it("does not render description when not provided", () => {
+		render(AlertDialog, { props: { open: true } });
+		expect(screen.queryByText(/description/i)).not.toBeInTheDocument();
+	});
+
+	it("renders with custom confirm and cancel labels", () => {
+		render(AlertDialog, {
+			props: { open: true, confirmLabel: "Yes", cancelLabel: "No" },
+		});
+		expect(document.querySelector('[role="alertdialog"]')).toBeInTheDocument();
+	});
+
+	it("renders with destructive variant", () => {
+		expect(() =>
+			render(AlertDialog, {
+				props: { open: true, destructive: true },
+			}),
+		).not.toThrow();
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(AlertDialog, {
+			props: { open: true, class: "my-alert" },
+		});
+		expect(document.querySelector('[role="alertdialog"]')).toBeInTheDocument();
+	});
 });

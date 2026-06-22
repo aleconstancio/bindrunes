@@ -28,4 +28,49 @@ describe("Switch", () => {
 		await userEvent.click(root);
 		expect(root.getAttribute("data-state")).toBe("unchecked");
 	});
+
+	it("renders error message with name", () => {
+		render(Switch, { props: { error: "Required", name: "toggle" } });
+		expect(screen.getByText("Required")).toBeInTheDocument();
+	});
+
+	it("sets aria-describedby when error and name provided", () => {
+		render(Switch, { props: { error: "Error", name: "sw" } });
+		const root = document.querySelector('[role="switch"]');
+		expect(root?.getAttribute("aria-describedby")).toBe("sw-error");
+	});
+
+	it("does not set aria-describedby without name", () => {
+		render(Switch, { props: { error: "Error" } });
+		const root = document.querySelector('[role="switch"]');
+		expect(root?.getAttribute("aria-describedby")).toBeNull();
+	});
+
+	it("sets aria-invalid when error is present", () => {
+		render(Switch, { props: { error: "Error" } });
+		const root = document.querySelector('[role="switch"]');
+		expect(root?.getAttribute("aria-invalid")).toBe("true");
+	});
+
+	it("does not set aria-invalid without error", () => {
+		render(Switch);
+		const root = document.querySelector('[role="switch"]');
+		expect(root?.getAttribute("aria-invalid")).toBeNull();
+	});
+
+	it("does not render error text when not provided", () => {
+		const { container } = render(Switch);
+		expect(container.querySelector("p")).not.toBeInTheDocument();
+	});
+
+	it("does not render error when not provided", () => {
+		const { container } = render(Switch);
+		expect(container.querySelector("p")).not.toBeInTheDocument();
+	});
+
+	it("applies custom class", () => {
+		const { container } = render(Switch, { props: { class: "my-switch" } });
+		const label = container.querySelector("label");
+		expect(label?.className).toContain("my-switch");
+	});
 });

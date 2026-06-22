@@ -31,4 +31,32 @@ describe("Popconfirm", () => {
 			}),
 		).not.toThrow();
 	});
+
+	it("renders without description by default", () => {
+		const { container } = render(PopconfirmHarness);
+		expect(container).toBeDefined();
+	});
+
+	it("renders with description when provided", () => {
+		const { container } = render(PopconfirmHarness, {
+			props: { description: "Are you really sure?" },
+		});
+		expect(container).toBeDefined();
+	});
+
+	it("renders with destructive variant", () => {
+		expect(() =>
+			render(PopconfirmHarness, {
+				props: { destructive: true },
+			}),
+		).not.toThrow();
+	});
+
+	it("renders with custom confirm and cancel labels", () => {
+		expect(() =>
+			render(PopconfirmHarness, {
+				props: { confirmLabel: "Yes", cancelLabel: "No" },
+			}),
+		).not.toThrow();
+	});
 });

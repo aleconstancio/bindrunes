@@ -119,4 +119,65 @@ describe("Button", () => {
 		const { container } = render(ButtonHarness, { href: "/x", label: "Go" });
 		await expectNoAxeViolations(container);
 	});
+
+	it("variant link renders as anchor with underline", () => {
+		const { container } = render(Button, { variant: "link", href: "/x" });
+		const link = container.querySelector("a");
+		expect(link?.className).toContain("underline-offset-4");
+	});
+
+	it("variant soft renders with primary/10 background", () => {
+		const { container } = render(Button, { variant: "soft" });
+		expect(container.querySelector("button")?.className).toContain("bg-primary/10");
+	});
+
+	it("variant subtle renders with muted background", () => {
+		const { container } = render(Button, { variant: "subtle" });
+		expect(container.querySelector("button")?.className).toContain("bg-muted");
+	});
+
+	it("size md applies h-10 class", () => {
+		const { container } = render(Button, { size: "md" });
+		expect(container.querySelector("button")?.className).toContain("h-10");
+	});
+
+	it("iconOnly adds aspect-square", () => {
+		const { container } = render(Button, { iconOnly: true });
+		expect(container.querySelector("button")?.className).toContain("aspect-square");
+	});
+
+	it("iconOnly on href adds aspect-square", () => {
+		const { container } = render(Button, { href: "/x", iconOnly: true });
+		expect(container.querySelector("a")?.className).toContain("aspect-square");
+	});
+
+	it("href with fullWidth", () => {
+		const { container } = render(Button, { href: "/x", fullWidth: true });
+		expect(container.querySelector("a")?.className).toContain("w-full");
+	});
+
+	it("href with ariaLabel", () => {
+		const { container } = render(Button, { href: "/x", ariaLabel: "Go" });
+		expect(container.querySelector("a")?.getAttribute("aria-label")).toBe("Go");
+	});
+
+	it("href with loading shows spinner", () => {
+		const { container } = render(Button, { href: "/x", loading: true });
+		expect(container.querySelector(".animate-spin")).toBeInTheDocument();
+	});
+
+	it("type=reset", () => {
+		const { container } = render(Button, { type: "reset" });
+		expect(container.querySelector("button")?.getAttribute("type")).toBe("reset");
+	});
+
+	it("style prop is applied", () => {
+		const { container } = render(Button, { style: "color: red" });
+		expect(container.querySelector("button")?.getAttribute("style")).toContain("color: red");
+	});
+
+	it("href with style prop", () => {
+		const { container } = render(Button, { href: "/x", style: "color: blue" });
+		expect(container.querySelector("a")?.getAttribute("style")).toContain("color: blue");
+	});
 });

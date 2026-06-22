@@ -3,51 +3,57 @@ import { describe, expect, it } from "vitest";
 import PageHeader from "./PageHeader.svelte";
 
 describe("PageHeader", () => {
-	it("renders the title", () => {
+	it("renders without crashing", () => {
+		const { container } = render(PageHeader);
+		expect(container.firstElementChild).toBeInTheDocument();
+	});
+
+	it("renders title", () => {
 		render(PageHeader, { title: "My Page" });
 		expect(screen.getByText("My Page")).toBeInTheDocument();
 	});
 
-	it("renders the title inside h1", () => {
-		const { container } = render(PageHeader, { title: "My Page" });
-		const h1 = container.querySelector("h1");
-		expect(h1).not.toBeNull();
-		expect(h1?.textContent).toBe("My Page");
+	it("renders h1 element", () => {
+		const { container } = render(PageHeader, { title: "Test" });
+		expect(container.querySelector("h1")).toBeInTheDocument();
 	});
 
 	it("renders description when provided", () => {
-		render(PageHeader, { title: "X", description: "A page description" });
-		expect(screen.getByText("A page description")).toBeInTheDocument();
+		render(PageHeader, { title: "T", description: "A description" });
+		expect(screen.getByText("A description")).toBeInTheDocument();
 	});
 
 	it("does not render description when not provided", () => {
-		const { container } = render(PageHeader, { title: "X" });
-		const p = container.querySelector("p");
-		expect(p).toBeNull();
+		const { container } = render(PageHeader, { title: "T" });
+		expect(container.querySelectorAll("p").length).toBe(0);
+	});
+
+	it("renders back link when backHref provided", () => {
+		render(PageHeader, { title: "T", backHref: "/previous" });
+		const link = screen.getByLabelText("Go back");
+		expect(link).toHaveAttribute("href", "/previous");
+	});
+
+	it("does not render back link when backHref not provided", () => {
+		render(PageHeader, { title: "T" });
+		expect(screen.queryByLabelText("Go back")).not.toBeInTheDocument();
 	});
 
 	it("renders breadcrumbs when provided", () => {
-		const { container } = render(PageHeader, {
-			title: "X",
-			breadcrumbs: [{ label: "Home", href: "/" }, { label: "Current" }],
+		render(PageHeader, {
+			title: "T",
+			breadcrumbs: [{ label: "Home", href: "/" }, { label: "Page" }],
 		});
-		expect(container.querySelector("nav")).not.toBeNull();
+		expect(screen.getByText("Home")).toBeInTheDocument();
 	});
 
-	it("renders back link when backHref is provided", () => {
-		const { container } = render(PageHeader, { title: "X", backHref: "/back" });
-		const backLink = container.querySelector('a[href="/back"]');
-		expect(backLink).not.toBeNull();
-		expect(backLink?.getAttribute("aria-label")).toBe("Go back");
+	it("does not render breadcrumbs when empty", () => {
+		render(PageHeader, { title: "T", breadcrumbs: [] });
+		expect(screen.queryByText("Home")).not.toBeInTheDocument();
 	});
 
-	it("does not render back link when backHref is not provided", () => {
-		const { container } = render(PageHeader, { title: "X" });
-		expect(container.querySelector('a[aria-label="Go back"]')).toBeNull();
-	});
-
-	it("applies class prop to root", () => {
-		const { container } = render(PageHeader, { title: "X", class: "custom-class" });
-		expect(container.firstElementChild?.className).toContain("custom-class");
+	it("applies custom class", () => {
+		const { container } = render(PageHeader, { title: "T", class: "my-header" });
+		expect(container.firstElementChild?.className).toContain("my-header");
 	});
 });

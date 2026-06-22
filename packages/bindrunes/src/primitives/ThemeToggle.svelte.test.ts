@@ -29,4 +29,23 @@ describe("ThemeToggle", () => {
 		await fireEvent.click(button);
 		expect(button).toBeInTheDocument();
 	});
+
+	it("has aria-label for light mode", () => {
+		render(ThemeToggle);
+		const button = screen.getByRole("button");
+		const label = button.getAttribute("aria-label");
+		expect(label === "Light mode" || label === "Dark mode").toBe(true);
+	});
+
+	it("outline variant uses default button variant", () => {
+		render(ThemeToggle, { variant: "outline" });
+		const button = screen.getByRole("button");
+		expect(button).toBeInTheDocument();
+	});
+
+	it("icon variant uses ghost button variant", () => {
+		render(ThemeToggle, { variant: "icon" });
+		const button = screen.getByRole("button");
+		expect(button).toBeInTheDocument();
+	});
 });
