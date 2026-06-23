@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 
-type Variant = "surface" | "glass" | "outlined" | "ghost";
+type Variant = "surface" | "glass" | "tinted" | "outlined" | "ghost";
 
 let {
 	variant = "surface" as Variant,
@@ -31,7 +31,8 @@ let {
 const vars: Record<Variant, string> = {
 	surface: "bg-card text-card-foreground shadow-[--shadow-sm] border border-border",
 	glass:
-		"bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--glass-blur,16px]",
+		"bg-[--glass-surface] text-card-foreground border border-[--glass-border] backdrop-blur-[--blur-heavy,16px]",
+	tinted: "bg-[--surface-2] text-card-foreground shadow-[--shadow-sm] border border-border/50",
 	outlined: "bg-transparent border border-border",
 	ghost: "bg-transparent",
 };
