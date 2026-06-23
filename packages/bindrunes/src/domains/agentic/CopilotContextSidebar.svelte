@@ -23,7 +23,13 @@ let {
 		<div class="space-y-4">
 			<div>
 				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Tokens Utilizados</h4>
-				<div class="h-2 bg-muted rounded-full overflow-hidden">
+				<div
+					class="h-2 bg-muted rounded-full overflow-hidden"
+					role="progressbar"
+					aria-valuenow={contextTokens}
+					aria-valuemin="0"
+					aria-valuemax={maxTokens}
+				>
 					<div
 						class="h-full bg-primary transition-all duration-300"
 						style="width: {Math.min((contextTokens / maxTokens) * 100, 100)}%"

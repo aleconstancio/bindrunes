@@ -20,13 +20,15 @@ let {
 const currentTools = $derived(toolCategories.find((c) => c.id === activeCategory)?.tools || []);
 </script>
 
-<div class="flex gap-1 p-2 border-b border-border {className}">
+<div class="flex gap-1 p-2 border-b border-border {className}" role="tablist">
 	{#each toolCategories as category}
 		<button
 			type="button"
 			class="text-label-sm font-bold px-2 py-1 rounded-md transition-colors cursor-pointer
 				{activeCategory === category.id ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}"
 			onclick={() => onSelectCategory(category.id)}
+			role="tab"
+			aria-selected={activeCategory === category.id}
 		>
 			{category.label}
 		</button>

@@ -42,6 +42,36 @@ describe("CopilotMessageList", () => {
 		expect(getByText(/Como posso ajudar com este caso/)).toBeTruthy();
 	});
 
+	it("renders streaming content", () => {
+		const { getByText } = render(CopilotMessageList, {
+			props: {
+				messages: [{ id: "1", content: "Hello", role: "user", timestamp: new Date() }],
+				streamingContent: "Streaming response...",
+				status: "connected",
+				suggestions: [],
+				mode: "item",
+				onQuickAction: vi.fn(),
+			},
+		});
+		expect(getByText("Streaming response...")).toBeTruthy();
+	});
+
+	it("renders quick actions in global mode when empty", () => {
+		const { getByText } = render(CopilotMessageList, {
+			props: {
+				messages: [],
+				streamingContent: "",
+				status: "connected",
+				suggestions: [],
+				mode: "global",
+				onQuickAction: vi.fn(),
+			},
+		});
+		expect(getByText("Prazos da semana")).toBeTruthy();
+		expect(getByText("Resumo de casos")).toBeTruthy();
+		expect(getByText("Citações pendentes")).toBeTruthy();
+	});
+
 	it("renders suggestions when no messages", () => {
 		const { getByText } = render(CopilotMessageList, {
 			props: {

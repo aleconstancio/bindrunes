@@ -39,6 +39,27 @@ describe("CopilotToolPanel", () => {
 		expect(getByText("Desc")).toBeTruthy();
 	});
 
+	it("calls onSendToolCall when tool clicked", async () => {
+		const onSendToolCall = vi.fn();
+		const { getByText } = render(CopilotToolPanel, {
+			props: {
+				toolCategories: [
+					{
+						id: "a",
+						label: "A",
+						tools: [{ id: "t1", label: "Tool", description: "Desc", params: { foo: "bar" } }],
+					},
+				],
+				activeCategory: "a",
+				status: "connected",
+				onSelectCategory: vi.fn(),
+				onSendToolCall,
+			},
+		});
+		await fireEvent.click(getByText("Tool"));
+		expect(onSendToolCall).toHaveBeenCalledWith("t1", { foo: "bar" });
+	});
+
 	it("calls onSelectCategory when tab clicked", async () => {
 		const onSelect = vi.fn();
 		const { getByText } = render(CopilotToolPanel, {

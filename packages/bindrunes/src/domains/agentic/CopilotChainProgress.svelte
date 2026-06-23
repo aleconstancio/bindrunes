@@ -36,9 +36,9 @@ let {
 		</div>
 
 		{#if chain.steps.length > 0}
-			<div class="space-y-1.5">
-				{#each chain.steps as step}
-					<div class="flex items-center gap-2 text-label-sm">
+		<ul class="space-y-1.5">
+			{#each chain.steps as step}
+				<li class="flex items-center gap-2 text-[11px]">
 						{#if step.status === "done"}
 							<svg class="w-2.5 h-2.5 text-success shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
 						{:else if step.status === "executing"}
@@ -51,9 +51,9 @@ let {
 						<span class="{step.status === 'done' ? 'text-muted-foreground' : step.status === 'executing' ? 'text-foreground font-medium' : 'text-muted-foreground'}">
 							{step.description || step.tool}
 						</span>
-					</div>
-				{/each}
-			</div>
+				</li>
+			{/each}
+		</ul>
 		{/if}
 
 		{#if chain.status === "waiting_gate"}

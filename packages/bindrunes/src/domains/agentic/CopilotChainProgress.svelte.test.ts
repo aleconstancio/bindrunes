@@ -51,6 +51,19 @@ describe("CopilotChainProgress", () => {
 		expect(onContinue).toHaveBeenCalledWith("Draft Chain");
 	});
 
+	it("calls onCancel when cancel clicked", async () => {
+		const onCancel = vi.fn();
+		const { getByText } = render(CopilotChainProgress, {
+			props: {
+				chain: { name: "Draft Chain", status: "waiting_gate", steps: [] },
+				onContinue: vi.fn(),
+				onCancel,
+			},
+		});
+		await fireEvent.click(getByText("Parar"));
+		expect(onCancel).toHaveBeenCalledWith("Draft Chain");
+	});
+
 	it("renders nothing when status is idle", () => {
 		const { container } = render(CopilotChainProgress, {
 			props: {
