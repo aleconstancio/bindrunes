@@ -7,7 +7,7 @@ The bindrunes design system has three orthogonal customization axes, backed by a
 | Axis | Attribute | Presets | Controls | Composable |
 |---|---|---|---|---|
 | **Theme** | `data-theme` | `editorial` (default), `dracula`, `nord`, `catppuccin`, `rose-pine`, `github` | Color identity | `createTheme()` |
-| **Aesthetic** | `data-aesthetic` | `minimal` (default), `glass`, `bento`, `expressive` | Form (radius, shadow, motion) | `createAesthetic()` |
+| **Aesthetic** | `data-aesthetic` | `minimal` (default), `glass`, `bento`, `expressive`, `neon`, `brutalist`, `organic` | Form (radius, shadow, motion) | `createAesthetic()` |
 | **Density** | `data-density` | `compact`, `comfortable` (default), `spacious` | Spacing scale | `createDensity()` |
 
 ---
@@ -27,6 +27,9 @@ The bindrunes design system has three orthogonal customization axes, backed by a
 - **glass**: 0.625rem radius, gradient buttons, fluid 250ms transitions, grain texture.
 - **bento**: 0.875rem radius, inner-light buttons, bouncy 220ms spring transitions.
 - **expressive**: 1.0rem radius, gradient buttons, dramatic 300ms transitions, mesh texture.
+- **neon**: 0.25rem radius, flat buttons, fast 80ms transitions, neon glow shadows.
+- **brutalist**: 0 radius, flat buttons, very fast 50ms transitions, noise texture.
+- **organic**: 1.5rem radius, gradient buttons, slow 200ms spring transitions, paper texture.
 
 ### 3. Density Modes
 - **compact**: Spacing scaled by ~0.8× (data-dense).
@@ -284,6 +287,76 @@ Dramatic, loud. Mesh gradients, glow shadows, amplified motion. For marketing si
 | `--hero-translate` | `24px` | Hero parallax distance |
 | `--shadow-emphasis` | `high` | High shadow emphasis |
 
+### neon
+
+Sharp, glowing. Neon glow shadows with snappy motion. For cyberpunk, gaming, or futuristic interfaces.
+
+| Property | Value | Description |
+|---|---|---|
+| `--radius` / `--radius-md` | `0.25rem` | Sharp corners |
+| `--radius-lg` | `0.375rem` | Slightly rounded |
+| `--radius-xl` | `0.5rem` | Rounded |
+| `--shadow-xs` | `0 0 4px oklch(0.7 0.2 180 / 0.15)` | Subtle glow |
+| `--shadow-sm` | `0 0 8px oklch(0.7 0.2 180 / 0.2)` | Neon glow |
+| `--shadow-md` | `0 0 16px oklch(0.7 0.2 180 / 0.25)` | Bright glow |
+| `--shadow-lg` | `0 0 32px oklch(0.7 0.2 180 / 0.3)` | Dramatic glow |
+| `--duration-snappy` | `80ms` | Snappy fast |
+| `--duration-fluid` | `150ms` | Fluid transition |
+| `--duration-slow` | `250ms` | Slow transition |
+| `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` | Standard easing |
+| `--button-treatment` | `flat` | Solid fill buttons |
+| `--card-treatment` | `solid` | Solid card backgrounds |
+| `--surface-texture` | `none` | No texture overlay |
+| `--hero-translate` | `4px` | Hero parallax distance |
+| `--shadow-emphasis` | `high` | High shadow emphasis |
+
+### brutalist
+
+Raw, unpolished. No radius, no shadows, noise texture. For bold, anti-design, or developer tool interfaces.
+
+| Property | Value | Description |
+|---|---|---|
+| `--radius` / `--radius-md` | `0` | No rounding |
+| `--radius-lg` | `0` | No rounding |
+| `--radius-xl` | `0.125rem` | Minimal rounding |
+| `--shadow-xs` | `none` | No shadow |
+| `--shadow-sm` | `none` | No shadow |
+| `--shadow-md` | `none` | No shadow |
+| `--shadow-lg` | `none` | No shadow |
+| `--duration-snappy` | `50ms` | Very fast snap |
+| `--duration-fluid` | `100ms` | Very fast transition |
+| `--duration-slow` | `150ms` | Fast transition |
+| `--ease-standard` | `linear` | Linear easing |
+| `--button-treatment` | `flat` | Solid fill buttons |
+| `--card-treatment` | `solid` | Solid card backgrounds |
+| `--surface-texture` | `noise` | Noise texture overlay |
+| `--hero-translate` | `2px` | Hero parallax distance |
+| `--shadow-emphasis` | `low` | Low shadow emphasis |
+
+### organic
+
+Soft, warm, tactile. Very rounded corners, spring easing, paper texture. For wellness, lifestyle, and gentle apps.
+
+| Property | Value | Description |
+|---|---|---|
+| `--radius` / `--radius-md` | `1.5rem` | Very rounded |
+| `--radius-lg` | `1.75rem` | Large rounded |
+| `--radius-xl` | `2rem` | Extra rounded |
+| `--shadow-xs` | `0 2px 8px oklch(0.2 0.02 60 / 0.06)` | Soft warm shadow |
+| `--shadow-sm` | `0 4px 16px -4px oklch(0.2 0.02 60 / 0.08)` | Warm shadow |
+| `--shadow-md` | `0 8px 24px -4px oklch(0.2 0.02 60 / 0.12)` | Elevated warm shadow |
+| `--shadow-lg` | `0 16px 40px -8px oklch(0.2 0.02 60 / 0.16)` | Dramatic warm shadow |
+| `--duration-snappy` | `200ms` | Relaxed fast |
+| `--duration-fluid` | `350ms` | Gentle transition |
+| `--duration-slow` | `500ms` | Slow transition |
+| `--ease-spring` | `linear(0, 0.5 7%, 0.95 25%, 1)` | Spring easing |
+| `--button-treatment` | `gradient` | Gradient fill buttons |
+| `--button-bg` | `linear-gradient(135deg, var(--primary) 0%, ...)` | Gradient primary |
+| `--card-treatment` | `tinted` | Tinted card backgrounds |
+| `--surface-texture` | `paper` | Paper texture overlay |
+| `--hero-translate` | `20px` | Hero parallax distance |
+| `--shadow-emphasis` | `medium` | Medium shadow emphasis |
+
 ---
 
 ## Density Reference
@@ -481,7 +554,7 @@ Complete table of all design tokens available in bindrunes.
 | `--button-bg` | Button background value |
 | `--button-bg-destructive` | Destructive button background |
 | `--card-treatment` | Card style: `solid`, `glass`, `tinted` |
-| `--surface-texture` | Texture overlay: `none`, `grain`, `dot-grid`, `mesh` |
+| `--surface-texture` | Texture overlay: `none`, `grain`, `dot-grid`, `mesh`, `noise`, `paper` |
 | `--hero-translate` | Hero section parallax distance |
 | `--shadow-emphasis` | Shadow intensity: `low`, `medium`, `high` |
 
@@ -733,6 +806,24 @@ Vibrant purple with mesh textures and glow shadows. Creative SaaS and portfolio 
 
 ### `catppuccin × glass × comfortable`
 Soft pastels with translucent panels. Modern dashboards and lifestyle apps.
+
+### `nord × neon × comfortable`
+Cool blue-grey with cyan neon glow. Cyberpunk meets Nordic calm — great for dev tools.
+
+### `dracula × brutalist × compact`
+Purple accents with raw, unpolished form. Bold developer tool UIs and admin panels.
+
+### `rose-pine × organic × spacious`
+Warm earth tones with soft rounded corners and paper texture. Wellness apps, journals, and lifestyle sites.
+
+### `catppuccin × neon × comfortable`
+Pastel purples with bright neon glow. Playful gaming dashboards and creative tools.
+
+### `github × brutalist × compact`
+Neutral grey with zero radius and noise texture. Anti-design admin panels and internal tools.
+
+### `editorial × organic × spacious`
+Warm grey with generous rounded corners. Elegant landing pages and content-heavy sites.
 
 ---
 
