@@ -2,6 +2,18 @@
 import CopilotSuggestionCard from "./CopilotSuggestionCard.svelte";
 import type { CopilotMessage, CopilotSuggestion } from "./types";
 
+function sanitizeHtml(html: string): string {
+	if (!html) return "";
+	return html
+		.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+		.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, "")
+		.replace(/<object\b[^<]*(?:(?!<\/object>)<[^<]*)*<\/object>/gi, "")
+		.replace(/<embed\b[^>]*>/gi, "")
+		.replace(/<form\b[^<]*(?:(?!<\/form>)<[^<]*)*<\/form>/gi, "")
+		.replace(/\s*on\w+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+		.replace(/javascript\s*:/gi, "");
+}
+
 let {
 	messages,
 	streamingContent,
@@ -113,7 +125,7 @@ $effect(() => {
 							{message.role === 'agent' ? 'bg-card border border-border' : 'bg-primary text-primary-foreground'}">
 							{#if message.content}
 								{#if message.role === "agent"}
-									<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html message.content}</div>
+									<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizeHtml(message.content)}</div>
 								{:else}
 									<div class="whitespace-pre-wrap">{message.content}</div>
 								{/if}
@@ -133,7 +145,7 @@ $effect(() => {
 						<svg class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
 					</div>
 					<div class="rounded-xl px-4 py-3 text-sm bg-card border border-border">
-						<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html streamingContent}</div>
+						<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizeHtml(streamingContent)}</div>
 					</div>
 				</div>
 			{:else if status === "connected" && messages.length > 0 && messages[messages.length - 1].role === "user"}
