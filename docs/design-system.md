@@ -214,7 +214,6 @@ The calm, flat, hairline aesthetic. Inspired by Linear, Vercel, and Geist.
 | `--surface-texture` | `none` | No texture overlay |
 | `--hero-translate` | `8px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
-| `--gradient-treatment` | `none` | No gradients |
 
 ### glass
 
@@ -239,7 +238,6 @@ Atmospheric, translucent surfaces with blurred backgrounds and ambient shadow bl
 | `--surface-texture` | `grain` | Film grain overlay |
 | `--hero-translate` | `16px` | Hero parallax distance |
 | `--shadow-emphasis` | `medium` | Medium shadow emphasis |
-| `--gradient-treatment` | `gradient-buttons, hero-background` | Gradient buttons, gradient hero backgrounds |
 
 ### bento
 
@@ -264,7 +262,6 @@ Friendly, rounded, soft. Bento-grid inspired with generous corners and warm shad
 | `--surface-texture` | `dot-grid` | Dot grid overlay |
 | `--hero-translate` | `14px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
-| `--gradient-treatment` | `subtle-lighter` | Subtle lighter gradient buttons |
 
 ### expressive
 
@@ -289,7 +286,6 @@ Dramatic, loud. Mesh gradients, glow shadows, amplified motion. For marketing si
 | `--surface-texture` | `mesh` | Mesh gradient overlay |
 | `--hero-translate` | `24px` | Hero parallax distance |
 | `--shadow-emphasis` | `high` | High shadow emphasis |
-| `--gradient-treatment` | `gradient-buttons, dramatic-hero` | Gradient buttons, dramatic hero gradients |
 
 ### neon
 
@@ -313,7 +309,6 @@ Sharp, glowing. Neon glow shadows with snappy motion. For cyberpunk, gaming, or 
 | `--surface-texture` | `none` | No texture overlay |
 | `--hero-translate` | `4px` | Hero parallax distance |
 | `--shadow-emphasis` | `high` | High shadow emphasis |
-| `--gradient-treatment` | `subtle-lighter, neon-glow` | Subtle lighter gradient buttons, neon glow shadows |
 
 ### brutalist
 
@@ -337,7 +332,6 @@ Raw, unpolished. No radius, no shadows, noise texture. For bold, anti-design, or
 | `--surface-texture` | `noise` | Noise texture overlay |
 | `--hero-translate` | `2px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
-| `--gradient-treatment` | `none, hard-offset` | No gradients, hard-offset shadows |
 
 ### organic
 
@@ -362,7 +356,6 @@ Soft, warm, tactile. Very rounded corners, spring easing, paper texture. For wel
 | `--surface-texture` | `paper` | Paper texture overlay |
 | `--hero-translate` | `20px` | Hero parallax distance |
 | `--shadow-emphasis` | `medium` | Medium shadow emphasis |
-| `--gradient-treatment` | `primary-to-accent, warm-hero` | Primary-to-accent gradient buttons, warm hero gradients |
 
 ---
 
@@ -558,6 +551,7 @@ Complete table of all design tokens available in bindrunes.
 | `--gradient-sidebar` | Sidebar background gradient |
 | `--gradient-text-primary` | Text gradient (foreground → primary) |
 | `--gradient-text-accent` | Text gradient (foreground → accent) |
+| `--gradient-shimmer` | Linear gradient for skeleton shimmer animation |
 
 ### Surface Gradient Tokens
 
@@ -587,6 +581,7 @@ Complete table of all design tokens available in bindrunes.
 | `--text-letter-spacing-normal` | 0 | Normal letter spacing |
 | `--text-letter-spacing-wide` | 0.02em | Wide letter spacing |
 | `--text-letter-spacing-wider` | 0.05em | Wider letter spacing |
+| `--text-letter-spacing-widest` | 0.1em | Widest letter spacing |
 
 ### Animation Delay Tokens
 
@@ -648,18 +643,14 @@ Complete table of all design tokens available in bindrunes.
 
 ## Token Cascade Order
 
-Tokens resolve in this layer order. Later layers override earlier ones.
+Tokens resolve via CSS selector specificity. Later declarations override earlier ones when specificity is equal.
 
-```css
-@layer bindrunes.reset,
-       bindrunes.tokens.contract,    /* CSS custom property types */
-       bindrunes.tokens.defaults,    /* Default fallback values */
-       bindrunes.tokens.aesthetic,   /* Form overrides (radius, shadow, motion) */
-       bindrunes.tokens.theme,       /* Color overrides */
-       bindrunes.tokens.density,     /* Spacing overrides */
-       bindrunes.utilities,
-       bindrunes.components;
-```
+### How Cascade Works
+
+1. **`:root` defaults** (`tokens/root.css`) — Sets all token fallback values (editorial theme, minimal aesthetic, comfortable density).
+2. **`[data-aesthetic="..."]` overrides** (`tokens/aesthetics/*.css`) — Overrides form-related tokens: `--radius-*`, `--shadow-*`, `--duration-*`, `--ease-*`, `--gradient-*`, `--blur-*`, `--button-*`, `--card-treatment`, `--surface-texture`.
+3. **`[data-theme="..."]` overrides** (`tokens/themes/*.css`) — Overrides color tokens: `--background`, `--primary`, `--border`, `--glass-*`, `--sidebar-*`, etc.
+4. **`[data-density="..."]` overrides** (`tokens/densities/*.css`) — Overrides spacing tokens: `--space-*`.
 
 **Key rules:**
 - Aesthetics **never** modify colors.
@@ -667,14 +658,6 @@ Tokens resolve in this layer order. Later layers override earlier ones.
 - Density **only** modifies spacing tokens.
 
 This means any theme × aesthetic × density combination is guaranteed to be valid — you can swap any axis independently without side effects.
-
-### How Cascade Works
-
-1. **`tokens.contract`** — Declares the type and shape of every CSS custom property.
-2. **`tokens.defaults`** — Sets fallback values for all tokens in `:root` (editorial theme, minimal aesthetic, comfortable density).
-3. **`tokens.aesthetic`** — Overrides form-related tokens (`--radius-*`, `--shadow-*`, `--duration-*`, `--ease-*`, `--button-*`, `--card-treatment`, `--surface-texture`).
-4. **`tokens.theme`** — Overrides color tokens (`--background`, `--primary`, `--border`, etc.) scoped under `[data-theme="..."]`.
-5. **`tokens.density`** — Overrides spacing tokens (`--space-*`) scoped under `[data-density="..."]`.
 
 ---
 
