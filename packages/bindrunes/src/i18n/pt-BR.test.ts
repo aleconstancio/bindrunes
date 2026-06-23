@@ -44,7 +44,7 @@ describe("i18n/pt-BR", () => {
 	});
 
 	it("all values are strings", () => {
-		for (const [key, value] of Object.entries(ptBR)) {
+		for (const [_key, value] of Object.entries(ptBR)) {
 			expect(typeof value).toBe("string");
 		}
 	});

@@ -76,7 +76,7 @@ $effect(() => {
 
 {#if messages.length === 0 && !streamingContent && suggestions.length > 0}
 	<div class="p-4 border-b border-border">
-		<h3 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-3">Sugestões</h3>
+		<h3 class="text-label-sm font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground mb-3">Sugestões</h3>
 		<div class="space-y-2">
 			{#each suggestions as sug (sug.id)}
 				<CopilotSuggestionCard
@@ -141,7 +141,7 @@ $effect(() => {
 		<div class="max-w-3xl mx-auto space-y-4">
 			{#each messages as message (message.id)}
 				<div class="flex gap-3 {message.role === 'user' ? 'flex-row-reverse' : ''}">
-					<div class="shrink-0 w-7 h-7 rounded-full flex items-center justify-center
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] flex items-center justify-center
 						{message.role === 'agent' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}">
 						{#if message.role === "agent"}
 							<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
@@ -150,7 +150,7 @@ $effect(() => {
 						{/if}
 					</div>
 					<div class="flex-1 max-w-[85%]">
-					<div class="rounded-xl px-4 py-3 text-body-sm leading-relaxed
+					<div class="rounded-xl px-4 py-3 text-body-sm leading-[--text-line-height-relaxed]
 						{message.role === 'agent' ? 'bg-card border border-border' : 'bg-primary text-primary-foreground'}">
 							{#if message.content}
 								{#if message.role === "agent"}
@@ -170,7 +170,7 @@ $effect(() => {
 
 			{#if streamingContent}
 				<div class="flex gap-3">
-					<div class="shrink-0 w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] bg-primary/10 flex items-center justify-center text-primary">
 						<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
 					</div>
 				<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
@@ -179,15 +179,15 @@ $effect(() => {
 				</div>
 			{:else if status === "connected" && messages.length > 0 && messages[messages.length - 1].role === "user"}
 				<div class="flex gap-3">
-					<div class="shrink-0 w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] bg-primary/10 flex items-center justify-center">
 						<svg aria-hidden="true" class="w-3.5 h-3.5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
 					</div>
 					<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
 						<div class="flex items-center gap-2 text-muted-foreground">
 							<div class="flex gap-1">
-								<span class="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style="animation-delay: 0ms"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style="animation-delay: 150ms"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 0ms"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 150ms"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 300ms"></span>
 							</div>
 							<span class="text-label-sm">Pensando...</span>
 						</div>

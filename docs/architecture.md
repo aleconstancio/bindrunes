@@ -12,7 +12,6 @@ packages/bindrunes/src/
 │   ├── sidebar/                # Sidebar component hierarchy
 │   └── tabs/                   # Tabs re-exports
 ├── domains/                    # Layer 3: Domain-specific components & composables
-│   ├── admin/                  # Admin dashboard
 │   ├── auth/                   # Authentication forms & context
 │   ├── calendar/               # Calendar components
 │   ├── chat/                   # Chat components

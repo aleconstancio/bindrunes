@@ -81,7 +81,7 @@ async function upload() {
       <img src={preview} alt="Preview" class="w-full max-h-64 object-cover rounded-[--radius] border border-border" />
       <button
         type="button"
-        class="absolute top-2 right-2 p-1 rounded-full bg-background/80 text-foreground hover:bg-background cursor-pointer"
+        class="absolute top-2 right-2 p-1 rounded-[--radius-pill] bg-background/80 text-foreground hover:bg-background cursor-pointer"
         onclick={clear}
         aria-label="Remove image"
       >

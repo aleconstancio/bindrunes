@@ -30,7 +30,7 @@ function layerToField(layer: MemoryLayer): "working" | "episodic" | "semantic" {
 	return layer;
 }
 
-export function createTokenBudget(policy: TokenBudgetPolicy): TokenBudget {
+export function useTokenBudget(policy: TokenBudgetPolicy): TokenBudget {
 	let used = $state(0);
 	let working = $state(0);
 	let episodic = $state(0);

@@ -6,16 +6,16 @@ import MemoryDisplay from "./MemoryDisplay.svelte";
 import ReasoningPanel from "./ReasoningPanel.svelte";
 import ToolCallDisplay from "./ToolCallDisplay.svelte";
 import TypingIndicator from "./TypingIndicator.svelte";
-import type { MemoryRef, Message, ReasoningStep, ToolCall } from "./types";
+import type { ChatMemoryRef, ChatMessage, ReasoningStep, ToolCall } from "./types";
 
 interface Props {
-	messages?: Message[];
+	messages?: ChatMessage[];
 	toolCalls?: ToolCall[];
 	reasoningSteps?: ReasoningStep[];
 	memory?: {
-		working: MemoryRef[];
-		episodic: MemoryRef[];
-		semantic: MemoryRef[];
+		working: ChatMemoryRef[];
+		episodic: ChatMemoryRef[];
+		semantic: ChatMemoryRef[];
 	};
 	agentState?: "idle" | "thinking" | "executing" | "error";
 	tokenUsage?: { prompt: number; completion: number };

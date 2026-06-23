@@ -19,7 +19,7 @@ const turns = $derived.by<DebateTurn[]>(() => {
 		if (!trimmed) continue;
 		if (trimmed.includes("[Analista - Turno")) {
 			const roundMatch = trimmed.match(/Turno (\d+)/);
-			const round = roundMatch ? Number.parseInt(roundMatch[1]) : currentRound;
+			const round = roundMatch ? Number.parseInt(roundMatch[1], 10) : currentRound;
 			const typeMatch = trimmed.match(/Tipo: ([^,]+)/);
 			const confMatch = trimmed.match(/Confiança: ([\d.]+)/);
 			let justification = "";
@@ -35,7 +35,7 @@ const turns = $derived.by<DebateTurn[]>(() => {
 			currentRound = round;
 		} else if (trimmed.includes("[Crítico - Turno")) {
 			const roundMatch = trimmed.match(/Turno (\d+)/);
-			const round = roundMatch ? Number.parseInt(roundMatch[1]) : currentRound;
+			const round = roundMatch ? Number.parseInt(roundMatch[1], 10) : currentRound;
 			const appMatch = trimmed.match(/Aprovado: (true|false)/);
 			let critiqueDetails = "";
 			const detIdx = trimmed.indexOf("Detalhes:");
@@ -64,7 +64,7 @@ const turns = $derived.by<DebateTurn[]>(() => {
 		<div class="relative border-l-2 border-border pl-4 ml-2 space-y-6" role="list" aria-label="Histórico de debate IA">
 			{#each turns as turn}
 				<div class="relative group" role="listitem">
-					<div class="absolute -left-[25px] top-1.5 h-3.5 w-3.5 rounded-full border bg-background flex items-center justify-center
+					<div class="absolute -left-[25px] top-1.5 h-3.5 w-3.5 rounded-[--radius-pill] border bg-background flex items-center justify-center
 						{turn.agent === 'Analista' ? 'border-primary ring-2 ring-primary/20' :
 						 turn.approved ? 'border-success ring-2 ring-success/20' : 'border-destructive ring-2 ring-destructive/20'}">
 					</div>
@@ -73,14 +73,14 @@ const turns = $derived.by<DebateTurn[]>(() => {
 						{turn.agent === 'Analista' ? 'border-primary/20' :
 						 turn.approved ? 'border-success/20' : 'border-destructive/20'}">
 						<div class="flex items-center justify-between">
-							<span class="font-bold text-label-sm uppercase tracking-wider
+							<span class="font-bold text-label-sm uppercase tracking-[--text-letter-spacing-wider]
 								{turn.agent === 'Analista' ? 'text-primary' :
 								 turn.approved ? 'text-success' : 'text-destructive'}">
 								{turn.agent} • Rodada {turn.round}
 							</span>
 
 							{#if turn.agent === "Crítico"}
-								<span class="inline-flex items-center gap-1 text-label-sm font-bold px-2 py-0.5 rounded-full
+								<span class="inline-flex items-center gap-1 text-label-sm font-bold px-2 py-0.5 rounded-[--radius-pill]
 									{turn.approved ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'}">
 									{#if turn.approved}
 										<svg aria-hidden="true" class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -103,7 +103,7 @@ const turns = $derived.by<DebateTurn[]>(() => {
 							</div>
 						{/if}
 
-						<p class="mt-2 text-foreground leading-relaxed text-label-sm font-medium whitespace-pre-line">
+						<p class="mt-2 text-foreground leading-[--text-line-height-relaxed] text-label-sm font-medium whitespace-pre-line">
 							{turn.content}
 						</p>
 					</div>

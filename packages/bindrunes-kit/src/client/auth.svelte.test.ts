@@ -2,7 +2,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { createClientAuth, type User } from "./auth.svelte";
 
 function mockUser(overrides: Partial<User> = {}): User {
-	return { id: "u1", email: "test@example.com", name: "Test", ...overrides };
+	return {
+		id: "u1",
+		email: "test@example.com",
+		name: "Test",
+		roles: [],
+		permissions: [],
+		...overrides,
+	};
 }
 
 describe("createClientAuth", () => {
@@ -417,6 +424,7 @@ describe("createClientAuth", () => {
 
 	it("bootstrap with stored cookie token fetches profile", async () => {
 		const user = mockUser();
+		// biome-ignore lint/suspicious/noDocumentCookie: test needs to set cookie for bootstrap
 		document.cookie = "bindrunes-session=stored_tok";
 		const fetchProfile = vi.fn().mockResolvedValue(user);
 
@@ -428,6 +436,7 @@ describe("createClientAuth", () => {
 	});
 
 	it("bootstrap clears token when fetchProfile returns invalid user", async () => {
+		// biome-ignore lint/suspicious/noDocumentCookie: test needs to set cookie for bootstrap
 		document.cookie = "bindrunes-session=stored_tok";
 		const fetchProfile = vi.fn().mockResolvedValue({ invalid: true });
 
@@ -438,6 +447,7 @@ describe("createClientAuth", () => {
 	});
 
 	it("bootstrap sets error when fetchProfile throws", async () => {
+		// biome-ignore lint/suspicious/noDocumentCookie: test needs to set cookie for bootstrap
 		document.cookie = "bindrunes-session=stored_tok";
 		const fetchProfile = vi.fn().mockRejectedValue(new Error("network error"));
 
@@ -462,7 +472,7 @@ describe("createClientAuth", () => {
 	it("bootstrap no-ops when no stored token", () => {
 		// Ensure no cookies exist
 		const fetchProfile = vi.fn();
-		const auth = createClientAuth({ fetchProfile });
+		const _auth = createClientAuth({ fetchProfile });
 		expect(fetchProfile).not.toHaveBeenCalled();
 	});
 

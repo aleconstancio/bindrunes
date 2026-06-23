@@ -20,12 +20,12 @@ let {
 				class:bg-muted={density.density === d}
 			>
 				<div
-					class="h-4 w-4 rounded-full border-2 flex items-center justify-center"
+					class="h-4 w-4 rounded-[--radius-pill] border-2 flex items-center justify-center"
 					class:border-primary={density.density === d}
 					class:border-muted-foreground={density.density !== d}
 				>
 					{#if density.density === d}
-						<div class="h-2 w-2 rounded-full bg-primary"></div>
+						<div class="h-2 w-2 rounded-[--radius-pill] bg-primary"></div>
 					{/if}
 				</div>
 				<div>

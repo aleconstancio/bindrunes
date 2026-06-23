@@ -40,7 +40,7 @@ const _tag = $derived(level === 1 ? "h1" : "h2");
   class:hero-gradient={background === 'gradient'}
 >
   {#if background === 'gradient'}
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+    <div class="pointer-events-none absolute inset-0 bg-gradient-hero"></div>
   {/if}
   <MetaContainer size="lg" padding={false} class="text-center relative">
     {#if badge}
@@ -98,8 +98,6 @@ const _tag = $derived(level === 1 ? "h1" : "h2");
 
 <style>
   :global(.hero-banner.hero-gradient) {
-    background:
-      radial-gradient(ellipse at 20% 50%, oklch(from var(--primary) l c h / 0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 50%, oklch(from var(--success, oklch(0.55 0.15 150)) l c h / 0.04) 0%, transparent 60%);
+    background: var(--gradient-hero);
   }
 </style>

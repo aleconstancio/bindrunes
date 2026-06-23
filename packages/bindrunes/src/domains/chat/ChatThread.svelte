@@ -1,17 +1,17 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import ScrollArea from "../../primitives/ScrollArea.svelte";
-import ChatMessage from "./ChatMessage.svelte";
-import type { Message } from "./types";
+import ChatMessageComponent from "./ChatMessage.svelte";
+import type { ChatMessage } from "./types";
 
 let {
-	messages = [] as Message[],
+	messages = [] as ChatMessage[],
 	class: className = "",
-	messageSnippet = undefined as Snippet<[{ message: Message }]> | undefined,
+	messageSnippet = undefined as Snippet<[{ message: ChatMessage }]> | undefined,
 }: {
-	messages?: Message[];
+	messages?: ChatMessage[];
 	class?: string;
-	messageSnippet?: Snippet<[{ message: Message }]>;
+	messageSnippet?: Snippet<[{ message: ChatMessage }]>;
 } = $props();
 </script>
 
@@ -21,7 +21,7 @@ let {
       {#if messageSnippet}
         {@render messageSnippet({ message })}
       {:else}
-        <ChatMessage
+        <ChatMessageComponent
           content={message.content}
           sender={message.sender}
           timestamp={message.timestamp}

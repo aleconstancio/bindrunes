@@ -21,7 +21,7 @@ export interface MultiTenantResult<T extends Tenant> {
 	isCurrentTenant: (id: string) => boolean;
 }
 
-export function createMultiTenant<T extends Tenant>(
+export function useMultiTenant<T extends Tenant>(
 	options: CreateMultiTenantOptions<T>,
 ): MultiTenantResult<T> {
 	const { tenants, defaultTenantId = tenants[0]?.id, onTenantChange } = options;
@@ -56,7 +56,7 @@ export function createMultiTenant<T extends Tenant>(
 
 // Context-based version for sharing across components
 export function createMultiTenantContext<T extends Tenant>(options: CreateMultiTenantOptions<T>) {
-	return createMetaContext(KEY, () => createMultiTenant(options));
+	return createMetaContext(KEY, () => useMultiTenant(options));
 }
 
 export function useMultiTenantContext<T extends Tenant>(): MultiTenantResult<T> {

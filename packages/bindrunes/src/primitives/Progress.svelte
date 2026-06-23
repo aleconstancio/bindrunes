@@ -51,10 +51,10 @@ let percentage = $derived(Math.min(Math.round((value / max) * 100), 100));
   <BitsProgress.Root
     value={indeterminate ? undefined : value}
     {max}
-    class="w-full rounded-full bg-muted {heights[size]} overflow-hidden"
+    class="w-full rounded-[--radius-pill] bg-muted {heights[size]} overflow-hidden"
   >
     <BitsProgress.Track
-      class="h-full rounded-full transition-all duration-[--duration-fluid] {colors[variant]}
+      class="h-full rounded-[--radius-pill] transition-all duration-[--duration-fluid] {colors[variant]}
              {indeterminate ? 'animate-progress-indeterminate' : ''}"
       style={indeterminate ? '' : `width: ${percentage}%`}
     />

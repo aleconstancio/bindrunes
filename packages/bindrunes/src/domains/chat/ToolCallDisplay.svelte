@@ -44,7 +44,7 @@ function formatJSON(data: unknown): string {
 			onToggle?.();
 		}}
 	>
-		<span class="w-2 h-2 rounded-full {statusColors[status]}"></span>
+		<span class="w-2 h-2 rounded-[--radius-pill] {statusColors[status]}"></span>
 		<span class="text-title-3 text-foreground">{name}</span>
 		<span class="text-label-xs text-muted-foreground capitalize">{status}</span>
 		<span class="ml-auto text-xs transition-transform {expanded ? 'rotate-90' : ''}">▶</span>

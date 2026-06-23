@@ -31,7 +31,7 @@ let {
           {:else}
             <div class="relative pl-10">
               <div
-                class="absolute left-2.5 top-1 w-3 h-3 rounded-full border-2 border-primary bg-background"
+                class="absolute left-2.5 top-1 w-3 h-3 rounded-[--radius-pill] border-2 border-primary bg-background"
                 aria-hidden="true"
               ></div>
               <div class="space-y-1">

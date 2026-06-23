@@ -1,13 +1,4 @@
-import type { Component } from "svelte";
-
 // ── CRUD ──
-
-export interface CrudAction {
-	label: string;
-	href: string;
-	variant?: "primary" | "outline" | "destructive";
-	icon?: Component | string;
-}
 
 export interface CrudConfig {
 	title: string;
@@ -25,29 +16,8 @@ export interface CrudField {
 	options?: { label: string; value: string }[];
 }
 
-export interface DetailSection {
-	label: string;
-	value: string;
-	variant?: "default" | "primary" | "secondary" | "success" | "warning" | "destructive" | "outline";
-}
-
-export interface TableColumnConfig {
-	key: string;
-	label: string;
-	sortable?: boolean;
-	align?: "left" | "center" | "right";
-	width?: string;
-}
-
-export interface SearchFilter {
-	key: string;
-	label: string;
-	options: { label: string; value: string }[];
-}
-
 // ── Marketing ──
 
-/** @deprecated Use Testimonial from bindrunes/landing instead */
 export interface TestimonialItem {
 	quote: string;
 	author: string;
@@ -55,7 +25,6 @@ export interface TestimonialItem {
 	avatar?: string;
 }
 
-/** @deprecated Use Logo from bindrunes/landing instead */
 export interface LogoItem {
 	name: string;
 	url?: string;

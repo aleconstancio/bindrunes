@@ -67,7 +67,7 @@ function _handleKeydown(e: KeyboardEvent) {
 }
 </script>
 
-<nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-lg">
+<nav class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-[--blur-heavy]">
 	<div class="progress-bar"></div>
 	<div class="mx-auto flex max-w-[var(--container-2xl)] items-center justify-between px-6 py-3">
 		{#if logo}
@@ -108,7 +108,7 @@ function _handleKeydown(e: KeyboardEvent) {
 	</div>
 
 	{#if landing.menuOpen}
-		<div transition:slide={{ duration: 220 }} class="border-t border-border bg-background/95 backdrop-blur-lg px-6 py-5 md:hidden" role="menu" tabindex="-1" onkeydown={_handleKeydown}>
+		<div transition:slide={{ duration: 220 }} class="border-t border-border bg-background/95 backdrop-blur-[--blur-heavy] px-6 py-5 md:hidden" role="menu" tabindex="-1" onkeydown={_handleKeydown}>
 			<div class="flex flex-col gap-5">
 				{#each links as link}
 					<a

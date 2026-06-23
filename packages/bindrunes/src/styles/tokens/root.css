@@ -75,8 +75,14 @@
 	--shadow-sm: 0 1px 0 oklch(0 0 0 / 0.04);
 	--shadow-md: 0 1px 0 oklch(0 0 0 / 0.06);
 	--shadow-lg: 0 2px 4px oklch(0 0 0 / 0.08);
+	--shadow-xl: 0 8px 16px -4px oklch(0 0 0 / 0.12);
+	--shadow-2xl: 0 16px 32px -8px oklch(0 0 0 / 0.18);
 	--shadow-glow-primary: 0 0 24px -6px oklch(from var(--primary) l c h / 0.3);
+	--shadow-glow-accent: 0 0 24px -6px oklch(from var(--accent) l c h / 0.3);
 	--shadow-glow-destructive: 0 0 24px -6px oklch(from var(--destructive) l c h / 0.25);
+	--shadow-glow-success: 0 0 24px -6px oklch(from var(--success) l c h / 0.25);
+	--shadow-glow-warning: 0 0 24px -6px oklch(from var(--warning) l c h / 0.25);
+	--shadow-glow-info: 0 0 24px -6px oklch(from var(--info) l c h / 0.25);
 	--shadow-emphasis-resolved: var(--shadow-md);
 	--shadow-inset-subtle: inset 0 1px 0 oklch(1 0 0 / 0.06);
 
@@ -115,6 +121,82 @@
 	--surface-texture: none;
 	--hero-translate: 8px;
 	--shadow-emphasis: low;
+
+	/* Gradient tokens */
+	--gradient-angle: 135deg;
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l - 0.08) c h) 100%
+	);
+	--gradient-accent: linear-gradient(var(--gradient-angle), var(--primary) 0%, var(--accent) 100%);
+	--gradient-destructive: linear-gradient(
+		var(--gradient-angle),
+		var(--destructive) 0%,
+		oklch(from var(--destructive) calc(l - 0.08) c h) 100%
+	);
+	--gradient-surface: linear-gradient(
+		var(--gradient-angle),
+		var(--surface-1) 0%,
+		var(--surface-2) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.08) 0%,
+		transparent 50%
+	);
+	--gradient-card: none;
+	--gradient-sidebar: none;
+	--gradient-text-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--foreground) 30%,
+		var(--primary) 100%
+	);
+	--gradient-text-accent: linear-gradient(
+		var(--gradient-angle),
+		var(--foreground) 30%,
+		var(--accent) 100%
+	);
+
+	/* Surface gradients */
+	--bg-gradient-hero: none;
+	--bg-gradient-card: none;
+	--bg-gradient-sidebar: none;
+
+	/* Blur scale */
+	--blur-subtle: 4px;
+	--blur-medium: 8px;
+	--blur-heavy: 16px;
+	--blur-ultra: 24px;
+
+	/* Pill / full radius */
+	--radius-pill: 9999px;
+	--radius-full: 50%;
+
+	/* Typography scale (overridable per-theme) */
+	--text-line-height-tight: 1.2;
+	--text-line-height-normal: 1.5;
+	--text-line-height-relaxed: 1.65;
+	--text-letter-spacing-tight: -0.02em;
+	--text-letter-spacing-normal: 0;
+	--text-letter-spacing-wide: 0.02em;
+	--text-letter-spacing-wider: 0.05em;
+	--text-letter-spacing-widest: 0.1em;
+
+	/* Animation delays */
+	--delay-none: 0ms;
+	--delay-sm: 50ms;
+	--delay-md: 100ms;
+	--delay-lg: 200ms;
+	--delay-xl: 400ms;
+
+	/* Gradient: shimmer (skeleton loading) */
+	--gradient-shimmer: linear-gradient(
+		90deg,
+		var(--muted) 25%,
+		oklch(from var(--muted-foreground) l c h / 0.15) 50%,
+		var(--muted) 75%
+	);
 
 	/* Z-index scale */
 	--z-sidebar: 40;

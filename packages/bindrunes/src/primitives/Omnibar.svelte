@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Command } from "bits-ui";
-import type { OmnibarState } from "../../utils/createOmnibar.svelte";
+import type { OmnibarState } from "../../utils/useOmnibar.svelte";
 
 let {
 	state,
@@ -18,7 +18,7 @@ function _select(opt: { action: () => void }) {
 
 {#if state.isOpen}
 	<div
-		class="fixed inset-0 z-50 flex justify-start pt-[10vh] bg-[--overlay-strong] backdrop-blur-sm"
+		class="fixed inset-0 z-50 flex justify-start pt-[10vh] bg-[--overlay-strong] backdrop-blur-[--blur-subtle]"
 		role="dialog"
 		aria-label="Command palette"
 		aria-modal="true"
@@ -42,7 +42,7 @@ function _select(opt: { action: () => void }) {
 						class="flex-1 bg-transparent border-none outline-none text-body-lg text-foreground"
 					/>
 					{#if state.isLoading}
-						<span class="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></span>
+						<span class="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-[--radius-pill]"></span>
 					{/if}
 				</div>
 
@@ -60,7 +60,7 @@ function _select(opt: { action: () => void }) {
 								{/if}
 							</div>
 							{#if option.category}
-								<span class="text-label-sm font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded-[--radius] text-primary bg-primary/10">{option.category}</span>
+								<span class="text-label-sm font-semibold uppercase tracking-[--text-letter-spacing-wider] px-1.5 py-0.5 rounded-[--radius] text-primary bg-primary/10">{option.category}</span>
 							{/if}
 						</Command.Item>
 					{/each}

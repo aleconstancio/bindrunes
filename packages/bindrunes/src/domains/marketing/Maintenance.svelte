@@ -21,7 +21,7 @@ let {
 
 <Block size="sm" spacing="wide" background="gradient" class={className}>
   <div class="text-center space-y-6">
-    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-2">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-[--radius-pill] bg-muted mb-2">
       <span class="text-headline-3" aria-hidden="true">🔧</span>
     </div>
     <h1 class="text-display-2 text-foreground font-bold">{title}</h1>

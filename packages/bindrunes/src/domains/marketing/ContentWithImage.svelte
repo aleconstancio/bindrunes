@@ -35,7 +35,7 @@ let {
           {/if}
           <div class={item.imageSide === "right" ? "lg:order-1" : "lg:order-2"}>
             <h3 class="text-title-1 text-foreground mb-4">{item.title}</h3>
-            <p class="text-body-lg text-muted-foreground leading-relaxed">{item.description}</p>
+            <p class="text-body-lg text-muted-foreground leading-[--text-line-height-relaxed]">{item.description}</p>
           </div>
         </div>
       {/if}

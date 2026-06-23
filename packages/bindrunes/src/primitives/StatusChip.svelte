@@ -38,13 +38,13 @@ const ledGlowColors: Record<Variant, string> = {
 };
 </script>
 
-<span data-variant={variant} class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-mono-xs uppercase
+<span data-variant={variant} class="inline-flex items-center gap-1.5 rounded-[--radius-pill] border px-2.5 py-0.5 text-mono-xs uppercase
              transition-all duration-[--duration-snappy] led-status
              {vars[variant]}"
       style="--led-glow-color: {ledGlowColors[variant]}"
 >
   {#if dot}
-    <span class="w-1.5 h-1.5 rounded-full led-dot {dotVars[variant]} {animate ? 'animate-pulse' : ''}"></span>
+    <span class="w-1.5 h-1.5 rounded-[--radius-pill] led-dot {dotVars[variant]} {animate ? 'animate-pulse' : ''}"></span>
   {/if}
   {label}
 </span>

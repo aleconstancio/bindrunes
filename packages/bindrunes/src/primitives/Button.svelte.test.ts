@@ -45,9 +45,9 @@ describe("Button", () => {
 		expect(fn).not.toHaveBeenCalled();
 	});
 
-	it("variant primary applies bg-primary class", () => {
+	it("variant primary applies button-bg class", () => {
 		const { container } = render(Button, { variant: "primary" });
-		expect(container.querySelector("button")?.className).toContain("bg-primary");
+		expect(container.querySelector("button")?.className).toContain("bg-[--button-bg");
 	});
 
 	it("variant secondary applies bg-secondary class", () => {

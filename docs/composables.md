@@ -27,13 +27,13 @@ const createUser = useMutation<User, NewUser>({
 - **`invalidateQuery(key)`**: Invalidates cached keys.
 - **`setQueryData(key, data)`**: Optimistically updates queries.
 
-### `createAsyncState`
+### `useAsyncState`
 Reactive state machine for async operations. Create an instance, then call `.run()` to execute async functions.
 
 ```ts
-import { createAsyncState } from "bindrunes";
+import { useAsyncState } from "bindrunes";
 
-const state = createAsyncState();
+const state = useAsyncState();
 const user = await state.run(() => fetch("/api/users/1").then(r => r.json()));
 
 state.reset(); // Return to idle
@@ -223,7 +223,7 @@ const t = useI18n();
 t("greeting"); // Looks up "greeting" key in active dictionary
 ```
 
-### `createOmnibar`
+### `useOmnibar`
 State container for global launcher keyboard controls (Cmd+K).
 
 ### `useToast`
@@ -261,12 +261,12 @@ const { copied, copy } = useClipboard();
 await copy("text to copy");
 ```
 
-### `createMediaQuery`
+### `useMediaQuery`
 Reactive media query matching.
 ```ts
-import { createMediaQuery } from "bindrunes";
+import { useMediaQuery } from "bindrunes";
 
-const isMobile = createMediaQuery("(max-width: 768px)");
+const isMobile = useMediaQuery("(max-width: 768px)");
 // isMobile.current — boolean
 ```
 
@@ -391,12 +391,12 @@ const monitor = createSessionMonitor({
 });
 ```
 
-### `createMultiTenant`
+### `useMultiTenant`
 Multi-tenant context provider for SaaS applications with tenant isolation.
 ```ts
-import { createMultiTenant } from "bindrunes";
+import { useMultiTenant } from "bindrunes";
 
-const tenant = createMultiTenant({
+const tenant = useMultiTenant({
   tenantId: "org_123",
   onSwitch: async (newTenantId) => {
     // Reload data for new tenant
@@ -447,3 +447,9 @@ export function useMyContext() {
 - **`isBrowser`**: SSR-safe browser detection.
 - **`isSafeRedirect(url)`**: URL validation for open redirect prevention.
 - **`toError(err)`**: Normalize unknown errors to Error objects.
+- **`useMediaQuery(options)`**: Reactive media query matching with `$state`.
+- **`useAnimation(element, options)`**: Animation class names for enter, exit, slide, fade, and scale transitions.
+- **`useResponsiveDensity(options)`**: Adapts density (compact/comfortable/spacious) based on viewport.
+- **`createTransition(element, options)`**: Imperative DOM transition helper.
+- **`deriveOmnibarOptions(navigation)`**: Derives omnibar options from navigation groups.
+- **`derivePageInfo(pathname, groups)`**: Derives current page info from URL and navigation groups.

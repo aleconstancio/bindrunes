@@ -294,7 +294,7 @@ describe("createWindowStore", () => {
 			const child = store.fork(root);
 			const rootWin = store.windows.find((w) => w.id === root)!;
 			// Manually empty the lineage to hit the i === -1 branch
-			rootWin.lineage.children.length = 0;
+			(rootWin as unknown as { lineage: { children: string[] } }).lineage.children = [];
 			store.remove(child);
 			expect(store.windows).toHaveLength(1);
 			expect(store.windows[0]!.id).toBe(root);

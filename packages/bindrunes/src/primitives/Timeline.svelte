@@ -38,7 +38,7 @@ const dotColors: Record<string, string> = {
       {:else}
         <div class="relative pl-10">
           <div
-            class="absolute left-2.5 top-1 w-3 h-3 rounded-full border-2 border-background {dotColors[item.variant ?? 'default']}"
+            class="absolute left-2.5 top-1 w-3 h-3 rounded-[--radius-pill] border-2 border-background {dotColors[item.variant ?? 'default']}"
             aria-hidden="true"
           ></div>
           <div class="space-y-1">

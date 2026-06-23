@@ -57,7 +57,7 @@ function formatTime(s: number) {
     {/if}
     <div class="flex items-center gap-2 mt-1">
       <span class="text-mono-xs text-muted-foreground">{formatTime(progress)}</span>
-      <div class="flex-1 h-1 bg-muted rounded-full overflow-hidden">
+      <div class="flex-1 h-1 bg-muted rounded-[--radius-pill] overflow-hidden">
         <div class="h-full bg-primary" style="width: {duration ? (progress / duration) * 100 : 0}%"></div>
       </div>
       <span class="text-mono-xs text-muted-foreground">{formatTime(duration)}</span>
@@ -66,7 +66,7 @@ function formatTime(s: number) {
 
   <button
     type="button"
-    class="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
+    class="w-10 h-10 rounded-[--radius-pill] bg-primary text-primary-foreground flex items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
     onclick={togglePlay}
   >
     {#if playing}

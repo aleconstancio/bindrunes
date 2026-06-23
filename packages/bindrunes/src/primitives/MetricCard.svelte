@@ -35,8 +35,8 @@ const borderTop: Record<string, string> = {
     <p class="text-body-sm text-muted-foreground mt-0.5">{detail}</p>
   {/if}
   {#if progress !== undefined}
-    <div class="w-full h-1.5 rounded-full bg-muted mt-2 overflow-hidden">
-      <div class="h-full rounded-full transition-all duration-[--duration-fluid] bg-primary"
+    <div class="w-full h-1.5 rounded-[--radius-pill] bg-muted mt-2 overflow-hidden">
+      <div class="h-full rounded-[--radius-pill] transition-all duration-[--duration-fluid] bg-primary"
         style="width: {Math.min(progress / progressMax * 100, 100)}%; background: {borderTop[variant]}">
       </div>
     </div>

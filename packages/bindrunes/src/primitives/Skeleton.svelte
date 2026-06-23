@@ -14,12 +14,7 @@ const widths: string[] = $derived(typeof width === "string" ? Array(lines).fill(
 
 <style>
   .animate-shimmer {
-    background: linear-gradient(
-      90deg,
-      var(--muted) 25%,
-      var(--muted-foreground) 50%,
-      var(--muted) 75%
-    );
+    background: var(--gradient-shimmer);
     background-size: 200% 100%;
     animation: bindrunes-shimmer 1.5s var(--ease-standard) infinite;
   }

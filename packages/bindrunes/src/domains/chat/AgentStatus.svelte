@@ -30,7 +30,7 @@ const formattedTime = $derived(elapsedMs ? `${Math.round(elapsedMs / 1000)}s` : 
 
 <div class="flex items-center gap-4 {className}">
   <div class="flex items-center gap-2">
-    <span class="w-2.5 h-2.5 rounded-full {stateColors[state]} {state !== 'idle' ? 'animate-pulse' : ''}"></span>
+    <span class="w-2.5 h-2.5 rounded-[--radius-pill] {stateColors[state]} {state !== 'idle' ? 'animate-pulse' : ''}"></span>
     <span class="text-body-sm text-foreground">{stateLabels[state]}</span>
   </div>
   

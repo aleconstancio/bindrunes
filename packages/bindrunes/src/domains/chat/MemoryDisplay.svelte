@@ -1,11 +1,11 @@
 <script lang="ts">
-import type { MemoryRef } from "./types";
+import type { ChatMemoryRef } from "./types";
 
 interface Props {
-	working?: MemoryRef[];
-	episodic?: MemoryRef[];
-	semantic?: MemoryRef[];
-	onSelect?: (ref: MemoryRef) => void;
+	working?: ChatMemoryRef[];
+	episodic?: ChatMemoryRef[];
+	semantic?: ChatMemoryRef[];
+	onSelect?: (ref: ChatMemoryRef) => void;
 	class?: string;
 }
 
@@ -36,7 +36,7 @@ const layerColors = {
             onclick={() => onSelect?.(ref)}
           >
             <p class="text-body-sm text-foreground">{ref.preview}</p>
-            <span class="text-label-xs text-muted-foreground">{ref.tokens} tokens</span>
+            <span class="text-label-xs text-muted-foreground">{ref.estimatedTokens} tokens</span>
           </button>
         {/each}
       </div>
@@ -54,7 +54,7 @@ const layerColors = {
             onclick={() => onSelect?.(ref)}
           >
             <p class="text-body-sm text-foreground">{ref.preview}</p>
-            <span class="text-label-xs text-muted-foreground">{ref.tokens} tokens</span>
+            <span class="text-label-xs text-muted-foreground">{ref.estimatedTokens} tokens</span>
           </button>
         {/each}
       </div>
@@ -72,7 +72,7 @@ const layerColors = {
             onclick={() => onSelect?.(ref)}
           >
             <p class="text-body-sm text-foreground">{ref.preview}</p>
-            <span class="text-label-xs text-muted-foreground">{ref.tokens} tokens</span>
+            <span class="text-label-xs text-muted-foreground">{ref.estimatedTokens} tokens</span>
           </button>
         {/each}
       </div>

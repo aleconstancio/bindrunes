@@ -3,6 +3,17 @@ import type { Component } from "svelte";
 // ── i18n ──
 export type TFunction = (key: string, params?: Record<string, string | number>) => string;
 
+// ── Auth ──
+export interface User {
+	id: string;
+	email: string;
+	name?: string;
+	avatar?: string;
+	roles: string[];
+	permissions: string[];
+	tenantId?: string;
+}
+
 // ── Select / Option ──
 export interface SelectOption {
 	value: string;

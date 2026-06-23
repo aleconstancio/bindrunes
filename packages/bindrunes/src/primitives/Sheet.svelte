@@ -58,7 +58,7 @@ const positionStyles: Record<string, string> = {
 <Dialog.Root bind:open>
   <Dialog.Portal>
     <Dialog.Overlay
-      class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm
+      class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-[--blur-subtle]
              data-[state=open]:bindrunes-fade-in data-[state=closed]:bindrunes-fade-out"
     />
     <Dialog.Content

@@ -38,7 +38,7 @@ let {
 
       <div class="flex items-center gap-2">
         <div
-          class="h-7 w-7 rounded-full flex items-center justify-center text-body-sm font-semibold transition-colors
+          class="h-7 w-7 rounded-[--radius-pill] flex items-center justify-center text-body-sm font-semibold transition-colors
                  {isCompleted || isActive ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'}"
           aria-current={isActive ? "step" : undefined}
         >

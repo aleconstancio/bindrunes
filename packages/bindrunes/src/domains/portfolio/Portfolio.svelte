@@ -51,7 +51,7 @@ const gridCols: Record<number, string> = {
             {#if item.tags && item.tags.length > 0}
               <div class="flex flex-wrap gap-1.5 mt-3">
                 {#each item.tags as tag}
-                  <span class="text-mono-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{tag}</span>
+                  <span class="text-mono-xs px-2 py-0.5 rounded-[--radius-pill] bg-muted text-muted-foreground">{tag}</span>
                 {/each}
               </div>
             {/if}

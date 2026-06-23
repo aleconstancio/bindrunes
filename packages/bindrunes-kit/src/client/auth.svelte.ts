@@ -1,13 +1,7 @@
+import type { User } from "bindrunes";
 import { array, object, optional, safeParse, string } from "valibot";
 
-export interface User {
-	id: string;
-	email: string;
-	name?: string;
-	avatar?: string;
-	roles?: string[];
-	permissions?: string[];
-}
+export type { User } from "bindrunes";
 
 export interface Tenant {
 	id: string;
@@ -48,8 +42,8 @@ const userSchema = object({
 	email: string(),
 	name: optional(string()),
 	avatar: optional(string()),
-	roles: optional(array(string())),
-	permissions: optional(array(string())),
+	roles: optional(array(string()), []),
+	permissions: optional(array(string()), []),
 });
 
 /**

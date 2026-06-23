@@ -5,7 +5,7 @@ type ReactiveMediaQueryOptions = {
 	storageKey?: string;
 };
 
-export function createMediaQuery(options: ReactiveMediaQueryOptions) {
+export function useMediaQuery(options: ReactiveMediaQueryOptions) {
 	if (typeof window === "undefined" || typeof window.matchMedia !== "function") {
 		return {
 			get matches() {

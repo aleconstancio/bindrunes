@@ -1,7 +1,7 @@
-import { createMediaQuery } from "./createMediaQuery.svelte";
+import { useMediaQuery } from "./useMediaQuery.svelte";
 
 export function createPrefersTheme() {
-	const mql = createMediaQuery({ query: "(prefers-color-scheme: dark)" });
+	const mql = useMediaQuery({ query: "(prefers-color-scheme: dark)" });
 
 	$effect(() => {
 		const root = document.documentElement;

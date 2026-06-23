@@ -24,7 +24,7 @@ const sizeClasses: Record<string, string> = {
 };
 </script>
 
-<BitsAvatar.Root class="inline-flex items-center justify-center rounded-full overflow-hidden shrink-0 {sizeClasses[size]} {className}">
+<BitsAvatar.Root class="inline-flex items-center justify-center rounded-[--radius-pill] overflow-hidden shrink-0 {sizeClasses[size]} {className}">
 	{#if src}
 		<BitsAvatar.Image {src} {alt} class="h-full w-full object-cover" />
 	{/if}

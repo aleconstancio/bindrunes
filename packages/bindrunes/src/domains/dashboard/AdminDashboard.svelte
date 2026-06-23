@@ -1,10 +1,10 @@
 <script lang="ts">
 import Badge from "../../primitives/Badge.svelte";
 import Card from "../../primitives/Card.svelte";
+import DataGrid from "../../primitives/DataGrid.svelte";
 import Switch from "../../primitives/Switch.svelte";
-import DataTable from "../data/DataTable.svelte";
 
-interface User {
+interface AdminUser {
 	id: string;
 	name: string;
 	email: string;
@@ -31,7 +31,7 @@ let {
 	onSettingsUpdate = undefined as ((settings: Settings) => void) | undefined,
 	class: className = "",
 }: {
-	users?: User[];
+	users?: AdminUser[];
 	settings?: Settings;
 	activityLogs?: ActivityLog[];
 	onUserAction?: (userId: string, action: string) => void;
@@ -67,7 +67,7 @@ const userColumns = [
 
 	<Card padding>
 		<h2 class="text-title-2 text-foreground mb-4">User Management</h2>
-		<DataTable columns={userColumns} rows={users as (User & Record<string, unknown>)[]} />
+		<DataGrid columns={userColumns} rows={users as (AdminUser & Record<string, unknown>)[]} />
 	</Card>
 
 	<Card padding>

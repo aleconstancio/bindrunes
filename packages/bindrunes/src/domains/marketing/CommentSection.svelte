@@ -69,10 +69,10 @@ async function handleSubmit() {
               <img
                 src={item.avatar}
                 alt={item.author}
-                class="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                class="w-8 h-8 rounded-[--radius-pill] object-cover flex-shrink-0"
               />
             {:else}
-              <div class="w-8 h-8 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+              <div class="w-8 h-8 rounded-[--radius-pill] bg-muted flex items-center justify-center flex-shrink-0">
                 <span class="text-mono-xs text-muted-foreground">{item.author[0]?.toUpperCase()}</span>
               </div>
             {/if}

@@ -56,6 +56,6 @@ describe("ThemeColorTab", () => {
 		// All preset buttons rendered; the active one gets variant=primary
 		const buttons = container.querySelectorAll("button");
 		const nordBtn = Array.from(buttons).find((b) => b.textContent?.trim() === "nord");
-		expect(nordBtn?.className).toContain("bg-primary");
+		expect(nordBtn?.className).toContain("bg-[--button-bg");
 	});
 });

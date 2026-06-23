@@ -34,16 +34,16 @@ let {
           {:else}
             <div class="rounded-[--radius] border border-border bg-card p-6 space-y-4">
               <span class="text-primary/40 text-headline-3 font-display">&ldquo;</span>
-              <p class="text-body-md text-muted-foreground leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+              <p class="text-body-md text-muted-foreground leading-[--text-line-height-relaxed]">&ldquo;{testimonial.quote}&rdquo;</p>
               <div class="flex items-center gap-3 pt-2">
                 {#if testimonial.avatar}
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.author}
-                    class="w-10 h-10 rounded-full object-cover"
+                    class="w-10 h-10 rounded-[--radius-pill] object-cover"
                   />
                 {:else}
-                  <div class="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                  <div class="w-10 h-10 rounded-[--radius-pill] bg-muted flex items-center justify-center">
                     <span class="text-label-md text-muted-foreground">{testimonial.author[0]?.toUpperCase()}</span>
                   </div>
                 {/if}

@@ -29,7 +29,7 @@ function resetTimer(
 
 export function createSessionMonitor(
 	onRefresh: () => void,
-	onExpire: () => void,
+	_onExpire: () => void,
 	onWarning: () => void,
 	options: SessionMonitorOptions = {},
 ): () => void {

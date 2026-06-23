@@ -1,18 +1,18 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it, vi } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createOmnibar } from "../utils/createOmnibar.svelte";
+import { useOmnibar } from "../utils/useOmnibar.svelte";
 import Omnibar from "./Omnibar.svelte";
 
 describe("Omnibar (component)", () => {
 	it("renders nothing when closed", async () => {
-		const state = await mountComposable(() => createOmnibar({ options: [] }));
+		const state = await mountComposable(() => useOmnibar({ options: [] }));
 		const { container } = render(Omnibar, { state });
 		expect(container.textContent?.trim()).toBe("");
 	});
 
 	it("renders search input when open", async () => {
-		const state = await mountComposable(() => createOmnibar({ options: [] }));
+		const state = await mountComposable(() => useOmnibar({ options: [] }));
 		state.open();
 		render(Omnibar, { state });
 		const input = screen.getByPlaceholderText("Search commands, routes, memory...");
@@ -22,7 +22,7 @@ describe("Omnibar (component)", () => {
 	it("renders filtered options", async () => {
 		const action = vi.fn();
 		const state = await mountComposable(() =>
-			createOmnibar({
+			useOmnibar({
 				options: [
 					{ id: "1", label: "Dashboard", category: "Nav", action },
 					{ id: "2", label: "Settings", category: "Nav", action },
@@ -38,7 +38,7 @@ describe("Omnibar (component)", () => {
 	it("shows category badge when option has category", async () => {
 		const action = vi.fn();
 		const state = await mountComposable(() =>
-			createOmnibar({
+			useOmnibar({
 				options: [{ id: "1", label: "Dashboard", category: "Nav", action }],
 			}),
 		);
@@ -48,7 +48,7 @@ describe("Omnibar (component)", () => {
 	});
 
 	it("shows empty state when no results match query", async () => {
-		const state = await mountComposable(() => createOmnibar({ options: [] }));
+		const state = await mountComposable(() => useOmnibar({ options: [] }));
 		state.open();
 		state.setQuery("nonexistent");
 		render(Omnibar, { state });

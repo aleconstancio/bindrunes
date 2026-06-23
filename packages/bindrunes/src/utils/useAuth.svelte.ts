@@ -1,18 +1,10 @@
 import { array, object, optional, safeParse, string } from "valibot";
-import type { TFunction } from "../shared-types";
+import type { TFunction, User } from "../shared-types";
+
+export type { User } from "../shared-types";
 
 type ToastFn = {
 	info: (message: string) => void;
-};
-
-export type User = {
-	id: string;
-	email: string;
-	name?: string;
-	avatar?: string;
-	roles: string[];
-	permissions: string[];
-	tenantId?: string;
 };
 
 export interface AuthStorage {

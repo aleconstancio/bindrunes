@@ -105,7 +105,7 @@ let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebar
 		<MetaLayout position="content">
 			{#if variant === 'default' && scopeLabel}
 				<div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
-					<p class="font-mono text-mono-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">{scopeLabel}</p>
+					<p class="font-mono text-mono-xs font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground">{scopeLabel}</p>
 					{#if scopeTitle}<p class="text-label-md font-semibold mt-1 text-foreground">{scopeTitle}</p>{/if}
 					{#if scopeDescription}<p class="text-body-sm mt-0.5 text-muted-foreground">{scopeDescription}</p>{/if}
 				</div>

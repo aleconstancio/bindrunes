@@ -25,10 +25,10 @@ let { steps, showConnector = true, children, class: className = "", t }: Props =
         {#snippet children()}
           <div class="flex flex-col items-center text-center gap-4">
             <div class="relative">
-              <div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <div class="flex h-12 w-12 items-center justify-center rounded-[--radius-pill] bg-primary/10 text-primary">
                 <DynamicIcon icon={step.icon} size={24} class="text-title-1" />
               </div>
-              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-body-sm text-primary-foreground">
+              <div class="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-[--radius-pill] bg-primary text-body-sm text-primary-foreground">
                 {#if i < steps.length - 1}
                   <Check size={12} />
                   <span class="sr-only">{t?.('landing.HowItWorks.stepDone') ?? 'Passo concluído'} {i + 1}</span>

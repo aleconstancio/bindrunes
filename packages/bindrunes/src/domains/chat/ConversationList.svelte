@@ -44,7 +44,7 @@ let {
         <p class="text-body-xs text-muted-foreground truncate">{conv.lastMessage}</p>
       </div>
       {#if conv.unread}
-        <span class="shrink-0 w-5 h-5 rounded-full bg-primary text-primary-foreground text-mono-xs flex items-center justify-center">
+        <span class="shrink-0 w-5 h-5 rounded-[--radius-pill] bg-primary text-primary-foreground text-mono-xs flex items-center justify-center">
           {conv.unread}
         </span>
       {/if}

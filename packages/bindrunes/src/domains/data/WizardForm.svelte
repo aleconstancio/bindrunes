@@ -42,7 +42,7 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
         {#each steps as step, i}
           <div class="flex items-center gap-2">
             <div
-              class="flex h-8 w-8 items-center justify-center rounded-full border-2 text-label-sm font-medium
+              class="flex h-8 w-8 items-center justify-center rounded-[--radius-pill] border-2 text-label-sm font-medium
                      {i < currentStep ? 'bg-primary text-primary-foreground border-primary' : ''}
                      {i === currentStep ? 'bg-primary text-primary-foreground border-primary' : ''}
                      {i > currentStep ? 'bg-muted text-muted-foreground border-border' : ''}"
@@ -57,7 +57,7 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
           {/if}
         {/each}
       </div>
-      <div class="h-1 bg-muted rounded-full overflow-hidden"
+      <div class="h-1 bg-muted rounded-[--radius-pill] overflow-hidden"
            role="progressbar"
            aria-valuenow={currentStep + 1}
            aria-valuemin="0"

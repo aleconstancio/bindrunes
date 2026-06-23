@@ -69,7 +69,7 @@ function _getSkeletonWidth(i: number): string {
             {#if col.sortable}
               <button
                 type="button"
-                class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-wider text-muted-foreground"
+                class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-[--text-letter-spacing-wider] text-muted-foreground"
                 class:ml-auto={col.align === 'right'}
                 class:mx-auto={col.align === 'center'}
                 onclick={() => toggleSort(col.key)}

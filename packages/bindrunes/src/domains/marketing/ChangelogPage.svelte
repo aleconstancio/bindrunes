@@ -32,7 +32,7 @@ const typeVariant: Record<string, "success" | "primary" | "warning" | "default">
 
     {#each entries as entry}
       <div class="relative pl-8 border-l-2 border-border">
-        <div class="absolute -left-2 top-0 w-3 h-3 rounded-full bg-primary"></div>
+        <div class="absolute -left-2 top-0 w-3 h-3 rounded-[--radius-pill] bg-primary"></div>
         <div class="space-y-4">
           <div class="flex items-center gap-3">
             <span class="text-title-2 text-foreground">v{entry.version}</span>

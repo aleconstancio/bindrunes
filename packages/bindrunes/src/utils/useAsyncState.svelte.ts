@@ -2,7 +2,7 @@ import { toError } from "./toError";
 
 type AsyncStatus = "idle" | "loading" | "success" | "error";
 
-export function createAsyncState() {
+export function useAsyncState() {
 	let status = $state<AsyncStatus>("idle");
 	let error = $state<Error | null>(null);
 

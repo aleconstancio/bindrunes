@@ -30,7 +30,7 @@ export interface OmnibarState {
 	executeSelected(): void;
 }
 
-export function createOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
+export function useOmnibar(opts: CreateOmnibarOptions = {}): OmnibarState {
 	let isOpen = $state(false);
 	let searchQuery = $state("");
 	let selectedIndex = $state(0);

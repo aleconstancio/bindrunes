@@ -86,7 +86,7 @@ const transitionStyle =
     {...restProps}
   >
     {#if loading}
-      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full {iconOnly ? '' : 'mr-1.5'}"></span>
+      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-[--radius-pill] {iconOnly ? '' : 'mr-1.5'}"></span>
     {/if}
     {@render children?.()}
   </a>
@@ -102,7 +102,7 @@ const transitionStyle =
     {...restProps}
   >
     {#if loading}
-      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full {iconOnly ? '' : 'mr-1.5'}"></span>
+      <span class="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-[--radius-pill] {iconOnly ? '' : 'mr-1.5'}"></span>
     {/if}
     {@render children?.()}
   </BitsButton.Root>

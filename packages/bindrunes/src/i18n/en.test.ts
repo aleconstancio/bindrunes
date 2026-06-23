@@ -42,7 +42,7 @@ describe("i18n/en", () => {
 	});
 
 	it("all values are strings", () => {
-		for (const [key, value] of Object.entries(en)) {
+		for (const [_key, value] of Object.entries(en)) {
 			expect(typeof value).toBe("string");
 		}
 	});

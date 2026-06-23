@@ -39,7 +39,7 @@ function handleOverlayClick() {
 <Dialog.Root bind:open>
   <Dialog.Portal>
     <Dialog.Overlay
-      class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-sm
+      class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-[--blur-subtle]
              data-[state=open]:animate-in data-[state=closed]:animate-out
              data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
       onclick={handleOverlayClick}

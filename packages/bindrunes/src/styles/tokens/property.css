@@ -84,3 +84,53 @@
 	initial-value: 70;
 	inherits: true;
 }
+@property --z-modal {
+	syntax: "<integer>";
+	initial-value: 60;
+	inherits: true;
+}
+@property --gradient-angle {
+	syntax: "<angle>";
+	initial-value: 135deg;
+	inherits: true;
+}
+@property --blur-subtle {
+	syntax: "<length>";
+	initial-value: 4px;
+	inherits: true;
+}
+@property --blur-medium {
+	syntax: "<length>";
+	initial-value: 8px;
+	inherits: true;
+}
+@property --blur-heavy {
+	syntax: "<length>";
+	initial-value: 16px;
+	inherits: true;
+}
+@property --blur-ultra {
+	syntax: "<length>";
+	initial-value: 24px;
+	inherits: true;
+}
+@property --delay-sm {
+	syntax: "<time>";
+	initial-value: 50ms;
+	inherits: true;
+}
+@property --delay-md {
+	syntax: "<time>";
+	initial-value: 100ms;
+	inherits: true;
+}
+@property --delay-lg {
+	syntax: "<time>";
+	initial-value: 200ms;
+	inherits: true;
+}
+@property --delay-xl {
+	syntax: "<time>";
+	initial-value: 400ms;
+	inherits: true;
+}

@@ -32,7 +32,7 @@ let pagePath = $derived(
 </script>
 
 <div class="flex flex-col min-h-screen">
-	<header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-md transition-all duration-[--duration-fluid]">
+	<header class="sticky top-0 z-20 shrink-0 border-b border-border bg-background/45 backdrop-blur-[--blur-medium] transition-all duration-[--duration-fluid]">
 		<div class="flex items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
 			<div class="flex items-center gap-6">
 				<DashboardShellBrand {brandIcon} {appName} />

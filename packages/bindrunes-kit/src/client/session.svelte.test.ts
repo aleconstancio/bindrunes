@@ -106,7 +106,7 @@ describe("createSession", () => {
 
 	it("autoRefresh calls refreshFn periodically", () => {
 		const refreshFn = vi.fn().mockResolvedValue(undefined);
-		const session = createSession({
+		const _session = createSession({
 			autoRefresh: true,
 			refreshInterval: 30_000,
 			refreshFn,
@@ -121,7 +121,7 @@ describe("createSession", () => {
 
 	it("autoRefresh failure does not throw", () => {
 		const refreshFn = vi.fn().mockRejectedValue(new Error("network"));
-		const session = createSession({
+		const _session = createSession({
 			autoRefresh: true,
 			refreshInterval: 10_000,
 			refreshFn,
@@ -150,7 +150,7 @@ describe("createSession", () => {
 	});
 
 	it("no autoRefresh without refreshFn", () => {
-		const session = createSession({
+		const _session = createSession({
 			autoRefresh: true,
 			refreshInterval: 10_000,
 			// no refreshFn

@@ -1,4 +1,4 @@
-export interface Message {
+export interface ChatMessage {
 	id: string;
 	content: string;
 	sender: "user" | "assistant";
@@ -18,8 +18,9 @@ export interface ReasoningStep {
 	confidence?: number;
 }
 
-export interface MemoryRef {
+export interface ChatMemoryRef {
 	id: string;
 	preview: string;
-	tokens: number;
+	estimatedTokens: number;
+	pinned: boolean;
 }

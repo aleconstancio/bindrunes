@@ -50,7 +50,7 @@ const showRight = $derived(rightCollapsible !== "none" && right);
 
 <div class="flex flex-col min-h-screen {className}">
 	{#if topbar}
-		<header class="shrink-0 border-b border-border bg-background/45 backdrop-blur-md z-20 transition-all duration-[--duration-snappy]">
+		<header class="shrink-0 border-b border-border bg-background/45 backdrop-blur-[--blur-medium] z-20 transition-all duration-[--duration-snappy]">
 			{@render topbar()}
 		</header>
 	{/if}

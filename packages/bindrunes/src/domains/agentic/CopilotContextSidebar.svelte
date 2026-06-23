@@ -22,9 +22,9 @@ let {
 	{#if contextLoaded}
 		<div class="space-y-4">
 			<div>
-				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Tokens Utilizados</h4>
+				<h4 class="text-label-sm font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground mb-2">Tokens Utilizados</h4>
 				<div
-					class="h-2 bg-muted rounded-full overflow-hidden"
+					class="h-2 bg-muted rounded-[--radius-pill] overflow-hidden"
 					role="progressbar"
 					aria-valuenow={contextTokens}
 					aria-valuemin="0"
@@ -39,7 +39,7 @@ let {
 			</div>
 
 			<div>
-				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Camadas</h4>
+				<h4 class="text-label-sm font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground mb-2">Camadas</h4>
 				<div class="space-y-2">
 					{#each contextLayers as layer}
 						<div class="flex items-center justify-between text-label-sm">
@@ -51,9 +51,9 @@ let {
 			</div>
 
 			<div>
-				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Status</h4>
+				<h4 class="text-label-sm font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground mb-2">Status</h4>
 				<div class="flex items-center gap-2 text-label-sm">
-					<div class="w-2 h-2 rounded-full {status === 'connected' ? 'bg-success' : 'bg-destructive'}"></div>
+					<div class="w-2 h-2 rounded-[--radius-pill] {status === 'connected' ? 'bg-success' : 'bg-destructive'}"></div>
 					<span class="text-foreground">{status === 'connected' ? 'Conectado' : 'Desconectado'}</span>
 				</div>
 			</div>

@@ -100,10 +100,42 @@
 
 	/* Shadow utilities */
 	--shadow-xs: var(--shadow-xs); --shadow-sm: var(--shadow-sm); --shadow-md: var(--shadow-md);
-	--shadow-lg: var(--shadow-lg);
+	--shadow-lg: var(--shadow-lg); --shadow-xl: var(--shadow-xl); --shadow-2xl: var(--shadow-2xl);
 	--shadow-glow-primary: var(--shadow-glow-primary);
+	--shadow-glow-accent: var(--shadow-glow-accent);
 	--shadow-glow-destructive: var(--shadow-glow-destructive);
+	--shadow-glow-success: var(--shadow-glow-success);
+	--shadow-glow-warning: var(--shadow-glow-warning);
+	--shadow-glow-info: var(--shadow-glow-info);
 	--shadow-inset-subtle: var(--shadow-inset-subtle);
+
+	/* Gradient utilities */
+	--gradient-primary: var(--gradient-primary);
+	--gradient-accent: var(--gradient-accent);
+	--gradient-destructive: var(--gradient-destructive);
+	--gradient-surface: var(--gradient-surface);
+	--gradient-hero: var(--gradient-hero);
+	--gradient-card: var(--gradient-card);
+	--gradient-sidebar: var(--gradient-sidebar);
+	--gradient-text-primary: var(--gradient-text-primary);
+	--gradient-text-accent: var(--gradient-text-accent);
+
+	/* Blur scale */
+	--blur-subtle: var(--blur-subtle);
+	--blur-medium: var(--blur-medium);
+	--blur-heavy: var(--blur-heavy);
+	--blur-ultra: var(--blur-ultra);
+
+	/* Radius extras */
+	--radius-pill: var(--radius-pill);
+	--radius-full: var(--radius-full);
+
+	/* Animation delays */
+	--delay-none: var(--delay-none);
+	--delay-sm: var(--delay-sm);
+	--delay-md: var(--delay-md);
+	--delay-lg: var(--delay-lg);
+	--delay-xl: var(--delay-xl);
 
 	/* Easing utilities */
 	--ease-standard: var(--ease-standard);       --ease-emphasized: var(--ease-emphasized);

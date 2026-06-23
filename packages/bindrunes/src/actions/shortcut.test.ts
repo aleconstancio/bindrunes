@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { type ShortcutOptions, shortcut } from "./shortcut";
+import { shortcut } from "./shortcut";
 
 function createMockElement(): HTMLElement {
 	return document.createElement("div");
@@ -166,7 +166,7 @@ describe("shortcut action", () => {
 		window.dispatchEvent(pressKey("k"));
 		expect(cb).toHaveBeenCalledTimes(1);
 
-		result.destroy();
+		(result as { destroy: () => void }).destroy();
 
 		window.dispatchEvent(pressKey("k"));
 		expect(cb).toHaveBeenCalledTimes(1);

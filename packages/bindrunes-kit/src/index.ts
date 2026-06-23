@@ -10,8 +10,8 @@ export type {
 } from "bindrunes";
 export {
 	createApiClient,
-	createForm,
-	createMutation,
-	createQuery,
 	invalidateQuery,
+	useForm,
+	useMutation,
+	useQuery,
 } from "bindrunes";

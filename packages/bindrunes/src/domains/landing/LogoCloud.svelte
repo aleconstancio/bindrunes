@@ -19,7 +19,7 @@ let { title, logos, children, class: className = "" }: Props = $props();
 
 <div class="px-6 py-12 section-reveal {className}">
   {#if title}
-    <p class="text-center text-label-md uppercase tracking-widest text-muted-foreground mb-8">
+    <p class="text-center text-label-md uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground mb-8">
       {title}
     </p>
   {/if}

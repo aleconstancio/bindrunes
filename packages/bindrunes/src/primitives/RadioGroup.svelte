@@ -31,8 +31,8 @@ let {
 			       data-[state=checked]:border-primary data-[state=unchecked]:border-border
 			       data-[state=checked]:bg-muted"
 		>
-			<div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 data-[state=checked]:border-primary data-[state=unchecked]:border-muted-foreground">
-				<div class="h-2 w-2 rounded-full data-[state=checked]:bg-primary"></div>
+			<div class="flex h-4 w-4 shrink-0 items-center justify-center rounded-[--radius-pill] border-2 data-[state=checked]:border-primary data-[state=unchecked]:border-muted-foreground">
+				<div class="h-2 w-2 rounded-[--radius-pill] data-[state=checked]:bg-primary"></div>
 			</div>
 			<span class="text-label-md text-foreground">{option.label}</span>
 		</BitsRadioGroup.Item>

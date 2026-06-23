@@ -1,4 +1,4 @@
-import { createMediaQuery } from "./createMediaQuery.svelte";
+import { useMediaQuery } from "./useMediaQuery.svelte";
 
 export interface ResponsiveDensityOptions {
 	readonly default?: "compact" | "comfortable" | "spacious";
@@ -12,10 +12,10 @@ export interface ResponsiveDensityOptions {
 export function useResponsiveDensity(options: ResponsiveDensityOptions = {}) {
 	const { default: defaultDensity = "comfortable", breakpoints = {} } = options;
 
-	const compactQuery = createMediaQuery({
+	const compactQuery = useMediaQuery({
 		query: breakpoints.compact ?? "(max-width: 768px)",
 	});
-	const spaciousQuery = createMediaQuery({
+	const spaciousQuery = useMediaQuery({
 		query: breakpoints.spacious ?? "(min-width: 1201px)",
 	});
 

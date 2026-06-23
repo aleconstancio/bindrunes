@@ -1,9 +1,9 @@
 export {
 	createApiClient,
-	createForm,
-	createMutation,
-	createQuery,
 	invalidateQuery,
+	useForm,
+	useMutation,
+	useQuery,
 } from "bindrunes";
 export type { CreateClientAuthOptions, Tenant, User } from "./auth.svelte";
 export { createClientAuth } from "./auth.svelte";

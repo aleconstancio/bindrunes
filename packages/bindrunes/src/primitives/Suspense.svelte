@@ -39,7 +39,7 @@ function retry() {
     {@render loadingContent()}
   {:else}
     <div class="flex justify-center py-12">
-      <span class="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-full"></span>
+      <span class="animate-spin h-8 w-8 border-2 border-primary border-t-transparent rounded-[--radius-pill]"></span>
     </div>
   {/if}
 {:else if state.status === 'empty'}

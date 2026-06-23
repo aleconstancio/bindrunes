@@ -54,7 +54,7 @@ const sizeClasses: Record<Size, string> = {
 <span
   data-variant={variant}
   data-size={size}
-  class="inline-flex items-center gap-1 rounded-full font-medium
+  class="inline-flex items-center gap-1 rounded-[--radius-pill] font-medium
          transition-colors duration-[--duration-snappy]
          {variantClasses[variant]} {sizeClasses[size]} {className}"
    {...restProps}
@@ -66,7 +66,7 @@ const sizeClasses: Record<Size, string> = {
   {#if removable}
     <button
       type="button"
-      class="shrink-0 rounded-full p-0.5 hover:bg-foreground/10 transition-colors cursor-pointer -mr-1"
+      class="shrink-0 rounded-[--radius-pill] p-0.5 hover:bg-foreground/10 transition-colors cursor-pointer -mr-1"
       onclick={() => onRemove?.()}
       aria-label="Remove"
     >

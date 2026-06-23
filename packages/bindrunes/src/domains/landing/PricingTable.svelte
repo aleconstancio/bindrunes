@@ -64,13 +64,13 @@ const formatCurrency = (n: number) =>
               <div class="flex flex-col gap-6 pt-2 pricing-content">
                 {#if plan.highlight}
                   <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
-                    <div class="inline-flex items-center rounded-full border border-primary/30 bg-primary px-3 py-1 text-mono-xs uppercase text-primary-foreground shadow-lg">
+                    <div class="inline-flex items-center rounded-[--radius-pill] border border-primary/30 bg-primary px-3 py-1 text-mono-xs uppercase text-primary-foreground shadow-lg">
                       {plan.badge ?? (t?.('landing.PricingTable.mostChosen') ?? 'Most popular')}
                     </div>
                   </div>
                 {/if}
                 <div class="text-center pricing-name">
-                  <p class="text-label-md uppercase tracking-widest {plan.highlight ? 'text-primary' : 'text-muted-foreground'}">{plan.name}</p>
+                  <p class="text-label-md uppercase tracking-[--text-letter-spacing-widest] {plan.highlight ? 'text-primary' : 'text-muted-foreground'}">{plan.name}</p>
                 </div>
                 <div class="text-center pricing-price">
                   {#if landing.billingAnnual}

@@ -250,15 +250,21 @@ Shared domain types are exported from `bindrunes/domains`:
 
 ```ts
 import type {
-  CrudItem,
-  CrudConfig,
-  CrudField,
-  TableColumnConfig,
-  SearchFilter,
-  PortfolioItem,
-  CommentItem,
-  ScheduleItem,
+  // Auth
+  AuthView,
+  SocialLoginConfig,
+  AuthPageConfig,
+  // Calendar
+  CalendarEvent,
+  TimeSlot,
+  // Ecommerce
+  Product,
+  CartItem,
+  // Marketing
+  BlogPost,
+  // Portfolio
+  PortfolioProject,
+  // Settings
+  // ...
 } from "bindrunes/domains";
 ```
-
-> **Note:** `TestimonialItem` and `LogoItem` are deprecated in `bindrunes/domains`. Use `Testimonial` and related types from `bindrunes/landing` instead.

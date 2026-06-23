@@ -85,6 +85,8 @@ const bindrunesConfig = {
 				md: "var(--radius-md)",
 				lg: "var(--radius-lg)",
 				xl: "var(--radius-xl)",
+				pill: "var(--radius-pill)",
+				full: "var(--radius-full)",
 			},
 			boxShadow: {
 				xs: "var(--shadow-xs)",
@@ -92,8 +94,14 @@ const bindrunesConfig = {
 				DEFAULT: "var(--shadow-sm)",
 				md: "var(--shadow-md)",
 				lg: "var(--shadow-lg)",
+				xl: "var(--shadow-xl)",
+				"2xl": "var(--shadow-2xl)",
 				"glow-primary": "var(--shadow-glow-primary)",
+				"glow-accent": "var(--shadow-glow-accent)",
 				"glow-destructive": "var(--shadow-glow-destructive)",
+				"glow-success": "var(--shadow-glow-success)",
+				"glow-warning": "var(--shadow-glow-warning)",
+				"glow-info": "var(--shadow-glow-info)",
 				"emphasis-resolved": "var(--shadow-emphasis-resolved)",
 				"inset-subtle": "var(--shadow-inset-subtle)",
 			},
@@ -123,6 +131,19 @@ const bindrunesConfig = {
 			spacing: {
 				"card-padding": "var(--card-padding, 1rem)",
 			},
+			blur: {
+				subtle: "var(--blur-subtle)",
+				medium: "var(--blur-medium)",
+				heavy: "var(--blur-heavy)",
+				ultra: "var(--blur-ultra)",
+			},
+			transitionDelay: {
+				none: "var(--delay-none)",
+				sm: "var(--delay-sm)",
+				md: "var(--delay-md)",
+				lg: "var(--delay-lg)",
+				xl: "var(--delay-xl)",
+			},
 		},
 	},
 } satisfies Config;
@@ -150,14 +171,12 @@ function bindrunesPlugin({
 			transform: "translateY(-2px)",
 		},
 		".text-gradient-violet": {
-			background:
-				"linear-gradient(135deg, var(--foreground, oklch(0.96 0.005 270)) 30%, var(--primary, oklch(0.65 0.10 265)) 100%)",
+			background: "var(--gradient-text-primary)",
 			"-webkit-background-clip": "text",
 			"-webkit-text-fill-color": "transparent",
 		},
 		".text-gradient-gold": {
-			background:
-				"linear-gradient(135deg, var(--foreground, oklch(0.96 0.005 270)) 30%, var(--warning, oklch(0.80 0.16 80)) 100%)",
+			background: "var(--gradient-text-accent)",
 			"-webkit-background-clip": "text",
 			"-webkit-text-fill-color": "transparent",
 		},
@@ -169,6 +188,18 @@ function bindrunesPlugin({
 		},
 		".section-reveal": {
 			animation: "fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards",
+		},
+		".bg-gradient-primary": {
+			background: "var(--gradient-primary)",
+		},
+		".bg-gradient-accent": {
+			background: "var(--gradient-accent)",
+		},
+		".bg-gradient-hero": {
+			background: "var(--gradient-hero)",
+		},
+		".bg-gradient-surface": {
+			background: "var(--gradient-surface)",
 		},
 	});
 }

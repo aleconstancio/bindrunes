@@ -21,7 +21,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. ~245 components, ~48 comp
 - No literal `box-shadow`, `duration-*`, `oklch()` inline in components — always use CSS var tokens.
 
 ## Laws
-- `createX()` pattern for all reactive utilities
+- `useX()` pattern for reactive composables, `createX()` pattern for non-reactive factories
 - Svelte 5 runes only — no legacy stores, no `export let`
 - Valibot for validation (not Zod)
 - OKLCH color space for theming

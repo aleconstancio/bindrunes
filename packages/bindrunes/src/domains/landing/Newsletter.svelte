@@ -36,7 +36,7 @@ function _handleSubmit(e: Event) {
 </script>
 
 <section class="newsletter-section relative overflow-hidden px-6 py-16 sm:py-24 section-reveal {className}">
-  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+  <div class="pointer-events-none absolute inset-0 bg-gradient-hero"></div>
   <MetaContainer size="lg" padding={false} class="text-center relative">
     <h2 class="text-display-3 sm:text-display-2 text-foreground">
       {title}

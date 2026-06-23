@@ -56,12 +56,12 @@ function handleKeydown(e: KeyboardEvent) {
     onkeydown={handleKeydown}
   >
     {#each value as tag}
-      <span class="inline-flex items-center gap-1 rounded-full bg-muted px-2.5 py-0.5 text-label-sm text-foreground">
+      <span class="inline-flex items-center gap-1 rounded-[--radius-pill] bg-muted px-2.5 py-0.5 text-label-sm text-foreground">
         {tag}
         {#if !disabled}
           <button
             type="button"
-            class="rounded-full p-0.5 hover:bg-muted-foreground/20 transition-colors cursor-pointer"
+            class="rounded-[--radius-pill] p-0.5 hover:bg-muted-foreground/20 transition-colors cursor-pointer"
             onclick={(e) => { e.stopPropagation(); removeTag(tag); }}
             aria-label="Remove {tag}"
           >

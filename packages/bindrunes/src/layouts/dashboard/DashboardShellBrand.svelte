@@ -23,7 +23,7 @@ let {
 			{/if}
 		{/if}
 		<div>
-			<p class="text-body-sm font-bold uppercase tracking-[0.26em] text-muted-foreground">{appName}</p>
+			<p class="text-body-sm font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground">{appName}</p>
 			{#if appSubtitle}
 				<p class="text-body-lg font-semibold text-foreground">{appSubtitle}</p>
 			{/if}

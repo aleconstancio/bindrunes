@@ -31,7 +31,7 @@ async function handleSubmit() {
 <Block size="sm" spacing="normal" class={className}>
   <MetaContainer size="sm" padding={false} class="mx-auto text-center space-y-6">
     <div class="flex justify-center">
-      <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+      <div class="flex h-16 w-16 items-center justify-center rounded-[--radius-pill] bg-primary/10">
         <Shield class="h-8 w-8 text-primary" />
       </div>
     </div>

@@ -1,6 +1,7 @@
 export { default as Banner } from "./Banner.svelte";
 export { default as BlogArticle } from "./BlogArticle.svelte";
 export { default as BlogListing } from "./BlogListing.svelte";
+export { default as BlogPage } from "./BlogPage.svelte";
 export { default as ChangelogPage } from "./ChangelogPage.svelte";
 export { default as CommentSection } from "./CommentSection.svelte";
 export { default as ContentWithImage } from "./ContentWithImage.svelte";

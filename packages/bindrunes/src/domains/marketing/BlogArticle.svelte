@@ -31,7 +31,7 @@ let {
 <Block size="md" spacing="normal" class={className}>
   <article class="space-y-8">
     <header class="space-y-4">
-      <h1 class="text-display-2 text-foreground leading-tight">{title}</h1>
+      <h1 class="text-display-2 text-foreground leading-[--text-line-height-tight]">{title}</h1>
 
       <div class="flex flex-wrap items-center gap-4 text-body-sm text-muted-foreground">
         {#if publishDate}
@@ -45,7 +45,7 @@ let {
       {#if tags.length > 0}
         <div class="flex flex-wrap gap-2">
           {#each tags as tag}
-            <span class="text-mono-xs px-3 py-1 rounded-full bg-muted text-muted-foreground">{tag}</span>
+            <span class="text-mono-xs px-3 py-1 rounded-[--radius-pill] bg-muted text-muted-foreground">{tag}</span>
           {/each}
         </div>
       {/if}
@@ -59,7 +59,7 @@ let {
       <div class="prose prose-gray dark:prose-invert max-w-none">
         {#each content.split("\n") as paragraph}
           {#if paragraph.trim()}
-            <p class="text-body-lg text-foreground leading-relaxed mb-4">{paragraph}</p>
+            <p class="text-body-lg text-foreground leading-[--text-line-height-relaxed] mb-4">{paragraph}</p>
           {/if}
         {/each}
       </div>
