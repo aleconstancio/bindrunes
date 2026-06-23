@@ -41,6 +41,10 @@ export const docsNav: NavItem[] = [
 		label: "Contributing",
 		href: "/docs/contributing",
 	},
+	{
+		label: "Playground",
+		href: "/docs/playground/builder",
+	},
 ];
 
 export const kitNav: NavItem[] = [
