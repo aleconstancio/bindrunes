@@ -185,9 +185,9 @@ $effect(() => {
 					<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
 						<div class="flex items-center gap-2 text-muted-foreground">
 							<div class="flex gap-1">
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 0ms"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 150ms"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: 300ms"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-none)"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-md)"></span>
+								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-xl)"></span>
 							</div>
 							<span class="text-label-sm">Pensando...</span>
 						</div>
