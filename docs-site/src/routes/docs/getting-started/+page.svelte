@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, Button, CodeSnippet } from "bindrunes";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -29,6 +29,20 @@ bun add @microsoft/fetch-event-source localforage
 # DataChart
 bun add chart.js svelte-chartjs`}
       </CodeSnippet>
+
+      <div class="mt-6">
+        <Button
+          href="https://stackblitz.com/fork/aleconstancio/bindrunes/tree/main/examples/showcase?embed=1&terminal=dev"
+          variant="outline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2">
+            <path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99z"/>
+          </svg>
+          Open in StackBlitz
+        </Button>
+      </div>
     </section>
 
     <section>
