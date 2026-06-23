@@ -54,14 +54,14 @@ const turns = $derived.by<DebateTurn[]>(() => {
 });
 </script>
 
-<div class="space-y-4 font-sans text-sm {className}">
+<div class="space-y-4 font-sans text-body-sm {className}">
 	<div class="flex items-center gap-2 border-b pb-2 border-border">
 		<svg class="w-4 h-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
 		<span class="font-bold text-foreground">Painel de Debate AI (Analista + Crítico)</span>
 	</div>
 
 	{#if turns.length === 0}
-		<p class="text-xs text-muted-foreground italic">Detalhamento do debate Analyst-Critic indisponível para este registro.</p>
+		<p class="text-label-sm text-muted-foreground italic">Detalhamento do debate Analyst-Critic indisponível para este registro.</p>
 	{:else}
 		<div class="relative border-l-2 border-border pl-4 ml-2 space-y-6" role="list" aria-label="Histórico de debate IA">
 			{#each turns as turn}
@@ -75,14 +75,14 @@ const turns = $derived.by<DebateTurn[]>(() => {
 						{turn.agent === 'Analista' ? 'border-primary/20' :
 						 turn.approved ? 'border-success/20' : 'border-destructive/20'}">
 						<div class="flex items-center justify-between">
-							<span class="font-bold text-xs uppercase tracking-wider
+							<span class="font-bold text-label-sm uppercase tracking-wider
 								{turn.agent === 'Analista' ? 'text-primary' :
 								 turn.approved ? 'text-success' : 'text-destructive'}">
 								{turn.agent} • Rodada {turn.round}
 							</span>
 
 							{#if turn.agent === "Crítico"}
-								<span class="inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full
+								<span class="inline-flex items-center gap-1 text-label-sm font-bold px-2 py-0.5 rounded-full
 									{turn.approved ? 'bg-success/10 text-success' : 'bg-destructive/10 text-destructive'}">
 									{#if turn.approved}
 										<svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -93,19 +93,19 @@ const turns = $derived.by<DebateTurn[]>(() => {
 									{/if}
 								</span>
 							{:else if turn.confidence !== undefined}
-								<span class="text-xs font-bold text-muted-foreground">
+								<span class="text-label-sm font-bold text-muted-foreground">
 									Confiança: <span class="text-primary font-bold">{Math.round(turn.confidence * 100)}%</span>
 								</span>
 							{/if}
 						</div>
 
 						{#if turn.details && turn.agent === "Analista"}
-							<div class="mt-2 text-xs font-semibold text-muted-foreground">
+							<div class="mt-2 text-label-sm font-semibold text-muted-foreground">
 								Classificação Proposta: <span class="bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20 font-bold">{turn.details}</span>
 							</div>
 						{/if}
 
-						<p class="mt-2 text-foreground leading-relaxed text-xs font-medium whitespace-pre-line">
+						<p class="mt-2 text-foreground leading-relaxed text-label-sm font-medium whitespace-pre-line">
 							{turn.content}
 						</p>
 					</div>

@@ -17,7 +17,7 @@ let {
 {#if chain && chain.status !== "idle"}
 	<div class="p-3 border-b border-border bg-muted/30 {className}">
 		<div class="flex items-center justify-between mb-2">
-			<span class="text-xs font-bold text-foreground">
+			<span class="text-label-sm font-bold text-foreground">
 				{#if chain.status === "running"}
 					Executando: {chain.name}
 				{:else if chain.status === "waiting_gate"}
@@ -34,7 +34,7 @@ let {
 		{#if chain.steps.length > 0}
 			<div class="space-y-1.5">
 				{#each chain.steps as step}
-					<div class="flex items-center gap-2 text-[11px]">
+					<div class="flex items-center gap-2 text-label-sm">
 						{#if step.status === "done"}
 							<svg class="w-2.5 h-2.5 text-success shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
 						{:else if step.status === "executing"}
@@ -56,7 +56,7 @@ let {
 			<div class="flex gap-2 mt-3">
 				<button
 					type="button"
-					class="flex-1 h-7 text-xs inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1 font-medium"
+					class="flex-1 h-7 text-label-sm inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1 font-medium"
 					onclick={() => onContinue(chain.name)}
 				>
 					<svg class="w-3 h-3 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -64,7 +64,7 @@ let {
 				</button>
 				<button
 					type="button"
-					class="h-7 text-xs inline-flex items-center justify-center rounded-md hover:bg-muted px-3 py-1 font-medium text-muted-foreground"
+					class="h-7 text-label-sm inline-flex items-center justify-center rounded-md hover:bg-muted px-3 py-1 font-medium text-muted-foreground"
 					onclick={() => onCancel(chain.name)}
 				>
 					Parar

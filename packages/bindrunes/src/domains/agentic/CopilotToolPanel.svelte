@@ -24,7 +24,7 @@ const currentTools = $derived(toolCategories.find((c) => c.id === activeCategory
 	{#each toolCategories as category}
 		<button
 			type="button"
-			class="text-[10px] font-bold px-2 py-1 rounded-md transition-colors cursor-pointer
+			class="text-label-sm font-bold px-2 py-1 rounded-md transition-colors cursor-pointer
 				{activeCategory === category.id ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-muted/80'}"
 			onclick={() => onSelectCategory(category.id)}
 		>
@@ -49,8 +49,8 @@ const currentTools = $derived(toolCategories.find((c) => c.id === activeCategory
 						</div>
 					</div>
 					<div class="flex-1 min-w-0">
-						<p class="text-sm font-medium text-foreground truncate">{tool.label}</p>
-						<p class="text-xs text-muted-foreground truncate">{tool.description}</p>
+						<p class="text-body-sm font-medium text-foreground truncate">{tool.label}</p>
+						<p class="text-label-sm text-muted-foreground truncate">{tool.description}</p>
 					</div>
 				</div>
 			</button>

@@ -34,8 +34,8 @@ const config = $derived(riskConfig[suggestion.risk]);
 				{/if}
 			</div>
 			<div>
-				<p class="text-xs font-bold text-foreground">{suggestion.title}</p>
-				<p class="text-[10px] text-muted-foreground mt-0.5">{suggestion.description}</p>
+				<p class="text-label-sm font-bold text-foreground">{suggestion.title}</p>
+				<p class="text-label-sm text-muted-foreground mt-0.5">{suggestion.description}</p>
 			</div>
 		</div>
 		<button
@@ -53,7 +53,7 @@ const config = $derived(riskConfig[suggestion.risk]);
 			{#each suggestion.actions as action}
 				<button
 					type="button"
-					class="text-[10px] font-bold px-2 py-1 rounded-md bg-background border border-border hover:bg-muted transition-colors cursor-pointer"
+					class="text-label-sm font-bold px-2 py-1 rounded-md bg-background border border-border hover:bg-muted transition-colors cursor-pointer"
 					onclick={() => onAct(suggestion.id, action)}
 				>
 					{action.label}

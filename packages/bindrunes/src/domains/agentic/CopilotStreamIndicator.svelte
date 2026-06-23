@@ -17,7 +17,7 @@ let {
 				<span class="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style="animation-delay: 150ms"></span>
 				<span class="w-2 h-2 bg-muted-foreground rounded-full animate-bounce" style="animation-delay: 300ms"></span>
 			</div>
-			<span class="text-xs">Pensando...</span>
+			<span class="text-label-sm">Pensando...</span>
 		</div>
 	</div>
 </div>

@@ -22,21 +22,21 @@ let {
 	{#if contextLoaded}
 		<div class="space-y-4">
 			<div>
-				<h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Tokens Utilizados</h4>
+				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Tokens Utilizados</h4>
 				<div class="h-2 bg-muted rounded-full overflow-hidden">
 					<div
 						class="h-full bg-primary transition-all duration-300"
 						style="width: {Math.min((contextTokens / maxTokens) * 100, 100)}%"
 					></div>
 				</div>
-				<p class="text-xs text-muted-foreground mt-1">{contextTokens.toLocaleString()} / {maxTokens.toLocaleString()}</p>
+				<p class="text-label-sm text-muted-foreground mt-1">{contextTokens.toLocaleString()} / {maxTokens.toLocaleString()}</p>
 			</div>
 
 			<div>
-				<h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Camadas</h4>
+				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Camadas</h4>
 				<div class="space-y-2">
 					{#each contextLayers as layer}
-						<div class="flex items-center justify-between text-xs">
+						<div class="flex items-center justify-between text-label-sm">
 							<span class="text-foreground">{layer.name}</span>
 							<span class="text-muted-foreground">{layer.tokens} tokens</span>
 						</div>
@@ -45,14 +45,14 @@ let {
 			</div>
 
 			<div>
-				<h4 class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">Status</h4>
-				<div class="flex items-center gap-2 text-xs">
+				<h4 class="text-label-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Status</h4>
+				<div class="flex items-center gap-2 text-label-sm">
 					<div class="w-2 h-2 rounded-full {status === 'connected' ? 'bg-success' : 'bg-destructive'}"></div>
 					<span class="text-foreground">{status === 'connected' ? 'Conectado' : 'Desconectado'}</span>
 				</div>
 			</div>
 		</div>
 	{:else}
-		<p class="text-xs text-muted-foreground italic">Contexto não carregado</p>
+		<p class="text-label-sm text-muted-foreground italic">Contexto não carregado</p>
 	{/if}
 </div>
