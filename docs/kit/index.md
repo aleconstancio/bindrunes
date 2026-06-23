@@ -26,6 +26,7 @@ bun run dev
 | [Authentication](auth.md) | Server-side sessions, route protection, CSRF |
 | [Internationalization](i18n.md) | Server-side locale detection, client translations |
 | [Deployment](deployment.md) | Vercel, Firebase, Node.js, Docker |
+| [API Reference](api-reference.md) | Server utility API signatures |
 
 ## Server Utilities
 

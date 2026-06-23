@@ -35,7 +35,7 @@ bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis de
 - [Composables](composables.md) — Reference for state, fetching, forms, auth, i18n
 - [Design System](design-system.md) — Orthogonal theme, aesthetic, and density customizer
 - [Landing Pages](landing.md) — Pre-built marketing sections
-- [Templates](components.md#templates) — Pre-composed page templates
+- [Templates](components.md) — Pre-composed page templates
 - [Architecture](architecture.md) — Folder mapping, composite patterns, context rules
 - [Security](security.md) — Token storage and redirect sanitization
 - [Testing](testing.md) — Test conventions, helpers, and coverage
