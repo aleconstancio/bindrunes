@@ -37,7 +37,7 @@ const segments = $derived.by(() => {
 		{:else}
 			<button
 				type="button"
-				onclick={() => onHighlightCitation?.(seg.layer!, seg.id!)}
+				onclick={() => { if (seg.layer && seg.id) onHighlightCitation(seg.layer, seg.id); }}
 				class="inline-flex items-center gap-1.5 rounded bg-primary/10 hover:bg-primary/20 px-2 py-0.5 text-label-sm font-bold text-primary transition-colors border border-primary/20 font-mono shadow-sm cursor-pointer align-middle select-none mx-0.5 hover:scale-105 active:scale-95 transform duration-150"
 			>
 				<svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>

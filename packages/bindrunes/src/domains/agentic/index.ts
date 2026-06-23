@@ -8,8 +8,8 @@ export { default as CopilotToolPanel } from "./CopilotToolPanel.svelte";
 export { default as DebateHistoryTree } from "./DebateHistoryTree.svelte";
 export { default as InteractiveCitations } from "./InteractiveCitations.svelte";
 export type {
+	ChainStatus,
 	ConnectionStatus,
-	CopilotArtifactRef,
 	CopilotChain,
 	CopilotChainStep,
 	CopilotContextLayer,

@@ -32,7 +32,7 @@ let {
 				>
 					<div
 						class="h-full bg-primary transition-all duration-300"
-						style="width: {Math.min((contextTokens / maxTokens) * 100, 100)}%"
+						style="width: {maxTokens > 0 ? Math.min((contextTokens / maxTokens) * 100, 100) : 0}%"
 					></div>
 				</div>
 				<p class="text-label-sm text-muted-foreground mt-1">{contextTokens.toLocaleString()} / {maxTokens.toLocaleString()}</p>

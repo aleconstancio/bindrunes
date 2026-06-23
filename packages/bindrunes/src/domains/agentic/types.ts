@@ -49,12 +49,6 @@ export interface CopilotContextLayer {
 	tokens: number;
 }
 
-export interface CopilotArtifactRef {
-	id: string;
-	name: string;
-	type: string;
-}
-
 export interface ToolCategory {
 	id: string;
 	label: string;
