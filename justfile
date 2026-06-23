@@ -96,6 +96,7 @@ validate:
     bun run lint
     bun run check
     bun run test
+    bun run size
 
 [group('pipelines')]
 # Build + validate (used before publish)
