@@ -57,7 +57,7 @@ export default defineConfig({
   let { children } = $props();
 </script>
 
-<AppProvider themeDefault="editorial" aestheticDefault="editorial" densityDefault="comfortable">
+<AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
   {@render children()}
 </AppProvider>
 ```

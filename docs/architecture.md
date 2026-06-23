@@ -135,7 +135,7 @@ export function useSubsystemContext() {
 ### 3. Orthogonal Design Axes
 
 - **Themes** override color custom properties exclusively (`data-theme`).
-- **Aesthetics** override corner radius, shadows, and easing scales exclusively (`data-aesthetic`).
+- **Aesthetics** override corner radius, shadows, motion (duration/easing), gradients, blur, button treatment, card treatment, surface texture, and shadow emphasis exclusively. Never modify colors.
 - **Density** overrides spacing margins and paddings exclusively (`data-density`).
 
 ### 4. Page Composition Architecture

@@ -113,8 +113,8 @@ const store = useWindowStore();
 ## Stricter Coverage Requirements
 
 As defined in `vitest.config.ts`, the agentic kernel has a higher coverage bar:
-- **90%** Statements / Lines
-- **85%** Branches
-- **88%** Functions
+- **95%** Statements / Lines
+- **90%** Branches
+- **92%** Functions
 
 Copilot components (`src/domains/agentic/`) follow standard coverage thresholds.

@@ -64,11 +64,13 @@ Components are organized into four layers following the architecture:
 <Button href="/signup" variant="outline">Sign Up</Button>
 ```
 
+**Aesthetic Adaptation:** Button reads `--button-bg` and `--button-bg-destructive` tokens for its background. When the active aesthetic sets `--button-treatment: gradient` (glass, expressive, organic), Button renders with a gradient background. When `--button-treatment: flat` (minimal, brutalist, neon), it uses a solid color. The fallback is `var(--primary)`.
+
 ### Card
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"surface" \| "glass" \| "outlined" \| "ghost"` | `"surface"` | Visual style |
+| `variant` | `"surface" \| "glass" \| "tinted" \| "outlined" \| "ghost"` | `"surface"` | Visual style |
 | `interactive` | `boolean` | `false` | Hover/active states, role="button" |
 | `padding` | `boolean` | `true` | Apply default padding |
 | `href` | `string` | — | Render as link |
@@ -81,6 +83,8 @@ Components are organized into four layers following the architecture:
   <p>Content goes here.</p>
 </Card>
 ```
+
+**Aesthetic Adaptation:** Card supports a `tinted` variant that applies a subtle surface-2 background. Aesthetics with `--card-treatment: tinted` (bento, organic) use this variant. The `glass` variant uses `--blur-heavy` for backdrop blur instead of a hardcoded value.
 
 ### Input
 
