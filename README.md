@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-200+ components · 46 composables · 10 domain categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
+245+ components · 48 composables · 10 domain categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
 
 ## Features
 
@@ -15,7 +15,9 @@
 - **B2B SaaS focus** — Shells, sidebars, data tables, CRUD operations, and pre-built landing sections.
 - **Lightweight validation** — Built with Valibot, not Zod.
 - **OKLCH color space** — Perceptually uniform theming with 6 curated presets.
-- **46 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
+- **48 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
+- **Agentic copilot UI** — Pre-built components for LLM chat interfaces: message lists, tool panels, streaming indicators, suggestion cards, and reasoning displays.
+- **SvelteKit meta-framework** — `bindrunes-kit` provides full-stack and SPA+backend scaffolding with auth, i18n, and deployment helpers.
 
 ## Install
 
@@ -74,6 +76,8 @@ export default defineConfig({
 | [Architecture](docs/architecture.md) | Codebase design, context, and file mapping |
 | [Security](docs/security.md) | Token storage and redirect validation |
 | [Testing](docs/testing.md) | Vitest testing rules, helpers, and coverage |
+| [Agentic Chat](docs/agentic/overview.md) | LLM agent kernel and copilot components |
+| [bindrunes-kit](docs/kit/) | SvelteKit meta-framework (SSR, auth, i18n) |
 
 ---
 
@@ -85,6 +89,7 @@ export default defineConfig({
 | `bindrunes/layouts` | Layout components, dashboard shells, and sidebar |
 | `bindrunes/domains` | Domain components (auth, calendar, chat, data, e-commerce, landing, marketing, media, portfolio, settings) |
 | `bindrunes/domains/*` | Individual domain imports (e.g. `bindrunes/domains/landing`) |
+| `bindrunes/domains/agentic` | Agentic copilot UI components |
 | `bindrunes/templates` | Pre-composed page templates (10 categories) |
 | `bindrunes/agentic` | Agentic chat kernel composables |
 | `bindrunes/playground` | Playground and demo components |

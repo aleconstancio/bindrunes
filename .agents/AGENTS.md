@@ -1,7 +1,13 @@
 # bindrunes — Agent Laws
 
+## Monorepo
+- `packages/bindrunes` — Component library (Svelte 5 + Tailwind v4)
+- `packages/bindrunes-kit` — SvelteKit meta-framework (SSR, auth, i18n)
+- `docs-site/` — Documentation website
+- `examples/` — Showcase and demo apps
+
 ## Architecture
-Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components, 46 createX()/useX() composables, 6 themes.
+Svelte 5 + Tailwind CSS v4 B2B SaaS component library. ~245 components, ~48 composables, 10 domain categories, 6 themes. Agentic kernel with copilot UI components. Kit provides SvelteKit scaffolding with full-stack and SPA+backend modes.
 
 ## Three Orthogonal Axes (v1.0+)
 - Theme (`data-theme=editorial|dracula|nord|catppuccin|rose-pine|github`) → color identity
@@ -26,6 +32,7 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. 170+ exported components,
 - **Meta-component context:** Use `createMetaContext` / `useMetaContext` (from `src/utils/createMetaContext.svelte.ts`) for all subsystem context. Never use raw `setContext`/`getContext`.
 - **Meta-component state:** Use `readonlyGetters` for state exposed to consumers. Mutations via explicit action methods only.
 - **Meta-component layout:** Use `MetaLayout` (position slots), `MetaContainer` (content width), `MetaScrollable` (overflow). Never hardcode `max-w-*` or inline overflow styles.
+- **Kit conventions:** Server utilities go in `bindrunes-kit/server`. Client-side auth uses `createApiClient` + localStorage. Server-side auth uses `createServerAuth` + cookies.
 
 ## Anti-Patterns
 - Don't use legacy Svelte stores
@@ -47,14 +54,24 @@ The following components are internal to ThemeStudio and should NOT be imported 
 - `AestheticTab`, `DensityTab`, `ExportTab`, `ThemeColorTab`, `ThemePreview`
 These are sub-components of `ThemeStudio` and are not part of the public API.
 
-## Routing
-- Design system, themes, aesthetics → `docs/design-system.md`
-- Component/composable tasks → `docs/components.md` or `docs/composables.md`
-- Page composition (PageShell, PageSection, MarketingPage, DashboardPage) → `docs/landing.md`
-- Architecture decisions → `docs/architecture.md`
-- Security patterns → `docs/security.md`
-- Agentic-chat kernel → `docs/agentic/overview.md`
-- Adding a new metacomponent → also follow `docs/testing.md` (a11y + vitest-axe)
+## Routing (Documentation)
+| Topic | File |
+|-------|------|
+| Install & setup | `docs/getting-started.md` |
+| Component reference | `docs/components.md` |
+| Component state specs | `docs/component-states.md` |
+| Composable reference | `docs/composables.md` |
+| Design system & tokens | `docs/design-system.md` |
+| Landing pages | `docs/landing.md` |
+| Domain components | `docs/boundrunes.md` |
+| Architecture | `docs/architecture.md` |
+| Security | `docs/security.md` |
+| Testing | `docs/testing.md` |
+| Agentic kernel & copilot | `docs/agentic/overview.md` |
+| bindrunes-kit | `docs/kit/` |
+| Migration from shadcn-svelte | `docs/migration/from-shadcn-svelte.md` |
+| Migration from Melt UI | `docs/migration/from-melt-ui.md` |
+| Migration from Skeleton | `docs/migration/from-skeleton.md` |
 
 ## Agentic Coverage
 The agentic folder has a **stricter per-glob threshold** enforced in CI
@@ -64,3 +81,4 @@ The agentic folder has a **stricter per-glob threshold** enforced in CI
 - Global floor stays at 80 / 70 / 77.
 - When adding agentic code, TDD is required — the contract is the API
   surface; logic must be deeply covered.
+- Copilot components (`src/domains/agentic/`) follow standard coverage thresholds.
