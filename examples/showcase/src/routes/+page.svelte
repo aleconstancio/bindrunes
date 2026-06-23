@@ -154,6 +154,22 @@
 		</div>
 	</section>
 
+	<!-- Theme × Aesthetic Matrix link -->
+	<section class="border-b border-border">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-4">
+			<h2 class="text-display-2 text-foreground">Theme × Aesthetic Matrix</h2>
+			<p class="text-body-lg text-muted-foreground max-w-xl mx-auto">
+				See all 24 combinations of themes and aesthetics in one view. Use the palette switcher to change live.
+			</p>
+			<a
+				href="/themes/matrix"
+				class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] bg-primary text-primary-foreground text-label-md font-medium hover:opacity-90 transition-opacity"
+			>
+				View Matrix
+			</a>
+		</div>
+	</section>
+
 	<!-- Component index link -->
 	<section class="border-t border-border">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-4">
