@@ -214,6 +214,7 @@ The calm, flat, hairline aesthetic. Inspired by Linear, Vercel, and Geist.
 | `--surface-texture` | `none` | No texture overlay |
 | `--hero-translate` | `8px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
+| `--gradient-treatment` | `none` | No gradients |
 
 ### glass
 
@@ -238,6 +239,7 @@ Atmospheric, translucent surfaces with blurred backgrounds and ambient shadow bl
 | `--surface-texture` | `grain` | Film grain overlay |
 | `--hero-translate` | `16px` | Hero parallax distance |
 | `--shadow-emphasis` | `medium` | Medium shadow emphasis |
+| `--gradient-treatment` | `gradient-buttons, hero-background` | Gradient buttons, gradient hero backgrounds |
 
 ### bento
 
@@ -262,6 +264,7 @@ Friendly, rounded, soft. Bento-grid inspired with generous corners and warm shad
 | `--surface-texture` | `dot-grid` | Dot grid overlay |
 | `--hero-translate` | `14px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
+| `--gradient-treatment` | `subtle-lighter` | Subtle lighter gradient buttons |
 
 ### expressive
 
@@ -286,6 +289,7 @@ Dramatic, loud. Mesh gradients, glow shadows, amplified motion. For marketing si
 | `--surface-texture` | `mesh` | Mesh gradient overlay |
 | `--hero-translate` | `24px` | Hero parallax distance |
 | `--shadow-emphasis` | `high` | High shadow emphasis |
+| `--gradient-treatment` | `gradient-buttons, dramatic-hero` | Gradient buttons, dramatic hero gradients |
 
 ### neon
 
@@ -309,6 +313,7 @@ Sharp, glowing. Neon glow shadows with snappy motion. For cyberpunk, gaming, or 
 | `--surface-texture` | `none` | No texture overlay |
 | `--hero-translate` | `4px` | Hero parallax distance |
 | `--shadow-emphasis` | `high` | High shadow emphasis |
+| `--gradient-treatment` | `subtle-lighter, neon-glow` | Subtle lighter gradient buttons, neon glow shadows |
 
 ### brutalist
 
@@ -332,6 +337,7 @@ Raw, unpolished. No radius, no shadows, noise texture. For bold, anti-design, or
 | `--surface-texture` | `noise` | Noise texture overlay |
 | `--hero-translate` | `2px` | Hero parallax distance |
 | `--shadow-emphasis` | `low` | Low shadow emphasis |
+| `--gradient-treatment` | `none, hard-offset` | No gradients, hard-offset shadows |
 
 ### organic
 
@@ -356,6 +362,7 @@ Soft, warm, tactile. Very rounded corners, spring easing, paper texture. For wel
 | `--surface-texture` | `paper` | Paper texture overlay |
 | `--hero-translate` | `20px` | Hero parallax distance |
 | `--shadow-emphasis` | `medium` | Medium shadow emphasis |
+| `--gradient-treatment` | `primary-to-accent, warm-hero` | Primary-to-accent gradient buttons, warm hero gradients |
 
 ---
 
@@ -501,6 +508,8 @@ Complete table of all design tokens available in bindrunes.
 | `--radius` / `--radius-md` | Medium / base (0.5rem default) |
 | `--radius-lg` | Large (0.875rem default) |
 | `--radius-xl` | Extra large (1.25rem default) |
+| `--radius-pill` | Pill shape (9999px) |
+| `--radius-full` | Full circle (50%) |
 
 ### Shadow Tokens
 
@@ -510,8 +519,14 @@ Complete table of all design tokens available in bindrunes.
 | `--shadow-sm` | Small shadow |
 | `--shadow-md` | Medium shadow |
 | `--shadow-lg` | Large shadow |
+| `--shadow-xl` | Extra large shadow |
+| `--shadow-2xl` | 2x extra large shadow |
 | `--shadow-glow-primary` | Primary color glow |
 | `--shadow-glow-destructive` | Destructive color glow |
+| `--shadow-glow-accent` | Accent color glow |
+| `--shadow-glow-success` | Success color glow |
+| `--shadow-glow-warning` | Warning color glow |
+| `--shadow-glow-info` | Info color glow |
 | `--shadow-emphasis-resolved` | Resolved emphasis shadow |
 | `--shadow-inset-subtle` | Subtle inset shadow |
 
@@ -528,6 +543,60 @@ Complete table of all design tokens available in bindrunes.
 | `--ease-decelerated` | Decelerated easing curve |
 | `--ease-accelerated` | Accelerated easing curve |
 | `--ease-spring` | Spring/bounce easing curve |
+
+### Gradient Tokens
+
+| Token | Description |
+|---|---|
+| `--gradient-angle` | Base angle for all gradients (135deg default) |
+| `--gradient-primary` | Primary button/element gradient |
+| `--gradient-accent` | Primary-to-accent blend gradient |
+| `--gradient-destructive` | Destructive button gradient |
+| `--gradient-surface` | Subtle surface gradient |
+| `--gradient-hero` | Hero section atmospheric gradient |
+| `--gradient-card` | Card background gradient |
+| `--gradient-sidebar` | Sidebar background gradient |
+| `--gradient-text-primary` | Text gradient (foreground → primary) |
+| `--gradient-text-accent` | Text gradient (foreground → accent) |
+
+### Surface Gradient Tokens
+
+| Token | Description |
+|---|---|
+| `--bg-gradient-hero` | Background gradient for hero sections |
+| `--bg-gradient-card` | Background gradient for cards |
+| `--bg-gradient-sidebar` | Background gradient for sidebar |
+
+### Blur Tokens
+
+| Token | Value | Description |
+|---|---|---|
+| `--blur-subtle` | 4px | Light blur for small elements |
+| `--blur-medium` | 8px | Medium blur |
+| `--blur-heavy` | 16px | Heavy blur (glass panels) |
+| `--blur-ultra` | 24px | Ultra blur (modals, overlays) |
+
+### Typography Scale Tokens
+
+| Token | Value | Description |
+|---|---|---|
+| `--text-line-height-tight` | 1.2 | Tight line height |
+| `--text-line-height-normal` | 1.5 | Normal line height |
+| `--text-line-height-relaxed` | 1.65 | Relaxed line height |
+| `--text-letter-spacing-tight` | -0.02em | Tight letter spacing |
+| `--text-letter-spacing-normal` | 0 | Normal letter spacing |
+| `--text-letter-spacing-wide` | 0.02em | Wide letter spacing |
+| `--text-letter-spacing-wider` | 0.05em | Wider letter spacing |
+
+### Animation Delay Tokens
+
+| Token | Value | Description |
+|---|---|---|
+| `--delay-none` | 0ms | No delay |
+| `--delay-sm` | 50ms | Small delay |
+| `--delay-md` | 100ms | Medium delay |
+| `--delay-lg` | 200ms | Large delay |
+| `--delay-xl` | 400ms | Extra large delay |
 
 ### Spacing Tokens
 
@@ -881,4 +950,8 @@ Provided by the Tailwind plugin:
 - `.glass-panel`: Glassmorphism backdrop with blur.
 - `.glass-interactive`: Hover glow interactive panel.
 - `.text-gradient-violet` / `.text-gradient-gold`: Gradient text effects.
+- `.bg-gradient-primary`: Apply primary gradient as background.
+- `.bg-gradient-accent`: Apply accent gradient as background.
+- `.bg-gradient-hero`: Apply hero atmospheric gradient.
+- `.bg-gradient-surface`: Apply subtle surface gradient.
 - `.section-reveal`: Scroll-triggered reveal animations.
