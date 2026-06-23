@@ -27,4 +27,55 @@ describe("AppProvider", () => {
 			}),
 		).not.toThrow();
 	});
+
+	it("does not render wrapper div when no scoped overrides", () => {
+		const { container } = render(AppProviderHarness, {
+			props: { childText: "No scope" },
+		});
+		const wrapper = container.querySelector("div[data-theme]");
+		expect(wrapper).toBeNull();
+	});
+
+	it("renders wrapper div with data-theme when theme override is set", () => {
+		const { container } = render(AppProviderHarness, {
+			props: { theme: "midnight", childText: "Themed" },
+		});
+		const wrapper = container.querySelector("div[data-theme='midnight']");
+		expect(wrapper).toBeInTheDocument();
+		expect(screen.getByText("Themed")).toBeInTheDocument();
+	});
+
+	it("renders wrapper div with data-aesthetic when aesthetic override is set", () => {
+		const { container } = render(AppProviderHarness, {
+			props: { aesthetic: "neon", childText: "Styled" },
+		});
+		const wrapper = container.querySelector("div[data-aesthetic='neon']");
+		expect(wrapper).toBeInTheDocument();
+		expect(screen.getByText("Styled")).toBeInTheDocument();
+	});
+
+	it("renders wrapper div with data-density when density override is set", () => {
+		const { container } = render(AppProviderHarness, {
+			props: { density: "compact", childText: "Dense" },
+		});
+		const wrapper = container.querySelector("div[data-density='compact']");
+		expect(wrapper).toBeInTheDocument();
+		expect(screen.getByText("Dense")).toBeInTheDocument();
+	});
+
+	it("renders wrapper div with multiple data attributes when multiple overrides are set", () => {
+		const { container } = render(AppProviderHarness, {
+			props: {
+				theme: "midnight",
+				aesthetic: "neon",
+				density: "compact",
+				childText: "All overrides",
+			},
+		});
+		const wrapper = container.querySelector(
+			"div[data-theme='midnight'][data-aesthetic='neon'][data-density='compact']",
+		);
+		expect(wrapper).toBeInTheDocument();
+		expect(screen.getByText("All overrides")).toBeInTheDocument();
+	});
 });
