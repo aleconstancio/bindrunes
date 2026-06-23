@@ -1,4 +1,6 @@
 // domains/index.ts — barrel re-exports for all domain subdirectories
+
+export * from "./agentic/index.ts";
 export * from "./auth/index.ts";
 export * from "./calendar/index.ts";
 export * from "./chat/index.ts";

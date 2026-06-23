@@ -191,6 +191,8 @@ export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribu
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
 // ── create* Aliases ──
 export { createQuery } from "./utils/createQuery.svelte.ts";
+export type { SessionMonitorOptions } from "./utils/createSessionMonitor.svelte.ts";
+export { createSessionMonitor } from "./utils/createSessionMonitor.svelte.ts";
 export { createStorage } from "./utils/createStorage.ts";
 export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
 export { createTransition } from "./utils/createTransition.svelte.ts";
