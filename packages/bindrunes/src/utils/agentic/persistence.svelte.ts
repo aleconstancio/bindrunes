@@ -106,3 +106,80 @@ export function createPersistenceAdapter(
 		},
 	};
 }
+
+export function createLocalStorageAdapter(prefix: string = "bindrunes"): PersistenceAdapter {
+	return {
+		async save(key: string, data: string): Promise<void> {
+			localStorage.setItem(`${prefix}:${key}`, data);
+		},
+		async load(key: string): Promise<string | null> {
+			return localStorage.getItem(`${prefix}:${key}`);
+		},
+		async remove(key: string): Promise<void> {
+			localStorage.removeItem(`${prefix}:${key}`);
+		},
+	};
+}
+
+export function createIndexedDBAdapter(dbName: string = "bindrunes-agentic"): PersistenceAdapter {
+	const STORE_NAME = "windows";
+
+	function openDB(): Promise<IDBDatabase> {
+		return new Promise((resolve, reject) => {
+			const request = indexedDB.open(dbName, 1);
+			request.onupgradeneeded = () => {
+				request.result.createObjectStore(STORE_NAME);
+			};
+			request.onsuccess = () => resolve(request.result);
+			request.onerror = () => reject(request.error);
+		});
+	}
+
+	return {
+		async save(key: string, data: string): Promise<void> {
+			const db = await openDB();
+			return new Promise((resolve, reject) => {
+				const tx = db.transaction(STORE_NAME, "readwrite");
+				tx.objectStore(STORE_NAME).put(data, key);
+				tx.oncomplete = () => {
+					db.close();
+					resolve();
+				};
+				tx.onerror = () => {
+					db.close();
+					reject(tx.error);
+				};
+			});
+		},
+		async load(key: string): Promise<string | null> {
+			const db = await openDB();
+			return new Promise((resolve, reject) => {
+				const tx = db.transaction(STORE_NAME, "readonly");
+				const req = tx.objectStore(STORE_NAME).get(key);
+				req.onsuccess = () => {
+					db.close();
+					resolve(req.result ?? null);
+				};
+				req.onerror = () => {
+					db.close();
+					reject(req.error);
+				};
+			});
+		},
+		async remove(key: string): Promise<void> {
+			const db = await openDB();
+			return new Promise((resolve, reject) => {
+				const tx = db.transaction(STORE_NAME, "readwrite");
+				tx.objectStore(STORE_NAME).delete(key);
+				tx.oncomplete = () => {
+					db.close();
+					resolve();
+				};
+				tx.onerror = () => {
+					db.close();
+					reject(tx.error);
+				};
+			});
+		},
+	};
+}
