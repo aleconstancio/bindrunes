@@ -1,5 +1,13 @@
 # bindrunes
 
+## 1.3.0
+
+### Minor Changes
+
+- Refactor: collapse CRUD Create/Edit variants into unified components with mode prop, extract shared primitives (ErrorBanner, SuccessBanner, BouncingDots), extract sanitizeHtml utility, add shared getGridClass utility, consolidate isBrowser usage, performance improvements in CopilotMessageList and TreeView, auth forms use PasswordInput primitive.
+
+  Breaking: removed CrudCreateModal, CrudEditModal, CrudCreateForm, CrudEditForm, CrudCreateDrawer, CrudEditDrawer exports (use CrudFormModal, CrudForm, CrudFormDrawer with mode="create"|"edit" instead).
+
 ## 1.2.0
 
 ### Minor Changes
