@@ -1,4 +1,6 @@
 <script lang="ts">
+import type { ConnectionStatus } from "./types";
+
 let {
 	chatInput = $bindable(""),
 	status,
@@ -7,7 +9,7 @@ let {
 	class: className = "",
 }: {
 	chatInput?: string;
-	status: string;
+	status: ConnectionStatus;
 	mode: "item" | "global";
 	onSend: (message: string) => void;
 	class?: string;

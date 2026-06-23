@@ -1,6 +1,6 @@
 <script lang="ts">
 import CopilotSuggestionCard from "./CopilotSuggestionCard.svelte";
-import type { CopilotMessage, CopilotSuggestion } from "./types";
+import type { ConnectionStatus, CopilotMessage, CopilotSuggestion } from "./types";
 
 function sanitizeHtml(html: string): string {
 	if (!html) return "";
@@ -27,7 +27,7 @@ let {
 }: {
 	messages: CopilotMessage[];
 	streamingContent: string;
-	status: string;
+	status: ConnectionStatus;
 	suggestions: CopilotSuggestion[];
 	mode: "item" | "global";
 	onQuickAction: (message: string) => void;

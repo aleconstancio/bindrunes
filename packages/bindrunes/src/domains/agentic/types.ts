@@ -1,6 +1,7 @@
 export type RiskLevel = "critical" | "high" | "medium" | "low";
 export type ChainStatus = "idle" | "running" | "waiting_gate" | "done" | "error";
 export type StepStatus = "pending" | "executing" | "done" | "error";
+export type ConnectionStatus = "connected" | "disconnected" | "connecting" | "reconnecting";
 
 export interface CopilotMessage {
 	id: string;

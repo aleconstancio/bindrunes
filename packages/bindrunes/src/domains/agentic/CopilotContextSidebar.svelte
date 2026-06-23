@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { CopilotContextLayer } from "./types";
+import type { ConnectionStatus, CopilotContextLayer } from "./types";
 
 let {
 	contextLoaded,
@@ -13,7 +13,7 @@ let {
 	contextTokens: number;
 	maxTokens?: number;
 	contextLayers: CopilotContextLayer[];
-	status: string;
+	status: ConnectionStatus;
 	class?: string;
 } = $props();
 </script>

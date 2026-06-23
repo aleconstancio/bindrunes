@@ -3,11 +3,9 @@ import type { DebateTurn } from "./types";
 
 let {
 	debateText,
-	onHighlightCitation,
 	class: className = "",
 }: {
 	debateText?: string;
-	onHighlightCitation?: (layer: string, id: string) => void;
 	class?: string;
 } = $props();
 

@@ -22,13 +22,17 @@ let {
 					Executando: {chain.name}
 				{:else if chain.status === "waiting_gate"}
 					Aguardando aprovação
-				{:else if chain.status === "done"}
-					Concluído: {chain.name}
-				{/if}
-			</span>
-			{#if chain.status === "running"}
-				<svg class="w-3 h-3 animate-spin text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+			{:else if chain.status === "done"}
+				Concluído: {chain.name}
+			{:else if chain.status === "error"}
+				Erro: {chain.name}
 			{/if}
+			</span>
+		{#if chain.status === "running"}
+			<svg class="w-3 h-3 animate-spin text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+		{:else if chain.status === "error"}
+			<svg class="w-3 h-3 text-destructive" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+		{/if}
 		</div>
 
 		{#if chain.steps.length > 0}

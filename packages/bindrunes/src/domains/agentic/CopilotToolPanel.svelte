@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { ToolCategory } from "./types";
+import type { ConnectionStatus, ToolCategory } from "./types";
 
 let {
 	toolCategories,
@@ -11,7 +11,7 @@ let {
 }: {
 	toolCategories: ToolCategory[];
 	activeCategory: string;
-	status: string;
+	status: ConnectionStatus;
 	onSelectCategory: (categoryId: string) => void;
 	onSendToolCall: (toolId: string, params: Record<string, unknown>) => void;
 	class?: string;
