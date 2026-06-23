@@ -4,14 +4,16 @@ Visual reference for every component state, the tokens used, and expected behavi
 
 ## Button
 
-| State | Visual | Tokens Used |
-|-------|--------|-------------|
-| **Default** | Solid bg, border-subtle, shadow-md | `--primary`, `--primary-foreground`, `--border-subtle`, `--shadow-md` |
-| **Hover** | Shadow-lg, opacity 95% | `--shadow-lg` |
-| **Active/Pressed** | Scale 0.975 | `transform: scale(0.975)` |
-| **Focus** | Ring outline | `--ring` via `box-shadow: 0 0 0 2px var(--ring)` |
-| **Disabled** | Opacity 50%, pointer-events none | `opacity: 0.5` |
-| **Loading** | Spinner replaces content, pointer-events none | `animate-spin` on border spinner |
+| State | Visual | Tokens Used | Notes |
+|-------|--------|-------------|-------|
+| **Default** | Solid bg, border-subtle, shadow-md | `--primary`, `--primary-foreground`, `--border-subtle`, `--shadow-md` | — |
+| **Hover** | Shadow-lg, opacity 95% | `--shadow-lg` | — |
+| **Active/Pressed** | Scale 0.975 | `transform: scale(0.975)` | — |
+| **Focus** | Ring outline | `--ring` via `box-shadow: 0 0 0 2px var(--ring)` | — |
+| **Disabled** | Opacity 50%, pointer-events none | `opacity: 0.5` | — |
+| **Loading** | Spinner replaces content, pointer-events none | `animate-spin` on border spinner | — |
+| Gradient (glass/expressive/organic) | `--button-bg: linear-gradient(...)` | `bg-[--button-bg]` | Solid color (minimal/brutalist/neon) uses `var(--primary)` |
+| Inner-light (bento) | `--button-treatment: inner-light` | Visual highlight effect | — |
 
 **Variants:** primary, secondary, outline, ghost, destructive, link, soft, subtle  
 **Sizes:** sm (h-8), md (h-10), lg (h-12)
@@ -20,14 +22,16 @@ Visual reference for every component state, the tokens used, and expected behavi
 
 ## Card
 
-| State | Visual | Tokens Used |
-|-------|--------|-------------|
-| **Default (surface)** | Solid bg, border, shadow-sm | `--card`, `--card-foreground`, `--border`, `--shadow-sm` |
-| **Glass** | Translucent bg, backdrop-blur, glass-border | `--glass-surface`, `--glass-border`, `backdrop-blur(16px)` |
-| **Outlined** | Transparent bg, border only | `--border` |
-| **Ghost** | No bg, no border | — |
-| **Interactive hover** | Border primary/22%, shadow-lg, translateY(-2px) | `--primary` at 22% alpha, `--shadow-lg` |
-| **Interactive active** | translateY(0), scale(0.99), shadow-sm | `--shadow-sm` |
+| State | Visual | Tokens Used | Notes |
+|-------|--------|-------------|-------|
+| **Default (surface)** | Solid bg, border, shadow-sm | `--card`, `--card-foreground`, `--border`, `--shadow-sm` | — |
+| **Glass** | Translucent bg, backdrop-blur, glass-border | `--glass-surface`, `--glass-border`, `backdrop-blur(16px)` | — |
+| **Outlined** | Transparent bg, border only | `--border` | — |
+| **Ghost** | No bg, no border | — | — |
+| **Interactive hover** | Border primary/22%, shadow-lg, translateY(-2px) | `--primary` at 22% alpha, `--shadow-lg` | — |
+| **Interactive active** | translateY(0), scale(0.99), shadow-sm | `--shadow-sm` | — |
+| Tinted (bento/organic) | `--card-treatment: tinted` | `bg-[--surface-2]` with subtle border | — |
+| Glass with blur | `--blur-heavy` token | `backdrop-blur-[--blur-heavy]` | Aesthetics control blur intensity |
 
 Padding is controlled by `--card-padding` (default: 1rem), independent of `--radius`.
 
@@ -58,6 +62,8 @@ Error/helper text appears below the input: `--destructive` for errors, `--muted-
 | success | `--success-soft` | `--success` | none |
 | warning | `--warning-soft` | `--warning` | none |
 | info | `--info-soft` | `--info` | none |
+
+Badge uses `rounded-[--radius-pill]` for its default pill shape. The `--radius-pill` token (default 9999px) can be overridden per-theme.
 
 ---
 
