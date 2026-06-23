@@ -64,7 +64,7 @@ describe("Sidebar standalone components", () => {
 
 	it("SidebarMenuBadge renders", () => {
 		const { container } = render(SidebarMenuBadge);
-		expect(container.firstElementChild?.className).toContain("rounded-full");
+		expect(container.firstElementChild?.className).toContain("rounded-[--radius-pill]");
 	});
 
 	it("SidebarMenuBadge applies ml-auto class", () => {

@@ -119,6 +119,7 @@
 	--gradient-sidebar: var(--gradient-sidebar);
 	--gradient-text-primary: var(--gradient-text-primary);
 	--gradient-text-accent: var(--gradient-text-accent);
+	--gradient-shimmer: var(--gradient-shimmer);
 
 	/* Blur scale */
 	--blur-subtle: var(--blur-subtle);
