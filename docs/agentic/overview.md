@@ -75,7 +75,7 @@ The agentic subsystem provides two layers:
 | `createConversationBranches.svelte.ts` | Pure derivation of branch tree from a flat list of Windows rooted at `rootId`. Computes leaves, paths, and sibling comparisons without mutating state. |
 | `createOrchestrator.svelte.ts` | Coordinates multi-turn agent loops — tool calling, re-prompting, and completion detection. |
 | `eviction.svelte.ts` | Token eviction policies for managing context window size when budgets are exceeded. |
-| `persistence.svelte.ts` | Serialization and deserialization of Window graphs for persistence across sessions. |
+| `persistence.svelte.ts` | Serialization/deserialization of Window graphs. Built-in adapters: `createLocalStorageAdapter(prefix)`, `createIndexedDBAdapter(dbName)`. |
 | `SimulatorRuntime.ts` | Reference `AgentRuntime` implementation for tests. Reads scripted Delta streams, respects `AbortSignal`, never touches the network. |
 | `provideWindowStore.svelte.ts` | Creates a `WindowStore` instance and sets it into Svelte context via `createMetaContext`. |
 | `useWindowStore.svelte.ts` | Retrieves the `WindowStore` from Svelte context via `useMetaContext`. Throws if no provider is mounted. |
@@ -95,7 +95,7 @@ The agentic subsystem provides two layers:
 - **Branches**: Git-like lineage tree generation from message histories.
 - **Orchestrator**: Multi-turn agent loop coordination (tool calling, re-prompting).
 - **Eviction**: Token eviction policies for context window management.
-- **Persistence**: Window graph serialization for cross-session storage.
+- **Persistence**: Window graph serialization for cross-session storage. Built-in adapters for `localStorage` and IndexedDB.
 - **Context Wrappers**: `provideWindowStore` and `useWindowStore` enable sharing a single `WindowStore` across a component tree via Svelte context.
 
 ### Context Wrappers

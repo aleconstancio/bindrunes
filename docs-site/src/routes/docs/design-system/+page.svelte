@@ -32,7 +32,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4 font-medium">Aesthetic</td>
               <td class="py-2 pr-4 font-mono text-xs">data-aesthetic</td>
-              <td class="py-2 pr-4">minimal, glass, bento, expressive</td>
+              <td class="py-2 pr-4">minimal, glass, bento, expressive, neon, brutalist, organic</td>
               <td class="py-2">Form (radius, shadow, motion)</td>
             </tr>
             <tr>
@@ -94,6 +94,18 @@ import { Badge, CodeSnippet } from "bindrunes";
         <div class="p-4 rounded-lg bg-surface-1 border border-border">
           <h3 class="text-title-2 text-foreground mb-1">expressive</h3>
           <p class="text-body-sm text-muted-foreground">1.0rem radius, gradient buttons, dramatic 300ms transitions, mesh texture. Dramatic, loud.</p>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-1 border border-border">
+          <h3 class="text-title-2 text-foreground mb-1">neon</h3>
+          <p class="text-body-sm text-muted-foreground">0.25rem radius, flat buttons, fast 80ms transitions, neon glow shadows. Sharp, glowing.</p>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-1 border border-border">
+          <h3 class="text-title-2 text-foreground mb-1">brutalist</h3>
+          <p class="text-body-sm text-muted-foreground">0 radius, flat buttons, very fast 50ms transitions, noise texture. Raw, unpolished.</p>
+        </div>
+        <div class="p-4 rounded-lg bg-surface-1 border border-border">
+          <h3 class="text-title-2 text-foreground mb-1">organic</h3>
+          <p class="text-body-sm text-muted-foreground">1.5rem radius, gradient buttons, slow 200ms spring transitions, paper texture. Soft, warm, tactile.</p>
         </div>
       </div>
     </section>

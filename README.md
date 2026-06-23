@@ -8,7 +8,7 @@
 
 ## Features
 
-- **Three-axis design system** — Fully orthogonal theme (color), aesthetic (form), and density (spacing) scales.
+- **Three-axis design system** — Fully orthogonal theme (color), aesthetic (form), and density (spacing) scales. 7 aesthetics: minimal, glass, bento, expressive, neon, brutalist, organic.
 - **Svelte 5 runes** — Built exclusively with `$state`, `$derived`, and `$effect`. No legacy stores.
 - **Page composition** — `PageShell` layout primitive + `MarketingTemplate`, `DashboardTemplate`, `CrudTemplate` templates for no-brainer page building.
 - **10 domain categories** — Pre-composed page patterns for Auth, Calendar, Chat, Data, E-commerce, Landing, Marketing, Media, Portfolio, and Settings.
@@ -17,6 +17,8 @@
 - **OKLCH color space** — Perceptually uniform theming with 6 curated presets.
 - **48 composables** — Reactivity primitives, data fetching, forms, auth, i18n, and more.
 - **Agentic copilot UI** — Pre-built components for LLM chat interfaces: message lists, tool panels, streaming indicators, suggestion cards, and reasoning displays.
+- **Agentic persistence** — Built-in `localStorage` and IndexedDB adapters for cross-session state persistence.
+- **AppProvider scoped overrides** — Override `theme`, `aesthetic`, and `density` per subtree without affecting global state.
 - **SvelteKit meta-framework** — `bindrunes-kit` provides full-stack and SPA+backend scaffolding with auth, i18n, and deployment helpers.
 
 ## Install

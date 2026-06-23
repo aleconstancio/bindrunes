@@ -257,7 +257,7 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 | `<Breadcrumb>` | Breadcrumb navigation trail. |
 | `<Drawer>` | Mobile-friendly drawer with snap points and gesture dismissal. |
 | `<TreeView>` | Hierarchical tree display with expand/collapse. |
-| `<AppProvider>` / `<AuthGuard>` | App shell provider and route protection. |
+| `<AppProvider>` / `<AuthGuard>` | App shell provider with scoped `theme`, `aesthetic`, and `density` override props, and route protection. |
 | `<Separator>` / `<ScrollArea>` | Visual dividers and styled scroll containers. |
 | `<EmptyState>` / `<ErrorMessage>` / `<PageLoading>` | Empty, error, and loading states. |
 | `<OTPInput>` / `<Suspense>` | OTP input and suspense loading wrapper. |
