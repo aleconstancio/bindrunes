@@ -8,6 +8,7 @@ type ThemeBuilderOptions = {
 	radius?: string; // defaults to 0.625rem
 	glassBlur?: string; // defaults to 16px
 	mode?: "light" | "dark"; // defaults to 'dark'
+	aesthetic?: "minimal" | "glass" | "bento" | "expressive" | "neon" | "brutalist" | "organic";
 };
 
 function deriveFromPrimary(primary: string, lightnessOffset: number, chromaScale: number): string {
@@ -108,6 +109,52 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 	const shadowGlowDestructive = `0 0 15px oklch(from ${destructive} l 0.3 h / 0.15)`;
 	const shadowEmphasisResolved = "var(--shadow-md)";
 
+	// Expanded shadows
+	const shadowXl = "0 8px 16px -4px oklch(0 0 0 / 0.12)";
+	const shadow2xl = "0 16px 32px -8px oklch(0 0 0 / 0.18)";
+	const shadowGlowAccent = `0 0 15px oklch(from ${accent} l 0.3 h / 0.15)`;
+	const shadowGlowSuccess = "0 0 15px oklch(from oklch(0.65 0.2 145) l 0.3 h / 0.15)";
+	const shadowGlowWarning = "0 0 15px oklch(from oklch(0.80 0.18 85) l 0.3 h / 0.15)";
+	const shadowGlowInfo = "0 0 15px oklch(from oklch(0.7 0.12 230) l 0.3 h / 0.15)";
+
+	// Gradients
+	const gradientAngle = "135deg";
+	const gradientPrimary = `linear-gradient(${gradientAngle}, ${primary} 0%, ${deriveFromPrimary(primary, -0.08, 1)} 100%)`;
+	const gradientAccent = `linear-gradient(${gradientAngle}, ${primary} 0%, ${accent} 100%)`;
+	const gradientDestructive = `linear-gradient(${gradientAngle}, ${destructive} 0%, ${deriveFromPrimary(destructive, -0.08, 1)} 100%)`;
+	const gradientSurface = "none";
+	const gradientHero = "none";
+	const gradientCard = "none";
+	const gradientSidebar = "none";
+	const gradientTextPrimary = `linear-gradient(${gradientAngle}, ${foreground} 30%, ${primary} 100%)`;
+	const gradientTextAccent = `linear-gradient(${gradientAngle}, ${foreground} 30%, ${accent} 100%)`;
+
+	// Blur scale
+	const blurSubtle = "4px";
+	const blurMedium = "8px";
+	const blurHeavy = options.glassBlur ?? "16px";
+	const blurUltra = "24px";
+
+	// Radius extras
+	const radiusPill = "9999px";
+	const radiusFull = "50%";
+
+	// Typography
+	const textLineHeightTight = "1.2";
+	const textLineHeightNormal = "1.5";
+	const textLineHeightRelaxed = "1.65";
+	const textLetterSpacingTight = "-0.02em";
+	const textLetterSpacingNormal = "0";
+	const textLetterSpacingWide = "0.02em";
+	const textLetterSpacingWider = "0.05em";
+
+	// Delays
+	const delayNone = "0ms";
+	const delaySm = "50ms";
+	const delayMd = "100ms";
+	const delayLg = "200ms";
+	const delayXl = "400ms";
+
 	// Spacing
 	const space0 = "0";
 	const space1 = "0.25rem";
@@ -132,14 +179,85 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 	const easeDecelerated = "cubic-bezier(0, 0, 0, 1)";
 	const easeAccelerated = "cubic-bezier(0.3, 0, 1, 1)";
 
-	// Aesthetic hooks
-	const buttonTreatment = "flat";
-	const buttonBg = primary;
-	const buttonBgDestructive = destructive;
-	const cardTreatment = "solid";
-	const surfaceTexture = "none";
-	const heroTranslate = "8px";
-	const shadowEmphasis = "low";
+	// Aesthetic hooks — use provided aesthetic or sensible defaults
+	const aesthetic = options.aesthetic ?? "minimal";
+	const aestheticHooks: Record<
+		string,
+		{
+			buttonTreatment: string;
+			buttonBg: string;
+			buttonBgDestructive: string;
+			cardTreatment: string;
+			surfaceTexture: string;
+			heroTranslate: string;
+			shadowEmphasis: string;
+		}
+	> = {
+		minimal: {
+			buttonTreatment: "flat",
+			buttonBg: primary,
+			buttonBgDestructive: destructive,
+			cardTreatment: "solid",
+			surfaceTexture: "none",
+			heroTranslate: "8px",
+			shadowEmphasis: "low",
+		},
+		glass: {
+			buttonTreatment: "gradient",
+			buttonBg: gradientPrimary,
+			buttonBgDestructive: gradientDestructive,
+			cardTreatment: "glass",
+			surfaceTexture: "grain",
+			heroTranslate: "16px",
+			shadowEmphasis: "medium",
+		},
+		bento: {
+			buttonTreatment: "inner-light",
+			buttonBg: primary,
+			buttonBgDestructive: destructive,
+			cardTreatment: "tinted",
+			surfaceTexture: "dot-grid",
+			heroTranslate: "14px",
+			shadowEmphasis: "low",
+		},
+		expressive: {
+			buttonTreatment: "gradient",
+			buttonBg: gradientPrimary,
+			buttonBgDestructive: gradientDestructive,
+			cardTreatment: "glass",
+			surfaceTexture: "mesh",
+			heroTranslate: "24px",
+			shadowEmphasis: "high",
+		},
+		neon: {
+			buttonTreatment: "flat",
+			buttonBg: primary,
+			buttonBgDestructive: destructive,
+			cardTreatment: "solid",
+			surfaceTexture: "none",
+			heroTranslate: "4px",
+			shadowEmphasis: "high",
+		},
+		brutalist: {
+			buttonTreatment: "flat",
+			buttonBg: primary,
+			buttonBgDestructive: destructive,
+			cardTreatment: "solid",
+			surfaceTexture: "none",
+			heroTranslate: "2px",
+			shadowEmphasis: "low",
+		},
+		organic: {
+			buttonTreatment: "gradient",
+			buttonBg: `linear-gradient(${gradientAngle}, ${primary}, ${accent})`,
+			buttonBgDestructive: gradientDestructive,
+			cardTreatment: "tinted",
+			surfaceTexture: "paper",
+			heroTranslate: "20px",
+			shadowEmphasis: "medium",
+		},
+	};
+	const hooks = aestheticHooks[aesthetic] ?? aestheticHooks.minimal;
 
 	const tokens: Record<string, string> = {
 		// Surfaces
@@ -214,6 +332,12 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 		"--shadow-glow-primary": shadowGlowPrimary,
 		"--shadow-glow-destructive": shadowGlowDestructive,
 		"--shadow-emphasis-resolved": shadowEmphasisResolved,
+		"--shadow-xl": shadowXl,
+		"--shadow-2xl": shadow2xl,
+		"--shadow-glow-accent": shadowGlowAccent,
+		"--shadow-glow-success": shadowGlowSuccess,
+		"--shadow-glow-warning": shadowGlowWarning,
+		"--shadow-glow-info": shadowGlowInfo,
 		// Motion durations
 		"--duration-instant": durationInstant,
 		"--duration-snappy": durationSnappy,
@@ -224,6 +348,20 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 		"--ease-emphasized": easeEmphasized,
 		"--ease-decelerated": easeDecelerated,
 		"--ease-accelerated": easeAccelerated,
+		// Gradients
+		"--gradient-angle": gradientAngle,
+		"--gradient-primary": gradientPrimary,
+		"--gradient-accent": gradientAccent,
+		"--gradient-destructive": gradientDestructive,
+		"--gradient-surface": gradientSurface,
+		"--gradient-hero": gradientHero,
+		"--gradient-card": gradientCard,
+		"--gradient-sidebar": gradientSidebar,
+		"--gradient-text-primary": gradientTextPrimary,
+		"--gradient-text-accent": gradientTextAccent,
+		"--bg-gradient-hero": gradientHero,
+		"--bg-gradient-card": gradientCard,
+		"--bg-gradient-sidebar": gradientSidebar,
 		// Spacing scale
 		"--space-0": space0,
 		"--space-1": space1,
@@ -237,14 +375,36 @@ export function createThemeBuilder(options: ThemeBuilderOptions) {
 		"--space-12": space12,
 		"--space-16": space16,
 		"--space-20": space20,
+		// Blur scale
+		"--blur-subtle": blurSubtle,
+		"--blur-medium": blurMedium,
+		"--blur-heavy": blurHeavy,
+		"--blur-ultra": blurUltra,
+		// Radius extras
+		"--radius-pill": radiusPill,
+		"--radius-full": radiusFull,
+		// Typography
+		"--text-line-height-tight": textLineHeightTight,
+		"--text-line-height-normal": textLineHeightNormal,
+		"--text-line-height-relaxed": textLineHeightRelaxed,
+		"--text-letter-spacing-tight": textLetterSpacingTight,
+		"--text-letter-spacing-normal": textLetterSpacingNormal,
+		"--text-letter-spacing-wide": textLetterSpacingWide,
+		"--text-letter-spacing-wider": textLetterSpacingWider,
+		// Delays
+		"--delay-none": delayNone,
+		"--delay-sm": delaySm,
+		"--delay-md": delayMd,
+		"--delay-lg": delayLg,
+		"--delay-xl": delayXl,
 		// Aesthetic hooks
-		"--button-treatment": buttonTreatment,
-		"--button-bg": buttonBg,
-		"--button-bg-destructive": buttonBgDestructive,
-		"--card-treatment": cardTreatment,
-		"--surface-texture": surfaceTexture,
-		"--hero-translate": heroTranslate,
-		"--shadow-emphasis": shadowEmphasis,
+		"--button-treatment": hooks.buttonTreatment,
+		"--button-bg": hooks.buttonBg,
+		"--button-bg-destructive": hooks.buttonBgDestructive,
+		"--card-treatment": hooks.cardTreatment,
+		"--surface-texture": hooks.surfaceTexture,
+		"--hero-translate": hooks.heroTranslate,
+		"--shadow-emphasis": hooks.shadowEmphasis,
 	};
 
 	const cssText = Object.entries(tokens)
