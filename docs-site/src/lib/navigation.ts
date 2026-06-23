@@ -43,7 +43,11 @@ export const docsNav: NavItem[] = [
 	},
 	{
 		label: "Playground",
-		href: "/docs/playground/builder",
+		href: "/docs/playground",
+		items: [
+			{ label: "Component Playground", href: "/docs/playground" },
+			{ label: "Theme Builder", href: "/docs/playground/builder" },
+		],
 	},
 ];
 
