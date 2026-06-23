@@ -3,6 +3,7 @@ import { ArrowLeft, Mail } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
 import Button from "../../primitives/Button.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
 import Block from "../Block.svelte";
 
@@ -62,9 +63,7 @@ async function handleSubmit(e: SubmitEvent) {
     {:else}
       <form onsubmit={handleSubmit} novalidate class="space-y-4">
         {#if error}
-          <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-            {error}
-          </div>
+          <ErrorBanner {error} />
         {/if}
 
         <div>

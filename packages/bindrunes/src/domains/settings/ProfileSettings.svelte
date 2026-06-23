@@ -2,6 +2,7 @@
 import Avatar from "../../primitives/Avatar.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
 import Block from "../Block.svelte";
 
@@ -42,9 +43,7 @@ let formEmail = $state(email);
       </div>
 
       {#if error}
-        <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-          {error}
-        </div>
+        <ErrorBanner {error} />
       {/if}
 
       <div class="space-y-4">

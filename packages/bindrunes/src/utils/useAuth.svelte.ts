@@ -1,5 +1,6 @@
 import { array, object, optional, safeParse, string } from "valibot";
 import type { TFunction, User } from "../shared-types";
+import { isBrowser } from "./isBrowser";
 
 export type { User } from "../shared-types";
 
@@ -17,15 +18,15 @@ export interface AuthStorage {
 }
 
 const DEFAULT_STORAGE: AuthStorage = {
-	getToken: () => (typeof window !== "undefined" ? localStorage.getItem("bindrunes_token") : null),
+	getToken: () => (isBrowser ? localStorage.getItem("bindrunes_token") : null),
 	setToken: (token: string) => {
-		if (typeof window !== "undefined") localStorage.setItem("bindrunes_token", token);
+		if (isBrowser) localStorage.setItem("bindrunes_token", token);
 	},
 	clearToken: () => {
-		if (typeof window !== "undefined") localStorage.removeItem("bindrunes_token");
+		if (isBrowser) localStorage.removeItem("bindrunes_token");
 	},
 	getUser: () => {
-		if (typeof window === "undefined") return null;
+		if (!isBrowser) return null;
 		const stored = localStorage.getItem("bindrunes_user");
 		if (!stored) return null;
 		try {
@@ -51,14 +52,14 @@ const DEFAULT_STORAGE: AuthStorage = {
 		}
 	},
 	setUser: (user: User) => {
-		if (typeof window !== "undefined") {
+		if (isBrowser) {
 			try {
 				localStorage.setItem("bindrunes_user", JSON.stringify(user));
 			} catch {}
 		}
 	},
 	clearUser: () => {
-		if (typeof window !== "undefined") {
+		if (isBrowser) {
 			try {
 				localStorage.removeItem("bindrunes_user");
 			} catch {}

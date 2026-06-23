@@ -4,6 +4,7 @@ import Badge from "../../primitives/Badge.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Pagination from "../../primitives/Pagination.svelte";
+import { getGridClass } from "../../utils/grid";
 import Block from "../Block.svelte";
 
 interface BlogPost {
@@ -35,16 +36,10 @@ let {
 	class?: string;
 	postSnippet?: Snippet<[{ post: BlogPost; index: number }]>;
 } = $props();
-
-const gridCols: Record<number, string> = {
-	2: "sm:grid-cols-2",
-	3: "sm:grid-cols-2 lg:grid-cols-3",
-	4: "sm:grid-cols-2 lg:grid-cols-4",
-};
 </script>
 
 <Block size="xl" spacing="normal" class={className}>
-  <div class="grid grid-cols-1 {gridCols[columns]} gap-6">
+  <div class="grid {getGridClass(columns)} gap-6">
     {#each posts as post, i}
       {#if postSnippet}
         {@render postSnippet({ post, index: i })}

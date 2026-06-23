@@ -1,15 +1,9 @@
 export { default as AdvancedTable } from "./AdvancedTable.svelte";
 export { default as ApiKeyManagement } from "./ApiKeyManagement.svelte";
 export { default as BillingDashboard } from "./BillingDashboard.svelte";
-export { default as CrudCreateDrawer } from "./CrudCreateDrawer.svelte";
-export { default as CrudCreateForm } from "./CrudCreateForm.svelte";
-export { default as CrudCreateModal } from "./CrudCreateModal.svelte";
 export { default as CrudDeleteConfirm } from "./CrudDeleteConfirm.svelte";
 export { default as CrudDetailDrawer } from "./CrudDetailDrawer.svelte";
 export { default as CrudDetailSection } from "./CrudDetailSection.svelte";
-export { default as CrudEditDrawer } from "./CrudEditDrawer.svelte";
-export { default as CrudEditForm } from "./CrudEditForm.svelte";
-export { default as CrudEditModal } from "./CrudEditModal.svelte";
 export { default as CrudForm } from "./CrudForm.svelte";
 export { default as CrudFormDrawer } from "./CrudFormDrawer.svelte";
 export { default as CrudFormModal } from "./CrudFormModal.svelte";

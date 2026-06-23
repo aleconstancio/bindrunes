@@ -1,9 +1,11 @@
 <script lang="ts">
-import { Eye, EyeOff, LogIn } from "lucide-svelte";
+import { LogIn } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
 import Button from "../../primitives/Button.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
+import PasswordInput from "../../primitives/PasswordInput.svelte";
 import Block from "../Block.svelte";
 
 let {
@@ -46,7 +48,6 @@ let {
 
 let email = $state("");
 let password = $state("");
-let showPassword = $state(false);
 
 async function handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
@@ -67,9 +68,7 @@ async function handleSubmit(e: SubmitEvent) {
 
     <form onsubmit={handleSubmit} novalidate class="space-y-4">
       {#if error}
-        <div role="alert" class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-          {error}
-        </div>
+        <ErrorBanner {error} />
       {/if}
 
       {@render beforeFields?.()}
@@ -87,33 +86,14 @@ async function handleSubmit(e: SubmitEvent) {
         />
       </div>
 
-      <div>
-        <label for="password" class="text-label-md text-foreground">{passwordLabel}</label>
-        <div class="relative mt-1">
-          <Input
-            name="password"
-            id="password"
-            type={showPassword ? "text" : "password"}
-            bind:value={password}
-            required
-            autocomplete="current-password"
-            class="pr-10"
-          />
-          <button
-            type="button"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground
-                   hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
-            onclick={() => showPassword = !showPassword}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-          >
-            {#if showPassword}
-              <EyeOff class="h-4 w-4" />
-            {:else}
-              <Eye class="h-4 w-4" />
-            {/if}
-          </button>
-        </div>
-      </div>
+      <PasswordInput
+        name="password"
+        label={passwordLabel}
+        bind:value={password}
+        required
+        autocomplete="current-password"
+        class="mt-1"
+      />
 
       {@render afterFields?.()}
 

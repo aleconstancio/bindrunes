@@ -1,9 +1,10 @@
 <script lang="ts">
-import { Eye, EyeOff, KeyRound } from "lucide-svelte";
+import { KeyRound } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
 import Button from "../../primitives/Button.svelte";
-import Input from "../../primitives/Input.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
+import PasswordInput from "../../primitives/PasswordInput.svelte";
 import Block from "../Block.svelte";
 
 let {
@@ -38,8 +39,6 @@ let {
 
 let password = $state("");
 let confirmPassword = $state("");
-let showPassword = $state(false);
-let showConfirm = $state(false);
 let validationError = $state("");
 
 async function handleSubmit(e: SubmitEvent) {
@@ -72,54 +71,26 @@ async function handleSubmit(e: SubmitEvent) {
 
     <form onsubmit={handleSubmit} novalidate class="space-y-4">
       {#if error || validationError}
-        <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-          {error || validationError}
-        </div>
+        <ErrorBanner error={error || validationError} />
       {/if}
 
-      <div>
-        <label for="reset-password" class="text-label-md text-foreground">{passwordLabel}</label>
-        <div class="relative mt-1">
-          <Input
-            name="reset-password"
-            type={showPassword ? "text" : "password"}
-            bind:value={password}
-            required
-            autocomplete="new-password"
-            class="pr-10"
-          />
-          <button
-            type="button"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
-            onclick={() => showPassword = !showPassword}
-            aria-label={showPassword ? "Hide password" : "Show password"}
-          >
-            {#if showPassword}<EyeOff class="h-4 w-4" />{:else}<Eye class="h-4 w-4" />{/if}
-          </button>
-        </div>
-      </div>
+      <PasswordInput
+        name="reset-password"
+        label={passwordLabel}
+        bind:value={password}
+        required
+        autocomplete="new-password"
+        class="mt-1"
+      />
 
-      <div>
-        <label for="reset-confirm" class="text-label-md text-foreground">{confirmLabel}</label>
-        <div class="relative mt-1">
-          <Input
-            name="reset-confirm"
-            type={showConfirm ? "text" : "password"}
-            bind:value={confirmPassword}
-            required
-            autocomplete="new-password"
-            class="pr-10"
-          />
-          <button
-            type="button"
-            class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors cursor-pointer bg-transparent border-none"
-            onclick={() => showConfirm = !showConfirm}
-            aria-label={showConfirm ? "Hide confirm" : "Show confirm"}
-          >
-            {#if showConfirm}<EyeOff class="h-4 w-4" />{:else}<Eye class="h-4 w-4" />{/if}
-          </button>
-        </div>
-      </div>
+      <PasswordInput
+        name="reset-confirm"
+        label={confirmLabel}
+        bind:value={confirmPassword}
+        required
+        autocomplete="new-password"
+        class="mt-1"
+      />
 
       <Button type="submit" fullWidth {loading} class="mt-2">
         <KeyRound class="h-4 w-4 mr-2" />

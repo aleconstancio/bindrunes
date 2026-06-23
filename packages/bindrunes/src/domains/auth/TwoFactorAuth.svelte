@@ -2,6 +2,7 @@
 import { Shield } from "lucide-svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
 import Button from "../../primitives/Button.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import PinInput from "../../primitives/PinInput.svelte";
 import Block from "../Block.svelte";
 
@@ -44,9 +45,7 @@ async function handleSubmit() {
     </div>
 
     {#if error}
-      <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-        {error}
-      </div>
+      <ErrorBanner {error} />
     {/if}
 
     <form onsubmit={handleSubmit} class="space-y-4">

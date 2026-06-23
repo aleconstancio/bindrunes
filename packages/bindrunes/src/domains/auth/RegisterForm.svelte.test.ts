@@ -90,8 +90,8 @@ describe("RegisterForm", () => {
 
 	it("renders show/hide password toggles", () => {
 		render(RegisterForm);
-		expect(screen.getByLabelText("Show password")).toBeInTheDocument();
-		expect(screen.getByLabelText("Show confirm")).toBeInTheDocument();
+		const toggles = screen.getAllByLabelText("Show password");
+		expect(toggles.length).toBe(2);
 	});
 
 	it("applies class prop", () => {

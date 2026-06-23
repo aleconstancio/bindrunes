@@ -6,12 +6,9 @@
 		FacetedSearch,
 		ImportFlow,
 		WizardForm,
-		CrudCreateForm,
-		CrudCreateDrawer,
-		CrudCreateModal,
-		CrudEditForm,
-		CrudEditDrawer,
-		CrudEditModal,
+		CrudForm,
+		CrudFormDrawer,
+		CrudFormModal,
 		CrudDeleteConfirm,
 		CrudDetailDrawer,
 	} from "bindrunes/boundrune";
@@ -274,12 +271,12 @@
 			<TabsTrigger value="faceted">FacetedSearch</TabsTrigger>
 			<TabsTrigger value="form">createForm</TabsTrigger>
 			<TabsTrigger value="query">Query/Mutation</TabsTrigger>
-			<TabsTrigger value="crud-create">CrudCreateForm</TabsTrigger>
-			<TabsTrigger value="crud-create-drawer">CrudCreateDrawer</TabsTrigger>
-			<TabsTrigger value="crud-create-modal">CrudCreateModal</TabsTrigger>
-			<TabsTrigger value="crud-edit">CrudEditForm</TabsTrigger>
-			<TabsTrigger value="crud-edit-drawer">CrudEditDrawer</TabsTrigger>
-			<TabsTrigger value="crud-edit-modal">CrudEditModal</TabsTrigger>
+			<TabsTrigger value="crud-create">CrudForm (create)</TabsTrigger>
+			<TabsTrigger value="crud-create-drawer">CrudFormDrawer (create)</TabsTrigger>
+			<TabsTrigger value="crud-create-modal">CrudFormModal (create)</TabsTrigger>
+			<TabsTrigger value="crud-edit">CrudForm (edit)</TabsTrigger>
+			<TabsTrigger value="crud-edit-drawer">CrudFormDrawer (edit)</TabsTrigger>
+			<TabsTrigger value="crud-edit-modal">CrudFormModal (edit)</TabsTrigger>
 			<TabsTrigger value="crud-delete">CrudDeleteConfirm</TabsTrigger>
 			<TabsTrigger value="crud-detail">CrudDetailDrawer</TabsTrigger>
 		</TabsList>
@@ -575,10 +572,11 @@
 
 		<TabsContent value="crud-create">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudCreateForm</h2>
+				<h2 class="text-title-2 text-foreground">CrudForm (create mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Inline create form with title, description, and validation</p>
 				<div class="max-w-lg">
-					<CrudCreateForm
+					<CrudForm
+						mode="create"
 						config={{ title: "Create New User", description: "Fill in the details to create a new user account", submitLabel: "Create User" }}
 						form={crudCreateForm}
 						onSubmit={handleCrudSubmit}
@@ -607,7 +605,7 @@
 								{/if}
 							</div>
 						</div>
-					</CrudCreateForm>
+					</CrudForm>
 				</div>
 				{#if crudSubmitResult}
 					<Card padding>
@@ -620,12 +618,13 @@
 
 		<TabsContent value="crud-create-drawer">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudCreateDrawer</h2>
+				<h2 class="text-title-2 text-foreground">CrudFormDrawer (create mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Side drawer for creating a new record</p>
 				<Card padding>
 					<Button onclick={() => (crudCreateDrawerOpen = true)}>Open Create Drawer</Button>
 				</Card>
-				<CrudCreateDrawer
+				<CrudFormDrawer
+					mode="create"
 					bind:open={crudCreateDrawerOpen}
 					config={{ title: "Create New User", submitLabel: "Create" }}
 					loading={false}
@@ -640,18 +639,19 @@
 							<Input name="drawer-email" type="email" placeholder="jane@example.com" />
 						</div>
 					</div>
-				</CrudCreateDrawer>
+				</CrudFormDrawer>
 			</div>
 		</TabsContent>
 
 		<TabsContent value="crud-create-modal">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudCreateModal</h2>
+				<h2 class="text-title-2 text-foreground">CrudFormModal (create mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Modal dialog for creating a new record</p>
 				<Card padding>
 					<Button onclick={() => (crudCreateModalOpen = true)}>Open Create Modal</Button>
 				</Card>
-				<CrudCreateModal
+				<CrudFormModal
+					mode="create"
 					bind:open={crudCreateModalOpen}
 					config={{ title: "Create New User", submitLabel: "Create" }}
 					loading={false}
@@ -666,16 +666,17 @@
 							<Input name="modal-email" type="email" placeholder="jane@example.com" />
 						</div>
 					</div>
-				</CrudCreateModal>
+				</CrudFormModal>
 			</div>
 		</TabsContent>
 
 		<TabsContent value="crud-edit">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudEditForm</h2>
+				<h2 class="text-title-2 text-foreground">CrudForm (edit mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Inline edit form pre-populated with existing data</p>
 				<div class="max-w-lg">
-					<CrudEditForm
+					<CrudForm
+						mode="edit"
 						config={{ title: "Edit User", description: "Update user account details", submitLabel: "Save Changes" }}
 						form={crudEditForm}
 						onSubmit={(e) => { e.preventDefault(); crudEditForm.handleSubmit(); }}
@@ -704,19 +705,20 @@
 								{/if}
 							</div>
 						</div>
-					</CrudEditForm>
+					</CrudForm>
 				</div>
 			</div>
 		</TabsContent>
 
 		<TabsContent value="crud-edit-drawer">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudEditDrawer</h2>
+				<h2 class="text-title-2 text-foreground">CrudFormDrawer (edit mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Side drawer for editing an existing record</p>
 				<Card padding>
 					<Button onclick={() => (crudEditDrawerOpen = true)}>Open Edit Drawer</Button>
 				</Card>
-				<CrudEditDrawer
+				<CrudFormDrawer
+					mode="edit"
 					bind:open={crudEditDrawerOpen}
 					config={{ title: "Edit User", submitLabel: "Update" }}
 					loading={false}
@@ -731,18 +733,19 @@
 							<Input name="edit-drawer-email" type="email" value="jane@example.com" />
 						</div>
 					</div>
-				</CrudEditDrawer>
+				</CrudFormDrawer>
 			</div>
 		</TabsContent>
 
 		<TabsContent value="crud-edit-modal">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">CrudEditModal</h2>
+				<h2 class="text-title-2 text-foreground">CrudFormModal (edit mode)</h2>
 				<p class="text-body-sm text-muted-foreground">Modal dialog for editing an existing record</p>
 				<Card padding>
 					<Button onclick={() => (crudEditModalOpen = true)}>Open Edit Modal</Button>
 				</Card>
-				<CrudEditModal
+				<CrudFormModal
+					mode="edit"
 					bind:open={crudEditModalOpen}
 					config={{ title: "Edit User", submitLabel: "Update" }}
 					loading={false}
@@ -757,7 +760,7 @@
 							<Input name="edit-modal-email" type="email" value="jane@example.com" />
 						</div>
 					</div>
-				</CrudEditModal>
+				</CrudFormModal>
 			</div>
 		</TabsContent>
 

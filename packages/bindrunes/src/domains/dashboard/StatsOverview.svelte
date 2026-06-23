@@ -1,6 +1,7 @@
 <script lang="ts">
 import Badge from "../../primitives/Badge.svelte";
 import Card from "../../primitives/Card.svelte";
+import { getGridClass } from "../../utils/grid";
 
 interface Stat {
 	label: string;
@@ -20,12 +21,6 @@ let {
 	class?: string;
 } = $props();
 
-const gridCols: Record<number, string> = {
-	2: "sm:grid-cols-2",
-	3: "sm:grid-cols-2 lg:grid-cols-3",
-	4: "sm:grid-cols-2 lg:grid-cols-4",
-};
-
 const changeColors: Record<string, string> = {
 	positive: "text-success",
 	negative: "text-destructive",
@@ -33,7 +28,7 @@ const changeColors: Record<string, string> = {
 };
 </script>
 
-<div class="grid grid-cols-1 {gridCols[columns]} gap-4 {className}">
+<div class="grid {getGridClass(columns)} gap-4 {className}">
   {#each stats as stat}
     <Card padding>
       <div class="space-y-2">

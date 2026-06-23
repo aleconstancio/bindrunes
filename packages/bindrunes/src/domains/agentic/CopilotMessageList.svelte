@@ -1,47 +1,8 @@
 <script lang="ts">
-import DOMPurify from "dompurify";
+import BouncingDots from "../../primitives/BouncingDots.svelte";
+import { sanitizeHtml } from "../../utils/sanitizeHtml";
 import CopilotSuggestionCard from "./CopilotSuggestionCard.svelte";
 import type { ConnectionStatus, CopilotMessage, CopilotSuggestion } from "./types";
-
-function sanitizeHtml(html: string): string {
-	if (!html) return "";
-	return DOMPurify.sanitize(html, {
-		ALLOWED_TAGS: [
-			"p",
-			"br",
-			"strong",
-			"em",
-			"b",
-			"i",
-			"u",
-			"s",
-			"code",
-			"pre",
-			"blockquote",
-			"ul",
-			"ol",
-			"li",
-			"h1",
-			"h2",
-			"h3",
-			"h4",
-			"h5",
-			"h6",
-			"a",
-			"span",
-			"div",
-			"table",
-			"thead",
-			"tbody",
-			"tr",
-			"th",
-			"td",
-			"hr",
-			"img",
-		],
-		ALLOWED_ATTR: ["href", "target", "rel", "class", "src", "alt", "width", "height"],
-	});
-}
 
 let {
 	messages,
@@ -65,7 +26,26 @@ let {
 	class?: string;
 } = $props();
 
+const noop = () => {};
+
 let messagesContainer: HTMLDivElement | null = $state(null);
+
+let sanitizedMessages = $derived(
+	messages.map((m) => ({
+		...m,
+		sanitizedContent: m.role === "agent" && m.content ? sanitizeHtml(m.content) : m.content,
+	})),
+);
+
+let sanitizedStreaming = $derived(streamingContent ? sanitizeHtml(streamingContent) : "");
+
+let formattedTimestamps = $derived(
+	messages.map((m) =>
+		m.timestamp
+			? new Date(m.timestamp).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })
+			: "",
+	),
+);
 
 $effect(() => {
 	if (messagesContainer && (messages.length > 0 || streamingContent)) {
@@ -81,8 +61,8 @@ $effect(() => {
 			{#each suggestions as sug (sug.id)}
 				<CopilotSuggestionCard
 					suggestion={sug}
-					onDismiss={onDismissSuggestion ?? (() => {})}
-					onAct={onActSuggestion ?? (() => {})}
+					onDismiss={onDismissSuggestion ?? noop}
+					onAct={onActSuggestion ?? noop}
 				/>
 			{/each}
 		</div>
@@ -139,7 +119,7 @@ $effect(() => {
 		</div>
 	{:else}
 		<div class="max-w-3xl mx-auto space-y-4">
-			{#each messages as message (message.id)}
+			{#each sanitizedMessages as message, idx (message.id)}
 				<div class="flex gap-3 {message.role === 'user' ? 'flex-row-reverse' : ''}">
 					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] flex items-center justify-center
 						{message.role === 'agent' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}">
@@ -154,7 +134,7 @@ $effect(() => {
 						{message.role === 'agent' ? 'bg-card border border-border' : 'bg-primary text-primary-foreground'}">
 							{#if message.content}
 								{#if message.role === "agent"}
-									<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizeHtml(message.content)}</div>
+									<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html message.sanitizedContent}</div>
 								{:else}
 									<div class="whitespace-pre-wrap">{message.content}</div>
 								{/if}
@@ -162,7 +142,7 @@ $effect(() => {
 						</div>
 						<div class="text-label-sm text-muted-foreground mt-1 px-1
 							{message.role === 'user' ? 'text-right' : ''}">
-							{message.timestamp ? new Date(message.timestamp).toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }) : ""}
+							{formattedTimestamps[idx]}
 						</div>
 					</div>
 				</div>
@@ -174,7 +154,7 @@ $effect(() => {
 						<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
 					</div>
 				<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
-					<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizeHtml(streamingContent)}</div>
+					<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizedStreaming}</div>
 					</div>
 				</div>
 			{:else if status === "connected" && messages.length > 0 && messages[messages.length - 1].role === "user"}
@@ -183,13 +163,9 @@ $effect(() => {
 						<svg aria-hidden="true" class="w-3.5 h-3.5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
 					</div>
 					<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
-						<div class="flex items-center gap-2 text-muted-foreground">
-							<div class="flex gap-1">
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-none)"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-md)"></span>
-								<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-xl)"></span>
-							</div>
-							<span class="text-label-sm">Pensando...</span>
+					<div class="flex items-center gap-2 text-muted-foreground">
+						<BouncingDots />
+						<span class="text-label-sm">Pensando...</span>
 						</div>
 					</div>
 				</div>

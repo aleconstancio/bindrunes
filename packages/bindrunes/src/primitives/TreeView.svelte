@@ -29,9 +29,11 @@ let {
 
 let internalExpanded = $state<string[]>([]);
 
+let internalExpandedSet = $derived(new Set(internalExpanded));
+let externalExpandedSet = $derived(new Set(expandedIds));
+
 function isExpanded(id: string): boolean {
-	if (onToggle) return expandedIds.includes(id);
-	return internalExpanded.includes(id);
+	return (onToggle ? externalExpandedSet : internalExpandedSet).has(id);
 }
 
 function toggleNode(id: string) {

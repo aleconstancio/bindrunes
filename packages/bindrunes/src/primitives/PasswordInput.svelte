@@ -35,6 +35,7 @@ let showPassword = $state(false);
   <div class="relative mt-1">
     <Input
       {name}
+      id={name}
       type={showPassword ? "text" : "password"}
       bind:value
       {required}

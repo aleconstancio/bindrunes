@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import { getGridClass } from "../../utils/grid";
 import ProductCard from "./ProductCard.svelte";
 
 interface Product {
@@ -30,15 +31,9 @@ let {
 	class?: string;
 	cardSnippet?: Snippet<[{ product: Product; index: number }]>;
 } = $props();
-
-const gridCols: Record<number, string> = {
-	2: "sm:grid-cols-2",
-	3: "sm:grid-cols-2 lg:grid-cols-3",
-	4: "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
-};
 </script>
 
-<div class="grid grid-cols-1 {gridCols[columns]} gap-6 {className}">
+<div class="grid {getGridClass(columns)} gap-6 {className}">
   {#each products as product, i}
     {#if cardSnippet}
       {@render cardSnippet({ product, index: i })}

@@ -1,9 +1,10 @@
 import { mode, setMode, toggleMode } from "mode-watcher";
+import { isBrowser } from "./isBrowser";
 
 export function useDarkMode() {
 	let currentMode = $state<"light" | "dark" | undefined>(undefined);
 
-	if (typeof window !== "undefined") {
+	if (isBrowser) {
 		mode.subscribe((v) => {
 			currentMode = v;
 		});

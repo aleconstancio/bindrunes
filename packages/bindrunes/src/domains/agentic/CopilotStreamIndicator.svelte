@@ -1,4 +1,6 @@
 <script lang="ts">
+import BouncingDots from "../../primitives/BouncingDots.svelte";
+
 let {
 	class: className = "",
 }: {
@@ -12,11 +14,7 @@ let {
 	</div>
 	<div class="rounded-xl px-4 py-3 text-sm bg-card border border-border">
 		<div class="flex items-center gap-2 text-muted-foreground">
-			<div class="flex gap-1">
-				<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-none)"></span>
-				<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-md)"></span>
-				<span class="w-2 h-2 bg-muted-foreground rounded-[--radius-pill] animate-bounce" style="animation-delay: var(--delay-xl)"></span>
-			</div>
+			<BouncingDots />
 			<span class="text-label-sm">Pensando...</span>
 		</div>
 	</div>

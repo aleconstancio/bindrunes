@@ -221,12 +221,9 @@
 
 		// CRUD / Data
 		{ name: "CrudListPage", category: "CRUD", description: "CRUD table page", demoPath: "/data/list" },
-		{ name: "CrudCreateForm", category: "CRUD", description: "Create form", demoPath: "" },
-		{ name: "CrudCreateDrawer", category: "CRUD", description: "Create drawer", demoPath: "" },
-		{ name: "CrudCreateModal", category: "CRUD", description: "Create modal", demoPath: "" },
-		{ name: "CrudEditForm", category: "CRUD", description: "Edit form", demoPath: "" },
-		{ name: "CrudEditDrawer", category: "CRUD", description: "Edit drawer", demoPath: "" },
-		{ name: "CrudEditModal", category: "CRUD", description: "Edit modal", demoPath: "" },
+		{ name: "CrudForm", category: "CRUD", description: "Create/edit form", demoPath: "" },
+		{ name: "CrudFormDrawer", category: "CRUD", description: "Create/edit drawer", demoPath: "" },
+		{ name: "CrudFormModal", category: "CRUD", description: "Create/edit modal", demoPath: "" },
 		{ name: "CrudDeleteConfirm", category: "CRUD", description: "Delete confirmation", demoPath: "" },
 		{ name: "CrudDetailDrawer", category: "CRUD", description: "Detail drawer", demoPath: "" },
 		{ name: "AdvancedTable", category: "CRUD", description: "Advanced table features", demoPath: "/data/list" },

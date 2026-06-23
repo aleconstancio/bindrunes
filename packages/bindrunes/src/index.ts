@@ -36,6 +36,7 @@ export { default as AppProvider } from "./primitives/AppProvider.svelte";
 export { default as AuthGuard } from "./primitives/AuthGuard.svelte";
 export { default as Avatar } from "./primitives/Avatar.svelte";
 export { default as Badge } from "./primitives/Badge.svelte";
+export { default as BouncingDots } from "./primitives/BouncingDots.svelte";
 // ── Navigation ──
 export { default as Breadcrumb } from "./primitives/Breadcrumb.svelte";
 export { default as Button } from "./primitives/Button.svelte";
@@ -55,6 +56,7 @@ export { default as Dialog } from "./primitives/Dialog.svelte";
 export { default as Drawer } from "./primitives/Drawer.svelte";
 export { default as DropdownMenu } from "./primitives/DropdownMenu.svelte";
 export { default as EmptyState } from "./primitives/EmptyState.svelte";
+export { default as ErrorBanner } from "./primitives/ErrorBanner.svelte";
 export { default as ErrorMessage } from "./primitives/ErrorMessage.svelte";
 export { default as FileUpload } from "./primitives/FileUpload.svelte";
 export { default as Input } from "./primitives/Input.svelte";
@@ -87,6 +89,7 @@ export { default as Slider } from "./primitives/Slider.svelte";
 export { default as Spinner } from "./primitives/Spinner.svelte";
 export { default as StatusChip } from "./primitives/StatusChip.svelte";
 export { default as Stepper } from "./primitives/Stepper.svelte";
+export { default as SuccessBanner } from "./primitives/SuccessBanner.svelte";
 export { default as Suspense } from "./primitives/Suspense.svelte";
 export { default as Switch } from "./primitives/Switch.svelte";
 export type { StepperStep } from "./primitives/stepper-types";
@@ -180,6 +183,7 @@ export {
 	getLocale,
 	setLocale,
 } from "./utils/formatters.ts";
+export { getGridClass } from "./utils/grid.ts";
 export { hasAnyRole, hasPermission, hasRole } from "./utils/hasRole.svelte.ts";
 export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";

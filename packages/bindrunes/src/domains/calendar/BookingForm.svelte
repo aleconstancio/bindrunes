@@ -1,6 +1,7 @@
 <script lang="ts">
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
+import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
 
 let {
@@ -53,9 +54,7 @@ function handleSubmit(e: SubmitEvent) {
     </div>
 
     {#if error}
-      <div class="rounded-[--radius] bg-destructive-soft border border-destructive/30 p-3 text-body-sm text-destructive">
-        {error}
-      </div>
+      <ErrorBanner {error} />
     {/if}
 
     <form onsubmit={handleSubmit} class="space-y-4">
