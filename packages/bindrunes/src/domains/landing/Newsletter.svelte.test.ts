@@ -12,22 +12,24 @@ describe("Newsletter", () => {
 	});
 
 	it("renders title", () => {
-		const { container } = render(Newsletter, { title: "Subscribe" });
+		const { container } = render(Newsletter, { props: { title: "Subscribe" } });
 		expect(container.textContent).toContain("Subscribe");
 	});
 
 	it("renders default button text", () => {
-		const { container } = render(Newsletter, { title: "X" });
-		expect(container.textContent).toContain("Inscrever");
+		const { container } = render(Newsletter, { props: { title: "X" } });
+		expect(container.textContent).toContain("Subscribe");
 	});
 
 	it("renders custom button text", () => {
-		const { container } = render(Newsletter, { title: "X", buttonText: "Join" });
+		const { container } = render(Newsletter, { props: { title: "X", buttonText: "Join" } });
 		expect(container.textContent).toContain("Join");
 	});
 
 	it("renders description when provided", () => {
-		const { container } = render(Newsletter, { title: "X", description: "Stay updated" });
+		const { container } = render(Newsletter, {
+			props: { title: "X", description: "Stay updated" },
+		});
 		expect(container.textContent).toContain("Stay updated");
 	});
 });

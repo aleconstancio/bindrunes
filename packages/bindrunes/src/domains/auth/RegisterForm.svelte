@@ -93,18 +93,19 @@ async function handleSubmit(e: SubmitEvent) {
 
       <div>
         <label for="name" class="text-label-md text-foreground">{nameLabel}</label>
-        <Input name="name" type="text" bind:value={name} required autocomplete="name" class="mt-1" />
+        <Input id="name" name="name" type="text" bind:value={name} required autocomplete="name" class="mt-1" />
       </div>
 
       <div>
         <label for="reg-email" class="text-label-md text-foreground">{emailLabel}</label>
-        <Input name="reg-email" type="email" bind:value={email} required autocomplete="email" class="mt-1" />
+        <Input id="reg-email" name="reg-email" type="email" bind:value={email} required autocomplete="email" class="mt-1" />
       </div>
 
       <div>
         <label for="reg-password" class="text-label-md text-foreground">{passwordLabel}</label>
         <div class="relative mt-1">
           <Input
+            id="reg-password"
             name="reg-password"
             type={showPassword ? "text" : "password"}
             bind:value={password}
@@ -127,6 +128,7 @@ async function handleSubmit(e: SubmitEvent) {
         <label for="reg-confirm" class="text-label-md text-foreground">{confirmPasswordLabel}</label>
         <div class="relative mt-1">
           <Input
+            id="reg-confirm"
             name="reg-confirm"
             type={showConfirm ? "text" : "password"}
             bind:value={confirmPassword}

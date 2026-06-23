@@ -1,12 +1,12 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import { PageSection } from "../layouts/PageSection.svelte";
-import { Badge } from "../primitives/Badge.svelte";
-import { Button } from "../primitives/Button.svelte";
-import { Card } from "../primitives/Card.svelte";
-import { Dialog } from "../primitives/Dialog.svelte";
-import { EmptyState } from "../primitives/EmptyState.svelte";
-import { Input } from "../primitives/Input.svelte";
+import PageSection from "../layouts/PageSection.svelte";
+import Badge from "../primitives/Badge.svelte";
+import Button from "../primitives/Button.svelte";
+import Card from "../primitives/Card.svelte";
+import Dialog from "../primitives/Dialog.svelte";
+import EmptyState from "../primitives/EmptyState.svelte";
+import Input from "../primitives/Input.svelte";
 
 interface Field {
 	readonly name: string;

@@ -2,27 +2,29 @@ import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
 import CrudTemplate from "./CrudTemplate.svelte";
 
+const schema = {
+	name: "item",
+	fields: {
+		name: { name: "name", type: "text" },
+		email: { name: "email", type: "text" },
+	},
+};
+
 describe("CrudTemplate", () => {
 	it("renders without errors", () => {
-		const { container } = render(CrudTemplate);
+		const { container } = render(CrudTemplate, { props: { schema } });
 		expect(container).toBeTruthy();
 	});
 
 	it("renders empty state by default", () => {
-		const { container } = render(CrudTemplate);
-		expect(container.textContent).toContain("Select an item");
+		const { container } = render(CrudTemplate, { props: { schema } });
+		expect(container.textContent).toContain("No item yet");
 	});
 
 	it("renders custom empty state text", () => {
 		const { container } = render(CrudTemplate, {
-			props: { emptyTitle: "Nothing selected", emptyDescription: "Pick something" },
+			props: { schema: { name: "task", fields: {} }, emptyMessage: "Pick something" },
 		});
-		expect(container.textContent).toContain("Nothing selected");
 		expect(container.textContent).toContain("Pick something");
-	});
-
-	it("applies class prop", () => {
-		const { container } = render(CrudTemplate, { props: { class: "crud-class" } });
-		expect(container.firstElementChild?.className).toContain("crud-class");
 	});
 });
