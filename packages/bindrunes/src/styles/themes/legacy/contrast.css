@@ -1,4 +1,0 @@
-/* v0.4 → v1.0 legacy re-export
- * contrast has been replaced by github (light=max-contrast, dark=standard).
- * This file forwards to the replacement so imports don't break. */
-@import "../github.css";

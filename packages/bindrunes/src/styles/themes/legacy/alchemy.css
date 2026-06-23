@@ -1,4 +1,0 @@
-/* v0.4 → v1.0 legacy re-export
- * alchemy has been replaced by github (closest neutral default).
- * This file forwards to the replacement so imports don't break. */
-@import "../github.css";

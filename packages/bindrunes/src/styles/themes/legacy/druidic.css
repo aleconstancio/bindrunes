@@ -1,4 +1,0 @@
-/* v0.4 → v1.0 legacy re-export
- * druidic has been replaced by rose-pine.
- * This file forwards to the replacement so imports don't break. */
-@import "../rose-pine.css";
