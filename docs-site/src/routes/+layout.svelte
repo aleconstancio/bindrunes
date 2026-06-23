@@ -2,7 +2,7 @@
 import "../app.css";
 import { AppProvider } from "bindrunes";
 import { page } from "$app/state";
-import { docsNav, examplesNav, kitNav, migrationNav, type NavItem } from "$lib/navigation";
+import { blogNav, docsNav, examplesNav, kitNav, migrationNav, type NavItem } from "$lib/navigation";
 
 let { children } = $props();
 
@@ -10,6 +10,7 @@ let expandedSections = $state<Record<string, boolean>>({
 	docs: true,
 	kit: false,
 	migration: false,
+	blog: false,
 	examples: false,
 });
 
@@ -67,6 +68,14 @@ function isActiveSection(items: NavItem[]): boolean {
               : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'}"
           >
             Examples
+          </a>
+          <a
+            href="/blog"
+            class="px-3 py-1.5 rounded-md transition-colors {page.url.pathname.startsWith('/blog')
+              ? 'bg-accent text-accent-foreground'
+              : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'}"
+          >
+            Blog
           </a>
         </nav>
         <div class="ml-auto flex items-center gap-3">
@@ -186,6 +195,41 @@ function isActiveSection(items: NavItem[]): boolean {
             {#if expandedSections.migration}
               <div class="ml-2 mt-1 space-y-0.5 border-l border-border pl-3">
                 {#each migrationNav as item}
+                  <a
+                    href={item.href}
+                    class="block px-2 py-1.5 text-sm rounded-md transition-colors {isActive(item.href)
+                      ? 'bg-accent text-accent-foreground font-medium'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'}"
+                  >
+                    {item.label}
+                  </a>
+                {/each}
+              </div>
+            {/if}
+          </div>
+
+          <!-- Blog section -->
+          <div>
+            <button
+              onclick={() => toggleSection("blog")}
+              class="flex items-center justify-between w-full px-2 py-1.5 text-sm font-semibold text-foreground rounded-md hover:bg-accent/50 transition-colors"
+            >
+              <span>Blog</span>
+              <svg
+                class="w-4 h-4 text-muted-foreground transition-transform {expandedSections.blog
+                  ? 'rotate-90'
+                  : ''}"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+            {#if expandedSections.blog}
+              <div class="ml-2 mt-1 space-y-0.5 border-l border-border pl-3">
+                {#each blogNav as item}
                   <a
                     href={item.href}
                     class="block px-2 py-1.5 text-sm rounded-md transition-colors {isActive(item.href)

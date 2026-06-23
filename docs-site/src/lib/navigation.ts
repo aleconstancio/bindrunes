@@ -67,6 +67,8 @@ export const migrationNav: NavItem[] = [
 	{ label: "From Skeleton", href: "/migration/skeleton" },
 ];
 
+export const blogNav: NavItem[] = [{ label: "Why bindrunes", href: "/blog/why-bindrunes" }];
+
 export const examplesNav: NavItem[] = [
 	{ label: "Showcase", href: "/examples/showcase" },
 	{ label: "Webapp", href: "/examples/webapp" },
