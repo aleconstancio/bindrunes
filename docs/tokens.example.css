@@ -1,251 +1,257 @@
-/* ─────────────────────────────────────────────────────
- * bindrunes Design Token Contract — v1.0
+/* bindrunes — Complete Design Token Reference
  *
- * This file is a REFERENCE EXAMPLE for consumer projects.
- * Each consumer project defines these tokens
- * in their own app.css. bindrunes components read them.
+ * This file documents all CSS custom properties available in bindrunes.
+ * Default values shown here correspond to: theme=editorial, aesthetic=minimal, density=comfortable.
  *
- * ⚠️ This is a documentation file, not the actual source
- * of truth. The live token definitions live in:
- *   src/styles/preset.css
- *   src/styles/themes/*.css
- *   src/styles/aesthetics/*.css
- *   src/styles/global.css
- *
- * Architecture:
- *   tokens.base       — Required  tokens (surfaces, accents, borders)
- *   tokens.variants   — Derived  tokens (OKLCH-from base colors)
- *   tokens.motion     — Animation tokens
- *   tokens.sidebar    — Sidebar-specific tokens
- *   tokens.context    — Z-index scale
- *
- * Color strategy: OKLCH + `@property` for type safety + animation.
- * ───────────────────────────────────────────────────── */
+ * Tokens are organized by category. Each token can be overridden per-theme,
+ * per-aesthetic, or per-density using the appropriate data-attribute selector.
+ * ══════════════════════════════════════════════════ */
 
-@import "tailwindcss";
+/* ── Surface & Color Tokens ── */
+:root {
+  /* Surfaces (warm grey) */
+  --background: oklch(0.13 0.01 270);
+  --foreground: oklch(0.96 0.005 270);
+  --card: oklch(1 0 0 / 0.04);
+  --card-foreground: oklch(0.96 0.005 270);
+  --card-solid: oklch(0.17 0.008 270);
+  --surface-1: oklch(0.16 0.008 270);
+  --surface-2: oklch(0.19 0.008 270);
+  --surface-3: oklch(0.22 0.008 270);
+  --muted: oklch(1 0 0 / 0.04);
+  --muted-foreground: oklch(0.65 0.012 270);
+  --secondary: oklch(1 0 0 / 0.06);
+  --secondary-foreground: oklch(0.96 0.005 270);
 
-/* ══════════════════════════════════════════════════════
-   STEP 1: Register typed custom properties with @property
-   ══════════════════════════════════════════════════════
-   These let the browser know the TYPE of each token:
-   - Optimizes paint/layout (browser preallocates memory)
-   - Enables CSS transitions/animations on the property
-   - Rejects invalid values (no silent failures)
-   ==================================================== */
-@property --radius {
-	syntax: "<length>";
-	initial-value: 0.5rem;
-	inherits: true;
+  /* Accents (restrained indigo) */
+  --primary: oklch(0.65 0.1 265);
+  --primary-foreground: oklch(0.13 0 0);
+  --accent: oklch(0.62 0.13 285);
+  --accent-foreground: oklch(0.13 0 0);
+
+  /* State colors */
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.14 0 0);
+  --destructive-soft: oklch(0.62 0.22 25 / 0.12);
+  --success: oklch(0.68 0.16 145);
+  --success-foreground: oklch(0.13 0 0);
+  --success-soft: oklch(0.68 0.16 145 / 0.12);
+  --warning: oklch(0.8 0.16 80);
+  --warning-foreground: oklch(0.13 0 0);
+  --warning-soft: oklch(0.8 0.16 80 / 0.12);
+  --info: oklch(0.7 0.12 230);
+  --info-foreground: oklch(0.13 0 0);
+  --info-soft: oklch(0.7 0.12 230 / 0.12);
+
+  /* Borders & inputs */
+  --border: oklch(1 0 0 / 0.08);
+  --border-strong: oklch(1 0 0 / 0.2);
+  --border-subtle: oklch(1 0 0 / 0.05);
+  --input: oklch(1 0 0 / 0.06);
+  --ring: oklch(0.65 0.1 265);
+
+  /* Overlays */
+  --overlay: oklch(0 0 0 / 0.55);
+  --overlay-strong: oklch(0 0 0 / 0.75);
+
+  /* Glass */
+  --glass-surface: oklch(1 0 0 / 0.04);
+  --glass-border: oklch(1 0 0 / 0.08);
 }
 
-@property --glass-blur {
-	syntax: "<length>";
-	initial-value: 16px;
-	inherits: true;
+/* ── Sidebar Tokens ── */
+:root {
+  --sidebar-background: oklch(0.11 0.008 270);
+  --sidebar-foreground: oklch(0.96 0.005 270);
+  --sidebar-primary: oklch(0.65 0.1 265);
+  --sidebar-primary-foreground: oklch(0.13 0 0);
+  --sidebar-accent: oklch(1 0 0 / 0.04);
+  --sidebar-accent-foreground: oklch(0.96 0.005 270);
+  --sidebar-border: oklch(1 0 0 / 0.08);
+  --sidebar-ring: oklch(0.65 0.1 265);
 }
 
-@property --duration-snappy {
-	syntax: "<time>";
-	initial-value: 120ms;
-	inherits: true;
+/* ── Radius Tokens ── */
+:root {
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-pill: 9999px;
+  --radius-full: 50%;
 }
 
-@property --duration-fluid {
-	syntax: "<time>";
-	initial-value: 220ms;
-	inherits: true;
+/* ── Component Spacing Tokens ── */
+:root {
+  --card-padding: 1rem;
 }
 
-@property --duration-slow {
-	syntax: "<time>";
-	initial-value: 360ms;
-	inherits: true;
+/* ── Shadow Tokens ── */
+:root {
+  --shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
+  --shadow-sm: 0 1px 0 oklch(0 0 0 / 0.04);
+  --shadow-md: 0 1px 0 oklch(0 0 0 / 0.06);
+  --shadow-lg: 0 2px 4px oklch(0 0 0 / 0.08);
+  --shadow-xl: 0 8px 16px -4px oklch(0 0 0 / 0.12);
+  --shadow-2xl: 0 16px 32px -8px oklch(0 0 0 / 0.18);
+  --shadow-glow-primary: 0 0 24px -6px oklch(from var(--primary) l c h / 0.3);
+  --shadow-glow-accent: 0 0 24px -6px oklch(from var(--accent) l c h / 0.3);
+  --shadow-glow-destructive: 0 0 24px -6px oklch(from var(--destructive) l c h / 0.25);
+  --shadow-glow-success: 0 0 24px -6px oklch(from var(--success) l c h / 0.25);
+  --shadow-glow-warning: 0 0 24px -6px oklch(from var(--warning) l c h / 0.25);
+  --shadow-glow-info: 0 0 24px -6px oklch(from var(--info) l c h / 0.25);
+  --shadow-emphasis-resolved: var(--shadow-md);
+  --shadow-inset-subtle: inset 0 1px 0 oklch(1 0 0 / 0.06);
 }
 
-@property --z-sidebar {
-	syntax: "<integer>";
-	initial-value: 20;
-	inherits: true;
+/* ── Gradient Tokens ── */
+:root {
+  --gradient-angle: 135deg;
+  --gradient-primary: linear-gradient(
+    var(--gradient-angle),
+    var(--primary) 0%,
+    oklch(from var(--primary) calc(l - 0.08) c h) 100%
+  );
+  --gradient-accent: linear-gradient(var(--gradient-angle), var(--primary) 0%, var(--accent) 100%);
+  --gradient-destructive: linear-gradient(
+    var(--gradient-angle),
+    var(--destructive) 0%,
+    oklch(from var(--destructive) calc(l - 0.08) c h) 100%
+  );
+  --gradient-surface: linear-gradient(
+    var(--gradient-angle),
+    var(--surface-1) 0%,
+    var(--surface-2) 100%
+  );
+  --gradient-hero: linear-gradient(
+    var(--gradient-angle),
+    oklch(from var(--primary) l c h / 0.08) 0%,
+    transparent 50%
+  );
+  --gradient-card: none;
+  --gradient-sidebar: none;
+  --gradient-text-primary: linear-gradient(
+    var(--gradient-angle),
+    var(--foreground) 30%,
+    var(--primary) 100%
+  );
+  --gradient-text-accent: linear-gradient(
+    var(--gradient-angle),
+    var(--foreground) 30%,
+    var(--accent) 100%
+  );
+  --gradient-shimmer: linear-gradient(
+    90deg,
+    var(--muted) 25%,
+    oklch(from var(--muted-foreground) l c h / 0.15) 50%,
+    var(--muted) 75%
+  );
+
+  /* Surface gradients */
+  --bg-gradient-hero: none;
+  --bg-gradient-card: none;
+  --bg-gradient-sidebar: none;
 }
 
-@property --z-overlay {
-	syntax: "<integer>";
-	initial-value: 30;
-	inherits: true;
+/* ── Blur Tokens ── */
+:root {
+  --blur-subtle: 4px;
+  --blur-medium: 8px;
+  --blur-heavy: 16px;
+  --blur-ultra: 24px;
 }
 
-@property --z-toast {
-	syntax: "<integer>";
-	initial-value: 40;
-	inherits: true;
+/* ── Typography Scale Tokens ── */
+:root {
+  --text-line-height-tight: 1.2;
+  --text-line-height-normal: 1.5;
+  --text-line-height-relaxed: 1.65;
+  --text-letter-spacing-tight: -0.02em;
+  --text-letter-spacing-normal: 0;
+  --text-letter-spacing-wide: 0.02em;
+  --text-letter-spacing-wider: 0.05em;
+  --text-letter-spacing-widest: 0.1em;
 }
 
-@property --z-omnibar {
-	syntax: "<integer>";
-	initial-value: 50;
-	inherits: true;
+/* ── Motion Tokens ── */
+:root {
+  /* Durations */
+  --duration-instant: 50ms;
+  --duration-snappy: 120ms;
+  --duration-fluid: 220ms;
+  --duration-slow: 360ms;
+
+  /* Easings */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+  --ease-decelerated: cubic-bezier(0, 0, 0, 1);
+  --ease-accelerated: cubic-bezier(0.3, 0, 1, 1);
+  --ease-spring: linear(0, 0.5 7%, 0.95 25%, 1);
 }
 
-/* ══════════════════════════════════════════════════════
-   STEP 2: Cascade layers — ordered by priority
-   ══════════════════════════════════════════════════════
-   Everything defined inside a layer can't override
-   something defined earlier in the cascade order.
-   ==================================================== */
-@layer tokens.base, tokens.variants, tokens.motion, tokens.sidebar, tokens.context;
-
-/* ══════════════════════════════════════════════════════
-   STEP 3: Map tokens to Tailwind v4 utility classes
-   ══════════════════════════════════════════════════════
-   This makes bindrunes tokens available as Tailwind
-   classnames: bg-primary, text-foreground, etc.
-   ==================================================== */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-glass-surface: var(--glass-surface);
-  --color-glass-border: var(--glass-border);
-  --color-sidebar-background: var(--sidebar-background);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+/* ── Animation Delay Tokens ── */
+:root {
+  --delay-none: 0ms;
+  --delay-sm: 50ms;
+  --delay-md: 100ms;
+  --delay-lg: 200ms;
+  --delay-xl: 400ms;
 }
 
-/* ══════════════════════════════════════════════════════
-   STEP 4: Token defaults — override in your app.css
-   ══════════════════════════════════════════════════════
-   All tokens use OKLCH where possible for perceptual
-   uniformity and future color manipulation.
-   ==================================================== */
-@layer tokens.base {
-	:root {
-		/* ── Surfaces ──────────────────────────────── */
-		--background: oklch(0.05 0.01 290); /* #0B0B11 */
-		--foreground: oklch(0.95 0.01 290); /* #F8F8F2 */
-
-		--card: oklch(1 0 0 / 0.06);
-		--card-foreground: oklch(0.95 0.01 290);
-
-		--muted: oklch(1 0 0 / 0.04);
-		--muted-foreground: oklch(0.55 0.03 280); /* #6272A4 */
-
-		--secondary: oklch(1 0 0 / 0.08);
-		--secondary-foreground: oklch(0.95 0.01 290);
-
-		/* ── Accents ───────────────────────────────── */
-		--primary: oklch(0.75 0.21 310); /* #BD93F9 */
-		--primary-foreground: oklch(0.15 0 0);
-
-		--accent: oklch(0.72 0.3 340); /* #FF79C6 */
-		--accent-foreground: oklch(0.15 0 0);
-
-		--destructive: oklch(0.65 0.24 30); /* #FF5555 */
-		--destructive-foreground: oklch(0.95 0 0);
-
-		/* ── Borders & Inputs ──────────────────────── */
-		--border: oklch(1 0 0 / 0.08);
-		--input: oklch(1 0 0 / 0.06);
-		--ring: oklch(0.75 0.21 310); /* matches primary */
-	}
+/* ── Spacing Scale (comfortable default) ── */
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 3rem;
+  --space-12: 4rem;
+  --space-16: 5rem;
+  --space-20: 6rem;
 }
 
-@layer tokens.variants {
-	:root {
-		/* Derived using OKLCH relative color syntax.
-     * These are optional — Tailwind's opacity modifiers
-     * (hover:opacity-90, bg-primary/10) can replace many.
-     *
-     * Examples:
-     *   --primary-hover:  oklch(from var(--primary) calc(l - 0.1) c h);
-     *   --primary-muted:  oklch(from var(--primary) l 0.5 c / 0.15);
-     *   --primary-glow:   oklch(from var(--primary) l 0.8 c / 0.25);
-     *
-     * Consumer projects can define these if they need
-     * custom hover/glow/muted values beyond opacity.
-     */
-	}
+/* ── Aesthetic Hook Tokens (minimal default) ── */
+:root {
+  --button-treatment: flat;
+  --button-bg: var(--primary);
+  --button-bg-destructive: var(--destructive);
+  --card-treatment: solid;
+  --surface-texture: none;
+  --hero-translate: 8px;
+  --shadow-emphasis: low;
 }
 
-@layer tokens.motion {
-	:root {
-		--duration-snappy: 120ms;
-		--duration-fluid: 220ms;
-		--duration-slow: 360ms;
-		--easing-default: cubic-bezier(0.16, 1, 0.3, 1);
-	}
-}
-
-@layer tokens.sidebar {
-	:root {
-		--sidebar-background: oklch(0.05 0.01 290); /* matches --background */
-		--sidebar-foreground: oklch(0.95 0.01 290); /* matches --foreground */
-		--sidebar-primary: oklch(0.75 0.21 310); /* matches --primary */
-		--sidebar-primary-foreground: oklch(0.15 0 0);
-		--sidebar-accent: oklch(1 0 0 / 0.06);
-		--sidebar-accent-foreground: oklch(0.95 0.01 290);
-		--sidebar-border: oklch(1 0 0 / 0.08);
-		--sidebar-ring: oklch(0.75 0.21 310);
-	}
-}
-
-@layer tokens.context {
-	:root {
-		--z-sidebar: 20;
-		--z-overlay: 30;
-		--z-toast: 40;
-		--z-omnibar: 50;
-	}
+/* ── Z-Index Scale ── */
+:root {
+  --z-sidebar: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-popover: 70;
+  --z-toast: 80;
+  --z-tooltip: 90;
 }
 
 /* ══════════════════════════════════════════════════════
    Runtime theme switching (optional)
    ══════════════════════════════════════════════════════
-   Override any token inside a data-theme selector.
+   Override any token inside a data-theme or data-aesthetic
+   selector to customize the design system.
 
-   [data-theme="editorial"] {
-     --primary: oklch(0.65 0.10 265);
-   }
-   [data-theme="dracula"] {
-     --primary: oklch(0.75 0.21 310);
-   }
-   [data-theme="nord"] {
-     --primary: oklch(0.78 0.10 230);
-   }
-   [data-theme="catppuccin"] {
-     --primary: oklch(0.80 0.14 280);
-   }
-   [data-theme="rose-pine"] {
-     --primary: oklch(0.72 0.12 15);
-   }
-   [data-theme="github"] {
-     --primary: oklch(0.65 0.18 250);
-   }
+   Example:
+     [data-theme="dracula"] {
+       --primary: oklch(0.75 0.21 310);
+     }
+     [data-aesthetic="maximal"] {
+       --card-treatment: gradient;
+       --shadow-emphasis: high;
+     }
+     [data-density="compact"] {
+       --space-4: 0.75rem;
+     }
    ==================================================== */
-
-/* ══════════════════════════════════════════════════════
-   Base styles (optional, not bundled by bindrunes)
-   ══════════════════════════════════════════════════════ */
-body {
-	background-color: var(--background);
-	color: var(--foreground);
-	font-family: var(--font-sans, system-ui);
-}
