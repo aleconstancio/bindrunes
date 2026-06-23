@@ -379,6 +379,31 @@ const { getParam, setParam } = useUrlParams();
 setParam("page", "2");
 ```
 
+### `createSessionMonitor`
+Monitors and tracks session activity for analytics or security purposes.
+```ts
+import { createSessionMonitor } from "bindrunes";
+
+const monitor = createSessionMonitor({
+  onIdle: () => console.log("Session idle"),
+  onActivity: () => console.log("Session active"),
+  idleTimeout: 300_000, // 5 minutes
+});
+```
+
+### `createMultiTenant`
+Multi-tenant context provider for SaaS applications with tenant isolation.
+```ts
+import { createMultiTenant } from "bindrunes";
+
+const tenant = createMultiTenant({
+  tenantId: "org_123",
+  onSwitch: async (newTenantId) => {
+    // Reload data for new tenant
+  },
+});
+```
+
 ---
 
 ## Context Patterns

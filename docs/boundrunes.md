@@ -126,6 +126,23 @@ Real-time messaging components.
 | `ReasoningPanel` | AI reasoning panel |
 | `ToolCallDisplay` | Tool call display |
 
+### Agentic Copilot
+Pre-built UI components for LLM chat interfaces.
+
+**Import from `bindrunes/domains/agentic`:**
+
+| Component | Description |
+|-----------|-------------|
+| `CopilotMessageList` | Scrollable message list with role-based styling |
+| `CopilotInput` | Message composer with send button |
+| `CopilotStreamIndicator` | Animated streaming indicator |
+| `CopilotToolPanel` | Tool call and result display |
+| `CopilotChainProgress` | Multi-step chain progress |
+| `CopilotContextSidebar` | Context and token usage sidebar |
+| `CopilotSuggestionCard` | Quick prompt suggestion cards |
+| `DebateHistoryTree` | Conversation branch tree |
+| `InteractiveCitations` | Clickable citation references |
+
 ### E-commerce
 Product display, cart, and checkout.
 

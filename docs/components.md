@@ -405,6 +405,17 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 - `<ReasoningPanel>` -- Agent reasoning display panel.
 - `<ToolCallDisplay>` -- Agent tool call display.
 
+### Agentic Copilot (`bindrunes/domains/agentic`)
+- `CopilotMessageList` -- Scrollable message list with role-based styling.
+- `CopilotInput` -- Message composer with send button and keyboard shortcuts.
+- `CopilotStreamIndicator` -- Animated indicator showing LLM is streaming.
+- `CopilotToolPanel` -- Display for tool calls and results.
+- `CopilotChainProgress` -- Progress indicator for multi-step agent chains.
+- `CopilotContextSidebar` -- Sidebar showing conversation context and token usage.
+- `CopilotSuggestionCard` -- Clickable suggestion cards for quick prompts.
+- `DebateHistoryTree` -- Visual tree of conversation branches and reasoning paths.
+- `InteractiveCitations` -- Clickable citation references with source links.
+
 ### Marketing (`bindrunes/domains/marketing`)
 - `<BlogArticle>` / `<BlogListing>` -- Blog post display and listing.
 - `<BlogPage>` -- Blog page layout.
