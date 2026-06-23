@@ -37,4 +37,16 @@
 	--surface-texture: none;
 	--hero-translate: 8px;
 	--shadow-emphasis: low;
+
+	/* Gradient — minimal, flat */
+	--gradient-primary: var(--primary);
+	--gradient-accent: var(--primary);
+	--gradient-card: none;
+	--gradient-hero: none;
+
+	/* Blur */
+	--blur-subtle: 4px;
+	--blur-medium: 8px;
+	--blur-heavy: 16px;
+	--blur-ultra: 24px;
 }

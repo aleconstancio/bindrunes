@@ -27,4 +27,14 @@
 	--surface-texture: none;
 	--hero-translate: 2px;
 	--shadow-emphasis: low;
+
+	/* Gradient — flat */
+	--gradient-primary: var(--primary);
+
+	/* Shadow — hard offset */
+	--shadow-xl: 4px 4px 0 oklch(0 0 0 / 0.15);
+	--shadow-2xl: 8px 8px 0 oklch(0 0 0 / 0.2);
+
+	/* Blur — none */
+	--blur-heavy: 0px;
 }

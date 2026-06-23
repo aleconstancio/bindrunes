@@ -45,4 +45,29 @@
 	--surface-texture: mesh;
 	--hero-translate: 24px;
 	--shadow-emphasis: high;
+
+	/* Gradient — dramatic */
+	--gradient-angle: 135deg;
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.15) 0%,
+		oklch(from var(--accent) l c h / 0.08) 50%,
+		transparent 100%
+	);
+	--gradient-card: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.06) 0%,
+		oklch(from var(--accent) l c h / 0.04) 100%
+	);
+	--bg-gradient-hero: var(--gradient-hero);
+	--bg-gradient-card: var(--gradient-card);
+
+	/* Shadow — extra depth */
+	--shadow-xl: 0 20px 40px -10px oklch(0 0 0 / 0.22);
+	--shadow-2xl: 0 32px 64px -16px oklch(0 0 0 / 0.28);
+	--shadow-glow-accent: 0 0 32px -4px oklch(from var(--accent) l c h / 0.35);
+
+	/* Blur */
+	--blur-heavy: 20px;
+	--blur-ultra: 32px;
 }

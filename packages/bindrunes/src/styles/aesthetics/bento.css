@@ -36,4 +36,23 @@
 	--surface-texture: dot-grid;
 	--hero-translate: 14px;
 	--shadow-emphasis: low;
+
+	/* Gradient — bento */
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l + 0.05) c h) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.06) 0%,
+		transparent 50%
+	);
+
+	/* Shadow — extra depth */
+	--shadow-xl: 0 12px 24px -6px oklch(0 0 0 / 0.12);
+	--shadow-2xl: 0 20px 40px -10px oklch(0 0 0 / 0.16);
+
+	/* Blur */
+	--blur-heavy: 16px;
 }

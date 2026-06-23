@@ -45,4 +45,30 @@
 	--surface-texture: grain;
 	--hero-translate: 16px;
 	--shadow-emphasis: medium;
+
+	/* Gradient — atmospheric */
+	--gradient-angle: 135deg;
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.1) 0%,
+		transparent 60%
+	);
+	--gradient-card: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.04) 0%,
+		transparent 80%
+	);
+	--bg-gradient-hero: var(--gradient-hero);
+	--bg-gradient-card: var(--gradient-card);
+
+	/* Shadow — extra depth */
+	--shadow-xl: 0 16px 32px -8px oklch(0 0 0 / 0.18);
+	--shadow-2xl: 0 24px 48px -12px oklch(0 0 0 / 0.24);
+	--shadow-glow-accent: 0 0 24px -6px oklch(from var(--accent) l c h / 0.3);
+
+	/* Blur — frosted */
+	--blur-subtle: 4px;
+	--blur-medium: 8px;
+	--blur-heavy: 20px;
+	--blur-ultra: 32px;
 }

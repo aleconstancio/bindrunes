@@ -27,4 +27,22 @@
 	--surface-texture: none;
 	--hero-translate: 4px;
 	--shadow-emphasis: high;
+
+	/* Gradient — neon */
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l + 0.1) c h) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l 0.3 h / 0.12) 0%,
+		transparent 60%
+	);
+
+	/* Shadow — neon glow */
+	--shadow-xl: 0 0 20px -4px oklch(from var(--primary) l 0.3 h / 0.2);
+	--shadow-2xl: 0 0 40px -8px oklch(from var(--primary) l 0.3 h / 0.25);
+	--shadow-glow-primary: 0 0 32px -4px oklch(from var(--primary) l 0.3 h / 0.4);
+	--shadow-glow-accent: 0 0 32px -4px oklch(from var(--accent) l 0.3 h / 0.4);
 }
