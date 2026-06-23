@@ -169,15 +169,26 @@ myTheme.apply();
 ```
 
 ### `createThemeBuilder`
-Runtime theme token builder with all token categories (colors, spacing, shadows, borders, radii).
+Runtime theme token builder. Generates a complete token set from a primary color, with optional aesthetic personality.
 
 ```ts
 import { createThemeBuilder } from "bindrunes";
 
-const builder = createThemeBuilder("my-theme");
-builder.setToken("--primary", "oklch(0.60 0.15 250)");
-builder.exportCSS(); // Returns CSS string
+const builder = createThemeBuilder({
+  primary: "oklch(0.60 0.15 250)",
+  aesthetic: "glass",   // minimal | glass | bento | expressive | neon | brutalist | organic
+  mode: "dark",         // light | dark
+  radius: "0.625rem",
+  glassBlur: "16px",
+});
+
+builder.apply();           // Apply tokens to document.documentElement
+builder.toCSS(":root");    // Returns CSS string
+builder.cssText;           // Raw CSS text
+builder.tokens;            // Record<string, string> of all token values
 ```
+
+When `aesthetic` is provided, the builder outputs aesthetic-appropriate gradient, shadow, blur, and treatment tokens (not just flat/solid defaults).
 
 ### `useDarkMode`
 Reactive dark mode toggling with system preference detection.
