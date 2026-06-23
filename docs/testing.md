@@ -43,8 +43,12 @@ describe("Button", () => {
 ## Coverage & Commands
 
 vitest enforces coverage targets:
-- **Global**: 80% lines & statements, 70% branches, 77% functions.
-- **Agentic**: 90% lines & statements, 85% branches, 88% functions.
+- **Global**: 90% lines & statements, 85% branches, 88% functions.
+- **Agentic** (`src/utils/agentic/**`): 95% lines & statements, 90% branches, 92% functions.
+- **Primitives** (`src/primitives/**`): 90% lines & statements, 85% branches, 88% functions.
+- **Layouts** (`src/layouts/**`): 90% lines & statements, 85% branches, 88% functions.
+- **Domains** (`src/domains/**`): 90% lines & statements, 85% branches, 88% functions.
+- **Templates** (`src/templates/**`): 90% lines & statements, 85% branches, 88% functions.
 
 ```bash
 bun run test           # Run tests
