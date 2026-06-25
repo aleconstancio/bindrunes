@@ -10,7 +10,7 @@
   "dependencies": {
     "bindrunes": "workspace:*",
     "lucide-svelte": "^1.0.1",
-    "mode-watcher": "^0.5.1",
+    "mode-watcher": "^1.1.0",
     "svelte": "^5.0.0",
     "svelte-sonner": "^0.3.28"
   },
