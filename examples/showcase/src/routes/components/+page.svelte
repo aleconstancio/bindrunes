@@ -125,7 +125,6 @@
 		{ name: "SidebarRail", category: "Sidebar", description: "Collapsed rail mode", demoPath: "/dashboard" },
 		{ name: "SidebarSeparator", category: "Sidebar", description: "Separator line", demoPath: "/dashboard" },
 		{ name: "SidebarTrigger", category: "Sidebar", description: "Toggle button", demoPath: "/dashboard" },
-		{ name: "SidebarLayout", category: "Sidebar", description: "Layout with positions", demoPath: "/dashboard" },
 
 		// Landing (22 components)
 		{ name: "HeroBanner", category: "Landing", description: "Hero section with CTA", demoPath: "/landing" },

@@ -305,7 +305,6 @@ Sidebar sub-components (import from `bindrunes/layouts`):
 
 - **`<SidebarProvider>`**: Root context provider for sidebar state.
 - **`<Sidebar>`**: Main sidebar panel with `side`, `variant`, and `collapsible` props.
-- **`<SidebarLayout>`**: Full sidebar layout wrapper combining provider, sidebar, and content.
 - **`<SidebarContent>`**: Scrollable content area inside the sidebar.
 - **`<SidebarHeader>`** / **`<SidebarFooter>`**: Header and footer areas.
 - **`<SidebarGroup>`**: Groups menu items with optional labels.

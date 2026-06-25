@@ -222,7 +222,6 @@ export { useClipboard } from "./utils/useClipboard.svelte.ts";
 export { useCounter } from "./utils/useCounter.svelte.ts";
 /** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
-export { useDebouncedCallback } from "./utils/useDebouncedCallback.svelte.ts";
 export type { Density } from "./utils/useDensity.svelte.ts";
 export { useDensity } from "./utils/useDensity.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */
