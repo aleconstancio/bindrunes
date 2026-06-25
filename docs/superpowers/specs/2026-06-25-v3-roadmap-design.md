@@ -1,8 +1,12 @@
-# bindrunes v3.0 — Server-First Rewrite + Responsive Hybrid
+# bindrunes v3.0 — Server-First Foundation + Responsive Hybrid (Revised)
 
 ## Overview
 
-v3.0 is the foundation release of the v3 roadmap. It adds native Svelte 5 server component support and a hybrid responsive system (CSS-native + JS adaptive). This positions bindrunes for the future of web development — server-first rendering with progressive enhancement.
+v3.0 makes bindrunes SSR-first by design. Components are universal (render on both server and client), with server utilities for theme/density resolution from request context. Leverages SvelteKit's native SSR patterns — not custom hydration.
+
+**Key insight:** Svelte 5 doesn't have React-style server components. Components are universal — they render on both server and client. "Server-first" means designing components that are SSR-safe by default.
+
+---
 
 ## Roadmap
 
@@ -14,149 +18,155 @@ v3.0 is the foundation release of the v3 roadmap. It adds native Svelte 5 server
 
 ---
 
-## 1. Server Component Architecture
+## 1. Server Architecture
 
-### New Layer
+### How Svelte 5 SSR Actually Works
 
-```
-Templates (Layer 4)
-  └── Domains (Layer 3)
-       └── Layouts (Layer 2)
-            └── Primitives (Layer 1)
-                 └── Server (NEW — Layer 0)
-```
+- **Components are universal** — same component renders on server and client
+- **`render()` from `svelte/server`** — renders components to HTML strings
+- **SvelteKit load functions** — `+page.server.ts` / `+layout.server.ts` fetch data on the server
+- **Streaming** — return promises from load functions for progressive rendering
+- **Hydration** — SvelteKit automatically hydrates page components on the client
+- **Per-route control** — `export const ssr = false` to disable SSR for specific routes
 
 ### Export Path
 
-`bindrunes/server` — Server-only components and utilities.
-
-### Server Components
-
-Render on the server, send HTML to the client, hydrate only when interacted with:
-- Zero JS for non-interactive components on first paint
-- Full content for search engines
-- Streaming SSR sends HTML chunks as they render
-
-### Component Classification
-
-**Server components** (static, read-only):
-- Layout: PageShell, Sidebar, DashboardShell, MetaLayout, MetaContainer
-- Display: Card, Badge, Avatar, Alert, StatusChip, MetricCard
-- Data: DataTable, DataGrid, ListPage
-- Landing: HeroBanner, PricingTable, Testimonial, FeatureGrid, LogoCloud
-- Marketing: BlogArticle, BlogListing, ChangelogPage, ReleaseNotes
-- Navigation: Breadcrumb, NavigationMenu
-
-**Client-only** (need interaction):
-- Forms: Input, Select, Checkbox, Switch, Combobox, DatePicker, FileUpload
-- Overlays: Dialog, Drawer, DropdownMenu, Popover, AlertDialog, Sheet
-- Interactive: Tabs, Accordion, Stepper, CommandPalette, Omnibar
-- Agentic: All copilot components
-
-### Server API Pattern
-
-```svelte
-<script lang="server">
-  import { Card } from "bindrunes/server";
-  let { title, content } = $props();
-</script>
-
-<Card variant="glass">
-  <h2>{title}</h2>
-  <p>{content}</p>
-</Card>
-```
+`bindrunes/server` — Pure utility functions safe for any server context (no Svelte runes, no browser APIs).
 
 ### Server Utilities
 
 ```ts
-// bindrunes/server
-export { createServerTheme } from "./utils/createServerTheme.svelte.ts";
-export { useThemeServer } from "./utils/useThemeServer.svelte.ts";
-export { useDensityServer } from "./utils/useDensityServer.svelte.ts";
-export { renderComponent } from "./utils/renderComponent.ts";
-```
+// bindrunes/server — works in +page.server.ts, hooks, edge functions
+import { createServerTheme, useThemeServer, useDensityServer } from "bindrunes/server";
 
----
-
-## 2. Responsive Hybrid Layer
-
-### CSS Layer (Zero JS)
-
-All components get responsive behavior through CSS container queries and fluid tokens:
-
-```css
-/* Fluid spacing — adapts to viewport */
---space-4: clamp(0.75rem, 1.5vw, 1rem);
---space-6: clamp(1rem, 2vw, 1.5rem);
-
-/* Container queries — adapt to parent */
-@container (min-width: 640px) { .card { padding: var(--space-6); } }
-@container (min-width: 1024px) { .card { display: grid; grid-template-columns: 1fr 1fr; } }
-
-/* Fluid typography */
---text-body-md: clamp(0.875rem, 1.2vw, 1rem);
-```
-
-### New Density Mode: `auto`
-
-Derives density from viewport width automatically:
-- `< 640px` → compact
-- `640-1024px` → comfortable
-- `> 1024px` → spacious
-
-### JS Layer (Opt-in)
-
-New export: `bindrunes/responsive`
-
-| Composable | Purpose |
-|------------|---------|
-| `useGesture()` | Swipe, pinch, long-press, drag |
-| `useScroll()` | Sticky headers, parallax, scroll-linked |
-| `useOrientation()` | Landscape/portrait adaptation |
-| `useViewport()` | Breakpoint detection, safe areas |
-
-### Responsive Tokens
-
-```css
---responsive-card-padding: var(--space-4);
---responsive-sidebar-width: 280px;
---responsive-grid-columns: 1;
-
-@container (min-width: 768px) {
-  --responsive-grid-columns: 2;
-  --responsive-sidebar-width: 320px;
+// In +page.server.ts:
+export async function load({ request }) {
+  const { theme, isDark } = useThemeServer(request);
+  const { density } = useDensityServer(request);
+  const tokens = createServerTheme(theme, { density });
+  return { tokens: tokens.toCSS() };
 }
 ```
 
----
+### SSR-Safe Components
 
-## 3. Progressive Hydration
-
-### Strategies
-
-| Strategy | When | Use Case |
-|----------|------|----------|
-| `eager` | Immediately | Above-the-fold interactive |
-| `visible` | Scrolled into view | Below-the-fold cards |
-| `idle` | Browser idle | Non-critical interactive |
-| `interaction` | First click/touch | Tooltips, dialogs |
-
-### Component API
+Components are SSR-safe by default — no browser APIs in top-level script setup. Use `browser` guard for client-only code:
 
 ```svelte
-<Card hydrate="visible">
-  <DataTable data={rows} />
-</Card>
-
-<Dialog hydrate="interaction">
-  <ConfirmDialog />
-</Dialog>
+<script lang="ts">
+  import { browser } from "bindrunes";
+  
+  // This runs on server (returns undefined) and client (returns real value)
+  let element = $state<HTMLElement | undefined>(undefined);
+  
+  $effect(() => {
+    if (!browser) return; // Skip on server
+    // Client-only code here
+  });
+</script>
 ```
 
-### Server Hint
+---
 
-Server components emit `<template data-hydrate="visible">` markers. Client runtime picks them up via IntersectionObserver.
+## 2. Progressive Hydration
+
+Uses SvelteKit's native patterns — no custom hydration system:
+
+| Pattern | Use Case |
+|---------|----------|
+| `export const ssr = false` | Client-only pages (dashboards, admin panels) |
+| `export const csr = false` | Server-only pages (landing pages, blogs) |
+| `<svelte:boundary>` | Selective client hydration within a page |
+| Default (SSR + hydration) | Most pages — server-rendered, then hydrated |
+
+### Example: Landing Page (Server-Only)
+
+```ts
+// +page.server.ts
+export const csr = false; // No client JS needed
+
+export async function load() {
+  return { pricing: await getPricing() };
+}
+```
+
+```svelte
+<!-- +page.svelte — renders to pure HTML, no client JS -->
+<script lang="ts">
+  let { data } = $props();
+</script>
+
+<PricingTable plans={data.pricing} />
+<TestimonialGrid />
+```
+
+### Example: Dashboard (Client-Only)
+
+```ts
+// +page.ts
+export const ssr = false; // Client-only SPA
+```
+
+### Example: Mixed Page (Selective Hydration)
+
+```svelte
+<!-- Server-rendered content + interactive island -->
+<script lang="ts">
+  let { data } = $props();
+</script>
+
+<!-- Server-rendered: pure HTML -->
+<article>{@html data.post.content}</article>
+
+<!-- Client-hydrated: interactive -->
+<svelte:boundary>
+  <CommentSection postId={data.post.id} />
+  {#snippet pending()}
+    <Skeleton lines={5} />
+  {/snippet}
+</svelte:boundary>
+```
+
+---
+
+## 3. Responsive Hybrid
+
+### CSS Layer (Zero JS)
+
+Tailwind v4 container queries via `@` prefix + fluid tokens:
+
+```svelte
+<!-- Fluid spacing that adapts to viewport -->
+<div class="p-[var(--fluid-space-4)] @md:p-[var(--fluid-space-6)]">
+
+<!-- Grid that adapts to container width -->
+<div class="grid grid-cols-1 @md:grid-cols-2 @lg:grid-cols-3">
+```
+
+### Auto Density
+
+New `data-density="auto"` mode — CSS media queries derive density from viewport:
+
+- `< 640px` → compact spacing
+- `640-1024px` → comfortable spacing
+- `> 1024px` → spacious spacing
+
+### JS Layer (Opt-in)
+
+`useViewport()` composable for JS breakpoint detection:
+
+```svelte
+<script lang="ts">
+  import { useViewport } from "bindrunes/responsive";
+  const viewport = useViewport();
+</script>
+
+{#if viewport.isMobile}
+  <MobileNav />
+{:else}
+  <DesktopNav />
+{/if}
+```
 
 ---
 
@@ -164,50 +174,21 @@ Server components emit `<template data-hydrate="visible">` markers. Client runti
 
 | v2 API | v3 Change | Migration |
 |--------|-----------|-----------|
-| `useTheme()` | Split into `useTheme()` + `useThemeServer()` | Server components use `useThemeServer()` |
-| `useDensity()` | Split into `useDensity()` + `useViewport()` | `useViewport()` replaces responsive option |
-| `createTheme()` | Add server variant | `createThemeServer()` for SSR context |
 | `AppProvider` | Rename to `ThemeProvider` | Clearer purpose |
+| `useDensity({ responsive })` | Use `useViewport()` + `data-density="auto"` | JS responsive separated from density |
 | Peer dep `mode-watcher` | Remove | Absorbed into `useTheme().toggleMode()` |
 | Peer dep `lucide-svelte` | Optional | Icons ship as inline SVG |
 
 ---
 
-## 5. Phased Delivery
-
-### Phase 1: Server Foundation (v3.0-alpha)
-- Create `bindrunes/server` export path
-- Server variants of 20 most-used components
-- `createServerTheme()` and `useThemeServer()`
-- Progressive hydration system
-
-### Phase 2: Responsive System (v3.0-beta)
-- CSS container query integration for all components
-- Fluid token system
-- `useViewport()` composable
-- `auto` density mode
-
-### Phase 3: Polish & Ship (v3.0)
-- Remaining server components (full coverage)
-- Documentation rewrite
-- Migration guide
-- Performance benchmarks
-
----
-
-## 6. Implementation Order
+## 5. Implementation Order
 
 1. Create `bindrunes/server` export path and barrel
-2. Implement `createServerTheme()` + `useThemeServer()`
-3. Create server variants of core components (Card, Button, Badge, Alert, Avatar)
-4. Implement progressive hydration system
-5. Add CSS container queries to existing components
-6. Implement fluid token system
-7. Create `bindrunes/responsive` export
-8. Implement `useViewport()` composable
-9. Add `auto` density mode
-10. Server variants for layout components (PageShell, Sidebar, DashboardShell)
-11. Server variants for domain components (landing, marketing)
-12. Documentation rewrite
-13. Migration guide
-14. Performance benchmarks
+2. Implement `createServerTheme()` — pure function, no runes
+3. Implement `useThemeServer()` + `useDensityServer()` — request cookie readers
+4. Implement `createRender()` — wrapper around `svelte/server` render()
+5. Implement `useViewport()` — client-side breakpoint composable
+6. Add responsive CSS system — fluid tokens, auto density, container queries
+7. Add `auto` density mode to `useDensity`
+8. Update AGENTS.md with server-first conventions
+9. Final validation — build, test, verify exports
