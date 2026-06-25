@@ -4,7 +4,6 @@ import SidebarContent from "../layouts/sidebar/SidebarContent.svelte";
 import SidebarFooter from "../layouts/sidebar/SidebarFooter.svelte";
 import SidebarGroup from "../layouts/sidebar/SidebarGroup.svelte";
 import SidebarHeader from "../layouts/sidebar/SidebarHeader.svelte";
-import SidebarLayout from "../layouts/sidebar/SidebarLayout.svelte";
 import SidebarMenu from "../layouts/sidebar/SidebarMenu.svelte";
 import SidebarMenuBadge from "../layouts/sidebar/SidebarMenuBadge.svelte";
 import SidebarMenuButton from "../layouts/sidebar/SidebarMenuButton.svelte";
@@ -17,21 +16,6 @@ import SidebarTestHarness from "./__tests__/harness/SidebarTestHarness.svelte";
 import SidebarTriggerTestWrapper from "./__tests__/harness/SidebarTriggerTestWrapper.svelte";
 
 describe("Sidebar standalone components", () => {
-	it("SidebarLayout renders in header position", () => {
-		const { container } = render(SidebarLayout, { position: "header" });
-		expect(container.firstElementChild).toBeInTheDocument();
-	});
-
-	it("SidebarLayout renders in footer position", () => {
-		const { container } = render(SidebarLayout, { position: "footer" });
-		expect(container.firstElementChild?.className).toContain("border-t");
-	});
-
-	it("SidebarLayout renders in content position", () => {
-		const { container } = render(SidebarLayout, { position: "content" });
-		expect(container.firstElementChild).toBeInTheDocument();
-	});
-
 	it("SidebarGroup renders label", () => {
 		render(SidebarGroup, { label: "Group 1" });
 		expect(document.querySelector("span")?.textContent).toContain("Group 1");
@@ -75,11 +59,6 @@ describe("Sidebar standalone components", () => {
 	it("SidebarMenuSkeleton renders", () => {
 		const { container } = render(SidebarMenuSkeleton);
 		expect(container.querySelector(".animate-pulse")).toBeInTheDocument();
-	});
-
-	it("SidebarLayout renders separator", () => {
-		const { container } = render(SidebarLayout, { position: "separator" });
-		expect(container.querySelector('[role="separator"]')).toBeInTheDocument();
 	});
 
 	it("SidebarHeader renders", () => {

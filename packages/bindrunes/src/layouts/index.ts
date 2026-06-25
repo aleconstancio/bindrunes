@@ -27,7 +27,6 @@ export {
 	SidebarFooter,
 	SidebarGroup,
 	SidebarHeader,
-	SidebarLayout,
 	SidebarMenu,
 	SidebarMenuBadge,
 	SidebarMenuButton,
