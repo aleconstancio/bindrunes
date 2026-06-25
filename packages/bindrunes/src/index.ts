@@ -2,12 +2,41 @@
 
 export type { ShortcutOptions } from "./actions/shortcut.ts";
 export { shortcut } from "./actions/shortcut.ts";
+export type { AuthStorage, User } from "./auth/index.ts";
+export { hasAnyRole, hasPermission, hasRole, useAccess, useAuth } from "./auth/index.ts";
+export type {
+	CreateMutationOptions,
+	CreateOmnibarOptions,
+	CreateQueryOptions,
+	CreateTableOptions,
+	MutationResult,
+	OmnibarOption,
+	OmnibarState,
+	QueryResult,
+} from "./data/index.ts";
+export {
+	defaultTableFallbacks,
+	invalidateQuery,
+	setQueryData,
+	useMutation,
+	useOmnibar,
+	useQuery,
+	useTable,
+} from "./data/index.ts";
 // ── Charts ──
 export { default as DataChart } from "./domains/data/DataChart.svelte";
 export { default as DataTable } from "./domains/data/DataTable.svelte";
 // ── Forms ──
 export { default as Form } from "./domains/data/Form.svelte";
 export { default as FormField } from "./domains/data/FormField.svelte";
+export type {
+	CreateFormOptions,
+	FormState,
+	InferSchemaType,
+	WizardOptions,
+	WizardStep,
+} from "./forms/index.ts";
+export { useForm, useWizard, validateWithSchema } from "./forms/index.ts";
 export { default as DynamicIcon } from "./layouts/DynamicIcon.svelte";
 export { default as ErrorBoundary } from "./layouts/ErrorBoundary.svelte";
 export { default as LazyLoad } from "./layouts/LazyLoad.svelte";
@@ -116,17 +145,14 @@ export type {
 	StatusVariant,
 	TFunction,
 } from "./shared-types";
-// ── Pages ──
-//
-// ── Templates ──
-// Templates are now available via `bindrunes/layouts`
+// ── Backward-compatible re-exports (will be removed in v4) ──
 export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
 /** Merge class names with Tailwind conflict resolution (last-wins per utility prefix). */
 export { cn } from "./utils/cn.ts";
 export { hexToOklch, oklchToHex } from "./utils/colorConvert.ts";
 export { checkContrast, oklchContrast, parseOklch } from "./utils/contrastCheck.ts";
-// ── Composables: API & Auth ──
+// ── Composables: API ──
 /** Typed fetch client with timeout, 401 handling, and domain API grouping. */
 export type { ApiClientOptions } from "./utils/createApiClient.ts";
 export { createApiClient } from "./utils/createApiClient.ts";
@@ -171,28 +197,19 @@ export {
 	setLocale,
 } from "./utils/formatters.ts";
 export { getGridClass } from "./utils/grid.ts";
-export { hasAnyRole, hasPermission, hasRole } from "./utils/hasRole.svelte.ts";
 export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";
-export { invalidateQuery, setQueryData } from "./utils/queryCache.ts";
 export type { SemanticColor } from "./utils/semanticColors.ts";
 export { semanticColors } from "./utils/semanticColors.ts";
-export { defaultTableFallbacks } from "./utils/tableFallbacks.ts";
 /** Normalize unknown errors to Error objects. */
 export { toError } from "./utils/toError.ts";
 export { isSafeRedirect } from "./utils/url.ts";
-/** Role-based access control checks (hasRole, hasAnyRole, hasPermission). */
-export { useAccess } from "./utils/useAccess.svelte.ts";
 // ── Composables: Design System ──
 export type { Aesthetic } from "./utils/useAesthetic.svelte.ts";
 export { useAesthetic } from "./utils/useAesthetic.svelte.ts";
 // ── Composables: Reactivity ──
 /** Animation class names for enter, exit, slide, fade, and scale transitions. */
 export { useAnimation } from "./utils/useAnimation.svelte.ts";
-/** Reactive authentication token handling with login/logout/session. */
-export type { AuthStorage, User } from "./utils/useAuth.svelte.ts";
-export { useAuth } from "./utils/useAuth.svelte.ts";
-// ── Composables: Components ──
 export { useBreakpoint } from "./utils/useBreakpoint.svelte.ts";
 export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
 /** Copy to clipboard with success/error state. */
@@ -204,10 +221,6 @@ export type { Density, ResponsiveDensityOptions } from "./utils/useDensity.svelt
 export { useDensity } from "./utils/useDensity.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */
 export { useEventListener } from "./utils/useEventListener.svelte.ts";
-// ── Composables: Forms & Validation ──
-/** Typesafe form state with Valibot schema validation and submit handling. */
-export type { CreateFormOptions, FormState, InferSchemaType } from "./utils/useForm.svelte.ts";
-export { useForm } from "./utils/useForm.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
 export { createI18nContext, useI18n } from "./utils/useI18n.svelte.ts";
 export { useInfiniteScroll } from "./utils/useInfiniteScroll.svelte.ts";
@@ -221,24 +234,8 @@ export type {
 	Tenant,
 } from "./utils/useMultiTenant.svelte.ts";
 export { useMultiTenant } from "./utils/useMultiTenant.svelte.ts";
-/** Server state mutation with optimistic updates and invalidation. */
-export type { CreateMutationOptions, MutationResult } from "./utils/useMutation.svelte.ts";
-export { useMutation } from "./utils/useMutation.svelte.ts";
-// ── Composables: Omnibar ──
-export type {
-	CreateOmnibarOptions,
-	OmnibarOption,
-	OmnibarState,
-} from "./utils/useOmnibar.svelte.ts";
-export { useOmnibar } from "./utils/useOmnibar.svelte.ts";
-// ── Composables: Data Layer ──
-/** Cached server query with stale-time, refetch, and invalidation support. */
-export type { CreateQueryOptions, QueryResult } from "./utils/useQuery.svelte.ts";
-export { useQuery } from "./utils/useQuery.svelte.ts";
 export { useReducedMotion } from "./utils/useReducedMotion.svelte.ts";
 export { useResizeObserver } from "./utils/useResizeObserver.svelte.ts";
-export type { CreateTableOptions } from "./utils/useTable.svelte.ts";
-export { useTable } from "./utils/useTable.svelte.ts";
 export type { Theme } from "./utils/useTheme.svelte.ts";
 export { useTheme } from "./utils/useTheme.svelte.ts";
 export { useThrottle } from "./utils/useThrottle.svelte.ts";
@@ -248,6 +245,3 @@ export { useToast } from "./utils/useToast.svelte.ts";
 export { useToggle } from "./utils/useToggle.svelte.ts";
 export { useUrlParams } from "./utils/useUrlParams.svelte.ts";
 export { useVirtualList } from "./utils/useVirtualList.svelte.ts";
-export type { WizardOptions, WizardStep } from "./utils/useWizard.svelte.ts";
-export { useWizard } from "./utils/useWizard.svelte.ts";
-export { validateWithSchema } from "./utils/validateWithSchema.ts";
