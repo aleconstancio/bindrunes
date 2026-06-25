@@ -1,5 +1,11 @@
 import { isBrowser } from "./isBrowser";
 
+export { useLongPress, useSwipe } from "./useGesture";
+export { useHaptic } from "./useHaptic";
+export { useInView } from "./useInView.svelte";
+export { useScrollLinked } from "./useScrollLinked.svelte";
+export { useSpring } from "./useSpring.svelte";
+
 type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 const BREAKPOINTS: Record<Breakpoint, string> = {
