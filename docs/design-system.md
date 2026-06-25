@@ -756,6 +756,10 @@ Define a theme via CSS custom properties under the `[data-theme]` selector:
 
   // Switch programmatically
   theme.setTheme("my-brand");
+
+  // Toggle light/dark mode
+  theme.toggleMode();
+  theme.setMode("dark");
 </script>
 ```
 

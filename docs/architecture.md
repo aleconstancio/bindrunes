@@ -159,15 +159,14 @@ Template (DashboardTemplate, AuthTemplate, CrudTemplate, SettingsTemplate, ...)
 
 | Import Path | Contents |
 |---|---|
-| `bindrunes` | Primitives, shared components, composables, types, utilities, templates |
-| `bindrunes/layouts` | Layout components (PageShell, sidebar, dashboard shell, etc.) |
-| `bindrunes/domains` | All domain components and composables |
+| `bindrunes` | Primitives, shared components, composables, types, utilities |
+| `bindrunes/layouts` | Layout components (PageShell, sidebar, dashboard shell, templates) |
 | `bindrunes/domains/<name>` | Individual domain (e.g., `bindrunes/domains/auth`) |
-| `bindrunes/templates` | Pre-composed full-page templates |
 | `bindrunes/agentic` | Agentic subsystem (LLM tool calling, agent loops) |
 | `bindrunes/tailwind` | Tailwind CSS plugin |
-| `bindrunes/playground` | Dev playground components |
 | `bindrunes/styles/*` | Global styles and token sheets |
+
+> **Note:** Templates have been merged into `bindrunes/layouts`. Domain barrel export (`bindrunes/domains`) has been removed — use granular imports like `bindrunes/domains/auth`.
 
 ---
 

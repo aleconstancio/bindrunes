@@ -6,6 +6,8 @@ All composables follow the `useX()` pattern using Svelte 5 runes (`$state`, `$de
 
 ## Data Layer
 
+> **v2 note:** `useAsyncState` has been removed. Use `useQuery` for async data fetching.
+
 ### `useQuery` & `useMutation`
 Manage server queries and state mutations with caching, retry strategies, and loading statuses.
 
@@ -143,6 +145,11 @@ crud.toggleSelect(id);
 
 ## Design System
 
+> **v2 notes:**
+> - `useDarkMode` has been removed — use `useTheme` (which includes `toggleMode`/`setMode`).
+> - `useResponsiveDensity` has been removed — use `useDensity({ responsive: true })`.
+> - `defineTheme`/`extendTheme`/`createThemeBuilder` have been removed — use `createTheme()`.
+
 ### `useTheme` / `useAesthetic` / `useDensity`
 Runtime switching of the three design axes.
 
@@ -248,6 +255,8 @@ toast.success("Saved!");
 ---
 
 ## Reactivity Composables
+
+> **v2 note:** `useDebouncedCallback` has been removed. Use `useDebounce` instead.
 
 ### `useClickOutside`
 Detect clicks outside an element.

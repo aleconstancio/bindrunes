@@ -61,8 +61,8 @@ The agentic subsystem provides two layers:
 - `src/utils/agentic/createOrchestrator.svelte.ts` — Multi-turn agent loop coordination
 - `src/utils/agentic/eviction.svelte.ts` — Token eviction policies
 - `src/utils/agentic/persistence.svelte.ts` — Window graph serialization/deserialization
-- `src/utils/agentic/SimulatorRuntime.ts` — Mock runtime for tests
-- `src/utils/agentic/provideWindowStore.svelte.ts` — Context provider wrapper
+- `src/utils/agentic/createSimulatorRuntime.ts` — Mock runtime for tests
+- `src/utils/agentic/createWindowStoreProvider.svelte.ts` — Context provider wrapper
 - `src/utils/agentic/useWindowStore.svelte.ts` — Context consumer wrapper
 
 ### Module Inventory
@@ -76,8 +76,8 @@ The agentic subsystem provides two layers:
 | `createOrchestrator.svelte.ts` | Coordinates multi-turn agent loops — tool calling, re-prompting, and completion detection. |
 | `eviction.svelte.ts` | Token eviction policies for managing context window size when budgets are exceeded. |
 | `persistence.svelte.ts` | Serialization/deserialization of Window graphs. Built-in adapters: `createLocalStorageAdapter(prefix)`, `createIndexedDBAdapter(dbName)`. |
-| `SimulatorRuntime.ts` | Reference `AgentRuntime` implementation for tests. Reads scripted Delta streams, respects `AbortSignal`, never touches the network. |
-| `provideWindowStore.svelte.ts` | Creates a `WindowStore` instance and sets it into Svelte context via `createMetaContext`. |
+| `createSimulatorRuntime.ts` | Reference `AgentRuntime` implementation for tests. Reads scripted Delta streams, respects `AbortSignal`, never touches the network. |
+| `createWindowStoreProvider.svelte.ts` | Creates a `WindowStore` instance and sets it into Svelte context via `createMetaContext`. |
 | `useWindowStore.svelte.ts` | Retrieves the `WindowStore` from Svelte context via `useMetaContext`. Throws if no provider is mounted. |
 
 ### Core Concepts
