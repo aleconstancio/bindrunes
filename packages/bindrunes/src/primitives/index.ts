@@ -7,6 +7,8 @@ export { default as Alert } from "./Alert.svelte";
 export { default as AlertDialog } from "./AlertDialog.svelte";
 export { default as Avatar } from "./Avatar.svelte";
 export { default as Badge } from "./Badge.svelte";
+// ── Mobile ──
+export { default as BottomSheet } from "./BottomSheet.svelte";
 export { default as Breadcrumb } from "./Breadcrumb.svelte";
 export { default as Button } from "./Button.svelte";
 export { default as Card } from "./Card.svelte";
@@ -58,6 +60,8 @@ export { default as Spinner } from "./Spinner.svelte";
 export { default as StatusChip } from "./StatusChip.svelte";
 export { default as Stepper } from "./Stepper.svelte";
 export { default as Suspense } from "./Suspense.svelte";
+export { default as SwipeableItem } from "./SwipeableItem.svelte";
+export { default as SwipeableList } from "./SwipeableList.svelte";
 export { default as Switch } from "./Switch.svelte";
 export { default as Tabs } from "./Tabs.svelte";
 export { default as TabsContent } from "./TabsContent.svelte";
