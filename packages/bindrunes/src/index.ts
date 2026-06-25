@@ -220,8 +220,6 @@ export { useClickOutside } from "./utils/useClickOutside.svelte.ts";
 /** Copy to clipboard with success/error state. */
 export { useClipboard } from "./utils/useClipboard.svelte.ts";
 export { useCounter } from "./utils/useCounter.svelte.ts";
-/** Reactive dark mode toggling with system preference detection. */
-export { useDarkMode } from "./utils/useDarkMode.svelte.ts";
 /** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
 export { useDebouncedCallback } from "./utils/useDebouncedCallback.svelte.ts";

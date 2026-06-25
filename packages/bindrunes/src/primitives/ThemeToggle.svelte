@@ -1,18 +1,18 @@
 <script lang="ts">
 import { Moon, Sun } from "lucide-svelte";
 import Button from "../primitives/Button.svelte";
-import { useDarkMode } from "../utils/useDarkMode.svelte";
+import { useTheme } from "../utils/useTheme.svelte";
 
 let { variant = "outline" as "icon" | "outline" } = $props();
 
-const darkMode = useDarkMode();
+const darkMode = useTheme();
 
 let _buttonVariant = $derived(variant === "icon" ? "ghost" : variant);
 </script>
 
 <Button
   variant={_buttonVariant}
-  onclick={darkMode.toggle}
+  onclick={darkMode.toggleMode}
   aria-label={darkMode.mode === 'dark' ? 'Light mode' : 'Dark mode'}
   class="relative"
 >

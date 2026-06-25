@@ -1,7 +1,6 @@
 import { mode } from "mode-watcher";
 import { describe, expect, it, vi } from "vitest";
 import { getCache } from "../utils/queryCache";
-import { useDarkMode } from "./useDarkMode.svelte";
 
 // Mock mode-watcher
 vi.mock("mode-watcher", () => {
@@ -27,14 +26,16 @@ vi.mock("mode-watcher", () => {
 
 describe("Audited Fixes tests", () => {
 	it("should react to dark mode store changes", () => {
-		const dm = useDarkMode();
-		expect(dm.isDark).toBe(false);
-		expect(dm.mode).toBe("light");
+		let currentMode: string | undefined;
+		mode.subscribe((v: string) => {
+			currentMode = v;
+		});
+
+		expect(currentMode).toBe("light");
 
 		// Trigger update
 		(mode as any).setForTest("dark");
-		expect(dm.isDark).toBe(true);
-		expect(dm.mode).toBe("dark");
+		expect(currentMode).toBe("dark");
 	});
 
 	it("should provide isolated map on server", () => {
