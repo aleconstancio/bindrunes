@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { staggerChildren } from "./staggerChildren.svelte";
+import { staggerChildren } from "./createStaggerChildren.svelte";
 
 function makeParent(childCount: number): HTMLElement {
 	const parent = document.createElement("div");

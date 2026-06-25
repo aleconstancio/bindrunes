@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { scriptedRun } from "../../test-fixtures/scriptedRuns";
 import type { Delta } from "../../types/agent";
-import { SimulatorRuntime } from "./SimulatorRuntime";
+import { SimulatorRuntime } from "./createSimulatorRuntime";
 
 async function collect<T>(iter: AsyncIterable<T>): Promise<T[]> {
 	const out: T[] = [];

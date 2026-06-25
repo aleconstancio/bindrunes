@@ -148,7 +148,6 @@ export { createEnv } from "./utils/createEnv.ts";
 // ── Composables: i18n ──
 export type { Dict, I18nOptions, I18nResult } from "./utils/createI18n.svelte.ts";
 export { createI18n } from "./utils/createI18n.svelte.ts";
-export { createI18nContext, useI18n } from "./utils/createI18nContext.svelte.ts";
 // ── Composables: Context ──
 /** Type-safe Svelte context wrapper using Symbol keys. */
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte.ts";
@@ -164,8 +163,17 @@ export {
 } from "./utils/createMultiTenant.svelte.ts";
 export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
+// ── Composables: Realtime ──
+export type {
+	RealtimeEvent,
+	RealtimeOptions,
+	RealtimeStatus,
+} from "./utils/createRealtime.svelte.ts";
+export { RealtimeClient } from "./utils/createRealtime.svelte.ts";
 export type { SessionMonitorOptions } from "./utils/createSessionMonitor.svelte.ts";
 export { createSessionMonitor } from "./utils/createSessionMonitor.svelte.ts";
+export type { SSEEventRouter } from "./utils/createSseBridge.svelte.ts";
+export { handleSSEEvent } from "./utils/createSseBridge.svelte.ts";
 export { createStorage } from "./utils/createStorage.ts";
 export { createTheme } from "./utils/createTheme.svelte.ts";
 export { createTransition } from "./utils/createTransition.svelte.ts";
@@ -186,17 +194,8 @@ export { hasAnyRole, hasPermission, hasRole } from "./utils/hasRole.svelte.ts";
 export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";
 export { invalidateQuery, setQueryData } from "./utils/queryCache.ts";
-// ── Composables: Realtime ──
-export type {
-	RealtimeEvent,
-	RealtimeOptions,
-	RealtimeStatus,
-} from "./utils/RealtimeClient.svelte.ts";
-export { RealtimeClient } from "./utils/RealtimeClient.svelte.ts";
 export type { SemanticColor } from "./utils/semanticColors.ts";
 export { semanticColors } from "./utils/semanticColors.ts";
-export type { SSEEventRouter } from "./utils/sseBridge.svelte.ts";
-export { handleSSEEvent } from "./utils/sseBridge.svelte.ts";
 export { defaultTableFallbacks } from "./utils/tableFallbacks.ts";
 /** Normalize unknown errors to Error objects. */
 export { toError } from "./utils/toError.ts";
@@ -229,6 +228,7 @@ export { useEventListener } from "./utils/useEventListener.svelte.ts";
 export type { CreateFormOptions, FormState, InferSchemaType } from "./utils/useForm.svelte.ts";
 export { useForm } from "./utils/useForm.svelte.ts";
 export { useHead } from "./utils/useHead.svelte.ts";
+export { createI18nContext, useI18n } from "./utils/useI18n.svelte.ts";
 export { useInfiniteScroll } from "./utils/useInfiniteScroll.svelte.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
 export { useInterval } from "./utils/useInterval.svelte.ts";

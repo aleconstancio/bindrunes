@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { RealtimeClient } from "./RealtimeClient.svelte";
+import { RealtimeClient } from "./createRealtime.svelte";
 
 vi.mock("@microsoft/fetch-event-source", () => ({
 	fetchEventSource: vi.fn(),

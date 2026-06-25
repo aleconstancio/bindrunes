@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import type { Delta } from "../../types/agent";
+import { SimulatorRuntime } from "./createSimulatorRuntime";
 import { createWindowStore } from "./createWindowStore.svelte";
-import { SimulatorRuntime } from "./SimulatorRuntime";
 import { useOrchestrator } from "./useOrchestrator.svelte";
 
 function createStore() {

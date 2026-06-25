@@ -3,8 +3,11 @@ export type { SummarizeCompactionOptions } from "./compaction/SummarizeCompactio
 export { SummarizeCompaction } from "./compaction/SummarizeCompaction";
 export type { Branch } from "./createConversationBranches.svelte.ts";
 export { createConversationBranches } from "./createConversationBranches.svelte.ts";
+export type { SimulatorRuntimeOptions } from "./createSimulatorRuntime.ts";
+export { SimulatorRuntime as createSimulatorRuntime } from "./createSimulatorRuntime.ts";
 export type { WindowStore } from "./createWindowStore.svelte.ts";
 export { createWindowStore } from "./createWindowStore.svelte.ts";
+export { provideWindowStore as createWindowStoreProvider } from "./createWindowStoreProvider.svelte.ts";
 export type { EvictionPolicyInstance } from "./eviction.svelte.ts";
 export {
 	createAgeEviction,
@@ -17,9 +20,6 @@ export {
 	createLocalStorageAdapter,
 	createPersistenceAdapter,
 } from "./persistence.svelte";
-export { provideWindowStore } from "./provideWindowStore.svelte.ts";
-export type { SimulatorRuntimeOptions } from "./SimulatorRuntime.ts";
-export { SimulatorRuntime } from "./SimulatorRuntime.ts";
 export type {
 	OrchestratorOptions,
 	OrchestratorResult,

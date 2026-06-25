@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mountComposable } from "../../helpers/test-wrapper.svelte";
-import { provideWindowStore } from "./provideWindowStore.svelte";
+import { provideWindowStore } from "./createWindowStoreProvider.svelte";
 
 describe("provideWindowStore", () => {
 	it("is a function", () => {
