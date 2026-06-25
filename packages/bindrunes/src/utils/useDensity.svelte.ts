@@ -1,7 +1,7 @@
 import { createPersistedDataAttribute } from "./createPersistedDataAttribute.svelte";
 import { useMediaQuery } from "./useMediaQuery.svelte";
 
-const DENSITIES = ["compact", "comfortable", "spacious"] as const;
+const DENSITIES = ["auto", "compact", "comfortable", "spacious"] as const;
 export type Density = (typeof DENSITIES)[number];
 
 export interface ResponsiveDensityOptions {

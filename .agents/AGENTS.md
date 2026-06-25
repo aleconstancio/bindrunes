@@ -29,6 +29,11 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. ~245 components, ~48 comp
 - Prefer lightweight, tree-shakeable dependencies
 - **Props convention:** Use inline anonymous types in `$props()` for components with ≤8 props. Use `interface Props` for components with >8 props or complex/conditional prop groups. New components should follow this convention; don't mass-refactor existing ones.
 - The agentic kernel (`src/utils/agentic/`, `src/types/agent.ts`) follows the same `createX()` factory + readonly-getter contract as the rest of the library. **The `AgentRuntime` interface is the only thing consumers are expected to implement.**
+- **Server-first:** Components must be SSR-safe — no browser APIs (`window`, `document`, `localStorage`) in top-level script setup. Use `browser` guard from `src/utils/isBrowser.ts` for client-only code.
+- **Server utilities:** `useThemeServer()` and `useDensityServer()` are pure functions — no runes, works in any server context (SvelteKit load functions, hooks, edge functions).
+- **Progressive hydration:** Use SvelteKit's native patterns: `export const ssr = false` for client-only pages, `<svelte:boundary>` for selective hydration, `export const csr = false` for server-only pages.
+- **Responsive:** CSS container queries (Tailwind v4 `@` prefix) for layout adaptation. `useViewport()` for JS breakpoint detection. `data-density="auto"` for viewport-derived density.
+- **Server barrel:** Import from `bindrunes/server` for SSR-safe utilities.
 - **Meta-component context:** Use `createMetaContext` / `useMetaContext` (from `src/utils/createMetaContext.svelte.ts`) for all subsystem context. Never use raw `setContext`/`getContext`.
 - **Meta-component state:** Use `readonlyGetters` for state exposed to consumers. Mutations via explicit action methods only.
 - **Meta-component layout:** Use `MetaLayout` (position slots), `MetaContainer` (content width), `MetaScrollable` (overflow). Never hardcode `max-w-*` or inline overflow styles.
