@@ -49,6 +49,7 @@ const vars: Record<Variant, string> = {
            {interactive ? 'bindrunes-card-interactive' : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
+    style="contain: layout style paint;"
     {...restProps}
   >
     {#if header}<div class="mb-2">{@render header()}</div>{/if}
@@ -63,6 +64,7 @@ const vars: Record<Variant, string> = {
            {interactive ? 'bindrunes-card-interactive' : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
+    style="contain: layout style paint;"
     role={interactive ? 'button' : undefined}
     aria-label={interactive ? ariaLabel : undefined}
     tabindex={interactive ? 0 : undefined}

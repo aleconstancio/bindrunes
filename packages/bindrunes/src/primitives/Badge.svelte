@@ -57,6 +57,7 @@ const sizeClasses: Record<Size, string> = {
   class="inline-flex items-center gap-1 rounded-[--radius-pill] font-medium
          transition-colors duration-[--duration-snappy]
          {variantClasses[variant]} {sizeClasses[size]} {className}"
+   style="contain: layout style paint;"
    {...restProps}
  >
   {#if icon}

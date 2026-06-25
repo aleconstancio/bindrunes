@@ -3,8 +3,11 @@ import { isBrowser } from "./isBrowser";
 export { useLongPress, useSwipe } from "./useGesture";
 export { useHaptic } from "./useHaptic";
 export { useInView } from "./useInView.svelte";
+export { useLazyLoad } from "./useLazyLoad.svelte";
+export { useMemo } from "./useMemo.svelte";
 export { useScrollLinked } from "./useScrollLinked.svelte";
 export { useSpring } from "./useSpring.svelte";
+export { useWorker } from "./useWorker.svelte";
 
 type Breakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 

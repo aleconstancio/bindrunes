@@ -30,7 +30,7 @@ const borderTop: Record<string, string> = {
 </script>
 
 <div class="metric-card rounded-[--radius] border bg-card p-4 transition-all duration-[--duration-fluid] hover:-translate-y-1 {responsive ? 'container-queries' : ''}"
-  style="--variant-color: {borderTop[variant]}; border-top: 2px solid {borderTop[variant]};">
+  style="--variant-color: {borderTop[variant]}; border-top: 2px solid {borderTop[variant]}; contain: layout style paint;">
   <p class="text-mono-xs font-medium text-muted-foreground uppercase">{label}</p>
   <p class="text-headline-2 text-foreground mt-1">{value}</p>
   {#if detail}

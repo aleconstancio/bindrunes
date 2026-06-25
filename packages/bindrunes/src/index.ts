@@ -226,8 +226,11 @@ export { createI18nContext, useI18n } from "./utils/useI18n.svelte.ts";
 export { useInfiniteScroll } from "./utils/useInfiniteScroll.svelte.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
 export { useInterval } from "./utils/useInterval.svelte.ts";
+export { useLazyLoad } from "./utils/useLazyLoad.svelte.ts";
 export { useLocalStorage } from "./utils/useLocalStorage.svelte.ts";
 export { useMediaQuery } from "./utils/useMediaQuery.svelte.ts";
+// ── Composables: Runtime Optimization ──
+export { useMemo } from "./utils/useMemo.svelte.ts";
 export type {
 	CreateMultiTenantOptions,
 	MultiTenantResult,
@@ -245,3 +248,4 @@ export { useToast } from "./utils/useToast.svelte.ts";
 export { useToggle } from "./utils/useToggle.svelte.ts";
 export { useUrlParams } from "./utils/useUrlParams.svelte.ts";
 export { useVirtualList } from "./utils/useVirtualList.svelte.ts";
+export { useWorker } from "./utils/useWorker.svelte.ts";
