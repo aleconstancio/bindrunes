@@ -11,10 +11,10 @@ import { LoginForm, AuthLayout } from "bindrunes/domains/auth";
 import { DashboardHome, StatsOverview } from "bindrunes/domains/dashboard";
 ```
 
-Pre-composed page templates that wire entire domains together are available from `bindrunes/templates`:
+Pre-composed page templates that wire entire domains together are available from `bindrunes/layouts`:
 
 ```ts
-import { AuthTemplate } from "bindrunes/templates";
+import { AuthTemplate } from "bindrunes/layouts";
 ```
 
 ## Templates
@@ -35,7 +35,7 @@ Full-page template components that compose domain components into ready-to-use p
 | `SettingsTemplate` | Tabbed settings with profile, security, and notifications |
 
 ```ts
-import { AuthTemplate } from "bindrunes/templates";
+import { AuthTemplate } from "bindrunes/layouts";
 ```
 
 ## Categories
@@ -243,28 +243,3 @@ Account settings pages -- profile, security, notifications, danger zone.
 | `SecuritySettings` | Password and 2FA |
 | `NotificationSettings` | Notification preferences |
 | `DangerZone` | Account deletion/deactivation |
-
-## Types
-
-Shared domain types are exported from `bindrunes/domains`:
-
-```ts
-import type {
-  // Auth
-  AuthView,
-  SocialLoginConfig,
-  AuthPageConfig,
-  // Calendar
-  CalendarEvent,
-  TimeSlot,
-  // Ecommerce
-  Product,
-  CartItem,
-  // Marketing
-  BlogPost,
-  // Portfolio
-  PortfolioProject,
-  // Settings
-  // ...
-} from "bindrunes/domains";
-```

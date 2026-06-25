@@ -1,6 +1,6 @@
 # Landing Pages
 
-Marketing layout blocks designed for SaaS platforms. Import landing primitives from `bindrunes/domains/landing` and the full template from `bindrunes/templates`.
+Marketing layout blocks designed for SaaS platforms. Import landing primitives from `bindrunes/domains/landing` and the full template from `bindrunes/layouts`.
 
 ## Setup
 
@@ -28,7 +28,7 @@ The fastest way to build a landing page. Pass your data, get a complete page.
 
 ```svelte
 <script lang="ts">
-  import { MarketingTemplate } from "bindrunes/templates";
+  import { MarketingTemplate } from "bindrunes/layouts";
   import { ArrowRight, Zap, Shield, Clock } from "lucide-svelte";
 
   const features = [

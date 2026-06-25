@@ -4,9 +4,9 @@
 
 The agentic subsystem provides two layers:
 
-1. **Kernel** (`src/utils/agentic/`, `src/types/agent.ts`) — Typesafe, reactive modules for building memory-constrained LLM chatbot interfaces. Handles token budget constraints, conversation branching, context compaction, orchestrator loops, eviction, and persistence.
+1. **Kernel** — Composables for building memory-constrained LLM chatbot interfaces. Handles token budget constraints, conversation branching, context compaction, orchestrator loops, eviction, and persistence.
 
-2. **Copilot Components** (`src/domains/agentic/`) — Pre-built Svelte 5 UI components for LLM chat interfaces. Message lists, tool panels, streaming indicators, suggestion cards, reasoning displays, and more.
+2. **Copilot Components** — Pre-built Svelte 5 UI components for LLM chat interfaces. Message lists, tool panels, streaming indicators, suggestion cards, reasoning displays, and more.
 
 ---
 
@@ -96,13 +96,12 @@ The agentic subsystem provides two layers:
 - **Orchestrator**: Multi-turn agent loop coordination (tool calling, re-prompting).
 - **Eviction**: Token eviction policies for context window management.
 - **Persistence**: Window graph serialization for cross-session storage. Built-in adapters for `localStorage` and IndexedDB.
-- **Context Wrappers**: `provideWindowStore` and `useWindowStore` enable sharing a single `WindowStore` across a component tree via Svelte context.
 
 ### Context Wrappers
 
 ```ts
 // In a parent component:
-const store = provideWindowStore({ budgetCap: 8192 });
+const store = createWindowStoreProvider({ budgetCap: 8192 });
 
 // In any child component:
 const store = useWindowStore();

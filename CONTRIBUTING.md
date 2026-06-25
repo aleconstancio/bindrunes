@@ -20,18 +20,9 @@ bun run test
 bun run lint
 ```
 
-## Getting Started
-
-```bash
-git clone https://github.com/aleconstancio/bindrunes.git
-cd bindrunes
-bun install
-```
-
----
-
 ## Daily Commands
 
+- `bun run dev` — Start dev server with watch mode.
 - `bun run build` — Build packages.
 - `bun run check` — TypeScript check.
 - `bun run test` — Run all test suites.
@@ -57,14 +48,43 @@ We use **Biome** for style and quality checking:
 - **Valibot**: Validation schemas must use Valibot, not Zod.
 - **Colors**: Colors must use OKLCH color custom properties. Direct hex/HSL styling is forbidden.
 - **Pragmas**: Subsystem sharing uses `createMetaContext` / `useMetaContext` and `readonlyGetters`.
+- **Dev Warnings**: Use `devWarning()` for development-only console output. Never use `console.warn` in production code.
+
+---
+
+## v2 Anti-Patterns
+
+Avoid these patterns in v2 code:
+
+- **Barrel imports**: Never import from `bindrunes/domains` (barrel removed). Use `bindrunes/domains/<name>` for individual domains.
+- **Template imports**: Never import from `bindrunes/templates`. Templates are now in `bindrunes/layouts`.
+- **Legacy APIs**: Never use `SimulatorRuntime` or `provideWindowStore`. Use `createSimulatorRuntime` and `createWindowStoreProvider` instead.
+- **Console warnings**: Never use `console.warn` in library code. Use `devWarning()` for dev-only output.
+
+---
+
+## Export Paths
+
+v2 has exactly 7 export paths:
+
+```ts
+import { /* core */ } from "bindrunes";
+import { /* layouts */ } from "bindrunes/layouts";
+import { /* domain */ } from "bindrunes/domains/<name>";
+import { /* agentic */ } from "bindrunes/agentic";
+import { /* tailwind */ } from "bindrunes/tailwind";
+import "bindrunes/styles/<name>.css";
+import "bindrunes/i18n/<locale>.json";
+```
 
 ---
 
 ## Adding Files
 
-1. **Components**: Place in `src/components/` and export from `src/index.ts`. Add test files co-located next to implementation with `vitest-axe` assertions. Update `docs/components.md`.
-2. **Composables**: Place in `src/utils/` and suffix with `.svelte.ts` if runes are used. Add tests using the `mountComposable` helper. Update `docs/composables.md`.
-3. **Themes & Aesthetics**: Define color custom properties (`themes/`) or layout tokens (`aesthetics/`). Update `docs/design-system.md`.
+1. **Components**: Place in `src/domains/<domain>/` and export from the domain barrel. Add test files co-located next to implementation with `vitest-axe` assertions.
+2. **Composables**: Place in `src/utils/` and suffix with `.svelte.ts` if runes are used. Add tests using the `mountComposable` helper.
+3. **Layouts**: Place in `src/layouts/` for full-page template components. Export from `bindrunes/layouts`.
+4. **Themes & Aesthetics**: Define color custom properties (`themes/`) or layout tokens (`aesthetics/`). Import styles from `bindrunes/styles/`.
 
 ---
 

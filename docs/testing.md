@@ -48,7 +48,6 @@ vitest enforces coverage targets:
 - **Primitives** (`src/primitives/**`): 90% lines & statements, 85% branches, 88% functions.
 - **Layouts** (`src/layouts/**`): 90% lines & statements, 85% branches, 88% functions.
 - **Domains** (`src/domains/**`): 90% lines & statements, 85% branches, 88% functions.
-- **Templates** (`src/templates/**`): 90% lines & statements, 85% branches, 88% functions.
 
 ```bash
 bun run test           # Run tests

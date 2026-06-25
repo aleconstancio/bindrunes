@@ -1,78 +1,83 @@
 # Composables
 
-All composables follow the `useX()` pattern using Svelte 5 runes (`$state`, `$derived`, `$effect`). Context providers use the `createX()` / `useX()` dual pattern.
+All composables follow the `useX()` pattern with Svelte 5 runes. Context providers use `createX()` / `useX()`.
 
 ---
 
 ## Data Layer
 
-> **v2 note:** `useAsyncState` has been removed. Use `useQuery` for async data fetching.
+### `useQuery`
 
-### `useQuery` & `useMutation`
-Manage server queries and state mutations with caching, retry strategies, and loading statuses.
+Server data fetching with caching, stale-while-revalidate, and retry.
 
 ```ts
-import { useQuery, useMutation } from "bindrunes";
+import { useQuery } from "bindrunes";
 
 const users = useQuery<User[]>({
   key: "/api/users",
   fetcher: () => fetch("/api/users").then(r => r.json()),
-  staleTime: 30_000
+  staleTime: 30_000,
 });
+```
+
+### `useMutation`
+
+Optimistic mutations with invalidation.
+
+```ts
+import { useMutation, invalidateQuery } from "bindrunes";
 
 const createUser = useMutation<User, NewUser>({
   mutator: (user) => api.post("/users", user),
-  onSuccess: () => invalidateQuery("/api/users")
+  onSuccess: () => invalidateQuery("/api/users"),
 });
 ```
 
-- **`invalidateQuery(key)`**: Invalidates cached keys.
-- **`setQueryData(key, data)`**: Optimistically updates queries.
-
-### `useAsyncState`
-Reactive state machine for async operations. Create an instance, then call `.run()` to execute async functions.
+### `invalidateQuery` / `setQueryData`
 
 ```ts
-import { useAsyncState } from "bindrunes";
+import { invalidateQuery, setQueryData } from "bindrunes";
 
-const state = useAsyncState();
-const user = await state.run(() => fetch("/api/users/1").then(r => r.json()));
-
-state.reset(); // Return to idle
-```
-
-**Reactive properties:** `status` (`"idle" | "loading" | "success" | "error"`), `isLoading`, `isSuccess`, `isError`, `error`.
-
-### `useTable`
-State machine for sorting, pagination, and filtering in tables.
-
-```ts
-import { useTable } from "bindrunes";
-
-const table = useTable({ data: usersList, columns: [{ key: "name", sortable: true }] });
+invalidateQuery("/api/users");
+setQueryData<User[]>("/api/users", (prev) => [...prev, newUser]);
 ```
 
 ---
 
 ## Forms
 
-### `useForm` & `useWizard`
-Typesafe form and multi-step wizard state with Valibot schema validations.
+### `useForm`
+
+Valibot-validated form state.
 
 ```ts
 import { useForm } from "bindrunes";
-import { string, minLength } from "valibot";
+import { string, minLength, email } from "valibot";
 
 const form = useForm({
   schema: {
-    name: string([minLength(1, "Name required")])
+    name: string([minLength(1, "Required")]),
+    email: string([email("Invalid email")]),
   },
-  onSubmit: async (values) => api.post("/users", values)
+  onSubmit: async (values) => api.post("/users", values),
 });
 ```
 
+### `useWizard`
+
+Multi-step form with step tracking.
+
+```ts
+import { useWizard } from "bindrunes";
+
+const wizard = useWizard({ steps: ["info", "payment", "confirm"] });
+wizard.next();
+wizard.prev();
+```
+
 ### `validateWithSchema`
-Standalone validation utility using Valibot schemas.
+
+Standalone Valibot validation.
 
 ```ts
 import { validateWithSchema } from "bindrunes";
@@ -82,224 +87,158 @@ const errors = validateWithSchema(schema, values);
 
 ---
 
-## Auth & RBAC
+## Auth
 
-### `useAuth` & `useAccess`
-Reactive authentication token handling and Role-Based Access Controls.
+### `useAuth`
+
+Reactive auth state (token, user, loading).
 
 ```ts
-import { useAuth, useAccess } from "bindrunes";
+import { useAuth } from "bindrunes";
 
 const auth = useAuth();
+// auth.user, auth.isAuthenticated, auth.token
+```
+
+### `useAccess`
+
+Role-based access control checks.
+
+```ts
+import { useAccess } from "bindrunes";
+
 const access = useAccess(auth);
-
-if (access.hasRole("admin") && access.hasPermission("users:write")) {
-  // admin actions
-}
-```
-
-### `createAuthProvider` / `useAuth`
-Context provider for auth state across components. `createAuthProvider` is called in the root layout; `useAuth` retrieves the state in any child component.
-
-```ts
-import { createAuthProvider, useAuth } from "bindrunes/domains/auth";
-
-// In root layout:
-const auth = createAuthProvider({
-  onLogin: async (email, password) => { /* ... */ },
-  onLogout: () => { /* ... */ }
-});
-
-// In any child component:
-const auth = useAuth();
-console.log(auth.isAuthenticated, auth.user);
-```
-
-### `hasRole` / `hasAnyRole` / `hasPermission`
-Role-Based Access Control checks.
-
-```ts
-import { hasRole, hasAnyRole, hasPermission } from "bindrunes";
-
-hasRole(user, "admin");          // true if user has "admin" role
-hasAnyRole(user, ["admin", "editor"]);
-hasPermission(user, "users:write");
-```
-
-### `createCrudProvider` / `useCrud`
-Context provider for CRUD operations across components.
-
-```ts
-import { createCrudProvider, useCrud } from "bindrunes/domains/data";
-
-// In parent:
-const crud = createCrudProvider();
-
-// In child:
-const crud = useCrud();
-crud.setItems(data);
-crud.toggleSelect(id);
+access.hasRole("admin");
+access.hasPermission("users:write");
 ```
 
 ---
 
 ## Design System
 
-> **v2 notes:**
-> - `useDarkMode` has been removed — use `useTheme` (which includes `toggleMode`/`setMode`).
-> - `useResponsiveDensity` has been removed — use `useDensity({ responsive: true })`.
-> - `defineTheme`/`extendTheme`/`createThemeBuilder` have been removed — use `createTheme()`.
+### `useTheme`
 
-### `useTheme` / `useAesthetic` / `useDensity`
-Runtime switching of the three design axes.
+Runtime theme, aesthetic, density switching with dark mode control.
 
 ```ts
-import { useTheme, useAesthetic, useDensity } from "bindrunes";
+import { useTheme } from "bindrunes";
 
 const theme = useTheme({ default: "editorial" });
-const aesthetic = useAesthetic({ default: "glass" });
+theme.setTheme("dracula");
+theme.toggleMode();
+theme.setMode("dark");
+theme.isDark;
+```
+
+### `useAesthetic`
+
+```ts
+import { useAesthetic } from "bindrunes";
+
+const aesthetic = useAesthetic({ default: "minimal" });
+aesthetic.setAesthetic("glass");
+```
+
+### `useDensity`
+
+Supports responsive mode via media query.
+
+```ts
+import { useDensity } from "bindrunes";
+
+// Persisted preference
 const density = useDensity({ default: "comfortable" });
 
-theme.setTheme("dracula");
-aesthetic.setAesthetic("bento");
-density.setDensity("spacious");
+// Responsive — derives from viewport
+const density = useDensity({ responsive: { compact: 768, spacious: 1200 } });
 ```
 
-### `defineTheme` / `extendTheme`
-Create custom themes programmatically.
+### `createTheme`
+
+Define or extend themes programmatically.
 
 ```ts
-import { defineTheme, extendTheme } from "bindrunes";
+import { createTheme } from "bindrunes";
 
-const myTheme = defineTheme("my-brand", { "--primary": "oklch(0.60 0.15 250)" });
-myTheme.apply();
-```
-
-### `createThemeBuilder`
-Runtime theme token builder. Generates a complete token set from a primary color, with optional aesthetic personality.
-
-```ts
-import { createThemeBuilder } from "bindrunes";
-
-const builder = createThemeBuilder({
-  primary: "oklch(0.60 0.15 250)",
-  aesthetic: "glass",   // minimal | glass | bento | expressive | neon | brutalist | organic
-  mode: "dark",         // light | dark
-  radius: "0.625rem",
-  glassBlur: "16px",
+// New theme
+const myBrand = createTheme({
+  name: "my-brand",
+  tokens: { "--primary": "oklch(0.60 0.15 250)" },
 });
 
-builder.apply();           // Apply tokens to document.documentElement
-builder.toCSS(":root");    // Returns CSS string
-builder.cssText;           // Raw CSS text
-builder.tokens;            // Record<string, string> of all token values
-```
-
-When `aesthetic` is provided, the builder outputs aesthetic-appropriate gradient, shadow, blur, and treatment tokens (not just flat/solid defaults).
-
-### `useDarkMode`
-Reactive dark mode toggling with system preference detection.
-
-```ts
-import { useDarkMode } from "bindrunes";
-
-const dark = useDarkMode();
-dark.toggle();
-// dark.isDark, dark.mode ("light" | "dark" | "system")
-```
-
-### `createPrefersTheme`
-Detect and react to the OS-level color scheme preference.
-
-```ts
-import { createPrefersTheme } from "bindrunes";
-
-const prefers = createPrefersTheme();
-// prefers.current — "light" | "dark"
+// Extend existing
+const custom = createTheme({
+  base: "dracula",
+  tokens: { "--primary": "oklch(0.8 0.25 320)" },
+});
 ```
 
 ---
 
-## Localization & UI State
+## Reactivity
 
-### `createI18n`
-Reactive dictionary-based locale switching.
+### `useDebounce`
+
+Overloaded: reactive value debounce or callback debounce.
+
 ```ts
-const t = createI18n({ default: "en", dicts: { en: enDict } });
+import { useDebounce } from "bindrunes";
+
+// Value debounce
+const debounced = useDebounce(searchValue, 300);
+
+// Callback debounce
+const debouncedFetch = useDebounce((q: string) => searchAPI(q), 300);
 ```
-
-### `createI18nContext` / `useI18n`
-Context-based i18n for sharing a dictionary across a component tree.
-```ts
-import { createI18nContext, useI18n } from "bindrunes";
-
-// In a parent:
-createI18nContext({ default: "en", dicts: { en: enDict } });
-
-// In any child:
-const t = useI18n();
-t("greeting"); // Looks up "greeting" key in active dictionary
-```
-
-### `useOmnibar`
-State container for global launcher keyboard controls (Cmd+K).
-
-### `useToast`
-Toast notification composable (dynamic import of svelte-sonner).
-```ts
-import { useToast } from "bindrunes";
-const toast = useToast({ defaultDuration: 4000 });
-toast.success("Saved!");
-```
-
----
-
-## Reactivity Composables
-
-> **v2 note:** `useDebouncedCallback` has been removed. Use `useDebounce` instead.
 
 ### `useClickOutside`
-Detect clicks outside an element.
+
 ```ts
 import { useClickOutside } from "bindrunes";
 useClickOutside(element, () => close());
 ```
 
-### `useDebounce` / `useThrottle`
-Debounce or throttle reactive values.
-```ts
-import { useDebounce, useThrottle } from "bindrunes";
-const debouncedSearch = useDebounce(searchValue, 300);
-const throttledScroll = useThrottle(scrollY, 100);
-```
-
 ### `useClipboard`
-Copy to clipboard with success/error feedback.
+
 ```ts
 import { useClipboard } from "bindrunes";
 const { copied, copy } = useClipboard();
 await copy("text to copy");
 ```
 
-### `useMediaQuery`
-Reactive media query matching.
-```ts
-import { useMediaQuery } from "bindrunes";
+### `useEventListener`
 
-const isMobile = useMediaQuery("(max-width: 768px)");
-// isMobile.current — boolean
+```ts
+import { useEventListener } from "bindrunes";
+useEventListener("resize", () => handleResize());
 ```
 
-### `createPersistedDataAttribute`
-Persist a data attribute to localStorage and re-apply on load.
-```ts
-import { createPersistedDataAttribute } from "bindrunes";
+### `useLocalStorage`
 
-createPersistedDataAttribute("theme", "data-theme");
+```ts
+import { useLocalStorage } from "bindrunes";
+const theme = useLocalStorage("theme", "light");
+theme.set("dark");
+```
+
+### `useMediaQuery`
+
+```ts
+import { useMediaQuery } from "bindrunes";
+const isMobile = useMediaQuery("(max-width: 768px)");
+```
+
+### `useIntersectionObserver`
+
+```ts
+import { useIntersectionObserver } from "bindrunes";
+useIntersectionObserver(element, (visible) => {
+  if (visible) loadImage();
+});
 ```
 
 ### `useResizeObserver`
-Observe element size changes.
+
 ```ts
 import { useResizeObserver } from "bindrunes";
 useResizeObserver(element, (entry) => {
@@ -307,169 +246,170 @@ useResizeObserver(element, (entry) => {
 });
 ```
 
-### `useIntersectionObserver`
-Detect element visibility for lazy loading.
-```ts
-import { useIntersectionObserver } from "bindrunes";
-useIntersectionObserver(element, (isIntersecting) => {
-  if (isIntersecting) loadImage();
-});
-```
-
-### `useEventListener`
-Generic event listener with auto-cleanup.
-```ts
-import { useEventListener } from "bindrunes";
-useEventListener("resize", () => handleResize());
-```
-
-### `useLocalStorage`
-Reactive localStorage wrapper.
-```ts
-import { useLocalStorage } from "bindrunes";
-const theme = useLocalStorage("theme", "light");
-theme.set("dark");
-```
-
-### `useCounter` / `useToggle`
-Simple state helpers.
-```ts
-import { useCounter, useToggle } from "bindrunes";
-const counter = useCounter(0);
-counter.increment();
-
-const toggle = useToggle(false);
-toggle.toggle();
-```
-
-### `useInterval` / `useTimeout`
-Timer composables with auto-cleanup.
-```ts
-import { useInterval, useTimeout } from "bindrunes";
-useInterval(() => fetchData(), 5000);
-useTimeout(() => redirect(), 30000);
-```
-
-### `useDebouncedCallback`
-Creates a debounced version of a callback. Delays execution until `delay` ms after the last call.
-```ts
-import { useDebouncedCallback } from "bindrunes";
-
-const debouncedSearch = useDebouncedCallback((query: string) => {
-  searchAPI(query);
-}, 300);
-```
-
 ### `useInfiniteScroll`
-Triggers a callback when a sentinel element enters the viewport. Use for infinite scroll patterns.
+
 ```ts
 import { useInfiniteScroll } from "bindrunes";
-
-useInfiniteScroll(sentinelElement, {
-  onLoadMore: async () => {
-    const more = await loadNextPage();
-    return more; // false to stop observing
-  },
+useInfiniteScroll(sentinel, {
+  onLoadMore: async () => fetchNextPage(),
 });
 ```
 
 ### `useVirtualList`
-Virtual list for rendering large datasets. Only renders items visible in viewport plus overscan buffer.
+
 ```ts
 import { useVirtualList } from "bindrunes";
-
-const { visibleItems, containerStyle, scrollTo } = useVirtualList(items, {
+const { visibleItems, containerStyle } = useVirtualList(items, {
   itemHeight: 40,
   overscan: 5,
 });
 ```
 
-### `useReducedMotion`
-Detect `prefers-reduced-motion` media query.
+### Other Reactivity Composables
+
 ```ts
-import { useReducedMotion } from "bindrunes";
+import {
+  useAnimation, useBreakpoint, useCounter, useHead,
+  useInterval, useReducedMotion, useThrottle, useTimeout,
+  useToggle, useUrlParams,
+} from "bindrunes";
+
+const counter = useCounter(0);
+counter.increment();
+
+const toggle = useToggle(false);
+toggle.toggle();
+
+useInterval(() => fetchData(), 5000);
+useTimeout(() => redirect(), 30000);
+
 const { current: reducedMotion } = useReducedMotion();
-```
-
-### `useUrlParams`
-Sync state with URL search parameters.
-```ts
-import { useUrlParams } from "bindrunes";
-const { getParam, setParam } = useUrlParams();
-setParam("page", "2");
-```
-
-### `createSessionMonitor`
-Monitors and tracks session activity for analytics or security purposes.
-```ts
-import { createSessionMonitor } from "bindrunes";
-
-const monitor = createSessionMonitor({
-  onIdle: () => console.log("Session idle"),
-  onActivity: () => console.log("Session active"),
-  idleTimeout: 300_000, // 5 minutes
-});
-```
-
-### `useMultiTenant`
-Multi-tenant context provider for SaaS applications with tenant isolation.
-```ts
-import { useMultiTenant } from "bindrunes";
-
-const tenant = useMultiTenant({
-  tenantId: "org_123",
-  onSwitch: async (newTenantId) => {
-    // Reload data for new tenant
-  },
-});
 ```
 
 ---
 
-## Context Patterns
+## Context
 
 ### `createMetaContext` / `useMetaContext`
-Type-safe Svelte context wrapper using Symbol keys.
+
+Type-safe Svelte context with Symbol keys.
 
 ```ts
 import { createMetaContext, useMetaContext } from "bindrunes";
 
-const KEY = Symbol("my-context");
-export function createMyState() {
+const KEY = Symbol("app-context");
+export function createAppState() {
   return createMetaContext(KEY, () => { /* state */ });
 }
-export function useMyContext() {
+export function useAppState() {
   return useMetaContext(KEY);
 }
 ```
 
+### `useMultiTenant` / `createMultiTenantContext`
+
+```ts
+import { useMultiTenant, createMultiTenantContext } from "bindrunes";
+
+// Provider
+createMultiTenantContext({
+  tenantId: "org_123",
+  onSwitch: async (id) => reload(id),
+});
+
+// Consumer
+const tenant = useMultiTenant();
+```
+
 ---
 
-## General Utilities
+## Utilities
 
-- **`cn(...classes)`**: Merge class names with Tailwind conflict resolution (last-wins per utility prefix).
-- **`shortcut(element, options)`**: Svelte action for keyboard shortcut binding.
-- **`createApiClient(config)`**: Fetch client wrapping JSON parsing and headers.
-- **`createStorage(prefix)`**: LocalStorage wrapper with key prefixing.
-- **`createEnv(config)`**: Env variables reader with fallback defaults.
-- **`useHead(metadata)`**: Updates document page headers and Open Graph properties.
-- **`useBreakpoint(width)`**: Detects viewport breakpoint matches.
-- **`RealtimeClient(config)`**: SSE client with reconnection behaviors.
-- **`handleSSEEvent(event, router)`**: SSE event router for dispatching typed events.
-- **`getChartTheme()`**: Reads theme colors for Chart.js integrations.
-- **`formatDate` / `formatDateShort` / `formatDateTime` / `formatTime`**: Locale-aware date formatters.
-- **`formatNumber` / `formatPercentage` / `formatBytes` / `formatRelative`**: Number and byte formatters.
-- **`getLocale()` / `setLocale(locale)`**: Get/set the active locale for formatters.
-- **`hexToOklch` / `oklchToHex`**: Color space conversion utilities.
-- **`checkContrast` / `oklchContrast` / `parseOklch`**: Color contrast checking utilities.
-- **`semanticColors`**: Mapping of semantic color names to CSS custom properties.
-- **`defaultTableFallbacks`**: Default cell renderers and empty states for `DataTable`.
-- **`isBrowser`**: SSR-safe browser detection.
-- **`isSafeRedirect(url)`**: URL validation for open redirect prevention.
-- **`toError(err)`**: Normalize unknown errors to Error objects.
-- **`useMediaQuery(options)`**: Reactive media query matching with `$state`.
-- **`useAnimation(element, options)`**: Animation class names for enter, exit, slide, fade, and scale transitions.
-- **`useResponsiveDensity(options)`**: Adapts density (compact/comfortable/spacious) based on viewport.
-- **`createTransition(element, options)`**: Imperative DOM transition helper.
-- **`deriveOmnibarOptions(navigation)`**: Derives omnibar options from navigation groups.
-- **`derivePageInfo(pathname, groups)`**: Derives current page info from URL and navigation groups.
+### `createApiClient`
+
+```ts
+import { createApiClient } from "bindrunes";
+const api = createApiClient({ baseUrl: "/api", headers: { Authorization: `Bearer ${token}` } });
+```
+
+### `createEnv`
+
+```ts
+import { createEnv } from "bindrunes";
+const env = createEnv({ PUBLIC_API_URL: { default: "http://localhost:3000" } });
+```
+
+### `createStorage`
+
+```ts
+import { createStorage } from "bindrunes";
+const storage = createStorage("my-app");
+storage.get("key");
+storage.set("key", "value");
+```
+
+### `createI18n`
+
+```ts
+import { createI18n } from "bindrunes";
+const t = createI18n({ default: "en", dicts: { en: enDict } });
+t("greeting");
+```
+
+### `useToast`
+
+```ts
+import { useToast } from "bindrunes";
+const toast = useToast({ defaultDuration: 4000 });
+toast.success("Saved!");
+```
+
+### `useOmnibar`
+
+```ts
+import { useOmnibar } from "bindrunes";
+const omnibar = useOmnibar();
+// omnibar.open(), omnibar.close()
+```
+
+### `useTable`
+
+```ts
+import { useTable } from "bindrunes";
+const table = useTable({ data: rows, columns: [{ key: "name", sortable: true }] });
+```
+
+### Other Utilities
+
+```ts
+import {
+  createPrefersTheme, createSessionMonitor, createTransition,
+  createStaggerChildren, createSseBridge, createRealtime,
+  createPersistedDataAttribute,
+} from "bindrunes";
+
+const prefers = createPrefersTheme();
+// prefers.current — "light" | "dark"
+
+const monitor = createSessionMonitor({
+  onIdle: () => logout(),
+  idleTimeout: 300_000,
+});
+```
+
+---
+
+## Formatting
+
+```ts
+import {
+  formatBytes, formatDate, formatDateShort, formatDateTime,
+  formatTime, formatNumber, formatPercentage, formatRelative,
+  getLocale, setLocale,
+} from "bindrunes";
+
+formatBytes(1024);          // "1.0 KB"
+formatDate(new Date());     // "Jun 25, 2026"
+formatNumber(1234.56);      // "1,234.56"
+setLocale("de-DE");
+```

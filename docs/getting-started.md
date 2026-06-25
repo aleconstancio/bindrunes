@@ -1,13 +1,13 @@
 # Getting Started
 
-## Installation
+## Install
 
 ```bash
-bun add bindrunes
-bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
+bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 ```
 
-### Optional Feature Dependencies
+### Optional dependencies
+
 ```bash
 # RichTextEditor
 bun add prosemirror-commands prosemirror-history prosemirror-keymap \
@@ -22,9 +22,9 @@ bun add chart.js svelte-chartjs
 
 ---
 
-## Tailwind Integration
+## Tailwind Setup
 
-Include the Tailwind CSS v4 plugin and global CSS in your entry stylesheet (e.g., `app.css`):
+Add to `app.css`:
 
 ```css
 @import "tailwindcss";
@@ -32,7 +32,7 @@ Include the Tailwind CSS v4 plugin and global CSS in your entry stylesheet (e.g.
 @import "bindrunes/styles/global.css";
 ```
 
-Exclude `bindrunes` from Vite's pre-bundling in `vite.config.ts` to prevent duplicate Svelte instances:
+Exclude `bindrunes` from Vite pre-bundling in `vite.config.ts`:
 
 ```ts
 import { defineConfig } from 'vite';
@@ -47,9 +47,7 @@ export default defineConfig({
 
 ---
 
-## Quick Start
-
-Wrap your application in `<AppProvider>` to initialize dark mode, notifications, and spacing:
+## First Component
 
 ```svelte
 <!-- +layout.svelte -->
@@ -68,40 +66,39 @@ Wrap your application in `<AppProvider>` to initialize dark mode, notifications,
 </AppProvider>
 ```
 
----
+```svelte
+<!-- +page.svelte -->
+<script lang="ts">
+  import { Button, Card } from "bindrunes";
+</script>
 
-## Font Loading
-
-bindrunes uses three font families that you should load for the best experience:
-
-| Token | Font | Fallback |
-|-------|------|----------|
-| `--font-sans` | Inter | system-ui, sans-serif |
-| `--font-display` | Inter Display | Inter, system-ui, sans-serif |
-| `--font-mono` | JetBrains Mono | ui-monospace, SF Mono, monospace |
-
-**Recommended:** Use Google Fonts or self-host. Add to your HTML `<head>` or CSS:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
-/>
+<Card variant="surface">
+  <h2 class="text-lg font-semibold">Welcome</h2>
+  <p class="text-muted-foreground">Your app is running.</p>
+  <Button variant="primary" class="mt-4">Get Started</Button>
+</Card>
 ```
 
-If you skip font loading, the system falls back to `system-ui` (sans) and `ui-monospace` (mono). The design will still work but won't match the intended look.
+---
+
+## Import Paths
+
+| Path | Contents | Example |
+|---|---|---|
+| `bindrunes` | Primitives, composables, utilities, types | `import { Button, useTheme } from "bindrunes"` |
+| `bindrunes/layouts` | Layouts + templates | `import { PageShell, DashboardTemplate } from "bindrunes/layouts"` |
+| `bindrunes/domains/<name>` | Single domain components | `import { LoginForm } from "bindrunes/domains/auth"` |
+| `bindrunes/agentic` | LLM agent tools | `import { createAgentLoop } from "bindrunes/agentic"` |
+| `bindrunes/tailwind` | Tailwind CSS plugin | `@plugin "bindrunes/tailwind"` |
+| `bindrunes/styles/*` | Global CSS + token sheets | `@import "bindrunes/styles/global.css"` |
+| `bindrunes/i18n/*` | Translation dictionaries | `import en from "bindrunes/i18n/en"` |
 
 ---
 
 ## Troubleshooting
 
-### "Multiple Svelte instances"
-Ensure `vite.config.ts` includes `optimizeDeps: { exclude: ['bindrunes'] }`.
+**Multiple Svelte instances** — Add `optimizeDeps: { exclude: ['bindrunes'] }` to `vite.config.ts`.
 
-### Tailwind classes not applying
-Verify that your entry CSS file imports `@plugin "bindrunes/tailwind"`.
+**Tailwind classes not applying** — Verify `@plugin "bindrunes/tailwind"` is in your entry CSS.
 
-### SSR Hydration Warnings
-Ensure browser-only APIs are run within Svelte `$effect` blocks or check if `typeof window !== 'undefined'`.
+**SSR hydration warnings** — Wrap browser-only APIs in `$effect` or check `typeof window !== 'undefined'`.
