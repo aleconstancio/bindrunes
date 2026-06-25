@@ -48,6 +48,8 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 
 - **Server-first** — All components SSR-safe. Server utilities for theme/density resolution from request context.
 - **Responsive hybrid** — CSS container queries + fluid tokens for zero-JS responsiveness. `useViewport()` for JS breakpoints.
+- **Mobile gestures** — `useSwipe()`, `useLongPress()`, `useHaptic()` composables. BottomSheet and SwipeableList components.
+- **Motion & animation** — `useScrollLinked()`, `useInView()`, `useSpring()` composables. Scroll-linked and spring physics animations.
 - **Three-axis design system** — Theme (color), aesthetic (form), density (spacing). Any combination works.
 - **Svelte 5 runes** — `$state`, `$derived`, `$effect` only. No legacy stores.
 - **4-layer architecture** — Primitives → Layouts → Domains → Templates.
