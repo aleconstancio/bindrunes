@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Tabs from "../../primitives/Tabs.svelte";
 import TabsContent from "../../primitives/TabsContent.svelte";
 import TabsList from "../../primitives/TabsList.svelte";
 import TabsTrigger from "../../primitives/TabsTrigger.svelte";
-import Block from "../Block.svelte";
 
 interface SettingsTab {
 	id: string;
@@ -30,7 +30,7 @@ if (!activeTab && tabs.length > 0) {
 }
 </script>
 
-<Block size="lg" spacing="compact" class={className}>
+<PageSection reveal={false} size="lg" spacing="compact" class={className}>
   <Tabs bind:value={activeTab} orientation="vertical">
     <div class="flex flex-col lg:flex-row gap-8">
       <TabsList class="flex lg:flex-col gap-1 h-auto lg:w-48 shrink-0">
@@ -53,4 +53,4 @@ if (!activeTab && tabs.length > 0) {
       </div>
     </div>
   </Tabs>
-</Block>
+</PageSection>

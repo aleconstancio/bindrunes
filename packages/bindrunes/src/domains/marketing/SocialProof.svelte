@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Block from "../Block.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import type { LogoItem, TestimonialItem } from "../types";
 
 let {
@@ -20,7 +20,7 @@ let {
 } = $props();
 </script>
 
-<Block size="xl" spacing="normal" background="muted" class={className}>
+<PageSection reveal={false} size="xl" spacing="normal" background="muted" class={className}>
   <div class="space-y-12">
     {#if title}
       <h2 class="text-title-1 text-foreground text-center">{title}</h2>
@@ -79,4 +79,4 @@ let {
       </div>
     {/if}
   </div>
-</Block>
+</PageSection>

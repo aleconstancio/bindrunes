@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
-import Block from "../Block.svelte";
 
 let {
 	title = "",
@@ -26,7 +26,7 @@ let {
 } = $props();
 </script>
 
-<Block size="lg" spacing="normal" class={className}>
+<PageSection reveal={false} size="lg" spacing="normal" class={className}>
   <div class="space-y-8">
     {#if coverImage}
       <div class="aspect-[21/9] rounded-[--radius-lg] overflow-hidden">
@@ -70,4 +70,4 @@ let {
       </div>
     {/if}
   </div>
-</Block>
+</PageSection>

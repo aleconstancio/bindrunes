@@ -16,7 +16,7 @@ describe("useInterval", () => {
 		expect(callback).toHaveBeenCalledTimes(3);
 	});
 
-	it("stop() halts the interval", async () => {
+	it("destroy() halts the interval", async () => {
 		vi.useFakeTimers();
 		const callback = vi.fn();
 		const result = await mountComposable(() => useInterval(callback, 100));
@@ -24,7 +24,7 @@ describe("useInterval", () => {
 		vi.advanceTimersByTime(250);
 		expect(callback).toHaveBeenCalledTimes(2);
 
-		result.stop();
+		result.destroy();
 		vi.advanceTimersByTime(300);
 		expect(callback).toHaveBeenCalledTimes(2);
 	});

@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Block from "../Block.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import type { ContentItem } from "../types";
 
 let {
@@ -14,7 +14,7 @@ let {
 } = $props();
 </script>
 
-<Block size="xl" spacing="normal" class={className}>
+<PageSection reveal={false} size="xl" spacing="normal" class={className}>
   <div class="space-y-16">
     {#each items as item, i}
       {#if itemSnippet}
@@ -41,4 +41,4 @@ let {
       {/if}
     {/each}
   </div>
-</Block>
+</PageSection>

@@ -1,6 +1,6 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 
 let {
 	title = "Under maintenance",
@@ -19,7 +19,7 @@ let {
 } = $props();
 </script>
 
-<Block size="sm" spacing="wide" background="gradient" class={className}>
+<PageSection reveal={false} size="sm" spacing="wide" background="gradient" class={className}>
   <div class="text-center space-y-6">
     <div class="inline-flex items-center justify-center w-16 h-16 rounded-[--radius-pill] bg-muted mb-2">
       <span class="text-headline-3" aria-hidden="true">🔧</span>
@@ -37,4 +37,4 @@ let {
       </div>
     {/if}
   </div>
-</Block>
+</PageSection>

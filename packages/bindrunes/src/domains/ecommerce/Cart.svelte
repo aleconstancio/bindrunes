@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 import CartItem from "./CartItem.svelte";
 
 interface CartItemType {
@@ -42,7 +42,7 @@ let { subtotal, itemCount } = $derived.by(() => {
 });
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-6">
     <h2 class="text-title-2 text-foreground">Cart ({itemCount})</h2>
 
@@ -73,4 +73,4 @@ let { subtotal, itemCount } = $derived.by(() => {
       </div>
     {/if}
   </div>
-</Block>
+</PageSection>

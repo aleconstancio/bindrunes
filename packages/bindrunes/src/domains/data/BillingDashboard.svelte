@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Progress from "../../primitives/Progress.svelte";
-import Block from "../Block.svelte";
 
 interface BillingPlan {
 	name: string;
@@ -43,7 +43,7 @@ const statusVariant: Record<string, "success" | "warning" | "destructive"> = {
 };
 </script>
 
-<Block size="lg" spacing="compact" class={className}>
+<PageSection reveal={false} size="lg" spacing="compact" class={className}>
   <div class="space-y-8">
     <h1 class="text-title-1 text-foreground">Billing</h1>
 
@@ -117,4 +117,4 @@ const statusVariant: Record<string, "success" | "warning" | "destructive"> = {
       </Card>
     {/if}
   </div>
-</Block>
+</PageSection>

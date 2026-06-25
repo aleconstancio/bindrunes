@@ -1,5 +1,5 @@
 <script lang="ts">
-import Block from "../Block.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 
 let {
 	brand = "",
@@ -14,7 +14,7 @@ let {
 } = $props();
 </script>
 
-<Block size="full" spacing="compact" class={className}>
+<PageSection reveal={false} size="full" spacing="compact" class={className}>
   <div class="border-t border-border pt-6 pb-4">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
       <p class="text-body-sm text-muted-foreground">
@@ -34,4 +34,4 @@ let {
       {/if}
     </div>
   </div>
-</Block>
+</PageSection>

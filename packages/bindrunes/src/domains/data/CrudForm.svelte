@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { BaseIssue, BaseSchema } from "valibot";
+import PageSection from "../../layouts/PageSection.svelte";
 import type { FormState } from "../../utils/useForm.svelte";
-import Block from "../Block.svelte";
 import type { CrudConfig } from "../types";
 import Form from "./Form.svelte";
 
@@ -31,7 +31,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-6">
     <div>
       <h2 class="text-title-2 text-foreground">{config.title}</h2>
@@ -51,4 +51,4 @@ let {
       {@render children?.()}
     </Form>
   </div>
-</Block>
+</PageSection>

@@ -1,10 +1,10 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Avatar from "../../primitives/Avatar.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
-import Block from "../Block.svelte";
 
 let {
 	name = "",
@@ -30,7 +30,7 @@ let formName = $state(name);
 let formEmail = $state(email);
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <Card padding>
     <div class="space-y-6">
       <h3 class="text-title-2 text-foreground">Profile</h3>
@@ -58,4 +58,4 @@ let formEmail = $state(email);
       </div>
     </div>
   </Card>
-</Block>
+</PageSection>

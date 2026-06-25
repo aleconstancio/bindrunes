@@ -1,7 +1,7 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Card from "../../primitives/Card.svelte";
 import Switch from "../../primitives/Switch.svelte";
-import Block from "../Block.svelte";
 
 interface NotificationPreference {
 	id: string;
@@ -29,7 +29,7 @@ function updatePref(id: string, field: "email" | "push" | "inApp", value: boolea
 }
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <Card padding>
     <div class="space-y-6">
       <div class="flex items-center justify-between">
@@ -73,4 +73,4 @@ function updatePref(id: string, field: "email" | "push" | "inApp", value: boolea
       </div>
     </div>
   </Card>
-</Block>
+</PageSection>

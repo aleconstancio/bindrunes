@@ -1,10 +1,10 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import PageHeader from "../../layouts/PageHeader.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
 import EmptyState from "../../primitives/EmptyState.svelte";
 import type { Column, SortState } from "../../shared-types";
-import Block from "../Block.svelte";
 import AdvancedTable from "./AdvancedTable.svelte";
 import { useCrud } from "./crud-context.svelte";
 import FacetedSearch from "./FacetedSearch.svelte";
@@ -99,7 +99,7 @@ function handlePageChange(page: number) {
 }
 </script>
 
-<Block size="full" spacing="compact" class={className}>
+<PageSection reveal={false} size="full" spacing="compact" class={className}>
   <div class="flex flex-col gap-6">
     <div class="flex items-center justify-between">
       <div>
@@ -152,4 +152,4 @@ function handlePageChange(page: number) {
       onPageChange={handlePageChange}
     />
   </div>
-</Block>
+</PageSection>

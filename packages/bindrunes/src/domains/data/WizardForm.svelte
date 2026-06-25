@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 
 interface WizardStep {
 	id: string;
@@ -34,7 +34,7 @@ let isLast = $derived(currentStep === steps.length - 1);
 let progress = $derived(((currentStep + 1) / steps.length) * 100);
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-8">
     <!-- Step indicator -->
     <div class="space-y-4">
@@ -95,4 +95,4 @@ let progress = $derived(((currentStep + 1) / steps.length) * 100);
       {/if}
     </div>
   </div>
-</Block>
+</PageSection>

@@ -1,8 +1,8 @@
 <script lang="ts">
 import { Mail } from "lucide-svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 
 let {
 	email = "",
@@ -19,7 +19,7 @@ let {
 } = $props();
 </script>
 
-<Block size="sm" spacing="normal" class={className}>
+<PageSection reveal={false} size="sm" spacing="normal" class={className}>
   <MetaContainer size="sm" padding={false} class="mx-auto text-center space-y-6">
     <div class="flex justify-center">
       <div class="flex h-16 w-16 items-center justify-center rounded-[--radius-pill] bg-primary/10">
@@ -62,4 +62,4 @@ let {
       </button>.
     </p>
   </MetaContainer>
-</Block>
+</PageSection>

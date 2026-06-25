@@ -5,7 +5,6 @@ import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Dialog from "../../primitives/Dialog.svelte";
 import { isBrowser } from "../../utils/isBrowser";
-import Block from "../Block.svelte";
 
 let {
 	open = $bindable(false),

@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import { getGridClass } from "../../utils/grid";
-import Block from "../Block.svelte";
 import type { PortfolioItem } from "../types";
 
 let {
@@ -17,7 +17,7 @@ let {
 } = $props();
 </script>
 
-<Block size="xl" spacing="normal" class={className}>
+<PageSection reveal={false} size="xl" spacing="normal" class={className}>
   <div class="grid {getGridClass(columns)} gap-6">
     {#each items as item, i}
       {#if cardSnippet}
@@ -55,4 +55,4 @@ let {
       {/if}
     {/each}
   </div>
-</Block>
+</PageSection>

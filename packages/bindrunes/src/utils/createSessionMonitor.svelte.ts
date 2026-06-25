@@ -4,11 +4,10 @@ export interface SessionMonitorOptions {
 	events?: string[];
 }
 
-let activityTimer: ReturnType<typeof setTimeout> | null = null;
-let warningTimer: ReturnType<typeof setTimeout> | null = null;
-let destroyed = false;
-
 function resetTimer(
+	activityTimer: ReturnType<typeof setTimeout> | null,
+	warningTimer: ReturnType<typeof setTimeout> | null,
+	destroyed: boolean,
 	onRefresh: () => void,
 	onWarning: () => void,
 	timeout: number,
@@ -18,13 +17,15 @@ function resetTimer(
 	if (activityTimer) clearTimeout(activityTimer);
 	if (warningTimer) clearTimeout(warningTimer);
 
-	warningTimer = setTimeout(() => {
+	const newWarningTimer = setTimeout(() => {
 		if (!destroyed) onWarning();
 	}, timeout - warningBefore);
 
-	activityTimer = setTimeout(() => {
+	const newActivityTimer = setTimeout(() => {
 		if (!destroyed) onRefresh();
 	}, timeout);
+
+	return { activityTimer: newActivityTimer, warningTimer: newWarningTimer };
 }
 
 export function createSessionMonitor(
@@ -37,10 +38,39 @@ export function createSessionMonitor(
 	const warningBefore = options.warningBefore ?? 60 * 1000;
 	const events = options.events ?? ["mousedown", "keydown", "touchstart", "scroll"];
 
-	destroyed = false;
-	const handler = () => resetTimer(onRefresh, onWarning, timeout, warningBefore);
+	let activityTimer: ReturnType<typeof setTimeout> | null = null;
+	let warningTimer: ReturnType<typeof setTimeout> | null = null;
+	let destroyed = false;
+
+	const handler = () => {
+		const timers = resetTimer(
+			activityTimer,
+			warningTimer,
+			destroyed,
+			onRefresh,
+			onWarning,
+			timeout,
+			warningBefore,
+		);
+		if (timers) {
+			activityTimer = timers.activityTimer;
+			warningTimer = timers.warningTimer;
+		}
+	};
 	for (const e of events) window.addEventListener(e, handler, { passive: true });
-	resetTimer(onRefresh, onWarning, timeout, warningBefore);
+	const timers = resetTimer(
+		activityTimer,
+		warningTimer,
+		destroyed,
+		onRefresh,
+		onWarning,
+		timeout,
+		warningBefore,
+	);
+	if (timers) {
+		activityTimer = timers.activityTimer;
+		warningTimer = timers.warningTimer;
+	}
 
 	return () => {
 		destroyed = true;

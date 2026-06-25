@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import type { ContainerSize } from "../../shared-types";
-import Block from "../Block.svelte";
 
 let {
 	id = undefined as string | undefined,
@@ -24,6 +24,6 @@ let {
 } = $props();
 </script>
 
-<Block {id} class={className} {size} {background} {spacing} reveal {header} {footer}>
+<PageSection {id} class={className} {size} {background} {spacing} reveal {header} {footer}>
 	{@render children?.()}
-</Block>
+</PageSection>

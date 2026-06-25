@@ -1,11 +1,11 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Pagination from "../../primitives/Pagination.svelte";
 import { getGridClass } from "../../utils/grid";
-import Block from "../Block.svelte";
 
 interface BlogPost {
 	id: string;
@@ -38,7 +38,7 @@ let {
 } = $props();
 </script>
 
-<Block size="xl" spacing="normal" class={className}>
+<PageSection reveal={false} size="xl" spacing="normal" class={className}>
   <div class="grid {getGridClass(columns)} gap-6">
     {#each posts as post, i}
       {#if postSnippet}
@@ -88,4 +88,4 @@ let {
       <Pagination {currentPage} {totalPages} {onPageChange} />
     </div>
   {/if}
-</Block>
+</PageSection>

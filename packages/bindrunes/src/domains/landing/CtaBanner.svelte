@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 
 let {
 	title = "Ready to get started?",
@@ -22,7 +22,7 @@ let {
 } = $props();
 </script>
 
-<Block size="xl" spacing="wide" class="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 {className}">
+<PageSection reveal={false} size="xl" spacing="wide" class="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 {className}">
   <div class="text-center space-y-6">
     <h2 class="text-display-2 text-foreground">{title}</h2>
     <p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">{description}</p>
@@ -33,4 +33,4 @@ let {
       {/if}
     </div>
   </div>
-</Block>
+</PageSection>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Avatar from "../../primitives/Avatar.svelte";
-import Block from "../Block.svelte";
 
 interface ActivityItem {
 	id: string;
@@ -24,7 +24,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-4">
     <h3 class="text-title-2 text-foreground">{title}</h3>
     <div class="space-y-4">
@@ -53,4 +53,4 @@ let {
       {/each}
     </div>
   </div>
-</Block>
+</PageSection>

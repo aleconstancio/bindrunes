@@ -1,8 +1,8 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Input from "../../primitives/Input.svelte";
-import Block from "../Block.svelte";
 import OrderSummary from "./OrderSummary.svelte";
 
 interface CheckoutItem {
@@ -39,7 +39,7 @@ async function handleSubmit(e: SubmitEvent) {
 }
 </script>
 
-<Block size="lg" spacing="compact" class={className}>
+<PageSection reveal={false} size="lg" spacing="compact" class={className}>
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
     <div class="lg:col-span-3">
       <Card padding>
@@ -58,4 +58,4 @@ async function handleSubmit(e: SubmitEvent) {
       <OrderSummary {items} {currency} {shipping} {tax} />
     </div>
   </div>
-</Block>
+</PageSection>

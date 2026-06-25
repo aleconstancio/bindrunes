@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
-import Block from "../Block.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import type { ScheduleItem } from "../types";
 
 let {
@@ -16,7 +16,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="normal" class={className}>
+<PageSection reveal={false} size="md" spacing="normal" class={className}>
   <div class="space-y-8">
     {#if title}
       <h2 class="text-title-1 text-foreground">{title}</h2>
@@ -45,4 +45,4 @@ let {
       </div>
     </div>
   </div>
-</Block>
+</PageSection>

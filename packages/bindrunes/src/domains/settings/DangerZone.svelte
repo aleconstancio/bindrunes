@@ -1,8 +1,8 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import AlertDialog from "../../primitives/AlertDialog.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
-import Block from "../Block.svelte";
 
 let {
 	onDeactivate = undefined as (() => void) | undefined,
@@ -17,7 +17,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <Card padding class="border-destructive/30">
     <div class="space-y-6">
       <div>
@@ -80,4 +80,4 @@ let {
       </div>
     </div>
   </Card>
-</Block>
+</PageSection>

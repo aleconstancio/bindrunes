@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Avatar from "../../primitives/Avatar.svelte";
-import Block from "../Block.svelte";
 
 let {
 	title = "",
@@ -28,7 +28,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="normal" class={className}>
+<PageSection reveal={false} size="md" spacing="normal" class={className}>
   <article class="space-y-8">
     <header class="space-y-4">
       <h1 class="text-display-2 text-foreground leading-[--text-line-height-tight]">{title}</h1>
@@ -79,4 +79,4 @@ let {
       </footer>
     {/if}
   </article>
-</Block>
+</PageSection>

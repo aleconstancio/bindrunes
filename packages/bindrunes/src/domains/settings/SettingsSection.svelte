@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
-import Block from "../Block.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 
 let {
 	title = "",
@@ -16,7 +16,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="rounded-[--radius] border border-border bg-card p-6">
     <div class="mb-6">
       <h3 class="text-title-2 text-foreground">{title}</h3>
@@ -30,4 +30,4 @@ let {
       </div>
     </MetaContainer>
   </div>
-</Block>
+</PageSection>

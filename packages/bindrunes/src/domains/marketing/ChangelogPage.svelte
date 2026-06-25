@@ -1,6 +1,6 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
-import Block from "../Block.svelte";
 
 interface ChangelogEntry {
 	version: string;
@@ -26,7 +26,7 @@ const typeVariant: Record<string, "success" | "primary" | "warning" | "default">
 };
 </script>
 
-<Block size="md" spacing="normal" class={className}>
+<PageSection reveal={false} size="md" spacing="normal" class={className}>
   <div class="space-y-12">
     <h1 class="text-display-2 text-foreground">{title}</h1>
 
@@ -50,4 +50,4 @@ const typeVariant: Record<string, "success" | "primary" | "warning" | "default">
       </div>
     {/each}
   </div>
-</Block>
+</PageSection>

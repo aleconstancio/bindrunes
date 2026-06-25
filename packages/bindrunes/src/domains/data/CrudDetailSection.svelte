@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
-import Block from "../Block.svelte";
 
 let {
 	sections = [] as {
@@ -36,7 +36,7 @@ let {
 } = $props();
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-6">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {#each sections as section}
@@ -56,4 +56,4 @@ let {
       </div>
     {/if}
   </div>
-</Block>
+</PageSection>

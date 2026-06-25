@@ -1,5 +1,3 @@
-import { onDestroy } from "svelte";
-
 export function useThrottle<T>(value: T, delay: number = 300): { current: T } {
 	let lastExec = 0;
 	let timeout: ReturnType<typeof setTimeout> | undefined;
@@ -19,9 +17,9 @@ export function useThrottle<T>(value: T, delay: number = 300): { current: T } {
 				_current = value;
 			}, delay - elapsed);
 		}
-	});
 
-	onDestroy(() => clearTimeout(timeout));
+		return () => clearTimeout(timeout);
+	});
 
 	return {
 		get current() {

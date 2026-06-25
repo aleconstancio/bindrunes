@@ -1,6 +1,6 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Badge from "../../primitives/Badge.svelte";
-import Block from "../Block.svelte";
 
 interface ReleaseNote {
 	version: string;
@@ -28,7 +28,7 @@ const sectionConfig = {
 </script>
 
 {#if release}
-  <Block size="md" spacing="compact" class={className}>
+  <PageSection reveal={false} size="md" spacing="compact" class={className}>
     <div class="space-y-4">
       <div class="flex items-center gap-3">
         <h3 class="text-title-2 text-foreground">v{release.version}</h3>
@@ -52,5 +52,5 @@ const sectionConfig = {
         {/if}
       {/each}
     </div>
-  </Block>
+  </PageSection>
 {/if}

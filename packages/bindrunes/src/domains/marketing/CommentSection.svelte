@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
-import Block from "../Block.svelte";
 import type { CommentItem } from "../types";
 
 let {
@@ -37,7 +37,7 @@ async function handleSubmit() {
 }
 </script>
 
-<Block size="md" spacing="normal" class={className}>
+<PageSection reveal={false} size="md" spacing="normal" class={className}>
   <div class="space-y-8">
     <h3 class="text-title-2 text-foreground">Comments</h3>
 
@@ -90,4 +90,4 @@ async function handleSubmit() {
       {/each}
     </div>
   </div>
-</Block>
+</PageSection>

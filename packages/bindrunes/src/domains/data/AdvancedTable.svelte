@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Search } from "lucide-svelte";
 import type { Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
 import Input from "../../primitives/Input.svelte";
 import Pagination from "../../primitives/Pagination.svelte";
 import type { Column, SortState } from "../../shared-types";
-import Block from "../Block.svelte";
 import DataTable from "./DataTable.svelte";
 
 let {
@@ -79,7 +79,7 @@ function handleSelectRow(row: Record<string, unknown>) {
 }
 </script>
 
-<Block size="full" spacing="compact" class={className}>
+<PageSection reveal={false} size="full" spacing="compact" class={className}>
   <div class="flex flex-col gap-4">
     {#if toolbar}
       {@render toolbar()}
@@ -144,4 +144,4 @@ function handleSelectRow(row: Record<string, unknown>) {
       />
     {/if}
   </div>
-</Block>
+</PageSection>

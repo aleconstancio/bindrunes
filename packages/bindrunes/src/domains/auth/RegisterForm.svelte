@@ -2,11 +2,11 @@
 import { UserPlus } from "lucide-svelte";
 import type { Snippet } from "svelte";
 import MetaContainer from "../../layouts/MetaContainer.svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
 import ErrorBanner from "../../primitives/ErrorBanner.svelte";
 import Input from "../../primitives/Input.svelte";
 import PasswordInput from "../../primitives/PasswordInput.svelte";
-import Block from "../Block.svelte";
 
 let {
 	title = "Create an account",
@@ -71,7 +71,7 @@ async function handleSubmit(e: SubmitEvent) {
 }
 </script>
 
-<Block size="sm" spacing="normal" class={className}>
+<PageSection reveal={false} size="sm" spacing="normal" class={className}>
   <MetaContainer size="sm" padding={false} class="mx-auto">
     {#if header}
       {@render header()}
@@ -140,4 +140,4 @@ async function handleSubmit(e: SubmitEvent) {
       </p>
     {/if}
   </MetaContainer>
-</Block>
+</PageSection>

@@ -1,8 +1,8 @@
 <script lang="ts">
+import PageSection from "../../layouts/PageSection.svelte";
 import Button from "../../primitives/Button.svelte";
 import Card from "../../primitives/Card.svelte";
 import Input from "../../primitives/Input.svelte";
-import Block from "../Block.svelte";
 
 let {
 	onPasswordChange = undefined as
@@ -25,7 +25,7 @@ let newPassword = $state("");
 let confirmPassword = $state("");
 </script>
 
-<Block size="md" spacing="compact" class={className}>
+<PageSection reveal={false} size="md" spacing="compact" class={className}>
   <div class="space-y-6">
     <Card padding>
       <div class="space-y-4">
@@ -61,4 +61,4 @@ let confirmPassword = $state("");
       </div>
     </Card>
   </div>
-</Block>
+</PageSection>

@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { Component, Snippet } from "svelte";
+import PageSection from "../../layouts/PageSection.svelte";
 import Card from "../../primitives/Card.svelte";
 import MetricCard from "../../primitives/MetricCard.svelte";
-import Block from "../Block.svelte";
 
 interface Stat {
 	label: string;
@@ -28,7 +28,7 @@ let {
 } = $props();
 </script>
 
-<Block size="full" spacing="compact" class={className}>
+<PageSection reveal={false} size="full" spacing="compact" class={className}>
   <div class="space-y-6">
     <div class="flex items-center justify-between">
       <h1 class="text-title-1 text-foreground">{title}</h1>
@@ -69,4 +69,4 @@ let {
       {/if}
     </div>
   </div>
-</Block>
+</PageSection>
