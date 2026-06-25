@@ -1,7 +1,7 @@
 <script lang="ts">
 import Card from "../primitives/Card.svelte";
 import { hexToOklch } from "../utils/colorConvert";
-import { createThemeBuilder } from "../utils/createThemeBuilder";
+import { createTheme } from "../utils/createTheme.svelte";
 import { useAesthetic } from "../utils/useAesthetic.svelte";
 import { useDensity } from "../utils/useDensity.svelte";
 import AestheticTab from "./AestheticTab.svelte";
@@ -30,7 +30,17 @@ let primary = $derived(hexToOklch(primaryHex));
 let accent = $derived(hexToOklch(accentHex));
 let destructive = $derived(hexToOklch(destructiveHex));
 
-let theme = $derived(createThemeBuilder({ primary, accent, destructive, radius }));
+let theme = $derived(
+	createTheme({
+		name: "custom",
+		tokens: {
+			"--primary": primary,
+			"--accent": accent,
+			"--destructive": destructive,
+			"--radius": radius,
+		},
+	}),
+);
 let cssOutput = $derived(theme.toCSS('[data-theme="custom"]'));
 
 let copied = $state(false);

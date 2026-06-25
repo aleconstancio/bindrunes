@@ -167,10 +167,8 @@ export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
 export type { SessionMonitorOptions } from "./utils/createSessionMonitor.svelte.ts";
 export { createSessionMonitor } from "./utils/createSessionMonitor.svelte.ts";
 export { createStorage } from "./utils/createStorage.ts";
-export { createThemeBuilder } from "./utils/createThemeBuilder.ts";
+export { createTheme } from "./utils/createTheme.svelte.ts";
 export { createTransition } from "./utils/createTransition.svelte.ts";
-export { defineTheme } from "./utils/defineTheme.svelte.ts";
-export { extendTheme } from "./utils/extendTheme.svelte.ts";
 export {
 	formatBytes,
 	formatDate,
