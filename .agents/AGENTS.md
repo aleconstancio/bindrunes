@@ -48,6 +48,11 @@ Svelte 5 + Tailwind CSS v4 B2B SaaS component library. ~245 components, ~48 comp
 - Don't use raw `setContext`/`getContext` — use `createMetaContext`/`useMetaContext`
 - Don't hardcode `max-w-4xl`/`max-w-6xl` etc. — use `<MetaContainer size="...">`
 - Don't use `<SidebarLayout>` — use `<MetaLayout>` (SidebarLayout is deprecated)
+- Don't use `export let` — Svelte 5 runes only (`$props()`, `$state`, `$derived`, `$effect`)
+- Don't use legacy stores — `$state`/`$derived`/`$effect` only
+- Don't create multi-export files (except natural `createX`/`useX` pairs)
+- Don't use `console.warn` in production code — use `devWarning()` from `src/utils/devWarning.ts`
+- Don't create barrel files for domains — use granular imports (`bindrunes/domains/auth`)
 
 ## Internal Components
 The following components are internal to ThemeStudio and should NOT be imported directly:

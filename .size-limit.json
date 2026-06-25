@@ -1,17 +1,67 @@
 [
 	{
-		"name": "bindrunes (main)",
+		"name": "bindrunes",
 		"path": "packages/bindrunes/dist/index.js",
-		"limit": "15 kB"
+		"limit": "16 kB"
 	},
 	{
 		"name": "bindrunes/layouts",
 		"path": "packages/bindrunes/dist/layouts/index.js",
-		"limit": "8 kB"
+		"limit": "18 kB"
 	},
 	{
-		"name": "bindrunes/domains",
-		"path": "packages/bindrunes/dist/domains/index.js",
-		"limit": "12 kB"
+		"name": "bindrunes/domains/auth",
+		"path": "packages/bindrunes/dist/domains/auth/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/data",
+		"path": "packages/bindrunes/dist/domains/data/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/chat",
+		"path": "packages/bindrunes/dist/domains/chat/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/calendar",
+		"path": "packages/bindrunes/dist/domains/calendar/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/ecommerce",
+		"path": "packages/bindrunes/dist/domains/ecommerce/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/landing",
+		"path": "packages/bindrunes/dist/domains/landing/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/marketing",
+		"path": "packages/bindrunes/dist/domains/marketing/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/media",
+		"path": "packages/bindrunes/dist/domains/media/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/portfolio",
+		"path": "packages/bindrunes/dist/domains/portfolio/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/domains/settings",
+		"path": "packages/bindrunes/dist/domains/settings/index.js",
+		"limit": "2 kB"
+	},
+	{
+		"name": "bindrunes/agentic",
+		"path": "packages/bindrunes/dist/utils/agentic/index.js",
+		"limit": "4 kB"
 	}
 ]
