@@ -220,7 +220,7 @@ export { useClipboard } from "./utils/useClipboard.svelte.ts";
 export { useCounter } from "./utils/useCounter.svelte.ts";
 /** Debounce or throttle reactive values. */
 export { useDebounce } from "./utils/useDebounce.svelte.ts";
-export type { Density } from "./utils/useDensity.svelte.ts";
+export type { Density, ResponsiveDensityOptions } from "./utils/useDensity.svelte.ts";
 export { useDensity } from "./utils/useDensity.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */
 export { useEventListener } from "./utils/useEventListener.svelte.ts";
@@ -250,8 +250,6 @@ export type { CreateQueryOptions, QueryResult } from "./utils/useQuery.svelte.ts
 export { useQuery } from "./utils/useQuery.svelte.ts";
 export { useReducedMotion } from "./utils/useReducedMotion.svelte.ts";
 export { useResizeObserver } from "./utils/useResizeObserver.svelte.ts";
-export type { ResponsiveDensityOptions } from "./utils/useResponsiveDensity.svelte.ts";
-export { useResponsiveDensity } from "./utils/useResponsiveDensity.svelte.ts";
 export type { CreateTableOptions } from "./utils/useTable.svelte.ts";
 export { useTable } from "./utils/useTable.svelte.ts";
 export type { Theme } from "./utils/useTheme.svelte.ts";
