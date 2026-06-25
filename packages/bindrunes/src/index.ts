@@ -121,18 +121,7 @@ export type {
 // ── Pages ──
 //
 // ── Templates ──
-export {
-	AuthTemplate,
-	CalendarTemplate,
-	ChatTemplate,
-	CrudTemplate,
-	DashboardTemplate,
-	EcommerceTemplate,
-	MarketingTemplate,
-	MediaTemplate,
-	PortfolioTemplate,
-	SettingsTemplate,
-} from "./templates/index.ts";
+// Templates are now available via `bindrunes/layouts`
 export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
 /** Merge class names with Tailwind conflict resolution (last-wins per utility prefix). */
