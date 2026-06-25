@@ -29,7 +29,7 @@ jobs:
         run: bun run build
 
       - name: Create Release Pull Request or Publish
-        uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc # v1.4.10
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
         with:
           publish: bun run release:publish
           version: bun run release:version
