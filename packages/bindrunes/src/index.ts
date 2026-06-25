@@ -209,8 +209,6 @@ export { useAesthetic } from "./utils/useAesthetic.svelte.ts";
 // ── Composables: Reactivity ──
 /** Animation class names for enter, exit, slide, fade, and scale transitions. */
 export { useAnimation } from "./utils/useAnimation.svelte.ts";
-/** Reactive wrapper for async operations with loading/error/data states. */
-export { useAsyncState } from "./utils/useAsyncState.svelte.ts";
 /** Reactive authentication token handling with login/logout/session. */
 export type { AuthStorage, User } from "./utils/useAuth.svelte.ts";
 export { useAuth } from "./utils/useAuth.svelte.ts";
