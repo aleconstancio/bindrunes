@@ -17,13 +17,6 @@ export function setLocale(locale: string) {
 	_locale = locale;
 }
 
-/** @deprecated Use `getLocale()` for reads. Direct `LOCALE` access is unsafe in SSR. */
-export const LOCALE = {
-	get current() {
-		return _locale;
-	},
-};
-
 export function formatDate(
 	date: Date | string | number,
 	options?: Intl.DateTimeFormatOptions,
