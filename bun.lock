@@ -138,9 +138,9 @@
       },
       "peerDependencies": {
         "lucide-svelte": "^1.0.1",
-        "mode-watcher": "^0.5.1",
+        "mode-watcher": "^1.1.0",
         "svelte": "^5.0.0",
-        "svelte-sonner": "^0.3.28",
+        "svelte-sonner": "^1.1.1",
         "tailwindcss": "^4.0.0",
       },
     },
@@ -164,7 +164,7 @@
       "peerDependencies": {
         "@sveltejs/kit": "^2.0.0",
         "svelte": "^5.0.0",
-        "vite": "^6.0.0",
+        "vite": "^8.1.0",
       },
       "optionalPeers": [
         "@sveltejs/kit",
