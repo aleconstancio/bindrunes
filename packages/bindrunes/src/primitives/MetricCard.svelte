@@ -8,6 +8,7 @@ let {
 	variant = "default" as "default" | "success" | "warning" | "destructive",
 	progress = undefined as number | undefined,
 	progressMax = 100,
+	responsive = false,
 	children,
 }: {
 	label?: string;
@@ -16,6 +17,7 @@ let {
 	variant?: "default" | "success" | "warning" | "destructive";
 	progress?: number;
 	progressMax?: number;
+	responsive?: boolean;
 	children?: Snippet;
 } = $props();
 
@@ -27,7 +29,7 @@ const borderTop: Record<string, string> = {
 };
 </script>
 
-<div class="metric-card rounded-[--radius] border bg-card p-4 transition-all duration-[--duration-fluid] hover:-translate-y-1"
+<div class="metric-card rounded-[--radius] border bg-card p-4 transition-all duration-[--duration-fluid] hover:-translate-y-1 {responsive ? 'container-queries' : ''}"
   style="--variant-color: {borderTop[variant]}; border-top: 2px solid {borderTop[variant]};">
   <p class="text-mono-xs font-medium text-muted-foreground uppercase">{label}</p>
   <p class="text-headline-2 text-foreground mt-1">{value}</p>

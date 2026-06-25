@@ -7,6 +7,7 @@ let {
 	variant = "surface" as Variant,
 	interactive = false,
 	padding = true,
+	responsive = false,
 	href = undefined as string | undefined,
 	ariaLabel = undefined as string | undefined,
 	onclick = undefined as ((e: MouseEvent) => void) | undefined,
@@ -19,6 +20,7 @@ let {
 	variant?: Variant;
 	interactive?: boolean;
 	padding?: boolean;
+	responsive?: boolean;
 	href?: string;
 	ariaLabel?: string;
 	onclick?: (e: MouseEvent) => void;
@@ -45,6 +47,7 @@ const vars: Record<Variant, string> = {
     class="block rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
            {interactive ? 'bindrunes-card-interactive' : ''}
+           {responsive ? 'container-queries' : ''}
            {className}"
     {...restProps}
   >
@@ -58,6 +61,7 @@ const vars: Record<Variant, string> = {
     class="rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
            {interactive ? 'bindrunes-card-interactive' : ''}
+           {responsive ? 'container-queries' : ''}
            {className}"
     role={interactive ? 'button' : undefined}
     aria-label={interactive ? ariaLabel : undefined}
