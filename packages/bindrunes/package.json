@@ -63,6 +63,11 @@
 			"types": "./dist/utils/agentic/index.d.ts",
 			"svelte": "./dist/utils/agentic/index.js",
 			"default": "./dist/utils/agentic/index.js"
+		},
+		"./motion": {
+			"types": "./dist/utils/motion/index.d.ts",
+			"svelte": "./dist/utils/motion/index.js",
+			"default": "./dist/utils/motion/index.js"
 		}
 	},
 	"files": [
