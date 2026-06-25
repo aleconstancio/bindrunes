@@ -151,16 +151,10 @@ export { createI18n } from "./utils/createI18n.svelte.ts";
 // ── Composables: Context ──
 /** Type-safe Svelte context wrapper using Symbol keys. */
 export { createMetaContext, useMetaContext } from "./utils/createMetaContext.svelte.ts";
-export type {
-	CreateMultiTenantOptions,
-	MultiTenantResult,
-	Tenant,
-} from "./utils/createMultiTenant.svelte.ts";
 export {
 	createMultiTenantContext,
-	useMultiTenant,
 	useMultiTenantContext,
-} from "./utils/createMultiTenant.svelte.ts";
+} from "./utils/createMultiTenantContext.svelte.ts";
 export { createPersistedDataAttribute } from "./utils/createPersistedDataAttribute.svelte.ts";
 export { createPrefersTheme } from "./utils/createPrefersTheme.svelte.ts";
 // ── Composables: Realtime ──
@@ -234,6 +228,12 @@ export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.
 export { useInterval } from "./utils/useInterval.svelte.ts";
 export { useLocalStorage } from "./utils/useLocalStorage.svelte.ts";
 export { useMediaQuery } from "./utils/useMediaQuery.svelte.ts";
+export type {
+	CreateMultiTenantOptions,
+	MultiTenantResult,
+	Tenant,
+} from "./utils/useMultiTenant.svelte.ts";
+export { useMultiTenant } from "./utils/useMultiTenant.svelte.ts";
 /** Server state mutation with optimistic updates and invalidation. */
 export type { CreateMutationOptions, MutationResult } from "./utils/useMutation.svelte.ts";
 export { useMutation } from "./utils/useMutation.svelte.ts";
