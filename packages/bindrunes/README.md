@@ -49,7 +49,9 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 - **Server-first** — All components SSR-safe. Server utilities for theme/density resolution from request context.
 - **Responsive hybrid** — CSS container queries + fluid tokens for zero-JS responsiveness. `useViewport()` for JS breakpoints.
 - **Mobile gestures** — `useSwipe()`, `useLongPress()`, `useHaptic()` composables. BottomSheet and SwipeableList components.
-- **Motion & animation** — `useScrollLinked()`, `useInView()`, `useSpring()` composables. Scroll-linked and spring physics animations.
+- **Motion system** — `<Transition>`, `<AnimatePresence>`, `<Stagger>`, `<PageTransition>`, scroll-reveal CSS.
+- **Runtime optimization** — `useMemo()`, `useWorker()`, `useLazyLoad()` composables. CSS containment on components.
+- **Tree-shakeable** — Split entry points: `bindrunes/data`, `bindrunes/forms`, `bindrunes/auth` for lazy loading.
 - **Three-axis design system** — Theme (color), aesthetic (form), density (spacing). Any combination works.
 - **Svelte 5 runes** — `$state`, `$derived`, `$effect` only. No legacy stores.
 - **4-layer architecture** — Primitives → Layouts → Domains → Templates.
@@ -81,7 +83,11 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 |------|------|
 | `bindrunes` | Primitives, composables, utilities, types |
 | `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
-| `bindrunes/responsive` | Viewport composable and responsive utilities |
+| `bindrunes/responsive` | Viewport, gesture, haptic, motion composables |
+| `bindrunes/motion` | Transition, AnimatePresence, Stagger, PageTransition |
+| `bindrunes/data` | Data layer (useQuery, useMutation, useTable) — lazy-loadable |
+| `bindrunes/forms` | Form layer (useForm, useWizard) — lazy-loadable |
+| `bindrunes/auth` | Auth layer (useAuth, useAccess) — lazy-loadable |
 | `bindrunes/layouts` | Layouts + templates |
 | `bindrunes/domains/<name>` | Domain components (e.g. `bindrunes/domains/auth`) |
 | `bindrunes/agentic` | Agentic chat kernel |
