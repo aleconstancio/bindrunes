@@ -3,7 +3,7 @@ import type { Snippet } from "svelte";
 import Button from "../../primitives/Button.svelte";
 import type { TFunction } from "../../shared-types";
 import type { FormState } from "../../utils/useForm.svelte";
-import { useToast } from "../../utils/useToast.svelte";
+import { useToast } from "../../utils/useToast";
 
 let {
 	t = undefined as TFunction | undefined,

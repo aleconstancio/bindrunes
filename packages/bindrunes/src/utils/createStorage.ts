@@ -10,7 +10,7 @@ import { isBrowser } from "./isBrowser";
  * storage.remove('token');
  */
 export function createStorage(prefix: string) {
-	const key = (k: string) => `${prefix}_${k}`;
+	const key = (k: string) => (prefix ? `${prefix}_${k}` : k);
 
 	return {
 		get<T = string>(k: string): T | null {
@@ -41,8 +41,9 @@ export function createStorage(prefix: string) {
 		clear(): void {
 			if (!isBrowser) return;
 			try {
-				const prefixMatch = (k: string) => k.startsWith(`${prefix}_`);
-				const keys = Object.keys(localStorage).filter(prefixMatch);
+				const keys = prefix
+					? Object.keys(localStorage).filter((k) => k.startsWith(`${prefix}_`))
+					: [];
 				for (const k of keys) localStorage.removeItem(k);
 			} catch {
 				/* ignore */

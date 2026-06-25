@@ -4,7 +4,7 @@ export function useLocalStorage<T>(
 	key: string,
 	defaultValue: T,
 ): { value: T; set: (v: T) => void; remove: () => void } {
-	const storage = createStorage("br_local");
+	const storage = createStorage("");
 
 	let value = $state(storage.get<T>(key) ?? defaultValue);
 

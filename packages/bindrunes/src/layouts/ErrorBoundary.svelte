@@ -15,7 +15,7 @@ import Button from "../primitives/Button.svelte";
 import type { TFunction } from "../shared-types";
 import { isBrowser } from "../utils/isBrowser";
 import { toError } from "../utils/toError";
-import { useToast } from "../utils/useToast.svelte";
+import { useToast } from "../utils/useToast";
 
 type Variant = "default" | "minimal" | "page";
 
