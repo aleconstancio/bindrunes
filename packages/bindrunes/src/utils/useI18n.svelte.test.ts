@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { createI18nContext } from "./useI18n.svelte";
+import { createI18nContext } from "./useI18n";
 
 describe("createI18nContext", () => {
 	it("creates a context and returns a t function", async () => {

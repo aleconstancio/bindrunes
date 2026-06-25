@@ -103,6 +103,16 @@ declare const _glassSurface: never;
 /** Glass panel border color. Type: <color> */
 declare const _glassBorder: never;
 
+/** Hero background gradient. Type: <gradient> */
+declare const _bgGradientHero: never;
+/** Card background gradient. Type: <gradient> */
+declare const _bgGradientCard: never;
+/** Sidebar background gradient. Type: <gradient> */
+declare const _bgGradientSidebar: never;
+
+/** Shimmer gradient (skeleton loading). Type: <gradient> */
+declare const _gradientShimmer: never;
+
 /** Glass backdrop-filter blur. Type: <length>. Set to 0px to disable. */
 declare const _glassBlur: never;
 
@@ -127,10 +137,22 @@ declare const _shadowSm: never;
 declare const _shadowMd: never;
 /** Shadow lg. Type: <shadow> */
 declare const _shadowLg: never;
+/** Shadow xl. Type: <shadow> */
+declare const _shadowXl: never;
+/** Shadow 2xl. Type: <shadow> */
+declare const _shadow2xl: never;
 /** Primary glow shadow. Type: <shadow> */
 declare const _shadowGlowPrimary: never;
+/** Accent glow shadow. Type: <shadow> */
+declare const _shadowGlowAccent: never;
 /** Destructive glow shadow. Type: <shadow> */
 declare const _shadowGlowDestructive: never;
+/** Success glow shadow. Type: <shadow> */
+declare const _shadowGlowSuccess: never;
+/** Warning glow shadow. Type: <shadow> */
+declare const _shadowGlowWarning: never;
+/** Info glow shadow. Type: <shadow> */
+declare const _shadowGlowInfo: never;
 /** Inset subtle shadow. Type: <shadow> */
 declare const _shadowInsetSubtle: never;
 /** Resolved shadow emphasis (follows density). Type: <shadow> */
@@ -216,6 +238,8 @@ declare const _sidebarRing: never;
 declare const _zSidebar: never;
 /** Modal/dropdown overlay z-index. Type: <integer>. Registered @property. */
 declare const _zOverlay: never;
+/** Modal z-index. Type: <integer>. Registered @property. */
+declare const _zModal: never;
 /** Toast notification z-index. Type: <integer>. Registered @property. */
 declare const _zToast: never;
 /** Omnibar/command palette z-index. Type: <integer>. Registered @property. */

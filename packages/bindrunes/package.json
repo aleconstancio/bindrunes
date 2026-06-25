@@ -70,9 +70,9 @@
 			"default": "./dist/server/index.js"
 		},
 		"./responsive": {
-			"types": "./dist/utils/useViewport.d.ts",
-			"svelte": "./dist/utils/useViewport.js",
-			"default": "./dist/utils/useViewport.js"
+			"types": "./dist/utils/useViewport.svelte.d.ts",
+			"svelte": "./dist/utils/useViewport.svelte.js",
+			"default": "./dist/utils/useViewport.svelte.js"
 		},
 		"./agentic": {
 			"types": "./dist/utils/agentic/index.d.ts",

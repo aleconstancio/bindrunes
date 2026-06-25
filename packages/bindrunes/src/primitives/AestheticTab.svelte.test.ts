@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
-import { useAesthetic } from "../utils/useAesthetic.svelte";
+import { useAesthetic } from "../utils/useAesthetic";
 import ComposableHarness from "./__tests__/harness/ComposableHarness.svelte";
 import AestheticTab from "./AestheticTab.svelte";
 

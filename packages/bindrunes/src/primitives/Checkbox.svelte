@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Checkbox } from "bits-ui";
+import ErrorMessage from "./ErrorMessage.svelte";
 
 const BitsCheckbox = Checkbox;
 
@@ -58,6 +59,6 @@ const describedBy = $derived(
     {/if}
   </label>
   {#if error && errorId}
-    <p id={errorId} role="alert" class="mt-1 text-body-sm text-destructive">{error}</p>
+    <ErrorMessage id={errorId}>{error}</ErrorMessage>
   {/if}
 </div>

@@ -1,5 +1,5 @@
 import type { TFunction } from "../shared-types";
-import { createMetaContext, useMetaContext } from "./createMetaContext.svelte";
+import { createMetaContext, useMetaContext } from "./createMetaContext";
 
 const I18N_KEY = Symbol("bindrunes-i18n");
 

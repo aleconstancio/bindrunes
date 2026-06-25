@@ -6,7 +6,7 @@ export function useInterval(callback: () => void, delay: number | null) {
 		id = setInterval(callback, delay);
 	}
 
-	function stop() {
+	function destroy() {
 		if (id !== undefined) {
 			clearInterval(id);
 			id = undefined;
@@ -14,7 +14,7 @@ export function useInterval(callback: () => void, delay: number | null) {
 	}
 
 	function reset(newDelay?: number) {
-		stop();
+		destroy();
 		if (newDelay !== undefined) {
 			delay = newDelay;
 		}
@@ -24,8 +24,8 @@ export function useInterval(callback: () => void, delay: number | null) {
 	start();
 
 	$effect(() => {
-		return () => stop();
+		return () => destroy();
 	});
 
-	return { stop, reset };
+	return { destroy, reset };
 }

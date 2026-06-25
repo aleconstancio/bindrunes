@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { useHead } from "./useHead.svelte";
+import { useHead } from "./useHead";
 
 describe("useHead", () => {
 	let originalTitle: string;

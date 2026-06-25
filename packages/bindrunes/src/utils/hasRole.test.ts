@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { hasAnyRole, hasPermission, hasRole } from "./hasRole.svelte";
+import { hasAnyRole, hasPermission, hasRole } from "./hasRole";
 
 const makeAuth = (
 	overrides: Partial<{

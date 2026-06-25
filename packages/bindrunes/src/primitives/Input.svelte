@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
+import ErrorMessage from "./ErrorMessage.svelte";
 
 let {
 	label = undefined as string | undefined,
@@ -124,7 +125,7 @@ let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-hel
 </div>
 
 {#if error}
-  <p id="{inputId}-error" class="mt-1.5 text-body-sm text-destructive">{error}</p>
+  <ErrorMessage id="{inputId}-error">{error}</ErrorMessage>
 {:else if helper}
   <p id="{inputId}-helper" class="mt-1.5 text-body-sm text-muted-foreground">{helper}</p>
 {/if}

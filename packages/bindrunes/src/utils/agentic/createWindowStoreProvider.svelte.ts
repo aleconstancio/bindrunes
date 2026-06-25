@@ -1,4 +1,4 @@
-import { createMetaContext } from "../createMetaContext.svelte";
+import { createMetaContext } from "../createMetaContext";
 import { WINDOW_STORE_KEY } from "./agentic-keys";
 import { createWindowStore, type WindowStore } from "./createWindowStore.svelte";
 

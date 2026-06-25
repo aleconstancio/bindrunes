@@ -1,7 +1,7 @@
 <script lang="ts">
 import { untrack } from "svelte";
 import { AUTH_CONTEXT_KEY } from "../utils/auth-keys.ts";
-import { useMetaContext } from "../utils/createMetaContext.svelte";
+import { useMetaContext } from "../utils/createMetaContext";
 import { isSafeRedirect } from "../utils/url.ts";
 import { type AuthStorage, useAuth } from "../utils/useAuth.svelte.ts";
 

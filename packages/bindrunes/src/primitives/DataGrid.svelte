@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { Column, SortState } from "../shared-types";
+import { toggleSort } from "../utils/sortUtils";
 
 interface Props {
 	columns?: Column[];
@@ -33,14 +34,9 @@ function getRowId(row: Record<string, unknown>): string {
 	return String(row[rowKey]);
 }
 
-function toggleSort(key: string) {
-	if (!sort || sort.key !== key) {
-		onSort?.({ key, direction: "asc" });
-	} else if (sort.direction === "asc") {
-		onSort?.({ key, direction: "desc" });
-	} else {
-		onSort?.(null);
-	}
+function handleToggleSort(key: string) {
+	const result = toggleSort(sort?.key ?? null, sort?.direction ?? null, key);
+	onSort?.(result.direction === null ? null : (result as SortState));
 }
 
 function toggleRowSelection(id: string) {
@@ -86,7 +82,7 @@ function toggleAllSelection() {
 							? 'cursor-pointer hover:text-foreground'
 							: ''}"
 						style:width={column.width}
-						onclick={() => column.sortable && toggleSort(column.key)}
+						onclick={() => column.sortable && handleToggleSort(column.key)}
 					>
 						<div class="flex items-center gap-1">
 							{column.label}

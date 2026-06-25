@@ -1,6 +1,6 @@
 import { toast as sonnerToast } from "svelte-sonner";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { useToast } from "./useToast.svelte";
+import { useToast } from "./useToast";
 
 vi.mock("svelte-sonner", () => ({
 	toast: {

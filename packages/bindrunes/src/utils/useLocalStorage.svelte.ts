@@ -1,41 +1,21 @@
-import { isBrowser } from "./isBrowser";
+import { createStorage } from "./createStorage";
 
 export function useLocalStorage<T>(
 	key: string,
 	defaultValue: T,
 ): { value: T; set: (v: T) => void; remove: () => void } {
-	function getStored(): T {
-		if (!isBrowser) return defaultValue;
-		try {
-			const item = localStorage.getItem(key);
-			return item ? (JSON.parse(item) as T) : defaultValue;
-		} catch {
-			return defaultValue;
-		}
-	}
+	const storage = createStorage("br_local");
 
-	let value = $state(getStored());
+	let value = $state(storage.get<T>(key) ?? defaultValue);
 
 	function set(v: T) {
 		value = v;
-		if (isBrowser) {
-			try {
-				localStorage.setItem(key, JSON.stringify(v));
-			} catch {
-				// quota exceeded or private browsing
-			}
-		}
+		storage.set(key, v);
 	}
 
 	function remove() {
 		value = defaultValue;
-		if (isBrowser) {
-			try {
-				localStorage.removeItem(key);
-			} catch {
-				// silent
-			}
-		}
+		storage.remove(key);
 	}
 
 	return {

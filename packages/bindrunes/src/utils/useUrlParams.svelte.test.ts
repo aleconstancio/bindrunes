@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
-import { useUrlParams } from "./useUrlParams.svelte";
+import { useUrlParams } from "./useUrlParams";
 
 describe("useUrlParams", () => {
 	it("getParam returns null for missing param", async () => {

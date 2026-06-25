@@ -1,8 +1,8 @@
 <script lang="ts">
 import Card from "../primitives/Card.svelte";
 import { hexToOklch } from "../utils/colorConvert";
-import { createTheme } from "../utils/createTheme.svelte";
-import { useAesthetic } from "../utils/useAesthetic.svelte";
+import { createTheme } from "../utils/createTheme";
+import { useAesthetic } from "../utils/useAesthetic";
 import { useDensity } from "../utils/useDensity.svelte";
 import AestheticTab from "./AestheticTab.svelte";
 import DensityTab from "./DensityTab.svelte";

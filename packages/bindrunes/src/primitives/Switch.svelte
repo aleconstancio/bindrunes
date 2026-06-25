@@ -1,5 +1,6 @@
 <script lang="ts">
 import { Switch } from "bits-ui";
+import ErrorMessage from "./ErrorMessage.svelte";
 
 const BitsSwitch = Switch;
 
@@ -42,5 +43,5 @@ let errorId = $derived(name ? `${name}-error` : undefined);
   {/if}
 </label>
 {#if error && errorId}
-  <p id={errorId} class="mt-1.5 text-body-sm text-destructive">{error}</p>
+  <ErrorMessage id={errorId}>{error}</ErrorMessage>
 {/if}

@@ -1,6 +1,7 @@
 <script lang="ts">
 import Pagination from "../../primitives/Pagination.svelte";
 import type { Column, SortState } from "../../shared-types";
+import { toggleSort } from "../../utils/sortUtils";
 import { defaultTableFallbacks } from "../../utils/tableFallbacks";
 
 let {
@@ -37,14 +38,9 @@ let {
 	t?: (key: string, params?: Record<string, string | number>) => string;
 } = $props();
 
-function toggleSort(key: string) {
-	if (!sort || sort.key !== key) {
-		onSort?.({ key, direction: "asc" });
-	} else if (sort.direction === "asc") {
-		onSort?.({ key, direction: "desc" });
-	} else {
-		onSort?.(null);
-	}
+function handleToggleSort(key: string) {
+	const result = toggleSort(sort?.key ?? null, sort?.direction ?? null, key);
+	onSort?.(result.direction === null ? null : (result as SortState));
 }
 
 function _getSkeletonWidth(i: number): string {
@@ -72,7 +68,7 @@ function _getSkeletonWidth(i: number): string {
                 class="inline-flex items-center cursor-pointer bg-transparent border-none p-0 text-inherit font-inherit uppercase tracking-[--text-letter-spacing-wider] text-muted-foreground"
                 class:ml-auto={col.align === 'right'}
                 class:mx-auto={col.align === 'center'}
-                onclick={() => toggleSort(col.key)}
+                onclick={() => handleToggleSort(col.key)}
               >
                 {col.label}
                 {#if sort?.key === col.key}

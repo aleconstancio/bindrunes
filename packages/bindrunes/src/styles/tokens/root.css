@@ -83,7 +83,7 @@
 	--shadow-glow-success: 0 0 24px -6px oklch(from var(--success) l c h / 0.25);
 	--shadow-glow-warning: 0 0 24px -6px oklch(from var(--warning) l c h / 0.25);
 	--shadow-glow-info: 0 0 24px -6px oklch(from var(--info) l c h / 0.25);
-	--shadow-emphasis-resolved: var(--shadow-md);
+	--shadow-emphasis-resolved: var(--shadow-sm);
 	--shadow-inset-subtle: inset 0 1px 0 oklch(1 0 0 / 0.06);
 
 	/* Motion durations */
@@ -201,6 +201,7 @@
 	/* Z-index scale */
 	--z-sidebar: 40;
 	--z-overlay: 50;
+	--z-omnibar: 55;
 	--z-modal: 60;
 	--z-popover: 70;
 	--z-toast: 80;

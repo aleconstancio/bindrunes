@@ -1,6 +1,7 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 import type { Column } from "../../shared-types";
+import { toggleSort } from "../../utils/sortUtils";
 
 let {
 	columns = [] as Column[],
@@ -18,14 +19,11 @@ let {
 	class?: string;
 } = $props();
 
-function toggleSort(key: string) {
-	if (!sort || sort.key !== key) {
-		onSort?.({ key, direction: "asc" });
-	} else if (sort.direction === "asc") {
-		onSort?.({ key, direction: "desc" });
-	} else {
-		onSort?.(null);
-	}
+function handleToggleSort(key: string) {
+	const result = toggleSort(sort?.key ?? null, sort?.direction ?? null, key);
+	onSort?.(
+		result.direction === null ? null : (result as { key: string; direction: "asc" | "desc" }),
+	);
 }
 </script>
 
@@ -39,7 +37,7 @@ function toggleSort(key: string) {
                  text-muted-foreground hover:text-foreground transition-colors
                  rounded-[--radius] hover:bg-muted cursor-pointer bg-transparent border-none"
           aria-sort={sort?.key === col.key ? (sort.direction === "asc" ? "ascending" : "descending") : "none"}
-          onclick={() => toggleSort(col.key)}
+          onclick={() => handleToggleSort(col.key)}
         >
           {col.label}
           {#if sort?.key === col.key}

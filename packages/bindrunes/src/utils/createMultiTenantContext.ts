@@ -1,4 +1,4 @@
-import { createMetaContext, useMetaContext } from "./createMetaContext.svelte";
+import { createMetaContext, useMetaContext } from "./createMetaContext";
 import {
 	type CreateMultiTenantOptions,
 	type MultiTenantResult,

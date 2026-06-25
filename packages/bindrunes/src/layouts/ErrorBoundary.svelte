@@ -15,6 +15,7 @@ import Button from "../primitives/Button.svelte";
 import type { TFunction } from "../shared-types";
 import { isBrowser } from "../utils/isBrowser";
 import { toError } from "../utils/toError";
+import { useToast } from "../utils/useToast.svelte";
 
 type Variant = "default" | "minimal" | "page";
 
@@ -47,14 +48,11 @@ let {
 let error = $state<Error | null>(null);
 let errorInfo = $state<string>("");
 
+const toast = useToast();
+
 async function notifyError(title: string, description: string) {
 	if (disableToast) return;
-	try {
-		const { toast } = await import("svelte-sonner");
-		toast.error(title, { description: description.slice(0, 120) });
-	} catch {
-		// svelte-sonner not installed — silently skip
-	}
+	await toast.error(title, { description: description.slice(0, 120) });
 }
 
 onMount(() => {

@@ -11,7 +11,7 @@ export function useMediaQuery(options: ReactiveMediaQueryOptions) {
 			get matches() {
 				return false;
 			},
-			stop() {},
+			destroy() {},
 		};
 	}
 
@@ -34,6 +34,6 @@ export function useMediaQuery(options: ReactiveMediaQueryOptions) {
 		get matches() {
 			return matches;
 		},
-		stop() {},
+		destroy() {},
 	};
 }

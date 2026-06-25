@@ -1,4 +1,4 @@
-import { createMetaContext, useMetaContext } from "../../utils/createMetaContext.svelte";
+import { createMetaContext, useMetaContext } from "../../utils/createMetaContext";
 import { browser } from "./sidebar-constants";
 
 export const SIDEBAR_KEYBOARD_SHORTCUT = "b";

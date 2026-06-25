@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { handleSSEEvent } from "./createSseBridge.svelte";
+import { handleSSEEvent } from "./createSseBridge";
 
 // Mock the query cache
 vi.mock("./queryCache", () => ({

@@ -1,25 +1,25 @@
 import { isBrowser } from "./isBrowser";
 
-export function useReducedMotion(): { current: boolean } {
+export function useReducedMotion(): { current: boolean; destroy: () => void } {
 	let current = $state(false);
 
 	if (isBrowser) {
 		const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
 		current = mq.matches;
 
-		const handler = (e: MediaQueryListEvent) => {
-			current = e.matches;
-		};
-
-		mq.addEventListener("change", handler);
-
-		// No cleanup needed - matchMedia listeners persist for the page lifetime
-		// and are cleaned up when the page unloads
+		$effect(() => {
+			function onChange(e: MediaQueryListEvent) {
+				current = e.matches;
+			}
+			mq.addEventListener("change", onChange);
+			return () => mq.removeEventListener("change", onChange);
+		});
 	}
 
 	return {
 		get current() {
 			return current;
 		},
+		destroy() {},
 	};
 }

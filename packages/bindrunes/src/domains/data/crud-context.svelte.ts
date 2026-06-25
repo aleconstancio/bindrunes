@@ -1,4 +1,4 @@
-import { createMetaContext, useMetaContext } from "../../utils/createMetaContext.svelte";
+import { createMetaContext, useMetaContext } from "../../utils/createMetaContext";
 
 const CRUD_KEY = Symbol("crud");
 

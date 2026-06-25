@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { useAccess } from "./useAccess.svelte";
+import { useAccess } from "./useAccess";
 
 const makeAuth = (
 	overrides: Partial<{

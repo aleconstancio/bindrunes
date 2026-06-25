@@ -53,12 +53,16 @@ function _handleCancel() {
 				<AlertDialog.Description class="text-body-md text-muted-foreground">{description}</AlertDialog.Description>
 			{/if}
 			<div class="mt-6 flex justify-end gap-3">
-				<AlertDialog.Cancel asChild let:props>
+			<AlertDialog.Cancel>
+				{#snippet child({ props })}
 					<Button variant="ghost" size="sm" {...props} onclick={_handleCancel}>{cancelLabel}</Button>
-				</AlertDialog.Cancel>
-				<AlertDialog.Action asChild let:props>
+				{/snippet}
+			</AlertDialog.Cancel>
+			<AlertDialog.Action>
+				{#snippet child({ props })}
 					<Button variant={destructive ? 'destructive' : 'primary'} size="sm" {...props} onclick={_handleConfirm}>{confirmLabel}</Button>
-				</AlertDialog.Action>
+				{/snippet}
+			</AlertDialog.Action>
 			</div>
 			{#if children}
 				{@render children()}

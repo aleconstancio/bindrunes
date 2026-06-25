@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createTheme } from "./createTheme.svelte";
+import { createTheme } from "./createTheme";
 
 describe("createTheme", () => {
 	it("creates a theme from tokens (define mode)", () => {

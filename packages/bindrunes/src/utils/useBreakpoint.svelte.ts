@@ -17,6 +17,7 @@ export function useBreakpoint(breakpoint: Breakpoint = "md") {
 			get isBelow() {
 				return false;
 			},
+			destroy() {},
 		};
 	}
 

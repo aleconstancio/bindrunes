@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { useAnimation } from "./useAnimation.svelte";
+import { useAnimation } from "./useAnimation";
 
 describe("useAnimation", () => {
 	it("returns CSS class names for all animation types", () => {

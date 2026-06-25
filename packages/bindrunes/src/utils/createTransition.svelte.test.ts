@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createTransition } from "./createTransition.svelte";
+import { createTransition } from "./createTransition";
 
 function makeElement(): HTMLElement {
 	const el = document.createElement("div");

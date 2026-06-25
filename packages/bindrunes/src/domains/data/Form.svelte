@@ -3,6 +3,7 @@ import type { Snippet } from "svelte";
 import Button from "../../primitives/Button.svelte";
 import type { TFunction } from "../../shared-types";
 import type { FormState } from "../../utils/useForm.svelte";
+import { useToast } from "../../utils/useToast.svelte";
 
 let {
 	t = undefined as TFunction | undefined,
@@ -47,16 +48,7 @@ let {
 let submitting = $state(false);
 let isSubmittingDerived = $derived(submitting || loading);
 
-async function showToast(type: "success" | "error", message: string) {
-	if (disableToast) return;
-	try {
-		const { toast } = await import("svelte-sonner");
-		if (type === "success") toast.success(message);
-		else toast.error(message);
-	} catch {
-		// svelte-sonner not installed — silently skip
-	}
-}
+const toast = useToast();
 
 async function handleSubmit(e: SubmitEvent) {
 	e.preventDefault();
@@ -72,11 +64,11 @@ async function handleSubmit(e: SubmitEvent) {
 		} else {
 			return;
 		}
-		await showToast("success", successMessage);
+		if (!disableToast) await toast.success(successMessage);
 		onSuccess?.();
 	} catch (err) {
 		const msg = err instanceof Error ? err.message : errorMessage;
-		await showToast("error", msg);
+		if (!disableToast) await toast.error(msg);
 		onError?.(err instanceof Error ? err : new Error(String(err)));
 	} finally {
 		submitting = false;

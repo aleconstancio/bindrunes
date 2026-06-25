@@ -2,6 +2,7 @@
 import { Select } from "bits-ui";
 import type { Snippet } from "svelte";
 import type { SelectOption, TFunction } from "../shared-types";
+import ErrorMessage from "./ErrorMessage.svelte";
 
 let {
 	t = undefined as TFunction | undefined,
@@ -89,5 +90,5 @@ let errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`
 </Select.Root>
 
 {#if error}
-  <p id={errorId} class="mt-1 text-body-sm text-destructive">{error}</p>
+  <ErrorMessage id={errorId}>{error}</ErrorMessage>
 {/if}

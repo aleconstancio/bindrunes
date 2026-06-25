@@ -1,13 +1,6 @@
-type Result = { theme: string; isDark: boolean };
+import { parseCookies } from "./parseCookies";
 
-function parseCookies(header: string): Record<string, string> {
-	return Object.fromEntries(
-		header.split(";").map((c) => {
-			const [key, ...val] = c.trim().split("=");
-			return [key, val.join("=")];
-		}),
-	);
-}
+type Result = { theme: string; isDark: boolean };
 
 export function useThemeServer(request?: Request, opts?: { default?: string }): Result {
 	const fallback = opts?.default ?? "editorial";

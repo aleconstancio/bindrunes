@@ -2,7 +2,7 @@
 import { ModeWatcher } from "mode-watcher";
 import type { Snippet } from "svelte";
 import { isBrowser } from "../utils/isBrowser";
-import { type Aesthetic, useAesthetic } from "../utils/useAesthetic.svelte";
+import { type Aesthetic, useAesthetic } from "../utils/useAesthetic";
 import { type Density, useDensity } from "../utils/useDensity.svelte";
 import { type Theme, useTheme } from "../utils/useTheme.svelte";
 

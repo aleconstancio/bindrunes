@@ -56,32 +56,32 @@
 }
 @property --z-sidebar {
 	syntax: "<integer>";
-	initial-value: 20;
+	initial-value: 40;
 	inherits: true;
 }
 @property --z-overlay {
 	syntax: "<integer>";
-	initial-value: 30;
+	initial-value: 50;
 	inherits: true;
 }
 @property --z-toast {
 	syntax: "<integer>";
-	initial-value: 40;
+	initial-value: 80;
 	inherits: true;
 }
 @property --z-omnibar {
 	syntax: "<integer>";
-	initial-value: 50;
+	initial-value: 55;
 	inherits: true;
 }
 @property --z-popover {
 	syntax: "<integer>";
-	initial-value: 60;
+	initial-value: 70;
 	inherits: true;
 }
 @property --z-tooltip {
 	syntax: "<integer>";
-	initial-value: 70;
+	initial-value: 90;
 	inherits: true;
 }
 @property --z-modal {
