@@ -139,15 +139,61 @@ Template → Domain Components → Layouts → Primitives
 
 ## Export Structure
 
-| Path | Contents |
+| Import Path | Contents |
 |---|---|
-| `bindrunes` | Primitives, composables, utilities, types |
-| `bindrunes/layouts` | Layouts + templates |
-| `bindrunes/domains/<name>` | Individual domain |
-| `bindrunes/agentic` | LLM tool calling, agent loops |
+| `bindrunes` | Primitives, shared components, composables, types, utilities |
+| `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
+| `bindrunes/responsive` | Viewport composable and responsive utilities |
+| `bindrunes/layouts` | Layout components (PageShell, sidebar, dashboard shell, etc.) |
+| `bindrunes/domains` | All domain components and composables |
+| `bindrunes/domains/<name>` | Individual domain (e.g., `bindrunes/domains/auth`) |
+| `bindrunes/templates` | Pre-composed full-page templates |
+| `bindrunes/agentic` | Agentic subsystem (LLM tool calling, agent loops) |
 | `bindrunes/tailwind` | Tailwind CSS plugin |
-| `bindrunes/styles/*` | Global CSS, token sheets |
-| `bindrunes/i18n/*` | Translation dictionaries |
+| `bindrunes/playground` | Dev playground components |
+| `bindrunes/styles/*` | Global styles and token sheets |
+
+---
+
+## Server Architecture (v3.0+)
+
+### Server Utilities
+
+`bindrunes/server` exports pure functions safe for any server context (no Svelte runes, no browser APIs):
+
+- `createServerTheme(name, options)` — Resolves theme tokens and generates CSS
+- `useThemeServer(request)` — Reads theme preference from request cookies
+- `useDensityServer(request)` — Reads density preference from request cookies
+- `createRender(component)` — Wraps `svelte/server` render() for component-to-HTML conversion
+
+### SSR-Safe Components
+
+All bindrunes components are SSR-safe by default — no browser APIs in top-level script setup. Client-only code uses the `browser` guard:
+
+```svelte
+<script lang="ts">
+  import { browser } from "bindrunes";
+  $effect(() => {
+    if (!browser) return;
+    // Client-only code
+  });
+</script>
+```
+
+### Progressive Hydration
+
+Uses SvelteKit's native patterns:
+- `export const csr = false` — Server-only pages (no client JS)
+- `export const ssr = false` — Client-only pages (no SSR)
+- `<svelte:boundary>` — Selective client hydration within a page
+
+### Responsive System
+
+- CSS container queries via Tailwind v4 `@` prefix
+- Fluid tokens: `--fluid-space-*`, `--fluid-text-*`
+- Auto density: `data-density="auto"` derives spacing from viewport
+- `useViewport()` composable for JS breakpoint detection
+- `responsive` prop on components for container query support
 
 ---
 

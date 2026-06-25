@@ -4,12 +4,12 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-Svelte 5 component library for B2B SaaS. 245+ components, 40+ composables, 7 aesthetics, 6 themes.
+Svelte 5 component library for B2B SaaS. Server-first rendering, responsive hybrid, 270+ components, 60+ composables.
 
 ## Quick Start
 
 ```bash
-bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
+bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 ```
 
 ```css
@@ -23,13 +23,13 @@ bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { ThemeProvider } from "bindrunes";
   let { children } = $props();
 </script>
 
-<AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
+<ThemeProvider themeDefault="editorial" densityDefault="comfortable">
   {@render children()}
-</AppProvider>
+</ThemeProvider>
 ```
 
 ```svelte
@@ -38,7 +38,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
   import { Button, Card } from "bindrunes";
 </script>
 
-<Card variant="glass">
+<Card variant="glass" responsive>
   <h2>Welcome</h2>
   <Button variant="primary">Get Started</Button>
 </Card>
@@ -46,6 +46,8 @@ bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 
 ## Features
 
+- **Server-first** — All components SSR-safe. Server utilities for theme/density resolution from request context.
+- **Responsive hybrid** — CSS container queries + fluid tokens for zero-JS responsiveness. `useViewport()` for JS breakpoints.
 - **Three-axis design system** — Theme (color), aesthetic (form), density (spacing). Any combination works.
 - **Svelte 5 runes** — `$state`, `$derived`, `$effect` only. No legacy stores.
 - **4-layer architecture** — Primitives → Layouts → Domains → Templates.
@@ -63,10 +65,12 @@ bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 | [Components](docs/components.md) | Component reference |
 | [Composables](docs/composables.md) | Reactivity, data, forms, auth |
 | [Design System](docs/design-system.md) | Themes, aesthetics, density |
+| [SSR Guide](docs/ssr.md) | Server-side rendering, progressive hydration |
 | [Architecture](docs/architecture.md) | 4-layer hierarchy, file structure |
 | [Agentic](docs/agentic/overview.md) | LLM chat kernel and copilot UI |
 | [Security](docs/security.md) | Token storage, redirects, CSRF |
 | [Testing](docs/testing.md) | Vitest conventions and helpers |
+| [Migration v2→v3](docs/migration/v2-to-v3.md) | Breaking changes and upgrade guide |
 | [bindrunes-kit](docs/kit/) | SvelteKit meta-framework |
 
 ## Export Paths
@@ -74,6 +78,8 @@ bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 | Path | What |
 |------|------|
 | `bindrunes` | Primitives, composables, utilities, types |
+| `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
+| `bindrunes/responsive` | Viewport composable and responsive utilities |
 | `bindrunes/layouts` | Layouts + templates |
 | `bindrunes/domains/<name>` | Domain components (e.g. `bindrunes/domains/auth`) |
 | `bindrunes/agentic` | Agentic chat kernel |
