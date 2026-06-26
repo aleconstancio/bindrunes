@@ -1,0 +1,216 @@
+<!-- packages/bindrunes/src/playground/Playground.svelte -->
+<script lang="ts">
+import { Badge, Button, Card, Input, Select } from "../../index";
+import CodePreview from "./CodePreview.svelte";
+import { type ComponentDefinition, categories, componentRegistry } from "./component-registry";
+import ExportButton from "./ExportButton.svelte";
+import PropControls from "./PropControls.svelte";
+import { createPlaygroundState } from "./playground-state.svelte";
+import ResponsiveFrame from "./ResponsiveFrame.svelte";
+
+interface Props {
+	initialComponent?: string;
+	initialTheme?: string;
+	initialAesthetic?: string;
+	initialDensity?: string;
+}
+
+let {
+	initialComponent = "Button",
+	initialTheme = "editorial",
+	initialAesthetic = "minimal",
+	initialDensity = "comfortable",
+}: Props = $props();
+
+const state = createPlaygroundState({
+	component: initialComponent,
+	theme: initialTheme,
+	aesthetic: initialAesthetic,
+	density: initialDensity,
+});
+
+const currentDefinition = $derived(
+	componentRegistry.find((c) => c.name === state.current.component) ?? componentRegistry[0],
+);
+
+let searchQuery = $state("");
+let selectedCategory = $state("All");
+
+const filteredComponents = $derived(
+	componentRegistry.filter((c) => {
+		const matchesSearch =
+			searchQuery === "" ||
+			c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+			c.description.toLowerCase().includes(searchQuery.toLowerCase());
+		const matchesCategory = selectedCategory === "All" || c.category === selectedCategory;
+		return matchesSearch && matchesCategory;
+	}),
+);
+
+function handlePropChange(key: string, value: unknown) {
+	state.setProp(key, value);
+}
+</script>
+
+<div class="space-y-6">
+  <!-- Header -->
+  <div class="flex items-center justify-between">
+    <div>
+      <Badge variant="primary">Playground</Badge>
+      <h1 class="mt-2 text-display-1 text-foreground">Component Playground</h1>
+      <p class="mt-1 text-body-lg text-muted-foreground">
+        Interactively explore and configure bindrunes components.
+      </p>
+    </div>
+    <ExportButton
+      definition={currentDefinition}
+      props={state.current.props}
+      theme={state.current.theme}
+      aesthetic={state.current.aesthetic}
+      density={state.current.density}
+    />
+  </div>
+
+  <!-- Theme/Aesthetic/Density Controls -->
+  <Card padding>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div>
+        <label class="text-label-sm text-muted-foreground mb-1 block">Theme</label>
+        <Select
+          value={() => state.current.theme, (v) => state.setTheme(v)}
+          options={[
+            { label: "Editorial", value: "editorial" },
+            { label: "Dracula", value: "dracula" },
+            { label: "Nord", value: "nord" },
+            { label: "Catppuccin", value: "catppuccin" },
+            { label: "Rose Pine", value: "rose-pine" },
+            { label: "GitHub", value: "github" },
+          ]}
+        />
+      </div>
+      <div>
+        <label class="text-label-sm text-muted-foreground mb-1 block">Aesthetic</label>
+        <Select
+          value={() => state.current.aesthetic, (v) => state.setAesthetic(v)}
+          options={[
+            { label: "Minimal", value: "minimal" },
+            { label: "Glass", value: "glass" },
+            { label: "Bento", value: "bento" },
+            { label: "Expressive", value: "expressive" },
+          ]}
+        />
+      </div>
+      <div>
+        <label class="text-label-sm text-muted-foreground mb-1 block">Density</label>
+        <Select
+          value={() => state.current.density, (v) => state.setDensity(v)}
+          options={[
+            { label: "Compact", value: "compact" },
+            { label: "Comfortable", value: "comfortable" },
+            { label: "Spacious", value: "spacious" },
+          ]}
+        />
+      </div>
+    </div>
+  </Card>
+
+  <!-- Main Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Component Selector -->
+    <div class="lg:col-span-3 space-y-4">
+      <Card padding>
+        <h3 class="text-title-3 text-foreground mb-3">Components</h3>
+
+        <!-- Search -->
+        <div class="relative mb-3">
+          <input
+            type="text"
+            bind:value={searchQuery}
+            placeholder="Search..."
+            class="w-full h-9 pl-9 pr-3 rounded-[--radius] border border-border bg-background text-body-sm text-foreground"
+          />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="flex flex-wrap gap-1 mb-3">
+          {#each ["All", ...categories] as category}
+            <button
+              type="button"
+              onclick={() => (selectedCategory = category)}
+              class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {selectedCategory === category ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
+            >
+              {category}
+            </button>
+          {/each}
+        </div>
+
+        <!-- Component List -->
+        <div class="space-y-1 max-h-[400px] overflow-y-auto">
+          {#each filteredComponents as comp}
+            <button
+              type="button"
+              onclick={() => state.setComponent(comp.name)}
+              class="w-full text-left px-3 py-2 rounded-[--radius-sm] text-body-sm transition-colors cursor-pointer {state.current.component === comp.name ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}"
+            >
+              <div class="font-medium">{comp.name}</div>
+              <div class="text-label-xs opacity-60">{comp.category}</div>
+            </button>
+          {/each}
+        </div>
+      </Card>
+    </div>
+
+    <!-- Preview -->
+    <div class="lg:col-span-5 space-y-4">
+      <Card padding>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-title-3 text-foreground">Preview</h3>
+          <div class="flex gap-1">
+            {#each ["desktop", "tablet", "mobile"] as mode}
+              <button
+                type="button"
+                onclick={() => state.setPreviewMode(mode)}
+                class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {state.current.previewMode === mode ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
+              >
+                {mode}
+              </button>
+            {/each}
+          </div>
+        </div>
+
+        <ResponsiveFrame
+          mode={state.current.previewMode}
+          theme={state.current.theme}
+          aesthetic={state.current.aesthetic}
+          density={state.current.density}
+        >
+          <div class="min-h-[200px] flex items-center justify-center">
+            <!-- Component preview will be rendered here by the consumer -->
+            <slot name="preview" definition={currentDefinition} props={state.current.props} />
+          </div>
+        </ResponsiveFrame>
+      </Card>
+    </div>
+
+    <!-- Controls & Code -->
+    <div class="lg:col-span-4 space-y-4">
+      <Card padding>
+        <PropControls
+          definition={currentDefinition}
+          values={state.current.props}
+          onChange={handlePropChange}
+        />
+      </Card>
+
+      <Card padding>
+        <CodePreview
+          definition={currentDefinition}
+          props={state.current.props}
+        />
+      </Card>
+    </div>
+  </div>
+</div>
