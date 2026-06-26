@@ -50,12 +50,20 @@ const packageJson = $derived(
 			scripts: {
 				dev: "vite dev",
 				build: "vite build",
+				preview: "vite preview",
 			},
 			dependencies: {
 				bindrunes: "latest",
 				svelte: "^5.0.0",
 				"@sveltejs/kit": "^2.0.0",
+				"@sveltejs/adapter-auto": "^3.0.0",
+				"@sveltejs/vite-plugin-svelte": "^5.0.0",
 				tailwindcss: "^4.0.0",
+				"@tailwindcss/vite": "^4.0.0",
+				vite: "^6.0.0",
+				"mode-watcher": "^1.1.0",
+				"svelte-sonner": "^1.1.1",
+				"lucide-svelte": "^1.0.1",
 			},
 		},
 		null,
@@ -69,7 +77,7 @@ async function exportToCodeSandbox() {
 			"package.json": { content: packageJson },
 			"src/routes/+page.svelte": { content: svelteCode },
 			"src/app.html": {
-				content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>bindrunes Playground</title>\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
+				content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>bindrunes Playground</title>\n    %sveltekit.head%\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
 			},
 			"src/app.css": {
 				content: `@import "tailwindcss";\n@plugin "bindrunes/tailwind";\n@import "bindrunes/styles/global.css";`,
