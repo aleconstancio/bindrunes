@@ -74,6 +74,11 @@
 			"svelte": "./dist/utils/useViewport.svelte.js",
 			"default": "./dist/utils/useViewport.svelte.js"
 		},
+		"./playground": {
+			"types": "./dist/playground/index.d.ts",
+			"svelte": "./dist/playground/index.js",
+			"default": "./dist/playground/index.js"
+		},
 		"./agentic": {
 			"types": "./dist/utils/agentic/index.d.ts",
 			"svelte": "./dist/utils/agentic/index.js",
