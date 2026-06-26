@@ -1,6 +1,8 @@
 <!-- packages/bindrunes/src/playground/PropControls.svelte -->
 <script lang="ts">
-import { Input, Select, Switch } from "../../index";
+import Input from "../primitives/Input.svelte";
+import Select from "../primitives/Select.svelte";
+import Switch from "../primitives/Switch.svelte";
 import type { ComponentDefinition } from "./component-registry";
 
 interface Props {
@@ -10,6 +12,17 @@ interface Props {
 }
 
 let { definition, values, onChange }: Props = $props();
+
+let localValues = $state<Record<string, unknown>>({ ...values });
+
+$effect(() => {
+	localValues = { ...values };
+});
+
+function updateLocal(key: string, value: unknown) {
+	localValues[key] = value;
+	onChange(key, value);
+}
 </script>
 
 <div class="space-y-4">
@@ -24,26 +37,30 @@ let { definition, values, onChange }: Props = $props();
       </label>
       {#if prop.type === "select"}
         <Select
-          value={() => values[key] ?? prop.default, (v) => onChange(key, v)}
+          bind:value={localValues[key]}
           options={(prop.options ?? []).map((o) => ({ label: o, value: o }))}
+          onValueChange={(v) => onChange(key, v)}
         />
       {:else if prop.type === "switch"}
         <Switch
-          checked={() => (values[key] ?? prop.default) as boolean, (v) => onChange(key, v)}
+          checked={localValues[key] ?? prop.default}
+          onCheckedChange={(v) => onChange(key, v)}
         />
       {:else if prop.type === "text"}
         <Input
-          value={() => (values[key] ?? prop.default) as string, (v) => onChange(key, v)}
+          value={String(localValues[key] ?? prop.default ?? "")}
+          oninput={(e) => onChange(key, e.currentTarget.value)}
         />
       {:else if prop.type === "number"}
         <Input
           type="number"
-          value={() => String(values[key] ?? prop.default), (v) => onChange(key, Number(v))}
+          value={String(localValues[key] ?? prop.default ?? "")}
+          oninput={(e) => onChange(key, Number(e.currentTarget.value))}
         />
       {:else if prop.type === "color"}
         <input
           type="color"
-          value={String(values[key] ?? prop.default)}
+          value={String(localValues[key] ?? prop.default)}
           onchange={(e) => onChange(key, e.currentTarget.value)}
           class="w-full h-10 rounded-[--radius] border border-border cursor-pointer"
         />

@@ -53,6 +53,8 @@ export { default as SEO } from "./layouts/SEO.svelte";
 export { default as SectionHeader } from "./layouts/SectionHeader.svelte";
 // ── Data Display ──
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./layouts/tabs/index.ts";
+// ── Playground ──
+export { Playground } from "./playground/index.ts";
 // ── Foundation ──
 export { default as Accordion } from "./primitives/Accordion.svelte";
 export { default as AccordionItem } from "./primitives/AccordionItem.svelte";

@@ -1,6 +1,6 @@
 <!-- packages/bindrunes/src/playground/ExportButton.svelte -->
 <script lang="ts">
-import { Button } from "../../index";
+import Button from "../primitives/Button.svelte";
 import type { ComponentDefinition } from "./component-registry";
 
 interface Props {

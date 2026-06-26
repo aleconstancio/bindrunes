@@ -1,6 +1,11 @@
 <!-- packages/bindrunes/src/playground/Playground.svelte -->
 <script lang="ts">
-import { Badge, Button, Card, Input, Select } from "../../index";
+import type { Snippet } from "svelte";
+import Badge from "../primitives/Badge.svelte";
+import Button from "../primitives/Button.svelte";
+import Card from "../primitives/Card.svelte";
+import Input from "../primitives/Input.svelte";
+import Select from "../primitives/Select.svelte";
 import CodePreview from "./CodePreview.svelte";
 import { type ComponentDefinition, categories, componentRegistry } from "./component-registry";
 import ExportButton from "./ExportButton.svelte";
@@ -13,6 +18,7 @@ interface Props {
 	initialTheme?: string;
 	initialAesthetic?: string;
 	initialDensity?: string;
+	preview: Snippet<[definition: ComponentDefinition, props: Record<string, unknown>]>;
 }
 
 let {
@@ -20,9 +26,10 @@ let {
 	initialTheme = "editorial",
 	initialAesthetic = "minimal",
 	initialDensity = "comfortable",
+	preview,
 }: Props = $props();
 
-const state = createPlaygroundState({
+const playgroundState = createPlaygroundState({
 	component: initialComponent,
 	theme: initialTheme,
 	aesthetic: initialAesthetic,
@@ -30,11 +37,15 @@ const state = createPlaygroundState({
 });
 
 const currentDefinition = $derived(
-	componentRegistry.find((c) => c.name === state.current.component) ?? componentRegistry[0],
+	componentRegistry.find((c) => c.name === playgroundState.current.component) ??
+		componentRegistry[0],
 );
 
 let searchQuery = $state("");
 let selectedCategory = $state("All");
+let themeValue = $state(playgroundState.current.theme);
+let aestheticValue = $state(playgroundState.current.aesthetic);
+let densityValue = $state(playgroundState.current.density);
 
 const filteredComponents = $derived(
 	componentRegistry.filter((c) => {
@@ -48,8 +59,20 @@ const filteredComponents = $derived(
 );
 
 function handlePropChange(key: string, value: unknown) {
-	state.setProp(key, value);
+	playgroundState.setProp(key, value);
 }
+
+$effect(() => {
+	playgroundState.setTheme(themeValue);
+});
+
+$effect(() => {
+	playgroundState.setAesthetic(aestheticValue);
+});
+
+$effect(() => {
+	playgroundState.setDensity(densityValue);
+});
 </script>
 
 <div class="space-y-6">
@@ -64,10 +87,10 @@ function handlePropChange(key: string, value: unknown) {
     </div>
     <ExportButton
       definition={currentDefinition}
-      props={state.current.props}
-      theme={state.current.theme}
-      aesthetic={state.current.aesthetic}
-      density={state.current.density}
+      props={playgroundState.current.props}
+      theme={playgroundState.current.theme}
+      aesthetic={playgroundState.current.aesthetic}
+      density={playgroundState.current.density}
     />
   </div>
 
@@ -77,7 +100,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Theme</label>
         <Select
-          value={() => state.current.theme, (v) => state.setTheme(v)}
+          bind:value={themeValue}
           options={[
             { label: "Editorial", value: "editorial" },
             { label: "Dracula", value: "dracula" },
@@ -91,7 +114,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Aesthetic</label>
         <Select
-          value={() => state.current.aesthetic, (v) => state.setAesthetic(v)}
+          bind:value={aestheticValue}
           options={[
             { label: "Minimal", value: "minimal" },
             { label: "Glass", value: "glass" },
@@ -103,7 +126,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Density</label>
         <Select
-          value={() => state.current.density, (v) => state.setDensity(v)}
+          bind:value={densityValue}
           options={[
             { label: "Compact", value: "compact" },
             { label: "Comfortable", value: "comfortable" },
@@ -152,8 +175,8 @@ function handlePropChange(key: string, value: unknown) {
           {#each filteredComponents as comp}
             <button
               type="button"
-              onclick={() => state.setComponent(comp.name)}
-              class="w-full text-left px-3 py-2 rounded-[--radius-sm] text-body-sm transition-colors cursor-pointer {state.current.component === comp.name ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}"
+              onclick={() => playgroundState.setComponent(comp.name)}
+              class="w-full text-left px-3 py-2 rounded-[--radius-sm] text-body-sm transition-colors cursor-pointer {playgroundState.current.component === comp.name ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'}"
             >
               <div class="font-medium">{comp.name}</div>
               <div class="text-label-xs opacity-60">{comp.category}</div>
@@ -172,8 +195,8 @@ function handlePropChange(key: string, value: unknown) {
             {#each ["desktop", "tablet", "mobile"] as mode}
               <button
                 type="button"
-                onclick={() => state.setPreviewMode(mode)}
-                class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {state.current.previewMode === mode ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
+                onclick={() => playgroundState.setPreviewMode(mode)}
+                class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {playgroundState.current.previewMode === mode ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
               >
                 {mode}
               </button>
@@ -182,14 +205,14 @@ function handlePropChange(key: string, value: unknown) {
         </div>
 
         <ResponsiveFrame
-          mode={state.current.previewMode}
-          theme={state.current.theme}
-          aesthetic={state.current.aesthetic}
-          density={state.current.density}
+          mode={playgroundState.current.previewMode}
+          theme={playgroundState.current.theme}
+          aesthetic={playgroundState.current.aesthetic}
+          density={playgroundState.current.density}
         >
           <div class="min-h-[200px] flex items-center justify-center">
             <!-- Component preview will be rendered here by the consumer -->
-            <slot name="preview" definition={currentDefinition} props={state.current.props} />
+            {@render preview(currentDefinition, playgroundState.current.props)}
           </div>
         </ResponsiveFrame>
       </Card>
@@ -200,7 +223,7 @@ function handlePropChange(key: string, value: unknown) {
       <Card padding>
         <PropControls
           definition={currentDefinition}
-          values={state.current.props}
+          values={playgroundState.current.props}
           onChange={handlePropChange}
         />
       </Card>
@@ -208,7 +231,7 @@ function handlePropChange(key: string, value: unknown) {
       <Card padding>
         <CodePreview
           definition={currentDefinition}
-          props={state.current.props}
+      props={playgroundState.current.props}
         />
       </Card>
     </div>

@@ -1,6 +1,6 @@
 <!-- packages/bindrunes/src/playground/CodePreview.svelte -->
 <script lang="ts">
-import { CodeSnippet } from "../../index";
+import CodeSnippet from "../primitives/CodeSnippet.svelte";
 import type { ComponentDefinition } from "./component-registry";
 
 interface Props {
