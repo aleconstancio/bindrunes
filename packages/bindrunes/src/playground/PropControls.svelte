@@ -37,7 +37,7 @@ function updateLocal(key: string, value: unknown) {
       </label>
       {#if prop.type === "select"}
         <Select
-          bind:value={localValues[key]}
+          value={localValues[key] ?? prop.default}
           options={(prop.options ?? []).map((o) => ({ label: o, value: o }))}
           onValueChange={(v) => onChange(key, v)}
         />
