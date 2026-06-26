@@ -168,6 +168,7 @@ function handlePropChange(key: string, value: unknown) {
             type="text"
             bind:value={searchQuery}
             placeholder="Search..."
+            aria-label="Search components"
             class="w-full h-9 pl-9 pr-3 rounded-[--radius] border border-border bg-background text-body-sm text-foreground"
           />
           <svg class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -181,6 +182,7 @@ function handlePropChange(key: string, value: unknown) {
             <button
               type="button"
               onclick={() => (selectedCategory = category)}
+              aria-pressed={selectedCategory === category}
               class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {selectedCategory === category ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
             >
               {category}
@@ -214,6 +216,7 @@ function handlePropChange(key: string, value: unknown) {
               <button
                 type="button"
                 onclick={() => playgroundState.setPreviewMode(mode)}
+                aria-pressed={playgroundState.current.previewMode === mode}
                 class="px-2 py-1 rounded-[--radius-sm] text-label-xs transition-colors cursor-pointer {playgroundState.current.previewMode === mode ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
               >
                 {mode}

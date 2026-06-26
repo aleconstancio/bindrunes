@@ -37,6 +37,8 @@ const labels = {
     <span class="text-label-xs text-muted-foreground/60">{widths[mode]}</span>
   </div>
   <div
+    role="region"
+    aria-label="Component preview"
     class="mx-auto border border-border rounded-[--radius-lg] overflow-hidden bg-background transition-all duration-200"
     style:width={widths[mode]}
     style:max-width="100%"
