@@ -15,7 +15,6 @@ export interface ComponentDefinition {
 	importPath: string;
 	props: Record<string, PropDefinition>;
 	slot?: string;
-	slotType?: "text" | "snippet";
 	examples?: string[];
 }
 
@@ -40,11 +39,12 @@ export const componentRegistry: ComponentDefinition[] = [
 					"subtle",
 				],
 				default: "primary",
+				label: "Variant",
 			},
-			size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
-			disabled: { type: "switch", default: false },
-			loading: { type: "switch", default: false },
-			fullWidth: { type: "switch", default: false },
+			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
+			disabled: { type: "switch", default: false, label: "Disabled" },
+			loading: { type: "switch", default: false, label: "Loading" },
+			fullWidth: { type: "switch", default: false, label: "Full width" },
 		},
 		slot: "Click me",
 	},
@@ -57,18 +57,19 @@ export const componentRegistry: ComponentDefinition[] = [
 			variant: {
 				type: "select",
 				options: [
+					"default",
 					"primary",
 					"secondary",
-					"outline",
-					"soft",
-					"destructive",
 					"success",
 					"warning",
+					"destructive",
 					"info",
+					"outline",
 				],
-				default: "primary",
+				default: "default",
+				label: "Variant",
 			},
-			size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
+			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
 		},
 		slot: "Label",
 	},
@@ -80,11 +81,12 @@ export const componentRegistry: ComponentDefinition[] = [
 		props: {
 			variant: {
 				type: "select",
-				options: ["surface", "glass", "outlined", "ghost"],
+				options: ["surface", "glass", "tinted", "outlined", "ghost"],
 				default: "surface",
+				label: "Variant",
 			},
-			padding: { type: "switch", default: true },
-			interactive: { type: "switch", default: false },
+			padding: { type: "switch", default: true, label: "Inner padding" },
+			interactive: { type: "switch", default: false, label: "Interactive" },
 		},
 		slot: "Card content goes here.",
 	},
@@ -98,8 +100,9 @@ export const componentRegistry: ComponentDefinition[] = [
 				type: "select",
 				options: ["info", "success", "warning", "destructive"],
 				default: "info",
+				label: "Variant",
 			},
-			title: { type: "text", default: "Information" },
+			title: { type: "text", default: "Information", label: "Title" },
 		},
 		slot: "This is an informational message.",
 	},
@@ -109,8 +112,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "User avatar",
 		importPath: "bindrunes",
 		props: {
-			size: { type: "select", options: ["sm", "md", "lg", "xl"], default: "md" },
-			name: { type: "text", default: "John Doe" },
+			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
+			name: { type: "text", default: "John Doe", label: "Name" },
 		},
 	},
 	{
@@ -119,7 +122,12 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Visual divider",
 		importPath: "bindrunes",
 		props: {
-			orientation: { type: "select", options: ["horizontal", "vertical"], default: "horizontal" },
+			orientation: {
+				type: "select",
+				options: ["horizontal", "vertical"],
+				default: "horizontal",
+				label: "Orientation",
+			},
 		},
 	},
 	{
@@ -128,8 +136,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Loading skeleton",
 		importPath: "bindrunes",
 		props: {
-			lines: { type: "number", default: 3 },
-			width: { type: "text", default: "100%" },
+			lines: { type: "number", default: 3, label: "Lines" },
+			width: { type: "text", default: "100%", label: "Width" },
 		},
 	},
 	{
@@ -138,9 +146,9 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Progress bar",
 		importPath: "bindrunes",
 		props: {
-			value: { type: "number", default: 60 },
-			max: { type: "number", default: 100 },
-			showValue: { type: "switch", default: true },
+			value: { type: "number", default: 60, label: "Value" },
+			max: { type: "number", default: 100, label: "Max" },
+			showValue: { type: "switch", default: true, label: "Show value" },
 		},
 	},
 
@@ -151,13 +159,25 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Text input",
 		importPath: "bindrunes",
 		props: {
-			placeholder: { type: "text", default: "Enter text..." },
-			disabled: { type: "switch", default: false },
-			required: { type: "switch", default: false },
+			placeholder: { type: "text", default: "Enter text...", label: "Placeholder" },
+			disabled: { type: "switch", default: false, label: "Disabled" },
+			required: { type: "switch", default: false, label: "Required" },
 			type: {
 				type: "select",
-				options: ["text", "email", "password", "number", "search", "tel", "url"],
+				options: [
+					"text",
+					"email",
+					"password",
+					"number",
+					"search",
+					"tel",
+					"url",
+					"date",
+					"time",
+					"textarea",
+				],
 				default: "text",
+				label: "Type",
 			},
 		},
 	},
@@ -167,8 +187,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Checkbox input",
 		importPath: "bindrunes",
 		props: {
-			disabled: { type: "switch", default: false },
-			label: { type: "text", default: "Accept terms" },
+			disabled: { type: "switch", default: false, label: "Disabled" },
+			label: { type: "text", default: "Accept terms", label: "Label" },
 		},
 	},
 	{
@@ -177,8 +197,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Select dropdown",
 		importPath: "bindrunes",
 		props: {
-			placeholder: { type: "text", default: "Select an option..." },
-			disabled: { type: "switch", default: false },
+			placeholder: { type: "text", default: "Select an option...", label: "Placeholder" },
+			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
 	},
 	{
@@ -187,7 +207,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Toggle switch",
 		importPath: "bindrunes",
 		props: {
-			disabled: { type: "switch", default: false },
+			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
 	},
 	{
@@ -196,10 +216,10 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Range slider",
 		importPath: "bindrunes",
 		props: {
-			min: { type: "number", default: 0 },
-			max: { type: "number", default: 100 },
-			step: { type: "number", default: 1 },
-			disabled: { type: "switch", default: false },
+			min: { type: "number", default: 0, label: "Min" },
+			max: { type: "number", default: 100, label: "Max" },
+			step: { type: "number", default: 1, label: "Step" },
+			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
 	},
 
@@ -210,8 +230,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Full data table with sort/filter/pagination",
 		importPath: "bindrunes",
 		props: {
-			striped: { type: "switch", default: false },
-			hoverable: { type: "switch", default: true },
+			striped: { type: "switch", default: false, label: "Striped" },
+			hoverable: { type: "switch", default: true, label: "Hoverable" },
 		},
 	},
 	{
@@ -220,7 +240,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Tab system",
 		importPath: "bindrunes",
 		props: {
-			defaultValue: { type: "text", default: "tab1" },
+			value: { type: "text", default: "tab1", label: "Active tab" },
 		},
 	},
 	{
@@ -229,8 +249,8 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Page navigation",
 		importPath: "bindrunes",
 		props: {
-			totalPages: { type: "number", default: 10 },
-			currentPage: { type: "number", default: 1 },
+			totalPages: { type: "number", default: 10, label: "Total pages" },
+			currentPage: { type: "number", default: 1, label: "Current page" },
 		},
 	},
 
@@ -241,8 +261,13 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Modal dialog",
 		importPath: "bindrunes",
 		props: {
-			title: { type: "text", default: "Dialog Title" },
-			size: { type: "select", options: ["sm", "md", "lg", "xl", "full"], default: "md" },
+			title: { type: "text", default: "Dialog Title", label: "Title" },
+			size: {
+				type: "select",
+				options: ["sm", "md", "lg", "xl", "full"],
+				default: "md",
+				label: "Size",
+			},
 		},
 		slot: "Dialog content goes here.",
 	},
@@ -252,8 +277,13 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Tooltip",
 		importPath: "bindrunes",
 		props: {
-			side: { type: "select", options: ["top", "right", "bottom", "left"], default: "top" },
-			content: { type: "text", default: "Tooltip content" },
+			side: {
+				type: "select",
+				options: ["top", "right", "bottom", "left"],
+				default: "top",
+				label: "Side",
+			},
+			content: { type: "text", default: "Tooltip content", label: "Content" },
 		},
 		slot: "Hover me",
 	},
@@ -263,8 +293,12 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Side drawer",
 		importPath: "bindrunes",
 		props: {
-			side: { type: "select", options: ["left", "right", "top", "bottom"], default: "right" },
-			size: { type: "select", options: ["sm", "md", "lg", "full"], default: "md" },
+			side: {
+				type: "select",
+				options: ["left", "right", "top", "bottom"],
+				default: "right",
+				label: "Side",
+			},
 		},
 		slot: "Drawer content goes here.",
 	},
@@ -276,7 +310,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Loading spinner",
 		importPath: "bindrunes",
 		props: {
-			size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
+			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
 		},
 	},
 	{
@@ -285,8 +319,12 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Empty state placeholders",
 		importPath: "bindrunes",
 		props: {
-			title: { type: "text", default: "No items found" },
-			description: { type: "text", default: "Create your first item to get started." },
+			title: { type: "text", default: "No items found", label: "Title" },
+			description: {
+				type: "text",
+				default: "Create your first item to get started.",
+				label: "Description",
+			},
 		},
 	},
 
@@ -304,8 +342,14 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Step-by-step wizard UI",
 		importPath: "bindrunes",
 		props: {
-			currentStep: { type: "number", default: 1 },
-			totalSteps: { type: "number", default: 4 },
+			steps: {
+				type: "text",
+				default:
+					'[{"id":"step1","label":"Account"},{"id":"step2","label":"Profile"},{"id":"step3","label":"Confirm"}]',
+				label: "Steps (JSON array)",
+				description: "Array of {id, label} objects",
+			},
+			currentStep: { type: "text", default: "step1", label: "Current step ID" },
 		},
 	},
 ];
