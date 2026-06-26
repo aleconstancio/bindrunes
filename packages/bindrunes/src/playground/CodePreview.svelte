@@ -10,7 +10,7 @@ interface Props {
 
 let { definition, props }: Props = $props();
 
-const generatedCode = $derived(() => {
+const generatedCode = $derived.by(() => {
 	const propEntries = Object.entries(props)
 		.filter(([, v]) => v !== undefined && v !== "" && v !== false)
 		.map(([k, v]) => {
@@ -30,5 +30,5 @@ const generatedCode = $derived(() => {
 
 <div class="space-y-4">
   <h4 class="text-title-3 text-foreground">Generated Code</h4>
-  <CodeSnippet code={generatedCode()} language="svelte" title="App.svelte" />
+  <CodeSnippet code={generatedCode} language="svelte" title="App.svelte" />
 </div>
