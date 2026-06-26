@@ -103,7 +103,7 @@ let drawerOpen = $state(false);
       {:else if definition.name === "Drawer"}
         <div>
           <Button variant="outline" onclick={() => (drawerOpen = true)}>Open Drawer</Button>
-          <Drawer bind:open={drawerOpen} side={props.side} size={props.size}>
+          <Drawer bind:open={drawerOpen} side={props.side}>
             <p class="text-body-md text-muted-foreground">{definition.slot}</p>
           </Drawer>
         </div>
@@ -115,7 +115,7 @@ let drawerOpen = $state(false);
         </div>
       {:else if definition.name === "Tabs"}
         <div class="w-full">
-          <Tabs defaultValue={props.defaultValue}>
+          <Tabs value={props.value}>
             <TabsList>
               <TabsTrigger value="tab1">Tab 1</TabsTrigger>
               <TabsTrigger value="tab2">Tab 2</TabsTrigger>
@@ -129,6 +129,25 @@ let drawerOpen = $state(false);
       {:else if definition.name === "Pagination"}
         <div class="w-full">
           <Pagination totalPages={props.totalPages} currentPage={props.currentPage} />
+        </div>
+      {:else if definition.name === "Breadcrumb"}
+        <div class="w-full">
+          <Breadcrumb items={[
+            { label: "Home", href: "/" },
+            { label: "Library" },
+            { label: "Current Page" },
+          ]} separator={props.separator} />
+        </div>
+      {:else if definition.name === "Stepper"}
+        <div class="w-full">
+          <Stepper
+            steps={[
+              { id: "step1", label: "Account" },
+              { id: "step2", label: "Profile" },
+              { id: "step3", label: "Confirm" },
+            ]}
+            currentStep={props.currentStep}
+          />
         </div>
       {:else}
         <p class="text-body-sm text-muted-foreground">Preview not available for {definition.name}</p>
