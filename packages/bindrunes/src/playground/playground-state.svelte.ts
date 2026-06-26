@@ -1,6 +1,7 @@
 // packages/bindrunes/src/playground/playground-state.svelte.ts
 
 import { isBrowser } from "../utils/isBrowser";
+import { componentRegistry } from "./component-registry";
 
 export interface PlaygroundState {
 	component: string;
@@ -67,7 +68,15 @@ export function createPlaygroundState(defaults: Partial<PlaygroundState> = {}) {
 
 	if (isBrowser) {
 		const urlState = decodeState(window.location.search);
-		if (urlState.component) state.component = urlState.component;
+
+		// Validate component name exists in registry
+		if (urlState.component) {
+			const exists = componentRegistry.some((c) => c.name === urlState.component);
+			if (exists) {
+				state.component = urlState.component;
+			}
+		}
+
 		if (urlState.props) state.props = urlState.props;
 		if (urlState.theme) state.theme = urlState.theme;
 		if (urlState.aesthetic) state.aesthetic = urlState.aesthetic;
