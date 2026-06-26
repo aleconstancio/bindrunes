@@ -225,16 +225,6 @@ export const componentRegistry: ComponentDefinition[] = [
 
 	// Data Display
 	{
-		name: "DataTable",
-		category: "Data",
-		description: "Full data table with sort/filter/pagination",
-		importPath: "bindrunes",
-		props: {
-			striped: { type: "switch", default: false, label: "Striped" },
-			hoverable: { type: "switch", default: true, label: "Hoverable" },
-		},
-	},
-	{
 		name: "Tabs",
 		category: "Data",
 		description: "Tab system",
@@ -334,7 +324,9 @@ export const componentRegistry: ComponentDefinition[] = [
 		category: "Navigation",
 		description: "Breadcrumb navigation",
 		importPath: "bindrunes",
-		props: {},
+		props: {
+			separator: { type: "text", default: "/", label: "Separator" },
+		},
 	},
 	{
 		name: "Stepper",
@@ -342,13 +334,6 @@ export const componentRegistry: ComponentDefinition[] = [
 		description: "Step-by-step wizard UI",
 		importPath: "bindrunes",
 		props: {
-			steps: {
-				type: "text",
-				default:
-					'[{"id":"step1","label":"Account"},{"id":"step2","label":"Profile"},{"id":"step3","label":"Confirm"}]',
-				label: "Steps (JSON array)",
-				description: "Array of {id, label} objects",
-			},
 			currentStep: { type: "text", default: "step1", label: "Current step ID" },
 		},
 	},
