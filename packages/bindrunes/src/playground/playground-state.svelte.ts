@@ -84,12 +84,19 @@ export function createPlaygroundState(defaults: Partial<PlaygroundState> = {}) {
 		if (urlState.previewMode) state.previewMode = urlState.previewMode;
 	}
 
+	let syncTimeout: ReturnType<typeof setTimeout> | undefined;
+
 	$effect(() => {
 		if (isBrowser) {
-			const search = encodeState(state);
-			const url = new URL(window.location.href);
-			url.search = search;
-			window.history.replaceState({}, "", url.toString());
+			const _ = JSON.stringify(state);
+
+			clearTimeout(syncTimeout);
+			syncTimeout = setTimeout(() => {
+				const search = encodeState(state);
+				const url = new URL(window.location.href);
+				url.search = search;
+				window.history.replaceState({}, "", url.toString());
+			}, 300);
 		}
 	});
 
