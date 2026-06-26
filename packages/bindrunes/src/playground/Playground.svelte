@@ -43,9 +43,21 @@ const currentDefinition = $derived(
 
 let searchQuery = $state("");
 let selectedCategory = $state("All");
-let themeValue = $state(playgroundState.current.theme);
-let aestheticValue = $state(playgroundState.current.aesthetic);
-let densityValue = $state(playgroundState.current.density);
+
+let themeValue = $derived.by({
+	get: () => playgroundState.current.theme,
+	set: (v: string) => playgroundState.setTheme(v),
+});
+
+let aestheticValue = $derived.by({
+	get: () => playgroundState.current.aesthetic,
+	set: (v: string) => playgroundState.setAesthetic(v),
+});
+
+let densityValue = $derived.by({
+	get: () => playgroundState.current.density,
+	set: (v: string) => playgroundState.setDensity(v),
+});
 
 const filteredComponents = $derived(
 	componentRegistry.filter((c) => {
@@ -61,18 +73,6 @@ const filteredComponents = $derived(
 function handlePropChange(key: string, value: unknown) {
 	playgroundState.setProp(key, value);
 }
-
-$effect(() => {
-	playgroundState.setTheme(themeValue);
-});
-
-$effect(() => {
-	playgroundState.setAesthetic(aestheticValue);
-});
-
-$effect(() => {
-	playgroundState.setDensity(densityValue);
-});
 </script>
 
 <div class="space-y-6">
