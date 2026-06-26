@@ -85,13 +85,31 @@ function handlePropChange(key: string, value: unknown) {
         Interactively explore and configure bindrunes components.
       </p>
     </div>
-    <ExportButton
-      definition={currentDefinition}
-      props={playgroundState.current.props}
-      theme={playgroundState.current.theme}
-      aesthetic={playgroundState.current.aesthetic}
-      density={playgroundState.current.density}
-    />
+    <div class="flex gap-2">
+        <Button
+            variant="outline"
+            size="sm"
+            onclick={async () => {
+                await playgroundState.copyShareUrl();
+            }}
+        >
+            Share URL
+        </Button>
+        <ExportButton
+            definition={currentDefinition}
+            props={playgroundState.current.props}
+            theme={playgroundState.current.theme}
+            aesthetic={playgroundState.current.aesthetic}
+            density={playgroundState.current.density}
+        />
+    </div>
+    <Button
+        variant="ghost"
+        size="sm"
+        onclick={() => playgroundState.reset()}
+    >
+        Reset
+    </Button>
   </div>
 
   <!-- Theme/Aesthetic/Density Controls -->
