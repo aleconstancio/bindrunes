@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Card, Badge, Button, Input } from "bindrunes";
-import { useCounter, useToggle, useClipboard, useDebouncedCallback } from "bindrunes";
+import { useCounter, useToggle, useClipboard, useDebounce } from "bindrunes";
 
 const counter = useCounter(0);
 const toggle = useToggle(false);
@@ -9,7 +9,7 @@ const { copied, copy } = useClipboard();
 let searchQuery = $state("");
 let debouncedResult = $state("");
 
-const debouncedSearch = useDebouncedCallback((value: string) => {
+const debouncedSearch = useDebounce((value: string) => {
   debouncedResult = value ? `Searching for: "${value}"` : "";
 }, 500);
 
@@ -80,7 +80,7 @@ function handleSearch(e: Event) {
   <Card>
     <div class="p-6 space-y-4">
       <div class="flex items-center gap-2">
-        <h2 class="text-title-1">useDebouncedCallback</h2>
+        <h2 class="text-title-1">useDebounce</h2>
         <Badge variant="soft" size="sm">Async</Badge>
       </div>
       <p class="text-body-md text-muted-foreground">Debounce a callback. Type to see debounced results.</p>
