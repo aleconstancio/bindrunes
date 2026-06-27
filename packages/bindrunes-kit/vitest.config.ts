@@ -6,5 +6,19 @@ export default defineConfig({
 	test: {
 		environment: "happy-dom",
 		include: ["src/**/*.test.ts", "src/**/*.svelte.test.ts"],
+		coverage: {
+			provider: "v8",
+			reporter: ["text", "json", "html"],
+			include: ["src/**/*.{ts,svelte}"],
+			exclude: ["src/**/*.test.ts", "src/**/*.d.ts"],
+			thresholds: {
+				global: {
+					lines: 80,
+					branches: 75,
+					functions: 80,
+					statements: 80,
+				},
+			},
+		},
 	},
 });
