@@ -86,9 +86,9 @@ These are sub-components of `ThemeStudio` and are not part of the public API.
 ## Agentic Coverage
 The agentic folder has a **stricter per-glob threshold** enforced in CI
 (`vitest.config.ts#thresholds`):
-- `src/utils/agentic/**` and `src/types/agent.ts`: **90% lines / 85% branches
-  / 88% functions / 90% statements**.
-- Global floor stays at 80 / 70 / 77.
+- `src/utils/agentic/**`: **95% lines / 90% branches / 92% functions / 95% statements**.
+- Global and other domain thresholds: **90% lines / 85% branches / 88% functions / 90% statements**.
+- `bindrunes-kit`: **80% lines / 75% branches / 80% functions / 80% statements**.
 - When adding agentic code, TDD is required — the contract is the API
   surface; logic must be deeply covered.
 - Copilot components (`src/domains/agentic/`) follow standard coverage thresholds.
