@@ -31,13 +31,13 @@ jobs:
         run: bun run lint
 
       - name: Type check
-        run: bun run check
-
-      - name: Test
-        run: bun run test:ci
+        run: turbo run check --filter=bindrunes --filter=bindrunes-kit
 
       - name: Build
         run: bun run build
+
+      - name: Test
+        run: bun run test:ci
 
       - name: Create Release Pull Request or Publish
         uses: changesets/action@06245a4e0a36c064a573d4150030f5ec548e4fcc # v1.4.10

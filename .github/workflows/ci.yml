@@ -35,13 +35,13 @@ jobs:
         run: bun run lint
 
       - name: Type check
-        run: bun run check
-
-      - name: Test
-        run: bun run test:ci
+        run: turbo run check --filter=bindrunes --filter=bindrunes-kit
 
       - name: Build
         run: bun run build
+
+      - name: Test
+        run: bun run test:ci
 
       - name: Bundle size check
         run: bun run size
