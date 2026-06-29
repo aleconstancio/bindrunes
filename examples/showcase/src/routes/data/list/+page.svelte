@@ -1,18 +1,8 @@
 <script lang="ts">
-	import { PageHeader, Tabs, TabsContent, TabsList, TabsTrigger, Button, Input, Label, Card } from "bindrunes";
-	import {
-		AdvancedTable,
-		ExportFlow,
-		FacetedSearch,
-		ImportFlow,
-		WizardForm,
-		CrudForm,
-		CrudFormDrawer,
-		CrudFormModal,
-		CrudDeleteConfirm,
-		CrudDetailDrawer,
-	} from "bindrunes/boundrune";
-	import { createForm, createQuery, createMutation } from "bindrunes";
+	import { PageHeader, Tabs, TabsContent, TabsList, TabsTrigger } from "bindrunes/layouts";
+	import { Button, Input, Label, Card } from "bindrunes";
+	import { AdvancedTable, ExportFlow, FacetedSearch, ImportFlow, WizardForm, CrudForm, CrudFormDrawer, CrudFormModal, CrudDeleteConfirm, CrudDetailDrawer } from "bindrunes/domains/data";
+	import { useForm, useQuery, useMutation } from "bindrunes";
 	import * as v from "valibot";
 
 	let activeTab = $state("wizard");
@@ -154,13 +144,13 @@
 		return rows;
 	});
 
-	// ── createForm Demo ──
+	// ── useForm Demo ──
 	const contactSchema = {
 		fullName: v.pipe(v.string(), v.minLength(2, "Name must be at least 2 characters")),
 		email: v.pipe(v.string(), v.email("Please enter a valid email")),
 		message: v.pipe(v.string(), v.minLength(10, "Message must be at least 10 characters")),
 	};
-	const contactForm = createForm({
+	const contactForm = useForm({
 		schema: contactSchema,
 		initialValues: { fullName: "", email: "", message: "" },
 		onSubmit: (values) => {
@@ -170,9 +160,9 @@
 	});
 	let contactSubmitResult = $state("");
 
-	// ── createQuery/createMutation Demo ──
+	// ── useQuery/useMutation Demo ──
 	let mockTodoId = $state(0);
-	const todosQuery = createQuery<{ id: number; title: string; completed: boolean }[]>({
+	const todosQuery = useQuery<{ id: number; title: string; completed: boolean }[]>({
 		key: "demo-todos",
 		fetcher: () =>
 			new Promise((resolve) => {
@@ -187,7 +177,7 @@
 		staleTime: 30_000,
 	});
 
-	const addTodoMutation = createMutation<{ id: number; title: string; completed: boolean }, string>({
+	const addTodoMutation = useMutation<{ id: number; title: string; completed: boolean }, string>({
 		mutator: (title) =>
 			new Promise((resolve) => {
 				setTimeout(() => {
@@ -227,7 +217,7 @@
 		}, 1000);
 	}
 
-	const crudCreateForm = createForm({
+	const crudCreateForm = useForm({
 		schema: crudItemSchema,
 		initialValues: { name: "", email: "", role: "" },
 		onSubmit: (values) => {
@@ -236,7 +226,7 @@
 		},
 	});
 
-	const crudEditForm = createForm({
+	const crudEditForm = useForm({
 		schema: crudItemSchema,
 		initialValues: { name: "Jane Smith", email: "jane@example.com", role: "Editor" },
 		onSubmit: (values) => {
@@ -269,7 +259,7 @@
 			<TabsTrigger value="import">Import</TabsTrigger>
 			<TabsTrigger value="table">AdvancedTable</TabsTrigger>
 			<TabsTrigger value="faceted">FacetedSearch</TabsTrigger>
-			<TabsTrigger value="form">createForm</TabsTrigger>
+			<TabsTrigger value="form">useForm</TabsTrigger>
 			<TabsTrigger value="query">Query/Mutation</TabsTrigger>
 			<TabsTrigger value="crud-create">CrudForm (create)</TabsTrigger>
 			<TabsTrigger value="crud-create-drawer">CrudFormDrawer (create)</TabsTrigger>
@@ -449,7 +439,7 @@
 
 		<TabsContent value="form">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">createForm</h2>
+				<h2 class="text-title-2 text-foreground">useForm</h2>
 				<p class="text-body-sm text-muted-foreground">Live form with valibot schema validation, dirty tracking, and error states</p>
 				<div class="max-w-lg">
 					<form onsubmit={contactForm.handleSubmit} class="space-y-4">
@@ -510,7 +500,7 @@
 
 		<TabsContent value="query">
 			<div class="space-y-4">
-				<h2 class="text-title-2 text-foreground">createQuery / createMutation</h2>
+				<h2 class="text-title-2 text-foreground">useQuery / useMutation</h2>
 				<p class="text-body-sm text-muted-foreground">Reactive data fetching with caching and mutations with invalidation</p>
 
 				<div class="max-w-lg space-y-4">

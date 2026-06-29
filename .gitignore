@@ -18,7 +18,8 @@ dist/
 
 # OS
 .DS_Store
-Thumbs.db
+.Thumbs.db
+.directory
 
 # Editors
 .idea/
@@ -32,7 +33,6 @@ Thumbs.db
 # npm artifacts (this project uses bun as its package manager)
 package-lock.json
 .npm/
-.eslintcache
 .yarn/
 
 # Logs

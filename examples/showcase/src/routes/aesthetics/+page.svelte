@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Badge, Button, Card, Input, Alert } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Badge, Button, Card, Input, Alert } from "bindrunes";
 
 	const aesthetics = ["minimal", "glass", "bento", "expressive"] as const;
 

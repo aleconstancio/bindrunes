@@ -1,6 +1,7 @@
 {
 	"name": "bindrunes",
 	"version": "4.0.0",
+	"description": "Svelte 5 component library for B2B SaaS applications — 270+ components, 60+ composables, three-axis design system",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
@@ -43,11 +44,6 @@
 			"svelte": "./dist/layouts/index.js",
 			"default": "./dist/layouts/index.js"
 		},
-		"./domains": {
-			"types": "./dist/domains/index.d.ts",
-			"svelte": "./dist/domains/index.js",
-			"default": "./dist/domains/index.js"
-		},
 		"./domains/*": {
 			"types": "./dist/domains/*/index.d.ts",
 			"svelte": "./dist/domains/*/index.js",
@@ -79,6 +75,11 @@
 			"svelte": "./dist/playground/index.js",
 			"default": "./dist/playground/index.js"
 		},
+		"./playground/*": {
+			"types": "./dist/playground/*.d.ts",
+			"svelte": "./dist/playground/*.svelte",
+			"default": "./dist/playground/*.js"
+		},
 		"./agentic": {
 			"types": "./dist/utils/agentic/index.d.ts",
 			"svelte": "./dist/utils/agentic/index.js",
@@ -95,6 +96,10 @@
 		"src/styles",
 		"README.md"
 	],
+	"sideEffects": [
+		"**/*.css",
+		"./src/styles/**"
+	],
 	"peerDependencies": {
 		"lucide-svelte": "^1.0.1",
 		"mode-watcher": "^1.1.0",
@@ -102,8 +107,20 @@
 		"svelte-sonner": "^1.1.1",
 		"tailwindcss": "^4.0.0"
 	},
+	"peerDependenciesMeta": {
+		"lucide-svelte": {
+			"optional": true
+		},
+		"mode-watcher": {
+			"optional": true
+		},
+		"svelte-sonner": {
+			"optional": true
+		}
+	},
 	"dependencies": {
 		"bits-ui": "^2.18.1",
+		"dompurify": "^3.4.11",
 		"tailwind-merge": "^3.6.0",
 		"valibot": "^1.4.1"
 	},

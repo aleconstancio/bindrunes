@@ -144,10 +144,8 @@ Template → Domain Components → Layouts → Primitives
 | `bindrunes` | Primitives, shared components, composables, types, utilities |
 | `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
 | `bindrunes/responsive` | Viewport composable and responsive utilities |
-| `bindrunes/layouts` | Layout components (PageShell, sidebar, dashboard shell, etc.) |
-| `bindrunes/domains` | All domain components and composables |
-| `bindrunes/domains/<name>` | Individual domain (e.g., `bindrunes/domains/auth`) |
-| `bindrunes/templates` | Pre-composed full-page templates |
+| `bindrunes/layouts` | Layout components and full-page templates (PageShell, sidebar, dashboard shell, templates, etc.) |
+| `bindrunes/domains/<name>` | Individual domain components (e.g., `bindrunes/domains/auth`) |
 | `bindrunes/agentic` | Agentic subsystem (LLM tool calling, agent loops) |
 | `bindrunes/tailwind` | Tailwind CSS plugin |
 | `bindrunes/playground` | Dev playground components |

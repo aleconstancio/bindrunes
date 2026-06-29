@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
-	import { AuthLayout, LoginForm } from "bindrunes/boundrune";
+	import { AuthLayout, LoginForm } from "bindrunes/domains/auth";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>
 

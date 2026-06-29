@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { createSidebarState, createOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, Card, Badge, Alert, ErrorBoundary, Button, createAuth, createAccess, createToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, useToggle, useCounter, Collapsible, CodeSnippet } from "bindrunes";
+	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, ErrorBoundary } from "bindrunes/layouts";
+	import { useOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Card, Badge, Alert, Button, useAuth, useAccess, useToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, useToggle, useCounter, Collapsible, CodeSnippet } from "bindrunes";
 	import { Home, Settings, Users, BarChart3, Search, Keyboard, Palette, Sliders } from "lucide-svelte";
 
 	const sidebar = createSidebarState(true);
@@ -22,7 +23,7 @@
 	];
 
 	// Omnibar
-	const omnibar = createOmnibar({
+	const omnibar = useOmnibar({
 		options: [
 			{ id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },
 			{ id: "2", label: "Go to Settings", description: "Navigate to settings", category: "Navigation", action: () => {} },
@@ -42,16 +43,16 @@
 	let localValue = $state("");
 	let activeTab = $state("primitives");
 
-	// createAuth demo
-	const auth = createAuth();
+	// useAuth demo
+	const auth = useAuth();
 	let authEmail = $state("demo@example.com");
 	let authName = $state("Demo User");
 
-	// createAccess demo (derived from auth)
-	const access = createAccess(auth);
+	// useAccess demo (derived from auth)
+	const access = useAccess(auth);
 
-	// createToast demo
-	const toast = createToast();
+	// useToast demo
+	const toast = useToast();
 
 	// createApiClient demo
 	const apiClient = createApiClient({
@@ -166,7 +167,8 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { ErrorBoundary, Alert, Badge } from "bindrunes";\n\n<ErrorBoundary variant="minimal">\n  <div class="p-4 text-center">Content rendered inside ErrorBoundary</div>\n</ErrorBoundary>\n\n<Alert variant="info" title="Information" description="This is an informational alert." />\n<Alert variant="success" title="Success" description="Operation completed successfully." />\n\n<Badge>Default</Badge>\n<Badge variant="primary">Primary</Badge>\n<Badge variant="success">Success</Badge>`}
+						code={`import { ErrorBoundary } from "bindrunes/layouts";
+	import { Alert, Badge } from "bindrunes";\n\n<ErrorBoundary variant="minimal">\n  <div class="p-4 text-center">Content rendered inside ErrorBoundary</div>\n</ErrorBoundary>\n\n<Alert variant="info" title="Information" description="This is an informational alert." />\n<Alert variant="success" title="Success" description="Operation completed successfully." />\n\n<Badge>Default</Badge>\n<Badge variant="primary">Primary</Badge>\n<Badge variant="success">Success</Badge>`}
 						language="svelte"
 						title="Primitives"
 					/>
@@ -221,7 +223,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { createOmnibar, Omnibar, shortcut, Kbd } from "bindrunes";\n\nconst omnibar = createOmnibar({\n  options: [\n    { id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },\n    { id: "2", label: "Toggle Theme", description: "Switch light/dark mode", category: "Actions", action: () => {} },\n  ],\n});\n\n<svelte:window use:shortcut={{ key: "k", ctrl: true, callback: () => omnibar.open() }} />\n\n<Omnibar state={omnibar} />`}
+						code={`import { useOmnibar, Omnibar, shortcut, Kbd } from "bindrunes";\n\nconst omnibar = useOmnibar({\n  options: [\n    { id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },\n    { id: "2", label: "Toggle Theme", description: "Switch light/dark mode", category: "Actions", action: () => {} },\n  ],\n});\n\n<svelte:window use:shortcut={{ key: "k", ctrl: true, callback: () => omnibar.open() }} />\n\n<Omnibar state={omnibar} />`}
 						language="svelte"
 						title="Omnibar"
 					/>
@@ -346,9 +348,9 @@
 						<h3 class="text-title-2 text-foreground">Auth & Access</h3>
 					</div>
 					<div class="space-y-4">
-						<!-- createAuth -->
+						<!-- useAuth -->
 						<div class="p-3 rounded-[--radius] bg-muted/50">
-							<p class="text-label-sm text-foreground mb-2">createAuth</p>
+							<p class="text-label-sm text-foreground mb-2">useAuth</p>
 							{#if auth.isAuthenticated}
 								<div class="space-y-2">
 									<div class="text-body-sm text-muted-foreground">
@@ -387,9 +389,9 @@
 							{/if}
 						</div>
 
-						<!-- createAccess -->
+						<!-- useAccess -->
 						<div class="p-3 rounded-[--radius] bg-muted/50">
-							<p class="text-label-sm text-foreground mb-2">createAccess</p>
+							<p class="text-label-sm text-foreground mb-2">useAccess</p>
 							<div class="space-y-1 text-body-sm text-muted-foreground">
 								<div>isAuth: <Badge variant={access.isAuth ? "success" : "secondary"} size="sm">{access.isAuth}</Badge></div>
 								<div>isAdmin: <Badge variant={access.isAdmin ? "success" : "secondary"} size="sm">{access.isAdmin}</Badge></div>
@@ -398,9 +400,9 @@
 							</div>
 						</div>
 
-						<!-- createToast -->
+						<!-- useToast -->
 						<div class="p-3 rounded-[--radius] bg-muted/50">
-							<p class="text-label-sm text-foreground mb-2">createToast</p>
+							<p class="text-label-sm text-foreground mb-2">useToast</p>
 							<div class="flex flex-wrap gap-2">
 								<Button size="sm" onclick={() => toast.success("Operation completed!")}>Success</Button>
 								<Button size="sm" variant="outline" onclick={() => toast.error("Something went wrong")}>Error</Button>
@@ -482,19 +484,19 @@
 					<div class="space-y-2 text-body-sm">
 						<div class="flex items-center gap-2">
 							<Badge variant="outline" size="sm">Design</Badge>
-							<span class="text-muted-foreground">createTheme, createAesthetic, createDensity, createDarkMode</span>
+							<span class="text-muted-foreground">useTheme, useAesthetic, useDensity, createDarkMode</span>
 						</div>
 						<div class="flex items-center gap-2">
 							<Badge variant="outline" size="sm">Data</Badge>
-							<span class="text-muted-foreground">createQuery, createMutation, createApiClient, RealtimeClient</span>
+							<span class="text-muted-foreground">useQuery, useMutation, createApiClient, RealtimeClient</span>
 						</div>
 						<div class="flex items-center gap-2">
 							<Badge variant="outline" size="sm">Forms</Badge>
-							<span class="text-muted-foreground">createForm, createWizard, validateWithSchema</span>
+							<span class="text-muted-foreground">useForm, createWizard, validateWithSchema</span>
 						</div>
 						<div class="flex items-center gap-2">
 							<Badge variant="outline" size="sm">Auth</Badge>
-							<span class="text-muted-foreground">createAuth, createAccess, hasRole, hasPermission</span>
+							<span class="text-muted-foreground">useAuth, useAccess, hasRole, hasPermission</span>
 						</div>
 						<div class="flex items-center gap-2">
 							<Badge variant="outline" size="sm">UI</Badge>
@@ -513,7 +515,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { createAuth, createAccess, createToast, createApiClient } from "bindrunes";\n\n// Auth & Access\nconst auth = createAuth();\nauth.login("token", { id: "1", email: "user@example.com", name: "User", roles: ["admin"] });\nconst access = createAccess(auth);\nconsole.log(access.isAdmin); // derived from auth state\n\n// Toast notifications\nconst toast = createToast();\ntoast.success("Operation completed!");\ntoast.error("Something went wrong");\n\n// API Client\nconst api = createApiClient({ baseUrl: "https://api.example.com" });\nconst data = await api.get("/users");`}
+						code={`import { useAuth, useAccess, useToast, createApiClient } from "bindrunes";\n\n// Auth & Access\nconst auth = useAuth();\nauth.login("token", { id: "1", email: "user@example.com", name: "User", roles: ["admin"] });\nconst access = useAccess(auth);\nconsole.log(access.isAdmin); // derived from auth state\n\n// Toast notifications\nconst toast = useToast();\ntoast.success("Operation completed!");\ntoast.error("Something went wrong");\n\n// API Client\nconst api = createApiClient({ baseUrl: "https://api.example.com" });\nconst data = await api.get("/users");`}
 						language="svelte"
 						title="Composables"
 					/>

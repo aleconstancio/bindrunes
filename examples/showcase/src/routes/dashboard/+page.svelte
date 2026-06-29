@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { DashboardPage, DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "bindrunes/boundrune";
-	import { Button, Card, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { DashboardTemplate } from "bindrunes/layouts";
+	import { DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "bindrunes/domains/dashboard";
+	import { Button, Card } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
 	import { Home, Users, Settings, BarChart3, FolderPlus, UserPlus, FileBarChart } from "lucide-svelte";
 
 	const navigation = [
@@ -50,7 +52,7 @@
 	const maxValue = Math.max(...chartData.map(d => d.value));
 </script>
 
-<DashboardPage
+<DashboardTemplate
 	appName="Showcase"
 	title="Dashboard"
 	description="Shell variants, stats, activity feeds, and dashboard widgets"
@@ -93,4 +95,4 @@
 			{ label: "Support", href: "#" },
 		]}
 	/>
-</DashboardPage>
+</DashboardTemplate>

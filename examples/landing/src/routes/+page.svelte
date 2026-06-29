@@ -1,5 +1,5 @@
 <script lang="ts">
-import { MarketingTemplate } from "bindrunes/templates";
+import { MarketingTemplate } from "bindrunes/layouts";
 import { ArrowRight, Zap, Shield, Layers, BarChart3, Users, Globe, Clock, CheckCircle } from "lucide-svelte";
 
 const features = [

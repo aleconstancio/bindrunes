@@ -135,7 +135,7 @@ describe("createCounter", () => {
         <li><strong>Runes:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$state</code>, <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$derived</code>, <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">$effect</code> — never legacy stores.</li>
         <li><strong>Snippets:</strong> Pass content via <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">{`{#snippet name()}...{/snippet}`}</code> blocks.</li>
         <li><strong>Event handling:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">onclick</code> props instead of <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">on:click</code>.</li>
-        <li><strong>Props:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">let { children } = $props()</code> — not <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">export let</code>.</li>
+        <li><strong>Props:</strong> Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">let &#123; children &#125; = $props()</code> — not <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">export let</code>.</li>
         <li><strong>Biome:</strong> Ensure <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bun run lint</code> passes. Tabs, double quotes, semicolons.</li>
       </ul>
     </section>

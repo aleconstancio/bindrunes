@@ -70,7 +70,7 @@ function isActiveSection(items: NavItem[]): boolean {
             Examples
           </a>
           <a
-            href="/blog"
+            href="/blog/why-bindrunes"
             class="px-3 py-1.5 rounded-md transition-colors {page.url.pathname.startsWith('/blog')
               ? 'bg-accent text-accent-foreground'
               : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'}"

@@ -1,6 +1,7 @@
 <!-- examples/showcase/src/routes/playground/+page.svelte -->
 <script lang="ts">
-  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "bindrunes";
+  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
 
   let dialogOpen = $state(false);
   let drawerOpen = $state(false);

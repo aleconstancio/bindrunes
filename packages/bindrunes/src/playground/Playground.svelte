@@ -44,20 +44,32 @@ const currentDefinition = $derived(
 let searchQuery = $state("");
 let selectedCategory = $state("All");
 
-let themeValue = $derived.by({
-	get: () => playgroundState.current.theme,
-	set: (v: string) => playgroundState.setTheme(v),
-});
+let themeValue = {
+	get value() {
+		return playgroundState.current.theme;
+	},
+	set value(v: string) {
+		playgroundState.setTheme(v);
+	},
+};
 
-let aestheticValue = $derived.by({
-	get: () => playgroundState.current.aesthetic,
-	set: (v: string) => playgroundState.setAesthetic(v),
-});
+let aestheticValue = {
+	get value() {
+		return playgroundState.current.aesthetic;
+	},
+	set value(v: string) {
+		playgroundState.setAesthetic(v);
+	},
+};
 
-let densityValue = $derived.by({
-	get: () => playgroundState.current.density,
-	set: (v: string) => playgroundState.setDensity(v),
-});
+let densityValue = {
+	get value() {
+		return playgroundState.current.density;
+	},
+	set value(v: string) {
+		playgroundState.setDensity(v);
+	},
+};
 
 const filteredComponents = $derived(
 	componentRegistry.filter((c) => {
@@ -118,7 +130,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Theme</label>
         <Select
-          bind:value={themeValue}
+          bind:value={themeValue.value}
           options={[
             { label: "Editorial", value: "editorial" },
             { label: "Dracula", value: "dracula" },
@@ -132,7 +144,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Aesthetic</label>
         <Select
-          bind:value={aestheticValue}
+          bind:value={aestheticValue.value}
           options={[
             { label: "Minimal", value: "minimal" },
             { label: "Glass", value: "glass" },
@@ -144,7 +156,7 @@ function handlePropChange(key: string, value: unknown) {
       <div>
         <label class="text-label-sm text-muted-foreground mb-1 block">Density</label>
         <Select
-          bind:value={densityValue}
+          bind:value={densityValue.value}
           options={[
             { label: "Compact", value: "compact" },
             { label: "Comfortable", value: "comfortable" },

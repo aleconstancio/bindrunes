@@ -40,6 +40,7 @@ function walk(dir) {
 		const full = join(dir, entry);
 		const stat = statSync(full);
 		if (stat.isDirectory()) {
+			if (REMOVED_DIRS.includes(entry)) continue;
 			walk(full);
 		} else if (stat.isFile()) {
 			if (shouldRemoveFile(entry)) {

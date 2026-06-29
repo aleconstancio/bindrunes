@@ -1,5 +1,5 @@
 <script lang="ts">
-import { DashboardPage } from "bindrunes/boundrune";
+import { DashboardTemplate } from "bindrunes/layouts";
 import { Home, Users, Settings, BarChart3 } from "lucide-svelte";
 
 const navigation = [
@@ -15,7 +15,7 @@ const navigation = [
 ];
 </script>
 
-<DashboardPage
+<DashboardTemplate
   appName="MyApp"
   title="Dashboard"
   {navigation}
@@ -25,4 +25,4 @@ const navigation = [
     <h2 class="text-display-3">Welcome back</h2>
     <p class="text-body-lg text-muted-foreground">This is a DashboardPage template example.</p>
   </div>
-</DashboardPage>
+</DashboardTemplate>

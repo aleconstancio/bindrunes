@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ChatPage } from "bindrunes/boundrune";
+import { ChatTemplate } from "bindrunes/layouts";
 
 const conversations = [
   { id: "1", name: "Alice Johnson", lastMessage: "Hey, how's it going?" },
@@ -8,7 +8,7 @@ const conversations = [
 ];
 </script>
 
-<ChatPage title="Chat">
+<ChatTemplate title="Chat">
   {#snippet conversationList()}
     <div class="space-y-1 p-2">
       {#each conversations as conv}
@@ -28,4 +28,4 @@ const conversations = [
     <div class="bg-muted rounded-lg p-3 max-w-md">Hey, how's it going?</div>
     <div class="bg-primary text-primary-foreground rounded-lg p-3 max-w-md ml-auto">Good! Working on the new features.</div>
   </div>
-</ChatPage>
+</ChatTemplate>

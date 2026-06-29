@@ -1,7 +1,7 @@
 <script lang="ts">
 	
 	import { Badge, Button, Card, PageHeader, Spinner } from "bindrunes";
-	import { createMutation, createQuery, invalidateQuery } from "bindrunes-kit/client";
+	import { useMutation, useQuery, invalidateQuery } from "bindrunes-kit/client";
 	import { goto } from "$app/navigation";
 import { page } from "$app/state";
 
@@ -16,7 +16,7 @@ import { page } from "$app/state";
 		updatedAt: string;
 	}
 
-	const item = createQuery<Item>({
+	const item = useQuery<Item>({
 		key: `item-${itemId}`,
 		fetcher: async () => {
 			const res = await fetch(`/api/items/${itemId}`);
@@ -25,7 +25,7 @@ import { page } from "$app/state";
 		},
 	});
 
-	const updateStatus = createMutation({
+	const updateStatus = useMutation({
 		mutator: async ({ id, status }: { id: string; status: Item["status"] }) => {
 			const res = await fetch(`/api/items/${id}`, {
 				method: "PATCH",
@@ -37,7 +37,7 @@ import { page } from "$app/state";
 		invalidateKeys: ["items", `item-${itemId}`],
 	});
 
-	const deleteItem = createMutation({
+	const deleteItem = useMutation({
 		mutator: async (id: string) => {
 			await fetch(`/api/items/${id}`, { method: "DELETE" });
 			return id;

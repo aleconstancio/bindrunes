@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Card, Badge, Input } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Badge, Input } from "bindrunes";
 	import { Search } from "lucide-svelte";
 
 	interface ComponentEntry {
@@ -234,20 +235,20 @@
 
 	// Composables
 	const composables = [
-		{ name: "createTheme", category: "Design", description: "6 themes: editorial, dracula, nord, catppuccin, rose-pine, github", demoPath: "/app" },
-		{ name: "createAesthetic", category: "Design", description: "4 aesthetics: minimal, glass, bento, expressive", demoPath: "/app" },
-		{ name: "createDensity", category: "Design", description: "3 densities: compact, comfortable, spacious", demoPath: "/app" },
+		{ name: "useTheme", category: "Design", description: "6 themes: editorial, dracula, nord, catppuccin, rose-pine, github", demoPath: "/app" },
+		{ name: "useAesthetic", category: "Design", description: "4 aesthetics: minimal, glass, bento, expressive", demoPath: "/app" },
+		{ name: "useDensity", category: "Design", description: "3 densities: compact, comfortable, spacious", demoPath: "/app" },
 		{ name: "createDarkMode", category: "Design", description: "Light/dark mode via mode-watcher", demoPath: "/" },
-		{ name: "createQuery", category: "Data", description: "Reactivity query cache with stale time, retry, refetch-on-focus", demoPath: "/data/list" },
-		{ name: "createMutation", category: "Data", description: "Mutation with cache invalidation", demoPath: "/data/list" },
+		{ name: "useQuery", category: "Data", description: "Reactivity query cache with stale time, retry, refetch-on-focus", demoPath: "/data/list" },
+		{ name: "useMutation", category: "Data", description: "Mutation with cache invalidation", demoPath: "/data/list" },
 		{ name: "createApiClient", category: "Data", description: "Typed HTTP client (GET/POST/PUT/PATCH/DELETE)", demoPath: "/app" },
 		{ name: "RealtimeClient", category: "Data", description: "SSE client with reconnection, gap detection", demoPath: "/chat" },
-		{ name: "createForm", category: "Forms", description: "Valibot-based form state with dirty/touched/errors", demoPath: "/data/list" },
+		{ name: "useForm", category: "Forms", description: "Valibot-based form state with dirty/touched/errors", demoPath: "/data/list" },
 		{ name: "createWizard", category: "Forms", description: "Multi-step wizard with per-step validation", demoPath: "/data/list" },
-		{ name: "createAuth", category: "Auth", description: "Token/user management, role/permission checks", demoPath: "/app" },
-		{ name: "createAccess", category: "Auth", description: "Derived access helpers (isAdmin, can)", demoPath: "/app" },
-		{ name: "createOmnibar", category: "UI", description: "Command palette state", demoPath: "/app" },
-		{ name: "createToast", category: "UI", description: "Toast notifications via svelte-sonner", demoPath: "/app" },
+		{ name: "useAuth", category: "Auth", description: "Token/user management, role/permission checks", demoPath: "/app" },
+		{ name: "useAccess", category: "Auth", description: "Derived access helpers (isAdmin, can)", demoPath: "/app" },
+		{ name: "useOmnibar", category: "UI", description: "Command palette state", demoPath: "/app" },
+		{ name: "useToast", category: "UI", description: "Toast notifications via svelte-sonner", demoPath: "/app" },
 		{ name: "createI18n", category: "i18n", description: "Reactive i18n with dictionary resolution", demoPath: "/" },
 		{ name: "useBreakpoint", category: "UI", description: "Responsive breakpoint detection", demoPath: "/app" },
 		{ name: "useClipboard", category: "UI", description: "Copy to clipboard", demoPath: "/app" },

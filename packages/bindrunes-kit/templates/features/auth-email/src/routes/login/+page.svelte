@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthPage } from "bindrunes/boundrune/auth";
+	import { AuthTemplate } from "bindrunes/layouts";
 	import { createClientAuth } from "bindrunes-kit/client";
 
 	const auth = createClientAuth({
@@ -40,7 +40,7 @@
 	<title>Login</title>
 </svelte:head>
 
-<AuthPage
+<AuthTemplate
 	view="login"
 	brandTitle="Welcome back"
 	brandDescription="Sign in to your account"

@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { PageHeader, Card, Breadcrumb, Stepper, Timeline, Pagination, Collapsible, CodeSnippet } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Breadcrumb, Stepper, Timeline, Pagination, Collapsible, CodeSnippet } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
 
 	let currentPage = $state(1);
 	let activeStep = $state(1);

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { AuthPage } from "bindrunes/boundrune";
-import type { AuthView } from "bindrunes/boundrune/types/auth";
+import { AuthTemplate } from "bindrunes/layouts";
+import type { AuthView } from "bindrunes/domains/types";
 
 let view = $state<AuthView>("login");
 
@@ -21,7 +21,7 @@ function handleRegister(data: { name: string; email: string; password: string })
   <button class="px-4 py-2 rounded border" class:bg-primary={view === 'two-factor'} onclick={() => view = 'two-factor'}>2FA</button>
 </div>
 
-<AuthPage
+<AuthTemplate
   {view}
   brandTitle="MyApp"
   brandDescription="Build something great."

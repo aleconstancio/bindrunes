@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { Popover } from "bindrunes";
-	import { createTheme, createAesthetic, createDensity } from "bindrunes";
+	import { useTheme, useAesthetic, useDensity } from "bindrunes";
 	import { Palette } from "lucide-svelte";
 
-	const themeState = createTheme({ default: "editorial" });
-	const aestheticState = createAesthetic({ default: "minimal" });
-	const densityState = createDensity({ default: "comfortable" });
+	const themeState = useTheme({ default: "editorial" });
+	const aestheticState = useAesthetic({ default: "minimal" });
+	const densityState = useDensity({ default: "comfortable" });
 
 	const themeColors: Record<string, string> = {
 		editorial: "bg-indigo-400",

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, SiteFooter, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns, Collapsible, CodeSnippet } from "bindrunes/landing";
+	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, SiteFooter, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns } from "bindrunes/domains/landing";
+	import { Collapsible, CodeSnippet } from "bindrunes";
 	import { Zap, Shield, Clock, CheckCircle, Globe, Lock } from "lucide-svelte";
 
 	const features = [
@@ -115,7 +116,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { HeroBanner, FeatureGrid, PricingTable } from "bindrunes/landing";\n\nconst features = [\n  { icon: "Zap", title: "Lightning Fast", description: "Optimized for performance." },\n  { icon: "Shield", title: "Secure by Default", description: "Built-in security practices." },\n  { icon: "Clock", title: "Quick Setup", description: "Get started in minutes." },\n];\n\n<HeroBanner\n  title="Build beautiful apps"\n  description="A complete Svelte 5 design system."\n  ctaLabel="Get Started"\n  ctaHref="/register"\n/>\n\n<FeatureGrid {features} columns={3} />`}
+				code={`import { HeroBanner, FeatureGrid, PricingTable } from "bindrunes/domains/landing";\n\nconst features = [\n  { icon: "Zap", title: "Lightning Fast", description: "Optimized for performance." },\n  { icon: "Shield", title: "Secure by Default", description: "Built-in security practices." },\n  { icon: "Clock", title: "Quick Setup", description: "Get started in minutes." },\n];\n\n<HeroBanner\n  title="Build beautiful apps"\n  description="A complete Svelte 5 design system."\n  ctaLabel="Get Started"\n  ctaHref="/register"\n/>\n\n<FeatureGrid {features} columns={3} />`}
 				language="svelte"
 				title="Hero & Features"
 			/>
@@ -148,7 +149,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { TestimonialGrid, Testimonial } from "bindrunes/landing";\n\nconst testimonials = [\n  { quote: "bindrunes transformed how we build UIs.", author: "Sarah Chen", role: "CTO at TechFlow" },\n  { quote: "The best component library I've ever used.", author: "Marcus Johnson", role: "Lead Developer at Acme" },\n];\n\n<TestimonialGrid {testimonials} />\n\n<Testimonial\n  quote="A game changer for Svelte development."\n  author="Emily Rodriguez"\n  role="Product Manager at DataSync"\n/>`}
+				code={`import { TestimonialGrid, Testimonial } from "bindrunes/domains/landing";\n\nconst testimonials = [\n  { quote: "bindrunes transformed how we build UIs.", author: "Sarah Chen", role: "CTO at TechFlow" },\n  { quote: "The best component library I've ever used.", author: "Marcus Johnson", role: "Lead Developer at Acme" },\n];\n\n<TestimonialGrid {testimonials} />\n\n<Testimonial\n  quote="A game changer for Svelte development."\n  author="Emily Rodriguez"\n  role="Product Manager at DataSync"\n/>`}
 				language="svelte"
 				title="Testimonials"
 			/>
@@ -169,7 +170,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { PricingTable } from "bindrunes/landing";\n\nconst plans = [\n  { name: "Starter", monthly: 29, annual: 290, features: ["5 Projects", "10GB Storage"], cta: { label: "Get Started", href: "/register" } },\n  { name: "Pro", monthly: 79, annual: 790, features: ["Unlimited Projects", "100GB Storage"], highlight: true, badge: "Most Popular", cta: { label: "Start Pro", href: "/register", variant: "primary" } },\n  { name: "Enterprise", monthly: 199, annual: 1990, features: ["Everything in Pro", "Unlimited Storage"], cta: { label: "Contact Sales", href: "/contact", variant: "outline" } },\n];\n\n<PricingTable {plans} />`}
+				code={`import { PricingTable } from "bindrunes/domains/landing";\n\nconst plans = [\n  { name: "Starter", monthly: 29, annual: 290, features: ["5 Projects", "10GB Storage"], cta: { label: "Get Started", href: "/register" } },\n  { name: "Pro", monthly: 79, annual: 790, features: ["Unlimited Projects", "100GB Storage"], highlight: true, badge: "Most Popular", cta: { label: "Start Pro", href: "/register", variant: "primary" } },\n  { name: "Enterprise", monthly: 199, annual: 1990, features: ["Everything in Pro", "Unlimited Storage"], cta: { label: "Contact Sales", href: "/contact", variant: "outline" } },\n];\n\n<PricingTable {plans} />`}
 				language="svelte"
 				title="Pricing"
 			/>

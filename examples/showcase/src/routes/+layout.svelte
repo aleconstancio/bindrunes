@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css";
 	import { page } from "$app/state";
-	import { DemoLayout } from "bindrunes/scaffold";
+	import { DemoLayout } from "bindrunes/playground";
 	import { createI18n } from "bindrunes";
 	import en from "bindrunes/i18n/en";
 	import ptBR from "bindrunes/i18n/pt-BR";

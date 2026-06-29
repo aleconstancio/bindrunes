@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { createSidebarState } from "bindrunes";
-	import { DashboardShellSplit } from "bindrunes";
+	import { createSidebarState, DashboardShell, DashboardShellSplit } from "bindrunes/layouts";
 	import { Card } from "bindrunes";
 	import { Button } from "bindrunes";
 

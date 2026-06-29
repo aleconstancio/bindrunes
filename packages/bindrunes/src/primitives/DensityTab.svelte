@@ -35,8 +35,10 @@ let {
 							Tighter spacing for data-heavy UIs
 						{:else if d === 'comfortable'}
 							Balanced spacing — default
-						{:else}
+						{:else if d === 'spacious'}
 							Generous spacing for reading
+						{:else}
+							Derived from viewport size
 						{/if}
 					</p>
 				</div>

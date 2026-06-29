@@ -36,7 +36,7 @@ let drawerOpen = $state(false);
 
 <div class="p-6 lg:p-8 max-w-7xl">
   <Playground>
-    {#snippet preview({ definition, props })}
+    {#snippet preview(definition, props)}
       {#if definition.name === "Button"}
         <Button {...props}>{definition.slot}</Button>
       {:else if definition.name === "Badge"}

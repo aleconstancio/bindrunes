@@ -33,6 +33,7 @@ export { default as SEO } from "./SEO.svelte";
 export { default as SectionHeader } from "./SectionHeader.svelte";
 // Sidebar components
 export {
+	createSidebarState,
 	Sidebar,
 	SidebarContent,
 	SidebarFooter,
@@ -47,6 +48,7 @@ export {
 	SidebarRail,
 	SidebarSeparator,
 	SidebarTrigger,
+	useSidebar,
 } from "./sidebar/index.ts";
 // Tabs components
 export { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs/index.ts";

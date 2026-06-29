@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Badge, Button, Card, Input, Alert, StatusChip } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Badge, Button, Card, Input, Alert, StatusChip } from "bindrunes";
 
 	const themes = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, LoginForm } from "bindrunes/boundrune";
+	import { AuthLayout, LoginForm } from "bindrunes/domains/auth";
 	import { goto } from "$app/navigation";
 </script>
 

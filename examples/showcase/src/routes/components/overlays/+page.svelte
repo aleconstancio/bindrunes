@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { PageHeader, Card, Button, Dialog, Sheet, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Popconfirm } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Button, Dialog, Sheet, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Popconfirm } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { Collapsible, CodeSnippet } from "bindrunes";
 
 	let dialogOpen = $state(false);
 	let sheetOpen = $state(false);

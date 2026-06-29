@@ -1,13 +1,11 @@
 <script lang="ts">
 import { page } from "$app/stores";
-import { DashboardShell, ThemeStudio } from "bindrunes";
-import { createSidebarState } from "bindrunes";
+import { DashboardShell } from "bindrunes/layouts";
+	import { ThemeStudio } from "bindrunes";
 import { LayoutDashboard, Settings, Users, BarChart3, FileText, Shield, Palette } from "lucide-svelte";
 
 let { children } = $props();
 let showThemeStudio = $state(false);
-
-const sidebar = createSidebarState(true);
 
 const navGroups = [
   {

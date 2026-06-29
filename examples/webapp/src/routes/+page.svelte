@@ -13,7 +13,7 @@ import {
   FAQ,
   Newsletter,
   SiteFooter,
-} from "bindrunes/landing";
+} from "bindrunes/domains/landing";
 import {
   ArrowRight,
   Zap,

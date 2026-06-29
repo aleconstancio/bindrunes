@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { PageHeader, Card, Badge, Button, Input, PasswordInput, NumberInput, TagInput, Checkbox, Switch, RadioGroup, Select, Slider, Combobox, PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Badge, Button, Input, PasswordInput, NumberInput, TagInput, Checkbox, Switch, RadioGroup, Select, Slider, Combobox, PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "bindrunes";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { Collapsible, CodeSnippet } from "bindrunes";
 
 	let textValue = $state("");
 	let passwordValue = $state("");

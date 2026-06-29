@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { RegisterForm } from "bindrunes/boundrune";
+  import { RegisterForm } from "bindrunes/domains/auth";
 
   function handleRegister(data: { name: string; email: string; password: string }) {
     console.log("Register:", data);

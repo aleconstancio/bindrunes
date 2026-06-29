@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, TwoFactorAuth } from "bindrunes/boundrune";
+	import { AuthLayout, TwoFactorAuth } from "bindrunes/domains/auth";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>
 

@@ -40,7 +40,7 @@ let errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`
   <label class="block text-label-md mb-2 text-muted-foreground" for={selectId}>{label}</label>
 {/if}
 
-<Select.Root bind:value {disabled} {required}>
+<Select.Root type="single" bind:value {disabled} {required}>
   <Select.Trigger
     id={selectId}
     {...error ? { "aria-describedby": errorId } : {}}
@@ -67,21 +67,26 @@ let errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`
         {#each options as option}
           <Select.Item
             value={option.value}
+            label={option.label}
             disabled={option.disabled}
             class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-body-md
                    text-foreground hover:bg-muted data-[state=checked]:bg-muted data-[state=checked]:text-foreground
                    focus:outline-none focus:bg-muted"
           >
-            <Select.ItemIndicator class="mr-2 inline-flex items-center">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </Select.ItemIndicator>
-            {#if itemSnippet}
-              {@render itemSnippet({ option })}
-            {:else}
-              <Select.ItemLabel>{option.label}</Select.ItemLabel>
-            {/if}
+            {#snippet children({ selected })}
+              {#if selected}
+                <span class="mr-2 inline-flex items-center">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </span>
+              {/if}
+              {#if itemSnippet}
+                {@render itemSnippet({ option })}
+              {:else}
+                <span>{option.label}</span>
+              {/if}
+            {/snippet}
           </Select.Item>
         {/each}
       {/if}

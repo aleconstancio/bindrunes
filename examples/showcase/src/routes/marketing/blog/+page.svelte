@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes";
-	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/boundrune";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/domains/marketing";
 
 	let popupOpen = $state(false);
 	let bannerOpen = $state(true);

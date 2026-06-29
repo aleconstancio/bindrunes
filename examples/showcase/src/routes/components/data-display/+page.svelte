@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Card, Avatar, Badge, Progress, Kbd, Tabs, TabsList, TabsTrigger, TabsContent, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { Card, Avatar, Badge, Progress, Kbd, Collapsible, CodeSnippet } from "bindrunes";
 
 	const avatarSizes = ["sm", "md", "lg", "xl"] as const;
 	const badgeVariants = ["primary", "secondary", "outline", "destructive", "soft"] as const;

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { CalendarPage } from "bindrunes/boundrune";
-	import { EventCalendar } from "bindrunes/boundrune";
-	import { Scheduler } from "bindrunes/boundrune";
-	import { BookingForm } from "bindrunes/boundrune";
-	import { AvailabilityGrid } from "bindrunes/boundrune";
+	import { CalendarTemplate } from "bindrunes/layouts";
+	import { EventCalendar } from "bindrunes/domains/calendar";
+	import { Scheduler } from "bindrunes/domains/calendar";
+	import { BookingForm } from "bindrunes/domains/calendar";
+	import { AvailabilityGrid } from "bindrunes/domains/calendar";
 
 	const today = new Date().toISOString().split("T")[0]!;
 
@@ -49,7 +49,7 @@
 	let availability = $state(makeInitialAvailability());
 </script>
 
-<CalendarPage title="Calendar Components">
+<CalendarTemplate title="Calendar Components">
 	{#snippet sidebar()}
 		<div class="space-y-6">
 			<h3 class="text-title-2 text-foreground">Events</h3>
@@ -96,4 +96,4 @@
 			<Scheduler date={selectedDate} slots={timeSlots} bind:selectedSlot />
 		</div>
 	</div>
-</CalendarPage>
+</CalendarTemplate>

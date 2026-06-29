@@ -7,5 +7,5 @@ export function useDensityServer(request?: Request, opts?: { default?: Density }
 	const fallback = opts?.default ?? "comfortable";
 	if (!request) return { density: fallback };
 	const cookies = parseCookies(request.headers.get("cookie") ?? "");
-	return { density: (cookies["density"] as Density) ?? fallback };
+	return { density: (cookies.density as Density) ?? fallback };
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthPage } from "bindrunes/boundrune/auth";
+	import { AuthTemplate } from "bindrunes/layouts";
 
 	let loading = $state(false);
 	let submitted = $state(false);
@@ -34,7 +34,7 @@
 		</div>
 	</div>
 {:else}
-	<AuthPage
+	<AuthTemplate
 		view="forgot-password"
 		brandTitle="Reset your password"
 		brandDescription="We'll send you a reset link"

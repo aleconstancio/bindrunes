@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState, Collapsible, CodeSnippet } from "bindrunes";
 
 	let progressValue = $state(35);
 	let loading = $state(false);

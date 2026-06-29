@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { PageHeader, Card, Badge } from "bindrunes";
-	import { DocsLayout } from "bindrunes/boundrune";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Badge } from "bindrunes";
+	import { DocsLayout } from "bindrunes/domains/marketing";
 
 	const sections = [
 		{ id: "getting-started", title: "Getting Started" },
@@ -94,15 +95,15 @@
 			<div class="grid grid-cols-2 gap-4">
 				<Card padding>
 					<h3 class="text-title-3 text-foreground mb-2">Data Layer</h3>
-					<p class="text-body-sm text-muted-foreground">createQuery, createMutation, createApiClient, RealtimeClient</p>
+					<p class="text-body-sm text-muted-foreground">useQuery, useMutation, createApiClient, RealtimeClient</p>
 				</Card>
 				<Card padding>
 					<h3 class="text-title-3 text-foreground mb-2">Forms</h3>
-					<p class="text-body-sm text-muted-foreground">createForm, createWizard, validateWithSchema</p>
+					<p class="text-body-sm text-muted-foreground">useForm, createWizard, validateWithSchema</p>
 				</Card>
 				<Card padding>
 					<h3 class="text-title-3 text-foreground mb-2">Auth</h3>
-					<p class="text-body-sm text-muted-foreground">createAuth, createAccess, hasRole</p>
+					<p class="text-body-sm text-muted-foreground">useAuth, useAccess, hasRole</p>
 				</Card>
 				<Card padding>
 					<h3 class="text-title-3 text-foreground mb-2">UI</h3>

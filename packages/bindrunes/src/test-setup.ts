@@ -2,6 +2,20 @@ import "@testing-library/jest-dom/vitest";
 import { vi } from "vitest";
 import "./helpers/polyfills";
 
+// Wrap setTimeout to ignore callbacks scheduled during tests that fire after environment teardown
+const originalSetTimeout = globalThis.setTimeout;
+const wrappedSetTimeout = (cb: (...args: any[]) => void, delay?: number, ...args: any[]) => {
+	return originalSetTimeout(() => {
+		if (typeof document !== "undefined" && document.body) {
+			cb(...args);
+		}
+	}, delay);
+};
+globalThis.setTimeout = wrappedSetTimeout as any;
+if (typeof window !== "undefined") {
+	(window as any).setTimeout = wrappedSetTimeout;
+}
+
 vi.mock("esm-env", () => ({ BROWSER: false, DEV: false, NODE: true }));
 
 vi.mock("svelte-sonner", () => ({

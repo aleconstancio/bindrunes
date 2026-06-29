@@ -37,9 +37,16 @@ describe("DensityTab", () => {
 	it("renders all density options", async () => {
 		const d = await mountDensity();
 		render(d.render, { density: d.density });
+		expect(screen.getByText("auto")).toBeInTheDocument();
 		expect(screen.getByText("compact")).toBeInTheDocument();
 		expect(screen.getByText("comfortable")).toBeInTheDocument();
 		expect(screen.getByText("spacious")).toBeInTheDocument();
+	});
+
+	it("shows description for auto", async () => {
+		const d = await mountDensity();
+		render(d.render, { density: d.density });
+		expect(screen.getByText(/Derived from viewport size/)).toBeInTheDocument();
 	});
 
 	it("shows description for compact", async () => {

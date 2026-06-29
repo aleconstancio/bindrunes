@@ -1,8 +1,18 @@
 {
 	"name": "bindrunes-kit",
 	"version": "0.1.1",
+	"description": "SvelteKit meta-framework extension for bindrunes — SSR, auth, i18n, adapters",
 	"type": "module",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aleconstancio/bindrunes.git",
+		"directory": "packages/bindrunes-kit"
+	},
+	"homepage": "https://github.com/aleconstancio/bindrunes#readme",
+	"bugs": {
+		"url": "https://github.com/aleconstancio/bindrunes/issues"
+	},
 	"files": [
 		"dist",
 		"src",

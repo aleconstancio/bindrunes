@@ -1,9 +1,9 @@
 <script lang="ts">
 import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from "bindrunes";
-	import { createForm, createMutation, createQuery } from "bindrunes-kit/client";
+	import { useForm, useMutation, useQuery } from "bindrunes-kit/client";
 	import { email as emailValidator, minLength, object, string } from "valibot";
 
-	const profileForm = createForm({
+	const profileForm = useForm({
 		schema: object({
 			name: string([minLength(1, "Name is required")]),
 			email: string([emailValidator("Invalid email")]),
@@ -12,7 +12,7 @@ import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTri
 		validateOn: "blur",
 	});
 
-	const passwordForm = createForm({
+	const passwordForm = useForm({
 		schema: object({
 			currentPassword: string([minLength(1, "Current password is required")]),
 			newPassword: string([minLength(8, "Must be at least 8 characters")]),
@@ -22,7 +22,7 @@ import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTri
 		validateOn: "blur",
 	});
 
-	const profile = createQuery({
+	const profile = useQuery({
 		key: "user-profile",
 		fetcher: async () => {
 			const res = await fetch("/api/auth/me");
@@ -34,7 +34,7 @@ import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTri
 		},
 	});
 
-	const updateProfile = createMutation({
+	const updateProfile = useMutation({
 		mutator: async (vars: { name: string; email: string }) => {
 			const res = await fetch("/api/auth/profile", {
 				method: "PATCH",
@@ -47,7 +47,7 @@ import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTri
 		invalidateKeys: ["user-profile"],
 	});
 
-	const changePassword = createMutation({
+	const changePassword = useMutation({
 		mutator: async (vars: { currentPassword: string; newPassword: string }) => {
 			const res = await fetch("/api/auth/password", {
 				method: "POST",

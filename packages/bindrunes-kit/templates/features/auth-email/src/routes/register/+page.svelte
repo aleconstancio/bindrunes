@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthPage } from "bindrunes/boundrune/auth";
+	import { AuthTemplate } from "bindrunes/layouts";
 	import { createClientAuth } from "bindrunes-kit/client";
 
 	const auth = createClientAuth({
@@ -44,7 +44,7 @@
 	<title>Create Account</title>
 </svelte:head>
 
-<AuthPage
+<AuthTemplate
 	view="register"
 	brandTitle="Create your account"
 	brandDescription="Get started in seconds"

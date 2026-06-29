@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { PageHeader, MetricCard, Card, Badge, PageLoading, ErrorBoundary } from "bindrunes";
-  import { AdvancedTable } from "bindrunes/boundrune";
+  import { PageHeader, ErrorBoundary } from "bindrunes/layouts";
+	import { MetricCard, Card, Badge, PageLoading } from "bindrunes";
+  import { AdvancedTable } from "bindrunes/domains/data";
   import { TrendingUp, Users, DollarSign, Activity } from "lucide-svelte";
 
   let loading = $state(true);

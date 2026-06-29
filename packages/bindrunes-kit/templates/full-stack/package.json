@@ -9,11 +9,11 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "bindrunes": "^1.2.0",
+    "bindrunes": "^4.0.0",
     "svelte": "^5.0.0",
     "lucide-svelte": "^1.0.1",
-    "mode-watcher": "^0.5.1",
-    "svelte-sonner": "^0.3.28"
+    "mode-watcher": "^1.1.0",
+    "svelte-sonner": "^1.1.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.0.0",

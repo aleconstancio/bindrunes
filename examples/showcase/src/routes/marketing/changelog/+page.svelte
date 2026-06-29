@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes";
-	import { ChangelogPage } from "bindrunes/boundrune";
+	import { PageHeader } from "bindrunes/layouts";
+	import { ChangelogPage } from "bindrunes/domains/marketing";
 
 	const changelog = [
 		{

@@ -11,7 +11,7 @@
 		SidebarMenuButton,
 		SidebarProvider,
 		SidebarTrigger,
-	} from "bindrunes/sidebar";
+	} from "bindrunes/layouts";
 import type { Snippet } from "svelte";
 	import { afterNavigate, goto } from "$app/navigation";
 	import { page } from "$app/state";

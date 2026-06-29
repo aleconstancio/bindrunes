@@ -64,12 +64,7 @@ lint:
 [group('quality')]
 # Auto-fix lint and formatting
 lint:fix:
-    bun run lint:fix || bun run format
-
-[group('quality')]
-# Format all code
-format:
-    bun run format
+    bun run lint:fix
 
 [group('quality')]
 # Type check
@@ -91,8 +86,9 @@ test:coverage:
 # ── Full Pipelines ──
 
 [group('pipelines')]
-# Run lint + type check + tests
+# Run build + lint + type check + tests + size
 validate:
+    just build
     bun run lint
     bun run check
     bun run test

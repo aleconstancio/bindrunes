@@ -1,5 +1,7 @@
 <script lang="ts">
-  import { PageHeader, SettingsSection, Input, Switch, Button } from "bindrunes";
+  import { PageHeader } from "bindrunes/layouts";
+	import { SettingsSection } from "bindrunes/domains/settings";
+	import { Input, Switch, Button } from "bindrunes";
 
   let emailNotifications = $state(true);
   let weeklyDigest = $state(false);

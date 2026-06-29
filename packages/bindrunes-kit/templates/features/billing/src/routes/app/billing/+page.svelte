@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Badge, Button, Card, PageHeader, Spinner } from "bindrunes";
-	import { createMutation, createQuery } from "bindrunes-kit/client";
+	import { useMutation, useQuery } from "bindrunes-kit/client";
 
 	interface Plan {
 		id: string;
@@ -16,7 +16,7 @@
 		currentPeriodEnd: string;
 	}
 
-	const plans = createQuery<Plan[]>({
+	const plans = useQuery<Plan[]>({
 		key: "billing-plans",
 		fetcher: async () => {
 			const res = await fetch("/api/billing/plans");
@@ -24,7 +24,7 @@
 		},
 	});
 
-	const subscription = createQuery<Subscription | null>({
+	const subscription = useQuery<Subscription | null>({
 		key: "billing-subscription",
 		fetcher: async () => {
 			const res = await fetch("/api/billing/subscription");
@@ -33,7 +33,7 @@
 		},
 	});
 
-	const checkout = createMutation({
+	const checkout = useMutation({
 		mutator: async (planId: string) => {
 			const res = await fetch("/api/billing/checkout", {
 				method: "POST",
@@ -44,7 +44,7 @@
 		},
 	});
 
-	const cancel = createMutation({
+	const cancel = useMutation({
 		mutator: async () => {
 			await fetch("/api/billing/subscription", { method: "DELETE" });
 		},

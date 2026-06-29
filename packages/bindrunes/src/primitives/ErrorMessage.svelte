@@ -10,6 +10,6 @@ let {
 } = $props();
 </script>
 
-<p {id} class="mt-1.5 text-body-sm text-destructive">
+<p {id} role="alert" class="mt-1.5 text-body-sm text-destructive">
 	{@render children?.()}
 </p>

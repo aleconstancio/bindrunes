@@ -11,9 +11,6 @@
 			"!**/coverage",
 			"!examples",
 			"!docs-site/**/*.css",
-			"!src/styles/tokens/tailwind.css",
-			"!docs/tokens.example.css",
-			"!src/components/scaffold/app.css",
 			"!packages/bindrunes-kit/templates",
 			"!packages/bindrunes/src/playground/app.css",
 			"!packages/bindrunes/src/styles/tokens/tailwind.css"
@@ -89,7 +86,13 @@
 			}
 		},
 		{
-			"includes": ["**/*.test.ts", "**/*.spec.ts", "**/*.test.svelte.ts"],
+			"includes": [
+				"**/*.test.ts",
+				"**/*.spec.ts",
+				"**/*.test.svelte.ts",
+				"**/test-setup.ts",
+				"**/test-utils.ts"
+			],
 			"linter": {
 				"rules": {
 					"style": {

@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { Collapsible, CodeSnippet } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
-	import { EcommercePage } from "bindrunes/boundrune";
-	import { ProductGrid } from "bindrunes/boundrune";
-	import { Cart } from "bindrunes/boundrune";
-	import { Checkout } from "bindrunes/boundrune";
-	import { OrderSummary } from "bindrunes/boundrune";
-	import { PriceTag } from "bindrunes/boundrune";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { EcommerceTemplate } from "bindrunes/layouts";
+	import { ProductGrid } from "bindrunes/domains/ecommerce";
+	import { Cart } from "bindrunes/domains/ecommerce";
+	import { Checkout } from "bindrunes/domains/ecommerce";
+	import { OrderSummary } from "bindrunes/domains/ecommerce";
+	import { PriceTag } from "bindrunes/domains/ecommerce";
 
 	const products = [
 		{ id: "1", name: "Wireless Headphones", price: 79.99, originalPrice: 99.99, rating: 4.5, reviewCount: 128, badge: "Sale", description: "Premium noise-cancelling headphones" },
@@ -52,7 +52,7 @@
 	let activeTab = $state("products");
 </script>
 
-<EcommercePage title="E-commerce" cartCollapsible="full">
+<EcommerceTemplate title="E-commerce" cartCollapsible="full">
 	{#snippet cartSnippet()}
 		<div class="max-w-sm space-y-4">
 			<h2 class="text-title-2 text-foreground">Cart</h2>
@@ -90,7 +90,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { ProductGrid, Cart } from "bindrunes/boundrune";\n\nconst products = [\n  { id: "1", name: "Wireless Headphones", price: 79.99, originalPrice: 99.99, rating: 4.5, reviewCount: 128, badge: "Sale" },\n  { id: "2", name: "Smart Watch", price: 199.99, rating: 4.8, reviewCount: 256 },\n];\n\nlet cartItems = $state([\n  { id: "1", name: "Wireless Headphones", price: 79.99, quantity: 1 },\n]);\n\n<ProductGrid {products} columns={3} onAddToCart={(id) => console.log("Add to cart:", id)} />\n<Cart\n  items={cartItems}\n  onQuantityChange={(id, qty) => { /* update quantity */ }}\n  onRemove={(id) => { /* remove item */ }}\n  onCheckout={() => console.log("Checkout")}\n/>`}
+						code={`import { ProductGrid, Cart } from "bindrunes/domains/ecommerce";\n\nconst products = [\n  { id: "1", name: "Wireless Headphones", price: 79.99, originalPrice: 99.99, rating: 4.5, reviewCount: 128, badge: "Sale" },\n  { id: "2", name: "Smart Watch", price: 199.99, rating: 4.8, reviewCount: 256 },\n];\n\nlet cartItems = $state([\n  { id: "1", name: "Wireless Headphones", price: 79.99, quantity: 1 },\n]);\n\n<ProductGrid {products} columns={3} onAddToCart={(id) => console.log("Add to cart:", id)} />\n<Cart\n  items={cartItems}\n  onQuantityChange={(id, qty) => { /* update quantity */ }}\n  onRemove={(id) => { /* remove item */ }}\n  onCheckout={() => console.log("Checkout")}\n/>`}
 						language="svelte"
 						title="Products & Cart"
 					/>
@@ -118,7 +118,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Checkout } from "bindrunes/boundrune";\n\nconst checkoutItems = [\n  { name: "Wireless Headphones", quantity: 1, price: 79.99 },\n  { name: "USB-C Hub", quantity: 2, price: 49.99 },\n];\n\n<Checkout\n  items={checkoutItems}\n  currency="$"\n  shipping={5.99}\n  tax={6.40}\n  onSubmit={(data) => console.log("Order submitted:", data)}\n/>`}
+						code={`import { Checkout } from "bindrunes/domains/ecommerce";\n\nconst checkoutItems = [\n  { name: "Wireless Headphones", quantity: 1, price: 79.99 },\n  { name: "USB-C Hub", quantity: 2, price: 49.99 },\n];\n\n<Checkout\n  items={checkoutItems}\n  currency="$"\n  shipping={5.99}\n  tax={6.40}\n  onSubmit={(data) => console.log("Order submitted:", data)}\n/>`}
 						language="svelte"
 						title="Checkout"
 					/>
@@ -145,7 +145,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { OrderSummary } from "bindrunes/boundrune";\n\nconst summaryItems = [\n  { name: "Mechanical Keyboard", quantity: 1, price: 129.99 },\n  { name: "Desk Lamp", quantity: 3, price: 34.99 },\n];\n\n<OrderSummary\n  items={summaryItems}\n  currency="$"\n  shipping={8.50}\n  tax={14.28}\n/>`}
+						code={`import { OrderSummary } from "bindrunes/domains/ecommerce";\n\nconst summaryItems = [\n  { name: "Mechanical Keyboard", quantity: 1, price: 129.99 },\n  { name: "Desk Lamp", quantity: 3, price: 34.99 },\n];\n\n<OrderSummary\n  items={summaryItems}\n  currency="$"\n  shipping={8.50}\n  tax={14.28}\n/>`}
 						language="svelte"
 						title="Order Summary"
 					/>
@@ -212,7 +212,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { PriceTag } from "bindrunes/boundrune";\n\n<!-- Basic price -->\n<PriceTag price={49.99} />\n\n<!-- With discount -->\n<PriceTag price={79.99} originalPrice={99.99} />\n\n<!-- Different sizes -->\n<PriceTag price={49.99} size="sm" />\n<PriceTag price={99.99} size="md" />\n<PriceTag price={199.99} size="lg" />\n\n<!-- Custom currency -->\n<PriceTag price={79.99} originalPrice={99.99} currency="EUR" />`}
+						code={`import { PriceTag } from "bindrunes/domains/ecommerce";\n\n<!-- Basic price -->\n<PriceTag price={49.99} />\n\n<!-- With discount -->\n<PriceTag price={79.99} originalPrice={99.99} />\n\n<!-- Different sizes -->\n<PriceTag price={49.99} size="sm" />\n<PriceTag price={99.99} size="md" />\n<PriceTag price={199.99} size="lg" />\n\n<!-- Custom currency -->\n<PriceTag price={79.99} originalPrice={99.99} currency="EUR" />`}
 						language="svelte"
 						title="Price Tag"
 					/>
@@ -220,4 +220,4 @@
 			</Collapsible>
 		</TabsContent>
 	</Tabs>
-</EcommercePage>
+</EcommerceTemplate>

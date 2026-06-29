@@ -1,5 +1,5 @@
 <script lang="ts">
-import { MarketingPage } from "bindrunes/landing";
+import { MarketingTemplate } from "bindrunes/layouts";
 import { ArrowRight, Zap, Shield, Clock, CheckCircle, Layers, BarChart3, Users, Globe } from "lucide-svelte";
 
 const navLinks = [
@@ -55,7 +55,7 @@ const faqItems = [
 ];
 </script>
 
-<MarketingPage
+<MarketingTemplate
   logo={{ href: "/", label: "MySaaS" }}
   {navLinks}
   cta={{ label: "Get Started", href: "/signup" }}

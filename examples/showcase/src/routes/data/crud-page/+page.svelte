@@ -1,5 +1,5 @@
 <script lang="ts">
-import { CrudPage } from "bindrunes/boundrune";
+import { CrudTemplate } from "bindrunes/layouts";
 
 const users = [
   { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
@@ -11,7 +11,7 @@ const users = [
 let selected = $state<Record<string, unknown> | undefined>(undefined);
 </script>
 
-<CrudPage title="Users">
+<CrudTemplate title="Users">
   {#snippet listPanel()}
     <div class="p-4 space-y-2">
       <h3 class="text-title-2 mb-4">Users</h3>
@@ -44,4 +44,4 @@ let selected = $state<Record<string, unknown> | undefined>(undefined);
       </div>
     {/if}
   {/snippet}
-</CrudPage>
+</CrudTemplate>

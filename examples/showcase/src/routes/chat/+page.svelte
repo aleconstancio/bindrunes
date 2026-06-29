@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { PageHeader, Card, Button, Collapsible, CodeSnippet } from "bindrunes";
-	import { ChatPage, ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/boundrune";
+	import { PageHeader } from "bindrunes/layouts";
+	import { Card, Button, Collapsible, CodeSnippet } from "bindrunes";
+	import { ChatTemplate } from "bindrunes/layouts";
+	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/domains/chat";
 	import { RealtimeClient } from "bindrunes";
 	import type { RealtimeEvent } from "bindrunes";
 
@@ -128,14 +130,14 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { ChatThread, ChatInput, TypingIndicator } from "bindrunes/boundrune";\n\nlet isTyping = $state(false);\nlet messages = $state([]);\n\nfunction handleSend(message: string) {\n  messages = [...messages, { id: String(Date.now()), content: message, sender: "user", timestamp: "now" }];\n  isTyping = true;\n  setTimeout(() => {\n    isTyping = false;\n    messages = [...messages, { id: String(Date.now()), content: "Response", sender: "assistant", timestamp: "now" }];\n  }, 1500);\n}\n\n<ChatThread messages={messages} />\n{#if isTyping}\n  <TypingIndicator />\n{/if}\n<ChatInput onSend={handleSend} placeholder="Type a message..." />`}
+				code={`import { ChatThread, ChatInput, TypingIndicator } from "bindrunes/domains/chat";\n\nlet isTyping = $state(false);\nlet messages = $state([]);\n\nfunction handleSend(message: string) {\n  messages = [...messages, { id: String(Date.now()), content: message, sender: "user", timestamp: "now" }];\n  isTyping = true;\n  setTimeout(() => {\n    isTyping = false;\n    messages = [...messages, { id: String(Date.now()), content: "Response", sender: "assistant", timestamp: "now" }];\n  }, 1500);\n}\n\n<ChatThread messages={messages} />\n{#if isTyping}\n  <TypingIndicator />\n{/if}\n<ChatInput onSend={handleSend} placeholder="Type a message..." />`}
 				language="svelte"
 				title="Chat Interface"
 			/>
 		</div>
 	</Collapsible>
 
-	<ChatPage title="Chat">
+	<ChatTemplate title="Chat">
 		{#snippet conversationList()}
 			<div class="p-4">
 				<h3 class="text-title-3 text-foreground mb-3">Conversations</h3>
@@ -156,7 +158,7 @@
 			{/if}
 			<ChatInput onSend={handleSend} placeholder="Type a message..." />
 		</div>
-	</ChatPage>
+	</ChatTemplate>
 
 	<!-- RealtimeClient mock -->
 	<Card padding class="max-w-2xl mx-auto">

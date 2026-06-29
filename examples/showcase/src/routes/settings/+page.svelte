@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { SettingsPage } from "bindrunes/boundrune";
-	import { ProfileSettings } from "bindrunes/boundrune";
-	import { SecuritySettings } from "bindrunes/boundrune";
-	import { NotificationSettings } from "bindrunes/boundrune";
-	import { DangerZone } from "bindrunes/boundrune";
+	import { SettingsTemplate } from "bindrunes/layouts";
+	import { ProfileSettings } from "bindrunes/domains/settings";
+	import { SecuritySettings } from "bindrunes/domains/settings";
+	import { NotificationSettings } from "bindrunes/domains/settings";
+	import { DangerZone } from "bindrunes/domains/settings";
 
 	const tabs = [
 		{ id: "profile", label: "Profile" },
@@ -21,7 +21,7 @@
 	];
 </script>
 
-<SettingsPage {tabs} bind:activeTab title="Settings">
+<SettingsTemplate {tabs} bind:activeTab title="Settings">
 	{#snippet tabContent(tab)}
 		{#if tab.id === "profile"}
 			<ProfileSettings
@@ -48,4 +48,4 @@
 			/>
 		{/if}
 	{/snippet}
-</SettingsPage>
+</SettingsTemplate>

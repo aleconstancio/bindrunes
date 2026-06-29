@@ -57,6 +57,6 @@ describe("useDensity", () => {
 
 	it("exposes the full density list", async () => {
 		const d = await mountDensity();
-		expect(d.densities).toEqual(["compact", "comfortable", "spacious"]);
+		expect(d.densities).toEqual(["auto", "compact", "comfortable", "spacious"]);
 	});
 });
