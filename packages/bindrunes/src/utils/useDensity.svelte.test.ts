@@ -2,7 +2,13 @@ import { render } from "@testing-library/svelte";
 import { tick } from "svelte";
 import { beforeEach, describe, expect, it } from "vitest";
 import Harness from "../components/__tests__/harness/ComposableHarness.svelte";
-import { useDensity } from "./useDensity.svelte";
+import { type Density, useDensity } from "./useDensity.svelte";
+
+type DensityResult = {
+	density: Density;
+	setDensity(d: Density): void;
+	densities: readonly Density[];
+};
 
 describe("useDensity", () => {
 	beforeEach(() => {
@@ -16,7 +22,7 @@ describe("useDensity", () => {
 			props: { setup: () => useDensity(opts as any), state },
 		});
 		await tick();
-		return state.current as ReturnType<typeof useDensity>;
+		return state.current as DensityResult;
 	}
 
 	it("defaults to comfortable", async () => {
@@ -30,7 +36,7 @@ describe("useDensity", () => {
 	});
 
 	it("setDensity updates value and attribute", async () => {
-		const d = await mountDensity();
+		const d = (await mountDensity())!;
 		d.setDensity("compact");
 		await tick();
 		expect(d.density).toBe("compact");
@@ -38,7 +44,7 @@ describe("useDensity", () => {
 	});
 
 	it("persists to localStorage", async () => {
-		const d = await mountDensity();
+		const d = (await mountDensity())!;
 		d.setDensity("spacious");
 		await tick();
 		expect(localStorage.getItem("bindrunes_density")).toBe('"spacious"');

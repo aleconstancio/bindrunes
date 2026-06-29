@@ -50,11 +50,7 @@ function walk(dir) {
 			if (shouldRemoveFile(entry)) {
 				unlinkSync(full);
 				removedFiles++;
-			} else if (
-				entry.endsWith(".svelte") ||
-				entry.endsWith(".js") ||
-				entry.endsWith(".d.ts")
-			) {
+			} else if (entry.endsWith(".svelte") || entry.endsWith(".js") || entry.endsWith(".d.ts")) {
 				fixTsReferences(full);
 			}
 		}

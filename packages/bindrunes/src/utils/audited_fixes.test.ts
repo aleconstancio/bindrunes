@@ -27,7 +27,7 @@ vi.mock("mode-watcher", () => {
 describe("Audited Fixes tests", () => {
 	it("should react to dark mode store changes", () => {
 		let currentMode: string | undefined;
-		mode.subscribe((v: string) => {
+		mode.subscribe((v: string | undefined) => {
 			currentMode = v;
 		});
 

@@ -18,7 +18,7 @@ export function createPrefersTheme() {
 
 	return {
 		stop() {
-			mql.stop();
+			mql.destroy();
 		},
 	};
 }

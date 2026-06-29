@@ -13,5 +13,5 @@ export function createMultiTenantContext<T extends Tenant>(options: CreateMultiT
 }
 
 export function useMultiTenantContext<T extends Tenant>(): MultiTenantResult<T> {
-	return useMetaContext<T>(KEY);
+	return useMetaContext<MultiTenantResult<T>>(KEY);
 }
