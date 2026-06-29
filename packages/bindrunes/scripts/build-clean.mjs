@@ -40,13 +40,21 @@ function walk(dir) {
 		const full = join(dir, entry);
 		const stat = statSync(full);
 		if (stat.isDirectory()) {
-			if (REMOVED_DIRS.includes(entry)) continue;
+			if (REMOVED_DIRS.includes(entry)) {
+				rmSync(full, { recursive: true, force: true });
+				removedDirs++;
+				continue;
+			}
 			walk(full);
 		} else if (stat.isFile()) {
 			if (shouldRemoveFile(entry)) {
 				unlinkSync(full);
 				removedFiles++;
-			} else if (entry.endsWith(".svelte") || entry.endsWith(".js")) {
+			} else if (
+				entry.endsWith(".svelte") ||
+				entry.endsWith(".js") ||
+				entry.endsWith(".d.ts")
+			) {
 				fixTsReferences(full);
 			}
 		}
@@ -70,14 +78,13 @@ function fixTsReferences(filePath) {
 
 walk(DIST);
 
-for (const sub of REMOVED_DIRS) {
-	const target = join(DIST, sub);
-	try {
-		rmSync(target, { recursive: true, force: true });
-		removedDirs++;
-	} catch {
-		// dir didn't exist — fine
-	}
+// Remove duplicate styles directory — consumers get CSS from src/styles/ via the ./styles/* export
+const distStyles = join(DIST, "styles");
+try {
+	rmSync(distStyles, { recursive: true, force: true });
+	removedDirs++;
+} catch {
+	// didn't exist — fine
 }
 
 console.log(
