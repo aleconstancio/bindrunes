@@ -78,6 +78,9 @@ export const migrationNav: NavItem[] = [
 	{ label: "From shadcn-svelte", href: "/migration/shadcn-svelte" },
 	{ label: "From melt-ui", href: "/migration/melt-ui" },
 	{ label: "From Skeleton", href: "/migration/skeleton" },
+	{ label: "From Bootstrap", href: "/migration/bootstrap" },
+	{ label: "From Ant Design", href: "/migration/ant-design" },
+	{ label: "From Material UI", href: "/migration/material-ui" },
 ];
 
 export const blogNav: NavItem[] = [
