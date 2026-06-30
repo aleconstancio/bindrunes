@@ -1,0 +1,7 @@
+{
+	"buildCommand": "turbo run build --filter=bindrunes --filter=bindrunes-docs",
+	"outputDirectory": "docs-site/.svelte-kit/output",
+	"installCommand": "bun install",
+	"framework": "sveltekit",
+	"rootDirectory": "docs-site"
+}
