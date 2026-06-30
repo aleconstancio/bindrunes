@@ -46,3 +46,4 @@ bun-debug.log*
 **/.vercel/*
 !**/.vercel/project.json
 .env.local
+storybook-static

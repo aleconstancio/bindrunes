@@ -26,6 +26,10 @@ export const docsNav: NavItem[] = [
 		href: "/docs/design-system",
 	},
 	{
+		label: "Accessibility",
+		href: "/docs/accessibility",
+	},
+	{
 		label: "Security",
 		href: "/docs/security",
 	},
