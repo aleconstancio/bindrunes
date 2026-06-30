@@ -127,9 +127,15 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.5.1",
-		"@internationalized/date": "^3.12.2",
 		"@changesets/changelog-github": "^0.7.0",
 		"@changesets/cli": "^2.31.0",
+		"@internationalized/date": "^3.12.2",
+		"@storybook/addon-a11y": "^8.6.0",
+		"@storybook/addon-essentials": "^8.6.0",
+		"@storybook/addon-themes": "^8.6.0",
+		"@storybook/addon-viewport": "^8.6.0",
+		"@storybook/svelte": "^8.6.0",
+		"@storybook/svelte-vite": "^8.6.0",
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.1",
@@ -139,6 +145,7 @@
 		"@types/node": "^26.0.1",
 		"@vitest/coverage-v8": "^4.1.9",
 		"happy-dom": "^20.10.6",
+		"storybook": "^8.6.0",
 		"svelte": "^5.56.4",
 		"tailwindcss": "^4.3.1",
 		"typescript": "^6.0.3",
@@ -181,6 +188,8 @@
 		"validate:contrast": "bun run test src/utils/contrastCheck.test.ts src/utils/themeContrast.test.ts",
 		"changeset": "changeset",
 		"release:version": "changeset version",
-		"release:publish": "changeset publish"
+		"release:publish": "changeset publish",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	}
 }
