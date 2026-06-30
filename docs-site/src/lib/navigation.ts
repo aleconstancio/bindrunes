@@ -34,6 +34,15 @@ export const docsNav: NavItem[] = [
 		href: "/docs/testing",
 	},
 	{
+		label: "Agentic",
+		href: "/docs/agentic",
+		items: [
+			{ label: "Overview", href: "/docs/agentic/overview" },
+			{ label: "Build a Copilot", href: "/docs/agentic/build-a-copilot" },
+			{ label: "API Reference", href: "/docs/agentic/api-reference" },
+		],
+	},
+	{
 		label: "Changelog",
 		href: "/docs/changelog",
 	},

@@ -1,5 +1,7 @@
 # Agentic Chat Kernel & Copilot Components
 
+> **New to agentic?** Start with the [Build a Copilot in 5 Minutes](./build-a-copilot.md) tutorial.
+
 ## Overview
 
 The agentic subsystem provides two layers:
