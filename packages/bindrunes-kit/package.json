@@ -1,6 +1,6 @@
 {
 	"name": "bindrunes-kit",
-	"version": "0.1.1",
+	"version": "1.0.0",
 	"description": "SvelteKit meta-framework extension for bindrunes — SSR, auth, i18n, adapters",
 	"type": "module",
 	"license": "MIT",

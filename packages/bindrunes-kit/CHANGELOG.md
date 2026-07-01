@@ -1,5 +1,17 @@
 # bindrunes-kit
 
+## 1.0.0
+
+### Major Changes
+
+- **Stable release** — bindrunes-kit v1.0.0 with production-ready API surface.
+- **AWS and GCP adapters** — Deploy to Lambda/API Gateway or Cloud Run with `awsConfig()` and `gcpConfig()`.
+- **Drizzle and Prisma adapters** — Generate CRUD routes from bindrunes schemas with ORM integration.
+- **Passkey/WebAuthn auth** — Passwordless authentication with `createPasskeyAuth()`.
+- **Magic link auth** — Email-based passwordless login with `createMagicLinkAuth()`.
+- **Rate limiting** — In-memory sliding window rate limiter with `createRateLimit()`.
+- **Security headers** — CSP, HSTS, X-Frame-Options with `createSecurityHeaders()`.
+
 ## 0.1.1
 
 ### Patch Changes
