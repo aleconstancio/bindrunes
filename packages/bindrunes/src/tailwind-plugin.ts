@@ -201,6 +201,37 @@ function bindrunesPlugin({
 		".bg-gradient-surface": {
 			background: "var(--gradient-surface)",
 		},
+		".icon-circle-sm": {
+			display: "inline-flex",
+			"align-items": "center",
+			"justify-content": "center",
+			width: "2rem",
+			height: "2rem",
+			"border-radius": "0.5rem",
+		},
+		".icon-circle-md": {
+			display: "inline-flex",
+			"align-items": "center",
+			"justify-content": "center",
+			width: "2.5rem",
+			height: "2.5rem",
+			"border-radius": "0.5rem",
+		},
+		".icon-circle-lg": {
+			display: "inline-flex",
+			"align-items": "center",
+			"justify-content": "center",
+			width: "3rem",
+			height: "3rem",
+			"border-radius": "0.75rem",
+		},
+		".hover-lift": {
+			transition: "transform 0.2s ease, box-shadow 0.2s ease",
+			"&:hover": {
+				transform: "translateY(-2px)",
+				"box-shadow": "var(--shadow-lg)",
+			},
+		},
 	});
 }
 

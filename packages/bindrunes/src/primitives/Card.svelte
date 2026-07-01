@@ -1,11 +1,21 @@
 <script lang="ts">
 import type { Snippet } from "svelte";
 
-type Variant = "surface" | "glass" | "tinted" | "outlined" | "ghost";
+type Variant =
+	| "surface"
+	| "glass"
+	| "tinted"
+	| "outlined"
+	| "ghost"
+	| "elevated"
+	| "glow"
+	| "gradient";
+type HoverMode = "lift" | "glow" | "scale" | "none";
 
 let {
 	variant = "surface" as Variant,
 	interactive = false,
+	hover = undefined as HoverMode | undefined,
 	padding = true,
 	responsive = false,
 	href = undefined as string | undefined,
@@ -19,6 +29,7 @@ let {
 }: {
 	variant?: Variant;
 	interactive?: boolean;
+	hover?: HoverMode;
 	padding?: boolean;
 	responsive?: boolean;
 	href?: string;
@@ -37,6 +48,10 @@ const vars: Record<Variant, string> = {
 	tinted: "bg-[--surface-2] text-card-foreground shadow-[--shadow-sm] border border-border/50",
 	outlined: "bg-transparent border border-border",
 	ghost: "bg-transparent",
+	elevated: "bg-card text-card-foreground shadow-[--shadow-lg] border border-border-strong",
+	glow: "bg-card text-card-foreground border border-primary/30 shadow-[--shadow-glow-primary]",
+	gradient:
+		"bg-gradient-to-br from-primary/5 to-accent/5 text-card-foreground border border-border",
 };
 </script>
 
@@ -46,7 +61,8 @@ const vars: Record<Variant, string> = {
     aria-label={interactive ? ariaLabel : undefined}
     class="block rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
-           {interactive ? 'bindrunes-card-interactive' : ''}
+           {interactive && !hover ? 'bindrunes-card-interactive' : ''}
+           {hover && hover !== 'none' ? `bindrunes-card-hover-${hover}` : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
     style="contain: layout style paint;"
@@ -61,7 +77,8 @@ const vars: Record<Variant, string> = {
   <div
     class="rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
-           {interactive ? 'bindrunes-card-interactive' : ''}
+           {interactive && !hover ? 'bindrunes-card-interactive' : ''}
+           {hover && hover !== 'none' ? `bindrunes-card-hover-${hover}` : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
     style="contain: layout style paint;"
@@ -91,5 +108,33 @@ const vars: Record<Variant, string> = {
   :global(.bindrunes-card-interactive:active) {
     transform: translateY(0) scale(0.99);
     box-shadow: var(--shadow-sm);
+  }
+  :global(.bindrunes-card-hover-lift) {
+    cursor: pointer;
+    transition: transform var(--duration-fluid), box-shadow var(--duration-fluid);
+  }
+  :global(.bindrunes-card-hover-lift:hover) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+  :global(.bindrunes-card-hover-lift:active) {
+    transform: translateY(0);
+  }
+  :global(.bindrunes-card-hover-glow) {
+    cursor: pointer;
+    transition: box-shadow var(--duration-fluid);
+  }
+  :global(.bindrunes-card-hover-glow:hover) {
+    box-shadow: var(--shadow-glow-primary);
+  }
+  :global(.bindrunes-card-hover-scale) {
+    cursor: pointer;
+    transition: transform var(--duration-fluid);
+  }
+  :global(.bindrunes-card-hover-scale:hover) {
+    transform: scale(1.02);
+  }
+  :global(.bindrunes-card-hover-scale:active) {
+    transform: scale(1);
   }
 </style>
