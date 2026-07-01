@@ -47,3 +47,4 @@ bun-debug.log*
 !**/.vercel/project.json
 .env.local
 storybook-static
+.playwright-mcp/
