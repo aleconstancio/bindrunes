@@ -1,4 +1,6 @@
 <script lang="ts">
+import { useVirtualList } from "../utils/useVirtualList.svelte";
+
 export interface CommandItem {
 	id: string;
 	label: string;
@@ -9,7 +11,7 @@ export interface CommandItem {
 export interface Props {
 	items?: CommandItem[];
 	placeholder?: string;
-	open?: boolean;
+	open?: $bindable<boolean>;
 	onSelect?: (item: CommandItem) => void;
 	onClose?: () => void;
 	class?: string;
@@ -36,6 +38,24 @@ const filteredItems = $derived(
 	),
 );
 
+const VIRTUAL_THRESHOLD = 30;
+const shouldVirtualize = $derived(filteredItems.length > VIRTUAL_THRESHOLD);
+
+const virtualList = useVirtualList(shouldVirtualize ? filteredItems : [], {
+	itemHeight: 40,
+	overscan: 10,
+});
+
+let virtualContainer = $state<HTMLDivElement | null>(null);
+
+$effect(() => {
+	if (virtualContainer) {
+		virtualContainer.addEventListener("scroll", virtualList.scrollHandler);
+		virtualList.containerHeight = virtualContainer.clientHeight;
+		return () => virtualContainer?.removeEventListener("scroll", virtualList.scrollHandler);
+	}
+});
+
 $effect(() => {
 	if (open) {
 		selectedIndex = 0;
@@ -45,6 +65,12 @@ $effect(() => {
 		return () => {
 			document.body.style.overflow = "";
 		};
+	}
+});
+
+$effect(() => {
+	if (shouldVirtualize && virtualList.scrollTo && filteredItems[selectedIndex]) {
+		virtualList.scrollTo(selectedIndex);
 	}
 });
 
@@ -110,23 +136,48 @@ $effect(() => {
           aria-activedescendant="command-item-{selectedIndex}"
         />
       </div>
-      <div id="command-palette-list" class="max-h-[300px] overflow-y-auto p-2" role="listbox">
+      <div id="command-palette-list" role="listbox">
         {#if filteredItems.length === 0}
           <div class="py-6 text-center text-body-sm text-muted-foreground">No results found</div>
+        {:else if shouldVirtualize}
+          <div
+            bind:this={virtualContainer}
+            style={virtualList.containerStyle}
+            class="max-h-[300px] overflow-y-auto p-2"
+          >
+            {#each virtualList.visibleItems as vi (vi.item.id)}
+              {@const item = vi.item}
+              {@const i = vi.index}
+              <button
+                id="command-item-{i}"
+                style={vi.style}
+                class="w-full flex items-center gap-3 px-3 py-2 text-body-md rounded-[--radius-md] text-left
+                       {i === selectedIndex ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}"
+                onclick={() => { onSelect?.(item); open = false; onClose?.(); }}
+              >
+                {#if item.icon}
+                  {@render item.icon()}
+                {/if}
+                {item.label}
+              </button>
+            {/each}
+          </div>
         {:else}
-          {#each filteredItems as item, i}
-            <button
-              id="command-item-{i}"
-              class="w-full flex items-center gap-3 px-3 py-2 text-body-md rounded-[--radius-md] text-left
-                     {i === selectedIndex ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}"
-              onclick={() => { onSelect?.(item); open = false; onClose?.(); }}
-            >
-              {#if item.icon}
-                {@render item.icon()}
-              {/if}
-              {item.label}
-            </button>
-          {/each}
+          <div class="max-h-[300px] overflow-y-auto p-2">
+            {#each filteredItems as item, i}
+              <button
+                id="command-item-{i}"
+                class="w-full flex items-center gap-3 px-3 py-2 text-body-md rounded-[--radius-md] text-left
+                       {i === selectedIndex ? 'bg-accent text-accent-foreground' : 'text-foreground hover:bg-muted'}"
+                onclick={() => { onSelect?.(item); open = false; onClose?.(); }}
+              >
+                {#if item.icon}
+                  {@render item.icon()}
+                {/if}
+                {item.label}
+              </button>
+            {/each}
+          </div>
         {/if}
       </div>
     </div>

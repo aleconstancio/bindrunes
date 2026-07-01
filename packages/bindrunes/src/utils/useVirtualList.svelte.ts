@@ -11,6 +11,7 @@ export function useVirtualList<T>(
 	visibleItems: VirtualItem<T>[];
 	containerStyle: string;
 	scrollTo: (index: number) => void;
+	scrollHandler: (e: Event) => void;
 } {
 	const { itemHeight, overscan = 5 } = options;
 	let scrollTop = $state(0);
@@ -36,6 +37,12 @@ export function useVirtualList<T>(
 		scrollTop = index * itemHeight;
 	}
 
+	function scrollHandler(e: Event) {
+		const el = e.target as HTMLElement;
+		scrollTop = el.scrollTop;
+		containerHeight = el.clientHeight;
+	}
+
 	return {
 		get visibleItems() {
 			return visibleItems;
@@ -44,5 +51,6 @@ export function useVirtualList<T>(
 			return containerStyle;
 		},
 		scrollTo,
+		scrollHandler,
 	};
 }

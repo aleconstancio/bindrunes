@@ -1,6 +1,7 @@
 <script lang="ts">
 import BouncingDots from "../../primitives/BouncingDots.svelte";
 import { sanitizeHtml } from "../../utils/sanitizeHtml";
+import { useVirtualList } from "../../utils/useVirtualList.svelte";
 import CopilotSuggestionCard from "./CopilotSuggestionCard.svelte";
 import type { ConnectionStatus, CopilotMessage, CopilotSuggestion } from "./types";
 
@@ -30,6 +31,25 @@ const noop = () => {};
 
 let messagesContainer: HTMLDivElement | null = $state(null);
 
+const VIRTUAL_THRESHOLD = 50;
+const shouldVirtualize = $derived(messages.length > VIRTUAL_THRESHOLD);
+
+const virtualList = useVirtualList(shouldVirtualize ? messages : [], {
+	itemHeight: 64,
+	overscan: 10,
+});
+
+let virtualContainer = $state<HTMLDivElement | null>(null);
+
+$effect(() => {
+	const container = shouldVirtualize ? virtualContainer : messagesContainer;
+	if (container) {
+		container.addEventListener("scroll", virtualList.scrollHandler);
+		virtualList.containerHeight = container.clientHeight;
+		return () => container.removeEventListener("scroll", virtualList.scrollHandler);
+	}
+});
+
 let sanitizedMessages = $derived(
 	messages.map((m) => ({
 		...m,
@@ -48,8 +68,14 @@ let formattedTimestamps = $derived(
 );
 
 $effect(() => {
-	if (messagesContainer && (messages.length > 0 || streamingContent)) {
-		messagesContainer.scrollTop = messagesContainer.scrollHeight;
+	if (shouldVirtualize) {
+		if (virtualContainer && (messages.length > 0 || streamingContent)) {
+			virtualList.scrollTo(messages.length - 1);
+		}
+	} else {
+		if (messagesContainer && (messages.length > 0 || streamingContent)) {
+			messagesContainer.scrollTop = messagesContainer.scrollHeight;
+		}
 	}
 });
 </script>
@@ -70,12 +96,13 @@ $effect(() => {
 {/if}
 
 <div
-	bind:this={messagesContainer}
+	bind:this={shouldVirtualize ? virtualContainer : messagesContainer}
 	class="flex-1 overflow-y-auto p-6 {className}"
+	style={shouldVirtualize ? virtualList.containerStyle : undefined}
 	role="log"
 	aria-label="Conversa com o copiloto"
 	aria-live="polite"
->
+	>
 	{#if messages.length === 0 && !streamingContent}
 		<div class="h-full flex items-center justify-center">
 			<div class="text-center max-w-md">
@@ -117,6 +144,66 @@ $effect(() => {
 				{/if}
 			</div>
 		</div>
+	{:else if shouldVirtualize}
+		<div class="max-w-3xl mx-auto">
+			{#each virtualList.visibleItems as vi (vi.item.id)}
+				{@const message = { ...vi.item, sanitizedContent: vi.item.role === "agent" && vi.item.content ? sanitizeHtml(vi.item.content) : vi.item.content }}
+				{@const idx = vi.index}
+				<div style={vi.style} class="flex gap-3 {message.role === 'user' ? 'flex-row-reverse' : ''}">
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] flex items-center justify-center
+						{message.role === 'agent' ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground'}">
+						{#if message.role === "agent"}
+							<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+						{:else}
+							<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+						{/if}
+					</div>
+					<div class="flex-1 max-w-[85%]">
+					<div class="rounded-xl px-4 py-3 text-body-sm leading-[--text-line-height-relaxed]
+						{message.role === 'agent' ? 'bg-card border border-border' : 'bg-primary text-primary-foreground'}">
+							{#if message.content}
+								{#if message.role === "agent"}
+									<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html message.sanitizedContent}</div>
+								{:else}
+									<div class="whitespace-pre-wrap">{message.content}</div>
+								{/if}
+							{/if}
+						</div>
+						<div class="text-label-sm text-muted-foreground mt-1 px-1
+							{message.role === 'user' ? 'text-right' : ''}">
+							{formattedTimestamps[idx]}
+						</div>
+					</div>
+				</div>
+			{/each}
+		</div>
+
+		{#if streamingContent}
+			<div class="max-w-3xl mx-auto">
+				<div class="flex gap-3">
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] bg-primary/10 flex items-center justify-center text-primary">
+						<svg aria-hidden="true" class="w-3.5 h-3.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+					</div>
+				<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
+					<div class="prose prose-sm prose-slate dark:prose-invert max-w-none">{@html sanitizedStreaming}</div>
+					</div>
+				</div>
+			</div>
+		{:else if status === "connected" && messages.length > 0 && messages[messages.length - 1].role === "user"}
+			<div class="max-w-3xl mx-auto">
+				<div class="flex gap-3">
+					<div class="shrink-0 w-7 h-7 rounded-[--radius-pill] bg-primary/10 flex items-center justify-center">
+						<svg aria-hidden="true" class="w-3.5 h-3.5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+					</div>
+					<div class="rounded-xl px-4 py-3 text-body-sm bg-card border border-border">
+					<div class="flex items-center gap-2 text-muted-foreground">
+						<BouncingDots />
+						<span class="text-label-sm">Pensando...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		{/if}
 	{:else}
 		<div class="max-w-3xl mx-auto space-y-4">
 			{#each sanitizedMessages as message, idx (message.id)}
