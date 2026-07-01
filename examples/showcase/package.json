@@ -11,9 +11,9 @@
 		"bindrunes": "workspace:*",
 		"bindrunes-kit": "workspace:*",
 		"lucide-svelte": "^1.0.1",
-		"mode-watcher": "^0.5.1",
+		"mode-watcher": "^1.1.0",
 		"svelte": "^5.0.0",
-		"svelte-sonner": "^0.3.28",
+		"svelte-sonner": "^1.1.1",
 		"valibot": "^1.4.1"
 	},
 	"devDependencies": {
@@ -23,6 +23,7 @@
 		"@tailwindcss/vite": "^4.3.0",
 		"tailwindcss": "^4.3.0",
 		"typescript": "^6.0.0",
-		"vite": "^7.0.0"
+		"vite": "^8.1.0",
+		"vercel": "^54.18.6"
 	}
 }

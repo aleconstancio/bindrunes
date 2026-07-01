@@ -154,6 +154,39 @@
 		</div>
 	</section>
 
+	<!-- Documentation -->
+	<section class="py-12">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<h2 class="text-title-1 text-foreground mb-6">Documentation</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+				<a href="/docs" class="docs-card group">
+					<h3>Getting Started</h3>
+					<p>Installation, setup, and first component.</p>
+				</a>
+				<a href="/docs/architecture" class="docs-card group">
+					<h3>Architecture</h3>
+					<p>Four-layer hierarchy, design principles, exports.</p>
+				</a>
+				<a href="/docs/components" class="docs-card group">
+					<h3>Components</h3>
+					<p>245+ components across all categories.</p>
+				</a>
+				<a href="/docs/composables" class="docs-card group">
+					<h3>Composables</h3>
+					<p>49+ composables for data, forms, auth, reactivity.</p>
+				</a>
+				<a href="/docs/design-system" class="docs-card group">
+					<h3>Design System</h3>
+					<p>Themes, aesthetics, density, tokens.</p>
+				</a>
+				<a href="/kit/getting-started" class="docs-card group">
+					<h3>bindrunes-kit</h3>
+					<p>SvelteKit integration, auth, i18n, deployment.</p>
+				</a>
+			</div>
+		</div>
+	</section>
+
 	<!-- Theme × Aesthetic Matrix link -->
 	<section class="border-b border-border">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-4">

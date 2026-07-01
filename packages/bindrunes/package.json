@@ -76,6 +76,7 @@
 			"svelte": "./dist/playground/index.js",
 			"default": "./dist/playground/index.js"
 		},
+		"./playground/app.css": "./dist/playground/app.css",
 		"./playground/*": {
 			"types": "./dist/playground/*.d.ts",
 			"svelte": "./dist/playground/*.svelte",
