@@ -1,6 +1,6 @@
 <script lang="ts">
 import "../app.css";
-import { AppProvider, ThemeProvider } from "bindrunes";
+import { AppProvider } from "bindrunes";
 import { page } from "$app/state";
 import { blogNav, docsNav, examplesNav, kitNav, migrationNav, type NavItem } from "$lib/navigation";
 
@@ -27,8 +27,7 @@ function isActiveSection(items: NavItem[]): boolean {
 }
 </script>
 
-<AppProvider>
-  <ThemeProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
+<AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
   <div class="min-h-screen flex flex-col">
     <!-- Top bar -->
     <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
@@ -287,5 +286,4 @@ function isActiveSection(items: NavItem[]): boolean {
       </main>
     </div>
   </div>
-  </ThemeProvider>
 </AppProvider>
