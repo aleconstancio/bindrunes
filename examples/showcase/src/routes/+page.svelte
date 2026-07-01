@@ -1,18 +1,12 @@
 <script lang="ts">
-	import {
-		Button,
-		Badge,
-		Card,
-		CodeSnippet,
-		IconCircle,
-		SectionHeading,
-	} from "bindrunes";
-	import { HeroBanner, CtaBanner } from "bindrunes/domains/landing";
+	import { Button, Badge } from "bindrunes";
 	import {
 		Layout,
 		Palette,
 		Server,
 		Bot,
+		Copy,
+		Check,
 	} from "lucide-svelte";
 
 	const features = [
@@ -21,50 +15,91 @@
 			title: "Domain Components",
 			description:
 				"10 pre-built domains: auth, dashboard, data, e-commerce, chat, and more. Production-ready out of the box.",
+			tone: "primary",
 		},
 		{
 			icon: Palette,
 			title: "Three-Axis Design",
 			description:
 				"Theme × Aesthetic × Density = 126 unique combinations. OKLCH colors, CSS custom properties.",
+			tone: "accent",
 		},
 		{
 			icon: Server,
 			title: "SvelteKit Integration",
 			description:
 				"Full-stack or SPA mode. Auth, API routes, i18n, and deployment adapters built-in.",
+			tone: "indigo",
 		},
 		{
 			icon: Bot,
 			title: "Agentic Copilot",
 			description:
 				"Built-in LLM chat components. Token budgets, conversation branching, streaming. The only Svelte library with this.",
+			tone: "violet",
 		},
 	];
 
 	const axes = [
 		{
 			axis: "Theme",
-			description: "Color identity",
+			subtitle: "Color identity",
 			values: ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"],
 		},
 		{
 			axis: "Aesthetic",
-			description: "Form & motion",
-			values: ["editorial", "glass", "bento", "expressive", "minimal", "bold", "soft"],
+			subtitle: "Form & motion",
+			values: ["minimal", "glass", "bento", "expressive", "neon", "brutalist", "organic"],
 		},
 		{
 			axis: "Density",
-			description: "Spacing scale",
+			subtitle: "Spacing scale",
 			values: ["compact", "comfortable", "spacious"],
 		},
 	];
 
-	const installCode = `# Install\nbun add bindrunes\n\n# Or with npm\nnpm install bindrunes`;
+	const steps = [
+		{
+			title: "Install",
+			file: "terminal",
+			code: "bun add bindrunes",
+		},
+		{
+			title: "Wrap your layout",
+			file: "+layout.svelte",
+			code: `<` + `script>
+  import { AppProvider } from "bindrunes";
+  let { children } = $props();
+<` + `/script>
 
-	const layoutCode = `<!-- +layout.svelte -->\n<script>\n  import { ThemeProvider } from "bindrunes";\n</` + `script>\n\n<ThemeProvider theme="editorial" aesthetic="glass" density="comfortable">\n  {@render children()}\n</ThemeProvider>`;
+<AppProvider themeDefault="editorial">
+  {@render children()}
+</AppProvider>`,
+		},
+		{
+			title: "Use components",
+			file: "+page.svelte",
+			code: `<` + `script>
+  import { Button, Card, Badge } from "bindrunes";
+<` + `/script>
 
-	const componentCode = `<!-- +page.svelte -->\n<script>\n  import { Button, Card, Badge } from "bindrunes";\n</` + `script>\n\n<Card variant="glass" padding>\n  <h2 class="text-title-1">Hello World</h2>\n  <p class="text-body text-muted-foreground">\n    Built with bindrunes.\n  </p>\n  <Button variant="primary" href="/docs">\n    Get Started →\n  </Button>\n</Card>`;
+<Card variant="glass" padding>
+  <h2 class="text-title-1">Hello World</h2>
+  <p class="text-body text-muted-foreground">
+    Built with bindrunes.
+  </p>
+  <Button variant="primary">Get Started →</Button>
+</Card>`,
+		},
+	];
+
+	let copiedIndex = $state<number | null>(null);
+
+	function copyCode(code: string, index: number) {
+		navigator.clipboard.writeText(code);
+		copiedIndex = index;
+		setTimeout(() => (copiedIndex = null), 2000);
+	}
 </script>
 
 <svelte:head>
@@ -72,176 +107,144 @@
 	<meta name="description" content="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful Svelte apps." />
 </svelte:head>
 
-<div class="min-h-screen">
-	<!-- Section 1: Hero -->
-	<HeroBanner
-		badge="Svelte 5 + Tailwind CSS v4"
-		titleGradient={true}
-		description="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful SaaS apps with Svelte 5."
-		background="gradient"
-		level={1}
-	>
-		{#snippet title()}
-			<span>The Svelte design system for the modern web</span>
-		{/snippet}
-	</HeroBanner>
-
-	<div class="flex items-center justify-center gap-4 pb-12">
-		<Button size="lg" href="/docs/getting-started">Get Started →</Button>
-		<Button size="lg" variant="outline" href="https://github.com/aleconstancio/bindrunes" target="_blank" rel="noopener noreferrer">View on GitHub</Button>
-	</div>
-
-	<!-- Section 2: Social Proof Bar -->
-	<section class="border-y border-border bg-muted/30">
-		<div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-3">
-			<Badge variant="outline">Svelte 5</Badge>
-			<Badge variant="outline">Tailwind CSS v4</Badge>
-			<Badge variant="outline">TypeScript</Badge>
-			<Badge variant="outline">MIT Licensed</Badge>
-			<Badge variant="outline">SSR Ready</Badge>
+<div class="landing-page">
+	<!-- ═══ Hero ═══ -->
+	<section class="hero-section">
+		<div class="hero-badge">
+			Svelte 5 + Tailwind CSS v4
+		</div>
+		<h1 class="hero-title">The Svelte design system for the modern web</h1>
+		<p class="hero-subtitle">
+			248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful SaaS apps with Svelte 5.
+		</p>
+		<div class="hero-ctas">
+			<Button size="lg" href="/docs/getting-started">Get Started →</Button>
+			<Button size="lg" variant="outline" href="https://github.com/aleconstancio/bindrunes" target="_blank" rel="noopener noreferrer">View on GitHub</Button>
 		</div>
 	</section>
 
-	<!-- Section 3: Stats -->
-	<section class="border-b border-border">
-		<div class="max-w-5xl mx-auto px-4 py-16">
-			<div class="grid grid-cols-3 gap-8 text-center">
-				<div>
-					<div class="text-display-1 text-foreground font-bold">248+</div>
-					<div class="text-body-sm text-muted-foreground mt-2">Components</div>
+	<!-- ═══ Social Proof ═══ -->
+	<section class="social-proof">
+		<span class="proof-badge">Svelte 5</span>
+		<span class="proof-badge">Tailwind CSS v4</span>
+		<span class="proof-badge">TypeScript</span>
+		<span class="proof-badge">MIT Licensed</span>
+		<span class="proof-badge">SSR Ready</span>
+	</section>
+
+	<!-- ═══ Stats ═══ -->
+	<section class="stats-section">
+		<div class="stat-item">
+			<div class="stat-number">248+</div>
+			<div class="stat-label">Components</div>
+		</div>
+		<div class="stat-item">
+			<div class="stat-number">126</div>
+			<div class="stat-label">Theme Combinations</div>
+		</div>
+		<div class="stat-item">
+			<div class="stat-number">10</div>
+			<div class="stat-label">Domain Categories</div>
+		</div>
+	</section>
+
+	<!-- ═══ Why bindrunes ═══ -->
+	<section class="landing-section">
+		<div style="text-align: center; max-width: 56rem; margin: 0 auto; padding: 0 1.5rem;">
+			<p class="section-eyebrow">Why bindrunes</p>
+			<h2 class="section-title">Built for real applications</h2>
+			<p class="section-description">Not just primitives. Full domain components, design system, and meta-framework.</p>
+		</div>
+
+		<div class="feature-grid">
+			{#each features as feature}
+				<div class="feature-card">
+					<div class="feature-icon {feature.tone}">
+						<feature.icon size={20} />
+					</div>
+					<h3>{feature.title}</h3>
+					<p>{feature.description}</p>
 				</div>
-				<div>
-					<div class="text-display-1 text-foreground font-bold">126</div>
-					<div class="text-body-sm text-muted-foreground mt-2">Theme Combinations</div>
+			{/each}
+		</div>
+	</section>
+
+	<!-- ═══ Three-Axis Design System ═══ -->
+	<section class="landing-section">
+		<div style="text-align: center; max-width: 56rem; margin: 0 auto; padding: 0 1.5rem;">
+			<p class="section-eyebrow">Core Concept</p>
+			<h2 class="section-title">Three-Axis Design System</h2>
+			<p class="section-description">Theme, aesthetic, and density are fully independent. Mix any combination.</p>
+		</div>
+
+		<div class="axis-grid">
+			{#each axes as axis}
+				<div class="axis-card">
+					<h3>{axis.axis}</h3>
+					<p class="axis-subtitle">{axis.subtitle}</p>
+					<div class="axis-tags">
+						{#each axis.values as value}
+							<span class="axis-tag">{value}</span>
+						{/each}
+					</div>
 				</div>
-				<div>
-					<div class="text-display-1 text-foreground font-bold">10</div>
-					<div class="text-body-sm text-muted-foreground mt-2">Domain Categories</div>
-				</div>
+			{/each}
+		</div>
+	</section>
+
+	<!-- ═══ Quick Start ═══ -->
+	<section class="landing-section">
+		<div class="code-section">
+			<div style="text-align: center;">
+				<p class="section-eyebrow">Quick Start</p>
+				<h2 class="section-title">Start building in seconds</h2>
 			</div>
-		</div>
-	</section>
 
-	<!-- Section 4: Why bindrunes -->
-	<section class="border-b border-border">
-		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-			<SectionHeading
-				eyebrow="Why bindrunes"
-				title="Built for real applications"
-				description="Not just primitives. Full domain components, design system, and meta-framework."
-			/>
-
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-				{#each features as feature}
-					<Card variant="elevated" padding>
-						<div class="flex items-start gap-4">
-							<IconCircle tone="primary">
-								<feature.icon class="h-5 w-5" />
-							</IconCircle>
-							<div class="space-y-1">
-								<h3 class="text-title-2 text-foreground">{feature.title}</h3>
-								<p class="text-body-sm text-muted-foreground">{feature.description}</p>
+			<div class="code-grid">
+				<div class="code-steps">
+					{#each steps as step, i}
+						<div class="code-step">
+							<div class="code-step-header">
+								<span class="code-step-title">{step.title}</span>
+								<button
+									class="copy-btn"
+									onclick={() => copyCode(step.code, i)}
+									aria-label="Copy code"
+								>
+									{#if copiedIndex === i}
+										<Check size={14} />
+									{:else}
+										<Copy size={14} />
+									{/if}
+								</button>
 							</div>
+							<pre><code>{step.code}</code></pre>
 						</div>
-					</Card>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- Section 5: Three-Axis Design System -->
-	<section class="border-b border-border">
-		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-			<SectionHeading
-				eyebrow="Core Concept"
-				title="Three-Axis Design System"
-				description="Theme, aesthetic, and density are fully independent. Mix any combination."
-			/>
-
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
-				{#each axes as axis}
-					<Card padding class="text-center space-y-3">
-						<h3 class="text-title-2 text-foreground">{axis.axis}</h3>
-						<p class="text-body-sm text-muted-foreground">{axis.description}</p>
-						<div class="flex flex-wrap justify-center gap-1.5">
-							{#each axis.values as value}
-								<Badge variant="outline" size="sm">{value}</Badge>
-							{/each}
-						</div>
-					</Card>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- Section 6: Code Example -->
-	<section class="border-b border-border">
-		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
-			<SectionHeading
-				eyebrow="Quick Start"
-				title="Start building in seconds"
-			/>
-
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4 items-start">
-				<div class="space-y-6">
-					<p class="text-body-lg text-muted-foreground">
-						Install bindrunes, wrap your app in a ThemeProvider, and start using production-ready components immediately. No configuration required.
-					</p>
-					<div class="space-y-3">
-						<h4 class="text-title-3 text-foreground">1. Install</h4>
-						<CodeSnippet code={installCode} language="bash" title="terminal" />
-					</div>
-					<div class="space-y-3">
-						<h4 class="text-title-3 text-foreground">2. Wrap your layout</h4>
-						<CodeSnippet code={layoutCode} language="svelte" title="+layout.svelte" />
-					</div>
-					<div class="space-y-3">
-						<h4 class="text-title-3 text-foreground">3. Use components</h4>
-						<CodeSnippet code={componentCode} language="svelte" title="+page.svelte" />
-					</div>
+					{/each}
 				</div>
-				<div class="space-y-6 lg:sticky lg:top-8">
-					<div class="rounded-[--radius-lg] border border-border bg-muted/30 p-6 space-y-4">
-						<h4 class="text-title-2 text-foreground">What you get</h4>
-						<ul class="space-y-2 text-body-sm text-muted-foreground">
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								248+ production-ready components
-							</li>
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								126 theme combinations out of the box
-							</li>
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								10 domain-specific component sets
-							</li>
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								Full SvelteKit integration
-							</li>
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								Built-in LLM chat components
-							</li>
-							<li class="flex items-start gap-2">
-								<span class="text-primary mt-0.5">✓</span>
-								TypeScript-first, SSR-ready
-							</li>
-						</ul>
-					</div>
+
+				<div class="what-you-get">
+					<h3>What you get</h3>
+					<ul>
+						<li>248+ production-ready components</li>
+						<li>126 theme combinations out of the box</li>
+						<li>10 domain-specific component sets</li>
+						<li>Full SvelteKit integration</li>
+						<li>Built-in LLM chat components</li>
+						<li>TypeScript-first, SSR-ready</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Section 7: CTA -->
-	<CtaBanner
-		title="Ready to build?"
-		description="Join the Svelte ecosystem with the most complete design system."
-		ctaLabel="Get Started"
-		ctaHref="/docs/getting-started"
-		secondaryLabel="View Documentation"
-		secondaryHref="/docs"
-	/>
+	<!-- ═══ CTA ═══ -->
+	<section class="cta-section">
+		<h2 class="cta-title">Ready to build?</h2>
+		<p class="cta-subtitle">Join the Svelte ecosystem with the most complete design system.</p>
+		<div class="hero-ctas">
+			<Button size="lg" href="/docs/getting-started">Get Started →</Button>
+			<Button size="lg" variant="outline" href="/docs">View Documentation</Button>
+		</div>
+	</section>
 </div>
