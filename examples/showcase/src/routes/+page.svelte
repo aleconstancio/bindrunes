@@ -1,114 +1,165 @@
 <script lang="ts">
-	import { Card, Badge } from "bindrunes";
+	import {
+		Button,
+		Badge,
+		Card,
+		CodeSnippet,
+		IconCircle,
+		SectionHeading,
+	} from "bindrunes";
+	import { HeroBanner, CtaBanner } from "bindrunes/domains/landing";
 	import {
 		Layout,
-		Shield,
-		BarChart3,
-		Settings,
-		Globe,
-		FileText,
-		Briefcase,
-		Database,
-		ShoppingCart,
-		Image,
-		Calendar,
-		MessageSquare,
+		Palette,
+		Server,
+		Bot,
 	} from "lucide-svelte";
 
-	const categories = [
-		{ href: "/app", title: "App", description: "Core layout, sidebar, navigation primitives", icon: Layout, color: "text-blue-500" },
-		{ href: "/auth/login", title: "Auth", description: "Login, register, 2FA, social login, split layout", icon: Shield, color: "text-red-500" },
-		{ href: "/dashboard", title: "Dashboard", description: "Overview stats, activity feed, split panels", icon: BarChart3, color: "text-green-500" },
-		{ href: "/settings", title: "Settings", description: "Profile, security, notifications, danger zone", icon: Settings, color: "text-gray-500" },
-		{ href: "/landing", title: "Landing", description: "Hero, features, pricing, testimonials, FAQ", icon: Globe, color: "text-purple-500" },
-		{ href: "/marketing/blog", title: "Marketing", description: "Blog, changelog, docs layout, content sections", icon: FileText, color: "text-orange-500" },
-		{ href: "/portfolio", title: "Portfolio", description: "Project grid, case studies, showcase", icon: Briefcase, color: "text-yellow-500" },
-		{ href: "/data/list", title: "Data", description: "CRUD tables, forms, wizards, import/export", icon: Database, color: "text-cyan-500" },
-		{ href: "/ecommerce", title: "E-commerce", description: "Products, cart, checkout, order summary", icon: ShoppingCart, color: "text-pink-500" },
-		{ href: "/media", title: "Media", description: "Image upload, video player, audio, gallery", icon: Image, color: "text-indigo-500" },
-		{ href: "/calendar", title: "Calendar", description: "Event calendar, scheduler, booking forms", icon: Calendar, color: "text-teal-500" },
-		{ href: "/chat", title: "Chat", description: "AI chat interface, messages, conversation list", icon: MessageSquare, color: "text-violet-500" },
+	const features = [
+		{
+			icon: Layout,
+			title: "Domain Components",
+			description:
+				"10 pre-built domains: auth, dashboard, data, e-commerce, chat, and more. Production-ready out of the box.",
+		},
+		{
+			icon: Palette,
+			title: "Three-Axis Design",
+			description:
+				"Theme × Aesthetic × Density = 126 unique combinations. OKLCH colors, CSS custom properties.",
+		},
+		{
+			icon: Server,
+			title: "SvelteKit Integration",
+			description:
+				"Full-stack or SPA mode. Auth, API routes, i18n, and deployment adapters built-in.",
+		},
+		{
+			icon: Bot,
+			title: "Agentic Copilot",
+			description:
+				"Built-in LLM chat components. Token budgets, conversation branching, streaming. The only Svelte library with this.",
+		},
 	];
 
-	const stats = [
-		{ value: "230+", label: "Components" },
-		{ value: "50+", label: "Composables" },
-		{ value: "72", label: "Theme Combinations" },
-		{ value: "12", label: "Boundrune Categories" },
+	const axes = [
+		{
+			axis: "Theme",
+			description: "Color identity",
+			values: ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"],
+		},
+		{
+			axis: "Aesthetic",
+			description: "Form & motion",
+			values: ["editorial", "glass", "bento", "expressive", "minimal", "bold", "soft"],
+		},
+		{
+			axis: "Density",
+			description: "Spacing scale",
+			values: ["compact", "comfortable", "spacious"],
+		},
 	];
 
-	const designAxes = [
-		{ axis: "Theme", values: ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"], description: "Color identity" },
-		{ axis: "Aesthetic", values: ["editorial", "glass", "bento", "expressive"], description: "Form & motion" },
-		{ axis: "Density", values: ["compact", "comfortable", "spacious"], description: "Spacing scale" },
-	];
+	const installCode = `# Install\nbun add bindrunes\n\n# Or with npm\nnpm install bindrunes`;
+
+	const layoutCode = `<!-- +layout.svelte -->\n<script>\n  import { ThemeProvider } from "bindrunes";\n</` + `script>\n\n<ThemeProvider theme="editorial" aesthetic="glass" density="comfortable">\n  {@render children()}\n</ThemeProvider>`;
+
+	const componentCode = `<!-- +page.svelte -->\n<script>\n  import { Button, Card, Badge } from "bindrunes";\n</` + `script>\n\n<Card variant="glass" padding>\n  <h2 class="text-title-1">Hello World</h2>\n  <p class="text-body text-muted-foreground">\n    Built with bindrunes.\n  </p>\n  <Button variant="primary" href="/docs">\n    Get Started →\n  </Button>\n</Card>`;
 </script>
 
+<svelte:head>
+	<title>bindrunes — The Svelte design system for the modern web</title>
+	<meta name="description" content="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful Svelte apps." />
+</svelte:head>
+
 <div class="min-h-screen">
-	<!-- Hero -->
-	<section class="relative overflow-hidden border-b border-border">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center space-y-6">
-			<Badge variant="primary" size="lg">Svelte 5 + Tailwind v4</Badge>
-			<h1 class="text-display-1 text-foreground tracking-tight">
-				bindrunes
-			</h1>
-			<p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-				230+ components · 50+ composables · 72 theme combinations · 12 Boundrune categories.
-				A complete design system for building modern Svelte applications.
-			</p>
-			<div class="flex items-center justify-center gap-4 pt-4">
-				<a
-					href="/landing"
-					class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] bg-primary text-primary-foreground text-label-md font-medium hover:opacity-90 transition-opacity"
-				>
-					Explore Demos
-				</a>
-				<a
-					href="/components"
-					class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] border border-border bg-background text-foreground text-label-md font-medium hover:bg-muted transition-colors"
-				>
-					Component Index
-				</a>
-				<a
-					href="https://github.com/aleconstancio/bindrunes"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] border border-border bg-background text-foreground text-label-md font-medium hover:bg-muted transition-colors"
-				>
-					GitHub
-				</a>
+	<!-- Section 1: Hero -->
+	<HeroBanner
+		badge="Svelte 5 + Tailwind CSS v4"
+		titleGradient={true}
+		description="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful SaaS apps with Svelte 5."
+		background="gradient"
+		level={1}
+	>
+		{#snippet title()}
+			<span>The Svelte design system for the modern web</span>
+		{/snippet}
+	</HeroBanner>
+
+	<div class="flex items-center justify-center gap-4 pb-12">
+		<Button size="lg" href="/docs/getting-started">Get Started →</Button>
+		<Button size="lg" variant="outline" href="https://github.com/aleconstancio/bindrunes" target="_blank" rel="noopener noreferrer">View on GitHub</Button>
+	</div>
+
+	<!-- Section 2: Social Proof Bar -->
+	<section class="border-y border-border bg-muted/30">
+		<div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center justify-center gap-3">
+			<Badge variant="outline">Svelte 5</Badge>
+			<Badge variant="outline">Tailwind CSS v4</Badge>
+			<Badge variant="outline">TypeScript</Badge>
+			<Badge variant="outline">MIT Licensed</Badge>
+			<Badge variant="outline">SSR Ready</Badge>
+		</div>
+	</section>
+
+	<!-- Section 3: Stats -->
+	<section class="border-b border-border">
+		<div class="max-w-5xl mx-auto px-4 py-16">
+			<div class="grid grid-cols-3 gap-8 text-center">
+				<div>
+					<div class="text-display-1 text-foreground font-bold">248+</div>
+					<div class="text-body-sm text-muted-foreground mt-2">Components</div>
+				</div>
+				<div>
+					<div class="text-display-1 text-foreground font-bold">126</div>
+					<div class="text-body-sm text-muted-foreground mt-2">Theme Combinations</div>
+				</div>
+				<div>
+					<div class="text-display-1 text-foreground font-bold">10</div>
+					<div class="text-body-sm text-muted-foreground mt-2">Domain Categories</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Stats bar -->
-	<section class="border-b border-border bg-muted/30">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-				{#each stats as stat}
-					<div class="text-center">
-						<div class="text-display-3 text-foreground font-bold">{stat.value}</div>
-						<div class="text-body-sm text-muted-foreground mt-1">{stat.label}</div>
-					</div>
+	<!-- Section 4: Why bindrunes -->
+	<section class="border-b border-border">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+			<SectionHeading
+				eyebrow="Why bindrunes"
+				title="Built for real applications"
+				description="Not just primitives. Full domain components, design system, and meta-framework."
+			/>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+				{#each features as feature}
+					<Card variant="elevated" padding>
+						<div class="flex items-start gap-4">
+							<IconCircle tone="primary">
+								<feature.icon class="h-5 w-5" />
+							</IconCircle>
+							<div class="space-y-1">
+								<h3 class="text-title-2 text-foreground">{feature.title}</h3>
+								<p class="text-body-sm text-muted-foreground">{feature.description}</p>
+							</div>
+						</div>
+					</Card>
 				{/each}
 			</div>
 		</div>
 	</section>
 
-	<!-- Three-axis design system showcase -->
+	<!-- Section 5: Three-Axis Design System -->
 	<section class="border-b border-border">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-			<div class="text-center space-y-3 mb-12">
-				<Badge variant="soft" size="sm">Core Concept</Badge>
-				<h2 class="text-display-2 text-foreground">Three-Axis Design System</h2>
-				<p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
-					Theme, aesthetic, and density are fully independent. Mix any combination to create unique looks.
-					Use the palette icon in the header to switch live.
-				</p>
-			</div>
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+			<SectionHeading
+				eyebrow="Core Concept"
+				title="Three-Axis Design System"
+				description="Theme, aesthetic, and density are fully independent. Mix any combination."
+			/>
 
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-				{#each designAxes as axis}
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+				{#each axes as axis}
 					<Card padding class="text-center space-y-3">
 						<h3 class="text-title-2 text-foreground">{axis.axis}</h3>
 						<p class="text-body-sm text-muted-foreground">{axis.description}</p>
@@ -123,99 +174,74 @@
 		</div>
 	</section>
 
-	<!-- Category grid -->
-	<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-		<div class="text-center space-y-3 mb-12">
-			<h2 class="text-display-2 text-foreground">Explore Every Category</h2>
-			<p class="text-body-lg text-muted-foreground max-w-xl mx-auto">
-				Each page demonstrates real working examples with interactive demos.
-			</p>
-		</div>
+	<!-- Section 6: Code Example -->
+	<section class="border-b border-border">
+		<div class="max-w-6xl mx-auto px-4 sm:px-6 py-20">
+			<SectionHeading
+				eyebrow="Quick Start"
+				title="Start building in seconds"
+			/>
 
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-			{#each categories as category}
-				<a href={category.href} class="block group">
-					<Card variant="glass" padding class="h-full transition-all duration-200 group-hover:shadow-lg group-hover:scale-[1.02]">
-						<div class="space-y-3">
-							<div class="flex items-center gap-3">
-								<div class="flex h-10 w-10 items-center justify-center rounded-[--radius-lg] bg-muted">
-									<category.icon class="h-5 w-5 {category.color}" />
-								</div>
-								<h3 class="text-title-2 text-foreground group-hover:text-primary transition-colors">{category.title}</h3>
-							</div>
-							<p class="text-body-sm text-muted-foreground">{category.description}</p>
-							<div class="pt-1">
-								<span class="text-label-sm text-primary group-hover:underline">View demos →</span>
-							</div>
-						</div>
-					</Card>
-				</a>
-			{/each}
-		</div>
-	</section>
-
-	<!-- Documentation -->
-	<section class="py-12">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<h2 class="text-title-1 text-foreground mb-6">Documentation</h2>
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-				<a href="/docs" class="docs-card group">
-					<h3>Getting Started</h3>
-					<p>Installation, setup, and first component.</p>
-				</a>
-				<a href="/docs/architecture" class="docs-card group">
-					<h3>Architecture</h3>
-					<p>Four-layer hierarchy, design principles, exports.</p>
-				</a>
-				<a href="/docs/components" class="docs-card group">
-					<h3>Components</h3>
-					<p>245+ components across all categories.</p>
-				</a>
-				<a href="/docs/composables" class="docs-card group">
-					<h3>Composables</h3>
-					<p>49+ composables for data, forms, auth, reactivity.</p>
-				</a>
-				<a href="/docs/design-system" class="docs-card group">
-					<h3>Design System</h3>
-					<p>Themes, aesthetics, density, tokens.</p>
-				</a>
-				<a href="/kit/getting-started" class="docs-card group">
-					<h3>bindrunes-kit</h3>
-					<p>SvelteKit integration, auth, i18n, deployment.</p>
-				</a>
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4 items-start">
+				<div class="space-y-6">
+					<p class="text-body-lg text-muted-foreground">
+						Install bindrunes, wrap your app in a ThemeProvider, and start using production-ready components immediately. No configuration required.
+					</p>
+					<div class="space-y-3">
+						<h4 class="text-title-3 text-foreground">1. Install</h4>
+						<CodeSnippet code={installCode} language="bash" title="terminal" />
+					</div>
+					<div class="space-y-3">
+						<h4 class="text-title-3 text-foreground">2. Wrap your layout</h4>
+						<CodeSnippet code={layoutCode} language="svelte" title="+layout.svelte" />
+					</div>
+					<div class="space-y-3">
+						<h4 class="text-title-3 text-foreground">3. Use components</h4>
+						<CodeSnippet code={componentCode} language="svelte" title="+page.svelte" />
+					</div>
+				</div>
+				<div class="space-y-6 lg:sticky lg:top-8">
+					<div class="rounded-[--radius-lg] border border-border bg-muted/30 p-6 space-y-4">
+						<h4 class="text-title-2 text-foreground">What you get</h4>
+						<ul class="space-y-2 text-body-sm text-muted-foreground">
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								248+ production-ready components
+							</li>
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								126 theme combinations out of the box
+							</li>
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								10 domain-specific component sets
+							</li>
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								Full SvelteKit integration
+							</li>
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								Built-in LLM chat components
+							</li>
+							<li class="flex items-start gap-2">
+								<span class="text-primary mt-0.5">✓</span>
+								TypeScript-first, SSR-ready
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Theme × Aesthetic Matrix link -->
-	<section class="border-b border-border">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-4">
-			<h2 class="text-display-2 text-foreground">Theme × Aesthetic Matrix</h2>
-			<p class="text-body-lg text-muted-foreground max-w-xl mx-auto">
-				See all 24 combinations of themes and aesthetics in one view. Use the palette switcher to change live.
-			</p>
-			<a
-				href="/themes/matrix"
-				class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] bg-primary text-primary-foreground text-label-md font-medium hover:opacity-90 transition-opacity"
-			>
-				View Matrix
-			</a>
-		</div>
-	</section>
-
-	<!-- Component index link -->
-	<section class="border-t border-border">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-4">
-			<h2 class="text-title-1 text-foreground">Component Index</h2>
-			<p class="text-body text-muted-foreground">
-				Browse every component and composable in the library.
-			</p>
-			<a
-				href="/components"
-				class="inline-flex items-center justify-center gap-2 h-10 px-6 rounded-[--radius-md] border border-border bg-background text-foreground text-label-md font-medium hover:bg-muted transition-colors"
-			>
-				Open Component Index →
-			</a>
-		</div>
-	</section>
+	<!-- Section 7: CTA -->
+	<CtaBanner
+		title="Ready to build?"
+		description="Join the Svelte ecosystem with the most complete design system."
+		ctaLabel="Get Started"
+		ctaHref="/docs/getting-started"
+		secondaryLabel="View Documentation"
+		secondaryHref="/docs"
+	/>
 </div>
