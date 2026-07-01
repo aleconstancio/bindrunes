@@ -41,11 +41,7 @@ $effect(() => {
   class="flex min-h-0 w-full"
   data-sidebar-collapsible={collapsible}
   data-sidebar-state={ctx.state}
-  style="
-    --sidebar-width: {SIDEBAR_WIDTH};
-    --sidebar-width-mobile: {SIDEBAR_WIDTH_MOBILE};
-    {style}
-  "
+  style="--sidebar-width: {SIDEBAR_WIDTH}; --sidebar-width-mobile: {SIDEBAR_WIDTH_MOBILE}; {style}"
 >
   {@render children?.()}
 </div>

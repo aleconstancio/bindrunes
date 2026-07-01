@@ -2,12 +2,12 @@
 	{
 		"name": "bindrunes",
 		"path": "packages/bindrunes/dist/index.js",
-		"limit": "16 kB"
+		"limit": "14 kB"
 	},
 	{
 		"name": "bindrunes/layouts",
 		"path": "packages/bindrunes/dist/layouts/index.js",
-		"limit": "18 kB"
+		"limit": "5 kB"
 	},
 	{
 		"name": "bindrunes/domains/auth",
@@ -62,6 +62,6 @@
 	{
 		"name": "bindrunes/agentic",
 		"path": "packages/bindrunes/dist/utils/agentic/index.js",
-		"limit": "4 kB"
+		"limit": "2 kB"
 	}
 ]

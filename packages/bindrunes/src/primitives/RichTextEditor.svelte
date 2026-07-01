@@ -235,8 +235,7 @@ onDestroy(() => view?.destroy());
     {/if}
     <div
       bind:this={editorEl}
-      class="p-4 min-h-48 focus:outline-none {disabled ? 'pointer-events-none opacity-50' : ''}"
-      style="color: var(--foreground);"
+      class="p-4 min-h-48 focus:outline-none text-foreground {disabled ? 'pointer-events-none opacity-50' : ''}"
     ></div>
   {/if}
 </div>

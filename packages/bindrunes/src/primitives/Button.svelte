@@ -70,19 +70,24 @@ const sizeClasses: Record<Size, string> = {
 	md: "h-10 px-4 text-label-md gap-2",
 	lg: "h-12 px-6 text-body-lg gap-2.5",
 };
-
-const transitionStyle =
-	"transition-property: border-color, box-shadow, transform, background-color; transition-duration: var(--duration-snappy);";
 </script>
+
+<style>
+  .bindrunes-btn-transition {
+    transition-property: color, background-color, border-color, box-shadow, opacity;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+    transition-duration: var(--duration-snappy);
+  }
+</style>
 
 {#if href}
   <a
     {href}
     aria-label={ariaLabel}
-    class="{base} {variantClasses[variant]} {sizeClasses[size]} {iconOnly ? 'px-0 aspect-square' : ''} {className}"
+    class="{base} {variantClasses[variant]} {sizeClasses[size]} {iconOnly ? 'px-0 aspect-square' : ''} bindrunes-btn-transition {className}"
     class:w-full={fullWidth}
     data-loading={loading || undefined}
-    style="{transitionStyle}{style ? `; ${style}` : ''}"
+    style={style || undefined}
     {...restProps}
   >
     {#if loading}
@@ -96,9 +101,9 @@ const transitionStyle =
     {disabled}
     aria-label={ariaLabel}
     onclick={loading ? undefined : onclick}
-    class="{base} {variantClasses[variant]} {sizeClasses[size]} {fullWidth ? 'w-full' : ''} {iconOnly ? 'px-0 aspect-square' : ''} {className}"
+    class="{base} {variantClasses[variant]} {sizeClasses[size]} {fullWidth ? 'w-full' : ''} {iconOnly ? 'px-0 aspect-square' : ''} bindrunes-btn-transition {className}"
     data-loading={loading || undefined}
-    style="{transitionStyle}{style ? `; ${style}` : ''}"
+    style={style || undefined}
     {...restProps}
   >
     {#if loading}

@@ -147,8 +147,6 @@ export type {
 	StatusVariant,
 	TFunction,
 } from "./shared-types";
-// ── Backward-compatible re-exports (will be removed in v4) ──
-export { getChartTheme } from "./utils/chartTheme.ts";
 // ── Shared Utilities ──
 /** Merge class names with Tailwind conflict resolution (last-wins per utility prefix). */
 export { cn } from "./utils/cn.ts";
@@ -203,6 +201,7 @@ export { isBrowser } from "./utils/isBrowser.ts";
 export { deriveOmnibarOptions, derivePageInfo } from "./utils/navigation";
 export type { SemanticColor } from "./utils/semanticColors.ts";
 export { semanticColors } from "./utils/semanticColors.ts";
+export { staggerChildren } from "./utils/staggerChildren.ts";
 /** Normalize unknown errors to Error objects. */
 export { toError } from "./utils/toError.ts";
 export { isSafeRedirect } from "./utils/url.ts";
@@ -223,11 +222,14 @@ export type { Density, ResponsiveDensityOptions } from "./utils/useDensity.svelt
 export { useDensity } from "./utils/useDensity.svelte.ts";
 /** Generic event listener with auto-cleanup on unmount. */
 export { useEventListener } from "./utils/useEventListener.svelte.ts";
+export { useLongPress, useSwipe } from "./utils/useGesture.ts";
+export { useHaptic } from "./utils/useHaptic.ts";
 export { useHead } from "./utils/useHead.ts";
 export { createI18nContext, useI18n } from "./utils/useI18n.ts";
 export { useInfiniteScroll } from "./utils/useInfiniteScroll.ts";
 export { useIntersectionObserver } from "./utils/useIntersectionObserver.svelte.ts";
 export { useInterval } from "./utils/useInterval.svelte.ts";
+export { useInView } from "./utils/useInView.svelte.ts";
 export { useLazyLoad } from "./utils/useLazyLoad.svelte.ts";
 export { useLocalStorage } from "./utils/useLocalStorage.svelte.ts";
 export { useMediaQuery } from "./utils/useMediaQuery.svelte.ts";
@@ -241,6 +243,8 @@ export type {
 export { useMultiTenant } from "./utils/useMultiTenant.svelte.ts";
 export { useReducedMotion } from "./utils/useReducedMotion.svelte.ts";
 export { useResizeObserver } from "./utils/useResizeObserver.svelte.ts";
+export { useScrollLinked } from "./utils/useScrollLinked.svelte.ts";
+export { useSpring } from "./utils/useSpring.svelte.ts";
 export type { Theme } from "./utils/useTheme.svelte.ts";
 export { useTheme } from "./utils/useTheme.svelte.ts";
 export { useThrottle } from "./utils/useThrottle.svelte.ts";
@@ -249,5 +253,6 @@ export { useTimeout } from "./utils/useTimeout.svelte.ts";
 export { useToast } from "./utils/useToast.ts";
 export { useToggle } from "./utils/useToggle.svelte.ts";
 export { useUrlParams } from "./utils/useUrlParams.ts";
+export { useViewport } from "./utils/useViewport.svelte.ts";
 export { useVirtualList } from "./utils/useVirtualList.svelte.ts";
 export { useWorker } from "./utils/useWorker.svelte.ts";

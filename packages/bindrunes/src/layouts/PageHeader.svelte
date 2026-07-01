@@ -41,9 +41,9 @@ let {
           </a>
         {/if}
         <div>
-          <h1 class="text-headline-2" style="color: var(--foreground);">{title}</h1>
+          <h1 class="text-headline-2 text-foreground">{title}</h1>
           {#if description}
-            <p class="text-body-md mt-1" style="color: var(--muted-foreground);">{description}</p>
+            <p class="text-body-md mt-1 text-muted-foreground">{description}</p>
           {/if}
         </div>
       </div>
