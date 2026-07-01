@@ -1,7 +1,6 @@
 <script lang="ts">
 import type { Column, SortState } from "../shared-types";
 import { toggleSort } from "../utils/sortUtils";
-import { useVirtualList } from "../utils/useVirtualList.svelte";
 
 interface Props {
 	columns?: Column[];
@@ -31,24 +30,6 @@ let {
 	class: className = "",
 }: Props = $props();
 
-const VIRTUAL_THRESHOLD = 50;
-const shouldVirtualize = $derived(rows.length > VIRTUAL_THRESHOLD);
-
-const virtualList = useVirtualList(shouldVirtualize ? [...rows] : [], {
-	itemHeight: 48,
-	overscan: 10,
-});
-
-let virtualContainer = $state<HTMLDivElement | null>(null);
-
-$effect(() => {
-	if (virtualContainer) {
-		virtualContainer.addEventListener("scroll", virtualList.scrollHandler);
-		virtualList.containerHeight = virtualContainer.clientHeight;
-		return () => virtualContainer?.removeEventListener("scroll", virtualList.scrollHandler);
-	}
-});
-
 function getRowId(row: Record<string, unknown>): string {
 	return String(row[rowKey]);
 }
@@ -71,13 +52,9 @@ function toggleAllSelection() {
 	const allSelected = rows.length > 0 && rows.every((r) => selectedIds.includes(getRowId(r)));
 	onSelectionChange?.(allSelected ? [] : rows.map((r) => getRowId(r)));
 }
-
-function renderRow(row: Record<string, unknown>, virtualIndex?: number) {
-	return { row, virtualIndex };
-}
 </script>
 
-<div class="overflow-x-auto {className}">
+<div class="datagrid-wrapper overflow-x-auto {className}">
 	<table class="w-full border-collapse">
 		<thead>
 			<tr class="border-b border-border">
@@ -127,53 +104,8 @@ function renderRow(row: Record<string, unknown>, virtualIndex?: number) {
 						{emptyText}
 					</td>
 				</tr>
-			{:else if shouldVirtualize}
-				</tbody>
-			</table>
-			<div
-				bind:this={virtualContainer}
-				style={virtualList.containerStyle}
-				class="w-full"
-			>
-				{#each virtualList.visibleItems as vi (getRowId(vi.item))}
-					{@const row = vi.item}
-					<tr
-						style={vi.style}
-						class="border-b border-border hover:bg-muted/50 {onRowClick ? 'cursor-pointer' : ''}"
-						tabindex={onRowClick ? 0 : undefined}
-						onkeydown={(e) => {
-							if (onRowClick && (e.key === "Enter" || e.key === " ")) {
-								e.preventDefault();
-								onRowClick(row);
-							}
-						}}
-						onclick={() => onRowClick?.(row)}
-					>
-						{#if selectable}
-							<td class="px-3 py-2">
-								<input
-									type="checkbox"
-									checked={selectedIds.includes(getRowId(row))}
-									onchange={() => toggleRowSelection(getRowId(row))}
-									class="rounded border-border"
-								/>
-							</td>
-						{/if}
-						{#each columns as column, columnIndex}
-							<td class="px-3 py-2 text-body-md">
-								{#if column.cell}
-									{@render column.cell(row, columnIndex)}
-								{:else}
-									{row[column.key] ?? ""}
-								{/if}
-							</td>
-						{/each}
-					</tr>
-				{/each}
-			</div>
-			<table class="w-full border-collapse"><tbody>
 			{:else}
-				{#each rows as row}
+				{#each rows as row (getRowId(row))}
 					<tr
 						class="border-b border-border hover:bg-muted/50 {onRowClick ? 'cursor-pointer' : ''}"
 						tabindex={onRowClick ? 0 : undefined}
@@ -210,3 +142,9 @@ function renderRow(row: Record<string, unknown>, virtualIndex?: number) {
 		</tbody>
 	</table>
 </div>
+
+<style>
+	.datagrid-wrapper {
+		contain: layout style;
+	}
+</style>
