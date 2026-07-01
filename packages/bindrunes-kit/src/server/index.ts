@@ -9,6 +9,15 @@ export {
 	setSessionCookie,
 	validateSession,
 } from "./auth";
+export type { MagicLinkOptions, MagicLinkToken } from "./auth-magic-link";
+export { createMagicLinkAuth } from "./auth-magic-link";
+export type {
+	PasskeyAuthenticationOptions,
+	PasskeyCredential,
+	PasskeyOptions,
+	PasskeyRegistrationOptions,
+} from "./auth-passkey";
+export { createPasskeyAuth } from "./auth-passkey";
 export { createCrudRouter, defineSchema, field } from "./db";
 export { createDrizzleAdapter } from "./db-drizzle";
 export { createPrismaAdapter } from "./db-prisma";
