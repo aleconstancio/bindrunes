@@ -323,6 +323,73 @@ Rules:
 
 ---
 
+## Dark Mode
+
+`AppProvider` renders `ModeWatcher` from `mode-watcher` to manage dark/light mode. The interplay:
+
+- `ModeWatcher` manages the `.dark` class on `<html>` and a reactive `mode` store
+- `useTheme` subscribes to the `mode` store and exposes `isDark`, `toggleMode()`, `setMode()`
+- Theme CSS has two blocks per theme: dark (default on `:root`) and light (`:root:not(.dark)[data-theme="X"]`)
+- The `.dark` class and `data-theme` attribute are orthogonal: `data-theme` picks the color palette, `.dark` picks the light/dark variant
+
+### Forcing Light Mode
+
+To force light mode (e.g., for documentation sites):
+
+1. Set `class="light"` on the `<html>` tag in `app.html`
+2. Add CSS overrides for `html.dark` to re-apply light token values:
+
+```css
+html.dark {
+  --background: oklch(0.98 0.005 270) !important;
+  --foreground: oklch(0.15 0.008 270) !important;
+  /* ... all light mode tokens ... */
+  color-scheme: light !important;
+}
+```
+
+Or call `setMode("light")` from `useTheme()` to prevent the dark class from being added.
+
+### Scoped Theme Overrides
+
+`AppProvider` accepts two types of props:
+
+- **Default props** (`themeDefault`, `aestheticDefault`, `densityDefault`): Set the global default. Used by most apps.
+- **Scoped props** (`theme`, `aesthetic`, `density`): Wrap children in a `<div>` with those data attributes, enabling mixed axes on one page (e.g., a dark sidebar next to a light content area).
+
+```svelte
+<!-- Global defaults -->
+<AppProvider themeDefault="editorial" aestheticDefault="minimal">
+  <!-- Scoped override — this section uses glass aesthetic -->
+  <div data-aesthetic="glass">
+    <Card variant="glass">This card uses glass aesthetic</Card>
+  </div>
+  
+  <!-- This card uses the global minimal aesthetic -->
+  <Card>This uses the default</Card>
+</AppProvider>
+```
+
+---
+
+## CSS Custom Properties
+
+All design tokens are exposed as CSS custom properties on `:root`. Components never use hardcoded colors — they reference tokens:
+
+| Token | Purpose |
+|-------|---------|
+| `--background` | Page background |
+| `--foreground` | Default text |
+| `--primary` | Primary action color |
+| `--border` | Default border |
+| `--muted` | Muted background |
+| `--muted-foreground` | Muted text |
+| `--ring` | Focus ring |
+
+Use `var(--token-name)` in custom CSS. Never hardcode `oklch()` or hex values in components.
+
+---
+
 ## Combinations
 
 | Theme | Aesthetic | Density | Use case |

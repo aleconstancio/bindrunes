@@ -23,9 +23,14 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      # Build bindrunes first — the showcase depends on it via workspace link.
+      # Must build before vercel build so the dist/ output is available.
       - name: Build bindrunes
         run: bunx turbo run build --filter=bindrunes
 
+      # vercel pull links the project and downloads env config.
+      # vercel build uses this config to build the SvelteKit app.
+      # --prebuilt avoids double-building (we already built above).
       - name: Pull Vercel environment
         run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
         working-directory: examples/showcase
