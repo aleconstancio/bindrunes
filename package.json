@@ -6,8 +6,7 @@
 	"workspaces": [
 		"packages/*",
 		"examples/*",
-		"templates/*",
-		"docs-site"
+		"templates/*"
 	],
 	"scripts": {
 		"dev": "turbo run dev",
@@ -32,7 +31,6 @@
 		"@changesets/cli": "^2.31.0",
 		"@size-limit/preset-small-lib": "^12.1.0",
 		"@types/react": "^19.0.0",
-		"docs-site": "^0.0.1",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.0.8",
 		"madge": "^8.0.0",

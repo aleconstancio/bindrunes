@@ -34,6 +34,7 @@ dist/
 package-lock.json
 .npm/
 .yarn/
+examples/*/bun.lock
 
 # Logs
 *.log

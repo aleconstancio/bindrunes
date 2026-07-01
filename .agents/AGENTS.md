@@ -3,7 +3,7 @@
 ## Monorepo
 - `packages/bindrunes` — Component library (Svelte 5 + Tailwind v4)
 - `packages/bindrunes-kit` — SvelteKit meta-framework (SSR, auth, i18n)
-- `docs-site/` — Documentation website
+- `docs-site/` — RETIRED (replaced by docs routes in `examples/showcase`)
 - `examples/` — Showcase and demo apps
 
 ## Architecture

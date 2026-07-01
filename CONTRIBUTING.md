@@ -31,6 +31,18 @@ bun run lint
 
 ---
 
+## Showcase as Canonical Demo
+
+`examples/showcase` is the single source of truth for all demos and documentation:
+
+- Contains 75+ routes: interactive demos, full documentation, theme switcher, playground
+- Run `bun run dev` from the repo root to start it
+- All documentation pages live under `/docs/*`, `/kit/*`, `/migration/*`, `/blog/*`
+- Component demos live under `/app`, `/auth/*`, `/dashboard/*`, `/landing/*`, etc.
+- The showcase is deployed to Vercel on every push to `main`
+
+---
+
 ## Style Guidelines
 
 We use **Biome** for style and quality checking:
@@ -38,6 +50,29 @@ We use **Biome** for style and quality checking:
 - **Quotes**: Double quotes for JS/TS
 - **Semicolons**: Always
 - **Line Length**: 100 characters
+
+### CSS Formatting
+
+CSS files are formatted by Biome (tab indentation, 100 char lines) but Biome cannot lint CSS. lint-staged intentionally excludes CSS files from pre-commit hooks. When modifying CSS files (theme tokens, styles), run `biome check --write` manually to format.
+
+---
+
+## AppProvider Requirement
+
+Every app must wrap its root layout in `<AppProvider>` from `bindrunes`:
+
+```svelte
+<script lang="ts">
+  import { AppProvider } from "bindrunes";
+  let { children } = $props();
+</script>
+
+<AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
+  {@render children()}
+</AppProvider>
+```
+
+This initializes theme resolution, dark mode (via ModeWatcher), and density. Without it, CSS custom properties won't resolve.
 
 ---
 
@@ -107,3 +142,61 @@ import "bindrunes/i18n/<locale>.json";
 - **Agentic kernel** (`src/utils/agentic/**`, `src/types/agent.ts`): 90% lines, 88% functions, 85% branches. TDD is required for agentic code.
 - Run `bun run test:coverage` to check coverage locally. CI enforces these thresholds.
 - Use `vitest-axe` for all component tests: `await expectNoAxeViolations(container)`.
+
+---
+
+## Dependency Management
+
+CI uses `bun install --frozen-lockfile`. Always commit `bun.lock` when adding or changing dependencies.
+
+- Root lockfile is authoritative — never create standalone lockfiles in `examples/*/`
+- To regenerate: `bun install` (without `--frozen-lockfile`)
+- If CI fails with "lockfile had changes", run `bun install` and commit the updated `bun.lock`
+
+---
+
+## Build Order
+
+Packages build before consumers. `turbo.json` uses `"dependsOn": ["^build"]` for cascading builds:
+
+- `^build` — build upstream dependencies first (e.g., build bindrunes before showcase)
+- `build` (no caret) — build the current package only
+- Vercel workflow builds bindrunes explicitly first (`bunx turbo run build --filter=bindrunes`), then builds the showcase with `vercel build`
+
+---
+
+## Vercel Deployment
+
+- Required GitHub secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+- Preview deploys on PRs, production on push to `main`
+- Vercel project is linked via `.vercel/project.json` (committed to repo)
+- Team protection must be disabled or URL allowlisted for public access
+- To set up locally: `cd examples/showcase && npx vercel link`
+
+---
+
+## Common Gotchas
+
+### Svelte: Cannot split HTML elements across `{#if}` blocks
+
+```svelte
+<!-- WRONG — will fail -->
+{#if condition}
+  <div>
+{/if}
+  <span>content</span>
+{#if condition}
+  </div>
+{/if}
+
+<!-- CORRECT — wrap the whole element -->
+{#if condition}
+  <div>
+    <span>content</span>
+  </div>
+{:else}
+  <span>content</span>
+{/if}
+```
+
+This matters when building virtualized lists or conditional wrappers inside component templates.
