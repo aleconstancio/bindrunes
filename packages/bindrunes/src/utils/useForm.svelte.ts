@@ -1,5 +1,4 @@
 import type { BaseIssue, BaseSchema, InferInput, InferOutput } from "valibot";
-import { safeParse } from "valibot";
 import { toError } from "./toError";
 import { validateWithSchema } from "./validateWithSchema";
 
@@ -65,13 +64,7 @@ export function useForm<
 		return validateWithSchema(options.schema, values) as { [K in keyof TShape]?: string };
 	});
 
-	let isValid = $derived.by(() => {
-		for (const field in options.schema) {
-			const result = safeParse(options.schema[field], values[field]);
-			if (!result.success) return false;
-		}
-		return true;
-	});
+	let isValid = $derived(Object.keys(errors).length === 0);
 
 	let isDirtyDerived = $derived(Object.values(dirty).some(Boolean));
 

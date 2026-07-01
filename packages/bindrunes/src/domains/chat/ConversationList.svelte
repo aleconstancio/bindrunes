@@ -28,7 +28,7 @@ let {
   {#each conversations as conv}
     <button
       type="button"
-      class="w-full flex items-center gap-3 p-3 text-left transition-colors cursor-pointer
+      class="conversation-item w-full flex items-center gap-3 p-3 text-left transition-colors cursor-pointer
              {selectedId === conv.id ? 'bg-primary/5' : 'hover:bg-muted/50'}"
       onclick={() => {
         selectedId = conv.id;
@@ -51,3 +51,9 @@ let {
     </button>
   {/each}
 </div>
+
+<style>
+  .conversation-item {
+    contain: layout style;
+  }
+</style>

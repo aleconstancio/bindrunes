@@ -54,7 +54,8 @@ let {
 	[key: string]: unknown;
 } = $props();
 
-const inputId = $derived(id ?? `input-${Math.random().toString(36).slice(2, 10)}`);
+let fallbackId = $state(`input-${Math.random().toString(36).slice(2, 10)}`);
+const inputId = $derived(id ?? fallbackId);
 
 let describedBy = $derived(error ? `${inputId}-error` : helper ? `${inputId}-helper` : undefined);
 </script>

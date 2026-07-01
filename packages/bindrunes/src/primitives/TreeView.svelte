@@ -51,7 +51,7 @@ function toggleNode(id: string) {
 </script>
 
 {#snippet TreeNode(node, depth = 0)}
-	<div class="flex flex-col">
+	<div class="flex flex-col tree-node">
 		<button
 			role="treeitem"
 			aria-expanded={node.children?.length ? isExpanded(node.id) : undefined}
@@ -91,3 +91,9 @@ function toggleNode(id: string) {
 		{@render TreeNode(node)}
 	{/each}
 </div>
+
+<style>
+  .tree-node {
+    contain: layout style;
+  }
+</style>

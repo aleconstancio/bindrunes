@@ -49,7 +49,7 @@ function _getSkeletonWidth(i: number): string {
 }
 </script>
 
-<div class="w-full overflow-x-auto rounded-[--radius] border border-border">
+<div class="datatable-wrapper w-full overflow-x-auto rounded-[--radius] border border-border">
   <table class="w-full text-body-md">
     <caption class="sr-only">Data table</caption>
     <thead>
@@ -130,3 +130,9 @@ function _getSkeletonWidth(i: number): string {
     </div>
   {/if}
 </div>
+
+<style>
+  .datatable-wrapper {
+    contain: layout style;
+  }
+</style>

@@ -8,12 +8,15 @@ const skeletonLines = $derived(Array.from({ length: lines }, (_, i) => i));
 <!-- svelte-ignore state_referenced_locally -->
 {#each skeletonLines as i (i)}
   <div
-    class="animate-shimmer rounded-[--radius,0.5rem] bg-muted mb-2 {className}"
+    class="animate-shimmer skeleton-item rounded-[--radius,0.5rem] bg-muted mb-2 {className}"
     style="width: {widths[i] ?? widths[widths.length - 1] ?? '100%'}; height: 1em;"
   ></div>
 {/each}
 
 <style>
+  .skeleton-item {
+    contain: layout style paint;
+  }
   .animate-shimmer {
     background: var(--gradient-shimmer);
     background-size: 200% 100%;

@@ -33,7 +33,7 @@ let {
 let _selectedLabel = $derived(options.find((o) => o.value === value)?.label || placeholder);
 
 let selectId = $derived(`select-${name ?? "fallback"}`);
-let errorId = $derived(`select-error-${Math.random().toString(36).slice(2, 10)}`);
+let errorId = $state(`select-error-${Math.random().toString(36).slice(2, 10)}`);
 </script>
 
 {#if label}

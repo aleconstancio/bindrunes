@@ -51,7 +51,7 @@ let percentage = $derived(Math.min(Math.round((value / max) * 100), 100));
   <BitsProgress.Root
     value={indeterminate ? undefined : value}
     {max}
-    class="w-full rounded-[--radius-pill] bg-muted {heights[size]} overflow-hidden"
+    class="progress-bar w-full rounded-[--radius-pill] bg-muted {heights[size]} overflow-hidden"
   >
     <BitsProgress.Track
       class="h-full rounded-[--radius-pill] transition-all duration-[--duration-fluid] {colors[variant]}
@@ -62,6 +62,9 @@ let percentage = $derived(Math.min(Math.round((value / max) * 100), 100));
 </div>
 
 <style>
+  :global(.progress-bar) {
+    contain: layout style paint;
+  }
   @keyframes progress-indeterminate {
     0% { transform: translateX(-100%); }
     50% { transform: translateX(0%); }
