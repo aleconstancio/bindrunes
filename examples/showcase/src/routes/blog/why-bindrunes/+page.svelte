@@ -16,7 +16,7 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">The Problem</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Building B2B SaaS UIs from scratch is painful. Component libraries like shadcn-svelte or Melt UI give you well-crafted primitives — a button, a dialog, a dropdown. But a button isn't a dashboard. A dialog isn't a data table with filters, sorting, pagination, and inline editing.
+        Building SaaS UIs from scratch is painful. Component libraries like shadcn-svelte or Melt UI give you well-crafted primitives — a button, a dialog, a dropdown. But a button isn't a dashboard. A dialog isn't a data table with filters, sorting, pagination, and inline editing.
       </p>
       <p class="text-body text-muted-foreground mb-4">
         You still need to wire up authentication flows, CRUD operations, landing pages, theming systems, internationalization, and deployment. Every project starts by reimplementing the same scaffolding: layout shells, sidebar navigation, form validation, toast notifications, data fetching patterns.

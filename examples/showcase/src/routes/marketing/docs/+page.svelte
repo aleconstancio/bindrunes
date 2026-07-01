@@ -26,7 +26,7 @@
 			<h1 class="text-display-3 text-foreground">Getting Started</h1>
 			<p class="text-body-lg text-muted-foreground">
 				bindrunes is a comprehensive Svelte 5 component library with a three-axis design system.
-				It provides 160+ components, 47 composables, and pre-built page patterns for B2B SaaS applications.
+				It provides 160+ components, 47 composables, and pre-built page patterns for SaaS applications.
 			</p>
 			<div class="flex gap-2">
 				<Badge variant="primary">Svelte 5</Badge>

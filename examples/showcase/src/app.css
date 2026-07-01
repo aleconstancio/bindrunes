@@ -27,3 +27,60 @@
 	margin: 0;
 	line-height: 1.5;
 }
+
+/* Force light mode — override ModeWatcher dark mode detection */
+html.dark,
+html.dark[data-theme="editorial"] {
+  --background: oklch(0.98 0.005 270) !important;
+  --foreground: oklch(0.15 0.008 270) !important;
+  --card: oklch(1 0 0 / 0.8) !important;
+  --card-foreground: oklch(0.15 0.008 270) !important;
+  --card-solid: oklch(1 0 0) !important;
+  --surface-1: oklch(0 0 0 / 0.02) !important;
+  --surface-2: oklch(0 0 0 / 0.04) !important;
+  --surface-3: oklch(0 0 0 / 0.06) !important;
+  --muted: oklch(0 0 0 / 0.04) !important;
+  --muted-foreground: oklch(0.28 0.008 270) !important;
+  --secondary: oklch(0 0 0 / 0.06) !important;
+  --secondary-foreground: oklch(0.15 0.008 270) !important;
+  --primary: oklch(0.3 0.1 265) !important;
+  --primary-foreground: oklch(0.99 0 0) !important;
+  --accent: oklch(0.44 0.13 285) !important;
+  --accent-foreground: oklch(0.99 0 0) !important;
+  --destructive: oklch(0.5 0.22 25) !important;
+  --destructive-foreground: oklch(0.99 0 0) !important;
+  --destructive-soft: oklch(0.5 0.22 25 / 0.1) !important;
+  --success: oklch(0.3 0.16 145) !important;
+  --success-foreground: oklch(0.99 0 0) !important;
+  --success-soft: oklch(0.55 0.16 145 / 0.1) !important;
+  --warning: oklch(0.3 0.16 80) !important;
+  --warning-foreground: oklch(0.99 0 0) !important;
+  --warning-soft: oklch(0.6 0.16 80 / 0.1) !important;
+  --info: oklch(0.3 0.12 230) !important;
+  --info-foreground: oklch(0.99 0 0) !important;
+  --info-soft: oklch(0.5 0.12 230 / 0.1) !important;
+  --border: oklch(0 0 0 / 0.08) !important;
+  --border-strong: oklch(0 0 0 / 0.18) !important;
+  --border-subtle: oklch(0 0 0 / 0.04) !important;
+  --input: oklch(0 0 0 / 0.04) !important;
+  --ring: oklch(0.45 0.1 265) !important;
+  --overlay: oklch(0 0 0 / 0.4) !important;
+  --overlay-strong: oklch(0 0 0 / 0.6) !important;
+  --glass-surface: oklch(1 0 0 / 0.7) !important;
+  --glass-border: oklch(0 0 0 / 0.08) !important;
+  --sidebar-background: oklch(0.96 0.005 270) !important;
+  --sidebar-foreground: oklch(0.15 0.008 270) !important;
+  --sidebar-primary: oklch(0.45 0.1 265) !important;
+  --sidebar-primary-foreground: oklch(0.99 0 0) !important;
+  --sidebar-accent: oklch(0 0 0 / 0.03) !important;
+  --sidebar-accent-foreground: oklch(0.15 0.008 270) !important;
+  --sidebar-border: oklch(0 0 0 / 0.08) !important;
+  --sidebar-ring: oklch(0.45 0.1 265) !important;
+  color-scheme: light !important;
+}
+
+html.dark body,
+html.dark {
+  background-color: oklch(0.98 0.005 270) !important;
+  color: oklch(0.15 0.008 270) !important;
+}
