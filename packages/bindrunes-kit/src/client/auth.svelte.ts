@@ -8,7 +8,7 @@ export interface Tenant {
 	name?: string;
 }
 
-export interface OAuthProvider {
+export interface OAuthProviderConfig {
 	/** OAuth provider name (e.g. "google", "github") */
 	name: string;
 	/** OAuth authorize endpoint URL */
@@ -32,7 +32,7 @@ export interface CreateClientAuthOptions {
 	tokenStorage?: "cookie" | "localStorage";
 	tokenKey?: string;
 	/** Map of OAuth provider names to their configuration */
-	oauthProviders?: Record<string, OAuthProvider>;
+	oauthProviders?: Record<string, OAuthProviderConfig>;
 	/** Base URL of the OAuth callback endpoint (default: current origin + "/auth/callback") */
 	oauthCallbackUrl?: string;
 }

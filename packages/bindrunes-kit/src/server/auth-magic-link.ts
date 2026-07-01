@@ -24,19 +24,47 @@ export function createMagicLinkAuth(options?: MagicLinkOptions) {
 		issuer = "bindrunes",
 	} = options ?? {};
 
-	function generateToken(email: string): string {
+	async function generateToken(email: string): Promise<string> {
 		const payload: MagicLinkToken = {
 			email,
 			expiresAt: Date.now() + expiresIn,
 			issuer,
 		};
-		// In production, use HMAC signing with the secret
-		return btoa(JSON.stringify(payload));
+		const data = JSON.stringify(payload);
+		const key = await crypto.subtle.importKey(
+			"raw",
+			new TextEncoder().encode(secret),
+			{ name: "HMAC", hash: "SHA-256" },
+			false,
+			["sign"],
+		);
+		const sig = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(data));
+		const sigBase64 = btoa(String.fromCharCode(...new Uint8Array(sig)));
+		return `${btoa(data)}.${sigBase64}`;
 	}
 
-	function verifyToken(token: string): MagicLinkToken | null {
+	async function verifyToken(token: string): Promise<MagicLinkToken | null> {
 		try {
-			const payload = JSON.parse(atob(token)) as MagicLinkToken;
+			const [dataPart, sigPart] = token.split(".");
+			if (!dataPart || !sigPart) return null;
+
+			const key = await crypto.subtle.importKey(
+				"raw",
+				new TextEncoder().encode(secret),
+				{ name: "HMAC", hash: "SHA-256" },
+				false,
+				["verify"],
+			);
+			const sig = Uint8Array.from(atob(sigPart), (c) => c.charCodeAt(0));
+			const valid = await crypto.subtle.verify(
+				"HMAC",
+				key,
+				sig,
+				new TextEncoder().encode(atob(dataPart)),
+			);
+			if (!valid) return null;
+
+			const payload = JSON.parse(atob(dataPart)) as MagicLinkToken;
 			if (payload.expiresAt < Date.now()) return null;
 			if (payload.issuer !== issuer) return null;
 			return payload;
@@ -50,8 +78,8 @@ export function createMagicLinkAuth(options?: MagicLinkOptions) {
 		 * Generate a magic link token for the given email.
 		 * Send this link to the user's email.
 		 */
-		generateLink(email: string, baseUrl: string): string {
-			const token = generateToken(email);
+		async generateLink(email: string, baseUrl: string): Promise<string> {
+			const token = await generateToken(email);
 			const url = new URL("/auth/magic/verify", baseUrl);
 			url.searchParams.set("token", token);
 			return url.toString();
@@ -65,7 +93,7 @@ export function createMagicLinkAuth(options?: MagicLinkOptions) {
 			token: string,
 			findOrCreateUser: (email: string) => Promise<SessionData | null>,
 		): Promise<SessionData | null> {
-			const payload = verifyToken(token);
+			const payload = await verifyToken(token);
 			if (!payload) return null;
 			return findOrCreateUser(payload.email);
 		},
@@ -77,7 +105,7 @@ export function createMagicLinkAuth(options?: MagicLinkOptions) {
 			return async ({ event, resolve }) => {
 				const token = event.cookies.get(cookieName);
 				if (token) {
-					const payload = verifyToken(token);
+					const payload = await verifyToken(token);
 					if (payload) {
 						event.locals.session = {
 							user: { id: payload.email, email: payload.email },

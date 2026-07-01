@@ -80,6 +80,17 @@ export function createRateLimit(options?: {
 	} = options ?? {};
 
 	const hits = new Map<string, { count: number; resetAt: number }>();
+	let lastCleanup = Date.now();
+	const CLEANUP_INTERVAL = 60_000;
+
+	function cleanupExpiredEntries() {
+		const now = Date.now();
+		if (now - lastCleanup < CLEANUP_INTERVAL) return;
+		lastCleanup = now;
+		for (const [key, entry] of hits) {
+			if (now > entry.resetAt) hits.delete(key);
+		}
+	}
 
 	const defaultKeyGenerator = (event: RequestEvent) => {
 		return event.getClientAddress();
@@ -88,6 +99,7 @@ export function createRateLimit(options?: {
 	const getKey = keyGenerator ?? defaultKeyGenerator;
 
 	return async ({ event, resolve }) => {
+		cleanupExpiredEntries();
 		const key = getKey(event);
 		const now = Date.now();
 		const entry = hits.get(key);

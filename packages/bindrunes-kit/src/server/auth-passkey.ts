@@ -70,9 +70,11 @@ export function createPasskeyAuth(options: PasskeyOptions) {
 			_response: object,
 			_expectedChallenge: Uint8Array,
 		): Promise<{ verified: boolean; credential?: PasskeyCredential }> {
-			// In production, implement full WebAuthn verification
-			// This is a stub that consumers extend with their verification logic
-			return { verified: true };
+			throw new Error(
+				"verifyRegistration must be implemented by the consumer. " +
+					"Follow the WebAuthn spec for registration verification: " +
+					"https://www.w3.org/TR/webauthn-2/#sctn-registering-a-credential",
+			);
 		},
 
 		/**
@@ -101,9 +103,11 @@ export function createPasskeyAuth(options: PasskeyOptions) {
 			_credential: PasskeyCredential,
 			_expectedChallenge: Uint8Array,
 		): Promise<SessionData | null> {
-			// In production, implement full WebAuthn verification
-			// This is a stub that consumers extend with their verification logic
-			return null;
+			throw new Error(
+				"verifyAuthentication must be implemented by the consumer. " +
+					"Follow the WebAuthn spec for authentication verification: " +
+					"https://www.w3.org/TR/webauthn-2/#sctn-verifying-an-authentication-assertion",
+			);
 		},
 
 		/**

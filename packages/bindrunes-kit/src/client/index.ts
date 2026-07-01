@@ -5,7 +5,7 @@ export {
 	useMutation,
 	useQuery,
 } from "bindrunes";
-export type { CreateClientAuthOptions, Tenant, User } from "./auth.svelte";
+export type { CreateClientAuthOptions, OAuthProviderConfig, Tenant, User } from "./auth.svelte";
 export { createClientAuth } from "./auth.svelte";
 export { createAutosave } from "./autosave.svelte";
 export { createSession } from "./session.svelte";
