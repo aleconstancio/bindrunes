@@ -28,11 +28,11 @@ jobs:
 
       - name: Pull Vercel environment
         run: npx vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: docs-site
+        working-directory: examples/showcase
 
       - name: Build for Vercel
         run: npx vercel build --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: docs-site
+        working-directory: examples/showcase
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
@@ -40,7 +40,7 @@ jobs:
           URL=$(npx vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "## Vercel Preview" >> $GITHUB_STEP_SUMMARY
           echo "Deployed to: $URL" >> $GITHUB_STEP_SUMMARY
-        working-directory: docs-site
+        working-directory: examples/showcase
 
       - name: Deploy to Vercel (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -48,4 +48,4 @@ jobs:
           URL=$(npx vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
           echo "## Vercel Production" >> $GITHUB_STEP_SUMMARY
           echo "Deployed to: $URL" >> $GITHUB_STEP_SUMMARY
-        working-directory: docs-site
+        working-directory: examples/showcase
