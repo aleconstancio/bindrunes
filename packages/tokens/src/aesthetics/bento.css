@@ -1,0 +1,58 @@
+/* ══════════════════════════════════════════════════
+ * bindrunes — Bento Aesthetic Preset
+ *
+ * Friendly, rounded, soft. Inspired by bento-grid
+ * layouts with generous corners and warm shadows.
+ *
+ * Import in your app.css:
+ * @import "bindrunes/styles/aesthetics/bento.css";
+ * ══════════════════════════════════════════════════ */
+
+[data-aesthetic="bento"] {
+	/* Radius — generous */
+	--radius: 0.875rem;
+	--radius-md: 0.875rem;
+	--radius-lg: 1rem;
+	--radius-xl: 1.25rem;
+
+	/* Shadow — soft */
+	--shadow-xs: 0 1px 4px oklch(0 0 0 / 0.03);
+	--shadow-sm: 0 2px 8px -2px oklch(0 0 0 / 0.05);
+	--shadow-md: 0 4px 12px -4px oklch(0 0 0 / 0.08);
+	--shadow-lg: 0 8px 20px -6px oklch(0 0 0 / 0.1);
+
+	/* Motion — bouncy */
+	--duration-snappy: 130ms;
+	--duration-fluid: 220ms;
+	--duration-slow: 360ms;
+	--ease-spring: linear(0, 0.5 7%, 0.95 25%, 1);
+	--ease-standard: var(--ease-spring);
+
+	/* Aesthetic hooks */
+	--button-treatment: inner-light;
+	--button-bg: var(--primary);
+	--button-bg-destructive: var(--destructive);
+	--card-treatment: tinted;
+	--surface-texture: dot-grid;
+	--hero-translate: 14px;
+	--shadow-emphasis: low;
+
+	/* Gradient — bento */
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l + 0.05) c h) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.06) 0%,
+		transparent 50%
+	);
+
+	/* Shadow — extra depth */
+	--shadow-xl: 0 12px 24px -6px oklch(0 0 0 / 0.12);
+	--shadow-2xl: 0 20px 40px -10px oklch(0 0 0 / 0.16);
+
+	/* Blur */
+	--blur-heavy: 16px;
+}

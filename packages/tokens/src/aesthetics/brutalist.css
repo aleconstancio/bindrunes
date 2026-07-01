@@ -1,0 +1,40 @@
+/* ── brutalist aesthetic ── */
+/* Raw, exposed, intentionally rough. Square corners, no shadows, instant motion. */
+
+[data-aesthetic="brutalist"] {
+	/* Radius — square */
+	--radius: 0;
+	--radius-md: 0;
+	--radius-lg: 0;
+	--radius-xl: 0;
+
+	/* Shadow — none */
+	--shadow-xs: none;
+	--shadow-sm: none;
+	--shadow-md: none;
+	--shadow-lg: none;
+
+	/* Motion — instant */
+	--duration-snappy: 50ms;
+	--duration-fluid: 100ms;
+	--duration-slow: 150ms;
+	--ease-standard: linear;
+
+	/* Aesthetic hooks */
+	--button-treatment: flat;
+	--button-bg: var(--primary);
+	--card-treatment: solid;
+	--surface-texture: none;
+	--hero-translate: 2px;
+	--shadow-emphasis: low;
+
+	/* Gradient — flat */
+	--gradient-primary: var(--primary);
+
+	/* Shadow — hard offset */
+	--shadow-xl: 4px 4px 0 oklch(0 0 0 / 0.15);
+	--shadow-2xl: 8px 8px 0 oklch(0 0 0 / 0.2);
+
+	/* Blur — none */
+	--blur-heavy: 0px;
+}

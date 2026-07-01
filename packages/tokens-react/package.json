@@ -1,0 +1,24 @@
+{
+	"name": "@bindrunes/tokens-react",
+	"version": "1.0.0",
+	"description": "React provider for bindrunes design tokens",
+	"type": "module",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"src"
+	],
+	"exports": {
+		".": "./src/index.tsx"
+	},
+	"peerDependencies": {
+		"react": ">=18.0.0",
+		"@bindrunes/tokens": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.0"
+	},
+	"scripts": {
+		"build": "echo 'ts-only package'"
+	}
+}

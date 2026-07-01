@@ -1,0 +1,23 @@
+/* ══════════════════════════════════════════════════
+ * bindrunes — Spacious Density Preset
+ *
+ * Generous spacing for content-heavy UIs: landing
+ * pages, marketing, editorial layouts.
+ *
+ * Import in your app.css:
+ * @import "bindrunes/styles/densities/spacious.css";
+ * ══════════════════════════════════════════════════ */
+
+[data-density="spacious"] {
+	--space-1: 0.3125rem;
+	--space-2: 0.625rem;
+	--space-3: 1rem;
+	--space-4: 1.25rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-8: 2.5rem;
+	--space-10: 3.5rem;
+	--space-12: 5rem;
+	--space-16: 7rem;
+	--space-20: 9rem;
+}

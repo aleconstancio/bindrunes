@@ -1,0 +1,56 @@
+/* ── organic aesthetic ── */
+/* Soft, flowing, natural shapes. Pill corners, spring motion, paper texture. */
+
+[data-aesthetic="organic"] {
+	/* Radius — pill */
+	--radius: 1.5rem;
+	--radius-md: 1.5rem;
+	--radius-lg: 2rem;
+	--radius-xl: 2.5rem;
+
+	/* Shadow — soft, natural */
+	--shadow-xs: 0 1px 4px oklch(0 0 0 / 0.03);
+	--shadow-sm: 0 2px 8px -2px oklch(0 0 0 / 0.05);
+	--shadow-md: 0 4px 16px -4px oklch(0 0 0 / 0.08);
+	--shadow-lg: 0 8px 24px -6px oklch(0 0 0 / 0.1);
+
+	/* Motion — spring, flowing */
+	--duration-snappy: 200ms;
+	--duration-fluid: 350ms;
+	--duration-slow: 500ms;
+	--ease-spring: linear(0, 0.4 7%, 0.9 25%, 1);
+
+	/* Aesthetic hooks */
+	--button-treatment: gradient;
+	--button-bg: linear-gradient(135deg, var(--primary), var(--accent));
+	--card-treatment: tinted;
+	--surface-texture: paper;
+	--hero-translate: 20px;
+	--shadow-emphasis: medium;
+
+	/* Gradient — flowing */
+	--gradient-angle: 135deg;
+	--gradient-primary: linear-gradient(var(--gradient-angle), var(--primary), var(--accent));
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.08) 0%,
+		oklch(from var(--accent) l c h / 0.05) 50%,
+		transparent 100%
+	);
+	--gradient-card: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.03) 0%,
+		oklch(from var(--accent) l c h / 0.02) 100%
+	);
+	--bg-gradient-hero: var(--gradient-hero);
+	--bg-gradient-card: var(--gradient-card);
+
+	/* Shadow — soft depth */
+	--shadow-xl: 0 12px 28px -6px oklch(0 0 0 / 0.14);
+	--shadow-2xl: 0 20px 44px -10px oklch(0 0 0 / 0.18);
+	--shadow-glow-accent: 0 0 24px -6px oklch(from var(--accent) l c h / 0.3);
+
+	/* Blur */
+	--blur-heavy: 18px;
+	--blur-ultra: 28px;
+}

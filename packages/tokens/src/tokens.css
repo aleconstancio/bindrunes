@@ -1,0 +1,209 @@
+/* bindrunes — Default :root token values (aesthetic=minimal, density=comfortable) */
+:root {
+	/* Surfaces (warm grey) */
+	--background: oklch(0.13 0.01 270);
+	--foreground: oklch(0.96 0.005 270);
+	--card: oklch(1 0 0 / 0.04);
+	--card-foreground: oklch(0.96 0.005 270);
+	--card-solid: oklch(0.17 0.008 270);
+	--surface-1: oklch(0.16 0.008 270);
+	--surface-2: oklch(0.19 0.008 270);
+	--surface-3: oklch(0.22 0.008 270);
+	--muted: oklch(1 0 0 / 0.04);
+	--muted-foreground: oklch(0.65 0.012 270);
+	--secondary: oklch(1 0 0 / 0.06);
+	--secondary-foreground: oklch(0.96 0.005 270);
+
+	/* Accents (restrained indigo) */
+	--primary: oklch(0.65 0.1 265);
+	--primary-foreground: oklch(0.13 0 0);
+	--accent: oklch(0.62 0.13 285);
+	--accent-foreground: oklch(0.13 0 0);
+
+	/* State colors */
+	--destructive: oklch(0.62 0.22 25);
+	--destructive-foreground: oklch(0.14 0 0);
+	--destructive-soft: oklch(0.62 0.22 25 / 0.12);
+	--success: oklch(0.68 0.16 145);
+	--success-foreground: oklch(0.13 0 0);
+	--success-soft: oklch(0.68 0.16 145 / 0.12);
+	--warning: oklch(0.8 0.16 80);
+	--warning-foreground: oklch(0.13 0 0);
+	--warning-soft: oklch(0.8 0.16 80 / 0.12);
+	--info: oklch(0.7 0.12 230);
+	--info-foreground: oklch(0.13 0 0);
+	--info-soft: oklch(0.7 0.12 230 / 0.12);
+
+	/* Borders & inputs */
+	--border: oklch(1 0 0 / 0.08);
+	--border-strong: oklch(1 0 0 / 0.2);
+	--border-subtle: oklch(1 0 0 / 0.05);
+	--input: oklch(1 0 0 / 0.06);
+	--ring: oklch(0.65 0.1 265);
+
+	/* Overlays */
+	--overlay: oklch(0 0 0 / 0.55);
+	--overlay-strong: oklch(0 0 0 / 0.75);
+
+	/* Glass */
+	--glass-surface: oklch(1 0 0 / 0.04);
+	--glass-border: oklch(1 0 0 / 0.08);
+
+	/* Sidebar */
+	--sidebar-background: oklch(0.11 0.008 270);
+	--sidebar-foreground: oklch(0.96 0.005 270);
+	--sidebar-primary: oklch(0.65 0.1 265);
+	--sidebar-primary-foreground: oklch(0.13 0 0);
+	--sidebar-accent: oklch(1 0 0 / 0.04);
+	--sidebar-accent-foreground: oklch(0.96 0.005 270);
+	--sidebar-border: oklch(1 0 0 / 0.08);
+	--sidebar-ring: oklch(0.65 0.1 265);
+
+	/* --radius is the base generic radius. --radius-md is the named scale step (medium). */
+	--radius-xs: 0.25rem;
+	--radius-sm: 0.375rem;
+	--radius: 0.5rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.875rem;
+	--radius-xl: 1.25rem;
+
+	/* Component-specific spacing */
+	--card-padding: 1rem;
+
+	/* Shadow scale */
+	--shadow-xs: 0 1px 2px oklch(0 0 0 / 0.04);
+	--shadow-sm: 0 1px 0 oklch(0 0 0 / 0.04);
+	--shadow-md: 0 1px 0 oklch(0 0 0 / 0.06);
+	--shadow-lg: 0 2px 4px oklch(0 0 0 / 0.08);
+	--shadow-xl: 0 8px 16px -4px oklch(0 0 0 / 0.12);
+	--shadow-2xl: 0 16px 32px -8px oklch(0 0 0 / 0.18);
+	--shadow-glow-primary: 0 0 24px -6px oklch(from var(--primary) l c h / 0.3);
+	--shadow-glow-accent: 0 0 24px -6px oklch(from var(--accent) l c h / 0.3);
+	--shadow-glow-destructive: 0 0 24px -6px oklch(from var(--destructive) l c h / 0.25);
+	--shadow-glow-success: 0 0 24px -6px oklch(from var(--success) l c h / 0.25);
+	--shadow-glow-warning: 0 0 24px -6px oklch(from var(--warning) l c h / 0.25);
+	--shadow-glow-info: 0 0 24px -6px oklch(from var(--info) l c h / 0.25);
+	--shadow-emphasis-resolved: var(--shadow-sm);
+	--shadow-inset-subtle: inset 0 1px 0 oklch(1 0 0 / 0.06);
+
+	/* Motion durations */
+	--duration-instant: 50ms;
+	--duration-snappy: 120ms;
+	--duration-fluid: 220ms;
+	--duration-slow: 360ms;
+
+	/* Motion easings */
+	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
+	--ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
+	--ease-decelerated: cubic-bezier(0, 0, 0, 1);
+	--ease-accelerated: cubic-bezier(0.3, 0, 1, 1);
+	--ease-spring: linear(0, 0.5 7%, 0.95 25%, 1);
+
+	/* Spacing scale (comfortable default) */
+	--space-0: 0;
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.25rem;
+	--space-6: 1.5rem;
+	--space-8: 2rem;
+	--space-10: 3rem;
+	--space-12: 4rem;
+	--space-16: 5rem;
+	--space-20: 6rem;
+
+	/* Aesthetic-coupled hooks (minimal default) */
+	--button-treatment: flat;
+	--button-bg: var(--primary);
+	--button-bg-destructive: var(--destructive);
+	--card-treatment: solid;
+	--surface-texture: none;
+	--hero-translate: 8px;
+	--shadow-emphasis: low;
+
+	/* Gradient tokens */
+	--gradient-angle: 135deg;
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l - 0.08) c h) 100%
+	);
+	--gradient-accent: linear-gradient(var(--gradient-angle), var(--primary) 0%, var(--accent) 100%);
+	--gradient-destructive: linear-gradient(
+		var(--gradient-angle),
+		var(--destructive) 0%,
+		oklch(from var(--destructive) calc(l - 0.08) c h) 100%
+	);
+	--gradient-surface: linear-gradient(
+		var(--gradient-angle),
+		var(--surface-1) 0%,
+		var(--surface-2) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l c h / 0.08) 0%,
+		transparent 50%
+	);
+	--gradient-card: none;
+	--gradient-sidebar: none;
+	--gradient-text-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--foreground) 30%,
+		var(--primary) 100%
+	);
+	--gradient-text-accent: linear-gradient(
+		var(--gradient-angle),
+		var(--foreground) 30%,
+		var(--accent) 100%
+	);
+
+	/* Surface gradients */
+	--bg-gradient-hero: none;
+	--bg-gradient-card: none;
+	--bg-gradient-sidebar: none;
+
+	/* Blur scale */
+	--blur-subtle: 4px;
+	--blur-medium: 8px;
+	--blur-heavy: 16px;
+	--blur-ultra: 24px;
+
+	/* Pill / full radius */
+	--radius-pill: 9999px;
+	--radius-full: 50%;
+
+	/* Typography scale (overridable per-theme) */
+	--text-line-height-tight: 1.2;
+	--text-line-height-normal: 1.5;
+	--text-line-height-relaxed: 1.65;
+	--text-letter-spacing-tight: -0.02em;
+	--text-letter-spacing-normal: 0;
+	--text-letter-spacing-wide: 0.02em;
+	--text-letter-spacing-wider: 0.05em;
+	--text-letter-spacing-widest: 0.1em;
+
+	/* Animation delays */
+	--delay-none: 0ms;
+	--delay-sm: 50ms;
+	--delay-md: 100ms;
+	--delay-lg: 200ms;
+	--delay-xl: 400ms;
+
+	/* Gradient: shimmer (skeleton loading) */
+	--gradient-shimmer: linear-gradient(
+		90deg,
+		var(--muted) 25%,
+		oklch(from var(--muted-foreground) l c h / 0.15) 50%,
+		var(--muted) 75%
+	);
+
+	/* Z-index scale */
+	--z-sidebar: 40;
+	--z-overlay: 50;
+	--z-omnibar: 55;
+	--z-modal: 60;
+	--z-popover: 70;
+	--z-toast: 80;
+	--z-tooltip: 90;
+}

@@ -1,0 +1,48 @@
+/* ── neon aesthetic ── */
+/* Cyberpunk, high-contrast, glow effects. Sharp corners, fast motion. */
+
+[data-aesthetic="neon"] {
+	/* Radius — sharp */
+	--radius: 0.25rem;
+	--radius-md: 0.25rem;
+	--radius-lg: 0.375rem;
+	--radius-xl: 0.5rem;
+
+	/* Shadow — neon glow */
+	--shadow-xs: 0 0 4px oklch(0.7 0.2 180 / 0.15);
+	--shadow-sm: 0 0 8px oklch(0.7 0.2 180 / 0.2);
+	--shadow-md: 0 0 16px oklch(0.7 0.2 180 / 0.25);
+	--shadow-lg: 0 0 32px oklch(0.7 0.2 180 / 0.3);
+
+	/* Motion — fast, snappy */
+	--duration-snappy: 80ms;
+	--duration-fluid: 150ms;
+	--duration-slow: 250ms;
+	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+	/* Aesthetic hooks */
+	--button-treatment: flat;
+	--button-bg: var(--primary);
+	--card-treatment: solid;
+	--surface-texture: none;
+	--hero-translate: 4px;
+	--shadow-emphasis: high;
+
+	/* Gradient — neon */
+	--gradient-primary: linear-gradient(
+		var(--gradient-angle),
+		var(--primary) 0%,
+		oklch(from var(--primary) calc(l + 0.1) c h) 100%
+	);
+	--gradient-hero: linear-gradient(
+		var(--gradient-angle),
+		oklch(from var(--primary) l 0.3 h / 0.12) 0%,
+		transparent 60%
+	);
+
+	/* Shadow — neon glow */
+	--shadow-xl: 0 0 20px -4px oklch(from var(--primary) l 0.3 h / 0.2);
+	--shadow-2xl: 0 0 40px -8px oklch(from var(--primary) l 0.3 h / 0.25);
+	--shadow-glow-primary: 0 0 32px -4px oklch(from var(--primary) l 0.3 h / 0.4);
+	--shadow-glow-accent: 0 0 32px -4px oklch(from var(--accent) l 0.3 h / 0.4);
+}

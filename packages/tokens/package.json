@@ -1,0 +1,21 @@
+{
+	"name": "@bindrunes/tokens",
+	"version": "1.0.0",
+	"description": "Framework-agnostic design tokens from bindrunes (126 visual combinations)",
+	"type": "module",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"src"
+	],
+	"exports": {
+		".": "./src/index.css",
+		"./themes/*": "./src/themes/*.css",
+		"./aesthetics/*": "./src/aesthetics/*.css",
+		"./densities/*": "./src/densities/*.css",
+		"./tokens": "./src/tokens.css"
+	},
+	"scripts": {
+		"build": "echo 'css-only package'"
+	}
+}

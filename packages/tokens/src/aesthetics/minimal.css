@@ -1,0 +1,52 @@
+/* ══════════════════════════════════════════════════
+ * bindrunes — Minimal Aesthetic Preset
+ *
+ * The default aesthetic. Flat surfaces, 1px hairline
+ * borders, near-zero shadows, snappy motion, dense.
+ * Calm and confident — resembles Linear/Vercel/Geist.
+ *
+ * This file is auto-loaded by global.css. Consumers
+ * who want a different aesthetic import that preset
+ * AFTER this one to override.
+ * ══════════════════════════════════════════════════ */
+
+[data-aesthetic="minimal"] {
+	/* Radius — tight */
+	--radius: 0.5rem;
+	--radius-md: 0.5rem;
+	--radius-lg: 0.75rem;
+	--radius-xl: 0.875rem;
+
+	/* Shadow — near-zero (minimal signature) */
+	--shadow-xs: 0 1px 0 oklch(0 0 0 / 0.03);
+	--shadow-sm: 0 1px 0 oklch(0 0 0 / 0.04);
+	--shadow-md: 0 1px 0 oklch(0 0 0 / 0.06);
+	--shadow-lg: 0 2px 4px oklch(0 0 0 / 0.08);
+
+	/* Motion — snappy */
+	--duration-snappy: 120ms;
+	--duration-fluid: 220ms;
+	--duration-slow: 360ms;
+	--ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+	/* Aesthetic hooks */
+	--button-treatment: flat;
+	--button-bg: var(--primary);
+	--button-bg-destructive: var(--destructive);
+	--card-treatment: solid;
+	--surface-texture: none;
+	--hero-translate: 8px;
+	--shadow-emphasis: low;
+
+	/* Gradient — minimal, flat */
+	--gradient-primary: var(--primary);
+	--gradient-accent: var(--primary);
+	--gradient-card: none;
+	--gradient-hero: none;
+
+	/* Blur */
+	--blur-subtle: 4px;
+	--blur-medium: 8px;
+	--blur-heavy: 16px;
+	--blur-ultra: 24px;
+}

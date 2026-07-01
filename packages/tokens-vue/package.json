@@ -1,0 +1,21 @@
+{
+	"name": "@bindrunes/tokens-vue",
+	"version": "1.0.0",
+	"description": "Vue plugin for bindrunes design tokens",
+	"type": "module",
+	"license": "MIT",
+	"files": [
+		"dist",
+		"src"
+	],
+	"exports": {
+		".": "./src/index.ts"
+	},
+	"peerDependencies": {
+		"vue": ">=3.0.0",
+		"@bindrunes/tokens": "workspace:*"
+	},
+	"scripts": {
+		"build": "echo 'ts-only package'"
+	}
+}
