@@ -1,9 +1,13 @@
+export type { AwsAdapterOptions } from "./aws";
+export { awsConfig } from "./aws";
 export type { CloudflareAdapterOptions } from "./cloudflare";
 export { cloudflareConfig } from "./cloudflare";
 export type { DockerAdapterOptions } from "./docker";
 export { dockerConfig } from "./docker";
 export type { FirebaseAdapterOptions } from "./firebase";
 export { firebaseConfig, generateFirebaseJson } from "./firebase";
+export type { GcpAdapterOptions } from "./gcp";
+export { gcpConfig } from "./gcp";
 export type { NodeAdapterOptions } from "./node";
 export { nodeConfig } from "./node";
 export type { RailwayAdapterOptions } from "./railway";
