@@ -84,3 +84,14 @@ html.dark {
   background-color: oklch(0.98 0.005 270) !important;
   color: oklch(0.15 0.008 270) !important;
 }
+
+/* Force light mode on body — overrides ModeWatcher inline styles */
+body {
+  background-color: oklch(0.98 0.005 270) !important;
+  color: oklch(0.15 0.008 270) !important;
+}
+
+/* Override ModeWatcher's theme-color meta tag */
+meta[name="theme-color"] {
+  content: #FAFAFA !important;
+}
