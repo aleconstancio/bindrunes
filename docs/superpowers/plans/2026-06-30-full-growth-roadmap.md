@@ -6,7 +6,7 @@
 
 **Architecture:** Each phase is independently executable. Phase 1 deploys the existing playground and improves discovery. Phase 2 adds Storybook and visual testing. Phase 3 creates template showcases. Phase 4 stabilizes the kit and expands to multi-framework.
 
-**Tech Stack:** Svelte 5, SvelteKit, Tailwind CSS v4, Vercel, Storybook 8, Chromatic, Vitest, Biome, Bun, Turborepo
+**Tech Stack:** Svelte 5, SvelteKit, Tailwind CSS v4, Vercel, Storybook 8, Vitest, Biome, Bun, Turborepo
 
 ---
 
@@ -32,8 +32,8 @@
 | `.storybook/main.ts` | Storybook 8 config |
 | `.storybook/preview.ts` | Theme/aesthetic/density decorators |
 | `packages/bindrunes/src/primitives/*.stories.ts` | Stories for 84 primitives |
-| `.github/workflows/chromatic.yml` | Visual regression CI |
-| `chromatic.config.json` | Chromatic config |
+| `.github/workflows/chromatic.yml` | Visual regression CI (REMOVED — going solo) |
+| `chromatic.config.json` | Chromatic config (REMOVED — going solo) |
 | `docs/accessibility.md` | Accessibility audit results |
 | `docs/VPAT-2.4.md` | VPAT document |
 
@@ -1262,97 +1262,6 @@ git commit -m "feat: add Storybook 8 with stories for all primitives"
 
 ---
 
-### Task 6: Chromatic Visual Regression
-
-**Files:**
-- Create: `.github/workflows/chromatic.yml`
-- Create: `chromatic.config.json`
-- Modify: `packages/bindrunes/package.json` (add chromatic script)
-
-- [ ] **Step 1: Install Chromatic**
-
-```bash
-cd packages/bindrunes
-bun add -d chromatic
-```
-
-- [ ] **Step 2: Create chromatic.config.json**
-
-```json
-{
-  "projectId": "CHROMATIC_PROJECT_ID",
-  "exitZeroOnChanges": true,
-  "onlyChanged": true,
-  "buildScriptName": "build-storybook"
-}
-```
-
-- [ ] **Step 3: Add chromatic script**
-
-Add to `packages/bindrunes/package.json` scripts:
-
-```json
-"chromatic": "chromatic --exit-zero-on-changes"
-```
-
-- [ ] **Step 4: Create GitHub Action**
-
-```yaml
-# .github/workflows/chromatic.yml
-name: Chromatic
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  chromatic:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: 1.3.14
-          cache: true
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Build bindrunes
-        run: turbo run build --filter=bindrunes
-
-      - name: Run Chromatic
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: packages/bindrunes
-          exitZeroOnChanges: true
-          onlyChanged: true
-```
-
-- [ ] **Step 5: Initialize Chromatic**
-
-```bash
-cd packages/bindrunes
-npx chromatic --project-token=YOUR_TOKEN
-```
-
-This creates baselines. Save the project token as `CHROMATIC_PROJECT_TOKEN` in GitHub repo secrets.
-
-- [ ] **Step 6: Commit**
-
-```bash
-git add .github/workflows/chromatic.yml chromatic.config.json packages/bindrunes/package.json
-git commit -m "ci: add Chromatic visual regression testing"
-```
-
----
-
 ### Task 7: Accessibility Audit & VPAT
 
 **Files:**
@@ -1673,7 +1582,6 @@ Phase 1 (do first — everything depends on deployment):
 
 Phase 2 (after Phase 1):
   Task 5: Storybook ←── independent
-  Task 6: Chromatic ←── depends on Task 5
   Task 7: Accessibility ←── depends on Task 5
 
 Phase 3 (after Phase 2):

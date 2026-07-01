@@ -12,7 +12,7 @@
 bindrunes is technically excellent (255 components, 82 composables, 126 visual combos) but invisible. This roadmap converts technical quality into adoption and revenue across 4 phases.
 
 **Phase 1 (Week 1–2):** Visibility — hosted playground, npm README, public agentic docs
-**Phase 2 (Week 3–4):** Quality — Storybook, visual regression testing, accessibility audit
+**Phase 2 (Week 3–4):** Quality — Storybook, accessibility audit
 **Phase 3 (Week 5–8):** Revenue — template marketplace (5 templates), Figma design system
 **Phase 4 (Week 9–12):** Scale — kit v1.0, multi-framework token port, enterprise features
 
@@ -137,27 +137,11 @@ bindrunes is technically excellent (255 components, 82 composables, 126 visual c
 - Theme/aesthetic/density switcher works live in the toolbar
 - Each story shows prop controls, a11y results, and code snippets
 
-### 2.2 Visual Regression Testing (Chromatic)
+### 2.2 Visual Regression Testing (Chromatic) — REMOVED
 
-**Problem:** 126 theme×aesthetic×density combinations can't be manually verified. Visual regressions ship silently.
+**Status:** Removed — going solo with Storybook a11y addon and manual testing.
 
-**Approach:** Integrate Chromatic for visual diff testing:
-- Each Storybook story is a visual baseline
-- CI runs Chromatic on every PR — visual diffs are posted as PR comments
-- Theme × aesthetic × density matrix is tested for critical components (Button, Card, Input, Dialog, DataGrid)
-- Baseline snapshots are captured on first run
-
-**Files affected:**
-- `.github/workflows/chromatic.yml` (new)
-- `package.json` (add chromatic script)
-- `chromatic.config.json` (new)
-
-**Dependencies:** Requires Chromatic account (free tier for open source).
-
-**Success criteria:**
-- Every PR shows visual diffs for changed components
-- No visual regressions ship to main without review
-- 126 combo matrix is tested for the top 10 components
+The Storybook a11y addon provides real-time accessibility checks. Visual regression testing can be added later if needed via Percy, BackstopJS, or Playwright screenshot comparisons.
 
 ### 2.3 Accessibility Audit & VPAT
 
@@ -363,7 +347,7 @@ Each phase adds to the CI pipeline:
 | Phase | Additions |
 |-------|-----------|
 | Phase 1 | Vercel preview deploys, playground build verification |
-| Phase 2 | Chromatic visual testing, a11y checks in CI |
+| Phase 2 | a11y checks in CI |
 | Phase 3 | Template build verification, Figma token sync check |
 | Phase 4 | Kit integration tests, multi-package publish pipeline |
 
@@ -383,7 +367,7 @@ Each phase updates docs:
 | Phase | Testing |
 |-------|---------|
 | Phase 1 | Existing vitest coverage (90%+ agentic, 85%+ global) |
-| Phase 2 | Visual regression (Chromatic), a11y (axe-core) |
+| Phase 2 | a11y (axe-core via Storybook addon) |
 | Phase 3 | Template integration tests, purchase flow tests |
 | Phase 4 | Kit adapter integration tests, token package tests |
 
@@ -395,7 +379,6 @@ Each phase updates docs:
 |------|-------|------------|--------|------------|
 | Vercel token not available | 1 | Low | Medium | Ask user directly |
 | Storybook Svelte 5 compatibility issues | 2 | Medium | High | Check Storybook 8 Svelte support; fall back to Ladle |
-| Chromatic free tier limits | 2 | Low | Medium | Use Storybook a11y addon as fallback |
 | Template quality insufficient | 3 | Medium | High | Use existing examples as base; iterate |
 | Kit v1.0 breaking changes | 4 | Low | High | API review before version bump |
 | Token package bundle size | 4 | Low | Low | CSS-only, no JS runtime |
@@ -425,7 +408,6 @@ Phase 1 (Visibility)
 
 Phase 2 (Quality) ────────←── can start after 1.4
   ├── 2.1 Storybook ───────←── independent
-  ├── 2.2 Chromatic ───────←── depends on 2.1
   └── 2.3 Accessibility ───←── depends on 2.1
 
 Phase 3 (Revenue) ────────←── can start after Phase 2
@@ -457,7 +439,6 @@ Phase 4 (Scale) ──────────←── can start after Phase 3
 ### What's Missing
 - Hosted playground
 - Interactive component explorer (Storybook)
-- Visual regression testing
 - Formal accessibility audit
 - Paid templates
 - Figma design system
