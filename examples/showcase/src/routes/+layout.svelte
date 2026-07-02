@@ -4,7 +4,7 @@
 	import { AppProvider, SEO } from "bindrunes";
 	import { Toaster } from "svelte-sonner";
 	import HomepageTopbar from "$lib/components/HomepageTopbar.svelte";
-	import ShowcaseSidebar from "$lib/components/ShowcaseSidebar.svelte";
+	import ShowcaseNav from "$lib/components/ShowcaseNav.svelte";
 
 	let { children } = $props();
 
@@ -23,9 +23,11 @@
 		{@render children()}
 	{:else}
 		<!-- Demo/Docs pages: sidebar layout -->
-		<ShowcaseSidebar pathname={page.url.pathname}>
-			{@render children()}
-		</ShowcaseSidebar>
+		<ShowcaseNav pathname={page.url.pathname}>
+			<main class="min-h-screen">
+				{@render children()}
+			</main>
+		</ShowcaseNav>
 	{/if}
 </AppProvider>
 
