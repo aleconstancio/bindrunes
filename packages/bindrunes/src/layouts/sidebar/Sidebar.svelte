@@ -35,18 +35,16 @@ const ctx = useSidebar();
     {@render children?.()}
   </aside>
 {:else if collapsible === 'icon'}
+  <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+  <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
   <aside
-    class="flex flex-col contain-layout
+    class="sidebar-icon flex flex-col contain-layout
            bg-sidebar-background text-sidebar-foreground
            border-r border-sidebar-border
            transition-all duration-[--duration-fluid]
-           max-md:fixed max-md:inset-y-0 max-md:z-[--z-sidebar,20] max-md:w-[--sidebar-width-mobile,18rem]
-           {side === 'left' ? 'max-md:left-0' : 'max-md:right-0'}
-           {ctx.isMobile
-             ? (ctx.openMobile ? 'max-md:translate-x-0' : 'max-md:-translate-x-full')
-             : 'max-md:-translate-x-full'}
            w-[--sidebar-width,16rem]
            {className}"
+    data-open={ctx.isMobile ? ctx.openMobile : ctx.open}
     style={ctx.isMobile ? '' : `min-width: ${ctx.state === 'collapsed' ? '3rem' : 'var(--sidebar-width, 16rem)'}`}
   >
     {@render children?.()}
@@ -61,3 +59,20 @@ const ctx = useSidebar();
     {@render children?.()}
   </aside>
 {/if}
+
+<style>
+  @media (max-width: 767.98px) {
+    aside.sidebar-icon {
+      position: fixed;
+      inset: 0;
+      right: auto;
+      width: var(--sidebar-width-mobile, 18rem);
+      z-index: var(--z-sidebar, 20);
+      transform: translateX(-100%);
+      transition: transform 200ms ease;
+    }
+    aside.sidebar-icon[data-open="true"] {
+      transform: translateX(0);
+    }
+  }
+</style>

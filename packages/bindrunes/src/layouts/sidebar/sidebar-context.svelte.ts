@@ -14,7 +14,9 @@ export function useSidebar(): SidebarState {
 export function createSidebarState(initialOpen = true) {
 	let open = $state<boolean>(initialOpen);
 	let openMobile = $state<boolean>(false);
-	let isMobile = $state<boolean>(false);
+	let isMobile = $state<boolean>(
+		browser ? window.matchMedia("(max-width: 767.98px)").matches : false,
+	);
 
 	let state = $derived(open ? ("expanded" as const) : ("collapsed" as const));
 
