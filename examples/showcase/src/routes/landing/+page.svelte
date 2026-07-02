@@ -89,13 +89,20 @@
 
 <div class="min-h-screen">
 	<HeroBanner
-		title="Build beautiful apps with bindrunes"
+		badge="Svelte 5 Design System"
+		titleGradient={true}
 		description="A complete Svelte 5 design system with 160+ components, three-axis theming, and pre-built page patterns."
-		ctaLabel="Get Started"
-		ctaHref="/auth/register"
-		secondaryLabel="View Documentation"
-		secondaryHref="https://github.com/aleconstancio/bindrunes"
-	/>
+		ctas={[
+			{ label: "Get Started", href: "/auth/register" },
+			{ label: "View Documentation", href: "https://github.com/aleconstancio/bindrunes" },
+		]}
+		background="gradient"
+		level={1}
+	>
+		{#snippet title()}
+			Build beautiful apps with bindrunes
+		{/snippet}
+	</HeroBanner>
 
 	<VideoEmbed
 		title="See bindrunes in action"
