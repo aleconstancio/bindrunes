@@ -18,6 +18,7 @@ export interface RealtimeOptions {
 	reconnectDelay?: number;
 	maxReconnectDelay?: number;
 	gapDismissDelay?: number;
+	fetch?: typeof globalThis.fetch;
 }
 
 export class RealtimeClient {
@@ -78,11 +79,16 @@ export class RealtimeClient {
 			};
 			if (token) headers.Authorization = `Bearer ${token}`;
 
+			const fetchFn =
+				this.options.fetch ??
+				((input: RequestInfo, init?: RequestInit) =>
+					fetch(input, { ...init, credentials: "same-origin" }));
+
 			fetchEventSource(url, {
 				method: "GET",
 				headers,
-				credentials: "same-origin",
 				signal: this.controller.signal,
+				fetch: fetchFn,
 				onopen: async (response) => {
 					if (response.ok) {
 						this.#status = "connected";
