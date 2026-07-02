@@ -40,9 +40,12 @@ const ctx = useSidebar();
            bg-sidebar-background text-sidebar-foreground
            border-r border-sidebar-border
            transition-all duration-[--duration-fluid]
+           max-md:fixed max-md:inset-y-0 max-md:z-[--z-sidebar,20] max-md:w-[--sidebar-width-mobile,18rem]
+           {side === 'left' ? 'max-md:left-0' : 'max-md:right-0'}
            {ctx.isMobile
-             ? 'fixed inset-y-0 z-[--z-sidebar,20] w-[--sidebar-width-mobile,18rem] ' + (side === 'left' ? 'left-0' : 'right-0') + ' ' + (ctx.openMobile ? 'translate-x-0' : '-translate-x-full')
-             : 'w-[--sidebar-width,16rem]'}
+             ? (ctx.openMobile ? 'max-md:translate-x-0' : 'max-md:-translate-x-full')
+             : 'max-md:-translate-x-full'}
+           w-[--sidebar-width,16rem]
            {className}"
     style={ctx.isMobile ? '' : `min-width: ${ctx.state === 'collapsed' ? '3rem' : 'var(--sidebar-width, 16rem)'}`}
   >
