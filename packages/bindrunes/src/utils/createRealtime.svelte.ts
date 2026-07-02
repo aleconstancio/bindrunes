@@ -133,7 +133,9 @@ export class RealtimeClient {
 					}
 					this.options.onError?.(error);
 					this.#status = "degraded";
-					throw err;
+					// Return retry interval instead of throwing — lets the library
+					// retry automatically. Throwing cancels all retries.
+					return this.retryDelay;
 				},
 				onclose: () => {
 					this.#status = "disconnected";
