@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns, createLandingState } from "bindrunes/domains/landing";
 	import { Collapsible, CodeSnippet } from "bindrunes";
-	import { Zap, Shield, Clock, CheckCircle, Globe, Lock } from "lucide-svelte";
+	import { Zap, Shield, Clock, CheckCircle, Globe, Lock, Settings } from "lucide-svelte";
 
 	createLandingState();
 
 	const features = [
-		{ icon: "Zap", title: "Lightning Fast", description: "Optimized for performance with minimal bundle size." },
-		{ icon: "Shield", title: "Secure by Default", description: "Built-in security best practices and XSS protection." },
-		{ icon: "Clock", title: "Quick Setup", description: "Get started in minutes with our intuitive API." },
-		{ icon: "Globe", title: "Global Scale", description: "Deploy anywhere with zero configuration." },
-		{ icon: "Lock", title: "Type Safe", description: "Full TypeScript support with strict type checking." },
-		{ icon: "CheckCircle", title: "Battle Tested", description: "Used by thousands of production applications." },
+		{ icon: Zap, title: "Lightning Fast", description: "Optimized for performance with minimal bundle size." },
+		{ icon: Shield, title: "Secure by Default", description: "Built-in security best practices and XSS protection." },
+		{ icon: Clock, title: "Quick Setup", description: "Get started in minutes with our intuitive API." },
+		{ icon: Globe, title: "Global Scale", description: "Deploy anywhere with zero configuration." },
+		{ icon: Lock, title: "Type Safe", description: "Full TypeScript support with strict type checking." },
+		{ icon: CheckCircle, title: "Battle Tested", description: "Used by thousands of production applications." },
 	];
 
 	const plans = [
@@ -27,14 +27,14 @@
 	];
 
 	const metrics = [
-		{ value: "10,000+", label: "Active Users" },
-		{ value: "99.9%", label: "Uptime SLA" },
-		{ value: "4.9/5", label: "Customer Rating" },
+		{ value: "248+", label: "Components" },
+		{ value: "126", label: "Theme Combinations" },
+		{ value: "10", label: "Domain Categories" },
 	];
 
 	const faqItems = [
 		{ question: "What is bindrunes?", answer: "bindrunes is a comprehensive Svelte 5 component library with a three-axis design system for building modern web applications." },
-		{ question: "How many components are included?", answer: "Over 160 components including primitives, layouts, dashboards, auth forms, e-commerce, media, and more." },
+		{ question: "How many components are included?", answer: "Over 248 components including primitives, layouts, dashboards, auth forms, e-commerce, media, and more." },
 		{ question: "Is it free to use?", answer: "Yes, bindrunes is open source under the MIT license." },
 	];
 
@@ -55,12 +55,12 @@
 	];
 
 	const integrations = [
-		{ icon: "Globe", title: "SvelteKit", description: "First-class routing and server-side rendering support." },
-		{ icon: "Lock", title: "Supabase", description: "Ready-made auth forms and database-connected components." },
-		{ icon: "Zap", title: "Stripe", description: "Checkout flows, pricing tables, and payment components." },
-		{ icon: "Shield", title: "Auth.js", description: "OAuth, magic links, and session management patterns." },
-		{ icon: "Clock", title: "Prisma", description: "Type-safe database queries with full-stack components." },
-		{ icon: "CheckCircle", title: "Playwright", description: "E2E testing helpers and component test utilities." },
+		{ icon: Globe, title: "SvelteKit", description: "First-class routing and server-side rendering support." },
+		{ icon: Shield, title: "Supabase", description: "Ready-made auth forms and database-connected components." },
+		{ icon: Zap, title: "Stripe", description: "Checkout flows, pricing tables, and payment components." },
+		{ icon: Lock, title: "Auth.js", description: "OAuth, magic links, and session management patterns." },
+		{ icon: Clock, title: "Prisma", description: "Type-safe database queries with full-stack components." },
+		{ icon: CheckCircle, title: "Playwright", description: "E2E testing helpers and component test utilities." },
 	];
 
 	const featureComparisonPlans = [
@@ -117,7 +117,19 @@
 
 	<LogoCloud title="Trusted by teams worldwide" logos={partners} />
 
-	<FeatureGrid {features} columns={3} />
+	<FeatureGrid {features} columns={3}>
+		{#snippet featureSnippet({ feature })}
+			<div class="flex flex-col gap-4">
+				<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+					<feature.icon size={20} />
+				</div>
+				<div>
+					<h3 class="text-title-2 text-foreground">{feature.title}</h3>
+					<p class="text-body-sm text-muted-foreground mt-1">{feature.description}</p>
+				</div>
+			</div>
+		{/snippet}
+	</FeatureGrid>
 
 	<Collapsible>
 		{#snippet trigger()}
@@ -134,19 +146,19 @@
 
 	<HowItWorks
 		steps={[
-			{ icon: "Zap", title: "Install", description: "Add bindrunes to your SvelteKit project" },
-			{ icon: "Settings", title: "Configure", description: "Set up your theme, aesthetic, and density" },
-			{ icon: "CheckCircle", title: "Build", description: "Compose components into your pages" },
-			{ icon: "Globe", title: "Deploy", description: "Ship to production with confidence" },
+			{ icon: Zap, title: "Install", description: "Add bindrunes to your SvelteKit project" },
+			{ icon: Settings, title: "Configure", description: "Set up your theme, aesthetic, and density" },
+			{ icon: CheckCircle, title: "Build", description: "Compose components into your pages" },
+			{ icon: Globe, title: "Deploy", description: "Ship to production with confidence" },
 		]}
 	/>
 
 	<StatsCounter
 		stats={[
-			{ value: 500, label: "Enterprise Customers", suffix: "+" },
-			{ value: 99.9, label: "Uptime", suffix: "%" },
-			{ value: 50, label: "Integrations", suffix: "+" },
-			{ value: 30, label: "Countries", suffix: "+" },
+			{ value: 248, label: "Components", suffix: "+" },
+			{ value: 126, label: "Theme Combos", suffix: "" },
+			{ value: 60, label: "Composables", suffix: "+" },
+			{ value: 10, label: "Domain Categories", suffix: "" },
 		]}
 	/>
 
