@@ -102,10 +102,10 @@
 	}
 
 	const statusColors: Record<string, string> = {
-		connected: "bg-green-500",
-		reconnecting: "bg-yellow-500",
-		degraded: "bg-orange-500",
-		disconnected: "bg-gray-400",
+		connected: "bg-success",
+		reconnecting: "bg-warning",
+		degraded: "bg-warning",
+		disconnected: "bg-muted",
 	};
 </script>
 
@@ -172,22 +172,12 @@
 		<p class="text-body-sm text-muted-foreground mb-4">Simulated SSE event stream with status tracking.</p>
 
 		{#if !mockConnected}
-			<button
-				class="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 text-body-sm font-medium transition-colors"
-				onclick={startMockRealtime}
-			>
-				Start Stream
-			</button>
+			<Button variant="primary" size="sm" onclick={startMockRealtime}>Start Stream</Button>
 		{:else}
 			<div class="flex items-center gap-3 mb-4">
-				<button
-					class="inline-flex items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:bg-destructive/90 px-4 py-2 text-body-sm font-medium transition-colors"
-					onclick={stopMockRealtime}
-				>
-					Stop Stream
-				</button>
+				<Button variant="destructive" size="sm" onclick={stopMockRealtime}>Stop Stream</Button>
 				{#if mockGapDetected}
-					<span class="text-label-xs text-orange-600 dark:text-orange-400 font-medium">Sync gap detected</span>
+					<span class="text-label-xs text-warning font-medium">Sync gap detected</span>
 				{/if}
 			</div>
 		{/if}

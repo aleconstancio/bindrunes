@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, SiteFooter, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns } from "bindrunes/domains/landing";
+	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns } from "bindrunes/domains/landing";
 	import { Collapsible, CodeSnippet } from "bindrunes";
 	import { Zap, Shield, Clock, CheckCircle, Globe, Lock } from "lucide-svelte";
 
@@ -244,19 +244,12 @@
 
 	<SiteFooterColumns
 		columns={footerColumns}
-		copyright="2025 bindrunes. All rights reserved."
+		copyright="2026 bindrunes. All rights reserved."
 		socialLinks={[
 			{ label: "GitHub", href: "https://github.com/aleconstancio/bindrunes" },
 			{ label: "npm", href: "https://www.npmjs.com/package/bindrunes" },
 		]}
 	/>
 
-	<SiteFooter
-		logo={{ label: "bindrunes" }}
-		links={[
-			{ label: "Documentation", href: "https://github.com/aleconstancio/bindrunes" },
-			{ label: "GitHub", href: "https://github.com/aleconstancio/bindrunes" },
-			{ label: "npm", href: "https://www.npmjs.com/package/bindrunes" },
-		]}
-	/>
+
 </div>

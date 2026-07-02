@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Badge, Input } from "bindrunes";
+	import { Card, Badge, Input, Button } from "bindrunes";
 	import { Search } from "lucide-svelte";
 
 	interface ComponentEntry {
@@ -315,22 +315,22 @@
 	<div class="flex flex-col sm:flex-row gap-4">
 		<div class="relative flex-1">
 			<Search class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-			<input
-				type="text"
-				bind:value={searchQuery}
+			<Input
+				type="search"
 				placeholder="Search components..."
-				class="w-full h-10 pl-10 pr-4 rounded-[--radius-md] border border-border bg-background text-body-sm text-foreground"
+				bind:value={searchQuery}
+				class="pl-10"
 			/>
 		</div>
 		<div class="flex flex-wrap gap-1">
 			{#each categories as category}
-				<button
-					type="button"
+				<Button
+					variant={activeCategory === category ? "primary" : "outline"}
+					size="sm"
 					onclick={() => activeCategory = category}
-					class="px-3 py-1.5 rounded-[--radius-sm] text-label-sm transition-colors cursor-pointer {activeCategory === category ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:text-foreground'}"
 				>
 					{category}
-				</button>
+				</Button>
 			{/each}
 		</div>
 	</div>

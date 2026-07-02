@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { PageHeader } from "bindrunes/layouts";
 	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/domains/marketing";
+	import { Button } from "bindrunes";
 
 	let popupOpen = $state(false);
 	let bannerOpen = $state(true);
@@ -153,12 +154,7 @@ Component composition is the real power. Small, focused components like Button, 
 	<section>
 		<h2 class="text-title-2 text-foreground mb-4">Popup</h2>
 		<p class="text-body-sm text-muted-foreground mb-4">Click the button to open the modal popup.</p>
-		<button
-			class="inline-flex items-center justify-center h-10 px-4 rounded-[--radius] bg-primary text-primary-foreground font-medium text-label-md hover:opacity-90 transition-opacity"
-			onclick={() => (popupOpen = true)}
-		>
-			Open Popup
-		</button>
+		<Button variant="outline" onclick={() => (popupOpen = true)}>Show Popup</Button>
 		<Popup
 			bind:open={popupOpen}
 			badge="New Release"

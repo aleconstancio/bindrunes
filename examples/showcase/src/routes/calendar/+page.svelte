@@ -56,7 +56,7 @@
 			<ul class="space-y-2">
 				{#each events as event (event.id)}
 					<li class="flex items-center gap-2 text-sm text-foreground">
-						<span class="w-2 h-2 rounded-full bg-{event.color}"></span>
+						<span class="w-2 h-2 rounded-full {event.color === 'primary' ? 'bg-primary' : event.color === 'success' ? 'bg-success' : 'bg-destructive'}"></span>
 						{event.title}
 					</li>
 				{/each}
