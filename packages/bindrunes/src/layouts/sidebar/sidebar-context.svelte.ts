@@ -37,6 +37,24 @@ export function createSidebarState(initialOpen = true) {
 		}
 	});
 
+	$effect(() => {
+		if (browser) {
+			const mql = window.matchMedia("(max-width: 767.98px)");
+			isMobile = mql.matches;
+			function handleChange(e: MediaQueryListEvent) {
+				isMobile = e.matches;
+				if (isMobile) {
+					open = false;
+				}
+				if (!isMobile) {
+					openMobile = false;
+				}
+			}
+			mql.addEventListener("change", handleChange);
+			return () => mql.removeEventListener("change", handleChange);
+		}
+	});
+
 	function toggle() {
 		open = !open;
 	}

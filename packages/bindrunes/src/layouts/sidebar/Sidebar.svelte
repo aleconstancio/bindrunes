@@ -27,7 +27,9 @@ const ctx = useSidebar();
            transition-transform duration-[--duration-fluid]
            w-[--sidebar-width-mobile,18rem] md:w-[--sidebar-width,16rem]
            {side === 'left' ? 'left-0' : 'right-0'}
-           {!ctx.open ? '-translate-x-full md:translate-x-0' : 'translate-x-0'}
+           {ctx.isMobile
+             ? (ctx.openMobile ? 'translate-x-0' : '-translate-x-full')
+             : (ctx.open ? 'translate-x-0' : '-translate-x-full md:translate-x-0')}
            {className}"
   >
     {@render children?.()}
@@ -38,9 +40,11 @@ const ctx = useSidebar();
            bg-sidebar-background text-sidebar-foreground
            border-r border-sidebar-border
            transition-all duration-[--duration-fluid]
-           w-[--sidebar-width,16rem]
+           {ctx.isMobile
+             ? 'fixed inset-y-0 z-[--z-sidebar,20] w-[--sidebar-width-mobile,18rem] ' + (side === 'left' ? 'left-0' : 'right-0') + ' ' + (ctx.openMobile ? 'translate-x-0' : '-translate-x-full')
+             : 'w-[--sidebar-width,16rem]'}
            {className}"
-    style="min-width: {ctx.state === 'collapsed' ? '3rem' : 'var(--sidebar-width, 16rem)'}"
+    style={ctx.isMobile ? '' : `min-width: ${ctx.state === 'collapsed' ? '3rem' : 'var(--sidebar-width, 16rem)'}`}
   >
     {@render children?.()}
   </aside>

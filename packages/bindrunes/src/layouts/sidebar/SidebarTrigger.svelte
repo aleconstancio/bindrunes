@@ -8,7 +8,13 @@ const _ctx = useSidebar();
 </script>
 
 <button
-  onclick={() => _ctx.setOpen(!_ctx.open)}
+  onclick={() => {
+    if (_ctx.isMobile) {
+      _ctx.toggleMobile();
+    } else {
+      _ctx.toggle();
+    }
+  }}
   aria-label="Toggle sidebar"
   class="inline-flex items-center justify-center rounded-[--radius] p-2
          text-sidebar-foreground/50 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground
