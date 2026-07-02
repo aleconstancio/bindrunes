@@ -81,6 +81,7 @@ export class RealtimeClient {
 			fetchEventSource(url, {
 				method: "GET",
 				headers,
+				credentials: "same-origin",
 				signal: this.controller.signal,
 				onopen: async (response) => {
 					if (response.ok) {
