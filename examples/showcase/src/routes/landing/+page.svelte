@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns } from "bindrunes/domains/landing";
+	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns, createLandingState } from "bindrunes/domains/landing";
 	import { Collapsible, CodeSnippet } from "bindrunes";
 	import { Zap, Shield, Clock, CheckCircle, Globe, Lock } from "lucide-svelte";
+
+	createLandingState();
 
 	const features = [
 		{ icon: "Zap", title: "Lightning Fast", description: "Optimized for performance with minimal bundle size." },
