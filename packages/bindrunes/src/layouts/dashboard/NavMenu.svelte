@@ -1,12 +1,15 @@
 <script lang="ts">
 import type { NavGroup } from "../../shared-types";
 import { SidebarGroup, SidebarMenu, SidebarMenuButton } from "../sidebar";
+import { useSidebar } from "../sidebar/sidebar-context.svelte";
 
 let {
 	groups = [] as NavGroup[],
 	pathname = "",
 	onNavigate = undefined as ((to: string) => void) | undefined,
 } = $props();
+
+const sidebar = useSidebar();
 </script>
 
 {#each groups as group}
@@ -27,7 +30,9 @@ let {
           {/if}
           <div class="min-w-0">
             <span class="text-label-md">{item.title}</span>
-            <p class="text-mono-xs mt-[0.1rem] text-muted-foreground">{item.description}</p>
+            {#if sidebar.state === 'expanded'}
+              <p class="text-mono-xs mt-[0.1rem] text-muted-foreground">{item.description}</p>
+            {/if}
           </div>
         </SidebarMenuButton>
       {/each}
