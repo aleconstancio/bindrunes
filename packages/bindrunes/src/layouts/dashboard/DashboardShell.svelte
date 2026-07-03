@@ -29,6 +29,10 @@ let {
 	defaultDescription = "",
 	pageTitle = undefined as string | undefined,
 	pageDescription = undefined as string | undefined,
+	/** Controls sidebar collapse behavior.
+	 *  - "icon": Sidebar can collapse to icon-only mode (default)
+	 *  - "full": Sidebar is always expanded, no collapse (maps to bindrunes "none")
+	 */
 	sidebarCollapsible = "icon" as "icon" | "full",
 	statusChip = undefined as
 		| { variant?: StatusVariant; label?: string; dot?: boolean; animate?: boolean }
