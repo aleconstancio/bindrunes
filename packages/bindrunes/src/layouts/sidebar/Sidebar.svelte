@@ -38,7 +38,7 @@ const ctx = useSidebar();
   <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
   <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
   <aside
-    class="sidebar-icon flex flex-col contain-layout
+    class="sidebar-icon flex flex-col contain-layout overflow-hidden
            bg-sidebar-background text-sidebar-foreground
            border-r border-sidebar-border
            transition-all duration-[--duration-fluid]

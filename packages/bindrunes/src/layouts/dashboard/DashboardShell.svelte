@@ -7,6 +7,7 @@ import { derivePageInfo } from "../../utils/navigation";
 import MetaLayout from "../MetaLayout.svelte";
 import MetaScrollable from "../MetaScrollable.svelte";
 import { Sidebar, SidebarProvider, SidebarTrigger } from "../sidebar";
+import { useSidebar } from "../sidebar/sidebar-context.svelte";
 import DashboardShellBrand from "./DashboardShellBrand.svelte";
 import DashboardShellHeader from "./DashboardShellHeader.svelte";
 import NavMenu from "./NavMenu.svelte";
@@ -83,6 +84,8 @@ let resolvedRuleTitle = $derived(
 	ruleTitle ?? t?.("dashboard.RuleFootnote.title") ?? "Regra Crítica",
 );
 
+const sidebar = useSidebar();
+
 let sidebarCollapsibleProp = $derived(
 	sidebarCollapsible === "full" ? ("none" as const) : ("icon" as const),
 );
@@ -107,7 +110,7 @@ let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebar
 		</MetaLayout>
 
 		<MetaLayout position="content">
-			{#if variant === 'default' && scopeLabel}
+			{#if variant === 'default' && scopeLabel && sidebar.state === 'expanded'}
 				<div class="rounded-[--radius] p-3 mb-4 bg-card border border-border">
 					<p class="font-mono text-mono-xs font-bold uppercase tracking-[--text-letter-spacing-widest] text-muted-foreground">{scopeLabel}</p>
 					{#if scopeTitle}<p class="text-label-md font-semibold mt-1 text-foreground">{scopeTitle}</p>{/if}
@@ -119,10 +122,14 @@ let sidebarCollapsibleComputed = $derived(variant === "right" ? "icon" : sidebar
 
 		<MetaLayout position="footer">
 			{#if sidebarFooter}
-				{@render sidebarFooter()}
+				{#if sidebar.state === 'expanded'}
+					{@render sidebarFooter()}
+				{:else}
+					<ThemeToggle />
+				{/if}
 			{:else if variant === 'default'}
 				<ThemeToggle />
-				{#if resolvedRuleTitle}
+				{#if sidebar.state === 'expanded' && resolvedRuleTitle}
 					<RuleFootnote title={resolvedRuleTitle} description={ruleDescription}>
 						{#if ruleChildren}{@render ruleChildren()}{/if}
 					</RuleFootnote>
