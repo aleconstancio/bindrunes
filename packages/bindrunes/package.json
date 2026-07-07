@@ -1,6 +1,6 @@
 {
 	"name": "bindrunes",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"description": "Svelte 5 component library for B2B SaaS applications — 234 components, 25 composables, three-axis design system",
 	"type": "module",
 	"license": "MIT",
