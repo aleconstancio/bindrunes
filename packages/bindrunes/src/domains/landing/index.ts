@@ -6,6 +6,7 @@ export { default as FeatureGrid } from "./FeatureGrid.svelte";
 export { default as HeroBanner } from "./HeroBanner.svelte";
 export { default as HowItWorks } from "./HowItWorks.svelte";
 export { default as IntegrationGrid } from "./IntegrationGrid.svelte";
+export { default as LandingCard } from "./LandingCard.svelte";
 export { default as LandingNav } from "./LandingNav.svelte";
 export { default as LandingSection } from "./LandingSection.svelte";
 export { default as LogoCloud } from "./LogoCloud.svelte";
