@@ -49,6 +49,15 @@
     )
   );
 
+  let allSelected = $derived(selectedIds.size === filteredUsers.length && filteredUsers.length > 0);
+  let someSelected = $derived(selectedIds.size > 0 && selectedIds.size < filteredUsers.length);
+
+  const roleOptions = [
+    { value: "Admin", label: "Admin" },
+    { value: "Editor", label: "Editor" },
+    { value: "Viewer", label: "Viewer" },
+  ];
+
   function openCreate() {
     editingUser = { name: "", email: "", role: "Viewer", status: "active" };
     dialogOpen = true;
@@ -130,112 +139,104 @@
       </Button>
     </div>
 
-    <Card.Root>
-      <Card.Header class="flex flex-row items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="relative">
-            <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input placeholder="Search users..." class="pl-8 w-64" bind:value={searchQuery} />
+    <Card>
+      {#snippet header()}
+        <div class="flex flex-row items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input placeholder="Search users..." class="pl-8 w-64" bind:value={searchQuery} />
+            </div>
+            {#if selectedIds.size > 0}
+              <Badge variant="secondary">{selectedIds.size} selected</Badge>
+            {/if}
           </div>
-          {#if selectedIds.size > 0}
-            <Badge variant="secondary">{selectedIds.size} selected</Badge>
-          {/if}
         </div>
-      </Card.Header>
-      <Card.Content>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b border-border">
-                <th class="pb-3 text-left font-medium text-muted-foreground">
+      {/snippet}
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="pb-3 text-left font-medium text-muted-foreground">
+                <Checkbox
+                  checked={allSelected}
+                  indeterminate={someSelected}
+                />
+              </th>
+              <th class="pb-3 text-left font-medium text-muted-foreground">Name</th>
+              <th class="pb-3 text-left font-medium text-muted-foreground">Email</th>
+              <th class="pb-3 text-left font-medium text-muted-foreground">Role</th>
+              <th class="pb-3 text-left font-medium text-muted-foreground">Status</th>
+              <th class="pb-3 text-right font-medium text-muted-foreground">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {#each filteredUsers as user}
+              <tr class="border-b border-border last:border-0">
+                <td class="py-3">
                   <Checkbox
-                    checked={selectedIds.size === filteredUsers.length && filteredUsers.length > 0}
-                    indeterminate={selectedIds.size > 0 && selectedIds.size < filteredUsers.length}
-                    onCheckedChange={toggleAll}
+                    checked={selectedIds.has(user.id)}
                   />
-                </th>
-                <th class="pb-3 text-left font-medium text-muted-foreground">Name</th>
-                <th class="pb-3 text-left font-medium text-muted-foreground">Email</th>
-                <th class="pb-3 text-left font-medium text-muted-foreground">Role</th>
-                <th class="pb-3 text-left font-medium text-muted-foreground">Status</th>
-                <th class="pb-3 text-right font-medium text-muted-foreground">Actions</th>
+                </td>
+                <td class="py-3 font-medium text-foreground">{user.name}</td>
+                <td class="py-3 text-muted-foreground">{user.email}</td>
+                <td class="py-3">{user.role}</td>
+                <td class="py-3">
+                  <Badge variant={user.status === "active" ? "default" : "secondary"}>
+                    {user.status}
+                  </Badge>
+                </td>
+                <td class="py-3 text-right">
+                  <div class="flex items-center justify-end gap-1">
+                    <Button variant="ghost" size="sm" onclick={() => openEdit(user)}>
+                      <Pencil class="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" onclick={() => deleteUser(user.id)}>
+                      <Trash2 class="h-4 w-4 text-destructive" />
+                    </Button>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {#each filteredUsers as user}
-                <tr class="border-b border-border last:border-0">
-                  <td class="py-3">
-                    <Checkbox
-                      checked={selectedIds.has(user.id)}
-                      onCheckedChange={() => toggleSelect(user.id)}
-                    />
-                  </td>
-                  <td class="py-3 font-medium text-foreground">{user.name}</td>
-                  <td class="py-3 text-muted-foreground">{user.email}</td>
-                  <td class="py-3">{user.role}</td>
-                  <td class="py-3">
-                    <Badge variant={user.status === "active" ? "default" : "secondary"}>
-                      {user.status}
-                    </Badge>
-                  </td>
-                  <td class="py-3 text-right">
-                    <div class="flex items-center justify-end gap-1">
-                      <Button variant="ghost" size="sm" onclick={() => openEdit(user)}>
-                        <Pencil class="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm" onclick={() => deleteUser(user.id)}>
-                        <Trash2 class="h-4 w-4 text-destructive" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              {/each}
-              {#if filteredUsers.length === 0}
-                <tr>
-                  <td colspan="6" class="py-8 text-center text-muted-foreground">
-                    No users found.
-                  </td>
-                </tr>
-              {/if}
-            </tbody>
-          </table>
-        </div>
-      </Card.Content>
-    </Card.Root>
+            {/each}
+            {#if filteredUsers.length === 0}
+              <tr>
+                <td colspan="6" class="py-8 text-center text-muted-foreground">
+                  No users found.
+                </td>
+              </tr>
+            {/if}
+          </tbody>
+        </table>
+      </div>
+    </Card>
   </main>
 </div>
 
-<Dialog.Root bind:open={dialogOpen}>
-  <Dialog.Content>
-    <Dialog.Header>
-      <Dialog.Title>{editingUser?.id ? "Edit User" : "Create User"}</Dialog.Title>
-      <Dialog.Description>
-        {editingUser?.id ? "Update user details below." : "Add a new team member."}
-      </Dialog.Description>
-    </Dialog.Header>
-    {#if editingUser}
-      <div class="space-y-4 py-4">
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-foreground">Name</label>
-          <Input bind:value={editingUser.name} placeholder="Full name" />
-        </div>
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-foreground">Email</label>
-          <Input bind:value={editingUser.email} placeholder="email@example.com" type="email" />
-        </div>
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-foreground">Role</label>
-          <Select bind:value={editingUser.role}>
-            <option value="Admin">Admin</option>
-            <option value="Editor">Editor</option>
-            <option value="Viewer">Viewer</option>
-          </Select>
-        </div>
+<Dialog bind:open={dialogOpen} title={editingUser?.id ? "Edit User" : "Create User"}>
+  {#snippet header()}
+    <p class="text-sm text-muted-foreground">
+      {editingUser?.id ? "Update user details below." : "Add a new team member."}
+    </p>
+  {/snippet}
+  {#if editingUser}
+    <div class="space-y-4 py-4">
+      <div class="space-y-2">
+        <Input label="Name" bind:value={editingUser.name} placeholder="Full name" />
       </div>
-    {/if}
-    <Dialog.Footer>
-      <Button variant="outline" onclick={() => { dialogOpen = false; editingUser = null; }}>Cancel</Button>
-      <Button onclick={saveUser}>{editingUser?.id ? "Save Changes" : "Create User"}</Button>
-    </Dialog.Footer>
-  </Dialog.Content>
-</Dialog.Root>
+      <div class="space-y-2">
+        <Input label="Email" bind:value={editingUser.email} placeholder="email@example.com" type="email" />
+      </div>
+      <div class="space-y-2">
+        <Select
+          label="Role"
+          bind:value={editingUser.role}
+          options={roleOptions}
+        />
+      </div>
+    </div>
+  {/if}
+  {#snippet actions()}
+    <Button variant="outline" onclick={() => { dialogOpen = false; editingUser = null; }}>Cancel</Button>
+    <Button onclick={saveUser}>{editingUser?.id ? "Save Changes" : "Create User"}</Button>
+  {/snippet}
+</Dialog>

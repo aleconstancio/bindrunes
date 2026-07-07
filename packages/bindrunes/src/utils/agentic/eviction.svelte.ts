@@ -15,6 +15,7 @@ export function createTokenBudgetEviction(threshold: number): EvictionPolicyInst
 			let tokens = 0;
 			for (let i = window.turns.length - 1; i >= 0; i--) {
 				const turn = window.turns[i];
+				if (!turn) break;
 				if (tokens + turn.estimatedTokens > threshold) break;
 				tokens += turn.estimatedTokens;
 				kept.unshift(turn);

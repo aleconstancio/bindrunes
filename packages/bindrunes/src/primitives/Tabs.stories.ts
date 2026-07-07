@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/svelte";
 import Tabs from "./Tabs.svelte";
-import TabsContent from "./TabsContent.svelte";
-import TabsList from "./TabsList.svelte";
-import TabsTrigger from "./TabsTrigger.svelte";
 
 const meta = {
 	title: "Primitives/Tabs",

@@ -60,6 +60,11 @@
 		"limit": "2 kB"
 	},
 	{
+		"name": "bindrunes/domains/agentic",
+		"path": "packages/bindrunes/dist/domains/agentic/index.js",
+		"limit": "3 kB"
+	},
+	{
 		"name": "bindrunes/agentic",
 		"path": "packages/bindrunes/dist/utils/agentic/index.js",
 		"limit": "2 kB"

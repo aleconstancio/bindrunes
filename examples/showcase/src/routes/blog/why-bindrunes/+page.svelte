@@ -29,7 +29,7 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">What bindrunes Provides</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes is 248+ components organized across four layers, not one:
+        bindrunes is 234 components organized across four layers, not one:
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">

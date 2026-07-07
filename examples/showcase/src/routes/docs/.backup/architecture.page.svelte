@@ -99,7 +99,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           </p>
           <p class="text-body-sm text-muted-foreground mt-2">
             <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/templates</code><br/>
-            <strong>Examples:</strong> DashboardTemplate, AuthTemplate, CrudTemplate, SettingsTemplate, ChatTemplate
+            <strong>Examples:</strong> AuthTemplate, CrudTemplate, SettingsTemplate, ChatTemplate
           </p>
         </div>
       </div>
@@ -161,7 +161,7 @@ export function useSubsystemContext() {
             Pages are composed from four layers: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">PageShell</code>, <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">PageSection</code>, and Templates.
           </p>
           <CodeSnippet language="text">
-{`Template (DashboardTemplate, AuthTemplate, CrudTemplate, ...)
+{`Template (AuthTemplate, CrudTemplate, SettingsTemplate, ...)
   └── Domain Components (LoginForm, AdvancedTable, etc.)
        └── Layouts (PageShell, PageSection, MetaLayout)
             └── Primitives (Button, Card, Input, Badge, ...)`}

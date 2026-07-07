@@ -31,9 +31,9 @@ export function oklchToHex(oklchStr: string): string {
 	const match = oklchStr.match(/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/);
 	if (!match) return "#000000";
 
-	const L = parseFloat(match[1]);
-	const C = parseFloat(match[2]);
-	const hDeg = parseFloat(match[3]);
+	const L = parseFloat(match[1] ?? "0");
+	const C = parseFloat(match[2] ?? "0");
+	const hDeg = parseFloat(match[3] ?? "0");
 	const hRad = hDeg * (Math.PI / 180);
 
 	const a = C * Math.cos(hRad);

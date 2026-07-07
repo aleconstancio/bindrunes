@@ -1,5 +1,6 @@
 import { render } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
+import SidebarProviderHarness from "../layouts/__tests__/harness/SidebarProviderHarness.svelte";
 import SidebarContent from "../layouts/sidebar/SidebarContent.svelte";
 import SidebarFooter from "../layouts/sidebar/SidebarFooter.svelte";
 import SidebarGroup from "../layouts/sidebar/SidebarGroup.svelte";
@@ -17,12 +18,12 @@ import SidebarTriggerTestWrapper from "./__tests__/harness/SidebarTriggerTestWra
 
 describe("Sidebar standalone components", () => {
 	it("SidebarGroup renders label", () => {
-		render(SidebarGroup, { label: "Group 1" });
+		render(SidebarGroup, { label: "Group 1" }, { wrapper: SidebarProviderHarness });
 		expect(document.querySelector("span")?.textContent).toContain("Group 1");
 	});
 
 	it("SidebarGroup renders without label", () => {
-		const { container } = render(SidebarGroup);
+		const { container } = render(SidebarGroup, {}, { wrapper: SidebarProviderHarness });
 		expect(container.firstElementChild).toBeInTheDocument();
 	});
 

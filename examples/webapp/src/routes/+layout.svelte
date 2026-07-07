@@ -1,6 +1,6 @@
 <script lang="ts">
 import "../app.css";
-import { DemoLayout } from "bindrunes/scaffold";
+import { DemoLayout } from "bindrunes/playground";
 
 let { children } = $props();
 </script>

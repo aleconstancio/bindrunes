@@ -60,59 +60,59 @@
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {#each stats as stat}
-        <Card.Root>
-          <Card.Header class="flex flex-row items-center justify-between pb-2">
-            <Card.Title class="text-sm font-medium text-muted-foreground">{stat.label}</Card.Title>
-            <stat.icon class="h-4 w-4 text-muted-foreground" />
-          </Card.Header>
-          <Card.Content>
-            <div class="text-2xl font-bold text-foreground">{stat.value}</div>
-            <p class="flex items-center text-xs text-muted-foreground">
-              {#if stat.up}
-                <ArrowUpRight class="mr-1 h-3 w-3 text-emerald-500" />
-                <span class="text-emerald-500">{stat.change}</span>
-              {:else}
-                <ArrowDownRight class="mr-1 h-3 w-3 text-red-500" />
-                <span class="text-red-500">{stat.change}</span>
-              {/if}
-              <span class="ml-1">from last month</span>
-            </p>
-          </Card.Content>
-        </Card.Root>
+        <Card>
+          {#snippet header()}
+            <div class="flex flex-row items-center justify-between pb-2">
+              <span class="text-sm font-medium text-muted-foreground">{stat.label}</span>
+              <stat.icon class="h-4 w-4 text-muted-foreground" />
+            </div>
+          {/snippet}
+          <div class="text-2xl font-bold text-foreground">{stat.value}</div>
+          <p class="flex items-center text-xs text-muted-foreground">
+            {#if stat.up}
+              <ArrowUpRight class="mr-1 h-3 w-3 text-emerald-500" />
+              <span class="text-emerald-500">{stat.change}</span>
+            {:else}
+              <ArrowDownRight class="mr-1 h-3 w-3 text-red-500" />
+              <span class="text-red-500">{stat.change}</span>
+            {/if}
+            <span class="ml-1">from last month</span>
+          </p>
+        </Card>
       {/each}
     </div>
 
     <div class="mt-6">
-      <Card.Root>
-        <Card.Header>
-          <Card.Title>Recent Activity</Card.Title>
-          <Card.Description>Latest actions across your workspace.</Card.Description>
-        </Card.Header>
-        <Card.Content>
-          <div class="space-y-4">
-            {#each activity as item}
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground">
-                    {item.user.split(" ").map((n) => n[0]).join("")}
-                  </div>
-                  <div>
-                    <p class="text-sm text-foreground">
-                      <span class="font-medium">{item.user}</span>
-                      {item.action}
-                    </p>
-                    <p class="text-xs text-muted-foreground">{item.time}</p>
-                  </div>
-                </div>
-                <Badge variant="outline">{item.badge}</Badge>
-              </div>
-              {#if activity.indexOf(item) < activity.length - 1}
-                <Separator />
-              {/if}
-            {/each}
+      <Card>
+        {#snippet header()}
+          <div>
+            <h3 class="text-lg font-semibold text-foreground">Recent Activity</h3>
+            <p class="text-sm text-muted-foreground">Latest actions across your workspace.</p>
           </div>
-        </Card.Content>
-      </Card.Root>
+        {/snippet}
+        <div class="space-y-4">
+          {#each activity as item}
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-xs font-medium text-muted-foreground">
+                  {item.user.split(" ").map((n) => n[0]).join("")}
+                </div>
+                <div>
+                  <p class="text-sm text-foreground">
+                    <span class="font-medium">{item.user}</span>
+                    {item.action}
+                  </p>
+                  <p class="text-xs text-muted-foreground">{item.time}</p>
+                </div>
+              </div>
+              <Badge variant="outline">{item.badge}</Badge>
+            </div>
+            {#if activity.indexOf(item) < activity.length - 1}
+              <Separator />
+            {/if}
+          {/each}
+        </div>
+      </Card>
     </div>
   </main>
 </div>

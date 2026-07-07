@@ -3,6 +3,7 @@ import type { Component, Snippet } from "svelte";
 import RuleFootnote from "../../primitives/RuleFootnote.svelte";
 import ThemeToggle from "../../primitives/ThemeToggle.svelte";
 import type { NavGroup, StatusVariant, TFunction } from "../../shared-types";
+import { isBrowser } from "../../utils/isBrowser";
 import { derivePageInfo } from "../../utils/navigation";
 import MetaLayout from "../MetaLayout.svelte";
 import MetaScrollable from "../MetaScrollable.svelte";
@@ -72,9 +73,7 @@ let {
 	children?: Snippet;
 } = $props();
 
-let pagePath = $derived(
-	pathname ?? (typeof window !== "undefined" ? window.location.pathname : ""),
-);
+let pagePath = $derived(pathname ?? (isBrowser ? window.location.pathname : ""));
 let pageInfo = $derived(
 	derivePageInfo(pagePath, navigation, { title: defaultTitle, description: defaultDescription }),
 );

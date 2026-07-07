@@ -86,7 +86,7 @@ export default defineConfig({
 | Path | Contents | Example |
 |---|---|---|
 | `bindrunes` | Primitives, composables, utilities, types | `import { Button, useTheme } from "bindrunes"` |
-| `bindrunes/layouts` | Layouts + templates | `import { PageShell, DashboardTemplate } from "bindrunes/layouts"` |
+| `bindrunes/layouts` | Layouts + templates | `import { PageShell, DashboardShell } from "bindrunes/layouts"` |
 | `bindrunes/domains/<name>` | Single domain components | `import { LoginForm } from "bindrunes/domains/auth"` |
 | `bindrunes/agentic` | LLM agent tools | `import { createAgentLoop } from "bindrunes/agentic"` |
 | `bindrunes/tailwind` | Tailwind CSS plugin | `@plugin "bindrunes/tailwind"` |

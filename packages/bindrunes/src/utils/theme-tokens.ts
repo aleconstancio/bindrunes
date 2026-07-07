@@ -63,9 +63,15 @@ export const THEME_TOKENS: Record<string, Record<string, string>> = {
 	},
 };
 
-THEME_TOKENS.akashic = THEME_TOKENS.nord;
-THEME_TOKENS.martian = THEME_TOKENS.dracula;
-THEME_TOKENS.alchemy = THEME_TOKENS.github;
-THEME_TOKENS.druidic = THEME_TOKENS["rose-pine"];
-THEME_TOKENS.obsidian = THEME_TOKENS.editorial;
-THEME_TOKENS.contrast = THEME_TOKENS.github;
+const nord = THEME_TOKENS.nord;
+const dracula = THEME_TOKENS.dracula;
+const github = THEME_TOKENS.github;
+const rosePine = THEME_TOKENS["rose-pine"];
+const editorial = THEME_TOKENS.editorial;
+
+if (nord) THEME_TOKENS.akashic = nord;
+if (dracula) THEME_TOKENS.martian = dracula;
+if (github) THEME_TOKENS.alchemy = github;
+if (rosePine) THEME_TOKENS.druidic = rosePine;
+if (editorial) THEME_TOKENS.obsidian = editorial;
+if (github) THEME_TOKENS.contrast = github;

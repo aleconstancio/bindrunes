@@ -24,7 +24,7 @@ Full-page template components that compose domain components into ready-to-use p
 | Template | Description |
 |----------|-------------|
 | `AuthTemplate` | Complete auth flow (login, register, forgot password, etc.) |
-| `DashboardTemplate` | Dashboard shell with stats, activity, and quick actions |
+| `DashboardShell` | Dashboard shell with sidebar, header, and content area |
 | `CrudTemplate` | CRUD list, create, edit, detail, and delete pages |
 | `CalendarTemplate` | Calendar with scheduling and booking |
 | `ChatTemplate` | Chat thread, input, and conversation list |

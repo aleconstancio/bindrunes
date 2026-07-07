@@ -79,10 +79,10 @@ export class RealtimeClient {
 			};
 			if (token) headers.Authorization = `Bearer ${token}`;
 
-			const fetchFn =
+			const fetchFn: typeof fetch =
 				this.options.fetch ??
-				((input: RequestInfo, init?: RequestInit) =>
-					fetch(input, { ...init, credentials: "same-origin" }));
+				((input: RequestInfo | URL, init?: RequestInit) =>
+					fetch(input as RequestInfo, { ...init, credentials: "same-origin" }));
 
 			fetchEventSource(url, {
 				method: "GET",

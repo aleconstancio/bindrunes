@@ -89,15 +89,13 @@
         </p>
         <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {#each features as feat}
-            <Card.Root>
-              <Card.Header>
+            <Card>
+              {#snippet header()}
                 <feat.icon class="h-8 w-8 text-primary" />
-                <Card.Title class="mt-2">{feat.title}</Card.Title>
-              </Card.Header>
-              <Card.Content>
-                <p class="text-sm text-muted-foreground">{feat.description}</p>
-              </Card.Content>
-            </Card.Root>
+                <h3 class="mt-2 text-lg font-semibold text-foreground">{feat.title}</h3>
+              {/snippet}
+              <p class="text-sm text-muted-foreground">{feat.description}</p>
+            </Card>
           {/each}
         </div>
       </div>
@@ -114,10 +112,10 @@
         </p>
         <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
           {#each plans as plan}
-            <Card.Root class={plan.highlighted ? "border-primary shadow-md" : ""}>
-              <Card.Header>
+            <Card class={plan.highlighted ? "border-primary shadow-md" : ""}>
+              {#snippet header()}
                 <div class="flex items-center justify-between">
-                  <Card.Title>{plan.name}</Card.Title>
+                  <h3 class="text-lg font-semibold text-foreground">{plan.name}</h3>
                   {#if plan.badge}
                     <Badge>{plan.badge}</Badge>
                   {/if}
@@ -126,8 +124,8 @@
                   <span class="text-4xl font-bold text-foreground">${plan.price}</span>
                   <span class="text-muted-foreground">/month</span>
                 </div>
-              </Card.Header>
-              <Card.Content class="space-y-4">
+              {/snippet}
+              <div class="space-y-4">
                 <ul class="space-y-2">
                   {#each plan.features as feat}
                     <li class="flex items-center gap-2 text-sm text-muted-foreground">
@@ -136,11 +134,11 @@
                     </li>
                   {/each}
                 </ul>
-                <Button class="w-full" variant={plan.highlighted ? "default" : "outline"}>
+                <Button class="w-full" variant={plan.highlighted ? "primary" : "outline"}>
                   {plan.cta}
                 </Button>
-              </Card.Content>
-            </Card.Root>
+              </div>
+            </Card>
           {/each}
         </div>
       </div>
@@ -153,10 +151,12 @@
       <div class="mx-auto max-w-3xl">
         <h2 class="text-center text-3xl font-bold text-foreground">Frequently asked questions</h2>
         <div class="mt-12">
-          <Accordion type="single">
+          <Accordion>
             {#each faqs as faq}
               <AccordionItem value={faq.question}>
-                <h3 class="font-semibold text-foreground">{faq.question}</h3>
+                {#snippet trigger()}
+                  <span class="font-semibold text-foreground">{faq.question}</span>
+                {/snippet}
                 <p class="text-sm text-muted-foreground">{faq.answer}</p>
               </AccordionItem>
             {/each}

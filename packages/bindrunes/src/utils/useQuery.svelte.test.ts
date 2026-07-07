@@ -23,8 +23,7 @@ describe("useQuery", () => {
 	it("does not fetch on mount when enabled is false", async () => {
 		const fetcher = vi.fn().mockResolvedValue("data");
 		await mountComposable(() => useQuery({ key: "test-disabled", fetcher, enabled: false }));
-		await new Promise((r) => setTimeout(r, 50));
-		expect(fetcher).not.toHaveBeenCalled();
+		await vi.waitFor(() => expect(fetcher).not.toHaveBeenCalled());
 	});
 
 	it("returns cached data when same key is used by a previous query", async () => {
@@ -70,7 +69,9 @@ describe("useQuery", () => {
 		const query = await mountComposable(() => useQuery({ key: "no-interval", fetcher }));
 		await vi.waitFor(() => expect(query.isSuccess).toBe(true));
 		const callCount = fetcher.mock.calls.length;
-		await new Promise((r) => setTimeout(r, 100));
+		vi.useFakeTimers();
+		await vi.advanceTimersByTimeAsync(200);
+		vi.useRealTimers();
 		expect(fetcher).toHaveBeenCalledTimes(callCount);
 	});
 
@@ -100,8 +101,7 @@ describe("useQuery", () => {
 		fetcher.mockClear();
 
 		window.dispatchEvent(new Event("focus"));
-		await new Promise((r) => setTimeout(r, 100));
-		expect(fetcher).not.toHaveBeenCalled();
+		await vi.waitFor(() => expect(fetcher).not.toHaveBeenCalled());
 	});
 
 	it("does not refetch on window focus when enabled is false", async () => {
@@ -109,10 +109,9 @@ describe("useQuery", () => {
 		await mountComposable(() =>
 			useQuery({ key: "disabled-focus", fetcher, enabled: false, refetchOnWindowFocus: true }),
 		);
-		await new Promise((r) => setTimeout(r, 50));
+		await vi.waitFor(() => expect(fetcher).not.toHaveBeenCalled());
 		window.dispatchEvent(new Event("focus"));
-		await new Promise((r) => setTimeout(r, 50));
-		expect(fetcher).not.toHaveBeenCalled();
+		await vi.waitFor(() => expect(fetcher).not.toHaveBeenCalled());
 	});
 
 	it("refetch() manually triggers a fetch and syncs from cache", async () => {

@@ -65,7 +65,7 @@ Atomic UI components. No domain knowledge.
 Structural shells, page zones, navigation, and pre-composed templates.
 
 - **Path:** `bindrunes/layouts`
-- **Examples:** `PageShell`, `MetaLayout`, `DashboardShell`, `Sidebar`, `DashboardTemplate`, `AuthTemplate`
+- **Examples:** `PageShell`, `MetaLayout`, `DashboardShell`, `Sidebar`, `AuthTemplate`
 
 ### Layer 3: Domains (`bindrunes/domains/<name>`)
 
@@ -79,7 +79,7 @@ Feature-specific components composing primitives and layouts.
 Pre-composed full-page layouts. Now live in `bindrunes/layouts`.
 
 - **Path:** `bindrunes/layouts`
-- **Examples:** `DashboardTemplate`, `AuthTemplate`, `CrudTemplate`, `SettingsTemplate`
+- **Examples:** `AuthTemplate`, `CrudTemplate`, `SettingsTemplate`
 
 ---
 

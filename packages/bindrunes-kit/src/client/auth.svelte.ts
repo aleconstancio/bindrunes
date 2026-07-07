@@ -102,7 +102,7 @@ export function createClientAuth(options: CreateClientAuthOptions = {}) {
 			return localStorage.getItem(tokenKey);
 		}
 		const match = document.cookie.match(new RegExp(`${tokenKey}=([^;]+)`));
-		return match ? match[1] : null;
+		return match?.[1] ?? null;
 	}
 
 	function setToken(value: string) {

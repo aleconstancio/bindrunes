@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 
-Svelte 5 component library for B2B SaaS. Server-first rendering, responsive hybrid, 270+ components, 60+ composables.
+Svelte 5 component library for B2B SaaS. Server-first rendering, responsive hybrid, 234 components, 25 composables.
 
 ## Quick Start
 

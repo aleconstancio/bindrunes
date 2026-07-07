@@ -8,6 +8,7 @@
 
 import type { CompactionPlan, EvictionPolicy, Turn, Window, WindowId } from "../../types/agent";
 import { toWindowId } from "../../types/agent";
+import { uid } from "./uid";
 
 // ── Internal mutable types ──
 // The public Window type uses ReadonlyArray and readonly fields.
@@ -57,12 +58,6 @@ export interface WindowStore {
 	appendTurn(windowId: WindowId | undefined, turn: Turn): void;
 	compact(windowId: WindowId, plan: CompactionPlan): void;
 	remove(windowId: WindowId): void;
-}
-
-function uid(prefix: string): string {
-	const r = Math.random().toString(36).slice(2, 10);
-	const t = Date.now().toString(36);
-	return `${prefix}_${t}${r}`;
 }
 
 function sumTokens(turns: ReadonlyArray<Turn>): number {
@@ -117,6 +112,12 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		return windows.findIndex((w) => w.id === id);
 	}
 
+	function getWindow(idx: number, errorMessage: string): MutableWindow {
+		const win = windows[idx];
+		if (!win) throw new Error(errorMessage);
+		return win;
+	}
+
 	function refresh(win: MutableWindow): void {
 		// Bump updatedAt and budget.used to reflect current turns.
 		win.updatedAt = nowMs();
@@ -149,7 +150,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		fork<TState>(fromId: WindowId, forkOptions?: ForkOptions<TState>): WindowId {
 			const idx = findIndex(fromId);
 			if (idx === -1) throw new Error(`createWindowStore.fork: window not found: ${fromId}`);
-			const source = windows[idx];
+			const source = getWindow(idx, `createWindowStore.fork: window not found: ${fromId}`);
 			const childId = toWindowId(uid("w"));
 			const childState = (forkOptions?.state ?? source.state) as TState;
 			const child = emptyWindow(childId, fromId, childState, budgetCap, source.policy, nowMs());
@@ -176,7 +177,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 			if (idx === -1) {
 				throw new Error(`createWindowStore.appendTurn: window not found: ${targetId}`);
 			}
-			const win = windows[idx];
+			const win = getWindow(idx, `createWindowStore.appendTurn: window not found: ${targetId}`);
 			win.turns.push(turn);
 			refresh(win);
 		},
@@ -186,7 +187,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 			if (idx === -1) {
 				throw new Error(`createWindowStore.compact: window not found: ${windowId}`);
 			}
-			const win = windows[idx];
+			const win = getWindow(idx, `createWindowStore.compact: window not found: ${windowId}`);
 			const dropSet = new Set(plan.dropTurnIds);
 			const kept = win.turns.filter((t) => !dropSet.has(t.id));
 			win.turns.length = 0;
@@ -209,7 +210,7 @@ export function createWindowStore(options: WindowStoreOptions = {}): WindowStore
 		remove(windowId: WindowId): void {
 			const idx = findIndex(windowId);
 			if (idx === -1) return;
-			const win = windows[idx];
+			const win = getWindow(idx, `createWindowStore.remove: window not found: ${windowId}`);
 			// Detach from parent's children list.
 			if (win.parentId !== null) {
 				const parent = windows.find((w) => w.id === win.parentId);

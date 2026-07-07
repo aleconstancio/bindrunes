@@ -40,9 +40,10 @@ const virtualList = useVirtualList(shouldVirtualize ? messages : [], {
 });
 
 let virtualContainer = $state<HTMLDivElement | null>(null);
+let containerRef = $state<HTMLDivElement | null>(null);
 
 $effect(() => {
-	const container = shouldVirtualize ? virtualContainer : messagesContainer;
+	const container = containerRef;
 	if (container) {
 		container.addEventListener("scroll", virtualList.scrollHandler);
 		virtualList.containerHeight = container.clientHeight;
@@ -96,7 +97,7 @@ $effect(() => {
 {/if}
 
 <div
-	bind:this={shouldVirtualize ? virtualContainer : messagesContainer}
+	bind:this={containerRef}
 	class="flex-1 overflow-y-auto p-6 {className}"
 	style={shouldVirtualize ? virtualList.containerStyle : undefined}
 	role="log"

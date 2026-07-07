@@ -289,15 +289,15 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 Pre-composed full-page layouts. Previously in `bindrunes/templates`, now merged into layouts.
 
-### `DashboardTemplate`
+### `DashboardShell`
 
 ```svelte
-<DashboardTemplate appName="MyApp" navigation={groups} pathname={route}>
+<DashboardShell appName="MyApp" navigation={groups} pathname={route}>
   <p>Dashboard content</p>
-</DashboardTemplate>
+</DashboardShell>
 ```
 
-Props: `appName`, `appSubtitle`, `brandIcon`, `title`, `description`, `navigation`, `pathname`, `onNavigate`, `sidebarCollapsible`, `sidebarHeader`, `sidebarFooter`, `headerActions`, `statusChip`, `children`.
+Props: `variant`, `appName`, `appSubtitle`, `brandIcon`, `navigation`, `pathname`, `scopeLabel`, `scopeTitle`, `scopeDescription`, `ruleTitle`, `ruleDescription`, `headerPrefix`, `defaultTitle`, `defaultDescription`, `pageTitle`, `pageDescription`, `sidebarCollapsible`, `statusChip`, `onNavigate`, `t`, `sidebarHeader`, `sidebarFooter`, `headerActions`, `children`.
 
 ### `CrudTemplate`
 

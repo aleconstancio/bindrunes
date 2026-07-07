@@ -1,7 +1,7 @@
 {
 	"name": "bindrunes",
 	"version": "4.0.0",
-	"description": "Svelte 5 component library for B2B SaaS applications — 270+ components, 60+ composables, three-axis design system",
+	"description": "Svelte 5 component library for B2B SaaS applications — 234 components, 25 composables, three-axis design system",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
@@ -9,10 +9,28 @@
 		"url": "https://github.com/aleconstancio/bindrunes.git",
 		"directory": "packages/bindrunes"
 	},
-	"homepage": "https://github.com/aleconstancio/bindrunes#readme",
+	"homepage": "https://bindrunes.dev",
 	"bugs": {
 		"url": "https://github.com/aleconstancio/bindrunes/issues"
 	},
+	"keywords": [
+		"svelte",
+		"svelte5",
+		"component-library",
+		"design-system",
+		"tailwind",
+		"tailwindcss",
+		"b2b",
+		"saas",
+		"ssr",
+		"oklch",
+		"ui",
+		"reactive",
+		"composable",
+		"agentic",
+		"copilot",
+		"llm"
+	],
 	"publishConfig": {
 		"access": "public",
 		"provenance": true
@@ -121,6 +139,7 @@
 		}
 	},
 	"dependencies": {
+		"@bindrunes/tokens": "workspace:*",
 		"bits-ui": "^2.18.1",
 		"dompurify": "^3.4.11",
 		"tailwind-merge": "^3.6.0",

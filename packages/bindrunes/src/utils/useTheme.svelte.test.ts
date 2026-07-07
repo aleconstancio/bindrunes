@@ -1,3 +1,4 @@
+import { waitFor } from "@testing-library/svelte";
 import { beforeEach, describe, expect, it } from "vitest";
 import { mountComposable } from "../helpers/test-wrapper.svelte";
 import { useTheme } from "./useTheme.svelte";
@@ -34,15 +35,15 @@ describe("useTheme", () => {
 	it("setTheme writes to data-theme attribute", async () => {
 		const t = await mountComposable(() => useTheme());
 		t.setTheme("catppuccin");
-		await new Promise((r) => setTimeout(r, 10));
-		expect(document.documentElement.getAttribute("data-theme")).toBe("catppuccin");
+		await waitFor(() =>
+			expect(document.documentElement.getAttribute("data-theme")).toBe("catppuccin"),
+		);
 	});
 
 	it("setTheme persists to localStorage", async () => {
 		const t = await mountComposable(() => useTheme());
 		t.setTheme("github");
-		await new Promise((r) => setTimeout(r, 10));
-		expect(localStorage.getItem("bindrunes_theme")).toContain("github");
+		await waitFor(() => expect(localStorage.getItem("bindrunes_theme")).toContain("github"));
 	});
 
 	it("reads initial theme from localStorage", async () => {

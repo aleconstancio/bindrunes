@@ -13,7 +13,7 @@
 
 <SEO
 	title="bindrunes — The Svelte design system for the modern web"
-	description="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful Svelte apps."
+	description="234 components, 25 composables, 126 theme combinations — everything you need to build beautiful Svelte apps."
 />
 
 <AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">

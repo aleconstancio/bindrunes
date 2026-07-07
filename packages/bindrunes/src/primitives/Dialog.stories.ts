@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/svelte";
-import Button from "./Button.svelte";
 import Dialog from "./Dialog.svelte";
 
 const meta = {

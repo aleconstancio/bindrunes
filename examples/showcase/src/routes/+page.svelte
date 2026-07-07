@@ -104,7 +104,7 @@
 
 <svelte:head>
 	<title>bindrunes — The Svelte design system for the modern web</title>
-	<meta name="description" content="248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful Svelte apps." />
+	<meta name="description" content="234 components, 25 composables, 126 theme combinations — everything you need to build beautiful Svelte apps." />
 </svelte:head>
 
 <div class="landing-page">
@@ -115,7 +115,7 @@
 		</div>
 		<h1 class="hero-title">The Svelte design system for the modern web</h1>
 		<p class="hero-subtitle">
-			248+ components, 53+ composables, 126 theme combinations — everything you need to build beautiful SaaS apps with Svelte 5.
+			234 components, 25 composables, 126 theme combinations — everything you need to build beautiful SaaS apps with Svelte 5.
 		</p>
 		<div class="hero-ctas">
 			<Button size="lg" href="/docs/getting-started">Get Started →</Button>

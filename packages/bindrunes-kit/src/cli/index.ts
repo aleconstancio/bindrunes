@@ -79,6 +79,7 @@ function parseArgs(argv: string[]): { yes: boolean; template: Mode | null; name:
 
 	for (let i = 0; i < args.length; i++) {
 		const arg = args[i];
+		if (!arg) continue;
 		if (arg === "--yes" || arg === "-y") {
 			yes = true;
 		} else if (arg === "--template" || arg === "-t") {
@@ -128,7 +129,8 @@ async function promptChoice(
 		const answer = await prompt(rl, `\nSelect (1-${choices.length}): `);
 		const idx = Number.parseInt(answer, 10) - 1;
 		if (idx >= 0 && idx < choices.length) {
-			return choices[idx].value;
+			const choice = choices[idx];
+			if (choice) return choice.value;
 		}
 		console.log(`Invalid choice. Enter a number between 1 and ${choices.length}.`);
 	}
@@ -154,7 +156,11 @@ async function promptMultiSelect(
 		const indices = answer.split(",").map((s) => Number.parseInt(s.trim(), 10) - 1);
 		const valid = indices.every((i) => i >= 0 && i < choices.length);
 		if (valid) {
-			return [...new Set(indices.map((i) => choices[i].value))];
+			return [
+				...new Set(
+					indices.map((i) => choices[i]?.value).filter((v): v is string => v !== undefined),
+				),
+			];
 		}
 		console.log(`Invalid selection. Enter numbers between 1 and ${choices.length}.`);
 	}

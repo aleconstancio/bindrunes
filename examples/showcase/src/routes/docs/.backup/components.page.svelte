@@ -329,7 +329,7 @@ import { Badge, CodeSnippet } from "bindrunes";
       </p>
       <div class="space-y-4">
         <div>
-          <h3 class="text-title-2 text-foreground mb-2">DashboardTemplate</h3>
+          <h3 class="text-title-2 text-foreground mb-2">DashboardShell</h3>
           <p class="text-body-sm text-muted-foreground">Full app shell with sidebar navigation, header, and content area.</p>
         </div>
         <div>

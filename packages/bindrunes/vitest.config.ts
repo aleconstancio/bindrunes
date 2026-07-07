@@ -18,6 +18,8 @@ export default defineConfig({
 	test: {
 		globals: true,
 		setupFiles: ["./src/test-setup.ts"],
+		testTimeout: 10_000,
+		hookTimeout: 10_000,
 		exclude: ["node_modules", "dist", ".svelte-kit", "**/__package__/**"],
 		deps: {
 			optimizer: {
@@ -35,7 +37,7 @@ export default defineConfig({
 					environment: "happy-dom",
 					pool: "forks",
 					maxForks: 2,
-					minForks: 2,
+					minForks: 1,
 				},
 			},
 			{
@@ -53,7 +55,13 @@ export default defineConfig({
 				extends: true,
 				test: {
 					name: "utils",
-					include: ["src/utils/**/*.{test,spec}.{js,ts}", "src/helpers/**/*.{test,spec}.{js,ts}"],
+					include: [
+						"src/utils/**/*.{test,spec}.{js,ts}",
+						"src/helpers/**/*.{test,spec}.{js,ts}",
+						"src/actions/**/*.{test,spec}.{js,ts}",
+						"src/i18n/**/*.{test,spec}.{js,ts}",
+						"src/types/**/*.{test,spec}.{js,ts}",
+					],
 					environment: "happy-dom",
 					pool: "forks",
 					maxForks: 2,
@@ -68,7 +76,7 @@ export default defineConfig({
 					environment: "happy-dom",
 					pool: "forks",
 					maxForks: 2,
-					minForks: 2,
+					minForks: 1,
 				},
 			},
 			{

@@ -42,18 +42,25 @@ export function formatTime(date: Date | string | number): string {
 	return formatDate(date, { hour: "2-digit", minute: "2-digit" });
 }
 
-const RELATIVE_STRINGS: Record<
-	string,
-	{
-		now: string;
-		min: string;
-		mins: string;
-		hour: string;
-		hours: string;
-		yesterday: string;
-		days: string;
-	}
-> = {
+const DEFAULT_RELATIVE_STRINGS: {
+	now: string;
+	min: string;
+	mins: string;
+	hour: string;
+	hours: string;
+	yesterday: string;
+	days: string;
+} = {
+	now: "now",
+	min: "1 minute ago",
+	mins: "{n} minutes ago",
+	hour: "1 hour ago",
+	hours: "{n} hours ago",
+	yesterday: "yesterday",
+	days: "{n} days ago",
+};
+
+const RELATIVE_STRINGS: Record<string, typeof DEFAULT_RELATIVE_STRINGS> = {
 	pt: {
 		now: "agora",
 		min: "1 minuto atrás",
@@ -63,20 +70,12 @@ const RELATIVE_STRINGS: Record<
 		yesterday: "ontem",
 		days: "{n} dias atrás",
 	},
-	en: {
-		now: "now",
-		min: "1 minute ago",
-		mins: "{n} minutes ago",
-		hour: "1 hour ago",
-		hours: "{n} hours ago",
-		yesterday: "yesterday",
-		days: "{n} days ago",
-	},
+	en: DEFAULT_RELATIVE_STRINGS,
 };
 
 function getRelativeStrings() {
-	const lang = _locale.split("-")[0];
-	return RELATIVE_STRINGS[lang] ?? RELATIVE_STRINGS.en;
+	const lang = _locale.split("-")[0] ?? "en";
+	return RELATIVE_STRINGS[lang] ?? DEFAULT_RELATIVE_STRINGS;
 }
 
 export function formatRelative(date: Date | string | number): string {

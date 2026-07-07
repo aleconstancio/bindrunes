@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { DashboardTemplate } from "bindrunes/layouts";
+	import { DashboardShell } from "bindrunes/layouts";
 	import { DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "bindrunes/domains/dashboard";
 	import { Button, Card } from "bindrunes";
 	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
@@ -52,10 +52,10 @@
 	const maxValue = Math.max(...chartData.map(d => d.value));
 </script>
 
-<DashboardTemplate
+<DashboardShell
 	appName="Showcase"
-	title="Dashboard"
-	description="Shell variants, stats, activity feeds, and dashboard widgets"
+	defaultTitle="Dashboard"
+	defaultDescription="Shell variants, stats, activity feeds, and dashboard widgets"
 	{navigation}
 	pathname="/dashboard"
 >
@@ -95,4 +95,4 @@
 			{ label: "Support", href: "#" },
 		]}
 	/>
-</DashboardTemplate>
+</DashboardShell>

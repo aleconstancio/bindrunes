@@ -2,6 +2,7 @@ import { createStorage } from "./createStorage";
 
 type ReactiveMediaQueryOptions = {
 	query: string;
+	defaultValue?: boolean;
 	storageKey?: string;
 };
 

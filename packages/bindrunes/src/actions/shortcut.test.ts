@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { shortcut } from "./shortcut";
 
 function createMockElement(): HTMLElement {
@@ -17,6 +17,13 @@ function pressKey(key: string, opts: { ctrl?: boolean; meta?: boolean } = {}): K
 }
 
 describe("shortcut action", () => {
+	const cleanups: Array<() => void> = [];
+
+	afterEach(() => {
+		cleanups.forEach((fn) => fn());
+		cleanups.length = 0;
+	});
+
 	it("returns an object with destroy method", () => {
 		const node = createMockElement();
 		const result = shortcut(node, {
@@ -25,12 +32,14 @@ describe("shortcut action", () => {
 		});
 		expect(result).toHaveProperty("destroy");
 		expect(typeof result.destroy).toBe("function");
+		if (result?.destroy) cleanups.push(() => result.destroy());
 	});
 
 	it("calls callback when matching key is pressed", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("k"));
 		expect(cb).toHaveBeenCalledTimes(1);
@@ -39,7 +48,8 @@ describe("shortcut action", () => {
 	it("does not call callback when non-matching key is pressed", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("j"));
 		expect(cb).not.toHaveBeenCalled();
@@ -48,7 +58,8 @@ describe("shortcut action", () => {
 	it("calls callback when ctrl is required and ctrl is pressed", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", ctrl: true, callback: cb });
+		const result = shortcut(node, { key: "k", ctrl: true, callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("k", { ctrl: true }));
 		expect(cb).toHaveBeenCalledTimes(1);
@@ -57,7 +68,8 @@ describe("shortcut action", () => {
 	it("calls callback when ctrl is required and meta is pressed", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", ctrl: true, callback: cb });
+		const result = shortcut(node, { key: "k", ctrl: true, callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("k", { meta: true }));
 		expect(cb).toHaveBeenCalledTimes(1);
@@ -66,7 +78,8 @@ describe("shortcut action", () => {
 	it("does not call callback when ctrl is required but not pressed", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", ctrl: true, callback: cb });
+		const result = shortcut(node, { key: "k", ctrl: true, callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("k"));
 		expect(cb).not.toHaveBeenCalled();
@@ -76,10 +89,11 @@ describe("shortcut action", () => {
 		const cb1 = vi.fn();
 		const cb2 = vi.fn();
 		const node = createMockElement();
-		shortcut(node, [
+		const result = shortcut(node, [
 			{ key: "k", ctrl: true, callback: cb1 },
 			{ key: "Escape", callback: cb2 },
 		]);
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("k", { ctrl: true }));
 		expect(cb1).toHaveBeenCalledTimes(1);
@@ -91,7 +105,8 @@ describe("shortcut action", () => {
 	it("key matching is case-insensitive", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "Escape", callback: cb });
+		const result = shortcut(node, { key: "Escape", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		window.dispatchEvent(pressKey("escape"));
 		expect(cb).toHaveBeenCalledTimes(1);
@@ -100,7 +115,8 @@ describe("shortcut action", () => {
 	it("does not fire when input is focused", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		const input = document.createElement("input");
 		document.body.appendChild(input);
@@ -115,7 +131,8 @@ describe("shortcut action", () => {
 	it("does not fire when textarea is focused", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		const ta = document.createElement("textarea");
 		document.body.appendChild(ta);
@@ -130,7 +147,8 @@ describe("shortcut action", () => {
 	it("does not fire when select is focused", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		const sel = document.createElement("select");
 		document.body.appendChild(sel);
@@ -145,7 +163,8 @@ describe("shortcut action", () => {
 	it("does not fire when contenteditable is focused", () => {
 		const cb = vi.fn();
 		const node = createMockElement();
-		shortcut(node, { key: "k", callback: cb });
+		const result = shortcut(node, { key: "k", callback: cb });
+		if (result?.destroy) cleanups.push(() => result.destroy());
 
 		const ce = document.createElement("div");
 		ce.setAttribute("contenteditable", "true");

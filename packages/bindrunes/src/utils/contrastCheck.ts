@@ -11,9 +11,9 @@ export function parseOklch(str: string): { L: number; C: number; H: number } | n
 	const match = str.match(/oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)\s*(?:\/\s*[\d.]+)?\s*\)/);
 	if (!match) return null;
 	return {
-		L: Number.parseFloat(match[1]),
-		C: Number.parseFloat(match[2]),
-		H: Number.parseFloat(match[3]),
+		L: Number.parseFloat(match[1] ?? "0"),
+		C: Number.parseFloat(match[2] ?? "0"),
+		H: Number.parseFloat(match[3] ?? "0"),
 	};
 }
 

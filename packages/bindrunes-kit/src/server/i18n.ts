@@ -12,7 +12,7 @@ export function createServerI18n(options: CreateServerI18nOptions) {
 	function detectLocale(event: RequestEvent): string {
 		if (strategy === "path") {
 			const match = event.url.pathname.match(/^\/([a-z]{2}(?:-[A-Z]{2})?)\//);
-			return match && locales.includes(match[1]) ? match[1] : defaultLocale;
+			return match?.[1] && locales.includes(match[1]) ? match[1] : defaultLocale;
 		}
 
 		if (strategy === "cookie") {
@@ -31,7 +31,7 @@ export function createServerI18n(options: CreateServerI18nOptions) {
 
 	function getPathLocale(pathname: string): string | null {
 		const match = pathname.match(/^\/([a-z]{2}(?:-[A-Z]{2})?)\//);
-		return match && locales.includes(match[1]) ? match[1] : null;
+		return match?.[1] && locales.includes(match[1]) ? match[1] : null;
 	}
 
 	const handle: Handle = async ({ event, resolve }) => {

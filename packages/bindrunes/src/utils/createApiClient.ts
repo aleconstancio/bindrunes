@@ -50,7 +50,7 @@ export function createApiClient<
 
 			if (response.status === 401) {
 				onUnauthorized?.();
-				throw new Error("Unauthorized");
+				throw new Error(`Unauthorized: ${method} ${path}`);
 			}
 
 			if (!response.ok) {

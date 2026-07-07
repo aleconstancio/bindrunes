@@ -5,7 +5,6 @@ export { default as AuthTemplate } from "../templates/AuthTemplate.svelte";
 export { default as CalendarTemplate } from "../templates/CalendarTemplate.svelte";
 export { default as ChatTemplate } from "../templates/ChatTemplate.svelte";
 export { default as CrudTemplate } from "../templates/CrudTemplate.svelte";
-export { default as DashboardTemplate } from "../templates/DashboardTemplate.svelte";
 export { default as EcommerceTemplate } from "../templates/EcommerceTemplate.svelte";
 export { default as MarketingTemplate } from "../templates/MarketingTemplate.svelte";
 export { default as MediaTemplate } from "../templates/MediaTemplate.svelte";

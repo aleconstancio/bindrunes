@@ -97,7 +97,8 @@ export function createPersistenceAdapter(
 				}
 			}
 			if (data.activeId && store.windows.length > 0) {
-				store.navigate(store.windows[0].id);
+				const firstWindow = store.windows[0];
+				if (firstWindow) store.navigate(firstWindow.id);
 			}
 		},
 

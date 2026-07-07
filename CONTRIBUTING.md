@@ -29,6 +29,20 @@ bun run lint
 - `bun run test:coverage` — Run tests with coverage reports.
 - `bun run lint` / `bun run lint:fix` — Format check and fix.
 
+### Just Commands
+
+The `justfile` provides shortcuts for common workflows:
+
+- `just dev` — Watch mode (library only)
+- `just dev:all` — Watch mode (library + all demos)
+- `just demo` — Run the showcase app
+- `just build` — Build all packages
+- `just lint` — Lint check
+- `just check` — TypeScript check
+- `just test` — Run tests
+- `just validate` — Build + lint + typecheck + test (pre-PR check)
+- `just prepublish` — Build + validate
+
 ---
 
 ## Showcase as Canonical Demo
@@ -100,16 +114,23 @@ Avoid these patterns in v2 code:
 
 ## Export Paths
 
-v2 has exactly 7 export paths:
+The library has 14+ export paths:
 
 ```ts
 import { /* core */ } from "bindrunes";
-import { /* layouts */ } from "bindrunes/layouts";
+import { /* server */ } from "bindrunes/server";
+import { /* responsive */ } from "bindrunes/responsive";
+import { /* motion */ } from "bindrunes/motion";
+import { /* data */ } from "bindrunes/data";
+import { /* forms */ } from "bindrunes/forms";
+import { /* auth */ } from "bindrunes/auth";
 import { /* domain */ } from "bindrunes/domains/<name>";
+import { /* layouts */ } from "bindrunes/layouts";
 import { /* agentic */ } from "bindrunes/agentic";
-import { /* tailwind */ } from "bindrunes/tailwind";
+import { /* playground */ } from "bindrunes/playground";
 import "bindrunes/styles/<name>.css";
 import "bindrunes/i18n/<locale>.json";
+import "bindrunes/tailwind";
 ```
 
 ---

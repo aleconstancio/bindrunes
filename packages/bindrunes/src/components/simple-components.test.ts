@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/svelte";
 import { describe, expect, it } from "vitest";
+import SidebarProviderHarness from "../layouts/__tests__/harness/SidebarProviderHarness.svelte";
 import DashboardShell from "../layouts/dashboard/DashboardShell.svelte";
 import { Tabs } from "../layouts/tabs/index";
 import AlertDialog from "../primitives/AlertDialog.svelte";
@@ -38,12 +39,12 @@ describe("Simple components", () => {
 
 	describe("DashboardShell", () => {
 		it("renders the shell wrapper", () => {
-			const { container } = render(DashboardShell);
+			const { container } = render(DashboardShell, {}, { wrapper: SidebarProviderHarness });
 			expect(container.firstElementChild).toBeInTheDocument();
 		});
 
 		it("renders main element", () => {
-			const { container } = render(DashboardShell);
+			const { container } = render(DashboardShell, {}, { wrapper: SidebarProviderHarness });
 			expect(container.querySelector("main")).toBeInTheDocument();
 		});
 	});

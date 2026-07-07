@@ -1,6 +1,6 @@
 # bindrunes Documentation
 
-> Svelte 5 Component Library & B2B SaaS Scaffold — 245 components, 48 composables, 10 domain categories, 6 themes.
+> Svelte 5 Component Library & B2B SaaS Scaffold — 234 components, 25 composables, 10 domain categories, 6 themes.
 
 ## Overview
 
@@ -31,7 +31,7 @@ bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis de
 ## Core Library
 
 - [Getting Started](getting-started.md) — Install, setup, and troubleshooting
-- [Components](components.md) — Reference for all 245 components
+- [Components](components.md) — Reference for all 234 components
 - [Composables](composables.md) — Reference for state, fetching, forms, auth, i18n
 - [Design System](design-system.md) — Orthogonal theme, aesthetic, and density customizer
 - [Landing Pages](landing.md) — Pre-built marketing sections

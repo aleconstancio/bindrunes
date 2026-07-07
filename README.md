@@ -5,9 +5,9 @@
 [![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/bindrunes)](https://bundlephobia.com/package/bindrunes)
 
-**Svelte 5 component library for B2B SaaS.** 270+ components, 60+ composables, server-first rendering, responsive hybrid design, and an agentic copilot kernel.
+**Svelte 5 component library for B2B SaaS.** 234 components, 25 composables, server-first rendering, responsive hybrid design, and an agentic copilot kernel.
 
-[Try it live →](https://bindrunes.dev/playground)
+[Try it live →](https://bindrunes.dev)
 
 ## Quick Start
 
@@ -26,13 +26,13 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { ThemeProvider } from "bindrunes";
+  import { AppProvider } from "bindrunes";
   let { children } = $props();
 </script>
 
-<ThemeProvider themeDefault="editorial" densityDefault="comfortable">
+<AppProvider themeDefault="editorial" aestheticDefault="minimal" densityDefault="comfortable">
   {@render children()}
-</ThemeProvider>
+</AppProvider>
 ```
 
 ```svelte
@@ -52,7 +52,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 | Feature | bindrunes | shadcn-svelte | Skeleton | Melt UI |
 |---------|-----------|---------------|----------|---------|
 | Svelte 5 runes | ✅ | ✅ | ✅ | ✅ |
-| B2B domain components | ✅ (10 categories) | ❌ | ❌ | ❌ |
+| B2B domain components | ✅ (12 categories) | ❌ | ❌ | ❌ |
 | Agentic copilot UI | ✅ | ❌ | ❌ | ❌ |
 | SSR-first | ✅ | Partial | Partial | ❌ |
 | Three-axis design system | ✅ (126 combos) | ❌ | ❌ | ❌ |
@@ -74,7 +74,7 @@ Any combination works. Colors never bleed into form. Form never touches spacing.
 
 ## Domain Components
 
-10 pre-built domain categories:
+12 pre-built domain categories:
 
 - **Auth** — LoginForm, RegisterForm, ForgotPassword, TwoFactorAuth, SocialLogin
 - **Data** — AdvancedTable, CrudListPage, CrudForm, FacetedSearch, WizardForm
@@ -86,6 +86,8 @@ Any combination works. Colors never bleed into form. Form never touches spacing.
 - **Dashboard** — DashboardHome, StatsOverview, ActivityFeed
 - **Marketing** — BlogArticle, ChangelogPage, CookieConsent
 - **Settings** — ProfileSettings, SecuritySettings, NotificationSettings
+- **Media** — AudioPlayer, VideoPlayer, MediaGallery
+- **Portfolio** — ProjectCard, CaseStudy, Portfolio
 
 ## Agentic Copilot Kernel
 
@@ -111,14 +113,18 @@ import { createServerTheme, useThemeServer } from "bindrunes/server";
 |------|------|
 | `bindrunes` | Primitives, composables, utilities, types |
 | `bindrunes/server` | SSR-safe utilities |
-| `bindrunes/responsive` | Viewport, gesture, haptic, motion |
+| `bindrunes/responsive` | Viewport, gesture, haptic |
+| `bindrunes/motion` | AnimatePresence, PageTransition, Stagger |
 | `bindrunes/data` | useQuery, useMutation, useTable |
 | `bindrunes/forms` | useForm, useWizard |
 | `bindrunes/auth` | useAuth, useAccess |
 | `bindrunes/domains/<name>` | Domain components |
 | `bindrunes/layouts` | Layouts + templates |
 | `bindrunes/agentic` | Agentic copilot kernel |
+| `bindrunes/playground` | Dev playground components |
 | `bindrunes/tailwind` | Tailwind CSS v4 plugin |
+| `bindrunes/styles/*` | Global styles and token sheets |
+| `bindrunes/i18n/<locale>` | Translation dictionaries |
 
 ## Documentation
 
@@ -138,10 +144,9 @@ import { createServerTheme, useThemeServer } from "bindrunes/server";
 
 ```bash
 bun install           # Dependencies
-bun run dev           # Watch mode
-bun run build         # Build library
+just dev              # Watch mode (library + demos)
+just validate         # Build + lint + typecheck + test
 bun run test          # Run tests
-bun run lint          # Lint check
 ```
 
 ## License

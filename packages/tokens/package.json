@@ -13,7 +13,8 @@
 		"./themes/*": "./src/themes/*.css",
 		"./aesthetics/*": "./src/aesthetics/*.css",
 		"./densities/*": "./src/densities/*.css",
-		"./tokens": "./src/tokens.css"
+		"./tokens": "./src/tokens.css",
+		"./tailwind-map": "./src/tailwind-map.ts"
 	},
 	"scripts": {
 		"build": "echo 'css-only package'"

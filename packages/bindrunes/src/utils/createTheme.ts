@@ -8,21 +8,21 @@ type CreateThemeOptions =
 function deriveFromPrimary(primary: string, lightnessOffset: number, chromaScale: number): string {
 	const match = primary.match(/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/);
 	if (!match) return primary;
-	const l = Math.max(0, Math.min(1, parseFloat(match[1]) + lightnessOffset));
-	const c = parseFloat(match[2]) * chromaScale;
-	const h = parseFloat(match[3]);
+	const l = Math.max(0, Math.min(1, parseFloat(match[1] ?? "0") + lightnessOffset));
+	const c = parseFloat(match[2] ?? "0") * chromaScale;
+	const h = parseFloat(match[3] ?? "0");
 	return `oklch(${l.toFixed(2)} ${c.toFixed(3)} ${h})`;
 }
 
 const presetTokens = THEME_TOKENS;
 
 export function createTheme(options: CreateThemeOptions) {
-	const primary = options.tokens["--primary"];
+	const primary = options.tokens["--primary"] ?? "oklch(0.65 0.1 265)";
 	const accent = options.tokens["--accent"] ?? deriveFromPrimary(primary, -0.03, 1.2);
 	const destructive = options.tokens["--destructive"] ?? DRACULA_DEFAULTS.destructive;
 
 	const match = primary.match(/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/);
-	const hue = match ? match[3] : "290";
+	const hue = match?.[3] ?? "290";
 
 	let background = options.tokens["--background"];
 	if (!background) {

@@ -1,0 +1,24 @@
+#!/bin/sh
+# Enforce conventional commits format
+# See: https://www.conventionalcommits.org/en/v1.0.0/
+
+commit_msg=$(cat "$1")
+
+# Pattern: type(optional scope): description
+# Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+pattern="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\(.+\))?: .{1,}"
+
+if ! echo "$commit_msg" | grep -qE "$pattern"; then
+  echo ""
+  echo "❌ Invalid commit message format."
+  echo ""
+  echo "  Expected: type(scope): description"
+  echo "  Examples:"
+  echo "    feat: add new component"
+  echo "    fix(auth): resolve login redirect"
+  echo "    docs: update getting started guide"
+  echo ""
+  echo "  Allowed types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+  echo ""
+  exit 1
+fi

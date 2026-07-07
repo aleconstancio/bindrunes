@@ -47,8 +47,8 @@
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {#each products as product}
         <a href="/product/{product.id}" class="group">
-          <Card.Root class="h-full transition-shadow group-hover:shadow-lg">
-            <Card.Header class="pb-2">
+          <Card class="h-full transition-shadow group-hover:shadow-lg">
+            {#snippet header()}
               <div class="relative">
                 <div class="flex h-40 items-center justify-center rounded-md bg-muted text-6xl">
                   {product.image}
@@ -59,8 +59,8 @@
                   </Badge>
                 {/if}
               </div>
-            </Card.Header>
-            <Card.Content class="pt-4">
+            {/snippet}
+            <div class="pt-4">
               <h3 class="font-semibold text-foreground group-hover:text-primary transition-colors">
                 {product.name}
               </h3>
@@ -76,8 +76,8 @@
                   Add to Cart
                 </Button>
               </div>
-            </Card.Content>
-          </Card.Root>
+            </div>
+          </Card>
         </a>
       {/each}
     </div>

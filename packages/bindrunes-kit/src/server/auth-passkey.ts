@@ -1,4 +1,3 @@
-import type { RequestEvent } from "@sveltejs/kit";
 import type { SessionData } from "./auth";
 
 export interface PasskeyOptions {

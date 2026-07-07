@@ -50,7 +50,8 @@ export function useWizard<TValues extends Record<string, unknown>>(
 	async function next() {
 		const valid = await validate();
 		if (!valid) return;
-		completedSteps = new Set([...completedSteps, steps[currentStepIndex].id]);
+		const stepId = steps[currentStepIndex]?.id;
+		if (stepId) completedSteps = new Set([...completedSteps, stepId]);
 		if (!isLastStep) {
 			currentStepIndex++;
 			errors = {};

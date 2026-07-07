@@ -6,7 +6,9 @@ export function validateWithSchema<
 >(schema: T, values: { [K in keyof T]: unknown }): Partial<Record<keyof T & string, string>> {
 	const errs: Partial<Record<keyof T & string, string>> = {};
 	for (const field in schema) {
-		const result = safeParse(schema[field], values[field]);
+		const fieldSchema = schema[field];
+		if (!fieldSchema) continue;
+		const result = safeParse(fieldSchema, values[field] as unknown);
 		if (!result.success) {
 			errs[field] = result.issues[0]?.message ?? "Invalid value";
 		}

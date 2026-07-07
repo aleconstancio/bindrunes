@@ -9,6 +9,7 @@
 			"!**/dist",
 			"!**/node_modules",
 			"!**/coverage",
+			"!**/storybook-static",
 			"!examples",
 			"!docs-site/**/*.css",
 			"!packages/bindrunes-kit/templates",

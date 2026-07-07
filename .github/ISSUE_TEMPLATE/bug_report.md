@@ -19,6 +19,13 @@ A clear description of what the bug is.
 
 What you expected to happen.
 
+## Reproduction
+
+If possible, provide a minimal reproduction:
+- StackBlitz/CodeSandbox link, OR
+- GitHub repo link, OR
+- Minimal code snippet
+
 ## Environment
 
 - bindrunes version:
