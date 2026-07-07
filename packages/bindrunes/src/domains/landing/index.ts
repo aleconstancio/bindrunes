@@ -24,6 +24,7 @@ export type {
 	Step,
 	TeamMember,
 } from "./landing-types";
+export { getGridClass, getInitials } from "./landing-utils";
 // MarketingPage moved to templates/MarketingTemplate.svelte
 export { default as MetricsBar } from "./MetricsBar.svelte";
 export { default as Newsletter } from "./Newsletter.svelte";
