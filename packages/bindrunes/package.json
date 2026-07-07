@@ -150,7 +150,7 @@
 		"@changesets/changelog-github": "^0.7.0",
 		"@changesets/cli": "^2.31.0",
 		"@internationalized/date": "^3.12.2",
-		"@storybook/addon-a11y": "^8.6.0",
+		"@storybook/addon-a11y": "^10.4.6",
 		"@storybook/addon-essentials": "^8.6.0",
 		"@storybook/addon-themes": "^8.6.0",
 		"@storybook/addon-viewport": "^8.6.0",
