@@ -63,6 +63,7 @@ export interface Testimonial {
 export interface FAQItem {
 	question: string;
 	answer: string;
+	ctaLink?: { label: string; href: string };
 }
 
 export interface Logo {
