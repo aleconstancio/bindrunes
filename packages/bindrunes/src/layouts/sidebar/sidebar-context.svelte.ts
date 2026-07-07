@@ -22,12 +22,6 @@ export function createSidebarState(initialOpen = true) {
 
 	$effect(() => {
 		if (browser) {
-			document.documentElement.style.setProperty("--sidebar-width", open ? "16rem" : "3rem");
-		}
-	});
-
-	$effect(() => {
-		if (browser) {
 			function handleKeydown(e: KeyboardEvent) {
 				if ((e.metaKey || e.ctrlKey) && e.key === SIDEBAR_KEYBOARD_SHORTCUT) {
 					e.preventDefault();
