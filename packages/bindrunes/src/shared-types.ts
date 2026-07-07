@@ -31,7 +31,6 @@ export interface NavItem {
 	title: string;
 	to: string;
 	match?: string;
-	description: string;
 	icon: Component | string;
 }
 

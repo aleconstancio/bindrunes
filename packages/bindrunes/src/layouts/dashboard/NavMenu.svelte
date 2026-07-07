@@ -47,9 +47,6 @@ const sidebar = useSidebar();
 						{/if}
 						<div class="min-w-0">
 							<span class="text-label-md">{item.title}</span>
-							{#if item.description}
-								<p class="text-mono-xs mt-[0.1rem] text-muted-foreground">{item.description}</p>
-							{/if}
 						</div>
 					</SidebarMenuButton>
 				{/if}
