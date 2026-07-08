@@ -14,11 +14,11 @@ const total = $derived(segments.reduce((sum, s) => sum + s.value, 0));
 
 {#if total > 0}
   <div class="flex rounded-full overflow-hidden {className}" style="height: {height}px">
-    {#each segments as segment}
+    {#each segments as segment, i}
       {#if segment.value > 0}
         <div
           class="transition-all duration-300"
-          style="width: {(segment.value / total) * 100}%; background-color: {segment.color}"
+          style="width: {(segment.value / total) * 100}%; background-color: {segment.color}; opacity: {i % 2 === 0 ? 1 : 0.85}"
           title="{segment.label}: {segment.value}"
         ></div>
       {/if}
