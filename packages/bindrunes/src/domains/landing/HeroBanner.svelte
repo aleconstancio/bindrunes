@@ -36,7 +36,7 @@ const _tag = $derived(level === 1 ? "h1" : "h2");
 </script>
 
 <section
-  class="hero-banner relative overflow-hidden px-6 py-12 sm:py-24 section-reveal {className}"
+  class="hero-banner relative overflow-hidden px-6 py-12 sm:py-24 {className}"
   class:hero-gradient={background === 'gradient'}
 >
   {#if background === 'gradient'}

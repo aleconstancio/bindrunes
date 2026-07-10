@@ -26,7 +26,7 @@ const variantColors: Record<string, string> = {
     <Card variant="glass" padding class="transition-all hover:scale-[1.02] hover:shadow-xl">
       {#snippet children()}
         <div class="text-center">
-          <p class="text-display-2 {variantColors[metric.variant ?? 'default']}">
+          <p class="whitespace-nowrap tracking-tight {metric.value.length > 8 ? 'text-title-1 sm:text-display-3 md:text-display-2' : 'text-display-2 sm:text-display-1'} {variantColors[metric.variant ?? 'default']}">
             {metric.value}
           </p>
           <p class="mt-2 text-label-md text-foreground">{metric.label}</p>

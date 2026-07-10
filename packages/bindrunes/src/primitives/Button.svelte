@@ -51,14 +51,14 @@ const base =
 
 const variantClasses: Record<Variant, string> = {
 	primary:
-		"bg-[--button-bg,var(--primary)] text-primary-foreground border border-border-subtle shadow-[--shadow-emphasis-resolved,var(--shadow-md)] hover:shadow-lg hover:opacity-95 active:scale-[0.975]",
+		"btn-primary text-primary-foreground border border-border-subtle shadow-[--shadow-emphasis-resolved,var(--shadow-md)] hover:shadow-lg hover:opacity-95 active:scale-[0.975]",
 	secondary:
 		"bg-secondary text-secondary-foreground border border-border-subtle shadow-xs hover:brightness-150 hover:border-border-strong active:scale-[0.975]",
 	outline:
 		"border border-border text-foreground bg-transparent hover:border-ring hover:bg-primary/[0.03] active:scale-[0.975]",
 	ghost: "text-foreground bg-transparent hover:bg-accent active:scale-[0.975]",
 	destructive:
-		"bg-[--button-bg-destructive,var(--destructive)] text-destructive-foreground border border-border-subtle shadow-[--shadow-emphasis-resolved,var(--shadow-md)] hover:shadow-glow-destructive hover:opacity-95 active:scale-[0.975]",
+		"btn-destructive text-destructive-foreground border border-border-subtle shadow-[--shadow-emphasis-resolved,var(--shadow-md)] hover:shadow-glow-destructive hover:opacity-95 active:scale-[0.975]",
 	link: "text-primary underline-offset-4 hover:underline bg-transparent p-0 h-auto active:scale-[0.975]",
 	soft: "bg-primary/10 text-primary border border-transparent hover:bg-primary/20 active:scale-[0.975]",
 	subtle:
@@ -77,6 +77,12 @@ const sizeClasses: Record<Size, string> = {
     transition-property: color, background-color, border-color, box-shadow, opacity;
     transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
     transition-duration: var(--duration-snappy);
+  }
+  .btn-primary {
+    background-color: var(--button-bg, var(--primary));
+  }
+  .btn-destructive {
+    background-color: var(--button-bg-destructive, var(--destructive));
   }
 </style>
 
