@@ -165,7 +165,7 @@
 		"@types/node": "^26.0.1",
 		"@vitest/coverage-v8": "^4.1.9",
 		"happy-dom": "^20.10.6",
-		"storybook": "^8.6.0",
+		"storybook": "^10.5.0",
 		"svelte": "^5.56.4",
 		"tailwindcss": "^4.3.1",
 		"typescript": "^6.0.3",
