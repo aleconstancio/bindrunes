@@ -168,7 +168,7 @@
 		"storybook": "^8.6.0",
 		"svelte": "^5.56.4",
 		"tailwindcss": "^4.3.1",
-		"typescript": "^6.0.3",
+		"typescript": "^7.0.2",
 		"vitest": "^4.1.9",
 		"vitest-axe": "^0.1.0"
 	},
