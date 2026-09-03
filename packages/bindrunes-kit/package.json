@@ -72,7 +72,7 @@
 		"@biomejs/biome": "^2.5.1",
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/jest-dom": "^7.0.0",
 		"@testing-library/svelte": "^5.4.2",
 		"happy-dom": "^20.10.6",
 		"typescript": "^6.0.3",
