@@ -1,7 +1,7 @@
 # Security
 
 ## 1. Auth Token Storage
-By default, `createAuth` utilizes `localStorage` (`bindrunes_token`). For production, override the default storage logic to employ `httpOnly` secure cookies:
+By default, `createAuth` utilizes `localStorage` (`urupe-ui_token`). For production, override the default storage logic to employ `httpOnly` secure cookies:
 
 ```ts
 const auth = createAuth({

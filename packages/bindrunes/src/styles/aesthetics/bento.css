@@ -1,11 +1,11 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Bento Aesthetic Preset
+ * urupe-ui — Bento Aesthetic Preset
  *
  * Friendly, rounded, soft. Inspired by bento-grid
  * layouts with generous corners and warm shadows.
  *
  * Import in your app.css:
- * @import "bindrunes/styles/aesthetics/bento.css";
+ * @import "urupe-ui/styles/aesthetics/bento.css";
  * ══════════════════════════════════════════════════ */
 
 [data-aesthetic="bento"] {

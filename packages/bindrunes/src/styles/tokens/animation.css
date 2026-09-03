@@ -22,26 +22,26 @@
 
 /* CSS classes for use in components */
 .animate-enter {
-	animation: bindrunes-fade-in var(--animate-enter);
+	animation: urupe-ui-fade-in var(--animate-enter);
 }
 
 .animate-exit {
-	animation: bindrunes-fade-in var(--animate-exit) reverse;
+	animation: urupe-ui-fade-in var(--animate-exit) reverse;
 }
 
 .animate-slide-up {
-	animation: bindrunes-slide-up var(--animate-slide-up);
+	animation: urupe-ui-slide-up var(--animate-slide-up);
 }
 
 .animate-fade-in {
-	animation: bindrunes-fade-in var(--animate-fade-in);
+	animation: urupe-ui-fade-in var(--animate-fade-in);
 }
 
 .animate-scale-in {
-	animation: bindrunes-scale-in var(--animate-scale-in);
+	animation: urupe-ui-scale-in var(--animate-scale-in);
 }
 
-@keyframes bindrunes-fade-in {
+@keyframes urupe-ui-fade-in {
 	from {
 		opacity: 0;
 	}
@@ -50,7 +50,7 @@
 	}
 }
 
-@keyframes bindrunes-slide-up {
+@keyframes urupe-ui-slide-up {
 	from {
 		opacity: 0;
 		transform: translateY(var(--animate-slide-up-distance));
@@ -61,7 +61,7 @@
 	}
 }
 
-@keyframes bindrunes-scale-in {
+@keyframes urupe-ui-scale-in {
 	from {
 		opacity: 0;
 		transform: scale(var(--animate-scale-in-from));

@@ -59,11 +59,11 @@ const positionStyles: Record<string, string> = {
   <Dialog.Portal>
     <Dialog.Overlay
       class="fixed inset-0 z-[--z-overlay,30] bg-[--overlay] backdrop-blur-[--blur-subtle]
-             data-[state=open]:bindrunes-fade-in data-[state=closed]:bindrunes-fade-out"
+             data-[state=open]:urupe-ui-fade-in data-[state=closed]:urupe-ui-fade-out"
     />
     <Dialog.Content
       aria-label={ariaLabel}
-      class="fixed z-[--z-overlay,30] bg-background border-border flex flex-col bindrunes-sheet-{side} {positionStyles[side]} {sideSizeMap[size][side]} {className}
+      class="fixed z-[--z-overlay,30] bg-background border-border flex flex-col urupe-ui-sheet-{side} {positionStyles[side]} {sideSizeMap[size][side]} {className}
              focus:outline-none"
     >
       {#if header || title}
@@ -98,82 +98,82 @@ const positionStyles: Record<string, string> = {
 </Dialog.Root>
 
 <style>
-  :global(.bindrunes-fade-in) {
-    animation: bindrunes-sheet-fade-in var(--duration-fluid) ease-out forwards;
+  :global(.urupe-ui-fade-in) {
+    animation: urupe-ui-sheet-fade-in var(--duration-fluid) ease-out forwards;
   }
-  :global(.bindrunes-fade-out) {
-    animation: bindrunes-sheet-fade-out var(--duration-snappy) ease-in forwards;
-  }
-
-  :global([data-state="open"].bindrunes-sheet-left) {
-    animation: bindrunes-sheet-slide-in-left var(--duration-fluid) ease-out forwards;
-  }
-  :global([data-state="closed"].bindrunes-sheet-left) {
-    animation: bindrunes-sheet-slide-out-left var(--duration-snappy) ease-in forwards;
+  :global(.urupe-ui-fade-out) {
+    animation: urupe-ui-sheet-fade-out var(--duration-snappy) ease-in forwards;
   }
 
-  :global([data-state="open"].bindrunes-sheet-right) {
-    animation: bindrunes-sheet-slide-in-right var(--duration-fluid) ease-out forwards;
+  :global([data-state="open"].urupe-ui-sheet-left) {
+    animation: urupe-ui-sheet-slide-in-left var(--duration-fluid) ease-out forwards;
   }
-  :global([data-state="closed"].bindrunes-sheet-right) {
-    animation: bindrunes-sheet-slide-out-right var(--duration-snappy) ease-in forwards;
-  }
-
-  :global([data-state="open"].bindrunes-sheet-top) {
-    animation: bindrunes-sheet-slide-in-top var(--duration-fluid) ease-out forwards;
-  }
-  :global([data-state="closed"].bindrunes-sheet-top) {
-    animation: bindrunes-sheet-slide-out-top var(--duration-snappy) ease-in forwards;
+  :global([data-state="closed"].urupe-ui-sheet-left) {
+    animation: urupe-ui-sheet-slide-out-left var(--duration-snappy) ease-in forwards;
   }
 
-  :global([data-state="open"].bindrunes-sheet-bottom) {
-    animation: bindrunes-sheet-slide-in-bottom var(--duration-fluid) ease-out forwards;
+  :global([data-state="open"].urupe-ui-sheet-right) {
+    animation: urupe-ui-sheet-slide-in-right var(--duration-fluid) ease-out forwards;
   }
-  :global([data-state="closed"].bindrunes-sheet-bottom) {
-    animation: bindrunes-sheet-slide-out-bottom var(--duration-snappy) ease-in forwards;
+  :global([data-state="closed"].urupe-ui-sheet-right) {
+    animation: urupe-ui-sheet-slide-out-right var(--duration-snappy) ease-in forwards;
   }
 
-  @keyframes bindrunes-sheet-fade-in {
+  :global([data-state="open"].urupe-ui-sheet-top) {
+    animation: urupe-ui-sheet-slide-in-top var(--duration-fluid) ease-out forwards;
+  }
+  :global([data-state="closed"].urupe-ui-sheet-top) {
+    animation: urupe-ui-sheet-slide-out-top var(--duration-snappy) ease-in forwards;
+  }
+
+  :global([data-state="open"].urupe-ui-sheet-bottom) {
+    animation: urupe-ui-sheet-slide-in-bottom var(--duration-fluid) ease-out forwards;
+  }
+  :global([data-state="closed"].urupe-ui-sheet-bottom) {
+    animation: urupe-ui-sheet-slide-out-bottom var(--duration-snappy) ease-in forwards;
+  }
+
+  @keyframes urupe-ui-sheet-fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  @keyframes bindrunes-sheet-fade-out {
+  @keyframes urupe-ui-sheet-fade-out {
     from { opacity: 1; }
     to { opacity: 0; }
   }
 
-  @keyframes bindrunes-sheet-slide-in-left {
+  @keyframes urupe-ui-sheet-slide-in-left {
     from { transform: translateX(-100%); }
     to { transform: translateX(0); }
   }
-  @keyframes bindrunes-sheet-slide-out-left {
+  @keyframes urupe-ui-sheet-slide-out-left {
     from { transform: translateX(0); }
     to { transform: translateX(-100%); }
   }
 
-  @keyframes bindrunes-sheet-slide-in-right {
+  @keyframes urupe-ui-sheet-slide-in-right {
     from { transform: translateX(100%); }
     to { transform: translateX(0); }
   }
-  @keyframes bindrunes-sheet-slide-out-right {
+  @keyframes urupe-ui-sheet-slide-out-right {
     from { transform: translateX(0); }
     to { transform: translateX(100%); }
   }
 
-  @keyframes bindrunes-sheet-slide-in-top {
+  @keyframes urupe-ui-sheet-slide-in-top {
     from { transform: translateY(-100%); }
     to { transform: translateY(0); }
   }
-  @keyframes bindrunes-sheet-slide-out-top {
+  @keyframes urupe-ui-sheet-slide-out-top {
     from { transform: translateY(0); }
     to { transform: translateY(-100%); }
   }
 
-  @keyframes bindrunes-sheet-slide-in-bottom {
+  @keyframes urupe-ui-sheet-slide-in-bottom {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
   }
-  @keyframes bindrunes-sheet-slide-out-bottom {
+  @keyframes urupe-ui-sheet-slide-out-bottom {
     from { transform: translateY(0); }
     to { transform: translateY(100%); }
   }

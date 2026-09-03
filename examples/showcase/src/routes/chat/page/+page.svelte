@@ -1,5 +1,5 @@
 <script lang="ts">
-import { ChatTemplate } from "bindrunes/layouts";
+import { ChatTemplate } from "urupe-ui/layouts";
 
 const conversations = [
   { id: "1", name: "Alice Johnson", lastMessage: "Hey, how's it going?" },

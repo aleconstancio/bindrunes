@@ -1,12 +1,12 @@
 <script lang="ts">
 import "../app.css";
-import { DemoLayout } from "bindrunes/playground";
+import { DemoLayout } from "urupe-ui/playground";
 
 let { children } = $props();
 </script>
 
 <DemoLayout
-	title="bindrunes"
+	title="urupe-ui"
 	description="The Svelte 5 component library and design system for building B2B SaaS applications at scale."
 	shell="landing"
 	showThemeToggle={false}

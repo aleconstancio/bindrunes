@@ -1,8 +1,8 @@
-# bindrunes Meta-Framework Design Spec
+# urupe-ui Meta-Framework Design Spec
 
 ## Vision
 
-bindrunes evolves from a component library into a **dual-mode meta-framework** for SvelteKit:
+urupe-ui evolves from a component library into a **dual-mode meta-framework** for SvelteKit:
 
 - **Full-stack mode**: SvelteKit with SSR, server load, API routes, hooks, form actions. For apps where frontend + backend live in one codebase.
 - **SPA + backend mode**: SvelteKit frontend with external API backend (Go, Python, Rust, etc.). For apps like Vico that separate concerns.
@@ -14,9 +14,9 @@ Both modes share the same component library, composables, and design system. The
 ### Package Structure
 
 ```
-bindrunes/                    # Monorepo root
+urupe-ui/                    # Monorepo root
   packages/
-    bindrunes/                # Core library (existing, enhanced)
+    urupe-ui/                # Core library (existing, enhanced)
       src/
         components/           # 220+ UI components
         utils/                # 47+ composables
@@ -42,7 +42,7 @@ bindrunes/                    # Monorepo root
           server.ts           # ServerLoad, Action types
       package.json            # exports: bindrunes-kit
 
-    bindrunes-backend/        # NEW: Backend toolkit (optional)
+    urupe-ui-backend/        # NEW: Backend toolkit (optional)
       src/
         go/                   # Go backend templates
         python/               # Python/FastAPI templates
@@ -192,7 +192,7 @@ let theme = $state(typeof window !== "undefined" ? localStorage.getItem("theme")
 The `isBrowser` utility already exists. Components that access `window`/`document` need wrapping:
 
 ```ts
-import { isBrowser } from "bindrunes";
+import { isBrowser } from "urupe-ui";
 
 $effect(() => {
   if (!isBrowser) return;
@@ -266,7 +266,7 @@ export const load: PageLoad = async ({ params }) => {
 ## Phase 4: DX Polish (v2.1)
 
 ### What ships:
-1. VS Code extension for bindrunes
+1. VS Code extension for urupe-ui
 2. Interactive component playground
 3. Storybook integration
 4. Migration guide from shadcn-svelte

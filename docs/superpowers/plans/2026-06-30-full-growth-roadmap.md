@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Convert bindrunes from invisible to adopted across 4 phases: visibility, quality, revenue, scale.
+**Goal:** Convert urupe-ui from invisible to adopted across 4 phases: visibility, quality, revenue, scale.
 
 **Architecture:** Each phase is independently executable. Phase 1 deploys the existing playground and improves discovery. Phase 2 adds Storybook and visual testing. Phase 3 creates template showcases. Phase 4 stabilizes the kit and expands to multi-framework.
 
@@ -87,7 +87,7 @@ If not already provided, ask: "I need a Vercel token to set up deployments. You 
 
 ```json
 {
-  "buildCommand": "turbo run build --filter=bindrunes-docs",
+  "buildCommand": "turbo run build --filter=urupe-ui-docs",
   "outputDirectory": "docs-site/.svelte-kit/output",
   "installCommand": "bun install",
   "framework": "sveltekit",
@@ -125,8 +125,8 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build bindrunes
-        run: bun run build --filter=bindrunes
+      - name: Build urupe-ui
+        run: bun run build --filter=urupe-ui
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
@@ -194,7 +194,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "CodeSnippet",
 	category: "Foundation",
 	description: "Syntax-highlighted code block",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		code: { type: "text", default: "console.log('hello')", label: "Code" },
 		language: { type: "text", default: "javascript", label: "Language" },
@@ -204,7 +204,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Collapsible",
 	category: "Foundation",
 	description: "Toggleable content section",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Collapsible content",
 },
@@ -212,7 +212,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "ColorPicker",
 	category: "Foundation",
 	description: "Color selection widget",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		value: { type: "color", default: "#3b82f6", label: "Color" },
 	},
@@ -221,7 +221,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Combobox",
 	category: "Foundation",
 	description: "Searchable select dropdown",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "Search...", label: "Placeholder" },
 	},
@@ -230,14 +230,14 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "CommandPalette",
 	category: "Foundation",
 	description: "Cmd+K command palette",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "ContextMenu",
 	category: "Foundation",
 	description: "Right-click context menu",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Right-click me",
 },
@@ -245,7 +245,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "DatePicker",
 	category: "Foundation",
 	description: "Date selection input",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "Pick a date", label: "Placeholder" },
 	},
@@ -254,7 +254,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "DropdownMenu",
 	category: "Foundation",
 	description: "Click-triggered dropdown menu",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Open menu",
 },
@@ -262,7 +262,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Kbd",
 	category: "Foundation",
 	description: "Keyboard shortcut indicator",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Ctrl+K",
 },
@@ -270,7 +270,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Label",
 	category: "Foundation",
 	description: "Form field label",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		text: { type: "text", default: "Email", label: "Label text" },
 	},
@@ -279,7 +279,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "MetricCard",
 	category: "Foundation",
 	description: "KPI/metric display card",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		label: { type: "text", default: "Revenue", label: "Label" },
 		value: { type: "text", default: "$12,345", label: "Value" },
@@ -289,7 +289,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "NumberInput",
 	category: "Foundation",
 	description: "Numeric input with stepper",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		min: { type: "number", default: 0, label: "Min" },
 		max: { type: "number", default: 100, label: "Max" },
@@ -300,14 +300,14 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Omnibar",
 	category: "Foundation",
 	description: "Global search/command bar",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "OTPInput",
 	category: "Foundation",
 	description: "One-time password input",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		length: { type: "number", default: 6, label: "Length" },
 	},
@@ -316,7 +316,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "PasswordInput",
 	category: "Foundation",
 	description: "Password input with toggle",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "Enter password", label: "Placeholder" },
 	},
@@ -325,7 +325,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "PinInput",
 	category: "Foundation",
 	description: "PIN code entry",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		length: { type: "number", default: 4, label: "Length" },
 	},
@@ -334,7 +334,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Popover",
 	category: "Foundation",
 	description: "Floating popover content",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Toggle popover",
 },
@@ -342,7 +342,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Popconfirm",
 	category: "Foundation",
 	description: "Popover confirmation dialog",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		title: { type: "text", default: "Are you sure?", label: "Title" },
 	},
@@ -352,14 +352,14 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "RadioGroup",
 	category: "Foundation",
 	description: "Radio button group",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "RatingGroup",
 	category: "Foundation",
 	description: "Star/emoji rating input",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		max: { type: "number", default: 5, label: "Max rating" },
 	},
@@ -368,21 +368,21 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "RichTextEditor",
 	category: "Foundation",
 	description: "WYSIWYG rich text editor",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "ScrollArea",
 	category: "Foundation",
 	description: "Custom scrollbar container",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "Sheet",
 	category: "Foundation",
 	description: "Slide-in side sheet",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		side: { type: "select", options: ["left", "right", "top", "bottom"], default: "right", label: "Side" },
 	},
@@ -392,7 +392,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "StatusChip",
 	category: "Foundation",
 	description: "Status indicator chip",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		variant: { type: "select", options: ["active", "inactive", "pending"], default: "active", label: "Status" },
 	},
@@ -401,14 +401,14 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "SwipeableList",
 	category: "Foundation",
 	description: "Swipeable list container",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "TagInput",
 	category: "Foundation",
 	description: "Multi-tag text input",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "Add tag...", label: "Placeholder" },
 	},
@@ -417,7 +417,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Textarea",
 	category: "Foundation",
 	description: "Multi-line text input",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "Enter text...", label: "Placeholder" },
 		rows: { type: "number", default: 4, label: "Rows" },
@@ -427,7 +427,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "TimeField",
 	category: "Foundation",
 	description: "Time input field",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		placeholder: { type: "text", default: "HH:mm", label: "Placeholder" },
 	},
@@ -436,14 +436,14 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "Timeline",
 	category: "Foundation",
 	description: "Chronological timeline display",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "Toggle",
 	category: "Foundation",
 	description: "Toggle button",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 	slot: "Toggle",
 },
@@ -451,21 +451,21 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "ToggleGroup",
 	category: "Foundation",
 	description: "Group of toggle buttons",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "TreeView",
 	category: "Foundation",
 	description: "Hierarchical tree navigation",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "AlertDialog",
 	category: "Foundation",
 	description: "Confirmation/destructive action dialog",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		title: { type: "text", default: "Confirm action", label: "Title" },
 	},
@@ -475,7 +475,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "ErrorBanner",
 	category: "Foundation",
 	description: "Error notification banner",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		title: { type: "text", default: "Error occurred", label: "Title" },
 	},
@@ -485,7 +485,7 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "SuccessBanner",
 	category: "Foundation",
 	description: "Success notification banner",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {
 		title: { type: "text", default: "Success!", label: "Title" },
 	},
@@ -495,35 +495,35 @@ Add to `componentRegistry` array in `component-registry.ts`:
 	name: "FileUpload",
 	category: "Foundation",
 	description: "File upload dropzone",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "NavigationMenu",
 	category: "Foundation",
 	description: "Top-level navigation menu",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "RangeCalendar",
 	category: "Foundation",
 	description: "Date range calendar picker",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "BouncingDots",
 	category: "Foundation",
 	description: "Loading/typing indicator dots",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 {
 	name: "RuleFootnote",
 	category: "Foundation",
 	description: "Rule/compliance footnote",
-	importPath: "bindrunes",
+	importPath: "urupe-ui",
 	props: {},
 },
 ```
@@ -555,7 +555,7 @@ For components that need specific imports, add them to the import block at the t
 
 ```bash
 cd packages/bindrunes && bun run build
-cd ../.. && turbo run build --filter=bindrunes-docs
+cd ../.. && turbo run build --filter=urupe-ui-docs
 ```
 
 Expected: Build succeeds with no errors.
@@ -579,12 +579,12 @@ git commit -m "feat: expand playground to cover all 84 primitives"
 Replace the full content of `README.md` with:
 
 ```markdown
-# bindrunes
+# urupe-ui
 
-[![CI](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
-[![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/bindrunes)](https://bundlephobia.com/package/bindrunes)
+[![CI](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/urupe-ui)](https://www.npmjs.com/package/urupe-ui)
+[![license](https://img.shields.io/npm/l/urupe-ui)](https://github.com/aleconstancio/urupe-ui/blob/main/LICENSE)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/urupe-ui)](https://bundlephobia.com/package/urupe-ui)
 
 **Svelte 5 component library for B2B SaaS.** 270+ components, 60+ composables, server-first rendering, responsive hybrid design, and an agentic copilot kernel.
 
@@ -593,21 +593,21 @@ Replace the full content of `README.md` with:
 ## Quick Start
 
 \```bash
-bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
+bun add urupe-ui svelte tailwindcss lucide-svelte svelte-sonner
 \```
 
 \```css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 \```
 
 \```svelte
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { ThemeProvider } from "bindrunes";
+  import { ThemeProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -619,7 +619,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 \```svelte
 <!-- +page.svelte -->
 <script lang="ts">
-  import { Button, Card } from "bindrunes";
+  import { Button, Card } from "urupe-ui";
 </script>
 
 <Card variant="glass" responsive>
@@ -628,9 +628,9 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 </Card>
 \```
 
-## Why bindrunes?
+## Why urupe-ui?
 
-| Feature | bindrunes | shadcn-svelte | Skeleton | Melt UI |
+| Feature | urupe-ui | shadcn-svelte | Skeleton | Melt UI |
 |---------|-----------|---------------|----------|---------|
 | Svelte 5 runes | ✅ | ✅ | ✅ | ✅ |
 | B2B domain components | ✅ (10 categories) | ❌ | ❌ | ❌ |
@@ -673,7 +673,7 @@ Any combination works. Colors never bleed into form. Form never touches spacing.
 Build LLM chat interfaces with built-in token budget management, conversation branching, and persistence:
 
 \```ts
-import { CopilotMessageList, CopilotInput } from "bindrunes/domains/agentic";
+import { CopilotMessageList, CopilotInput } from "urupe-ui/domains/agentic";
 \```
 
 [Read the tutorial →](https://bindrunes.dev/docs/agentic/build-a-copilot)
@@ -683,23 +683,23 @@ import { CopilotMessageList, CopilotInput } from "bindrunes/domains/agentic";
 All components are SSR-safe. Server utilities work outside SvelteKit:
 
 \```ts
-import { createServerTheme, useThemeServer } from "bindrunes/server";
+import { createServerTheme, useThemeServer } from "urupe-ui/server";
 \```
 
 ## Export Paths
 
 | Path | What |
 |------|------|
-| `bindrunes` | Primitives, composables, utilities, types |
-| `bindrunes/server` | SSR-safe utilities |
-| `bindrunes/responsive` | Viewport, gesture, haptic, motion |
-| `bindrunes/data` | useQuery, useMutation, useTable |
-| `bindrunes/forms` | useForm, useWizard |
-| `bindrunes/auth` | useAuth, useAccess |
-| `bindrunes/domains/<name>` | Domain components |
-| `bindrunes/layouts` | Layouts + templates |
-| `bindrunes/agentic` | Agentic copilot kernel |
-| `bindrunes/tailwind` | Tailwind CSS v4 plugin |
+| `urupe-ui` | Primitives, composables, utilities, types |
+| `urupe-ui/server` | SSR-safe utilities |
+| `urupe-ui/responsive` | Viewport, gesture, haptic, motion |
+| `urupe-ui/data` | useQuery, useMutation, useTable |
+| `urupe-ui/forms` | useForm, useWizard |
+| `urupe-ui/auth` | useAuth, useAccess |
+| `urupe-ui/domains/<name>` | Domain components |
+| `urupe-ui/layouts` | Layouts + templates |
+| `urupe-ui/agentic` | Agentic copilot kernel |
+| `urupe-ui/tailwind` | Tailwind CSS v4 plugin |
 
 ## Documentation
 
@@ -753,12 +753,12 @@ Create `docs/agentic/build-a-copilot.md`:
 ```markdown
 # Build a Copilot in 5 Minutes
 
-This tutorial walks you through building an LLM chat interface using bindrunes' agentic copilot components.
+This tutorial walks you through building an LLM chat interface using urupe-ui' agentic copilot components.
 
 ## Prerequisites
 
 \```bash
-bun add bindrunes svelte lucide-svelte
+bun add urupe-ui svelte lucide-svelte
 \```
 
 ## Step 1: Set Up the Provider
@@ -767,8 +767,8 @@ Wrap your chat page with the window store provider:
 
 \```svelte
 <script lang="ts">
-  import { createWindowStoreProvider } from "bindrunes";
-  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator } from "bindrunes/domains/agentic";
+  import { createWindowStoreProvider } from "urupe-ui";
+  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator } from "urupe-ui/domains/agentic";
 
   const store = createWindowStoreProvider({ budgetCap: 8192 });
 
@@ -816,7 +816,7 @@ If your LLM supports tool calling, use the tool panel:
 
 \```svelte
 <script lang="ts">
-  import { CopilotToolPanel } from "bindrunes/domains/agentic";
+  import { CopilotToolPanel } from "urupe-ui/domains/agentic";
 
   let toolCalls = $state([]);
 </script>
@@ -832,7 +832,7 @@ Show token usage and conversation context:
 
 \```svelte
 <script lang="ts">
-  import { CopilotContextSidebar } from "bindrunes/domains/agentic";
+  import { CopilotContextSidebar } from "urupe-ui/domains/agentic";
 </script>
 
 <CopilotContextSidebar {store} />
@@ -840,7 +840,7 @@ Show token usage and conversation context:
 
 ## Full Example
 
-See the [Showcase example](https://github.com/aleconstancio/bindrunes/tree/main/examples/showcase) for a complete working implementation.
+See the [Showcase example](https://github.com/aleconstancio/urupe-ui/tree/main/examples/showcase) for a complete working implementation.
 
 ## Next Steps
 
@@ -1330,7 +1330,7 @@ Add `"templates/*"` to `package.json` workspaces array.
 mkdir -p templates/saas-dashboard
 cd templates/saas-dashboard
 bun init -y
-bun add bindrunes bindrunes-kit svelte lucide-svelte svelte-sonner
+bun add urupe-ui bindrunes-kit svelte lucide-svelte svelte-sonner
 ```
 
 Create the full SvelteKit app structure with:

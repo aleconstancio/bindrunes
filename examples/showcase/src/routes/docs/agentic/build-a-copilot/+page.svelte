@@ -1,22 +1,22 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Agentic</Badge>
   <h1 class="mt-4 text-display-1 text-foreground">Build a Copilot in 5 Minutes</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
-    This tutorial walks you through building a working LLM chat interface using bindrunes agentic composables and copilot components.
+    This tutorial walks you through building a working LLM chat interface using urupe-ui agentic composables and copilot components.
   </p>
 
   <div class="mt-10 space-y-10">
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Prerequisites</h2>
       <CodeSnippet language="bash">
-{`npm install bindrunes`}
+{`npm install urupe-ui`}
       </CodeSnippet>
       <p class="text-body text-muted-foreground mt-3">
-        bindrunes requires Svelte 5 with runes mode enabled.
+        urupe-ui requires Svelte 5 with runes mode enabled.
       </p>
     </section>
 
@@ -27,7 +27,7 @@ import { Badge, CodeSnippet } from "bindrunes";
       </p>
       <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { createWindowStoreProvider } from "bindrunes/agentic";
+  import { createWindowStoreProvider } from "urupe-ui/agentic";
 
   const store = createWindowStoreProvider({ budgetCap: 8192 });
 </script>
@@ -46,10 +46,10 @@ import { Badge, CodeSnippet } from "bindrunes";
       </p>
       <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { useWindowStore, useOrchestrator, useTokenBudget } from "bindrunes/agentic";
-  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator } from "bindrunes/domains/agentic";
-  import type { CopilotMessage } from "bindrunes/domains/agentic";
-  import type { AgentRuntime } from "bindrunes/agentic";
+  import { useWindowStore, useOrchestrator, useTokenBudget } from "urupe-ui/agentic";
+  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator } from "urupe-ui/domains/agentic";
+  import type { CopilotMessage } from "urupe-ui/domains/agentic";
+  import type { AgentRuntime } from "urupe-ui/agentic";
 
   const store = useWindowStore();
 
@@ -132,7 +132,7 @@ const orchestrator = useOrchestrator({
       </p>
       <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { CopilotContextSidebar } from "bindrunes/domains/agentic";
+  import { CopilotContextSidebar } from "urupe-ui/domains/agentic";
   const budget = useTokenBudget({ cap: 8192 });
 </script>
 

@@ -80,7 +80,7 @@ CMD ["node", "build/index.js"]
 
 ## Monorepo Deployment (Vercel)
 
-The bindrunes monorepo deploys the showcase app to Vercel on every push to main.
+The urupe-ui monorepo deploys the showcase app to Vercel on every push to main.
 
 ### Required GitHub Secrets
 
@@ -92,7 +92,7 @@ The bindrunes monorepo deploys the showcase app to Vercel on every push to main.
 
 ### Build Pipeline
 
-1. `bunx turbo run build --filter=bindrunes` — Build the library first (showcase depends on it)
+1. `bunx turbo run build --filter=urupe-ui` — Build the library first (showcase depends on it)
 2. `npx vercel pull --yes --environment=preview` — Link project and pull env config
 3. `npx vercel build` — Build the showcase for Vercel
 4. `npx vercel deploy --prebuilt` — Deploy the pre-built output

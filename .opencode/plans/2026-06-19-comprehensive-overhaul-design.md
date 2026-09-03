@@ -2,7 +2,7 @@
 
 ## Overview
 
-This design outlines a comprehensive overhaul of the bindrunes component library to reach its full potential. The overhaul focuses on three interconnected areas:
+This design outlines a comprehensive overhaul of the urupe-ui component library to reach its full potential. The overhaul focuses on three interconnected areas:
 
 1. **Component Architecture & API Surface** - Standardize patterns, add missing primitives, improve existing components
 2. **Agentic UI Component Kit** - Build pre-composed agent interface components
@@ -12,7 +12,7 @@ This design outlines a comprehensive overhaul of the bindrunes component library
 
 ## Goals
 
-- Make bindrunes the premier Svelte 5 component library for B2B SaaS
+- Make urupe-ui the premier Svelte 5 component library for B2B SaaS
 - Provide a complete agentic UI toolkit for AI-powered applications
 - Offer best-in-class developer experience with interactive playground
 - Maintain backward compatibility while improving consistency
@@ -291,7 +291,7 @@ Pre-composed page combining all agentic components:
 
 ### Architecture
 
-- Uses existing bindrunes components + CodeMirror for code editing
+- Uses existing urupe-ui components + CodeMirror for code editing
 - State managed via URL params for shareability
 - Responsive design for different screen sizes
 

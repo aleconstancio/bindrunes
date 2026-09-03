@@ -1,8 +1,8 @@
-# bindrunes v2.0 Architecture Overhaul
+# urupe-ui v2.0 Architecture Overhaul
 
 ## Overview
 
-This design outlines a comprehensive architectural overhaul of the bindrunes component library for v2.0. The overhaul restructures the codebase from 7 unclear categories into a clean 4-layer hierarchy, standardizes naming conventions, and establishes the kit package as the primary entry point for SvelteKit users.
+This design outlines a comprehensive architectural overhaul of the urupe-ui component library for v2.0. The overhaul restructures the codebase from 7 unclear categories into a clean 4-layer hierarchy, standardizes naming conventions, and establishes the kit package as the primary entry point for SvelteKit users.
 
 ## Goals
 
@@ -76,7 +76,7 @@ Each layer builds on the previous:
 - Combobox, TreeView, DataGrid, CommandPalette
 - OTPInput, ColorPicker
 
-**Export:** `bindrunes` (root)
+**Export:** `urupe-ui` (root)
 
 ### Layer 2: Layouts
 
@@ -98,7 +98,7 @@ Each layer builds on the previous:
 - SidebarGroup, SidebarMenu, SidebarMenuItem, SidebarMenuButton
 - SidebarMenuBadge, SidebarMenuSkeleton, SidebarRail, SidebarSeparator, SidebarTrigger
 
-**Export:** `bindrunes/layouts`
+**Export:** `urupe-ui/layouts`
 
 ### Layer 3: Domains
 
@@ -125,7 +125,7 @@ Each layer builds on the previous:
 | settings | TabbedSettings, ProfileSettings, SecuritySettings, NotificationSettings, DangerZone, SettingsSection |
 | marketing | Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, DocsLayout, Maintenance, Popup, ReleaseNotes, Schedule, SocialProof |
 
-**Export:** `bindrunes/domains` (all) + `bindrunes/domains/auth`, `bindrunes/domains/chat`, etc.
+**Export:** `urupe-ui/domains` (all) + `urupe-ui/domains/auth`, `urupe-ui/domains/chat`, etc.
 
 ### Layer 4: Templates
 
@@ -149,7 +149,7 @@ Each layer builds on the previous:
 - MediaTemplate - Gallery with upload, video, audio players
 - PortfolioTemplate - Project grid with case studies
 
-**Export:** `bindrunes/templates`
+**Export:** `urupe-ui/templates`
 
 ---
 
@@ -200,29 +200,29 @@ Keep inline type annotations for components with ≤8 props, use `interface Prop
 ### Layer-based Exports
 
 ```
-bindrunes              # Primitives (Layer 1)
-bindrunes/layouts      # Layouts (Layer 2)
-bindrunes/domains      # All domains (Layer 3)
-bindrunes/templates    # Templates (Layer 4)
-bindrunes/playground   # Demo infrastructure
-bindrunes/tailwind     # Tailwind plugin
-bindrunes/styles/*     # CSS files
-bindrunes/agentic      # Agentic subsystem
+urupe-ui              # Primitives (Layer 1)
+urupe-ui/layouts      # Layouts (Layer 2)
+urupe-ui/domains      # All domains (Layer 3)
+urupe-ui/templates    # Templates (Layer 4)
+urupe-ui/playground   # Demo infrastructure
+urupe-ui/tailwind     # Tailwind plugin
+urupe-ui/styles/*     # CSS files
+urupe-ui/agentic      # Agentic subsystem
 ```
 
 ### Domain Sub-exports
 
 ```
-bindrunes/domains/auth
-bindrunes/domains/chat
-bindrunes/domains/data
-bindrunes/domains/landing
-bindrunes/domains/media
-bindrunes/domains/calendar
-bindrunes/domains/ecommerce
-bindrunes/domains/portfolio
-bindrunes/domains/settings
-bindrunes/domains/marketing
+urupe-ui/domains/auth
+urupe-ui/domains/chat
+urupe-ui/domains/data
+urupe-ui/domains/landing
+urupe-ui/domains/media
+urupe-ui/domains/calendar
+urupe-ui/domains/ecommerce
+urupe-ui/domains/portfolio
+urupe-ui/domains/settings
+urupe-ui/domains/marketing
 ```
 
 ### Deep Component Imports
@@ -230,9 +230,9 @@ bindrunes/domains/marketing
 Keep individual component imports for tree-shaking:
 
 ```typescript
-import { Button } from "bindrunes";
-import { DashboardTemplate } from "bindrunes/templates";
-import { LoginForm } from "bindrunes/domains/auth";
+import { Button } from "urupe-ui";
+import { DashboardTemplate } from "urupe-ui/templates";
+import { LoginForm } from "urupe-ui/domains/auth";
 ```
 
 ---
@@ -241,12 +241,12 @@ import { LoginForm } from "bindrunes/domains/auth";
 
 ### Role
 
-Adds SvelteKit-specific utilities only. Users import UI from `bindrunes` directly.
+Adds SvelteKit-specific utilities only. Users import UI from `urupe-ui` directly.
 
 ### Exports
 
 ```
-bindrunes-kit              # Re-exports bindrunes for convenience
+bindrunes-kit              # Re-exports urupe-ui for convenience
 bindrunes-kit/server       # Server auth, API, hooks, i18n
 bindrunes-kit/client       # Client auth, SSE, WebSocket, autosave
 bindrunes-kit/cli          # Project generator
@@ -255,9 +255,9 @@ bindrunes-kit/cli          # Project generator
 ### Relationship to Main Package
 
 ```typescript
-// User imports UI from bindrunes
-import { Button, Card } from "bindrunes";
-import { DashboardTemplate } from "bindrunes/templates";
+// User imports UI from urupe-ui
+import { Button, Card } from "urupe-ui";
+import { DashboardTemplate } from "urupe-ui/templates";
 
 // User imports SvelteKit utilities from bindrunes-kit
 import { createServerAuth } from "bindrunes-kit/server";
@@ -423,24 +423,24 @@ src/
 
 | Export Path | Layer | Description |
 |-------------|-------|-------------|
-| `bindrunes` | 1 | Primitives |
-| `bindrunes/layouts` | 2 | Layouts |
-| `bindrunes/domains` | 3 | All domains |
-| `bindrunes/domains/auth` | 3 | Auth domain |
-| `bindrunes/domains/chat` | 3 | Chat domain |
-| `bindrunes/domains/data` | 3 | Data domain |
-| `bindrunes/domains/landing` | 3 | Landing domain |
-| `bindrunes/domains/media` | 3 | Media domain |
-| `bindrunes/domains/calendar` | 3 | Calendar domain |
-| `bindrunes/domains/ecommerce` | 3 | E-commerce domain |
-| `bindrunes/domains/portfolio` | 3 | Portfolio domain |
-| `bindrunes/domains/settings` | 3 | Settings domain |
-| `bindrunes/domains/marketing` | 3 | Marketing domain |
-| `bindrunes/templates` | 4 | Templates |
-| `bindrunes/playground` | - | Demo infrastructure |
-| `bindrunes/tailwind` | - | Tailwind plugin |
-| `bindrunes/styles/*` | - | CSS files |
-| `bindrunes/agentic` | - | Agentic subsystem |
+| `urupe-ui` | 1 | Primitives |
+| `urupe-ui/layouts` | 2 | Layouts |
+| `urupe-ui/domains` | 3 | All domains |
+| `urupe-ui/domains/auth` | 3 | Auth domain |
+| `urupe-ui/domains/chat` | 3 | Chat domain |
+| `urupe-ui/domains/data` | 3 | Data domain |
+| `urupe-ui/domains/landing` | 3 | Landing domain |
+| `urupe-ui/domains/media` | 3 | Media domain |
+| `urupe-ui/domains/calendar` | 3 | Calendar domain |
+| `urupe-ui/domains/ecommerce` | 3 | E-commerce domain |
+| `urupe-ui/domains/portfolio` | 3 | Portfolio domain |
+| `urupe-ui/domains/settings` | 3 | Settings domain |
+| `urupe-ui/domains/marketing` | 3 | Marketing domain |
+| `urupe-ui/templates` | 4 | Templates |
+| `urupe-ui/playground` | - | Demo infrastructure |
+| `urupe-ui/tailwind` | - | Tailwind plugin |
+| `urupe-ui/styles/*` | - | CSS files |
+| `urupe-ui/agentic` | - | Agentic subsystem |
 
 ### C. Naming Convention Changes
 

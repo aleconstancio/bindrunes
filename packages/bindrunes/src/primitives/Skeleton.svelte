@@ -20,6 +20,6 @@ const skeletonLines = $derived(Array.from({ length: lines }, (_, i) => i));
   .animate-shimmer {
     background: var(--gradient-shimmer);
     background-size: 200% 100%;
-    animation: bindrunes-shimmer 1.5s var(--ease-standard) infinite;
+    animation: urupe-ui-shimmer 1.5s var(--ease-standard) infinite;
   }
 </style>

@@ -1,46 +1,104 @@
 <script lang="ts">
-  import {
-    Card,
-    Button,
-    Badge,
-    Separator,
-    Accordion,
-    AccordionItem,
-  } from "bindrunes";
-  import {
-    ArrowRight,
-    Zap,
-    Shield,
-    Layers,
-    BarChart3,
-    Users,
-    Globe,
-    Check,
-    Star,
-    Mail,
-  } from "lucide-svelte";
+import {
+	ArrowRight,
+	BarChart3,
+	Check,
+	Globe,
+	Layers,
+	Mail,
+	Shield,
+	Star,
+	Users,
+	Zap,
+} from "lucide-svelte";
+import { Accordion, AccordionItem, Badge, Button, Card, Separator } from "urupe-ui";
 
-  const features = [
-    { icon: Zap, title: "Lightning Fast", description: "Sub-millisecond response times with edge computing." },
-    { icon: Shield, title: "Enterprise Security", description: "SOC 2 compliant with end-to-end encryption." },
-    { icon: Layers, title: "Modular Architecture", description: "Composable components and plugins." },
-    { icon: BarChart3, title: "Real-time Analytics", description: "Live dashboards with streaming data." },
-    { icon: Users, title: "Team Collaboration", description: "Shared workspaces and approval workflows." },
-    { icon: Globe, title: "Global CDN", description: "Deploy to 200+ edge locations worldwide." },
-  ];
+const features = [
+	{
+		icon: Zap,
+		title: "Lightning Fast",
+		description: "Sub-millisecond response times with edge computing.",
+	},
+	{
+		icon: Shield,
+		title: "Enterprise Security",
+		description: "SOC 2 compliant with end-to-end encryption.",
+	},
+	{
+		icon: Layers,
+		title: "Modular Architecture",
+		description: "Composable components and plugins.",
+	},
+	{
+		icon: BarChart3,
+		title: "Real-time Analytics",
+		description: "Live dashboards with streaming data.",
+	},
+	{
+		icon: Users,
+		title: "Team Collaboration",
+		description: "Shared workspaces and approval workflows.",
+	},
+	{ icon: Globe, title: "Global CDN", description: "Deploy to 200+ edge locations worldwide." },
+];
 
-  const plans = [
-    { name: "Starter", price: 29, features: ["5 users", "10 GB storage", "Basic analytics", "Email support"], cta: "Start Free Trial", highlighted: false },
-    { name: "Pro", price: 79, features: ["Unlimited users", "100 GB storage", "Advanced analytics", "Priority support", "Custom integrations"], cta: "Start Free Trial", highlighted: true, badge: "Most Popular" },
-    { name: "Enterprise", price: 199, features: ["Unlimited everything", "Custom analytics", "24/7 support", "SSO/SAML", "SLA guarantee"], cta: "Contact Sales", highlighted: false },
-  ];
+const plans = [
+	{
+		name: "Starter",
+		price: 29,
+		features: ["5 users", "10 GB storage", "Basic analytics", "Email support"],
+		cta: "Start Free Trial",
+		highlighted: false,
+	},
+	{
+		name: "Pro",
+		price: 79,
+		features: [
+			"Unlimited users",
+			"100 GB storage",
+			"Advanced analytics",
+			"Priority support",
+			"Custom integrations",
+		],
+		cta: "Start Free Trial",
+		highlighted: true,
+		badge: "Most Popular",
+	},
+	{
+		name: "Enterprise",
+		price: 199,
+		features: [
+			"Unlimited everything",
+			"Custom analytics",
+			"24/7 support",
+			"SSO/SAML",
+			"SLA guarantee",
+		],
+		cta: "Contact Sales",
+		highlighted: false,
+	},
+];
 
-  const faqs = [
-    { question: "What is included in the free trial?", answer: "The 14-day free trial includes full access to all Pro features. No credit card required." },
-    { question: "Can I change plans later?", answer: "Yes, you can upgrade or downgrade at any time. Changes take effect immediately with prorated billing." },
-    { question: "Is there a setup fee?", answer: "No, there are no setup fees. You only pay the monthly subscription price." },
-    { question: "What payment methods do you accept?", answer: "We accept all major credit cards, PayPal, and wire transfers for Enterprise plans." },
-  ];
+const faqs = [
+	{
+		question: "What is included in the free trial?",
+		answer:
+			"The 14-day free trial includes full access to all Pro features. No credit card required.",
+	},
+	{
+		question: "Can I change plans later?",
+		answer:
+			"Yes, you can upgrade or downgrade at any time. Changes take effect immediately with prorated billing.",
+	},
+	{
+		question: "Is there a setup fee?",
+		answer: "No, there are no setup fees. You only pay the monthly subscription price.",
+	},
+	{
+		question: "What payment methods do you accept?",
+		answer: "We accept all major credit cards, PayPal, and wire transfers for Enterprise plans.",
+	},
+];
 </script>
 
 <div class="min-h-screen bg-background">

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from "bindrunes";
+import { Button, Card, PageHeader, Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from "urupe-ui";
 	import { useForm, useMutation, useQuery } from "bindrunes-kit/client";
 	import { email as emailValidator, minLength, object, string } from "valibot";
 

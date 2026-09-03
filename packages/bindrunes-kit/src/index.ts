@@ -7,11 +7,11 @@ export type {
 	InferSchemaType,
 	MutationResult,
 	QueryResult,
-} from "bindrunes";
+} from "urupe-ui";
 export {
 	createApiClient,
 	invalidateQuery,
 	useForm,
 	useMutation,
 	useQuery,
-} from "bindrunes";
+} from "urupe-ui";

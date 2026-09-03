@@ -2,11 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Make bindrunes discoverable, documented, and contributor-friendly.
+**Goal:** Make urupe-ui discoverable, documented, and contributor-friendly.
 
 **Architecture:** Wire existing docs into the docs-site, create migration guides, polish community files.
 
-**Tech Stack:** SvelteKit, Svelte 5, Tailwind CSS v4, bindrunes components
+**Tech Stack:** SvelteKit, Svelte 5, Tailwind CSS v4, urupe-ui components
 
 ---
 
@@ -52,7 +52,7 @@ Steps:
 2. Create `docs-site/src/lib/docs-navigation.ts` with the full navigation tree
 3. Update the layout to include a sidebar with navigation
 4. Create all doc routes, converting content from `docs/*.md` and `packages/bindrunes-kit/docs/*.md` into Svelte pages
-5. Each page should: read the markdown source, convert to Svelte markup, use bindrunes components (Card, Badge, etc.) for styling
+5. Each page should: read the markdown source, convert to Svelte markup, use urupe-ui components (Card, Badge, etc.) for styling
 6. Run: `cd docs-site && bun run check` — expected: no type errors
 7. Commit
 
@@ -67,7 +67,7 @@ Steps:
 1. Read `docs/migration-from-shadcn-svelte.md`, `docs/migration-from-melt-ui.md`, `docs/migration-from-skeleton.md`
 2. Read `examples/vico-migration/README.md` for shadcn-svelte migration patterns
 3. Create migration guide pages with:
-   - Side-by-side comparisons (shadcn vs bindrunes equivalents)
+   - Side-by-side comparisons (shadcn vs urupe-ui equivalents)
    - Token mapping tables
    - Component equivalencies
    - Step-by-step migration steps

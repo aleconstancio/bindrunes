@@ -4,7 +4,7 @@ export {
 	useForm,
 	useMutation,
 	useQuery,
-} from "bindrunes";
+} from "urupe-ui";
 export type { CreateClientAuthOptions, OAuthProviderConfig, Tenant, User } from "./auth.svelte";
 export { createClientAuth } from "./auth.svelte";
 export { createAutosave } from "./autosave.svelte";

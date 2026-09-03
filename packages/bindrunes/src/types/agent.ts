@@ -1,7 +1,7 @@
 // src/types/agent.ts
-// bindrunes agentic-chat contract types — the interchange surface.
+// urupe-ui agentic-chat contract types — the interchange surface.
 // Pure declarations. No runtime. Consumers implement `AgentRuntime`;
-// bindrunes ships a `SimulatorRuntime` for tests and offline dev.
+// urupe-ui ships a `SimulatorRuntime` for tests and offline dev.
 
 declare const windowIdBrand: unique symbol;
 export type WindowId = string & { readonly [windowIdBrand]: "WindowId" };

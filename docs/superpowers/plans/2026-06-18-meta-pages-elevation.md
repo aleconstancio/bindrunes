@@ -6,7 +6,7 @@
 
 **Architecture:** Five phases: (1) refactor DashboardShell and unify layout systems, (2) export component prop types, (3) add new composables, (4) create new demo screens, (5) documentation polish.
 
-**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing bindrunes component library.
+**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing urupe-ui component library.
 
 ---
 
@@ -191,7 +191,7 @@ Add a JSDoc `@deprecated` tag and a comment redirecting to DashboardShell:
 
 ```svelte
 <script lang="ts">
-/** @deprecated Use DashboardShell from bindrunes/dashboard instead. This component will be removed in v2.0. */
+/** @deprecated Use DashboardShell from urupe-ui/dashboard instead. This component will be removed in v2.0. */
 ```
 
 - [ ] **Step 2: Update exports to note deprecation**
@@ -199,7 +199,7 @@ Add a JSDoc `@deprecated` tag and a comment redirecting to DashboardShell:
 In `src/components/boundrune/index.ts`, add a comment:
 
 ```ts
-/** @deprecated Use DashboardShell from bindrunes/dashboard instead */
+/** @deprecated Use DashboardShell from urupe-ui/dashboard instead */
 export { default as DashboardPage } from "./DashboardPage.svelte";
 ```
 
@@ -520,11 +520,11 @@ This screen demonstrates `useCounter`, `useToggle`, `useClipboard`, `useDebounce
 
 ```svelte
 <script lang="ts">
-import { Card, Badge, Button, Input, Separator } from "bindrunes";
-import { useCounter } from "bindrunes";
-import { useToggle } from "bindrunes";
-import { useClipboard } from "bindrunes";
-import { useDebouncedCallback } from "bindrunes";
+import { Card, Badge, Button, Input, Separator } from "urupe-ui";
+import { useCounter } from "urupe-ui";
+import { useToggle } from "urupe-ui";
+import { useClipboard } from "urupe-ui";
+import { useDebouncedCallback } from "urupe-ui";
 
 const counter = useCounter(0);
 const toggle = useToggle(false);
@@ -547,7 +547,7 @@ function handleSearch(e: Event) {
 <div class="max-w-4xl mx-auto p-6 space-y-8">
   <div>
     <h1 class="text-display-3 mb-2">Composable Playground</h1>
-    <p class="text-body-lg text-muted-foreground">Interactive demos for bindrunes composables.</p>
+    <p class="text-body-lg text-muted-foreground">Interactive demos for urupe-ui composables.</p>
   </div>
 
   <Card>
@@ -593,8 +593,8 @@ function handleSearch(e: Event) {
       </div>
       <p class="text-body-md text-muted-foreground">Copy text to clipboard with success state.</p>
       <div class="flex items-center gap-4">
-        <Input value="Hello, bindrunes!" readonly class="flex-1" />
-        <Button onclick={() => copy("Hello, bindrunes!")}>
+        <Input value="Hello, urupe-ui!" readonly class="flex-1" />
+        <Button onclick={() => copy("Hello, urupe-ui!")}>
           {copied ? "Copied!" : "Copy"}
         </Button>
       </div>
@@ -659,7 +659,7 @@ Show a grid of cards, each rendered in a different theme/aesthetic/density combi
 
 ```svelte
 <script lang="ts">
-import { Card, Badge, Button } from "bindrunes";
+import { Card, Badge, Button } from "urupe-ui";
 
 const themes = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 const aesthetics = ["editorial", "glass", "bento", "expressive"] as const;

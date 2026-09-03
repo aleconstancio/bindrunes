@@ -24,7 +24,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Button",
 		category: "Foundation",
 		description: "Button with aesthetic hooks",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			variant: {
 				type: "select",
@@ -52,7 +52,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Badge",
 		category: "Foundation",
 		description: "Status/tag badge",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			variant: {
 				type: "select",
@@ -77,7 +77,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Card",
 		category: "Foundation",
 		description: "Card container",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			variant: {
 				type: "select",
@@ -94,7 +94,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Alert",
 		category: "Foundation",
 		description: "Alert messages with variants",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			variant: {
 				type: "select",
@@ -110,7 +110,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Avatar",
 		category: "Foundation",
 		description: "User avatar",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
 			name: { type: "text", default: "John Doe", label: "Name" },
@@ -120,7 +120,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Separator",
 		category: "Foundation",
 		description: "Visual divider",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			orientation: {
 				type: "select",
@@ -134,7 +134,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Skeleton",
 		category: "Foundation",
 		description: "Loading skeleton",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			lines: { type: "number", default: 3, label: "Lines" },
 			width: { type: "text", default: "100%", label: "Width" },
@@ -144,7 +144,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Progress",
 		category: "Foundation",
 		description: "Progress bar",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			value: { type: "number", default: 60, label: "Value" },
 			max: { type: "number", default: 100, label: "Max" },
@@ -155,7 +155,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Accordion",
 		category: "Foundation",
 		description: "Collapsible accordion container",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			multiple: { type: "switch", default: false, label: "Allow multiple" },
 		},
@@ -165,7 +165,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "AccordionItem",
 		category: "Foundation",
 		description: "Single accordion section",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			value: { type: "text", default: "item1", label: "Value" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -176,7 +176,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "AlertDialog",
 		category: "Foundation",
 		description: "Confirmation alert dialog",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			title: { type: "text", default: "Are you sure?", label: "Title" },
 			description: { type: "text", default: "This action cannot be undone.", label: "Description" },
@@ -190,7 +190,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "CodeSnippet",
 		category: "Foundation",
 		description: "Code block with copy button",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			code: { type: "text", default: "const x = 42;", label: "Code" },
 			language: { type: "text", default: "javascript", label: "Language" },
@@ -201,7 +201,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Collapsible",
 		category: "Foundation",
 		description: "Collapsible content section",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			open: { type: "switch", default: false, label: "Open" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -212,7 +212,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "ColorPicker",
 		category: "Foundation",
 		description: "OKLCH color picker",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
@@ -221,7 +221,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Combobox",
 		category: "Foundation",
 		description: "Searchable combobox input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Search...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -231,7 +231,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "CommandPalette",
 		category: "Foundation",
 		description: "Command palette overlay",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Search...", label: "Placeholder" },
 		},
@@ -240,7 +240,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "ContextMenu",
 		category: "Foundation",
 		description: "Right-click context menu",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Right-click me",
 	},
@@ -248,7 +248,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "DatePicker",
 		category: "Foundation",
 		description: "Date picker input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			label: { type: "text", default: "Pick a date", label: "Label" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -258,7 +258,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "DropdownMenu",
 		category: "Foundation",
 		description: "Dropdown action menu",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			side: {
 				type: "select",
@@ -279,7 +279,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Kbd",
 		category: "Foundation",
 		description: "Keyboard shortcut indicator",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Ctrl+K",
 	},
@@ -287,7 +287,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Label",
 		category: "Foundation",
 		description: "Form field label",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Field Label",
 	},
@@ -295,7 +295,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "MetricCard",
 		category: "Foundation",
 		description: "Metric display card",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			label: { type: "text", default: "Revenue", label: "Label" },
 			value: { type: "text", default: "$12,345", label: "Value" },
@@ -312,7 +312,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "NumberInput",
 		category: "Foundation",
 		description: "Numeric stepper input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			min: { type: "number", default: 0, label: "Min" },
 			max: { type: "number", default: 100, label: "Max" },
@@ -326,7 +326,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "OTPInput",
 		category: "Foundation",
 		description: "One-time password input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			length: { type: "number", default: 6, label: "Length" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -336,7 +336,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "PasswordInput",
 		category: "Foundation",
 		description: "Password field with toggle",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Enter password...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -347,7 +347,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "PinInput",
 		category: "Foundation",
 		description: "PIN code entry",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			length: { type: "number", default: 4, label: "Length" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -363,7 +363,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Popconfirm",
 		category: "Foundation",
 		description: "Confirmation popover",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			title: { type: "text", default: "Are you sure?", label: "Title" },
 			confirmLabel: { type: "text", default: "Confirm", label: "Confirm label" },
@@ -376,7 +376,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Popover",
 		category: "Foundation",
 		description: "Floating popover panel",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			side: {
 				type: "select",
@@ -397,7 +397,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "RadioGroup",
 		category: "Foundation",
 		description: "Radio button group",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			label: { type: "text", default: "Choose one", label: "Label" },
 		},
@@ -406,14 +406,14 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "RangeCalendar",
 		category: "Foundation",
 		description: "Date range calendar picker",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 	},
 	{
 		name: "RatingGroup",
 		category: "Foundation",
 		description: "Star rating input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			max: { type: "number", default: 5, label: "Max stars" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -423,7 +423,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "RichTextEditor",
 		category: "Foundation",
 		description: "Markdown rich text editor",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Write something...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -433,7 +433,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "ScrollArea",
 		category: "Foundation",
 		description: "Custom scrollbar container",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Scrollable content area with overflow",
 	},
@@ -441,7 +441,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Sheet",
 		category: "Foundation",
 		description: "Side sheet panel",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			side: {
 				type: "select",
@@ -463,7 +463,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "StatusChip",
 		category: "Foundation",
 		description: "Status indicator chip",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			variant: {
 				type: "select",
@@ -480,7 +480,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "SwipeableList",
 		category: "Foundation",
 		description: "Swipeable list container",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Swipeable list content",
 	},
@@ -488,7 +488,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TagInput",
 		category: "Foundation",
 		description: "Tag/chip input field",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Add tag...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -500,7 +500,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TimeField",
 		category: "Foundation",
 		description: "Time input field",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
@@ -509,14 +509,14 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Timeline",
 		category: "Foundation",
 		description: "Vertical timeline display",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 	},
 	{
 		name: "Toggle",
 		category: "Foundation",
 		description: "Toggle button",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			pressed: { type: "switch", default: false, label: "Pressed" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -527,7 +527,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "ToggleGroup",
 		category: "Foundation",
 		description: "Group of toggle buttons",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			multiple: { type: "switch", default: false, label: "Allow multiple" },
 		},
@@ -536,21 +536,21 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TreeView",
 		category: "Foundation",
 		description: "Hierarchical tree view",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 	},
 	{
 		name: "NavigationMenu",
 		category: "Foundation",
 		description: "Navigation menu bar",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 	},
 	{
 		name: "FileUpload",
 		category: "Foundation",
 		description: "File upload dropzone",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			multiple: { type: "switch", default: true, label: "Multiple files" },
 			maxFiles: { type: "number", default: 10, label: "Max files" },
@@ -560,14 +560,14 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "BouncingDots",
 		category: "Foundation",
 		description: "Animated loading dots",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 	},
 	{
 		name: "RuleFootnote",
 		category: "Foundation",
 		description: "Rule footnote callout",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			title: { type: "text", default: "Critical Rule", label: "Title" },
 			description: { type: "text", default: "This rule must be followed.", label: "Description" },
@@ -578,7 +578,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "ErrorBanner",
 		category: "Foundation",
 		description: "Error message banner",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			error: { type: "text", default: "Something went wrong.", label: "Error" },
 		},
@@ -587,7 +587,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "SuccessBanner",
 		category: "Foundation",
 		description: "Success message banner",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Operation completed successfully!",
 	},
@@ -597,7 +597,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Input",
 		category: "Forms",
 		description: "Text input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Enter text...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -625,7 +625,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Checkbox",
 		category: "Forms",
 		description: "Checkbox input",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			disabled: { type: "switch", default: false, label: "Disabled" },
 			label: { type: "text", default: "Accept terms", label: "Label" },
@@ -635,7 +635,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Select",
 		category: "Forms",
 		description: "Select dropdown",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			placeholder: { type: "text", default: "Select an option...", label: "Placeholder" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -645,7 +645,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Switch",
 		category: "Forms",
 		description: "Toggle switch",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			disabled: { type: "switch", default: false, label: "Disabled" },
 		},
@@ -654,7 +654,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Slider",
 		category: "Forms",
 		description: "Range slider",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			min: { type: "number", default: 0, label: "Min" },
 			max: { type: "number", default: 100, label: "Max" },
@@ -668,7 +668,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Tabs",
 		category: "Data",
 		description: "Tab system",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			value: { type: "text", default: "tab1", label: "Active tab" },
 		},
@@ -677,7 +677,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TabsList",
 		category: "Data",
 		description: "Tab list container",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {},
 		slot: "Tab triggers",
 	},
@@ -685,7 +685,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TabsTrigger",
 		category: "Data",
 		description: "Individual tab trigger",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			value: { type: "text", default: "tab1", label: "Value" },
 			disabled: { type: "switch", default: false, label: "Disabled" },
@@ -696,7 +696,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "TabsContent",
 		category: "Data",
 		description: "Tab content panel",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			value: { type: "text", default: "tab1", label: "Value" },
 		},
@@ -706,7 +706,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Pagination",
 		category: "Data",
 		description: "Page navigation",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			totalPages: { type: "number", default: 10, label: "Total pages" },
 			currentPage: { type: "number", default: 1, label: "Current page" },
@@ -716,7 +716,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "DataGrid",
 		category: "Data",
 		description: "Data grid table",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			selectable: { type: "switch", default: false, label: "Selectable rows" },
 			emptyText: { type: "text", default: "No data available", label: "Empty text" },
@@ -728,7 +728,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Dialog",
 		category: "Overlays",
 		description: "Modal dialog",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			title: { type: "text", default: "Dialog Title", label: "Title" },
 			size: {
@@ -744,7 +744,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Tooltip",
 		category: "Overlays",
 		description: "Tooltip",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			side: {
 				type: "select",
@@ -760,7 +760,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Drawer",
 		category: "Overlays",
 		description: "Side drawer",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			side: {
 				type: "select",
@@ -777,7 +777,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Spinner",
 		category: "Feedback",
 		description: "Loading spinner",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			size: { type: "select", options: ["sm", "md", "lg"], default: "md", label: "Size" },
 		},
@@ -786,7 +786,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "EmptyState",
 		category: "Feedback",
 		description: "Empty state placeholders",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			title: { type: "text", default: "No items found", label: "Title" },
 			description: {
@@ -802,7 +802,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Breadcrumb",
 		category: "Navigation",
 		description: "Breadcrumb navigation",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			separator: { type: "text", default: "/", label: "Separator" },
 		},
@@ -811,7 +811,7 @@ export const componentRegistry: ComponentDefinition[] = [
 		name: "Stepper",
 		category: "Navigation",
 		description: "Step-by-step wizard UI",
-		importPath: "bindrunes",
+		importPath: "urupe-ui",
 		props: {
 			currentStep: { type: "text", default: "step1", label: "Current step ID" },
 		},

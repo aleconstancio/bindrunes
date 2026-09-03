@@ -1,8 +1,8 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Global Styles
+ * urupe-ui — Global Styles
  *
  * Import this ONCE in your root layout or app.css:
- * @import "bindrunes/styles/global.css";
+ * @import "urupe-ui/styles/global.css";
  *
  * Includes: preset (Tailwind token mapping), utilities
  * (glass-panel, text-gradients, animations), the default

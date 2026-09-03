@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Ant Design</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -95,14 +95,14 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Design Token Migration</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Ant Design uses a token-based design system with component-level customization. bindrunes uses CSS custom properties with OKLCH color space.
+        Ant Design uses a token-based design system with component-level customization. urupe-ui uses CSS custom properties with OKLCH color space.
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Ant Design Token</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes Token</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui Token</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -160,7 +160,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           </CodeSnippet>
         </div>
         <div>
-          <p class="text-body-sm font-medium text-foreground mb-2">After (bindrunes)</p>
+          <p class="text-body-sm font-medium text-foreground mb-2">After (urupe-ui)</p>
           <CodeSnippet language="svelte">
 {`<FormField name="email">
   <Label>Email</Label>
@@ -187,7 +187,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Aspect</th>
               <th class="text-left py-2 pr-4 font-medium text-foreground">Ant Design</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground">
@@ -225,10 +225,10 @@ import { Badge, CodeSnippet } from "bindrunes";
       <h2 class="text-title-1 text-foreground mb-4">Migration Steps</h2>
       <ol class="text-body text-muted-foreground space-y-2 list-decimal list-inside">
         <li>Set up SvelteKit: Initialize a SvelteKit project if migrating from React</li>
-        <li>Install bindrunes: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install bindrunes</code></li>
+        <li>Install urupe-ui: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install urupe-ui</code></li>
         <li>Install Valibot: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install valibot</code></li>
         <li>Install lucide-svelte: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install lucide-svelte</code></li>
-        <li>Update app.css: Replace Ant Design styles with bindrunes imports</li>
+        <li>Update app.css: Replace Ant Design styles with urupe-ui imports</li>
         <li>Add AppProvider: Wrap your root layout</li>
         <li>Replace ConfigProvider: Swap for AppProvider and CSS custom properties</li>
         <li>Rewrite components: Replace React JSX with Svelte syntax</li>

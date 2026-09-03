@@ -17,7 +17,7 @@ Three orthogonal axes, backed by a CSS custom property token contract. Any combi
 Define or extend themes programmatically. Replaces `defineTheme`, `extendTheme`, and `createThemeBuilder`.
 
 ```ts
-import { createTheme } from "bindrunes";
+import { createTheme } from "urupe-ui";
 
 // New theme from scratch
 const myBrand = createTheme({
@@ -51,7 +51,7 @@ const customDracula = createTheme({
 Reactive theme switching with dark mode control.
 
 ```ts
-import { useTheme } from "bindrunes";
+import { useTheme } from "urupe-ui";
 
 const theme = useTheme({ default: "editorial" });
 
@@ -69,7 +69,7 @@ theme.current;              // "editorial" | "dracula" | ...
 Supports both persisted preference and responsive (viewport-derived) modes.
 
 ```ts
-import { useDensity } from "bindrunes";
+import { useDensity } from "urupe-ui";
 
 // Persisted preference
 const density = useDensity({ default: "comfortable" });
@@ -91,14 +91,14 @@ const density = useDensity({
 
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 Additional aesthetics load on demand:
 
 ```css
-@import "bindrunes/styles/aesthetics/glass.css";
+@import "urupe-ui/styles/aesthetics/glass.css";
 ```
 
 ---

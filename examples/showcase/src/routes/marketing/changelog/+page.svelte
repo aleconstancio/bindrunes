@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { ChangelogPage } from "bindrunes/domains/marketing";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { ChangelogPage } from "urupe-ui/domains/marketing";
 
 	const changelog = [
 		{
@@ -53,6 +53,6 @@
 </script>
 
 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-	<PageHeader title="Changelog" description="Release history and updates for bindrunes" />
+	<PageHeader title="Changelog" description="Release history and updates for urupe-ui" />
 	<ChangelogPage entries={changelog} />
 </div>

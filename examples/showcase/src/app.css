@@ -1,7 +1,7 @@
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 
 /* ═══════════════════════════════════════════════════
-   bindrunes Showcase — Visual Identity
+   urupe-ui Showcase — Visual Identity
    Dark theme with warm indigo brand, gradient depth,
    glass treatments, and cohesive typography.
    ═══════════════════════════════════════════════════ */
@@ -22,7 +22,7 @@
   --brand-violet: oklch(0.62 0.2 280);
   --brand-indigo: oklch(0.55 0.15 265);
 
-  /* Override bindrunes tokens */
+  /* Override urupe-ui tokens */
   --background: var(--brand-bg) !important;
   --foreground: var(--brand-text) !important;
   --card: oklch(0.16 0.018 270 / 0.6) !important;

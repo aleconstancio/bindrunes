@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">shadcn-svelte</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -60,7 +60,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Theme Variable Migration</h2>
       <p class="text-body text-muted-foreground mb-4">
-        shadcn-svelte uses HSL CSS variables. bindrunes uses OKLCH — a perceptually uniform color space.
+        shadcn-svelte uses HSL CSS variables. urupe-ui uses OKLCH — a perceptually uniform color space.
       </p>
 
       <h3 class="text-title-2 text-foreground mb-3">HSL to OKLCH Conversion Reference</h3>
@@ -69,7 +69,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">shadcn HSL</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes OKLCH</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui OKLCH</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground font-mono text-xs">
@@ -93,14 +93,14 @@ import { Badge, CodeSnippet } from "bindrunes";
         </table>
       </div>
       <p class="text-body text-muted-foreground mt-3">
-        Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">hexToOklch()</code> from bindrunes or online converters like oklch.com.
+        Use <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">hexToOklch()</code> from urupe-ui or online converters like oklch.com.
       </p>
     </section>
 
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Form Library Migration (Zod to Valibot)</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes uses Valibot instead of Zod. Valibot is smaller (tree-shakeable) with a compatible API.
+        urupe-ui uses Valibot instead of Zod. Valibot is smaller (tree-shakeable) with a compatible API.
       </p>
       <CodeSnippet language="ts" title="Valibot API">
 {`// Zod (method chaining)
@@ -152,11 +152,11 @@ v.pipe(v.string(), v.minLength(2), v.maxLength(50), v.email());`}
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Migration Steps</h2>
       <ol class="text-body text-muted-foreground space-y-2 list-decimal list-inside">
-        <li>Install bindrunes: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install bindrunes</code></li>
-        <li>Update app.css: Replace shadcn imports with bindrunes imports</li>
+        <li>Install urupe-ui: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install urupe-ui</code></li>
+        <li>Update app.css: Replace shadcn imports with urupe-ui imports</li>
         <li>Add AppProvider: Wrap your root layout</li>
         <li>Replace CSS variables: Swap HSL values for OKLCH (use hexToOklch())</li>
-        <li>Replace component imports: Update import paths from local components to bindrunes</li>
+        <li>Replace component imports: Update import paths from local components to urupe-ui</li>
         <li>Migrate forms: Replace Zod schemas with Valibot, swap superForm for createForm</li>
         <li>Test theme switching: Verify your color palette in both light and dark modes</li>
         <li>Remove shadcn artifacts: Delete $lib/components, components.json, and unused config files</li>

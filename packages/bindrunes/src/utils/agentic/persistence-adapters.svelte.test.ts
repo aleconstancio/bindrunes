@@ -41,10 +41,10 @@ describe("createLocalStorageAdapter", () => {
 		expect(localStorage.getItem).toHaveBeenCalledWith("myapp:key1");
 	});
 
-	it("defaults prefix to bindrunes", async () => {
+	it("defaults prefix to urupe-ui", async () => {
 		const adapter = createLocalStorageAdapter();
 		await adapter.save("k", "v");
-		expect(localStorage.setItem).toHaveBeenCalledWith("bindrunes:k", "v");
+		expect(localStorage.setItem).toHaveBeenCalledWith("urupe-ui:k", "v");
 	});
 
 	it("load returns null for nonexistent keys", async () => {
@@ -57,7 +57,7 @@ describe("createLocalStorageAdapter", () => {
 		const adapter = createLocalStorageAdapter();
 		await adapter.save("del", "val");
 		await adapter.remove("del");
-		expect(localStorage.removeItem).toHaveBeenCalledWith("bindrunes:del");
+		expect(localStorage.removeItem).toHaveBeenCalledWith("urupe-ui:del");
 		const result = await adapter.load("del");
 		expect(result).toBeNull();
 	});
@@ -82,7 +82,7 @@ describe("createIndexedDBAdapter", () => {
 		expect(typeof adapter.remove).toBe("function");
 	});
 
-	it("defaults db name to bindrunes-agentic", () => {
+	it("defaults db name to urupe-ui-agentic", () => {
 		const adapter = createIndexedDBAdapter();
 		expect(adapter).toBeDefined();
 	});

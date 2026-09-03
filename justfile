@@ -1,4 +1,4 @@
-# bindrunes — Svelte 5 Component Library
+# urupe-ui — Svelte 5 Component Library
 
 set shell := ["bash", "-euo", "pipefail", "-c"]
 

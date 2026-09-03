@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -132,14 +132,14 @@ import { Badge, CodeSnippet } from "bindrunes";
       <h2 class="text-title-1 text-foreground mb-4">Token Cascade Order</h2>
       <p class="text-body text-muted-foreground mb-4">Tokens resolve in this layer order. Later layers override earlier ones.</p>
       <CodeSnippet language="css">
-{`@layer bindrunes.reset,
-       bindrunes.tokens.contract,    /* CSS custom property types */
-       bindrunes.tokens.defaults,    /* Default fallback values */
-       bindrunes.tokens.aesthetic,   /* Form overrides (radius, shadow, motion) */
-       bindrunes.tokens.theme,       /* Color overrides */
-       bindrunes.tokens.density,     /* Spacing overrides */
-       bindrunes.utilities,
-       bindrunes.components;`}
+{`@layer urupe-ui.reset,
+       urupe-ui.tokens.contract,    /* CSS custom property types */
+       urupe-ui.tokens.defaults,    /* Default fallback values */
+       urupe-ui.tokens.aesthetic,   /* Form overrides (radius, shadow, motion) */
+       urupe-ui.tokens.theme,       /* Color overrides */
+       urupe-ui.tokens.density,     /* Spacing overrides */
+       urupe-ui.utilities,
+       urupe-ui.components;`}
       </CodeSnippet>
       <div class="mt-4 space-y-2">
         <p class="text-body text-muted-foreground"><strong>Key rules:</strong></p>
@@ -154,7 +154,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Custom Theme Guide</h2>
       <CodeSnippet language="ts" title="Using defineTheme()">
-{`import { defineTheme } from "bindrunes";
+{`import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.55 0.18 260)",
@@ -205,9 +205,9 @@ myBrand.apply();`}
       <h2 class="text-title-1 text-foreground mb-4">CSS Setup</h2>
       <CodeSnippet language="css" title="app.css">
 {`@import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
-@import "bindrunes/styles/aesthetics/glass.css";`}
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
+@import "urupe-ui/styles/aesthetics/glass.css";`}
       </CodeSnippet>
     </section>
 

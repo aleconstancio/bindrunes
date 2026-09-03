@@ -1,11 +1,11 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Compact Density Preset
+ * urupe-ui — Compact Density Preset
  *
  * Tighter spacing for dense UIs: data tables,
  * dashboards, admin panels.
  *
  * Import in your app.css:
- * @import "bindrunes/styles/densities/compact.css";
+ * @import "urupe-ui/styles/densities/compact.css";
  * ══════════════════════════════════════════════════ */
 
 [data-density="compact"] {

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
-	import { Card, Avatar, Badge, Progress, Kbd, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader, Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
+	import { Card, Avatar, Badge, Progress, Kbd, Collapsible, CodeSnippet } from "urupe-ui";
 
 	const avatarSizes = ["sm", "md", "lg", "xl"] as const;
 	const badgeVariants = ["primary", "secondary", "outline", "destructive", "soft"] as const;
@@ -38,7 +38,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Avatar } from "bindrunes";\n\n<Avatar size="sm" name="Jane Smith" />\n<Avatar size="md" name="Jane Smith" />\n<Avatar size="lg" name="Jane Smith" />\n<Avatar size="xl" name="Jane Smith" />`}
+						code={`import { Avatar } from "urupe-ui";\n\n<Avatar size="sm" name="Jane Smith" />\n<Avatar size="md" name="Jane Smith" />\n<Avatar size="lg" name="Jane Smith" />\n<Avatar size="xl" name="Jane Smith" />`}
 						language="svelte"
 						title="Avatar"
 					/>
@@ -67,7 +67,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Badge } from "bindrunes";\n\n<Badge variant="primary">Primary</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="outline">Outline</Badge>\n<Badge variant="destructive">Destructive</Badge>\n<Badge variant="soft">Soft</Badge>\n\n<Badge size="sm" variant="primary">Small</Badge>\n<Badge size="md" variant="primary">Medium</Badge>\n<Badge size="lg" variant="primary">Large</Badge>`}
+						code={`import { Badge } from "urupe-ui";\n\n<Badge variant="primary">Primary</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="outline">Outline</Badge>\n<Badge variant="destructive">Destructive</Badge>\n<Badge variant="soft">Soft</Badge>\n\n<Badge size="sm" variant="primary">Small</Badge>\n<Badge size="md" variant="primary">Medium</Badge>\n<Badge size="lg" variant="primary">Large</Badge>`}
 						language="svelte"
 						title="Badge"
 					/>
@@ -99,7 +99,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Progress } from "bindrunes";\n\n<p class="text-body-sm text-muted-foreground mb-1">Storage: 65%</p>\n<Progress value={65} />\n\n<p class="text-body-sm text-muted-foreground mb-1">Build: 100%</p>\n<Progress value={100} />`}
+						code={`import { Progress } from "urupe-ui";\n\n<p class="text-body-sm text-muted-foreground mb-1">Storage: 65%</p>\n<Progress value={65} />\n\n<p class="text-body-sm text-muted-foreground mb-1">Build: 100%</p>\n<Progress value={100} />`}
 						language="svelte"
 						title="Progress"
 					/>
@@ -136,7 +136,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Kbd } from "bindrunes";\n\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Copy:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd>\n</div>\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Save:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd>\n</div>`}
+						code={`import { Kbd } from "urupe-ui";\n\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Copy:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd>\n</div>\n<div class="flex items-center gap-2">\n  <span class="text-body-sm text-foreground">Save:</span>\n  <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd>\n</div>`}
 						language="svelte"
 						title="Kbd"
 					/>

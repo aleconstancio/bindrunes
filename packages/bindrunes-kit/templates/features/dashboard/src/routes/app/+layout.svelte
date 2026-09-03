@@ -1,6 +1,6 @@
 <script lang="ts">
 	
-	import { MetaLayout, MetaScrollable, ThemeToggle } from "bindrunes";
+	import { MetaLayout, MetaScrollable, ThemeToggle } from "urupe-ui";
 	import {
 		Sidebar,
 		SidebarContent,
@@ -11,7 +11,7 @@
 		SidebarMenuButton,
 		SidebarProvider,
 		SidebarTrigger,
-	} from "bindrunes/layouts";
+	} from "urupe-ui/layouts";
 import type { Snippet } from "svelte";
 	import { afterNavigate, goto } from "$app/navigation";
 	import { page } from "$app/state";

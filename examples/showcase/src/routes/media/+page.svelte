@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { MediaTemplate } from "bindrunes/layouts";
-	import { MediaGallery, ImageUpload, AudioPlayer, FileCard, VideoPlayer } from "bindrunes/domains/media";
-	import { Collapsible, CodeSnippet } from "bindrunes";
+	import { MediaTemplate } from "urupe-ui/layouts";
+	import { MediaGallery, ImageUpload, AudioPlayer, FileCard, VideoPlayer } from "urupe-ui/domains/media";
+	import { Collapsible, CodeSnippet } from "urupe-ui";
 
 	const images = [
 		{ src: "https://picsum.photos/800/450?random=1", alt: "Landscape 1", caption: "Mountain vista at sunset" },
@@ -40,7 +40,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { MediaGallery, ImageUpload } from "bindrunes/domains/media";\n\nconst images = [\n  { src: "https://picsum.photos/800/450?random=1", alt: "Landscape 1", caption: "Mountain vista" },\n  { src: "https://picsum.photos/800/450?random=2", alt: "Landscape 2", caption: "Ocean waves" },\n];\n\nlet selectedImage = $state(0);\n\n<MediaGallery {images} bind:selectedIndex={selectedImage} />\n<ImageUpload onUpload={(file) => console.log("Upload:", file.name)} />`}
+					code={`import { MediaGallery, ImageUpload } from "urupe-ui/domains/media";\n\nconst images = [\n  { src: "https://picsum.photos/800/450?random=1", alt: "Landscape 1", caption: "Mountain vista" },\n  { src: "https://picsum.photos/800/450?random=2", alt: "Landscape 2", caption: "Ocean waves" },\n];\n\nlet selectedImage = $state(0);\n\n<MediaGallery {images} bind:selectedIndex={selectedImage} />\n<ImageUpload onUpload={(file) => console.log("Upload:", file.name)} />`}
 					language="svelte"
 					title="Gallery & Upload"
 				/>
@@ -74,7 +74,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { VideoPlayer } from "bindrunes/domains/media";\n\n<!-- Default -->\n<VideoPlayer\n  src="https://example.com/video.mp4"\n  poster="https://example.com/poster.jpg"\n/>\n\n<!-- Muted & Looping -->\n<VideoPlayer\n  src="https://example.com/video.mp4"\n  poster="https://example.com/poster.jpg"\n  muted\n  loop\n/>`}
+					code={`import { VideoPlayer } from "urupe-ui/domains/media";\n\n<!-- Default -->\n<VideoPlayer\n  src="https://example.com/video.mp4"\n  poster="https://example.com/poster.jpg"\n/>\n\n<!-- Muted & Looping -->\n<VideoPlayer\n  src="https://example.com/video.mp4"\n  poster="https://example.com/poster.jpg"\n  muted\n  loop\n/>`}
 					language="svelte"
 					title="Video Player"
 				/>
@@ -95,7 +95,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { AudioPlayer } from "bindrunes/domains/media";\n\n<AudioPlayer\n  src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"\n  title="Demo Track"\n  artist="SoundHelix"\n/>`}
+					code={`import { AudioPlayer } from "urupe-ui/domains/media";\n\n<AudioPlayer\n  src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"\n  title="Demo Track"\n  artist="SoundHelix"\n/>`}
 					language="svelte"
 					title="Audio Player"
 				/>
@@ -108,7 +108,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { FileCard } from "bindrunes/domains/media";\n\n<FileCard name="document.pdf" size="2.4 MB" type="file" />\n<FileCard name="photo.jpg" size="1.8 MB" type="image" />\n<FileCard name="video.mp4" size="45.2 MB" type="video" />\n<FileCard name="music.mp3" size="8.1 MB" type="audio" />`}
+					code={`import { FileCard } from "urupe-ui/domains/media";\n\n<FileCard name="document.pdf" size="2.4 MB" type="file" />\n<FileCard name="photo.jpg" size="1.8 MB" type="image" />\n<FileCard name="video.mp4" size="45.2 MB" type="video" />\n<FileCard name="music.mp3" size="8.1 MB" type="audio" />`}
 					language="svelte"
 					title="File Cards"
 				/>

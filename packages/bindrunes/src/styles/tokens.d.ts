@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────
- * bindrunes Design Token — TypeScript Autocomplete
+ * urupe-ui Design Token — TypeScript Autocomplete
  *
  * This file provides IDE intellisense for CSS custom
  * properties. Many editors (VS Code, WebStorm) will

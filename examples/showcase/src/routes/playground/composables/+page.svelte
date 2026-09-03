@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Card, Badge, Button, Input } from "bindrunes";
-import { useCounter, useToggle, useClipboard, useDebounce } from "bindrunes";
+import { Card, Badge, Button, Input } from "urupe-ui";
+import { useCounter, useToggle, useClipboard, useDebounce } from "urupe-ui";
 
 const counter = useCounter(0);
 const toggle = useToggle(false);
@@ -23,7 +23,7 @@ function handleSearch(e: Event) {
 <div class="max-w-4xl mx-auto p-6 space-y-8">
   <div>
     <h1 class="text-display-3 mb-2">Composable Playground</h1>
-    <p class="text-body-lg text-muted-foreground">Interactive demos for bindrunes composables.</p>
+    <p class="text-body-lg text-muted-foreground">Interactive demos for urupe-ui composables.</p>
   </div>
 
   <Card>
@@ -69,8 +69,8 @@ function handleSearch(e: Event) {
       </div>
       <p class="text-body-md text-muted-foreground">Copy text to clipboard with success state.</p>
       <div class="flex items-center gap-4">
-        <Input value="Hello, bindrunes!" readonly class="flex-1" />
-        <Button onclick={() => copy("Hello, bindrunes!")}>
+        <Input value="Hello, urupe-ui!" readonly class="flex-1" />
+        <Button onclick={() => copy("Hello, urupe-ui!")}>
           {copied ? "Copied!" : "Copy"}
         </Button>
       </div>

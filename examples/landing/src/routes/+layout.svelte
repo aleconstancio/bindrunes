@@ -1,13 +1,13 @@
 <script lang="ts">
 import "../app.css";
-import { DemoLayout } from "bindrunes/playground";
+import { DemoLayout } from "urupe-ui/playground";
 
 let { children } = $props();
 </script>
 
 <DemoLayout
-	title="bindrunes Landing Example"
-	description="Landing page example built with bindrunes"
+	title="urupe-ui Landing Example"
+	description="Landing page example built with urupe-ui"
 	shell="landing"
 >
 	{@render children()}

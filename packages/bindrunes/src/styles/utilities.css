@@ -1,16 +1,16 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Animation Keyframes & Aesthetic Hook Utilities
+ * urupe-ui — Animation Keyframes & Aesthetic Hook Utilities
  *
  * These keyframes are referenced by the Tailwind plugin
  * (src/tailwind-plugin.ts), which provides the utility classes.
  * Utility classes previously defined here are now in the plugin.
  *
  * Import alongside preset.css:
- * @import "bindrunes/styles/utilities.css";
+ * @import "urupe-ui/styles/utilities.css";
  * ══════════════════════════════════════════════════ */
 
 /* ── Animations ── */
-@keyframes bindrunes-pulse-glow {
+@keyframes urupe-ui-pulse-glow {
 	0%,
 	100% {
 		box-shadow: 0 0 15px oklch(from var(--primary, oklch(0.65 0.1 265)) l 0.3 h / 0.15);
@@ -31,7 +31,7 @@
 	}
 }
 
-@keyframes bindrunes-shimmer {
+@keyframes urupe-ui-shimmer {
 	0% {
 		background-position: 200% 0;
 	}

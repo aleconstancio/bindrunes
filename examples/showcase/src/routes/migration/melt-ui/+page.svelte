@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Melt UI Builder</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -25,7 +25,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4">createAccordion()</td>
               <td class="py-2 pr-4">Accordion + AccordionItem</td>
-              <td class="py-2">Melt uses builders; bindrunes uses components</td>
+              <td class="py-2">Melt uses builders; urupe-ui uses components</td>
             </tr>
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4">createDialog()</td>
@@ -50,7 +50,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4">—</td>
               <td class="py-2 pr-4">Button, Card, Input, Badge</td>
-              <td class="py-2">bindrunes-only (Melt has no button builder)</td>
+              <td class="py-2">urupe-ui-only (Melt has no button builder)</td>
             </tr>
           </tbody>
         </table>
@@ -77,10 +77,10 @@ import { Badge, CodeSnippet } from "bindrunes";
           </CodeSnippet>
         </div>
         <div>
-          <p class="text-body-sm font-medium text-foreground mb-2">After (bindrunes)</p>
+          <p class="text-body-sm font-medium text-foreground mb-2">After (urupe-ui)</p>
           <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { Dialog } from "bindrunes";
+  import { Dialog } from "urupe-ui";
   let open = $state(false);
 </script>
 
@@ -109,10 +109,10 @@ import { Badge, CodeSnippet } from "bindrunes";
           </CodeSnippet>
         </div>
         <div>
-          <p class="text-body-sm font-medium text-foreground mb-2">After (bindrunes)</p>
+          <p class="text-body-sm font-medium text-foreground mb-2">After (urupe-ui)</p>
           <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+  import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui";
 </script>
 
 <Tabs defaultValue="tab-1">
@@ -134,7 +134,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Aspect</th>
               <th class="text-left py-2 pr-4 font-medium text-foreground">Melt UI</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground">

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { AppProvider, SEO } from "bindrunes";
 import type { Snippet } from "svelte";
+import { AppProvider, SEO } from "urupe-ui";
 import DemoFooter from "./DemoFooter.svelte";
 import DemoNav from "./DemoNav.svelte";
 import { createDemoState } from "./scaffold-context.svelte";
@@ -31,8 +31,8 @@ interface Props {
 }
 
 let {
-	title = "bindrunes Demo",
-	description = "Component demo for bindrunes",
+	title = "urupe-ui Demo",
+	description = "Component demo for urupe-ui",
 	shell = "default",
 	theme = "editorial",
 	aesthetic = "minimal",
@@ -40,7 +40,7 @@ let {
 	nav = [],
 	footer = {},
 	showThemeToggle = true,
-	brand = "bindrunes",
+	brand = "urupe-ui",
 	brandHref = "/",
 	pathname = "/",
 	headerActions,

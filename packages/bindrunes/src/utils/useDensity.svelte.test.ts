@@ -47,11 +47,11 @@ describe("useDensity", () => {
 		const d = (await mountDensity())!;
 		d.setDensity("spacious");
 		await tick();
-		expect(localStorage.getItem("bindrunes_density")).toBe('"spacious"');
+		expect(localStorage.getItem("urupe-ui_density")).toBe('"spacious"');
 	});
 
 	it("restores from localStorage on next creation", async () => {
-		localStorage.setItem("bindrunes_density", '"compact"');
+		localStorage.setItem("urupe-ui_density", '"compact"');
 		const d = await mountDensity();
 		expect(d.density).toBe("compact");
 	});

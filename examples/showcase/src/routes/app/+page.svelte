@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, ErrorBoundary } from "bindrunes/layouts";
-	import { useOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Card, Badge, Alert, Button, useAuth, useAccess, useToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, useToggle, useCounter, Collapsible, CodeSnippet } from "bindrunes";
+	import { createSidebarState, Tabs, TabsList, TabsTrigger, TabsContent, PageHeader, ErrorBoundary } from "urupe-ui/layouts";
+	import { useOmnibar, shortcut, Omnibar, ThemeStudio, Kbd, Card, Badge, Alert, Button, useAuth, useAccess, useToast, createApiClient, useDebounce, useEventListener, useIntersectionObserver, useResizeObserver, useToggle, useCounter, Collapsible, CodeSnippet } from "urupe-ui";
 	import { Home, Settings, Users, BarChart3, Search, Keyboard, Palette, Sliders } from "lucide-svelte";
 
 	const sidebar = createSidebarState(true);
@@ -167,8 +167,8 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { ErrorBoundary } from "bindrunes/layouts";
-	import { Alert, Badge } from "bindrunes";\n\n<ErrorBoundary variant="minimal">\n  <div class="p-4 text-center">Content rendered inside ErrorBoundary</div>\n</ErrorBoundary>\n\n<Alert variant="info" title="Information" description="This is an informational alert." />\n<Alert variant="success" title="Success" description="Operation completed successfully." />\n\n<Badge>Default</Badge>\n<Badge variant="primary">Primary</Badge>\n<Badge variant="success">Success</Badge>`}
+						code={`import { ErrorBoundary } from "urupe-ui/layouts";
+	import { Alert, Badge } from "urupe-ui";\n\n<ErrorBoundary variant="minimal">\n  <div class="p-4 text-center">Content rendered inside ErrorBoundary</div>\n</ErrorBoundary>\n\n<Alert variant="info" title="Information" description="This is an informational alert." />\n<Alert variant="success" title="Success" description="Operation completed successfully." />\n\n<Badge>Default</Badge>\n<Badge variant="primary">Primary</Badge>\n<Badge variant="success">Success</Badge>`}
 						language="svelte"
 						title="Primitives"
 					/>
@@ -223,7 +223,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { useOmnibar, Omnibar, shortcut, Kbd } from "bindrunes";\n\nconst omnibar = useOmnibar({\n  options: [\n    { id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },\n    { id: "2", label: "Toggle Theme", description: "Switch light/dark mode", category: "Actions", action: () => {} },\n  ],\n});\n\n<svelte:window use:shortcut={{ key: "k", ctrl: true, callback: () => omnibar.open() }} />\n\n<Omnibar state={omnibar} />`}
+						code={`import { useOmnibar, Omnibar, shortcut, Kbd } from "urupe-ui";\n\nconst omnibar = useOmnibar({\n  options: [\n    { id: "1", label: "Go to Dashboard", description: "Navigate to dashboard", category: "Navigation", action: () => {} },\n    { id: "2", label: "Toggle Theme", description: "Switch light/dark mode", category: "Actions", action: () => {} },\n  ],\n});\n\n<svelte:window use:shortcut={{ key: "k", ctrl: true, callback: () => omnibar.open() }} />\n\n<Omnibar state={omnibar} />`}
 						language="svelte"
 						title="Omnibar"
 					/>
@@ -297,7 +297,7 @@
 						<div class="p-3 rounded-[--radius] bg-muted/50">
 							<p class="text-label-sm text-foreground mb-2">useClipboard</p>
 							<div class="flex items-center gap-3">
-								<Button size="sm" onclick={() => { navigator.clipboard.writeText("Hello from bindrunes!"); clipboardText = "Copied!"; setTimeout(() => clipboardText = "", 2000); }}>
+								<Button size="sm" onclick={() => { navigator.clipboard.writeText("Hello from urupe-ui!"); clipboardText = "Copied!"; setTimeout(() => clipboardText = "", 2000); }}>
 									Copy Text
 								</Button>
 								{#if clipboardText}
@@ -515,7 +515,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { useAuth, useAccess, useToast, createApiClient } from "bindrunes";\n\n// Auth & Access\nconst auth = useAuth();\nauth.login("token", { id: "1", email: "user@example.com", name: "User", roles: ["admin"] });\nconst access = useAccess(auth);\nconsole.log(access.isAdmin); // derived from auth state\n\n// Toast notifications\nconst toast = useToast();\ntoast.success("Operation completed!");\ntoast.error("Something went wrong");\n\n// API Client\nconst api = createApiClient({ baseUrl: "https://api.example.com" });\nconst data = await api.get("/users");`}
+						code={`import { useAuth, useAccess, useToast, createApiClient } from "urupe-ui";\n\n// Auth & Access\nconst auth = useAuth();\nauth.login("token", { id: "1", email: "user@example.com", name: "User", roles: ["admin"] });\nconst access = useAccess(auth);\nconsole.log(access.isAdmin); // derived from auth state\n\n// Toast notifications\nconst toast = useToast();\ntoast.success("Operation completed!");\ntoast.error("Something went wrong");\n\n// API Client\nconst api = createApiClient({ baseUrl: "https://api.example.com" });\nconst data = await api.get("/users");`}
 						language="svelte"
 						title="Composables"
 					/>

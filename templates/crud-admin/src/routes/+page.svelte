@@ -1,110 +1,92 @@
 <script lang="ts">
-  import {
-    Card,
-    Button,
-    Badge,
-    Input,
-    Dialog,
-    Separator,
-    Checkbox,
-    Select,
-  } from "bindrunes";
-  import {
-    Plus,
-    Search,
-    MoreHorizontal,
-    Pencil,
-    Trash2,
-    Users,
-    ArrowLeft,
-    X,
-  } from "lucide-svelte";
+import { ArrowLeft, MoreHorizontal, Pencil, Plus, Search, Trash2, Users, X } from "lucide-svelte";
+import { Badge, Button, Card, Checkbox, Dialog, Input, Select, Separator } from "urupe-ui";
 
-  interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    status: "active" | "inactive";
-  }
+interface User {
+	id: number;
+	name: string;
+	email: string;
+	role: string;
+	status: "active" | "inactive";
+}
 
-  let users = $state<User[]>([
-    { id: 1, name: "Sarah Chen", email: "sarah@example.com", role: "Admin", status: "active" },
-    { id: 2, name: "Marcus Johnson", email: "marcus@example.com", role: "Editor", status: "active" },
-    { id: 3, name: "Priya Patel", email: "priya@example.com", role: "Viewer", status: "inactive" },
-    { id: 4, name: "Alex Rivera", email: "alex@example.com", role: "Editor", status: "active" },
-    { id: 5, name: "Jordan Kim", email: "jordan@example.com", role: "Admin", status: "active" },
-  ]);
+let users = $state<User[]>([
+	{ id: 1, name: "Sarah Chen", email: "sarah@example.com", role: "Admin", status: "active" },
+	{ id: 2, name: "Marcus Johnson", email: "marcus@example.com", role: "Editor", status: "active" },
+	{ id: 3, name: "Priya Patel", email: "priya@example.com", role: "Viewer", status: "inactive" },
+	{ id: 4, name: "Alex Rivera", email: "alex@example.com", role: "Editor", status: "active" },
+	{ id: 5, name: "Jordan Kim", email: "jordan@example.com", role: "Admin", status: "active" },
+]);
 
-  let searchQuery = $state("");
-  let dialogOpen = $state(false);
-  let editingUser = $state<Partial<User> | null>(null);
-  let selectedIds = $state<Set<number>>(new Set());
+let searchQuery = $state("");
+let dialogOpen = $state(false);
+let editingUser = $state<Partial<User> | null>(null);
+let selectedIds = $state<Set<number>>(new Set());
 
-  let filteredUsers = $derived(
-    users.filter(
-      (u) =>
-        u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        u.email.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-  );
+let filteredUsers = $derived(
+	users.filter(
+		(u) =>
+			u.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+			u.email.toLowerCase().includes(searchQuery.toLowerCase()),
+	),
+);
 
-  let allSelected = $derived(selectedIds.size === filteredUsers.length && filteredUsers.length > 0);
-  let someSelected = $derived(selectedIds.size > 0 && selectedIds.size < filteredUsers.length);
+let allSelected = $derived(selectedIds.size === filteredUsers.length && filteredUsers.length > 0);
+let someSelected = $derived(selectedIds.size > 0 && selectedIds.size < filteredUsers.length);
 
-  const roleOptions = [
-    { value: "Admin", label: "Admin" },
-    { value: "Editor", label: "Editor" },
-    { value: "Viewer", label: "Viewer" },
-  ];
+const roleOptions = [
+	{ value: "Admin", label: "Admin" },
+	{ value: "Editor", label: "Editor" },
+	{ value: "Viewer", label: "Viewer" },
+];
 
-  function openCreate() {
-    editingUser = { name: "", email: "", role: "Viewer", status: "active" };
-    dialogOpen = true;
-  }
+function openCreate() {
+	editingUser = { name: "", email: "", role: "Viewer", status: "active" };
+	dialogOpen = true;
+}
 
-  function openEdit(user: User) {
-    editingUser = { ...user };
-    dialogOpen = true;
-  }
+function openEdit(user: User) {
+	editingUser = { ...user };
+	dialogOpen = true;
+}
 
-  function saveUser() {
-    if (!editingUser?.name || !editingUser?.email) return;
-    const current = editingUser;
-    if (current.id) {
-      users = users.map((u) => (u.id === current.id ? ({ ...current } as User) : u));
-    } else {
-      const newUser: User = {
-        id: Math.max(...users.map((u) => u.id)) + 1,
-        name: current.name,
-        email: current.email,
-        role: current.role || "Viewer",
-        status: "active",
-      };
-      users = [...users, newUser];
-    }
-    dialogOpen = false;
-    editingUser = null;
-  }
+function saveUser() {
+	if (!editingUser?.name || !editingUser?.email) return;
+	const current = editingUser;
+	if (current.id) {
+		users = users.map((u) => (u.id === current.id ? ({ ...current } as User) : u));
+	} else {
+		const newUser: User = {
+			id: Math.max(...users.map((u) => u.id)) + 1,
+			name: current.name,
+			email: current.email,
+			role: current.role || "Viewer",
+			status: "active",
+		};
+		users = [...users, newUser];
+	}
+	dialogOpen = false;
+	editingUser = null;
+}
 
-  function deleteUser(id: number) {
-    users = users.filter((u) => u.id !== id);
-  }
+function deleteUser(id: number) {
+	users = users.filter((u) => u.id !== id);
+}
 
-  function toggleSelect(id: number) {
-    const next = new Set(selectedIds);
-    if (next.has(id)) next.delete(id);
-    else next.add(id);
-    selectedIds = next;
-  }
+function toggleSelect(id: number) {
+	const next = new Set(selectedIds);
+	if (next.has(id)) next.delete(id);
+	else next.add(id);
+	selectedIds = next;
+}
 
-  function toggleAll() {
-    if (selectedIds.size === filteredUsers.length) {
-      selectedIds = new Set();
-    } else {
-      selectedIds = new Set(filteredUsers.map((u) => u.id));
-    }
-  }
+function toggleAll() {
+	if (selectedIds.size === filteredUsers.length) {
+		selectedIds = new Set();
+	} else {
+		selectedIds = new Set(filteredUsers.map((u) => u.id));
+	}
+}
 </script>
 
 <div class="flex min-h-screen bg-background">

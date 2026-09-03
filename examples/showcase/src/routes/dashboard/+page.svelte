@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { DashboardShell } from "bindrunes/layouts";
-	import { DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "bindrunes/domains/dashboard";
-	import { Button, Card } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { DashboardShell } from "urupe-ui/layouts";
+	import { DashboardHome, ActivityFeed, QuickActions, DashboardFooter } from "urupe-ui/domains/dashboard";
+	import { Button, Card } from "urupe-ui";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
 	import { Home, Users, Settings, BarChart3, FolderPlus, UserPlus, FileBarChart } from "lucide-svelte";
 
 	const navigation = [

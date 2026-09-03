@@ -101,7 +101,7 @@ mkdir -p packages/bindrunes-kit/templates/full-stack/src/routes
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "bindrunes": "^1.2.0",
+    "urupe-ui": "^1.2.0",
     "svelte": "^5.0.0",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
@@ -146,7 +146,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: { exclude: ["bindrunes"] },
+  optimizeDeps: { exclude: ["urupe-ui"] },
 });
 ```
 
@@ -154,8 +154,8 @@ export default defineConfig({
 
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 - [ ] **Step 6: Write src/app.html**
@@ -179,7 +179,7 @@ export default defineConfig({
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -192,12 +192,12 @@ export default defineConfig({
 
 ```svelte
 <script lang="ts">
-  import { Button, Card, PageSection } from "bindrunes";
+  import { Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>
   <div class="text-center space-y-6">
-    <h1 class="text-display-1 text-foreground">Welcome to bindrunes</h1>
+    <h1 class="text-display-1 text-foreground">Welcome to urupe-ui</h1>
     <p class="text-body-lg text-muted-foreground">
       Your app is ready. Start building.
     </p>
@@ -275,7 +275,7 @@ mkdir -p packages/bindrunes-kit/templates/spa-backend/src/routes
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "bindrunes": "^1.2.0",
+    "urupe-ui": "^1.2.0",
     "svelte": "^5.0.0",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
@@ -320,7 +320,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: { exclude: ["bindrunes"] },
+  optimizeDeps: { exclude: ["urupe-ui"] },
 });
 ```
 
@@ -328,8 +328,8 @@ export default defineConfig({
 
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 - [ ] **Step 6: Write src/app.html** (same as full-stack)
@@ -353,7 +353,7 @@ export default defineConfig({
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -366,7 +366,7 @@ export default defineConfig({
 
 ```svelte
 <script lang="ts">
-  import { Button, Card, PageSection } from "bindrunes";
+  import { Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>
@@ -479,17 +479,17 @@ bun add -d size-limit @size-limit/preset-small-lib
 ```json
 [
   {
-    "name": "bindrunes (main)",
+    "name": "urupe-ui (main)",
     "path": "packages/bindrunes/dist/index.js",
     "limit": "15 kB"
   },
   {
-    "name": "bindrunes/layouts",
+    "name": "urupe-ui/layouts",
     "path": "packages/bindrunes/dist/layouts/index.js",
     "limit": "8 kB"
   },
   {
-    "name": "bindrunes/domains",
+    "name": "urupe-ui/domains",
     "path": "packages/bindrunes/dist/domains/index.js",
     "limit": "12 kB"
   }

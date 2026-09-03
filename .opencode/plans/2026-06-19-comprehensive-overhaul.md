@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Implement a comprehensive overhaul of the bindrunes component library including new primitives, agentic UI components, playground expansion, new Boundrunes, and testing improvements.
+**Goal:** Implement a comprehensive overhaul of the urupe-ui component library including new primitives, agentic UI components, playground expansion, new Boundrunes, and testing improvements.
 
 **Architecture:** Add new components following existing patterns (createX() convention, interface Props, co-located tests). Expand playground to support all 245 components with live editing. Add 5 new Boundrune page patterns. Maintain backward compatibility throughout.
 
@@ -1870,7 +1870,7 @@ export const categories = [...new Set(components.map(c => c.category))];
 
 ```svelte
 <script lang="ts">
-  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet } from "bindrunes";
+  import { PageHeader, Card, Input, Select, Switch, Button, Badge, CodeSnippet } from "urupe-ui";
   import { components, categories, type PlaygroundComponent } from "$lib/playground-data";
 
   let selectedCategory = $state(categories[0]);
@@ -1905,7 +1905,7 @@ export const categories = [...new Set(components.map(c => c.category))];
       .join(" ");
     const propStr = props ? ` ${props}` : "";
     const slotContent = current.slot ? `\n  ${current.slot}\n` : "";
-    return `import { ${current.name} } from "bindrunes";\n\n<${current.name}${propStr}>${slotContent}</${current.name}>`;
+    return `import { ${current.name} } from "urupe-ui";\n\n<${current.name}${propStr}>${slotContent}</${current.name}>`;
   });
 </script>
 

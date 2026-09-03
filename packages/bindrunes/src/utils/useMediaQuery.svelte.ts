@@ -17,7 +17,7 @@ export function useMediaQuery(options: ReactiveMediaQueryOptions) {
 	}
 
 	const mql = window.matchMedia(options.query);
-	const storage = options.storageKey ? createStorage("bindrunes") : null;
+	const storage = options.storageKey ? createStorage("urupe-ui") : null;
 
 	let matches = $state(mql.matches);
 

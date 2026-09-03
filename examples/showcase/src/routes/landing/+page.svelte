@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns, createLandingState } from "bindrunes/domains/landing";
-	import { Collapsible, CodeSnippet } from "bindrunes";
+	import { HeroBanner, FeatureGrid, PricingTable, TestimonialGrid, FAQ, MetricsBar, HowItWorks, CtaBanner, ComparisonTable, SecurityBadges, StatsCounter, VideoEmbed, TeamSection, LogoCloud, IntegrationGrid, Newsletter, FeatureComparison, Testimonial, LandingSection, SiteFooterColumns, createLandingState } from "urupe-ui/domains/landing";
+	import { Collapsible, CodeSnippet } from "urupe-ui";
 	import { Zap, Shield, Clock, CheckCircle, Globe, Lock, Settings } from "lucide-svelte";
 
 	createLandingState();
@@ -21,9 +21,9 @@
 	];
 
 	const testimonials = [
-		{ quote: "bindrunes transformed how we build UIs. The three-axis design system is genius.", author: "Sarah Chen", role: "CTO at TechFlow" },
+		{ quote: "urupe-ui transformed how we build UIs. The three-axis design system is genius.", author: "Sarah Chen", role: "CTO at TechFlow" },
 		{ quote: "The best component library I've ever used. Everything just works together perfectly.", author: "Marcus Johnson", role: "Lead Developer at Acme" },
-		{ quote: "We shipped our entire dashboard in 2 weeks using bindrunes. Incredible productivity.", author: "Emily Rodriguez", role: "Product Manager at DataSync" },
+		{ quote: "We shipped our entire dashboard in 2 weeks using urupe-ui. Incredible productivity.", author: "Emily Rodriguez", role: "Product Manager at DataSync" },
 	];
 
 	const metrics = [
@@ -33,9 +33,9 @@
 	];
 
 	const faqItems = [
-		{ question: "What is bindrunes?", answer: "bindrunes is a comprehensive Svelte 5 component library with a three-axis design system for building modern web applications." },
+		{ question: "What is urupe-ui?", answer: "urupe-ui is a comprehensive Svelte 5 component library with a three-axis design system for building modern web applications." },
 		{ question: "How many components are included?", answer: "Over 248 components including primitives, layouts, dashboards, auth forms, e-commerce, media, and more." },
-		{ question: "Is it free to use?", answer: "Yes, bindrunes is open source under the MIT license." },
+		{ question: "Is it free to use?", answer: "Yes, urupe-ui is open source under the MIT license." },
 	];
 
 	const partners = [
@@ -96,21 +96,21 @@
 		description="A complete Svelte 5 design system with 160+ components, three-axis theming, and pre-built page patterns."
 		ctas={[
 			{ label: "Get Started", href: "/auth/register" },
-			{ label: "View Documentation", href: "https://github.com/aleconstancio/bindrunes" },
+			{ label: "View Documentation", href: "https://github.com/aleconstancio/urupe-ui" },
 		]}
 		background="gradient"
 		level={1}
 	>
 		{#snippet title()}
-			Build beautiful apps with bindrunes
+			Build beautiful apps with urupe-ui
 		{/snippet}
 	</HeroBanner>
 
 	<VideoEmbed
-		title="See bindrunes in action"
+		title="See urupe-ui in action"
 		description="Watch how three-axis theming makes building complex UIs simple and fast."
 		videoUrl="https://www.w3schools.com/html/mov_bbb.mp4"
-		posterUrl="https://placehold.co/1280x720/1a1a2e/e0e0e0?text=bindrunes+Demo"
+		posterUrl="https://placehold.co/1280x720/1a1a2e/e0e0e0?text=urupe-ui+Demo"
 	/>
 
 	<MetricsBar {metrics} />
@@ -137,7 +137,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { HeroBanner, FeatureGrid, PricingTable } from "bindrunes/domains/landing";\n\nconst features = [\n  { icon: "Zap", title: "Lightning Fast", description: "Optimized for performance." },\n  { icon: "Shield", title: "Secure by Default", description: "Built-in security practices." },\n  { icon: "Clock", title: "Quick Setup", description: "Get started in minutes." },\n];\n\n<HeroBanner\n  title="Build beautiful apps"\n  description="A complete Svelte 5 design system."\n  ctaLabel="Get Started"\n  ctaHref="/register"\n/>\n\n<FeatureGrid {features} columns={3} />`}
+				code={`import { HeroBanner, FeatureGrid, PricingTable } from "urupe-ui/domains/landing";\n\nconst features = [\n  { icon: "Zap", title: "Lightning Fast", description: "Optimized for performance." },\n  { icon: "Shield", title: "Secure by Default", description: "Built-in security practices." },\n  { icon: "Clock", title: "Quick Setup", description: "Get started in minutes." },\n];\n\n<HeroBanner\n  title="Build beautiful apps"\n  description="A complete Svelte 5 design system."\n  ctaLabel="Get Started"\n  ctaHref="/register"\n/>\n\n<FeatureGrid {features} columns={3} />`}
 				language="svelte"
 				title="Hero & Features"
 			/>
@@ -146,7 +146,7 @@
 
 	<HowItWorks
 		steps={[
-			{ icon: Zap, title: "Install", description: "Add bindrunes to your SvelteKit project" },
+			{ icon: Zap, title: "Install", description: "Add urupe-ui to your SvelteKit project" },
 			{ icon: Settings, title: "Configure", description: "Set up your theme, aesthetic, and density" },
 			{ icon: CheckCircle, title: "Build", description: "Compose components into your pages" },
 			{ icon: Globe, title: "Deploy", description: "Ship to production with confidence" },
@@ -170,7 +170,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { TestimonialGrid, Testimonial } from "bindrunes/domains/landing";\n\nconst testimonials = [\n  { quote: "bindrunes transformed how we build UIs.", author: "Sarah Chen", role: "CTO at TechFlow" },\n  { quote: "The best component library I've ever used.", author: "Marcus Johnson", role: "Lead Developer at Acme" },\n];\n\n<TestimonialGrid {testimonials} />\n\n<Testimonial\n  quote="A game changer for Svelte development."\n  author="Emily Rodriguez"\n  role="Product Manager at DataSync"\n/>`}
+				code={`import { TestimonialGrid, Testimonial } from "urupe-ui/domains/landing";\n\nconst testimonials = [\n  { quote: "urupe-ui transformed how we build UIs.", author: "Sarah Chen", role: "CTO at TechFlow" },\n  { quote: "The best component library I've ever used.", author: "Marcus Johnson", role: "Lead Developer at Acme" },\n];\n\n<TestimonialGrid {testimonials} />\n\n<Testimonial\n  quote="A game changer for Svelte development."\n  author="Emily Rodriguez"\n  role="Product Manager at DataSync"\n/>`}
 				language="svelte"
 				title="Testimonials"
 			/>
@@ -191,7 +191,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { PricingTable } from "bindrunes/domains/landing";\n\nconst plans = [\n  { name: "Starter", monthly: 29, annual: 290, features: ["5 Projects", "10GB Storage"], cta: { label: "Get Started", href: "/register" } },\n  { name: "Pro", monthly: 79, annual: 790, features: ["Unlimited Projects", "100GB Storage"], highlight: true, badge: "Most Popular", cta: { label: "Start Pro", href: "/register", variant: "primary" } },\n  { name: "Enterprise", monthly: 199, annual: 1990, features: ["Everything in Pro", "Unlimited Storage"], cta: { label: "Contact Sales", href: "/contact", variant: "outline" } },\n];\n\n<PricingTable {plans} />`}
+				code={`import { PricingTable } from "urupe-ui/domains/landing";\n\nconst plans = [\n  { name: "Starter", monthly: 29, annual: 290, features: ["5 Projects", "10GB Storage"], cta: { label: "Get Started", href: "/register" } },\n  { name: "Pro", monthly: 79, annual: 790, features: ["Unlimited Projects", "100GB Storage"], highlight: true, badge: "Most Popular", cta: { label: "Start Pro", href: "/register", variant: "primary" } },\n  { name: "Enterprise", monthly: 199, annual: 1990, features: ["Everything in Pro", "Unlimited Storage"], cta: { label: "Contact Sales", href: "/contact", variant: "outline" } },\n];\n\n<PricingTable {plans} />`}
 				language="svelte"
 				title="Pricing"
 			/>
@@ -199,8 +199,8 @@
 	</Collapsible>
 
 	<ComparisonTable
-		title="Why choose bindrunes?"
-		yoursLabel="bindrunes"
+		title="Why choose urupe-ui?"
+		yoursLabel="urupe-ui"
 		competitor1Label="Shadcn"
 		competitor2Label="Mantine"
 		features={[
@@ -258,17 +258,17 @@
 
 	<CtaBanner
 		title="Ready to get started?"
-		description="Join thousands of developers building with bindrunes."
+		description="Join thousands of developers building with urupe-ui."
 		ctaLabel="Start Building"
 		ctaHref="/auth/register"
 	/>
 
 	<SiteFooterColumns
 		columns={footerColumns}
-		copyright="2026 bindrunes. All rights reserved."
+		copyright="2026 urupe-ui. All rights reserved."
 		socialLinks={[
-			{ label: "GitHub", href: "https://github.com/aleconstancio/bindrunes" },
-			{ label: "npm", href: "https://www.npmjs.com/package/bindrunes" },
+			{ label: "GitHub", href: "https://github.com/aleconstancio/urupe-ui" },
+			{ label: "npm", href: "https://www.npmjs.com/package/urupe-ui" },
 		]}
 	/>
 

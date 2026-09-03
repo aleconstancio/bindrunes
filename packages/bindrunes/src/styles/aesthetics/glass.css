@@ -1,16 +1,16 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Glass Aesthetic Preset
+ * urupe-ui — Glass Aesthetic Preset
  *
  * Atmospheric, translucent surfaces with blurred
  * backgrounds and ambient shadow bloom.
- * Preserves the current bindrunes v0.4 vibe.
+ * Preserves the current urupe-ui v0.4 vibe.
  *
  * Import in your app.css:
- * @import "bindrunes/styles/aesthetics/glass.css";
+ * @import "urupe-ui/styles/aesthetics/glass.css";
  * ══════════════════════════════════════════════════ */
 
 [data-aesthetic="glass"] {
-	/* Radius — default bindrunes legacy */
+	/* Radius — default urupe-ui legacy */
 	--radius: 0.625rem;
 	--radius-md: 0.625rem;
 	--radius-lg: 0.875rem;

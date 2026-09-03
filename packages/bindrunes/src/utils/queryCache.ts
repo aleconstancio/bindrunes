@@ -22,7 +22,7 @@ interface CacheEntry<TData = unknown> {
 	gcTimeout: ReturnType<typeof setTimeout> | null;
 }
 
-export const CACHE_KEY = Symbol.for("bindrunes-query-cache");
+export const CACHE_KEY = Symbol.for("urupe-ui-query-cache");
 const clientCache = new Map<string, CacheEntry>();
 
 export function getCache(): Map<string, CacheEntry> {

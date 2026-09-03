@@ -5,10 +5,10 @@ import { defineConfig } from "vite";
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
 	optimizeDeps: {
-		exclude: ["bindrunes"],
+		exclude: ["urupe-ui"],
 	},
 	ssr: {
-		external: ["bindrunes"],
+		external: ["urupe-ui"],
 	},
 	server: {
 		port: 5176,

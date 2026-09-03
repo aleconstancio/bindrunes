@@ -1,15 +1,15 @@
-# bindrunes v3.0 Phase 1 — Server-First Foundation (Revised)
+# urupe-ui v3.0 Phase 1 — Server-First Foundation (Revised)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Make bindrunes components SSR-first by design. Provide server-side utilities for theme/density resolution from request context. Leverage SvelteKit's native SSR patterns (load functions, streaming, per-route `ssr` option). Add progressive hydration via `<svelte:boundary>` and SvelteKit's `csr` option.
+**Goal:** Make urupe-ui components SSR-first by design. Provide server-side utilities for theme/density resolution from request context. Leverage SvelteKit's native SSR patterns (load functions, streaming, per-route `ssr` option). Add progressive hydration via `<svelte:boundary>` and SvelteKit's `csr` option.
 
 **Architecture:** This is NOT React Server Components. Svelte 5 components are universal — they render on both server and client. "Server-first" means:
 1. Components are SSR-safe by default (no browser APIs in script setup)
 2. Server utilities resolve theme/density from request cookies/headers
 3. SvelteKit load functions handle data fetching on the server
 4. Progressive hydration uses SvelteKit's native patterns (`ssr`, `csr`, `<svelte:boundary>`)
-5. `bindrunes/server` exports pure utility functions safe for any server context
+5. `urupe-ui/server` exports pure utility functions safe for any server context
 
 **Tech Stack:** Svelte 5 (runes, `render()` from `svelte/server`, `<svelte:boundary>`), SvelteKit (load functions, streaming, per-route options), Tailwind v4 (container queries via `@` prefix), CSS container queries.
 
@@ -94,7 +94,7 @@ cd packages/bindrunes && bun run build
 - [ ] **Step 4: Commit**
 
 ```bash
-git add -A && git commit -m "feat(v3): add bindrunes/server and bindrunes/responsive export paths"
+git add -A && git commit -m "feat(v3): add urupe-ui/server and urupe-ui/responsive export paths"
 ```
 
 ---
@@ -537,7 +537,7 @@ Add to the Laws section:
 - **Server utilities:** `useThemeServer()` and `useDensityServer()` are pure functions — no runes, works in any server context (SvelteKit load functions, hooks, edge functions).
 - **Progressive hydration:** Use SvelteKit's native patterns: `export const ssr = false` for client-only pages, `<svelte:boundary>` for selective hydration, `export const csr = false` for server-only pages.
 - **Responsive:** CSS container queries (Tailwind v4 `@` prefix) for layout adaptation. `useViewport()` for JS breakpoint detection. `data-density="auto"` for viewport-derived density.
-- **Server barrel:** Import from `bindrunes/server` for SSR-safe utilities.
+- **Server barrel:** Import from `urupe-ui/server` for SSR-safe utilities.
 ```
 
 - [ ] **Step 2: Commit**

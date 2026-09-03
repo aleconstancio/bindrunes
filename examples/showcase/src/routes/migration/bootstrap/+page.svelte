@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Bootstrap</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -80,7 +80,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Grid System Migration</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Bootstrap uses a 12-column float-based grid. bindrunes uses Tailwind's utility-first grid system.
+        Bootstrap uses a 12-column float-based grid. urupe-ui uses Tailwind's utility-first grid system.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -112,14 +112,14 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Color System Migration</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Bootstrap uses Sass variables with a 10-step color scale. bindrunes uses OKLCH CSS custom properties with a role-based token system.
+        Bootstrap uses Sass variables with a 10-step color scale. urupe-ui uses OKLCH CSS custom properties with a role-based token system.
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Bootstrap Color</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes Token</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui Token</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -172,7 +172,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Aspect</th>
               <th class="text-left py-2 pr-4 font-medium text-foreground">Bootstrap</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground">
@@ -214,13 +214,13 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Migration Steps</h2>
       <ol class="text-body text-muted-foreground space-y-2 list-decimal list-inside">
-        <li>Install bindrunes: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install bindrunes</code></li>
+        <li>Install urupe-ui: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install urupe-ui</code></li>
         <li>Remove Bootstrap: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm uninstall bootstrap</code> and remove CSS imports</li>
-        <li>Update app.css: Replace Bootstrap imports with bindrunes imports</li>
+        <li>Update app.css: Replace Bootstrap imports with urupe-ui imports</li>
         <li>Add AppProvider: Wrap your root layout</li>
         <li>Replace Bootstrap grid: Swap row/col-* for Tailwind grid/col-span-*</li>
         <li>Replace components: Swap btn, card, form-control for Button, Card, Input</li>
-        <li>Replace JS plugins: Swap bootstrap.Modal etc. for bindrunes components</li>
+        <li>Replace JS plugins: Swap bootstrap.Modal etc. for urupe-ui components</li>
         <li>Migrate forms: Install Valibot, replace native validation with createForm()</li>
         <li>Replace colors: Map Bootstrap Sass variables to OKLCH custom properties</li>
         <li>Remove jQuery: If no longer needed, remove it</li>

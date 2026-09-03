@@ -1,8 +1,8 @@
-# bindrunes v3.0 — Server-First Foundation + Responsive Hybrid (Revised)
+# urupe-ui v3.0 — Server-First Foundation + Responsive Hybrid (Revised)
 
 ## Overview
 
-v3.0 makes bindrunes SSR-first by design. Components are universal (render on both server and client), with server utilities for theme/density resolution from request context. Leverages SvelteKit's native SSR patterns — not custom hydration.
+v3.0 makes urupe-ui SSR-first by design. Components are universal (render on both server and client), with server utilities for theme/density resolution from request context. Leverages SvelteKit's native SSR patterns — not custom hydration.
 
 **Key insight:** Svelte 5 doesn't have React-style server components. Components are universal — they render on both server and client. "Server-first" means designing components that are SSR-safe by default.
 
@@ -31,13 +31,13 @@ v3.0 makes bindrunes SSR-first by design. Components are universal (render on bo
 
 ### Export Path
 
-`bindrunes/server` — Pure utility functions safe for any server context (no Svelte runes, no browser APIs).
+`urupe-ui/server` — Pure utility functions safe for any server context (no Svelte runes, no browser APIs).
 
 ### Server Utilities
 
 ```ts
-// bindrunes/server — works in +page.server.ts, hooks, edge functions
-import { createServerTheme, useThemeServer, useDensityServer } from "bindrunes/server";
+// urupe-ui/server — works in +page.server.ts, hooks, edge functions
+import { createServerTheme, useThemeServer, useDensityServer } from "urupe-ui/server";
 
 // In +page.server.ts:
 export async function load({ request }) {
@@ -54,7 +54,7 @@ Components are SSR-safe by default — no browser APIs in top-level script setup
 
 ```svelte
 <script lang="ts">
-  import { browser } from "bindrunes";
+  import { browser } from "urupe-ui";
   
   // This runs on server (returns undefined) and client (returns real value)
   let element = $state<HTMLElement | undefined>(undefined);
@@ -157,7 +157,7 @@ New `data-density="auto"` mode — CSS media queries derive density from viewpor
 
 ```svelte
 <script lang="ts">
-  import { useViewport } from "bindrunes/responsive";
+  import { useViewport } from "urupe-ui/responsive";
   const viewport = useViewport();
 </script>
 
@@ -183,7 +183,7 @@ New `data-density="auto"` mode — CSS media queries derive density from viewpor
 
 ## 5. Implementation Order
 
-1. Create `bindrunes/server` export path and barrel
+1. Create `urupe-ui/server` export path and barrel
 2. Implement `createServerTheme()` — pure function, no runes
 3. Implement `useThemeServer()` + `useDensityServer()` — request cookie readers
 4. Implement `createRender()` — wrapper around `svelte/server` render()

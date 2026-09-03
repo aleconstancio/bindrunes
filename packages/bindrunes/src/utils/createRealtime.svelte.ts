@@ -103,7 +103,7 @@ export class RealtimeClient {
 				onmessage: (msg) => {
 					if (msg.id) {
 						this.lastEventId = msg.id;
-						localforage?.setItem(storageKey ?? "bindrunes_last_event_id", msg.id).catch(() => {});
+						localforage?.setItem(storageKey ?? "urupe-ui_last_event_id", msg.id).catch(() => {});
 					}
 
 					try {

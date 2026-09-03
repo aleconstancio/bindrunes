@@ -94,7 +94,7 @@ function handlePropChange(key: string, value: unknown) {
       <Badge variant="primary">Playground</Badge>
       <h1 class="mt-2 text-display-1 text-foreground">Component Playground</h1>
       <p class="mt-1 text-body-lg text-muted-foreground">
-        Interactively explore and configure bindrunes components.
+        Interactively explore and configure urupe-ui components.
       </p>
     </div>
     <div class="flex gap-2">

@@ -6,7 +6,7 @@
 import { createServerAuth, createAuthGuard } from "bindrunes-kit/server";
 
 const auth = createServerAuth({
-  cookieName: "bindrunes-session",  // default
+  cookieName: "urupe-ui-session",  // default
   maxAge: 60 * 60 * 24 * 7,        // 7 days
   validate: async (token) => {
     const user = await db.validateToken(token);
@@ -61,7 +61,7 @@ The guard:
 ## Client-Side (SPA Mode)
 
 ```ts
-import { createApiClient } from "bindrunes";
+import { createApiClient } from "urupe-ui";
 
 const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL,

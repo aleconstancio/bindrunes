@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Popover } from "bindrunes";
-	import { useTheme, useAesthetic, useDensity } from "bindrunes";
+	import { Popover } from "urupe-ui";
+	import { useTheme, useAesthetic, useDensity } from "urupe-ui";
 	import { Palette } from "lucide-svelte";
 
 	const themeState = useTheme({ default: "editorial" });

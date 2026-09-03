@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, EmailVerification } from "bindrunes/domains/auth";
+	import { AuthLayout, EmailVerification } from "urupe-ui/domains/auth";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 
   let { children } = $props();
 </script>

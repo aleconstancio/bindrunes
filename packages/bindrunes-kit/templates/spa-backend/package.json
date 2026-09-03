@@ -9,7 +9,7 @@
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "bindrunes": "^4.0.0",
+    "urupe-ui": "^4.0.0",
     "svelte": "^5.0.0",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^1.1.0",

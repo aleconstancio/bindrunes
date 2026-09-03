@@ -1,6 +1,6 @@
 # AI Chatbot Template
 
-A chat interface template built with bindrunes, demonstrating a sidebar conversation list with a main chat area.
+A chat interface template built with urupe-ui, demonstrating a sidebar conversation list with a main chat area.
 
 ## How to Run
 
@@ -19,7 +19,7 @@ bun run dev
 
 ## What It Demonstrates
 
-- Flat bindrunes component APIs (no compound components)
+- Flat urupe-ui component APIs (no compound components)
 - `AppProvider` layout wrapper pattern
 - Two-column layout with sidebar and main content
 - Form handling with `bind:value` on Input

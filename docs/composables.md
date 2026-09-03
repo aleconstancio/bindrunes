@@ -11,7 +11,7 @@ All composables follow the `useX()` pattern with Svelte 5 runes. Context provide
 Server data fetching with caching, stale-while-revalidate, and retry.
 
 ```ts
-import { useQuery } from "bindrunes";
+import { useQuery } from "urupe-ui";
 
 const users = useQuery<User[]>({
   key: "/api/users",
@@ -25,7 +25,7 @@ const users = useQuery<User[]>({
 Optimistic mutations with invalidation.
 
 ```ts
-import { useMutation, invalidateQuery } from "bindrunes";
+import { useMutation, invalidateQuery } from "urupe-ui";
 
 const createUser = useMutation<User, NewUser>({
   mutator: (user) => api.post("/users", user),
@@ -36,7 +36,7 @@ const createUser = useMutation<User, NewUser>({
 ### `invalidateQuery` / `setQueryData`
 
 ```ts
-import { invalidateQuery, setQueryData } from "bindrunes";
+import { invalidateQuery, setQueryData } from "urupe-ui";
 
 invalidateQuery("/api/users");
 setQueryData<User[]>("/api/users", (prev) => [...prev, newUser]);
@@ -51,7 +51,7 @@ setQueryData<User[]>("/api/users", (prev) => [...prev, newUser]);
 Valibot-validated form state.
 
 ```ts
-import { useForm } from "bindrunes";
+import { useForm } from "urupe-ui";
 import { string, minLength, email } from "valibot";
 
 const form = useForm({
@@ -68,7 +68,7 @@ const form = useForm({
 Multi-step form with step tracking.
 
 ```ts
-import { useWizard } from "bindrunes";
+import { useWizard } from "urupe-ui";
 
 const wizard = useWizard({ steps: ["info", "payment", "confirm"] });
 wizard.next();
@@ -80,7 +80,7 @@ wizard.prev();
 Standalone Valibot validation.
 
 ```ts
-import { validateWithSchema } from "bindrunes";
+import { validateWithSchema } from "urupe-ui";
 
 const errors = validateWithSchema(schema, values);
 ```
@@ -94,7 +94,7 @@ const errors = validateWithSchema(schema, values);
 Reactive auth state (token, user, loading).
 
 ```ts
-import { useAuth } from "bindrunes";
+import { useAuth } from "urupe-ui";
 
 const auth = useAuth();
 // auth.user, auth.isAuthenticated, auth.token
@@ -105,7 +105,7 @@ const auth = useAuth();
 Role-based access control checks.
 
 ```ts
-import { useAccess } from "bindrunes";
+import { useAccess } from "urupe-ui";
 
 const access = useAccess(auth);
 access.hasRole("admin");
@@ -121,7 +121,7 @@ access.hasPermission("users:write");
 Runtime theme, aesthetic, density switching with dark mode control.
 
 ```ts
-import { useTheme } from "bindrunes";
+import { useTheme } from "urupe-ui";
 
 const theme = useTheme({ default: "editorial" });
 theme.setTheme("dracula");
@@ -133,7 +133,7 @@ theme.isDark;
 ### `useAesthetic`
 
 ```ts
-import { useAesthetic } from "bindrunes";
+import { useAesthetic } from "urupe-ui";
 
 const aesthetic = useAesthetic({ default: "minimal" });
 aesthetic.setAesthetic("glass");
@@ -144,7 +144,7 @@ aesthetic.setAesthetic("glass");
 Supports responsive mode via media query.
 
 ```ts
-import { useDensity } from "bindrunes";
+import { useDensity } from "urupe-ui";
 
 // Persisted preference
 const density = useDensity({ default: "comfortable" });
@@ -158,7 +158,7 @@ const density = useDensity({ responsive: { compact: 768, spacious: 1200 } });
 Define or extend themes programmatically.
 
 ```ts
-import { createTheme } from "bindrunes";
+import { createTheme } from "urupe-ui";
 
 // New theme
 const myBrand = createTheme({
@@ -182,7 +182,7 @@ const custom = createTheme({
 Overloaded: reactive value debounce or callback debounce.
 
 ```ts
-import { useDebounce } from "bindrunes";
+import { useDebounce } from "urupe-ui";
 
 // Value debounce
 const debounced = useDebounce(searchValue, 300);
@@ -194,14 +194,14 @@ const debouncedFetch = useDebounce((q: string) => searchAPI(q), 300);
 ### `useClickOutside`
 
 ```ts
-import { useClickOutside } from "bindrunes";
+import { useClickOutside } from "urupe-ui";
 useClickOutside(element, () => close());
 ```
 
 ### `useClipboard`
 
 ```ts
-import { useClipboard } from "bindrunes";
+import { useClipboard } from "urupe-ui";
 const { copied, copy } = useClipboard();
 await copy("text to copy");
 ```
@@ -209,14 +209,14 @@ await copy("text to copy");
 ### `useEventListener`
 
 ```ts
-import { useEventListener } from "bindrunes";
+import { useEventListener } from "urupe-ui";
 useEventListener("resize", () => handleResize());
 ```
 
 ### `useLocalStorage`
 
 ```ts
-import { useLocalStorage } from "bindrunes";
+import { useLocalStorage } from "urupe-ui";
 const theme = useLocalStorage("theme", "light");
 theme.set("dark");
 ```
@@ -224,14 +224,14 @@ theme.set("dark");
 ### `useMediaQuery`
 
 ```ts
-import { useMediaQuery } from "bindrunes";
+import { useMediaQuery } from "urupe-ui";
 const isMobile = useMediaQuery("(max-width: 768px)");
 ```
 
 ### `useIntersectionObserver`
 
 ```ts
-import { useIntersectionObserver } from "bindrunes";
+import { useIntersectionObserver } from "urupe-ui";
 useIntersectionObserver(element, (visible) => {
   if (visible) loadImage();
 });
@@ -240,7 +240,7 @@ useIntersectionObserver(element, (visible) => {
 ### `useResizeObserver`
 
 ```ts
-import { useResizeObserver } from "bindrunes";
+import { useResizeObserver } from "urupe-ui";
 useResizeObserver(element, (entry) => {
   console.log(entry.contentRect.width);
 });
@@ -249,7 +249,7 @@ useResizeObserver(element, (entry) => {
 ### `useInfiniteScroll`
 
 ```ts
-import { useInfiniteScroll } from "bindrunes";
+import { useInfiniteScroll } from "urupe-ui";
 useInfiniteScroll(sentinel, {
   onLoadMore: async () => fetchNextPage(),
 });
@@ -258,7 +258,7 @@ useInfiniteScroll(sentinel, {
 ### `useVirtualList`
 
 ```ts
-import { useVirtualList } from "bindrunes";
+import { useVirtualList } from "urupe-ui";
 const { visibleItems, containerStyle } = useVirtualList(items, {
   itemHeight: 40,
   overscan: 5,
@@ -272,7 +272,7 @@ import {
   useAnimation, useBreakpoint, useCounter, useHead,
   useInterval, useReducedMotion, useThrottle, useTimeout,
   useToggle, useUrlParams,
-} from "bindrunes";
+} from "urupe-ui";
 
 const counter = useCounter(0);
 counter.increment();
@@ -295,7 +295,7 @@ const { current: reducedMotion } = useReducedMotion();
 Type-safe Svelte context with Symbol keys.
 
 ```ts
-import { createMetaContext, useMetaContext } from "bindrunes";
+import { createMetaContext, useMetaContext } from "urupe-ui";
 
 const KEY = Symbol("app-context");
 export function createAppState() {
@@ -309,7 +309,7 @@ export function useAppState() {
 ### `useMultiTenant` / `createMultiTenantContext`
 
 ```ts
-import { useMultiTenant, createMultiTenantContext } from "bindrunes";
+import { useMultiTenant, createMultiTenantContext } from "urupe-ui";
 
 // Provider
 createMultiTenantContext({
@@ -328,21 +328,21 @@ const tenant = useMultiTenant();
 ### `createApiClient`
 
 ```ts
-import { createApiClient } from "bindrunes";
+import { createApiClient } from "urupe-ui";
 const api = createApiClient({ baseUrl: "/api", headers: { Authorization: `Bearer ${token}` } });
 ```
 
 ### `createEnv`
 
 ```ts
-import { createEnv } from "bindrunes";
+import { createEnv } from "urupe-ui";
 const env = createEnv({ PUBLIC_API_URL: { default: "http://localhost:3000" } });
 ```
 
 ### `createStorage`
 
 ```ts
-import { createStorage } from "bindrunes";
+import { createStorage } from "urupe-ui";
 const storage = createStorage("my-app");
 storage.get("key");
 storage.set("key", "value");
@@ -351,7 +351,7 @@ storage.set("key", "value");
 ### `createI18n`
 
 ```ts
-import { createI18n } from "bindrunes";
+import { createI18n } from "urupe-ui";
 const t = createI18n({ default: "en", dicts: { en: enDict } });
 t("greeting");
 ```
@@ -359,7 +359,7 @@ t("greeting");
 ### `useToast`
 
 ```ts
-import { useToast } from "bindrunes";
+import { useToast } from "urupe-ui";
 const toast = useToast({ defaultDuration: 4000 });
 toast.success("Saved!");
 ```
@@ -367,7 +367,7 @@ toast.success("Saved!");
 ### `useOmnibar`
 
 ```ts
-import { useOmnibar } from "bindrunes";
+import { useOmnibar } from "urupe-ui";
 const omnibar = useOmnibar();
 // omnibar.open(), omnibar.close()
 ```
@@ -375,7 +375,7 @@ const omnibar = useOmnibar();
 ### `useTable`
 
 ```ts
-import { useTable } from "bindrunes";
+import { useTable } from "urupe-ui";
 const table = useTable({ data: rows, columns: [{ key: "name", sortable: true }] });
 ```
 
@@ -386,7 +386,7 @@ import {
   createPrefersTheme, createSessionMonitor, createTransition,
   createStaggerChildren, createSseBridge, createRealtime,
   createPersistedDataAttribute,
-} from "bindrunes";
+} from "urupe-ui";
 
 const prefers = createPrefersTheme();
 // prefers.current — "light" | "dark"
@@ -406,7 +406,7 @@ import {
   formatBytes, formatDate, formatDateShort, formatDateTime,
   formatTime, formatNumber, formatPercentage, formatRelative,
   getLocale, setLocale,
-} from "bindrunes";
+} from "urupe-ui";
 
 formatBytes(1024);          // "1.0 KB"
 formatDate(new Date());     // "Jun 25, 2026"

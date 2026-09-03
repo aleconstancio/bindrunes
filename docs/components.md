@@ -4,15 +4,15 @@ All components are interactive Svelte 5 blocks that adapt to the active design a
 
 Components are organized into four layers:
 
-- **Primitives** (`bindrunes`) — Low-level UI building blocks
-- **Layouts** (`bindrunes/layouts`) — Structural and navigation components
-- **Domains** (`bindrunes/domains/<name>`) — Domain-specific feature components
+- **Primitives** (`urupe-ui`) — Low-level UI building blocks
+- **Layouts** (`urupe-ui/layouts`) — Structural and navigation components
+- **Domains** (`urupe-ui/domains/<name>`) — Domain-specific feature components
 
 ---
 
 ## Primitives
 
-*Import from `bindrunes`*
+*Import from `urupe-ui`*
 
 ### Foundation & Forms
 
@@ -173,7 +173,7 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 ## Layouts
 
-*Import from `bindrunes/layouts`*
+*Import from `urupe-ui/layouts`*
 
 ### Meta-Components
 
@@ -214,62 +214,62 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 ## Domains
 
-*Import from `bindrunes/domains/<name>`*
+*Import from `urupe-ui/domains/<name>`*
 
-### Auth (`bindrunes/domains/auth`)
+### Auth (`urupe-ui/domains/auth`)
 
 - `<AuthLayout>`, `<LoginForm>`, `<RegisterForm>`, `<ForgotPassword>`, `<ResetPassword>`
 - `<SocialLogin>`, `<EmailVerification>`, `<TwoFactorAuth>`
 
-### Dashboard (`bindrunes/domains/dashboard`)
+### Dashboard (`urupe-ui/domains/dashboard`)
 
 - `<DashboardHome>`, `<StatsOverview>`, `<QuickActions>`, `<ActivityFeed>`, `<DashboardFooter>`
 
-### Settings (`bindrunes/domains/settings`)
+### Settings (`urupe-ui/domains/settings`)
 
 - `<TabbedSettings>`, `<ProfileSettings>`, `<SecuritySettings>`, `<NotificationSettings>`, `<DangerZone>`
 
-### Data (`bindrunes/domains/data`)
+### Data (`urupe-ui/domains/data`)
 
 - `<CrudListPage>`, `<AdvancedTable>`, `<DataTable>`, `<FacetedSearch>`
 - `<Form>` / `<FormField>`, `<CrudCreateForm>` / `<CrudEditForm>` / `<CrudDeleteConfirm>`
 - `<WizardForm>`, `<UserManagement>`, `<ApiKeyManagement>`, `<BillingDashboard>`
 - `<ImportFlow>` / `<ExportFlow>`
 
-### E-commerce (`bindrunes/domains/ecommerce`)
+### E-commerce (`urupe-ui/domains/ecommerce`)
 
 - `<ProductCard>`, `<ProductGrid>`, `<Cart>` / `<CartItem>`, `<Checkout>`, `<OrderSummary>`, `<PriceTag>`
 
-### Media (`bindrunes/domains/media`)
+### Media (`urupe-ui/domains/media`)
 
 - `<ImageUpload>`, `<VideoPlayer>`, `<AudioPlayer>`, `<MediaGallery>`, `<FileCard>`
 
-### Calendar (`bindrunes/domains/calendar`)
+### Calendar (`urupe-ui/domains/calendar`)
 
 - `<EventCalendar>`, `<Scheduler>`, `<BookingForm>`, `<AvailabilityGrid>`
 
-### Chat (`bindrunes/domains/chat`)
+### Chat (`urupe-ui/domains/chat`)
 
 - `<ChatThread>`, `<ChatInput>`, `<ChatMessage>`, `<ChatBubble>`, `<ConversationList>`, `<TypingIndicator>`
 - `<AgentChatPage>`, `<AgentStatus>`, `<MemoryDisplay>`, `<ReasoningPanel>`, `<ToolCallDisplay>`
 
-### Agentic Copilot (`bindrunes/domains/agentic`)
+### Agentic Copilot (`urupe-ui/domains/agentic`)
 
 - `CopilotMessageList`, `CopilotInput`, `CopilotStreamIndicator`, `CopilotToolPanel`
 - `CopilotChainProgress`, `CopilotContextSidebar`, `CopilotSuggestionCard`
 - `DebateHistoryTree`, `InteractiveCitations`
 
-### Marketing (`bindrunes/domains/marketing`)
+### Marketing (`urupe-ui/domains/marketing`)
 
 - `<BlogArticle>` / `<BlogListing>` / `<BlogPage>`
 - `<ChangelogPage>` / `<ReleaseNotes>`, `<CommentSection>`
 - `<SocialProof>`, `<Banner>` / `<Popup>` / `<Maintenance>`, `<CookieConsent>`, `<DocsLayout>`
 
-### Portfolio (`bindrunes/domains/portfolio`)
+### Portfolio (`urupe-ui/domains/portfolio`)
 
 - `<Portfolio>`, `<ProjectCard>`, `<ProjectGrid>`, `<CaseStudy>`
 
-### Landing (`bindrunes/domains/landing`)
+### Landing (`urupe-ui/domains/landing`)
 
 - `<HeroBanner>`, `<FeatureGrid>`, `<HowItWorks>`, `<PricingTable>`
 - `<Testimonial>` / `<TestimonialGrid>`, `<MetricsBar>`, `<StatsCounter>`
@@ -277,7 +277,7 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 - `<FeatureComparison>`, `<Newsletter>`, `<CtaBanner>`, `<VideoEmbed>`
 - `<SiteFooter>` / `<SiteFooterColumns>`, `<LandingNav>`, `<LandingSection>`
 
-### Theming UI (`bindrunes/domains`)
+### Theming UI (`urupe-ui/domains`)
 
 - `<ThemeStudio>`, `<ThemePreview>` / `<ThemeToggle>`, `<ToastProvider>`, `<MetricCard>`, `<Timeline>`
 
@@ -285,9 +285,9 @@ Sub-components: `TabsList`, `TabsTrigger`, `TabsContent`.
 
 ## Templates
 
-*Import from `bindrunes/layouts`*
+*Import from `urupe-ui/layouts`*
 
-Pre-composed full-page layouts. Previously in `bindrunes/templates`, now merged into layouts.
+Pre-composed full-page layouts. Previously in `urupe-ui/templates`, now merged into layouts.
 
 ### `DashboardShell`
 

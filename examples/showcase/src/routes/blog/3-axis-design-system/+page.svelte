@@ -1,12 +1,12 @@
 <script lang="ts">
-import { Badge, Button, Card, CodeSnippet } from "bindrunes";
+import { Badge, Button, Card, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Blog</Badge>
   <h1 class="mt-4 text-display-1 text-foreground">Deep Dive: The 3-Axis Design System</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
-    Why bindrunes separates theme, aesthetic, and density into orthogonal axes — and how the CSS token cascade makes every combination valid.
+    Why urupe-ui separates theme, aesthetic, and density into orthogonal axes — and how the CSS token cascade makes every combination valid.
   </p>
 
   <div class="mt-10 space-y-10">
@@ -21,7 +21,7 @@ import { Badge, Button, Card, CodeSnippet } from "bindrunes";
         This coupling is a design tax. It forces you to maintain separate theme variants for every visual combination, or accept that your "themes" are really monolithic style bundles.
       </p>
       <p class="text-body text-muted-foreground">
-        bindrunes takes a different approach. It separates customization into three independent axes:
+        urupe-ui takes a different approach. It separates customization into three independent axes:
       </p>
       <div class="mt-4 overflow-x-auto">
         <table class="w-full text-sm">
@@ -170,14 +170,14 @@ import { Badge, Button, Card, CodeSnippet } from "bindrunes";
         The three axes aren't applied in parallel — they cascade through CSS layers, with later layers overriding earlier ones. This is what guarantees valid combinations.
       </p>
       <CodeSnippet language="css" title="Token cascade order">
-{`@layer bindrunes.reset,
-       bindrunes.tokens.contract,    /* CSS custom property types */
-       bindrunes.tokens.defaults,    /* Default fallback values */
-       bindrunes.tokens.aesthetic,   /* Form overrides */
-       bindrunes.tokens.theme,       /* Color overrides */
-       bindrunes.tokens.density,     /* Spacing overrides */
-       bindrunes.utilities,
-       bindrunes.components;`}
+{`@layer urupe-ui.reset,
+       urupe-ui.tokens.contract,    /* CSS custom property types */
+       urupe-ui.tokens.defaults,    /* Default fallback values */
+       urupe-ui.tokens.aesthetic,   /* Form overrides */
+       urupe-ui.tokens.theme,       /* Color overrides */
+       urupe-ui.tokens.density,     /* Spacing overrides */
+       urupe-ui.utilities,
+       urupe-ui.components;`}
       </CodeSnippet>
       <p class="text-body text-muted-foreground mt-4 mb-2">
         The cascade resolves in this order:
@@ -206,7 +206,7 @@ import { Badge, Button, Card, CodeSnippet } from "bindrunes";
         Provides raw access to every CSS custom property. You define the complete token set as key-value pairs.
       </p>
       <CodeSnippet language="ts" title="defineTheme()">
-{`import { defineTheme } from "bindrunes";
+{`import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.55 0.18 260)",
@@ -231,7 +231,7 @@ myBrand.apply();`}
         Start from a built-in theme and override just the tokens you care about. The builder derives the rest.
       </p>
       <CodeSnippet language="ts" title="extendTheme()">
-{`import { extendTheme } from "bindrunes";
+{`import { extendTheme } from "urupe-ui";
 
 const warmDracula = extendTheme("dracula", {
   primary: "oklch(0.7 0.15 40)",
@@ -271,7 +271,7 @@ console.log(css);`}
       </p>
       <CodeSnippet language="svelte" title="Scoped axes in a layout">
 {`<script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 </script>
 
 <!-- Global: dracula + glass + comfortable -->

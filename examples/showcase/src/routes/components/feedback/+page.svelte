@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState, Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Alert, Badge, StatusChip, Skeleton, Spinner, Progress, EmptyState, Collapsible, CodeSnippet } from "urupe-ui";
 
 	let progressValue = $state(35);
 	let loading = $state(false);
@@ -38,7 +38,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Alert } from "bindrunes";\n\n<Alert variant="info" title="Information">This is an informational message.</Alert>\n<Alert variant="success" title="Success">Your changes have been saved.</Alert>\n<Alert variant="warning" title="Warning">Please review before proceeding.</Alert>\n<Alert variant="error" title="Error">Something went wrong.</Alert>`}
+				code={`import { Alert } from "urupe-ui";\n\n<Alert variant="info" title="Information">This is an informational message.</Alert>\n<Alert variant="success" title="Success">Your changes have been saved.</Alert>\n<Alert variant="warning" title="Warning">Please review before proceeding.</Alert>\n<Alert variant="error" title="Error">Something went wrong.</Alert>`}
 				language="svelte"
 				title="Alert"
 			/>
@@ -61,7 +61,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { StatusChip } from "bindrunes";\n\n<StatusChip status="active" />\n<StatusChip status="inactive" />\n<StatusChip status="pending" />\n<StatusChip status="error" />`}
+				code={`import { StatusChip } from "urupe-ui";\n\n<StatusChip status="active" />\n<StatusChip status="inactive" />\n<StatusChip status="pending" />\n<StatusChip status="error" />`}
 				language="svelte"
 				title="StatusChip"
 			/>
@@ -90,7 +90,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Progress } from "bindrunes";\n\nlet progressValue = $state(35);\n\n<div class="flex justify-between mb-1">\n  <span class="text-body-sm text-foreground">Uploading...</span>\n  <span class="text-body-sm text-muted-foreground">{Math.round(progressValue)}%</span>\n</div>\n<Progress value={progressValue} />`}
+				code={`import { Progress } from "urupe-ui";\n\nlet progressValue = $state(35);\n\n<div class="flex justify-between mb-1">\n  <span class="text-body-sm text-foreground">Uploading...</span>\n  <span class="text-body-sm text-muted-foreground">{Math.round(progressValue)}%</span>\n</div>\n<Progress value={progressValue} />`}
 				language="svelte"
 				title="Progress"
 			/>

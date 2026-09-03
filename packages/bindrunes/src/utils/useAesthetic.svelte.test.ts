@@ -41,11 +41,11 @@ describe("useAesthetic", () => {
 		const a = await mountAesthetic();
 		a.setAesthetic("bento");
 		await tick();
-		expect(localStorage.getItem("bindrunes_aesthetic")).toBe('"bento"');
+		expect(localStorage.getItem("urupe-ui_aesthetic")).toBe('"bento"');
 	});
 
 	it("restores from localStorage on next creation", async () => {
-		localStorage.setItem("bindrunes_aesthetic", '"expressive"');
+		localStorage.setItem("urupe-ui_aesthetic", '"expressive"');
 		const a = await mountAesthetic();
 		expect(a.aesthetic).toBe("expressive");
 	});

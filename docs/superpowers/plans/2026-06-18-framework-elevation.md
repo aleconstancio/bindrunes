@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Elevate bindrunes from "great library" to "THE framework for Svelte" by fixing critical gaps, adding production composables, building marketing assets, and establishing community infrastructure.
+**Goal:** Elevate urupe-ui from "great library" to "THE framework for Svelte" by fixing critical gaps, adding production composables, building marketing assets, and establishing community infrastructure.
 
 **Architecture:** Four phases: (1) fix critical foundation issues, (2) add production composables, (3) build marketing/adoption assets, (4) community infrastructure.
 
@@ -24,7 +24,7 @@
 
 - [ ] **Step 3:** Verify turbo works:
 ```bash
-cd /home/ale/Projects/bindrunes && bun run test 2>&1 | tail -10
+cd /home/ale/Projects/urupe-ui && bun run test 2>&1 | tail -10
 ```
 
 - [ ] **Step 4:** Commit:
@@ -94,7 +94,7 @@ describe("createServerAuth", () => {
       },
     } as any;
     auth.setSession(event, { user: { id: "1", email: "a@b.com" }, expiresAt: Date.now() });
-    expect(cookies["bindrunes-session"]).toBeDefined();
+    expect(cookies["urupe-ui-session"]).toBeDefined();
   });
 });
 ```
@@ -474,7 +474,7 @@ git commit -m "docs: expand design system documentation to 500+ lines"
 
 ## Why Switch?
 
-bindrunes offers everything shadcn-svelte does PLUS:
+urupe-ui offers everything shadcn-svelte does PLUS:
 - 3-axis design system (theme × aesthetic × density = 72 combinations)
 - 12 pre-built page patterns (auth, dashboard, CRUD, settings, etc.)
 - Server-side utilities (auth, hooks, i18n, API client)
@@ -483,7 +483,7 @@ bindrunes offers everything shadcn-svelte does PLUS:
 
 ## Component Mapping
 
-| shadcn-svelte | bindrunes | Notes |
+| shadcn-svelte | urupe-ui | Notes |
 |---------------|-----------|-------|
 | Button | Button | Same API, more variants |
 | Card | Card | 4 variants (surface/glass/outlined/ghost) |
@@ -498,7 +498,7 @@ bindrunes offers everything shadcn-svelte does PLUS:
 
 ## Theme Migration
 
-shadcn-svelte uses CSS variables. bindrunes uses the same approach with OKLCH colors.
+shadcn-svelte uses CSS variables. urupe-ui uses the same approach with OKLCH colors.
 
 ```css
 /* shadcn-svelte */
@@ -507,7 +507,7 @@ shadcn-svelte uses CSS variables. bindrunes uses the same approach with OKLCH co
   --foreground: 222.2 84% 4.9%;
 }
 
-/* bindrunes */
+/* urupe-ui */
 :root {
   --background: oklch(1.00 0.00 0);
   --foreground: oklch(0.14 0.00 286);
@@ -520,8 +520,8 @@ shadcn-svelte uses CSS variables. bindrunes uses the same approach with OKLCH co
 # Remove shadcn-svelte
 npm uninstall shadcn-svelte
 
-# Install bindrunes
-npm install bindrunes
+# Install urupe-ui
+npm install urupe-ui
 ```
 
 ## Setup
@@ -529,8 +529,8 @@ npm install bindrunes
 ```css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 ```
 
@@ -558,7 +558,7 @@ git commit -m "docs: add migration guides from shadcn-svelte, Melt UI, and Skele
 ```markdown
 ---
 name: Bug Report
-about: Report a bug in bindrunes
+about: Report a bug in urupe-ui
 title: "[Bug] "
 labels: bug
 ---
@@ -570,7 +570,7 @@ labels: bug
 ## Expected behavior
 
 ## Environment
-- bindrunes version:
+- urupe-ui version:
 - Svelte version:
 - Browser:
 - OS:
@@ -641,8 +641,8 @@ docs-site/
   package.json
 ```
 
-- [ ] **Step 2:** The landing page should showcase bindrunes with:
-- Hero section using bindrunes components
+- [ ] **Step 2:** The landing page should showcase urupe-ui with:
+- Hero section using urupe-ui components
 - Feature grid showing 245+ components, 49+ composables, 72 theme combos
 - Quick start code example
 - Links to GitHub, npm

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { RegisterForm } from "bindrunes/domains/auth";
+  import { RegisterForm } from "urupe-ui/domains/auth";
 
   function handleRegister(data: { name: string; email: string; password: string }) {
     console.log("Register:", data);

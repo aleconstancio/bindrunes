@@ -1,7 +1,7 @@
 <!-- examples/showcase/src/routes/playground/+page.svelte -->
 <script lang="ts">
-  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "urupe-ui";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
 
   let dialogOpen = $state(false);
   let drawerOpen = $state(false);

@@ -84,7 +84,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Button",
     category: "Foundation",
     description: "Button with aesthetic hooks",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       variant: { type: "select", options: ["primary", "secondary", "outline", "ghost", "destructive", "link", "soft", "subtle"], default: "primary" },
       size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
@@ -98,7 +98,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Badge",
     category: "Foundation",
     description: "Status/tag badge",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       variant: { type: "select", options: ["primary", "secondary", "outline", "soft", "destructive", "success", "warning", "info"], default: "primary" },
       size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
@@ -109,7 +109,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Card",
     category: "Foundation",
     description: "Card container",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       variant: { type: "select", options: ["surface", "glass", "outlined", "ghost"], default: "surface" },
       padding: { type: "switch", default: true },
@@ -121,7 +121,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Alert",
     category: "Foundation",
     description: "Alert messages with variants",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       variant: { type: "select", options: ["info", "success", "warning", "destructive"], default: "info" },
       title: { type: "text", default: "Information" },
@@ -132,7 +132,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Avatar",
     category: "Foundation",
     description: "User avatar",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       size: { type: "select", options: ["sm", "md", "lg", "xl"], default: "md" },
       name: { type: "text", default: "John Doe" },
@@ -142,7 +142,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Separator",
     category: "Foundation",
     description: "Visual divider",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       orientation: { type: "select", options: ["horizontal", "vertical"], default: "horizontal" },
     },
@@ -151,7 +151,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Skeleton",
     category: "Foundation",
     description: "Loading skeleton",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       lines: { type: "number", default: 3 },
       width: { type: "text", default: "100%" },
@@ -161,7 +161,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Progress",
     category: "Foundation",
     description: "Progress bar",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       value: { type: "number", default: 60 },
       max: { type: "number", default: 100 },
@@ -174,7 +174,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Input",
     category: "Forms",
     description: "Text input",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       placeholder: { type: "text", default: "Enter text..." },
       disabled: { type: "switch", default: false },
@@ -186,7 +186,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Checkbox",
     category: "Forms",
     description: "Checkbox input",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       disabled: { type: "switch", default: false },
       label: { type: "text", default: "Accept terms" },
@@ -196,7 +196,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Select",
     category: "Forms",
     description: "Select dropdown",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       placeholder: { type: "text", default: "Select an option..." },
       disabled: { type: "switch", default: false },
@@ -206,7 +206,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Switch",
     category: "Forms",
     description: "Toggle switch",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       disabled: { type: "switch", default: false },
     },
@@ -215,7 +215,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Slider",
     category: "Forms",
     description: "Range slider",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       min: { type: "number", default: 0 },
       max: { type: "number", default: 100 },
@@ -229,7 +229,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "DataTable",
     category: "Data",
     description: "Full data table with sort/filter/pagination",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       striped: { type: "switch", default: false },
       hoverable: { type: "switch", default: true },
@@ -239,7 +239,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Tabs",
     category: "Data",
     description: "Tab system",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       defaultValue: { type: "text", default: "tab1" },
     },
@@ -248,7 +248,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Pagination",
     category: "Data",
     description: "Page navigation",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       totalPages: { type: "number", default: 10 },
       currentPage: { type: "number", default: 1 },
@@ -260,7 +260,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Dialog",
     category: "Overlays",
     description: "Modal dialog",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       title: { type: "text", default: "Dialog Title" },
       size: { type: "select", options: ["sm", "md", "lg", "xl", "full"], default: "md" },
@@ -271,7 +271,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Tooltip",
     category: "Overlays",
     description: "Tooltip",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       side: { type: "select", options: ["top", "right", "bottom", "left"], default: "top" },
       content: { type: "text", default: "Tooltip content" },
@@ -282,7 +282,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Drawer",
     category: "Overlays",
     description: "Side drawer",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       side: { type: "select", options: ["left", "right", "top", "bottom"], default: "right" },
       size: { type: "select", options: ["sm", "md", "lg", "full"], default: "md" },
@@ -295,7 +295,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Spinner",
     category: "Feedback",
     description: "Loading spinner",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       size: { type: "select", options: ["sm", "md", "lg"], default: "md" },
     },
@@ -304,7 +304,7 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "EmptyState",
     category: "Feedback",
     description: "Empty state placeholders",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       title: { type: "text", default: "No items found" },
       description: { type: "text", default: "Create your first item to get started." },
@@ -316,14 +316,14 @@ export const componentRegistry: ComponentDefinition[] = [
     name: "Breadcrumb",
     category: "Navigation",
     description: "Breadcrumb navigation",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {},
   },
   {
     name: "Stepper",
     category: "Navigation",
     description: "Step-by-step wizard UI",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
       currentStep: { type: "number", default: 1 },
       totalSteps: { type: "number", default: 4 },
@@ -740,18 +740,18 @@ git commit -m "feat: add ResponsiveFrame component for device preview modes"
   const slotContent = $derived(definition.slot ? `\n  ${definition.slot}\n` : "");
 
   const svelteCode = $derived(
-    `<script lang="ts">\n  import { ${definition.name} } from "bindrunes";\n<\/script>\n\n<div data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <${definition.name}${propStr}>${slotContent}</${definition.name}>\n</div>`
+    `<script lang="ts">\n  import { ${definition.name} } from "urupe-ui";\n<\/script>\n\n<div data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <${definition.name}${propStr}>${slotContent}</${definition.name}>\n</div>`
   );
 
   const packageJson = $derived(JSON.stringify({
-    name: "bindrunes-playground",
+    name: "urupe-ui-playground",
     private: true,
     scripts: {
       dev: "vite dev",
       build: "vite build",
     },
     dependencies: {
-      bindrunes: "latest",
+      urupe-ui: "latest",
       svelte: "^5.0.0",
       "@sveltejs/kit": "^2.0.0",
       tailwindcss: "^4.0.0",
@@ -763,8 +763,8 @@ git commit -m "feat: add ResponsiveFrame component for device preview modes"
       files: {
         "package.json": { content: packageJson },
         "src/routes/+page.svelte": { content: svelteCode },
-        "src/app.html": { content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>bindrunes Playground</title>\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>` },
-        "src/app.css": { content: `@import "tailwindcss";\n@plugin "bindrunes/tailwind";\n@import "bindrunes/styles/global.css";` },
+        "src/app.html": { content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>urupe-ui Playground</title>\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>` },
+        "src/app.css": { content: `@import "tailwindcss";\n@plugin "urupe-ui/tailwind";\n@import "urupe-ui/styles/global.css";` },
       },
     };
 
@@ -869,7 +869,7 @@ git commit -m "feat: add ExportButton with CodeSandbox export and copy code"
       <Badge variant="primary">Playground</Badge>
       <h1 class="mt-2 text-display-1 text-foreground">Component Playground</h1>
       <p class="mt-1 text-body-lg text-muted-foreground">
-        Interactively explore and configure bindrunes components.
+        Interactively explore and configure urupe-ui components.
       </p>
     </div>
     <ExportButton
@@ -1100,7 +1100,7 @@ git commit -m "feat: export all playground components and utilities"
 ```svelte
 <!-- docs-site/src/routes/docs/playground/+page.svelte -->
 <script lang="ts">
-  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "bindrunes";
+  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "urupe-ui";
 
   let dialogOpen = $state(false);
   let drawerOpen = $state(false);
@@ -1234,7 +1234,7 @@ git commit -m "feat: integrate unified playground into docs-site"
 ```svelte
 <!-- examples/showcase/src/routes/playground/+page.svelte -->
 <script lang="ts">
-  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "bindrunes";
+  import { Playground, Button, Badge, Card, Alert, Avatar, Separator, Skeleton, Progress, Input, Checkbox, Select, Switch, Slider, Dialog, Tooltip, TooltipProvider, Tabs, TabsList, TabsTrigger, TabsContent, Pagination, Spinner, EmptyState, Breadcrumb, Stepper, Drawer } from "urupe-ui";
 
   let dialogOpen = $state(false);
   let drawerOpen = $state(false);

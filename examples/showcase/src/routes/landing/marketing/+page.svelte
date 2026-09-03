@@ -1,5 +1,5 @@
 <script lang="ts">
-import { MarketingTemplate } from "bindrunes/layouts";
+import { MarketingTemplate } from "urupe-ui/layouts";
 import { ArrowRight, Zap, Shield, Clock, CheckCircle, Layers, BarChart3, Users, Globe } from "lucide-svelte";
 
 const navLinks = [

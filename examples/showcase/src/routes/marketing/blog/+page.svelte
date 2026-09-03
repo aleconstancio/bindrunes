@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "bindrunes/domains/marketing";
-	import { Button } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Banner, BlogArticle, BlogListing, ChangelogPage, CommentSection, ContentWithImage, CookieConsent, Maintenance, Popup, ReleaseNotes, SocialProof } from "urupe-ui/domains/marketing";
+	import { Button } from "urupe-ui";
 
 	let popupOpen = $state(false);
 	let bannerOpen = $state(true);
 
 	const posts = [
-		{ id: "1", title: "Getting Started with bindrunes", excerpt: "Learn how to set up and use bindrunes in your SvelteKit project.", author: "Alice", date: "Jan 15, 2024", readTime: "5", tags: ["Tutorial", "Svelte"] },
+		{ id: "1", title: "Getting Started with urupe-ui", excerpt: "Learn how to set up and use urupe-ui in your SvelteKit project.", author: "Alice", date: "Jan 15, 2024", readTime: "5", tags: ["Tutorial", "Svelte"] },
 		{ id: "2", title: "Advanced Theming Guide", excerpt: "Deep dive into the three-axis design system and custom themes.", author: "Bob", date: "Jan 10, 2024", readTime: "8", tags: ["Design", "Themes"] },
-		{ id: "3", title: "Building Dashboard UIs", excerpt: "How to compose dashboard layouts with bindrunes components.", author: "Charlie", date: "Jan 5, 2024", readTime: "6", tags: ["Dashboard", "Layout"] },
+		{ id: "3", title: "Building Dashboard UIs", excerpt: "How to compose dashboard layouts with urupe-ui components.", author: "Charlie", date: "Jan 5, 2024", readTime: "6", tags: ["Dashboard", "Layout"] },
 	];
 
 	const changelog = [
@@ -55,13 +55,13 @@
 
 	const testimonials = [
 		{
-			quote: "bindrunes cut our UI development time in half. The theming system is incredibly well thought out.",
+			quote: "urupe-ui cut our UI development time in half. The theming system is incredibly well thought out.",
 			author: "Sarah Chen",
 			role: "Engineering Lead at Acme Corp",
 			avatar: "https://i.pravatar.cc/80?u=sarah",
 		},
 		{
-			quote: "We replaced three separate UI libraries with bindrunes. The component API is clean and predictable.",
+			quote: "We replaced three separate UI libraries with urupe-ui. The component API is clean and predictable.",
 			author: "Marcus Rodriguez",
 			role: "CTO at StartupXYZ",
 			avatar: "https://i.pravatar.cc/80?u=marcus",
@@ -158,7 +158,7 @@ Component composition is the real power. Small, focused components like Button, 
 		<Popup
 			bind:open={popupOpen}
 			badge="New Release"
-			title="bindrunes v2.0 is here"
+			title="urupe-ui v2.0 is here"
 			description="A complete redesign with Svelte 5 runes, new marketing components, and improved theming."
 			ctaLabel="Read the announcement"
 			ctaHref="#"
@@ -196,7 +196,7 @@ Component composition is the real power. Small, focused components like Button, 
 		<Banner
 			bind:open={bannerOpen}
 			position="top"
-			text="bindrunes v2.0 is now available with 50+ new components!"
+			text="urupe-ui v2.0 is now available with 50+ new components!"
 			ctaLabel="Learn more"
 			ctaHref="#"
 		/>

@@ -2,11 +2,11 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Create 5 starter SvelteKit apps under `templates/` that showcase bindrunes capabilities for different use cases.
+**Goal:** Create 5 starter SvelteKit apps under `templates/` that showcase urupe-ui capabilities for different use cases.
 
-**Architecture:** Each template is a standalone SvelteKit app using workspace dependency on `bindrunes`. Templates use the existing domain components (dashboard, auth, ecommerce, chat, agentic, data, landing) and layout primitives (AppProvider, PageShell, DashboardShell, etc.). Each template follows the same structural pattern: package.json, svelte.config.js, vite.config.ts, tsconfig.json, and src/ with app.html, app.css, routes.
+**Architecture:** Each template is a standalone SvelteKit app using workspace dependency on `urupe-ui`. Templates use the existing domain components (dashboard, auth, ecommerce, chat, agentic, data, landing) and layout primitives (AppProvider, PageShell, DashboardShell, etc.). Each template follows the same structural pattern: package.json, svelte.config.js, vite.config.ts, tsconfig.json, and src/ with app.html, app.css, routes.
 
-**Tech Stack:** SvelteKit, Svelte 5, Tailwind CSS v4, bindrunes workspace, lucide-svelte, mode-watcher, svelte-sonner, Bun workspaces, turbo.
+**Tech Stack:** SvelteKit, Svelte 5, Tailwind CSS v4, urupe-ui workspace, lucide-svelte, mode-watcher, svelte-sonner, Bun workspaces, turbo.
 
 ---
 
@@ -23,7 +23,7 @@ vite.config.ts            - Vite config with tailwind + sveltekit plugins
 tsconfig.json             - extends .svelte-kit/tsconfig.json
 src/
   app.html                - HTML shell with data-theme/data-aesthetic/data-density attrs
-  app.css                 - CSS imports (tailwind + bindrunes)
+  app.css                 - CSS imports (tailwind + urupe-ui)
   routes/
     +layout.svelte        - wraps with AppProvider
     +layout.ts            - export const ssr = false
@@ -33,7 +33,7 @@ src/
 
 ### Root package.json
 
-Modify `/home/ale/Projects/bindrunes/package.json` workspaces to include `"templates/*"`.
+Modify `/home/ale/Projects/urupe-ui/package.json` workspaces to include `"templates/*"`.
 
 ### Template-specific files
 
@@ -68,7 +68,7 @@ Modify `/home/ale/Projects/bindrunes/package.json` workspaces to include `"templ
 ## Task 1: Update root package.json and create templates directory
 
 **Files:**
-- Modify: `/home/ale/Projects/bindrunes/package.json`
+- Modify: `/home/ale/Projects/urupe-ui/package.json`
 
 - [ ] **Step 1: Add templates workspace to root package.json**
 
@@ -84,13 +84,13 @@ to:
 - [ ] **Step 2: Create templates directory**
 
 ```bash
-mkdir -p /home/ale/Projects/bindrunes/templates
+mkdir -p /home/ale/Projects/urupe-ui/templates
 ```
 
 - [ ] **Step 3: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add package.json templates/
 git commit -m "feat: add templates workspace to monorepo"
 ```
@@ -127,7 +127,7 @@ git commit -m "feat: add templates workspace to monorepo"
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
     "svelte": "^5.0.0",
@@ -169,7 +169,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['bindrunes'],
+    exclude: ['urupe-ui'],
   },
   server: {
     port: 5177,
@@ -204,7 +204,7 @@ export default defineConfig({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SaaS Dashboard — bindrunes</title>
+    <title>SaaS Dashboard — urupe-ui</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
@@ -216,7 +216,7 @@ export default defineConfig({
 - [ ] **Step 6: Create src/app.css**
 
 ```css
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 ```
 
 - [ ] **Step 7: Create src/routes/+layout.ts**
@@ -230,7 +230,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -244,7 +244,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { page } from "$app/state";
-  import { Button, EmptyState } from "bindrunes";
+  import { Button, EmptyState } from "urupe-ui";
   import { Home } from "lucide-svelte";
 </script>
 
@@ -281,7 +281,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { LoginForm } from "bindrunes/domains/auth";
+  import { LoginForm } from "urupe-ui/domains/auth";
 
   function handleLogin(data: { email: string; password: string }) {
     console.log("Login:", data);
@@ -302,9 +302,9 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { PageHeader, ErrorBoundary } from "bindrunes/layouts";
-  import { MetricCard, Card, Badge, PageLoading, Button } from "bindrunes";
-  import { StatsOverview, ActivityFeed } from "bindrunes/domains/dashboard";
+  import { PageHeader, ErrorBoundary } from "urupe-ui/layouts";
+  import { MetricCard, Card, Badge, PageLoading, Button } from "urupe-ui";
+  import { StatsOverview, ActivityFeed } from "urupe-ui/domains/dashboard";
   import { TrendingUp, Users, DollarSign, Activity, Settings, LogOut } from "lucide-svelte";
 
   let loading = $state(true);
@@ -368,8 +368,8 @@ export const ssr = false;
 
 ```svelte
 <script lang="ts">
-  import { PageHeader } from "bindrunes/layouts";
-  import { TabbedSettings, ProfileSettings, NotificationSettings, SecuritySettings } from "bindrunes/domains/settings";
+  import { PageHeader } from "urupe-ui/layouts";
+  import { TabbedSettings, ProfileSettings, NotificationSettings, SecuritySettings } from "urupe-ui/domains/settings";
 </script>
 
 <div class="space-y-6">
@@ -391,13 +391,13 @@ export const ssr = false;
 - [ ] **Step 14: Verify build**
 
 ```bash
-cd /home/ale/Projects/bindrunes && bun install && cd templates/saas-dashboard && bun run build
+cd /home/ale/Projects/urupe-ui && bun install && cd templates/saas-dashboard && bun run build
 ```
 
 - [ ] **Step 15: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/saas-dashboard/
 git commit -m "feat: add saas-dashboard starter template"
 ```
@@ -431,7 +431,7 @@ git commit -m "feat: add saas-dashboard starter template"
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
     "svelte": "^5.0.0",
@@ -473,7 +473,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['bindrunes'],
+    exclude: ['urupe-ui'],
   },
   server: {
     port: 5177,
@@ -508,7 +508,7 @@ export default defineConfig({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Chatbot — bindrunes</title>
+    <title>AI Chatbot — urupe-ui</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
@@ -520,7 +520,7 @@ export default defineConfig({
 - [ ] **Step 6: Create src/app.css**
 
 ```css
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 ```
 
 - [ ] **Step 7: Create src/routes/+layout.ts**
@@ -534,7 +534,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -548,7 +548,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { page } from "$app/state";
-  import { Button, EmptyState } from "bindrunes";
+  import { Button, EmptyState } from "urupe-ui";
   import { Home } from "lucide-svelte";
 </script>
 
@@ -571,22 +571,22 @@ export const ssr = false;
 
 ```svelte
 <script lang="ts">
-  import { ChatTemplate } from "bindrunes/layouts";
-  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator, CopilotToolPanel } from "bindrunes/domains/agentic";
-  import { ConversationList } from "bindrunes/domains/chat";
+  import { ChatTemplate } from "urupe-ui/layouts";
+  import { CopilotMessageList, CopilotInput, CopilotStreamIndicator, CopilotToolPanel } from "urupe-ui/domains/agentic";
+  import { ConversationList } from "urupe-ui/domains/chat";
   import { MessageSquare, Bot, User } from "lucide-svelte";
 
   const conversations = [
-    { id: "1", title: "Getting started with bindrunes", lastMessage: "How do I set up theming?", timestamp: "2m ago" },
+    { id: "1", title: "Getting started with urupe-ui", lastMessage: "How do I set up theming?", timestamp: "2m ago" },
     { id: "2", title: "Component architecture", lastMessage: "What's the best way to compose layouts?", timestamp: "1h ago" },
     { id: "3", title: "Performance optimization", lastMessage: "How do I lazy load components?", timestamp: "3h ago" },
   ];
 
   const messages = [
-    { role: "user", content: "How do I set up a SvelteKit project with bindrunes?", timestamp: "10:00 AM" },
-    { role: "assistant", content: "To set up a SvelteKit project with bindrunes, start by creating a new SvelteKit project and installing bindrunes as a workspace dependency. Then configure your CSS imports and wrap your app with AppProvider.", timestamp: "10:01 AM" },
+    { role: "user", content: "How do I set up a SvelteKit project with urupe-ui?", timestamp: "10:00 AM" },
+    { role: "assistant", content: "To set up a SvelteKit project with urupe-ui, start by creating a new SvelteKit project and installing urupe-ui as a workspace dependency. Then configure your CSS imports and wrap your app with AppProvider.", timestamp: "10:01 AM" },
     { role: "user", content: "Can you show me the CSS configuration?", timestamp: "10:02 AM" },
-    { role: "assistant", content: "In your app.css, add the tailwind import and bindrunes CSS:\n\n@import \"bindrunes/playground/app.css\";\n\nThis sets up the full design system with three-axis theming.", timestamp: "10:03 AM" },
+    { role: "assistant", content: "In your app.css, add the tailwind import and urupe-ui CSS:\n\n@import \"urupe-ui/playground/app.css\";\n\nThis sets up the full design system with three-axis theming.", timestamp: "10:03 AM" },
   ];
 
   let selectedConversation = $state("1");
@@ -613,7 +613,7 @@ export const ssr = false;
   {#snippet chatHeader()}
     <div class="flex items-center gap-3">
       <Bot class="h-5 w-5 text-primary" />
-      <span class="font-medium text-foreground">bindrunes Assistant</span>
+      <span class="font-medium text-foreground">urupe-ui Assistant</span>
       <span class="text-body-sm text-muted-foreground">Online</span>
     </div>
   {/snippet}
@@ -630,7 +630,7 @@ export const ssr = false;
     <CopilotInput
       bind:value={inputValue}
       onSend={handleSend}
-      placeholder="Ask about bindrunes..."
+      placeholder="Ask about urupe-ui..."
     />
   </div>
 </ChatTemplate>
@@ -639,13 +639,13 @@ export const ssr = false;
 - [ ] **Step 11: Verify build**
 
 ```bash
-cd /home/ale/Projects/bindrunes/templates/ai-chatbot && bun run build
+cd /home/ale/Projects/urupe-ui/templates/ai-chatbot && bun run build
 ```
 
 - [ ] **Step 12: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/ai-chatbot/
 git commit -m "feat: add ai-chatbot starter template"
 ```
@@ -681,7 +681,7 @@ git commit -m "feat: add ai-chatbot starter template"
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
     "svelte": "^5.0.0",
@@ -723,7 +723,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['bindrunes'],
+    exclude: ['urupe-ui'],
   },
   server: {
     port: 5177,
@@ -758,7 +758,7 @@ export default defineConfig({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Shop — bindrunes</title>
+    <title>Shop — urupe-ui</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
@@ -770,7 +770,7 @@ export default defineConfig({
 - [ ] **Step 6: Create src/app.css**
 
 ```css
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 ```
 
 - [ ] **Step 7: Create src/routes/+layout.ts**
@@ -784,7 +784,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -798,7 +798,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { page } from "$app/state";
-  import { Button, EmptyState } from "bindrunes";
+  import { Button, EmptyState } from "urupe-ui";
   import { Home } from "lucide-svelte";
 </script>
 
@@ -822,10 +822,10 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { EcommerceTemplate } from "bindrunes/layouts";
-  import { ProductGrid, ProductCard, Cart, CartItem, PriceTag } from "bindrunes/domains/ecommerce";
+  import { EcommerceTemplate } from "urupe-ui/layouts";
+  import { ProductGrid, ProductCard, Cart, CartItem, PriceTag } from "urupe-ui/domains/ecommerce";
   import { ShoppingCart, Search } from "lucide-svelte";
-  import { Button, Input } from "bindrunes";
+  import { Button, Input } from "urupe-ui";
 
   const products = [
     { id: "1", name: "Wireless Headphones", price: 79.99, description: "Premium noise-cancelling wireless headphones", image: "" },
@@ -907,8 +907,8 @@ export const ssr = false;
 <script lang="ts">
   import { page } from "$app/state";
   import { goto } from "$app/navigation";
-  import { Button, Card, Badge } from "bindrunes";
-  import { PriceTag } from "bindrunes/domains/ecommerce";
+  import { Button, Card, Badge } from "urupe-ui";
+  import { PriceTag } from "urupe-ui/domains/ecommerce";
   import { ArrowLeft, ShoppingCart } from "lucide-svelte";
 
   const products: Record<string, { name: string; price: number; description: string; features: string[] }> = {
@@ -969,8 +969,8 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { Button, Card, Input } from "bindrunes";
-  import { Checkout, OrderSummary } from "bindrunes/domains/ecommerce";
+  import { Button, Card, Input } from "urupe-ui";
+  import { Checkout, OrderSummary } from "urupe-ui/domains/ecommerce";
   import { ArrowLeft, CreditCard } from "lucide-svelte";
 
   const orderItems = [
@@ -1047,13 +1047,13 @@ export const ssr = false;
 - [ ] **Step 13: Verify build**
 
 ```bash
-cd /home/ale/Projects/bindrunes/templates/ecommerce-storefront && bun run build
+cd /home/ale/Projects/urupe-ui/templates/ecommerce-storefront && bun run build
 ```
 
 - [ ] **Step 14: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/ecommerce-storefront/
 git commit -m "feat: add ecommerce-storefront starter template"
 ```
@@ -1087,7 +1087,7 @@ git commit -m "feat: add ecommerce-storefront starter template"
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
     "svelte": "^5.0.0",
@@ -1129,7 +1129,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['bindrunes'],
+    exclude: ['urupe-ui'],
   },
   server: {
     port: 5177,
@@ -1164,7 +1164,7 @@ export default defineConfig({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Marketing Site — bindrunes</title>
+    <title>Marketing Site — urupe-ui</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
@@ -1176,7 +1176,7 @@ export default defineConfig({
 - [ ] **Step 6: Create src/app.css**
 
 ```css
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 ```
 
 - [ ] **Step 7: Create src/routes/+layout.ts**
@@ -1190,7 +1190,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -1204,7 +1204,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { page } from "$app/state";
-  import { Button, EmptyState } from "bindrunes";
+  import { Button, EmptyState } from "urupe-ui";
   import { Home } from "lucide-svelte";
 </script>
 
@@ -1236,7 +1236,7 @@ export const ssr = false;
     FAQ,
     TestimonialGrid,
     SiteFooter,
-  } from "bindrunes/domains/landing";
+  } from "urupe-ui/domains/landing";
   import { ArrowRight, Zap, Shield, Layers, BarChart3, Users, Globe } from "lucide-svelte";
 
   const landing = createLandingState();
@@ -1371,13 +1371,13 @@ export const ssr = false;
 - [ ] **Step 11: Verify build**
 
 ```bash
-cd /home/ale/Projects/bindrunes/templates/marketing-site && bun run build
+cd /home/ale/Projects/urupe-ui/templates/marketing-site && bun run build
 ```
 
 - [ ] **Step 12: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/marketing-site/
 git commit -m "feat: add marketing-site starter template"
 ```
@@ -1411,7 +1411,7 @@ git commit -m "feat: add marketing-site starter template"
     "preview": "vite preview"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "lucide-svelte": "^1.0.1",
     "mode-watcher": "^0.5.1",
     "svelte": "^5.0.0",
@@ -1453,7 +1453,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
   optimizeDeps: {
-    exclude: ['bindrunes'],
+    exclude: ['urupe-ui'],
   },
   server: {
     port: 5177,
@@ -1488,7 +1488,7 @@ export default defineConfig({
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CRUD Admin — bindrunes</title>
+    <title>CRUD Admin — urupe-ui</title>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="hover">
@@ -1500,7 +1500,7 @@ export default defineConfig({
 - [ ] **Step 6: Create src/app.css**
 
 ```css
-@import "bindrunes/playground/app.css";
+@import "urupe-ui/playground/app.css";
 ```
 
 - [ ] **Step 7: Create src/routes/+layout.ts**
@@ -1514,7 +1514,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -1528,7 +1528,7 @@ export const ssr = false;
 ```svelte
 <script lang="ts">
   import { page } from "$app/state";
-  import { Button, EmptyState } from "bindrunes";
+  import { Button, EmptyState } from "urupe-ui";
   import { Home } from "lucide-svelte";
 </script>
 
@@ -1551,10 +1551,10 @@ export const ssr = false;
 
 ```svelte
 <script lang="ts">
-  import { PageHeader } from "bindrunes/layouts";
-  import { CrudListPage, CrudDetailDrawer, CrudFormModal, FacetedSearch, createCrudProvider } from "bindrunes/domains/data";
-  import { AdvancedTable } from "bindrunes/domains/data";
-  import { Button } from "bindrunes";
+  import { PageHeader } from "urupe-ui/layouts";
+  import { CrudListPage, CrudDetailDrawer, CrudFormModal, FacetedSearch, createCrudProvider } from "urupe-ui/domains/data";
+  import { AdvancedTable } from "urupe-ui/domains/data";
+  import { Button } from "urupe-ui";
   import { Plus } from "lucide-svelte";
 
   const crud = createCrudProvider({
@@ -1649,13 +1649,13 @@ export const ssr = false;
 - [ ] **Step 11: Verify build**
 
 ```bash
-cd /home/ale/Projects/bindrunes/templates/crud-admin && bun run build
+cd /home/ale/Projects/urupe-ui/templates/crud-admin && bun run build
 ```
 
 - [ ] **Step 12: Commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/crud-admin/
 git commit -m "feat: add crud-admin starter template"
 ```
@@ -1667,26 +1667,26 @@ git commit -m "feat: add crud-admin starter template"
 - [ ] **Step 1: Install all dependencies**
 
 ```bash
-cd /home/ale/Projects/bindrunes && bun install
+cd /home/ale/Projects/urupe-ui && bun install
 ```
 
 - [ ] **Step 2: Build all templates**
 
 ```bash
-cd /home/ale/Projects/bindrunes && bunx turbo run build --filter='./templates/*'
+cd /home/ale/Projects/urupe-ui && bunx turbo run build --filter='./templates/*'
 ```
 
 - [ ] **Step 3: Fix any build errors**
 
 If build fails, inspect the error output and fix the template files. Common issues:
-- Missing imports (check component signatures in bindrunes)
+- Missing imports (check component signatures in urupe-ui)
 - Incorrect prop names (verify against domain index.ts exports)
 - CSS import path issues
 
 - [ ] **Step 4: Final commit**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 git add templates/ package.json
 git commit -m "feat: add 5 starter templates (dashboard, chatbot, ecommerce, marketing, crud)"
 ```

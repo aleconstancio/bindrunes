@@ -6,7 +6,7 @@
 
 **Architecture:** Fix in-place — no new files needed. Modify existing playground components to correct API mismatches, add missing features, and improve code quality.
 
-**Tech Stack:** Svelte 5 runes, TypeScript, existing bindrunes components
+**Tech Stack:** Svelte 5 runes, TypeScript, existing urupe-ui components
 
 ---
 
@@ -63,7 +63,7 @@ Remove lines 227-236:
     name: "DataTable",
     category: "Data",
     description: "Full data table with sort/filter/pagination",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
         striped: { type: "switch", default: false, label: "Striped" },
         hoverable: { type: "switch", default: true, label: "Hoverable" },
@@ -83,7 +83,7 @@ Add actual props that Breadcrumb supports:
     name: "Breadcrumb",
     category: "Navigation",
     description: "Breadcrumb navigation",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
         separator: { type: "text", default: "/", label: "Separator" },
     },
@@ -98,7 +98,7 @@ Replace JSON-in-text with a simpler approach — just show currentStep since ste
     name: "Stepper",
     category: "Navigation",
     description: "Step-by-step wizard UI",
-    importPath: "bindrunes",
+    importPath: "urupe-ui",
     props: {
         currentStep: { type: "text", default: "step1", label: "Current step ID" },
     },
@@ -221,11 +221,11 @@ git commit -m "fix: correct Tabs/Drawer/Breadcrumb/Stepper in consumer pages"
 
 In `examples/showcase/src/routes/playground/composables/+page.svelte`, find line 3:
 ```ts
-import { useCounter, useToggle, useClipboard, useDebouncedCallback } from "bindrunes";
+import { useCounter, useToggle, useClipboard, useDebouncedCallback } from "urupe-ui";
 ```
 Replace with:
 ```ts
-import { useCounter, useToggle, useClipboard, useDebounce } from "bindrunes";
+import { useCounter, useToggle, useClipboard, useDebounce } from "urupe-ui";
 ```
 
 - [ ] **Step 2: Fix the usage**
@@ -408,7 +408,7 @@ In `packages/bindrunes/src/playground/ExportButton.svelte`, update the `packageJ
 const packageJson = $derived(
     JSON.stringify(
         {
-            name: "bindrunes-playground",
+            name: "urupe-ui-playground",
             private: true,
             scripts: {
                 dev: "vite dev",
@@ -416,7 +416,7 @@ const packageJson = $derived(
                 preview: "vite preview",
             },
             dependencies: {
-                bindrunes: "latest",
+                urupe-ui: "latest",
                 svelte: "^5.0.0",
                 "@sveltejs/kit": "^2.0.0",
                 "@sveltejs/adapter-auto": "^3.0.0",
@@ -441,7 +441,7 @@ Update the `src/app.html` content:
 
 ```ts
 "src/app.html": {
-    content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>bindrunes Playground</title>\n    %sveltekit.head%\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
+    content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>urupe-ui Playground</title>\n    %sveltekit.head%\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
 },
 ```
 

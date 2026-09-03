@@ -1,17 +1,17 @@
 {
-	"name": "bindrunes",
+	"name": "urupe-ui",
 	"version": "4.1.0",
 	"description": "Svelte 5 component library for B2B SaaS applications — 234 components, 25 composables, three-axis design system",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/aleconstancio/bindrunes.git",
+		"url": "https://github.com/aleconstancio/urupe-ui.git",
 		"directory": "packages/bindrunes"
 	},
 	"homepage": "https://bindrunes.dev",
 	"bugs": {
-		"url": "https://github.com/aleconstancio/bindrunes/issues"
+		"url": "https://github.com/aleconstancio/urupe-ui/issues"
 	},
 	"keywords": [
 		"svelte",

@@ -1,13 +1,13 @@
 <script lang="ts">
-import { Badge, Button, Card, PageSection } from "bindrunes";
+import { Badge, Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-5xl">
   <div class="mb-8">
     <Badge variant="primary">Documentation</Badge>
-    <h1 class="mt-4 text-display-1 text-foreground">bindrunes Docs</h1>
+    <h1 class="mt-4 text-display-1 text-foreground">urupe-ui Docs</h1>
     <p class="mt-3 text-body-lg text-muted-foreground max-w-2xl">
-      Everything you need to build with bindrunes — the complete design system for Svelte 5.
+      Everything you need to build with urupe-ui — the complete design system for Svelte 5.
     </p>
   </div>
 
@@ -58,7 +58,7 @@ import { Badge, Button, Card, PageSection } from "bindrunes";
       <a href="/docs/changelog" class="block">
         <Card variant="glass" interactive padding>
           <h3 class="text-title-1">Changelog</h3>
-          <p class="text-body-sm text-muted-foreground mt-2">All notable changes to the bindrunes package.</p>
+          <p class="text-body-sm text-muted-foreground mt-2">All notable changes to the urupe-ui package.</p>
         </Card>
       </a>
       <a href="/docs/contributing" class="block">

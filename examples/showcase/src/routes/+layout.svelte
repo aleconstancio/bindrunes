@@ -1,7 +1,7 @@
 <script lang="ts">
 	import "../app.css";
 	import { page } from "$app/state";
-	import { AppProvider, SEO } from "bindrunes";
+	import { AppProvider, SEO } from "urupe-ui";
 	import { Toaster } from "svelte-sonner";
 	import HomepageTopbar from "$lib/components/HomepageTopbar.svelte";
 	import ShowcaseNav from "$lib/components/ShowcaseNav.svelte";
@@ -12,7 +12,7 @@
 </script>
 
 <SEO
-	title="bindrunes — The Svelte design system for the modern web"
+	title="urupe-ui — The Svelte design system for the modern web"
 	description="234 components, 25 composables, 126 theme combinations — everything you need to build beautiful Svelte apps."
 />
 

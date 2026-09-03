@@ -53,32 +53,32 @@ Templates (Layer 4)
 
 Each layer depends only on layers below it.
 
-### Layer 1: Primitives (`bindrunes`)
+### Layer 1: Primitives (`urupe-ui`)
 
 Atomic UI components. No domain knowledge.
 
-- **Path:** `bindrunes`
+- **Path:** `urupe-ui`
 - **Examples:** `Button`, `Card`, `Input`, `Dialog`, `Select`, `Badge`, `Tabs`, `Switch`, `DataGrid`
 
-### Layer 2: Layouts (`bindrunes/layouts`)
+### Layer 2: Layouts (`urupe-ui/layouts`)
 
 Structural shells, page zones, navigation, and pre-composed templates.
 
-- **Path:** `bindrunes/layouts`
+- **Path:** `urupe-ui/layouts`
 - **Examples:** `PageShell`, `MetaLayout`, `DashboardShell`, `Sidebar`, `AuthTemplate`
 
-### Layer 3: Domains (`bindrunes/domains/<name>`)
+### Layer 3: Domains (`urupe-ui/domains/<name>`)
 
 Feature-specific components composing primitives and layouts.
 
-- **Path:** `bindrunes/domains/<name>`
+- **Path:** `urupe-ui/domains/<name>`
 - **Examples:** `LoginForm`, `AdvancedTable`, `ProductGrid`, `ChatThread`
 
 ### Layer 4: Templates
 
-Pre-composed full-page layouts. Now live in `bindrunes/layouts`.
+Pre-composed full-page layouts. Now live in `urupe-ui/layouts`.
 
-- **Path:** `bindrunes/layouts`
+- **Path:** `urupe-ui/layouts`
 - **Examples:** `AuthTemplate`, `CrudTemplate`, `SettingsTemplate`
 
 ---
@@ -141,15 +141,15 @@ Template → Domain Components → Layouts → Primitives
 
 | Import Path | Contents |
 |---|---|
-| `bindrunes` | Primitives, shared components, composables, types, utilities |
-| `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
-| `bindrunes/responsive` | Viewport composable and responsive utilities |
-| `bindrunes/layouts` | Layout components and full-page templates (PageShell, sidebar, dashboard shell, templates, etc.) |
-| `bindrunes/domains/<name>` | Individual domain components (e.g., `bindrunes/domains/auth`) |
-| `bindrunes/agentic` | Agentic subsystem (LLM tool calling, agent loops) |
-| `bindrunes/tailwind` | Tailwind CSS plugin |
-| `bindrunes/playground` | Dev playground components |
-| `bindrunes/styles/*` | Global styles and token sheets |
+| `urupe-ui` | Primitives, shared components, composables, types, utilities |
+| `urupe-ui/server` | SSR-safe utilities (no runes, no browser APIs) |
+| `urupe-ui/responsive` | Viewport composable and responsive utilities |
+| `urupe-ui/layouts` | Layout components and full-page templates (PageShell, sidebar, dashboard shell, templates, etc.) |
+| `urupe-ui/domains/<name>` | Individual domain components (e.g., `urupe-ui/domains/auth`) |
+| `urupe-ui/agentic` | Agentic subsystem (LLM tool calling, agent loops) |
+| `urupe-ui/tailwind` | Tailwind CSS plugin |
+| `urupe-ui/playground` | Dev playground components |
+| `urupe-ui/styles/*` | Global styles and token sheets |
 
 ---
 
@@ -157,7 +157,7 @@ Template → Domain Components → Layouts → Primitives
 
 ### Server Utilities
 
-`bindrunes/server` exports pure functions safe for any server context (no Svelte runes, no browser APIs):
+`urupe-ui/server` exports pure functions safe for any server context (no Svelte runes, no browser APIs):
 
 - `createServerTheme(name, options)` — Resolves theme tokens and generates CSS
 - `useThemeServer(request)` — Reads theme preference from request cookies
@@ -166,11 +166,11 @@ Template → Domain Components → Layouts → Primitives
 
 ### SSR-Safe Components
 
-All bindrunes components are SSR-safe by default — no browser APIs in top-level script setup. Client-only code uses the `browser` guard:
+All urupe-ui components are SSR-safe by default — no browser APIs in top-level script setup. Client-only code uses the `browser` guard:
 
 ```svelte
 <script lang="ts">
-  import { browser } from "bindrunes";
+  import { browser } from "urupe-ui";
   $effect(() => {
     if (!browser) return;
     // Client-only code
@@ -219,4 +219,4 @@ src/domains/auth/LoginForm.svelte.test.ts
 ## Bundling
 
 - Built with `@sveltejs/package` → `dist/`
-- Consumers must `optimizeDeps: { exclude: ['bindrunes'] }` to prevent duplicate Svelte instances
+- Consumers must `optimizeDeps: { exclude: ['urupe-ui'] }` to prevent duplicate Svelte instances

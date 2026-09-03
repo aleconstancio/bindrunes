@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Material UI</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -193,9 +193,9 @@ import { Badge, CodeSnippet } from "bindrunes";
           </CodeSnippet>
         </div>
         <div>
-          <p class="text-body-sm font-medium text-foreground mb-2">After (bindrunes defineTheme)</p>
+          <p class="text-body-sm font-medium text-foreground mb-2">After (urupe-ui defineTheme)</p>
           <CodeSnippet language="ts">
-{`import { defineTheme } from "bindrunes";
+{`import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.48 0.18 260)",
@@ -220,7 +220,7 @@ myBrand.apply();`}
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Aspect</th>
               <th class="text-left py-2 pr-4 font-medium text-foreground">Material UI</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground">
@@ -268,10 +268,10 @@ myBrand.apply();`}
       <h2 class="text-title-1 text-foreground mb-4">Migration Steps</h2>
       <ol class="text-body text-muted-foreground space-y-2 list-decimal list-inside">
         <li>Set up SvelteKit: Initialize a SvelteKit project if migrating from React</li>
-        <li>Install bindrunes: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install bindrunes</code></li>
+        <li>Install urupe-ui: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install urupe-ui</code></li>
         <li>Install Valibot: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install valibot</code></li>
         <li>Install lucide-svelte: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install lucide-svelte</code></li>
-        <li>Update app.css: Replace MUI styles with bindrunes imports</li>
+        <li>Update app.css: Replace MUI styles with urupe-ui imports</li>
         <li>Add AppProvider: Wrap your root layout</li>
         <li>Replace theme: Swap MUI's createTheme with defineTheme() and OKLCH tokens</li>
         <li>Rewrite components: Replace React JSX with Svelte syntax</li>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -16,7 +16,7 @@ import { Badge, CodeSnippet } from "bindrunes";
 {`import { createServerAuth, createAuthGuard } from "bindrunes-kit/server";
 
 const auth = createServerAuth({
-  cookieName: "bindrunes-session",  // default
+  cookieName: "urupe-ui-session",  // default
   maxAge: 60 * 60 * 24 * 7,        // 7 days
   validate: async (token) => {
     const user = await db.validateToken(token);
@@ -66,7 +66,7 @@ export const handle = authGuard;`}
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Client-Side (SPA Mode)</h2>
       <CodeSnippet language="ts">
-{`import { createApiClient } from "bindrunes";
+{`import { createApiClient } from "urupe-ui";
 
 const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL,

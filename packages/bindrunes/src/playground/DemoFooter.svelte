@@ -8,7 +8,7 @@ interface Props {
 let { footer = {} }: Props = $props();
 
 const year = new Date().getFullYear();
-const copyright = footer.copyright ?? `\u00a9 ${year} bindrunes`;
+const copyright = footer.copyright ?? `\u00a9 ${year} urupe-ui`;
 </script>
 
 <footer class="border-t border-border py-6 text-center text-body-sm text-muted-foreground">

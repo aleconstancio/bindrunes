@@ -98,7 +98,7 @@ describe("useAuth", () => {
 	});
 
 	it("uses default localStorage storage when no storage option provided", async () => {
-		localStorage.setItem("bindrunes_token", "tok_ls");
+		localStorage.setItem("urupe-ui_token", "tok_ls");
 		const auth = await mountComposable(() => useAuth());
 		expect(auth.token).toBe("tok_ls");
 		localStorage.clear();
@@ -160,7 +160,7 @@ describe("useAuth", () => {
 	});
 
 	it("uses default storage with corrupt user JSON", async () => {
-		localStorage.setItem("bindrunes_user", "{not json");
+		localStorage.setItem("urupe-ui_user", "{not json");
 		const auth = await mountComposable(() => useAuth());
 		expect(auth.user).toBeNull();
 		localStorage.clear();

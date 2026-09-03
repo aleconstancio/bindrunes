@@ -6,7 +6,7 @@ Complete type signatures and usage for every agentic composable and copilot comp
 
 ## Types
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `WindowId`
 
@@ -185,7 +185,7 @@ interface CompactionStrategy {
 
 ## Composables
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `createWindowStore(options?)`
 
@@ -220,7 +220,7 @@ function createWindowStore(options?: WindowStoreOptions): WindowStore;
 **Example:**
 
 ```ts
-import { createWindowStore } from "bindrunes/agentic";
+import { createWindowStore } from "urupe-ui/agentic";
 
 const store = createWindowStore({ budgetCap: 16384 });
 const rootId = store.createRoot({ topic: "legal research" });
@@ -366,7 +366,7 @@ function createWindowStoreProvider(options?: Parameters<typeof createWindowStore
 
 ```svelte
 <script lang="ts">
-  import { createWindowStoreProvider } from "bindrunes/agentic";
+  import { createWindowStoreProvider } from "urupe-ui/agentic";
   const store = createWindowStoreProvider({ budgetCap: 8192 });
 </script>
 ```
@@ -383,7 +383,7 @@ function useWindowStore(): WindowStore;
 
 ## Eviction Policies
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `createTokenBudgetEviction(threshold)`
 
@@ -422,7 +422,7 @@ interface EvictionPolicyInstance {
 
 ## Compaction Strategies
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `SlidingWindowCompaction`
 
@@ -440,7 +440,7 @@ class SlidingWindowCompaction implements CompactionStrategy {
 **Example:**
 
 ```ts
-import { SlidingWindowCompaction } from "bindrunes/agentic";
+import { SlidingWindowCompaction } from "urupe-ui/agentic";
 
 const strategy = new SlidingWindowCompaction(20);
 const plan = strategy.plan(store.active!);
@@ -473,7 +473,7 @@ interface SummarizeCompactionOptions {
 
 ## Persistence
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `PersistenceAdapter`
 
@@ -504,7 +504,7 @@ import {
   createWindowStore,
   createLocalStorageAdapter,
   createPersistenceAdapter,
-} from "bindrunes/agentic";
+} from "urupe-ui/agentic";
 
 const store = createWindowStore();
 const adapter = createPersistenceAdapter(store, createLocalStorageAdapter(), "chat");
@@ -522,7 +522,7 @@ Browser localStorage adapter.
 
 ```ts
 function createLocalStorageAdapter(prefix?: string): PersistenceAdapter;
-// default prefix: "bindrunes"
+// default prefix: "urupe-ui"
 ```
 
 ### `createIndexedDBAdapter(dbName?)`
@@ -531,14 +531,14 @@ IndexedDB adapter for larger state.
 
 ```ts
 function createIndexedDBAdapter(dbName?: string): PersistenceAdapter;
-// default dbName: "bindrunes-agentic"
+// default dbName: "urupe-ui-agentic"
 ```
 
 ---
 
 ## Simulator Runtime
 
-Import from `"bindrunes/agentic"`.
+Import from `"urupe-ui/agentic"`.
 
 ### `createSimulatorRuntime(options)`
 
@@ -558,7 +558,7 @@ function createSimulatorRuntime(options: SimulatorRuntimeOptions): SimulatorRunt
 **Example:**
 
 ```ts
-import { createSimulatorRuntime } from "bindrunes/agentic";
+import { createSimulatorRuntime } from "urupe-ui/agentic";
 
 const runtime = createSimulatorRuntime({
   script: [
@@ -574,7 +574,7 @@ const runtime = createSimulatorRuntime({
 
 ## Copilot Components
 
-Import from `"bindrunes/domains/agentic"`.
+Import from `"urupe-ui/domains/agentic"`.
 
 ### `CopilotMessageList`
 

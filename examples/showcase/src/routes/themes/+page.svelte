@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Badge, Button, Card, Input, Alert, StatusChip } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Badge, Button, Card, Input, Alert, StatusChip } from "urupe-ui";
 
 	const themes = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 

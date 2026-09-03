@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { PageHeader, Tabs, TabsContent, TabsList, TabsTrigger } from "bindrunes/layouts";
-	import { Button, Input, Label, Card } from "bindrunes";
-	import { AdvancedTable, ExportFlow, FacetedSearch, ImportFlow, WizardForm, CrudForm, CrudFormDrawer, CrudFormModal, CrudDeleteConfirm, CrudDetailDrawer } from "bindrunes/domains/data";
-	import { useForm, useQuery, useMutation } from "bindrunes";
+	import { PageHeader, Tabs, TabsContent, TabsList, TabsTrigger } from "urupe-ui/layouts";
+	import { Button, Input, Label, Card } from "urupe-ui";
+	import { AdvancedTable, ExportFlow, FacetedSearch, ImportFlow, WizardForm, CrudForm, CrudFormDrawer, CrudFormModal, CrudDeleteConfirm, CrudDetailDrawer } from "urupe-ui/domains/data";
+	import { useForm, useQuery, useMutation } from "urupe-ui";
 	import * as v from "valibot";
 
 	let activeTab = $state("wizard");

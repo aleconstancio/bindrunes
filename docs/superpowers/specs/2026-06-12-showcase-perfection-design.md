@@ -1,7 +1,7 @@
 # Showcase Perfection — Design Spec
 
 **Date:** 2026-06-12
-**Goal:** Make the bindrunes showcase a nobrainer local site that demonstrates ALL bindrunes capabilities — fix bugs, add missing demos, and polish UX.
+**Goal:** Make the urupe-ui showcase a nobrainer local site that demonstrates ALL urupe-ui capabilities — fix bugs, add missing demos, and polish UX.
 
 ---
 
@@ -117,7 +117,7 @@
 
 - **Files modified:** ~20 existing route files + 1 new route (`/components`)
 - **No library changes** — all work is in `examples/showcase/`
-- **No new dependencies** — only uses components already exported by bindrunes
+- **No new dependencies** — only uses components already exported by urupe-ui
 
 ---
 

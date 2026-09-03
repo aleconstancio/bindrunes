@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restructure and rewrite all bindrunes documentation to accurately reflect the current codebase (245 components, ~48 composables, bindrunes-kit package, agentic copilot components, Siren/Vico contributions).
+**Goal:** Restructure and rewrite all urupe-ui documentation to accurately reflect the current codebase (245 components, ~48 composables, bindrunes-kit package, agentic copilot components, Siren/Vico contributions).
 
 **Architecture:** Domain-organized docs structure. Move kit docs from `packages/bindrunes-kit/docs/` into `docs/kit/`. Move migration guides into `docs/migration/`. Rewrite AGENTS.md, README.md, and index.md with accurate data. Expand agentic docs to cover copilot components and new subsystem modules.
 
@@ -50,7 +50,7 @@ Write `docs/kit/index.md`:
 ```markdown
 # bindrunes-kit
 
-SvelteKit meta-framework powered by bindrunes. Build full-stack or SPA+backend apps with the bindrunes design system.
+SvelteKit meta-framework powered by urupe-ui. Build full-stack or SPA+backend apps with the urupe-ui design system.
 
 ## Quick Start
 
@@ -136,7 +136,7 @@ git commit -m "docs: relocate migration guides to docs/migration/"
 Replace entire content with:
 
 ```markdown
-# bindrunes — Agent Laws
+# urupe-ui — Agent Laws
 
 ## Monorepo
 - `packages/bindrunes` — Component library (Svelte 5 + Tailwind v4)
@@ -241,11 +241,11 @@ git commit -m "docs: rewrite AGENTS.md with accurate counts and kit/agentic rout
 Replace entire content with:
 
 ```markdown
-# bindrunes — Svelte 5 Component Library & Scaffold
+# urupe-ui — Svelte 5 Component Library & Scaffold
 
-[![CI](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
-[![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
+[![CI](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/urupe-ui)](https://www.npmjs.com/package/urupe-ui)
+[![license](https://img.shields.io/npm/l/urupe-ui)](https://github.com/aleconstancio/urupe-ui/blob/main/LICENSE)
 
 245+ components · 48 composables · 10 domain categories · 6 themes · Svelte 5 + Tailwind v4 + bits-ui + valibot.
 
@@ -265,7 +265,7 @@ Replace entire content with:
 ## Install
 
 \`\`\`bash
-bun add bindrunes
+bun add urupe-ui
 bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 \`\`\`
 
@@ -274,8 +274,8 @@ bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 \`\`\`css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 \`\`\`
 
 \`\`\`ts
@@ -286,7 +286,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: { exclude: ['bindrunes'] },
+  optimizeDeps: { exclude: ['urupe-ui'] },
 });
 \`\`\`
 
@@ -294,7 +294,7 @@ export default defineConfig({
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -328,16 +328,16 @@ export default defineConfig({
 
 | Path | Description |
 |------|-------------|
-| `bindrunes` | Primitives, composables, and utilities |
-| `bindrunes/layouts` | Layout components, dashboard shells, and sidebar |
-| `bindrunes/domains` | Domain components (auth, calendar, chat, data, e-commerce, landing, marketing, media, portfolio, settings) |
-| `bindrunes/domains/*` | Individual domain imports (e.g. `bindrunes/domains/landing`) |
-| `bindrunes/domains/agentic` | Agentic copilot UI components |
-| `bindrunes/templates` | Pre-composed page templates (10 categories) |
-| `bindrunes/agentic` | Agentic chat kernel composables |
-| `bindrunes/playground` | Playground and demo components |
-| `bindrunes/tailwind` | Tailwind CSS v4 integration plugin |
-| `bindrunes/styles/*` | Theme and global CSS |
+| `urupe-ui` | Primitives, composables, and utilities |
+| `urupe-ui/layouts` | Layout components, dashboard shells, and sidebar |
+| `urupe-ui/domains` | Domain components (auth, calendar, chat, data, e-commerce, landing, marketing, media, portfolio, settings) |
+| `urupe-ui/domains/*` | Individual domain imports (e.g. `urupe-ui/domains/landing`) |
+| `urupe-ui/domains/agentic` | Agentic copilot UI components |
+| `urupe-ui/templates` | Pre-composed page templates (10 categories) |
+| `urupe-ui/agentic` | Agentic chat kernel composables |
+| `urupe-ui/playground` | Playground and demo components |
+| `urupe-ui/tailwind` | Tailwind CSS v4 integration plugin |
+| `urupe-ui/styles/*` | Theme and global CSS |
 
 ---
 
@@ -393,17 +393,17 @@ git commit -m "docs: rewrite README with accurate counts, kit section, agentic c
 Replace entire content with:
 
 ```markdown
-# bindrunes Documentation
+# urupe-ui Documentation
 
 > Svelte 5 Component Library & B2B SaaS Scaffold — 245 components, 48 composables, 10 domain categories, 6 themes.
 
 ## Overview
 
-bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis design system: theme (color), aesthetic (form), and density (spacing).
+urupe-ui is a toolkit for building SaaS interfaces. It provides a three-axis design system: theme (color), aesthetic (form), and density (spacing).
 
 \`\`\`svelte
 <script lang="ts">
-  import { AppProvider, Button, Card, useQuery } from "bindrunes";
+  import { AppProvider, Button, Card, useQuery } from "urupe-ui";
   const users = useQuery({
     key: "/api/users",
     fetcher: () => fetch("/api/users").then(r => r.json()),
@@ -451,16 +451,16 @@ bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis de
 
 ## Exports
 
-- `bindrunes` — Core components, composables, and utilities
-- `bindrunes/layouts` — Layout shell components (DashboardShell, Sidebar, Tabs, etc.)
-- `bindrunes/domains` — Domain-specific components (auth, calendar, chat, data, ecommerce, landing, marketing, media, portfolio, settings)
-- `bindrunes/domains/*` — Individual domain imports (e.g., `bindrunes/domains/auth`)
-- `bindrunes/domains/agentic` — Agentic copilot UI components
-- `bindrunes/templates` — Pre-composed page templates
-- `bindrunes/playground` — Demo/scaffold components and utilities
-- `bindrunes/agentic` — Agentic chat kernel composables
-- `bindrunes/tailwind` — Tailwind CSS v4 integration plugin
-- `bindrunes/styles/*` — Theme CSS, presets, aesthetics, and density scales
+- `urupe-ui` — Core components, composables, and utilities
+- `urupe-ui/layouts` — Layout shell components (DashboardShell, Sidebar, Tabs, etc.)
+- `urupe-ui/domains` — Domain-specific components (auth, calendar, chat, data, ecommerce, landing, marketing, media, portfolio, settings)
+- `urupe-ui/domains/*` — Individual domain imports (e.g., `urupe-ui/domains/auth`)
+- `urupe-ui/domains/agentic` — Agentic copilot UI components
+- `urupe-ui/templates` — Pre-composed page templates
+- `urupe-ui/playground` — Demo/scaffold components and utilities
+- `urupe-ui/agentic` — Agentic chat kernel composables
+- `urupe-ui/tailwind` — Tailwind CSS v4 integration plugin
+- `urupe-ui/styles/*` — Theme CSS, presets, aesthetics, and density scales
 ```
 
 - [ ] **Step 2: Commit**
@@ -521,7 +521,7 @@ The agentic subsystem provides two layers:
 
 ## Copilot Components
 
-*Import from `bindrunes/domains/agentic`*
+*Import from `urupe-ui/domains/agentic`*
 
 | Component | Description |
 |-----------|-------------|
@@ -544,7 +544,7 @@ The agentic subsystem provides two layers:
     CopilotInput,
     CopilotStreamIndicator,
     CopilotToolPanel
-  } from "bindrunes/domains/agentic";
+  } from "urupe-ui/domains/agentic";
 
   let messages = $state([]);
   let isStreaming = $state(false);
@@ -648,7 +648,7 @@ git commit -m "docs: rewrite agentic overview with copilot components and kernel
 After the existing "### Chat" section (around line 406), add a new subsection before "### Marketing":
 
 ```markdown
-### Agentic Copilot (`bindrunes/domains/agentic`)
+### Agentic Copilot (`urupe-ui/domains/agentic`)
 - `CopilotMessageList` -- Scrollable message list with role-based styling
 - `CopilotInput` -- Message composer with send button and keyboard shortcuts
 - `CopilotStreamIndicator` -- Animated indicator showing LLM is streaming
@@ -683,7 +683,7 @@ After the `useInfiniteScroll` section (around line 354), add:
 Monitors and tracks session activity for analytics or security purposes.
 
 \`\`\`ts
-import { createSessionMonitor } from "bindrunes";
+import { createSessionMonitor } from "urupe-ui";
 
 const monitor = createSessionMonitor({
   onIdle: () => console.log("Session idle"),
@@ -702,7 +702,7 @@ After `createSessionMonitor`, add:
 Multi-tenant context provider for SaaS applications with tenant isolation.
 
 \`\`\`ts
-import { createMultiTenant } from "bindrunes";
+import { createMultiTenant } from "urupe-ui";
 
 const tenant = createMultiTenant({
   tenantId: "org_123",
@@ -735,7 +735,7 @@ After the Chat domain table (around line 128), before "### E-commerce", add:
 ### Agentic Copilot
 Pre-built UI components for LLM chat interfaces.
 
-**Import from `bindrunes/domains/agentic`:**
+**Import from `urupe-ui/domains/agentic`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -770,7 +770,7 @@ git commit -m "docs: add agentic copilot components to boundrunes.md"
 Run a script to find all `[text](path)` links in docs/ and verify each target file exists:
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 for f in $(find docs -name "*.md" -not -path "*/superpowers/*"); do
   grep -oP '\[.*?\]\(([^)]+)\)' "$f" | grep -oP '\(([^)]+)\)' | tr -d '()' | while read link; do
     if [[ "$link" == http* ]] || [[ "$link" == "#"* ]]; then

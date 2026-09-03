@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Card, MetricCard, Spinner } from "bindrunes";
+	import { Button, Card, MetricCard, Spinner } from "urupe-ui";
 	import { createQuery } from "bindrunes-kit/client";
 
 	interface QuickStat {

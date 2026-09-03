@@ -73,7 +73,7 @@ const sizeClasses: Record<Size, string> = {
 </script>
 
 <style>
-  .bindrunes-btn-transition {
+  .urupe-ui-btn-transition {
     transition-property: color, background-color, border-color, box-shadow, opacity;
     transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
     transition-duration: var(--duration-snappy);
@@ -90,7 +90,7 @@ const sizeClasses: Record<Size, string> = {
   <a
     {href}
     aria-label={ariaLabel}
-    class="{base} {variantClasses[variant]} {sizeClasses[size]} {iconOnly ? 'px-0 aspect-square' : ''} bindrunes-btn-transition {className}"
+    class="{base} {variantClasses[variant]} {sizeClasses[size]} {iconOnly ? 'px-0 aspect-square' : ''} urupe-ui-btn-transition {className}"
     class:w-full={fullWidth}
     data-loading={loading || undefined}
     style={style || undefined}
@@ -107,7 +107,7 @@ const sizeClasses: Record<Size, string> = {
     {disabled}
     aria-label={ariaLabel}
     onclick={loading ? undefined : onclick}
-    class="{base} {variantClasses[variant]} {sizeClasses[size]} {fullWidth ? 'w-full' : ''} {iconOnly ? 'px-0 aspect-square' : ''} bindrunes-btn-transition {className}"
+    class="{base} {variantClasses[variant]} {sizeClasses[size]} {fullWidth ? 'w-full' : ''} {iconOnly ? 'px-0 aspect-square' : ''} urupe-ui-btn-transition {className}"
     data-loading={loading || undefined}
     style={style || undefined}
     {...restProps}

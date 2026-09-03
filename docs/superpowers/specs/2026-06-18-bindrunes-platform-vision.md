@@ -1,8 +1,8 @@
-# bindrunes Platform Vision: Maximum Product Scope
+# urupe-ui Platform Vision: Maximum Product Scope
 
 ## The Thesis
 
-**bindrunes becomes the fastest path from zero to production B2B SaaS in the Svelte ecosystem.**
+**urupe-ui becomes the fastest path from zero to production B2B SaaS in the Svelte ecosystem.**
 
 Not a component library. Not a utility layer. A **platform** that generates running applications with auth, billing, AI copilot, multi-tenancy, and a polished UI — all from a single CLI command.
 
@@ -10,13 +10,13 @@ Not a component library. Not a utility layer. A **platform** that generates runn
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Layer 3: Platform (bindrunes-cloud)         │
+│  Layer 3: Platform (urupe-ui-cloud)         │
 │  Plugin registry, marketplace, cloud dashboard│
 ├─────────────────────────────────────────────┤
 │  Layer 2: Framework (bindrunes-kit)          │
 │  Client/server utils, CLI, templates, adapters│
 ├─────────────────────────────────────────────┤
-│  Layer 1: Core (bindrunes)                   │
+│  Layer 1: Core (urupe-ui)                   │
 │  220+ components, 47+ composables, design sys │
 └─────────────────────────────────────────────┘
 ```
@@ -219,7 +219,7 @@ Instead of monolithic templates, use **composable feature modules**:
 
 ```
 templates/
-  base/                    # Minimal SvelteKit + bindrunes
+  base/                    # Minimal SvelteKit + urupe-ui
   features/
     auth-email/            # Email/password auth
     auth-oauth/            # Google/GitHub OAuth
@@ -282,9 +282,9 @@ export const actions = {
 A plugin registry where developers can share and install feature modules:
 
 ```bash
-bindrunes add plugin @bindrunes/plugin-stripe
-bindrunes add plugin @bindrunes/plugin-sendgrid
-bindrunes add plugin @community/plugin-analytics-mixpanel
+urupe-ui add plugin @bindrunes/plugin-stripe
+urupe-ui add plugin @bindrunes/plugin-sendgrid
+urupe-ui add plugin @community/plugin-analytics-mixpanel
 ```
 
 Plugin interface:
@@ -319,8 +319,8 @@ npx create-bindrunes --template=@community/portfolio
 
 Shareable component packages:
 ```bash
-bindrunes add component @bindrunes/kanban
-bindrunes add component @community/chart-dashboard
+urupe-ui add component @bindrunes/kanban
+urupe-ui add component @community/chart-dashboard
 ```
 
 ### 3D. Cloud Dashboard (Priority: LOW)

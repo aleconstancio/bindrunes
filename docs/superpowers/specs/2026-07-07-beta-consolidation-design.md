@@ -2,7 +2,7 @@
 
 **Date:** 2026-07-07
 **Status:** Approved
-**Goal:** Consolidate the bindrunes monorepo into a polished, launchable beta where the showcase IS the site, templates actually work, and docs don't drift.
+**Goal:** Consolidate the urupe-ui monorepo into a polished, launchable beta where the showcase IS the site, templates actually work, and docs don't drift.
 
 ## Context
 
@@ -14,7 +14,7 @@ Four workstreams, ordered by criticality:
 
 ### 1. Template Repair (Critical)
 
-4 of 5 starter templates use shadcn-svelte compound component patterns (`Card.Root`, `Dialog.Header`) that don't exist in bindrunes. Users who clone them get broken code.
+4 of 5 starter templates use shadcn-svelte compound component patterns (`Card.Root`, `Dialog.Header`) that don't exist in urupe-ui. Users who clone them get broken code.
 
 **Work:**
 - Rewrite `templates/crud-admin` — replace `Card.Root`/`Card.Header`/`Card.Content` with flat `<Card>`, `Dialog.Root`/`Dialog.Content` with `<Dialog>`, fix `Checkbox` and `Select` APIs
@@ -30,7 +30,7 @@ Four workstreams, ordered by criticality:
 
 **Work:**
 - Delete root `vercel.json` (points to non-existent `docs-site/`)
-- Add export path for 10 page templates in `packages/bindrunes/package.json` as `bindrunes/layouts` sub-exports (they were supposed to be merged into layouts per architecture doc)
+- Add export path for 10 page templates in `packages/bindrunes/package.json` as `urupe-ui/layouts` sub-exports (they were supposed to be merged into layouts per architecture doc)
 - Reconcile component counts: README, showcase homepage, docs/index, component index — all should use the actual count from the component index
 
 ### 3. Documentation Unification

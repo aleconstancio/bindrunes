@@ -1,6 +1,6 @@
 {
 	"$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-	"changelog": ["@changesets/changelog-github", { "repo": "aleconstancio/bindrunes" }],
+	"changelog": ["@changesets/changelog-github", { "repo": "aleconstancio/urupe-ui" }],
 	"commit": false,
 	"fixed": [],
 	"linked": [],

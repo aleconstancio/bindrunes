@@ -1,71 +1,71 @@
 [
 	{
-		"name": "bindrunes",
+		"name": "urupe-ui",
 		"path": "packages/bindrunes/dist/index.js",
 		"limit": "14 kB"
 	},
 	{
-		"name": "bindrunes/layouts",
+		"name": "urupe-ui/layouts",
 		"path": "packages/bindrunes/dist/layouts/index.js",
 		"limit": "5 kB"
 	},
 	{
-		"name": "bindrunes/domains/auth",
+		"name": "urupe-ui/domains/auth",
 		"path": "packages/bindrunes/dist/domains/auth/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/data",
+		"name": "urupe-ui/domains/data",
 		"path": "packages/bindrunes/dist/domains/data/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/chat",
+		"name": "urupe-ui/domains/chat",
 		"path": "packages/bindrunes/dist/domains/chat/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/calendar",
+		"name": "urupe-ui/domains/calendar",
 		"path": "packages/bindrunes/dist/domains/calendar/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/ecommerce",
+		"name": "urupe-ui/domains/ecommerce",
 		"path": "packages/bindrunes/dist/domains/ecommerce/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/landing",
+		"name": "urupe-ui/domains/landing",
 		"path": "packages/bindrunes/dist/domains/landing/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/marketing",
+		"name": "urupe-ui/domains/marketing",
 		"path": "packages/bindrunes/dist/domains/marketing/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/media",
+		"name": "urupe-ui/domains/media",
 		"path": "packages/bindrunes/dist/domains/media/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/portfolio",
+		"name": "urupe-ui/domains/portfolio",
 		"path": "packages/bindrunes/dist/domains/portfolio/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/settings",
+		"name": "urupe-ui/domains/settings",
 		"path": "packages/bindrunes/dist/domains/settings/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/agentic",
+		"name": "urupe-ui/domains/agentic",
 		"path": "packages/bindrunes/dist/domains/agentic/index.js",
 		"limit": "3 kB"
 	},
 	{
-		"name": "bindrunes/agentic",
+		"name": "urupe-ui/agentic",
 		"path": "packages/bindrunes/dist/utils/agentic/index.js",
 		"limit": "2 kB"
 	}

@@ -3,7 +3,7 @@
  *
  * Usage:
  * <script lang="ts">
- *   import { createApiClient } from 'bindrunes';
+ *   import { createApiClient } from 'urupe-ui';
  *
  *   const api = createApiClient('/api/v1', {
  *     getToken: () => localStorage.getItem('token'),

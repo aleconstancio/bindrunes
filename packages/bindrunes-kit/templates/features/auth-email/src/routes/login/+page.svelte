@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthTemplate } from "bindrunes/layouts";
+	import { AuthTemplate } from "urupe-ui/layouts";
 	import { createClientAuth } from "bindrunes-kit/client";
 
 	const auth = createClientAuth({

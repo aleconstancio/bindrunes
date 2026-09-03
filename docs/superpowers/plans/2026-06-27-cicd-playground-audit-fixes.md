@@ -1,4 +1,4 @@
-# bindrunes CI/CD & Playground Audit Fixes
+# urupe-ui CI/CD & Playground Audit Fixes
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -77,7 +77,7 @@ Read `turbo.json`, then edit it to add the `validate` task after the `check` tas
 - [ ] **Step 3: Verify the fix**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 cat .tool-versions
 # Expected: bun 1.3.14
 
@@ -202,7 +202,7 @@ Key changes:
 - [ ] **Step 4: Verify the workflow syntax**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 cat .github/workflows/ci.yml | head -10
 # Expected: triggers on both push and pull_request
 grep "cache: true" .github/workflows/ci.yml
@@ -428,7 +428,7 @@ git commit -m "chore: remove orphaned playwright visual regression stubs"
 
 ### Task 6: Add coverage thresholds to bindrunes-kit
 
-**Why:** `packages/bindrunes-kit/vitest.config.ts` is bare minimum — no coverage thresholds, no coverage provider configured. The main `bindrunes` package enforces 90%+ thresholds; `bindrunes-kit` should have at least a basic floor.
+**Why:** `packages/bindrunes-kit/vitest.config.ts` is bare minimum — no coverage thresholds, no coverage provider configured. The main `urupe-ui` package enforces 90%+ thresholds; `bindrunes-kit` should have at least a basic floor.
 
 **Files:**
 - Modify: `packages/bindrunes-kit/vitest.config.ts`
@@ -469,7 +469,7 @@ The thresholds are intentionally lower than the main library (80% vs 90%) becaus
 - [ ] **Step 2: Verify the config is valid**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 cat packages/bindrunes-kit/vitest.config.ts | grep -A5 thresholds
 # Expected: global thresholds at 80/75/80/80
 ```
@@ -533,7 +533,7 @@ git commit -m "docs: sync AGENTS.md coverage thresholds with vitest.config.ts"
 - [ ] **Step 1: Install Vercel adapter**
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 bun add -D @sveltejs/adapter-vercel --filter docs-site
 ```
 
@@ -602,7 +602,7 @@ git commit -m "docs: add Vercel deployment config for docs-site"
 Run the full validation pipeline to confirm nothing is broken:
 
 ```bash
-cd /home/ale/Projects/bindrunes
+cd /home/ale/Projects/urupe-ui
 just validate
 # Expected: lint passes, typecheck passes, tests pass, size-limit passes
 ```

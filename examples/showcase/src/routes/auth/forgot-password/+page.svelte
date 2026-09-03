@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, ForgotPassword } from "bindrunes/domains/auth";
+	import { AuthLayout, ForgotPassword } from "urupe-ui/domains/auth";
 	import { goto } from "$app/navigation";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>

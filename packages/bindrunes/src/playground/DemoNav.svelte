@@ -17,7 +17,7 @@ interface Props {
 let {
 	nav = [],
 	showThemeToggle = true,
-	brand = "bindrunes",
+	brand = "urupe-ui",
 	href = "/",
 	headerActions,
 	pathname = "/",

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { DashboardShell } from "bindrunes/layouts";
+import { DashboardShell } from "urupe-ui/layouts";
 import { Home, Users, Settings, BarChart3 } from "lucide-svelte";
 
 const navigation = [

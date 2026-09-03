@@ -34,7 +34,7 @@ jobs:
         run: bun run lint
 
       - name: Type check
-        run: bunx turbo run check --filter=bindrunes --filter=bindrunes-kit
+        run: bunx turbo run check --filter=urupe-ui --filter=bindrunes-kit
 
       - name: Build
         run: bun run build

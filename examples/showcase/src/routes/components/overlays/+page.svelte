@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Button, Dialog, Sheet, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Popconfirm } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
-	import { Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Button, Dialog, Sheet, AlertDialog, Popover, Tooltip, DropdownMenu, ContextMenu, Popconfirm } from "urupe-ui";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
+	import { Collapsible, CodeSnippet } from "urupe-ui";
 
 	let dialogOpen = $state(false);
 	let sheetOpen = $state(false);
@@ -45,7 +45,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Dialog, Button } from "bindrunes";\n\nlet dialogOpen = $state(false);\n\n<Button onclick={() => dialogOpen = true}>Open Dialog</Button>\n\n{#if dialogOpen}\n  <Dialog bind:open={dialogOpen}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Edit Profile</h2>\n      <p class="text-body-sm text-muted-foreground">Make changes to your profile here.</p>\n      <div class="flex justify-end gap-2">\n        <Button variant="outline" onclick={() => dialogOpen = false}>Cancel</Button>\n        <Button onclick={() => dialogOpen = false}>Save changes</Button>\n      </div>\n    </div>\n  </Dialog>\n{/if}`}
+						code={`import { Dialog, Button } from "urupe-ui";\n\nlet dialogOpen = $state(false);\n\n<Button onclick={() => dialogOpen = true}>Open Dialog</Button>\n\n{#if dialogOpen}\n  <Dialog bind:open={dialogOpen}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Edit Profile</h2>\n      <p class="text-body-sm text-muted-foreground">Make changes to your profile here.</p>\n      <div class="flex justify-end gap-2">\n        <Button variant="outline" onclick={() => dialogOpen = false}>Cancel</Button>\n        <Button onclick={() => dialogOpen = false}>Save changes</Button>\n      </div>\n    </div>\n  </Dialog>\n{/if}`}
 						language="svelte"
 						title="Dialog"
 					/>
@@ -75,7 +75,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { Sheet, Button } from "bindrunes";\n\nlet sheetOpen = $state(false);\nlet sheetSide = $state("right");\n\n<Button onclick={() => sheetOpen = true}>Open Sheet</Button>\n\n{#if sheetOpen}\n  <Sheet bind:open={sheetOpen} side={sheetSide}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Sheet Panel</h2>\n      <p class="text-body-sm text-muted-foreground">This sheet slides in from the {sheetSide}.</p>\n      <Button variant="outline" onclick={() => sheetOpen = false}>Close</Button>\n    </div>\n  </Sheet>\n{/if}`}
+						code={`import { Sheet, Button } from "urupe-ui";\n\nlet sheetOpen = $state(false);\nlet sheetSide = $state("right");\n\n<Button onclick={() => sheetOpen = true}>Open Sheet</Button>\n\n{#if sheetOpen}\n  <Sheet bind:open={sheetOpen} side={sheetSide}>\n    <div class="p-6 space-y-4">\n      <h2 class="text-title-2 text-foreground">Sheet Panel</h2>\n      <p class="text-body-sm text-muted-foreground">This sheet slides in from the {sheetSide}.</p>\n      <Button variant="outline" onclick={() => sheetOpen = false}>Close</Button>\n    </div>\n  </Sheet>\n{/if}`}
 						language="svelte"
 						title="Sheet"
 					/>
@@ -113,7 +113,7 @@
 				{/snippet}
 				<div class="space-y-2 mt-2">
 					<CodeSnippet
-						code={`import { DropdownMenu, ContextMenu, Button } from "bindrunes";\n\nconst dropdownItems = [\n  { value: "edit", label: "Edit" },\n  { value: "duplicate", label: "Duplicate" },\n  { value: "archive", label: "Archive" },\n  { value: "delete", label: "Delete" },\n];\n\n{#snippet dropdownTrigger()}\n  <Button variant="outline">Actions</Button>\n{/snippet}\n\n<DropdownMenu trigger={dropdownTrigger} items={dropdownItems} onSelect={(v) => console.log("Selected:", v)} />\n<ContextMenu trigger={contextTrigger} items={contextItems} />`}
+						code={`import { DropdownMenu, ContextMenu, Button } from "urupe-ui";\n\nconst dropdownItems = [\n  { value: "edit", label: "Edit" },\n  { value: "duplicate", label: "Duplicate" },\n  { value: "archive", label: "Archive" },\n  { value: "delete", label: "Delete" },\n];\n\n{#snippet dropdownTrigger()}\n  <Button variant="outline">Actions</Button>\n{/snippet}\n\n<DropdownMenu trigger={dropdownTrigger} items={dropdownItems} onSelect={(v) => console.log("Selected:", v)} />\n<ContextMenu trigger={contextTrigger} items={contextItems} />`}
 						language="svelte"
 						title="Menus"
 					/>

@@ -1,12 +1,12 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Kit</Badge>
   <h1 class="mt-4 text-display-1 text-foreground">Getting Started</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
-    Create a new SvelteKit project with bindrunes.
+    Create a new SvelteKit project with urupe-ui.
   </p>
 
   <div class="mt-10 space-y-10">
@@ -33,7 +33,7 @@ import { Badge, CodeSnippet } from "bindrunes";
 ✔ Package manager? bun`}
       </CodeSnippet>
       <p class="text-body text-muted-foreground mt-3">
-        The CLI generates a SvelteKit project with bindrunes pre-configured.
+        The CLI generates a SvelteKit project with urupe-ui pre-configured.
       </p>
 
       <h3 class="text-title-2 text-foreground mt-6 mb-3">2. Install & Run</h3>
@@ -52,7 +52,7 @@ bun run dev`}
       </p>
       <CodeSnippet language="svelte" title="src/routes/+page.svelte">
 {`<script lang="ts">
-  import { Button, Card, Input, PageSection } from "bindrunes";
+  import { Button, Card, Input, PageSection } from "urupe-ui";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>
@@ -80,7 +80,7 @@ bun run preview  # Preview production build`}
   src/
     routes/          # File-based routing
     lib/             # Shared code
-    app.css          # Global styles (Tailwind + bindrunes)
+    app.css          # Global styles (Tailwind + urupe-ui)
     app.html         # HTML template
   svelte.config.js   # SvelteKit config
   vite.config.ts     # Vite config
@@ -100,18 +100,18 @@ bun run preview # Preview production build`}
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Design System</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes-kit includes the full bindrunes design system. The generated <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">app.css</code> imports Tailwind with the bindrunes plugin:
+        bindrunes-kit includes the full urupe-ui design system. The generated <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">app.css</code> imports Tailwind with the urupe-ui plugin:
       </p>
       <CodeSnippet language="css" title="app.css">
 {`@import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";`}
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";`}
       </CodeSnippet>
 
       <p class="text-body text-muted-foreground mt-4 mb-4">Use components in your Svelte files:</p>
       <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { Button, Card, Input, PageSection } from "bindrunes";
+  import { Button, Card, Input, PageSection } from "urupe-ui";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>
@@ -131,7 +131,7 @@ bun run preview # Preview production build`}
       <CodeSnippet language="svelte" title="+layout.svelte">
 {`<script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 
   let { children } = $props();
 </script>

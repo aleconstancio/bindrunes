@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { SettingsTemplate } from "bindrunes/layouts";
-	import { ProfileSettings } from "bindrunes/domains/settings";
-	import { SecuritySettings } from "bindrunes/domains/settings";
-	import { NotificationSettings } from "bindrunes/domains/settings";
-	import { DangerZone } from "bindrunes/domains/settings";
+	import { SettingsTemplate } from "urupe-ui/layouts";
+	import { ProfileSettings } from "urupe-ui/domains/settings";
+	import { SecuritySettings } from "urupe-ui/domains/settings";
+	import { NotificationSettings } from "urupe-ui/domains/settings";
+	import { DangerZone } from "urupe-ui/domains/settings";
 
 	const tabs = [
 		{ id: "profile", label: "Profile" },

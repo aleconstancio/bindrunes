@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -36,7 +36,7 @@ export const ssr = false;`}
         The generated API client is in <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">src/lib/api/client.ts</code>:
       </p>
       <CodeSnippet language="ts" title="src/lib/api/client.ts">
-{`import { createApiClient } from "bindrunes";
+{`import { createApiClient } from "urupe-ui";
 
 export const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL ?? "http://localhost:8080",
@@ -74,7 +74,7 @@ export const api = createApiClient({
         For SPA mode, use client-side auth with the API backend:
       </p>
       <CodeSnippet language="ts">
-{`import { createApiClient } from "bindrunes";
+{`import { createApiClient } from "urupe-ui";
 
 const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL,

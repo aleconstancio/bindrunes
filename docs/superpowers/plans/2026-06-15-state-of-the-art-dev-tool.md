@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Complete the bindrunes showcase, add developer experience features (code snippets, playground), and fix agentic kernel issues.
+**Goal:** Complete the urupe-ui showcase, add developer experience features (code snippets, playground), and fix agentic kernel issues.
 
 **Architecture:** Three phases — Phase 1 completes missing demos in `examples/showcase/`. Phase 2 adds a `CodeSnippet` component and interactive playground. Phase 3 fixes agentic kernel duplication and adds context wrappers.
 
@@ -129,11 +129,11 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, LoginForm } from "bindrunes/boundrune";
+  import { AuthLayout, LoginForm } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Sign in to your account"
   description="Welcome back. Enter your credentials to access your dashboard."
 >
@@ -145,13 +145,13 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, RegisterForm } from "bindrunes/boundrune";
+  import { AuthLayout, RegisterForm } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Create your account"
-  description="Get started with bindrunes. Fill in your details to create your account."
+  description="Get started with urupe-ui. Fill in your details to create your account."
 >
   <RegisterForm />
 </AuthLayout>
@@ -161,11 +161,11 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, ForgotPassword } from "bindrunes/boundrune";
+  import { AuthLayout, ForgotPassword } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Reset your password"
   description="Enter your email address and we'll send you a link to reset your password."
 >
@@ -177,11 +177,11 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, ResetPassword } from "bindrunes/boundrune";
+  import { AuthLayout, ResetPassword } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Set new password"
   description="Enter your new password below."
 >
@@ -193,11 +193,11 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, EmailVerification } from "bindrunes/boundrune";
+  import { AuthLayout, EmailVerification } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Verify your email"
   description="We've sent a verification link to your email address."
 >
@@ -209,11 +209,11 @@ Read each auth page to understand current structure. They are all bare wrappers 
 
 ```svelte
 <script lang="ts">
-  import { AuthLayout, TwoFactorAuth } from "bindrunes/boundrune";
+  import { AuthLayout, TwoFactorAuth } from "urupe-ui/boundrune";
 </script>
 
 <AuthLayout
-  brand="bindrunes"
+  brand="urupe-ui"
   tagline="Two-factor authentication"
   description="Enter the 6-digit code from your authenticator app."
 >
@@ -246,12 +246,12 @@ Read `examples/showcase/src/routes/calendar/+page.svelte` to understand structur
 
 - [ ] **Step 2: Add AvailabilityGrid section**
 
-Add import for `AvailabilityGrid` from `bindrunes/boundrune` and add a new section after the existing BookingForm demo:
+Add import for `AvailabilityGrid` from `urupe-ui/boundrune` and add a new section after the existing BookingForm demo:
 
 ```svelte
 <script lang="ts">
   // ... existing imports
-  import { AvailabilityGrid } from "bindrunes/boundrune";
+  import { AvailabilityGrid } from "urupe-ui/boundrune";
 </script>
 
 <!-- Existing sections ... -->
@@ -292,12 +292,12 @@ Read the file to understand structure.
 
 - [ ] **Step 2: Add Banner section**
 
-Add import for `Banner` from `bindrunes/boundrune` and add a new section:
+Add import for `Banner` from `urupe-ui/boundrune` and add a new section:
 
 ```svelte
 <script lang="ts">
   // ... existing imports
-  import { Banner, CommentSection } from "bindrunes/boundrune";
+  import { Banner, CommentSection } from "urupe-ui/boundrune";
 </script>
 
 <!-- Existing sections ... -->
@@ -366,7 +366,7 @@ Add imports for all 8 CRUD components and add demo sections with mock data:
     CrudEditModal,
     CrudDeleteConfirm,
     CrudDetailDrawer,
-  } from "bindrunes/boundrune";
+  } from "urupe-ui/boundrune";
 </script>
 
 <!-- After existing tabs section -->
@@ -460,7 +460,7 @@ Add to the Composables tab section:
   import {
     createAuth, createAccess, createToast, createApiClient,
     useDebounce, useEventListener, useIntersectionObserver, useResizeObserver,
-  } from "bindrunes";
+  } from "urupe-ui";
 </script>
 
 <!-- In the Composables tab, add after existing demos -->
@@ -578,7 +578,7 @@ Add imports and sections for: `FeatureComparison`, `Testimonial` (singular), `La
   // ... existing imports
   import {
     FeatureComparison, Testimonial, LandingNav, LandingSection, SiteFooterColumns,
-  } from "bindrunes/landing";
+  } from "urupe-ui/landing";
 </script>
 
 <!-- After existing sections -->
@@ -597,7 +597,7 @@ Add imports and sections for: `FeatureComparison`, `Testimonial` (singular), `La
 <!-- Single Testimonial -->
 <LandingSection title="What Users Say" description="Trusted by developers">
   <Testimonial
-    quote="bindrunes has completely transformed how we build Svelte applications."
+    quote="urupe-ui has completely transformed how we build Svelte applications."
     author="Sarah Chen"
     role="CTO at TechCorp"
   />
@@ -775,7 +775,7 @@ For each demo section, add a collapsible code example. Pattern:
 
 ```svelte
 <script lang="ts">
-  import { CodeSnippet, Collapsible } from "bindrunes";
+  import { CodeSnippet, Collapsible } from "urupe-ui";
 </script>
 
 <!-- After each demo section -->
@@ -785,7 +785,7 @@ For each demo section, add a collapsible code example. Pattern:
   {/snippet}
   <div class="space-y-2 mt-2">
     <CodeSnippet
-      code={`import { Input, Form } from "bindrunes";\n\n<Input placeholder="Enter text" />`}
+      code={`import { Input, Form } from "urupe-ui";\n\n<Input placeholder="Enter text" />`}
       language="svelte"
       title="Import & Usage"
     />
@@ -825,7 +825,7 @@ git commit -m "feat: add code examples with copy button to 12 showcase pages"
 ```svelte
 <!-- examples/showcase/src/routes/playground/+page.svelte -->
 <script lang="ts">
-  import { PageHeader, Card, Input, Select, Switch, Slider, Button, CodeSnippet } from "bindrunes";
+  import { PageHeader, Card, Input, Select, Switch, Slider, Button, CodeSnippet } from "urupe-ui";
 
   const components = [
     { name: "Button", props: { variant: { type: "select", options: ["primary", "secondary", "outline", "ghost", "destructive", "link", "soft", "subtle"], default: "primary" }, size: { type: "select", options: ["sm", "md", "lg"], default: "md" }, disabled: { type: "switch", default: false }, loading: { type: "switch", default: false } } },
@@ -856,7 +856,7 @@ git commit -m "feat: add code examples with copy button to 12 showcase pages"
       .filter(([, v]) => v !== undefined && v !== "")
       .map(([k, v]) => `${k}={${typeof v === "boolean" ? v : JSON.stringify(v)}}`)
       .join(" ");
-    return `import { ${selectedComponent} } from "bindrunes";\n\n<${selectedComponent} ${props}>Click me</${selectedComponent}>`;
+    return `import { ${selectedComponent} } from "urupe-ui";\n\n<${selectedComponent} ${props}>Click me</${selectedComponent}>`;
   });
 </script>
 

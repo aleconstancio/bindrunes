@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthTemplate } from "bindrunes/layouts";
+	import { AuthTemplate } from "urupe-ui/layouts";
 
 	let loading = $state(false);
 	let submitted = $state(false);

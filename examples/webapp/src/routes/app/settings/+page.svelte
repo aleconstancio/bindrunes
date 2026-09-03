@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { PageHeader } from "bindrunes/layouts";
-	import { SettingsSection } from "bindrunes/domains/settings";
-	import { Input, Switch, Button } from "bindrunes";
+  import { PageHeader } from "urupe-ui/layouts";
+	import { SettingsSection } from "urupe-ui/domains/settings";
+	import { Input, Switch, Button } from "urupe-ui";
 
   let emailNotifications = $state(true);
   let weeklyDigest = $state(false);

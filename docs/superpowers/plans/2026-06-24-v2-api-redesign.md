@@ -1,8 +1,8 @@
-# bindrunes v2.0 API Redesign — Implementation Plan
+# urupe-ui v2.0 API Redesign — Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Ground-up API cleanup for bindrunes v2.0 — remove deprecated APIs, consolidate overlapping composables, unify naming, restructure exports, improve TypeScript DX.
+**Goal:** Ground-up API cleanup for urupe-ui v2.0 — remove deprecated APIs, consolidate overlapping composables, unify naming, restructure exports, improve TypeScript DX.
 
 **Architecture:** Single package (`packages/bindrunes`) with 7 export paths (down from 14). Composable API surface reduced from ~48 to ~40 by merging overlapping utilities. All files follow strict `useX` / `createX` naming convention. Fresh start — no backwards compat.
 
@@ -89,7 +89,7 @@
 // src/utils/devWarning.ts
 export function devWarning(condition: boolean, message: string) {
 	if (import.meta.env?.DEV && condition) {
-		console.warn(`[bindrunes] ${message}`);
+		console.warn(`[urupe-ui] ${message}`);
 	}
 }
 ```
@@ -1104,7 +1104,7 @@ export {
 	SettingsTemplate,
 } from "./templates/index.ts";
 
-// Templates are now available via bindrunes/layouts
+// Templates are now available via urupe-ui/layouts
 ```
 
 - [ ] **Step 5: Run type check**
@@ -1112,7 +1112,7 @@ export {
 ```bash
 cd packages/bindrunes && bun run check
 ```
-Expected: No type errors. Templates are now exported from `bindrunes/layouts`.
+Expected: No type errors. Templates are now exported from `urupe-ui/layouts`.
 
 - [ ] **Step 6: Run tests**
 
@@ -1181,7 +1181,7 @@ Add to the Anti-Patterns section:
 - Don't use legacy stores — `$state`/`$derived`/`$effect` only
 - Don't create multi-export files (except natural `createX`/`useX` pairs)
 - Don't use `console.warn` in production code — use `devWarning()` from `src/utils/devWarning.ts`
-- Don't create barrel files for domains — use granular imports (`bindrunes/domains/auth`)
+- Don't create barrel files for domains — use granular imports (`urupe-ui/domains/auth`)
 ```
 
 - [ ] **Step 2: Commit**
@@ -1203,67 +1203,67 @@ git commit -m "docs(v2): add v2 anti-patterns to AGENTS.md"
 ```json
 [
 	{
-		"name": "bindrunes",
+		"name": "urupe-ui",
 		"path": "packages/bindrunes/dist/index.js",
 		"limit": "16 kB"
 	},
 	{
-		"name": "bindrunes/layouts",
+		"name": "urupe-ui/layouts",
 		"path": "packages/bindrunes/dist/layouts/index.js",
 		"limit": "18 kB"
 	},
 	{
-		"name": "bindrunes/domains/auth",
+		"name": "urupe-ui/domains/auth",
 		"path": "packages/bindrunes/dist/domains/auth/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/data",
+		"name": "urupe-ui/domains/data",
 		"path": "packages/bindrunes/dist/domains/data/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/chat",
+		"name": "urupe-ui/domains/chat",
 		"path": "packages/bindrunes/dist/domains/chat/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/calendar",
+		"name": "urupe-ui/domains/calendar",
 		"path": "packages/bindrunes/dist/domains/calendar/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/ecommerce",
+		"name": "urupe-ui/domains/ecommerce",
 		"path": "packages/bindrunes/dist/domains/ecommerce/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/landing",
+		"name": "urupe-ui/domains/landing",
 		"path": "packages/bindrunes/dist/domains/landing/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/marketing",
+		"name": "urupe-ui/domains/marketing",
 		"path": "packages/bindrunes/dist/domains/marketing/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/media",
+		"name": "urupe-ui/domains/media",
 		"path": "packages/bindrunes/dist/domains/media/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/portfolio",
+		"name": "urupe-ui/domains/portfolio",
 		"path": "packages/bindrunes/dist/domains/portfolio/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/domains/settings",
+		"name": "urupe-ui/domains/settings",
 		"path": "packages/bindrunes/dist/domains/settings/index.js",
 		"limit": "2 kB"
 	},
 	{
-		"name": "bindrunes/agentic",
+		"name": "urupe-ui/agentic",
 		"path": "packages/bindrunes/dist/utils/agentic/index.js",
 		"limit": "4 kB"
 	}

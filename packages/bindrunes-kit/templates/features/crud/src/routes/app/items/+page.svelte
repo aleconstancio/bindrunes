@@ -1,6 +1,6 @@
 <script lang="ts">
 	
-	import { Badge, Button, Card, DataTable, PageHeader, Spinner } from "bindrunes";
+	import { Badge, Button, Card, DataTable, PageHeader, Spinner } from "urupe-ui";
 	import { useMutation, useQuery } from "bindrunes-kit/client";
 	import { goto } from "$app/navigation";
 import { page } from "$app/state";

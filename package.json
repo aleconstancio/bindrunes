@@ -1,5 +1,5 @@
 {
-	"name": "bindrunes-monorepo",
+	"name": "urupe-ui-monorepo",
 	"private": true,
 	"type": "module",
 	"packageManager": "bun@1.3.14",

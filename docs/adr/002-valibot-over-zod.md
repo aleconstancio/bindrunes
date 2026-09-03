@@ -9,7 +9,7 @@ Accepted
 Form validation is a core requirement for a B2B SaaS component library. The two dominant TypeScript validation libraries are Zod and Valibot. Both provide schema definition, type inference, and runtime parsing.
 
 Key considerations for a component library:
-- **Bundle size**: Consumers install bindrunes in their frontend. Every byte matters for initial load.
+- **Bundle size**: Consumers install urupe-ui in their frontend. Every byte matters for initial load.
 - **Type inference**: Validation schemas must infer TypeScript types for form state.
 - **Tree-shaking**: Unused validation features should not appear in the production bundle.
 - **Runtime performance**: Form validation runs on every interaction in data-heavy UIs.

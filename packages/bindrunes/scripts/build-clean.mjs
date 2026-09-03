@@ -14,7 +14,7 @@ const FILE_PATTERNS = [
 	/Harness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
 	/[Tt]est[Ww]rapper\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
 	/[Tt]est[Hh]arness\.svelte(\.d\.ts(\.map)?)?(\.js(\.map)?)?$/,
-	/bindrunes-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
+	/urupe-ui-stub\.(ts|d\.ts|js|js\.map|d\.ts\.map)$/,
 	/test-setup\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 	/test-utils\.(ts|js|d\.ts|js\.map|d\.ts\.map)$/,
 ];

@@ -5,7 +5,7 @@ export const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
 export type SidebarState = ReturnType<typeof createSidebarState>;
 
-const KEY = Symbol("bindrunes-sidebar");
+const KEY = Symbol("urupe-ui-sidebar");
 
 export function useSidebar(): SidebarState {
 	return useMetaContext<SidebarState>(KEY);

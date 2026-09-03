@@ -125,13 +125,13 @@ Uses `createDarkMode()` composable. Persisted to `localStorage` via `createPersi
 |-------|--------|-------------|
 | **Track** | Bg-muted, rounded-full | `--muted` |
 | **Fill** | Bg-primary, transition width | `--primary` |
-| **Indeterminate** | Animated shimmer | `bindrunes-shimmer` keyframe |
+| **Indeterminate** | Animated shimmer | `urupe-ui-shimmer` keyframe |
 
 ---
 
 ## Skeleton
 
-Animated placeholder using `bindrunes-shimmer` keyframe over `--muted` background.
+Animated placeholder using `urupe-ui-shimmer` keyframe over `--muted` background.
 
 ---
 

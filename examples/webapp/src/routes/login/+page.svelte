@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
-  import { LoginForm } from "bindrunes/domains/auth";
+  import { LoginForm } from "urupe-ui/domains/auth";
 
   function handleLogin(data: { email: string; password: string }) {
     console.log("Login:", data);

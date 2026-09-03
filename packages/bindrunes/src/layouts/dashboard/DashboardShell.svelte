@@ -33,7 +33,7 @@ let {
 	pageDescription = undefined as string | undefined,
 	/** Controls sidebar collapse behavior.
 	 *  - "icon": Sidebar can collapse to icon-only mode (default)
-	 *  - "full": Sidebar is always expanded, no collapse (maps to bindrunes "none")
+	 *  - "full": Sidebar is always expanded, no collapse (maps to urupe-ui "none")
 	 */
 	sidebarCollapsible = "icon" as "icon" | "full",
 	statusChip = undefined as

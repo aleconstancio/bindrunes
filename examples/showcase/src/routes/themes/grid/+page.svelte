@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Card, Badge, Button } from "bindrunes";
+import { Card, Badge, Button } from "urupe-ui";
 
 const themes = ["editorial", "dracula", "nord", "catppuccin", "rose-pine", "github"] as const;
 const aesthetics = ["minimal", "glass", "bento", "expressive"] as const;

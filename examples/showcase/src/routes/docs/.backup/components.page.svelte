@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -13,7 +13,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Primitives</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui</code>
       </p>
 
       <h3 class="text-title-2 text-foreground mb-3">Foundation & Forms</h3>
@@ -234,7 +234,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Layouts</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/layouts</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/layouts</code>
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -277,7 +277,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Domains</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains</code> or <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains/&lt;name&gt;</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains</code> or <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains/&lt;name&gt;</code>
       </p>
       <div class="space-y-4">
         <div>
@@ -322,7 +322,7 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Templates</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/templates</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/templates</code>
       </p>
       <p class="text-body text-muted-foreground mb-4">
         Pre-composed full-page templates that combine primitives, layouts, and domain components into ready-to-use page layouts.

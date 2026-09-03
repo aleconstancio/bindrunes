@@ -1,17 +1,65 @@
 <script lang="ts">
-  import { Card, Button, Badge, Separator, Input } from "bindrunes";
-  import { ShoppingCart, Search, Star, ArrowRight } from "lucide-svelte";
+import { ArrowRight, Search, ShoppingCart, Star } from "lucide-svelte";
+import { Badge, Button, Card, Input, Separator } from "urupe-ui";
 
-  const products = [
-    { id: 1, name: "Wireless Headphones", price: 79.99, rating: 4.5, reviews: 128, badge: "Best Seller", image: "🎧" },
-    { id: 2, name: "Mechanical Keyboard", price: 149.99, rating: 4.8, reviews: 89, badge: "New", image: "⌨️" },
-    { id: 3, name: "Ultra-Wide Monitor", price: 599.99, rating: 4.6, reviews: 64, badge: null, image: "🖥️" },
-    { id: 4, name: "Ergonomic Mouse", price: 49.99, rating: 4.3, reviews: 256, badge: null, image: "🖱️" },
-    { id: 5, name: "USB-C Hub", price: 39.99, rating: 4.4, reviews: 312, badge: "Popular", image: "🔌" },
-    { id: 6, name: "Desk Lamp", price: 34.99, rating: 4.2, reviews: 178, badge: null, image: "💡" },
-    { id: 7, name: "Webcam HD", price: 89.99, rating: 4.1, reviews: 94, badge: null, image: "📷" },
-    { id: 8, name: "Standing Desk", price: 449.99, rating: 4.7, reviews: 52, badge: "Premium", image: "🪑" },
-  ];
+const products = [
+	{
+		id: 1,
+		name: "Wireless Headphones",
+		price: 79.99,
+		rating: 4.5,
+		reviews: 128,
+		badge: "Best Seller",
+		image: "🎧",
+	},
+	{
+		id: 2,
+		name: "Mechanical Keyboard",
+		price: 149.99,
+		rating: 4.8,
+		reviews: 89,
+		badge: "New",
+		image: "⌨️",
+	},
+	{
+		id: 3,
+		name: "Ultra-Wide Monitor",
+		price: 599.99,
+		rating: 4.6,
+		reviews: 64,
+		badge: null,
+		image: "🖥️",
+	},
+	{
+		id: 4,
+		name: "Ergonomic Mouse",
+		price: 49.99,
+		rating: 4.3,
+		reviews: 256,
+		badge: null,
+		image: "🖱️",
+	},
+	{
+		id: 5,
+		name: "USB-C Hub",
+		price: 39.99,
+		rating: 4.4,
+		reviews: 312,
+		badge: "Popular",
+		image: "🔌",
+	},
+	{ id: 6, name: "Desk Lamp", price: 34.99, rating: 4.2, reviews: 178, badge: null, image: "💡" },
+	{ id: 7, name: "Webcam HD", price: 89.99, rating: 4.1, reviews: 94, badge: null, image: "📷" },
+	{
+		id: 8,
+		name: "Standing Desk",
+		price: 449.99,
+		rating: 4.7,
+		reviews: 52,
+		badge: "Premium",
+		image: "🪑",
+	},
+];
 </script>
 
 <div class="min-h-screen bg-background">

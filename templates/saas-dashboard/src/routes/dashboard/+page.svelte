@@ -1,35 +1,45 @@
 <script lang="ts">
-  import { Card, Badge, Button, Separator } from "bindrunes";
-  import {
-    Users,
-    DollarSign,
-    TrendingUp,
-    Activity,
-    ArrowUpRight,
-    ArrowDownRight,
-  } from "lucide-svelte";
+import {
+	Activity,
+	ArrowDownRight,
+	ArrowUpRight,
+	DollarSign,
+	TrendingUp,
+	Users,
+} from "lucide-svelte";
+import { Badge, Button, Card, Separator } from "urupe-ui";
 
-  const stats = [
-    { label: "Total Revenue", value: "$45,231.89", change: "+20.1%", up: true, icon: DollarSign },
-    { label: "Subscriptions", value: "+2,350", change: "+180.1%", up: true, icon: Users },
-    { label: "Active Users", value: "+12,234", change: "+19%", up: true, icon: TrendingUp },
-    { label: "Bounce Rate", value: "21.3%", change: "-4.5%", up: false, icon: Activity },
-  ];
+const stats = [
+	{ label: "Total Revenue", value: "$45,231.89", change: "+20.1%", up: true, icon: DollarSign },
+	{ label: "Subscriptions", value: "+2,350", change: "+180.1%", up: true, icon: Users },
+	{ label: "Active Users", value: "+12,234", change: "+19%", up: true, icon: TrendingUp },
+	{ label: "Bounce Rate", value: "21.3%", change: "-4.5%", up: false, icon: Activity },
+];
 
-  const activity = [
-    { user: "Sarah Chen", action: "deployed v2.4.1 to production", time: "2 min ago", badge: "Deploy" },
-    { user: "Marcus Johnson", action: "merged PR #847 into main", time: "15 min ago", badge: "PR" },
-    { user: "Priya Patel", action: "created new issue #312", time: "1 hour ago", badge: "Issue" },
-    { user: "Alex Rivera", action: "updated billing settings", time: "3 hours ago", badge: "Settings" },
-    { user: "Jordan Kim", action: "added 3 new team members", time: "5 hours ago", badge: "Team" },
-  ];
+const activity = [
+	{
+		user: "Sarah Chen",
+		action: "deployed v2.4.1 to production",
+		time: "2 min ago",
+		badge: "Deploy",
+	},
+	{ user: "Marcus Johnson", action: "merged PR #847 into main", time: "15 min ago", badge: "PR" },
+	{ user: "Priya Patel", action: "created new issue #312", time: "1 hour ago", badge: "Issue" },
+	{
+		user: "Alex Rivera",
+		action: "updated billing settings",
+		time: "3 hours ago",
+		badge: "Settings",
+	},
+	{ user: "Jordan Kim", action: "added 3 new team members", time: "5 hours ago", badge: "Team" },
+];
 
-  const navItems = [
-    { label: "Dashboard", href: "/dashboard", active: true },
-    { label: "Analytics", href: "/analytics", active: false },
-    { label: "Users", href: "/users", active: false },
-    { label: "Settings", href: "/settings", active: false },
-  ];
+const navItems = [
+	{ label: "Dashboard", href: "/dashboard", active: true },
+	{ label: "Analytics", href: "/analytics", active: false },
+	{ label: "Users", href: "/users", active: false },
+	{ label: "Settings", href: "/settings", active: false },
+];
 </script>
 
 <div class="flex min-h-screen bg-background">

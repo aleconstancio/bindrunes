@@ -38,14 +38,14 @@ const svelteCode = $derived(
 	(() => {
 		const tag = "<" + "/script>";
 		const open = "<script" + ' lang="ts">';
-		return `${open}\n  import { ${definition.name} } from "bindrunes";\n${tag}\n\n<div data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <${definition.name}${propStr}>${slotContent}</${definition.name}>\n</div>`;
+		return `${open}\n  import { ${definition.name} } from "urupe-ui";\n${tag}\n\n<div data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <${definition.name}${propStr}>${slotContent}</${definition.name}>\n</div>`;
 	})(),
 );
 
 const packageJson = $derived(
 	JSON.stringify(
 		{
-			name: "bindrunes-playground",
+			name: "urupe-ui-playground",
 			private: true,
 			scripts: {
 				dev: "vite dev",
@@ -53,7 +53,7 @@ const packageJson = $derived(
 				preview: "vite preview",
 			},
 			dependencies: {
-				bindrunes: "latest",
+				"urupe-ui": "latest",
 				svelte: "^5.0.0",
 				"@sveltejs/kit": "^2.0.0",
 				"@sveltejs/adapter-auto": "^3.0.0",
@@ -77,10 +77,10 @@ async function exportToCodeSandbox() {
 			"package.json": { content: packageJson },
 			"src/routes/+page.svelte": { content: svelteCode },
 			"src/app.html": {
-				content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>bindrunes Playground</title>\n    %sveltekit.head%\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
+				content: `<!DOCTYPE html>\n<html lang="en" data-theme="${theme}" data-aesthetic="${aesthetic}" data-density="${density}">\n  <head>\n    <meta charset="utf-8" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    <title>urupe-ui Playground</title>\n    %sveltekit.head%\n  </head>\n  <body>\n    <div style="display: contents">%sveltekit.body%</div>\n  </body>\n</html>`,
 			},
 			"src/app.css": {
-				content: `@import "tailwindcss";\n@plugin "bindrunes/tailwind";\n@import "bindrunes/styles/global.css";`,
+				content: `@import "tailwindcss";\n@plugin "urupe-ui/tailwind";\n@import "urupe-ui/styles/global.css";`,
 			},
 		},
 	};

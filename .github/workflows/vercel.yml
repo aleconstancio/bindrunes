@@ -23,10 +23,10 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # Build bindrunes first — the showcase depends on it via workspace link.
+      # Build urupe-ui first — the showcase depends on it via workspace link.
       # Must build before vercel build so the dist/ output is available.
-      - name: Build bindrunes
-        run: bunx turbo run build --filter=bindrunes
+      - name: Build urupe-ui
+        run: bunx turbo run build --filter=urupe-ui
 
       # vercel pull links the project and downloads env config.
       # vercel build uses this config to build the SvelteKit app.

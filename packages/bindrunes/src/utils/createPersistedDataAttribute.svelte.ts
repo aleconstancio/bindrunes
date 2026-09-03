@@ -10,7 +10,7 @@ type PersistedDataAttributeOptions<T extends string> = {
 export function createPersistedDataAttribute<T extends string>(
 	options: PersistedDataAttributeOptions<T>,
 ) {
-	const storage = createStorage("bindrunes");
+	const storage = createStorage("urupe-ui");
 	const stored = storage.get<string>(options.storageKey);
 	let value = $state<T>(
 		stored && (options.values as readonly string[]).includes(stored)

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, TwoFactorAuth } from "bindrunes/domains/auth";
+	import { AuthLayout, TwoFactorAuth } from "urupe-ui/domains/auth";
 	import AuthNav from "$lib/components/AuthNav.svelte";
 </script>
 

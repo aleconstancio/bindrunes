@@ -1,4 +1,4 @@
-# bindrunes Platform Design Spec
+# urupe-ui Platform Design Spec
 
 > **Date:** 2026-06-22
 > **Status:** Approved
@@ -8,7 +8,7 @@
 
 ## 1. Vision
 
-Evolve bindrunes from a component library into a **full-stack Svelte 5 design platform** with the deepest customization system in any ecosystem. Four pillars:
+Evolve urupe-ui from a component library into a **full-stack Svelte 5 design platform** with the deepest customization system in any ecosystem. Four pillars:
 
 1. **Foundation** — Fix critical issues blocking adoption
 2. **Agentic Kernel** — Ship the unique differentiator (LLM chat orchestration)
@@ -27,10 +27,10 @@ Evolve bindrunes from a component library into a **full-stack Svelte 5 design pl
 
 **Solution:**
 - Create `packages/bindrunes-kit/templates/full-stack/` with working SvelteKit scaffold:
-  - `package.json` (with `bindrunes`, `svelte`, `@sveltejs/kit` dependencies)
+  - `package.json` (with `urupe-ui`, `svelte`, `@sveltejs/kit` dependencies)
   - `svelte.config.js` (adapter-auto default)
   - `vite.config.ts` (tailwindcss + sveltekit plugins)
-  - `src/app.css` (tailwindcss + bindrunes imports)
+  - `src/app.css` (tailwindcss + urupe-ui imports)
   - `src/app.html`
   - `src/routes/+layout.svelte` (AppProvider wrapper)
   - `src/routes/+page.svelte` (landing page stub)
@@ -58,9 +58,9 @@ export type { CreateSSEClientOptions, SSEStatus } from "../client/sse.svelte";
 - Create `.size-limit.json` at root:
   ```json
   [
-    { "name": "bindrunes (main)", "path": "packages/bindrunes/dist/index.js", "limit": "15 kB" },
-    { "name": "bindrunes/layouts", "path": "packages/bindrunes/dist/layouts/index.js", "limit": "8 kB" },
-    { "name": "bindrunes/domains", "path": "packages/bindrunes/dist/domains/index.js", "limit": "12 kB" }
+    { "name": "urupe-ui (main)", "path": "packages/bindrunes/dist/index.js", "limit": "15 kB" },
+    { "name": "urupe-ui/layouts", "path": "packages/bindrunes/dist/layouts/index.js", "limit": "8 kB" },
+    { "name": "urupe-ui/domains", "path": "packages/bindrunes/dist/domains/index.js", "limit": "12 kB" }
   ]
   ```
 - Add `"size"` script to root `package.json`: `"size": "size-limit"`
@@ -363,7 +363,7 @@ function useAnimation(): {
 #### 4.2 Blog Posts
 
 Write 2 launch posts:
-1. "Why bindrunes: The case for a full-stack Svelte design system"
+1. "Why urupe-ui: The case for a full-stack Svelte design system"
 2. "Deep dive: The 3-axis design system"
 
 Publish to the docs site under `/blog/`.

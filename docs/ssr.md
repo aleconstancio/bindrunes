@@ -1,18 +1,18 @@
 # Server-Side Rendering (SSR)
 
-bindrunes components are SSR-safe by default. They render on both server and client without breaking.
+urupe-ui components are SSR-safe by default. They render on both server and client without breaking.
 
 ## How It Works
 
-Svelte 5 components are **universal** — the same component renders on the server (to HTML) and on the client (to DOM). bindrunes follows this pattern:
+Svelte 5 components are **universal** — the same component renders on the server (to HTML) and on the client (to DOM). urupe-ui follows this pattern:
 
 - Components use Svelte 5 runes (`$state`, `$derived`, `$effect`)
 - No browser APIs (`window`, `document`) at the top level
-- Client-only code uses `browser` guard from `bindrunes`
+- Client-only code uses `browser` guard from `urupe-ui`
 
 ```svelte
 <script lang="ts">
-  import { browser } from "bindrunes";
+  import { browser } from "urupe-ui";
 
   // This runs on server (returns undefined) and client (returns real value)
   let element = $state<HTMLElement | undefined>(undefined);
@@ -28,11 +28,11 @@ Svelte 5 components are **universal** — the same component renders on the serv
 
 ### Server Load Functions
 
-Use `bindrunes/server` utilities in `+page.server.ts` or `+layout.server.ts`:
+Use `urupe-ui/server` utilities in `+page.server.ts` or `+layout.server.ts`:
 
 ```ts
 // src/routes/+layout.server.ts
-import { createServerTheme, useThemeServer, useDensityServer } from "bindrunes/server";
+import { createServerTheme, useThemeServer, useDensityServer } from "urupe-ui/server";
 
 export async function load({ request }) {
   const { theme, isDark } = useThemeServer(request);
@@ -54,7 +54,7 @@ export async function load({ request }) {
 <!-- src/routes/+layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { ThemeProvider } from "bindrunes";
+  import { ThemeProvider } from "urupe-ui";
   let { data, children } = $props();
 </script>
 
@@ -69,12 +69,12 @@ export async function load({ request }) {
 
 ### Page Components
 
-All bindrunes components work in SvelteKit pages:
+All urupe-ui components work in SvelteKit pages:
 
 ```svelte
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
-  import { Card, Badge, MetricCard } from "bindrunes";
+  import { Card, Badge, MetricCard } from "urupe-ui";
   let { data } = $props();
 </script>
 
@@ -170,7 +170,7 @@ Use `useViewport()` for JS breakpoint detection:
 
 ```svelte
 <script lang="ts">
-  import { useViewport } from "bindrunes/responsive";
+  import { useViewport } from "urupe-ui/responsive";
   const viewport = useViewport();
 </script>
 
@@ -187,7 +187,7 @@ Resolve theme tokens on the server for inline styles or CSS injection:
 
 ```ts
 // In +page.server.ts
-import { createServerTheme } from "bindrunes/server";
+import { createServerTheme } from "urupe-ui/server";
 
 export async function load({ request }) {
   const theme = createServerTheme("dracula", { density: "comfortable" });

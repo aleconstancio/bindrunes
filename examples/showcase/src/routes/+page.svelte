@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Badge } from "bindrunes";
+	import { Button, Badge } from "urupe-ui";
 	import {
 		Layout,
 		Palette,
@@ -62,13 +62,13 @@
 		{
 			title: "Install",
 			file: "terminal",
-			code: "bun add bindrunes",
+			code: "bun add urupe-ui",
 		},
 		{
 			title: "Wrap your layout",
 			file: "+layout.svelte",
 			code: `<` + `script>
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 <` + `/script>
 
@@ -80,13 +80,13 @@
 			title: "Use components",
 			file: "+page.svelte",
 			code: `<` + `script>
-  import { Button, Card, Badge } from "bindrunes";
+  import { Button, Card, Badge } from "urupe-ui";
 <` + `/script>
 
 <Card variant="glass" padding>
   <h2 class="text-title-1">Hello World</h2>
   <p class="text-body text-muted-foreground">
-    Built with bindrunes.
+    Built with urupe-ui.
   </p>
   <Button variant="primary">Get Started →</Button>
 </Card>`,
@@ -103,7 +103,7 @@
 </script>
 
 <svelte:head>
-	<title>bindrunes — The Svelte design system for the modern web</title>
+	<title>urupe-ui — The Svelte design system for the modern web</title>
 	<meta name="description" content="234 components, 25 composables, 126 theme combinations — everything you need to build beautiful Svelte apps." />
 </svelte:head>
 
@@ -119,7 +119,7 @@
 		</p>
 		<div class="hero-ctas">
 			<Button size="lg" href="/docs/getting-started">Get Started →</Button>
-			<Button size="lg" variant="outline" href="https://github.com/aleconstancio/bindrunes" target="_blank" rel="noopener noreferrer">View on GitHub</Button>
+			<Button size="lg" variant="outline" href="https://github.com/aleconstancio/urupe-ui" target="_blank" rel="noopener noreferrer">View on GitHub</Button>
 		</div>
 	</section>
 
@@ -148,10 +148,10 @@
 		</div>
 	</section>
 
-	<!-- ═══ Why bindrunes ═══ -->
+	<!-- ═══ Why urupe-ui ═══ -->
 	<section class="landing-section">
 		<div style="text-align: center; max-width: 56rem; margin: 0 auto; padding: 0 1.5rem;">
-			<p class="section-eyebrow">Why bindrunes</p>
+			<p class="section-eyebrow">Why urupe-ui</p>
 			<h2 class="section-title">Built for real applications</h2>
 			<p class="section-description">Not just primitives. Full domain components, design system, and meta-framework.</p>
 		</div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -63,42 +63,42 @@ import { Badge, CodeSnippet } from "bindrunes";
 
       <div class="space-y-6 mt-6">
         <div>
-          <h3 class="text-title-2 text-foreground mb-2">Layer 1: Primitives (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes</code>)</h3>
+          <h3 class="text-title-2 text-foreground mb-2">Layer 1: Primitives (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui</code>)</h3>
           <p class="text-body text-muted-foreground">
             Low-level, reusable UI components with no domain knowledge. These are the building blocks of the design system.
           </p>
           <p class="text-body-sm text-muted-foreground mt-2">
-            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes</code><br/>
+            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui</code><br/>
             <strong>Examples:</strong> Button, Card, Input, Dialog, Select, Badge, Tabs, Switch, DataGrid, ThemeStudio
           </p>
         </div>
         <div>
-          <h3 class="text-title-2 text-foreground mb-2">Layer 2: Layouts (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/layouts</code>)</h3>
+          <h3 class="text-title-2 text-foreground mb-2">Layer 2: Layouts (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/layouts</code>)</h3>
           <p class="text-body text-muted-foreground">
             Structural components that define page zones, containers, and navigation shells.
           </p>
           <p class="text-body-sm text-muted-foreground mt-2">
-            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/layouts</code><br/>
+            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/layouts</code><br/>
             <strong>Examples:</strong> PageShell, PageSection, MetaLayout, DashboardShell, Sidebar, PageHeader, SEO
           </p>
         </div>
         <div>
-          <h3 class="text-title-2 text-foreground mb-2">Layer 3: Domains (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains</code>)</h3>
+          <h3 class="text-title-2 text-foreground mb-2">Layer 3: Domains (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains</code>)</h3>
           <p class="text-body text-muted-foreground">
             Domain-specific components and composables that compose primitives and layouts into feature areas.
           </p>
           <p class="text-body-sm text-muted-foreground mt-2">
-            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains</code> (all) or <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains/auth</code> (single domain)<br/>
+            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains</code> (all) or <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains/auth</code> (single domain)<br/>
             <strong>Examples:</strong> LoginForm, AdvancedTable, ProductGrid, ChatThread, EventCalendar
           </p>
         </div>
         <div>
-          <h3 class="text-title-2 text-foreground mb-2">Layer 4: Templates (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/templates</code>)</h3>
+          <h3 class="text-title-2 text-foreground mb-2">Layer 4: Templates (<code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/templates</code>)</h3>
           <p class="text-body text-muted-foreground">
             Pre-composed full-page templates that combine all layers into ready-to-use page layouts.
           </p>
           <p class="text-body-sm text-muted-foreground mt-2">
-            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/templates</code><br/>
+            <strong>Import path:</strong> <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/templates</code><br/>
             <strong>Examples:</strong> AuthTemplate, CrudTemplate, SettingsTemplate, ChatTemplate
           </p>
         </div>
@@ -182,35 +182,35 @@ export function useSubsystemContext() {
           </thead>
           <tbody class="text-muted-foreground">
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui</td>
               <td class="py-2">Primitives, shared components, composables, types, utilities, templates</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/layouts</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/layouts</td>
               <td class="py-2">Layout components (PageShell, sidebar, dashboard shell, etc.)</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/domains</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/domains</td>
               <td class="py-2">All domain components and composables</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/domains/&lt;name&gt;</td>
-              <td class="py-2">Individual domain (e.g., bindrunes/domains/auth)</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/domains/&lt;name&gt;</td>
+              <td class="py-2">Individual domain (e.g., urupe-ui/domains/auth)</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/templates</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/templates</td>
               <td class="py-2">Pre-composed full-page templates</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/agentic</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/agentic</td>
               <td class="py-2">Agentic subsystem (LLM tool calling, agent loops)</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/tailwind</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/tailwind</td>
               <td class="py-2">Tailwind CSS plugin</td>
             </tr>
             <tr class="border-b border-border/50">
-              <td class="py-2 pr-4 font-mono text-xs">bindrunes/styles/*</td>
+              <td class="py-2 pr-4 font-mono text-xs">urupe-ui/styles/*</td>
               <td class="py-2">Global styles and token sheets</td>
             </tr>
           </tbody>
@@ -235,7 +235,7 @@ src/primitives/Button.svelte.test.ts`}
       <h2 class="text-title-1 text-foreground mb-4">Bundling & Exports</h2>
       <ul class="text-body text-muted-foreground space-y-2 list-disc list-inside">
         <li><strong>Build:</strong> Built using <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">@sveltejs/package</code> outputting to the <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">dist/</code> directory.</li>
-        <li><strong>Vite Integration:</strong> Consumers must exclude <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes</code> in <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">optimizeDeps</code> to prevent duplicate Svelte compilation instances.</li>
+        <li><strong>Vite Integration:</strong> Consumers must exclude <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui</code> in <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">optimizeDeps</code> to prevent duplicate Svelte compilation instances.</li>
       </ul>
     </section>
   </div>

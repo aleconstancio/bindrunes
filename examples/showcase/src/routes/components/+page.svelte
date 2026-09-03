@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Badge, Input, Button } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Badge, Input, Button } from "urupe-ui";
 	import { Search } from "lucide-svelte";
 
 	interface ComponentEntry {
@@ -291,7 +291,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 	<PageHeader
 		title="Component Index"
-		description="Browse every component and composable in the bindrunes library ({components.length} components · {composables.length} composables)"
+		description="Browse every component and composable in the urupe-ui library ({components.length} components · {composables.length} composables)"
 	/>
 
 	<!-- Category Demo Pages -->

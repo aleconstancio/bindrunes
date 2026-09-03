@@ -1,10 +1,10 @@
-# Migration Guide: Ant Design to bindrunes
+# Migration Guide: Ant Design to urupe-ui
 
-This guide covers migrating a React project from Ant Design to bindrunes (Svelte 5). Ant Design is a mature React component library with a comprehensive design system; bindrunes is a Svelte 5 component library with a 3-axis design system. The migration involves rewriting React components to Svelte, replacing Ant Design's ConfigProvider with bindrunes theming, and swapping form validation to Valibot.
+This guide covers migrating a React project from Ant Design to urupe-ui (Svelte 5). Ant Design is a mature React component library with a comprehensive design system; urupe-ui is a Svelte 5 component library with a 3-axis design system. The migration involves rewriting React components to Svelte, replacing Ant Design's ConfigProvider with urupe-ui theming, and swapping form validation to Valibot.
 
 ## Component Mapping
 
-| Ant Design | bindrunes | Notes |
+| Ant Design | urupe-ui | Notes |
 |---|---|---|
 | `Button` | `Button` | Similar API; variant prop instead of type/ghost |
 | `Card` | `Card` | Similar API; uses slots instead of children |
@@ -53,7 +53,7 @@ This guide covers migrating a React project from Ant Design to bindrunes (Svelte
 
 ## Design Token Migration
 
-Ant Design uses a token-based design system with component-level customization. bindrunes uses CSS custom properties with OKLCH color space.
+Ant Design uses a token-based design system with component-level customization. urupe-ui uses CSS custom properties with OKLCH color space.
 
 ### Before (Ant Design)
 
@@ -87,10 +87,10 @@ export const theme: ThemeConfig = {
 };
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```ts
-import { defineTheme } from "bindrunes";
+import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.55 0.22 260)",         // Ant's colorPrimary #1677ff
@@ -109,9 +109,9 @@ const myBrand = defineTheme("my-brand", {
 myBrand.apply();
 ```
 
-### Ant Design Token to bindrunes
+### Ant Design Token to urupe-ui
 
-| Ant Design Token | bindrunes Token | Notes |
+| Ant Design Token | urupe-ui Token | Notes |
 |---|---|---|
 | `colorPrimary` | `--primary` | Main brand color |
 | `colorSuccess` | `--success` | Positive state |
@@ -131,7 +131,7 @@ myBrand.apply();
 
 ## Theme Customization Migration
 
-Ant Design uses `ConfigProvider` to set theme context. bindrunes uses CSS custom properties and composables.
+Ant Design uses `ConfigProvider` to set theme context. urupe-ui uses CSS custom properties and composables.
 
 ### Before (Ant Design)
 
@@ -149,12 +149,12 @@ function App() {
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <!-- +layout.svelte -->
 <script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   import "./theme.css"; // your custom theme
 </script>
 
@@ -166,22 +166,22 @@ function App() {
 ```css
 /* theme.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 Or use `createTheme` for runtime switching:
 
 ```svelte
 <script lang="ts">
-  import { createTheme } from "bindrunes";
+  import { createTheme } from "urupe-ui";
   const theme = createTheme({ default: "editorial" });
 </script>
 ```
 
 ## Form Validation Migration
 
-Ant Design Form uses `rules` prop for validation. bindrunes uses Valibot schemas with `createForm()`.
+Ant Design Form uses `rules` prop for validation. urupe-ui uses Valibot schemas with `createForm()`.
 
 ### Before (Ant Design)
 
@@ -225,12 +225,12 @@ const App = () => {
 };
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
   import * as v from "valibot";
-  import { createForm, Form, FormField, Input, Button, Label } from "bindrunes";
+  import { createForm, Form, FormField, Input, Button, Label } from "urupe-ui";
 
   const formSchema = v.object({
     email: v.pipe(v.string(), v.email()),
@@ -281,7 +281,7 @@ const App = () => {
 
 ## Layout Migration
 
-Ant Design uses `Layout`, `Layout.Sider`, `Layout.Header`, `Layout.Content`. bindrunes uses `MetaLayout` and `DashboardShell`.
+Ant Design uses `Layout`, `Layout.Sider`, `Layout.Header`, `Layout.Content`. urupe-ui uses `MetaLayout` and `DashboardShell`.
 
 ### Before (Ant Design)
 
@@ -302,11 +302,11 @@ function AppLayout() {
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { MetaLayout } from "bindrunes";
+  import { MetaLayout } from "urupe-ui";
 </script>
 
 <MetaLayout>
@@ -320,7 +320,7 @@ Or use `DashboardShell` for admin-style layouts:
 
 ```svelte
 <script lang="ts">
-  import { DashboardShell } from "bindrunes";
+  import { DashboardShell } from "urupe-ui";
 </script>
 
 <DashboardShell>
@@ -330,7 +330,7 @@ Or use `DashboardShell` for admin-style layouts:
 
 ## Icon Migration
 
-Ant Design has its own icon library (`@ant-design/icons-svg`). bindrunes uses `lucide-svelte`.
+Ant Design has its own icon library (`@ant-design/icons-svg`). urupe-ui uses `lucide-svelte`.
 
 ### Before (Ant Design)
 
@@ -341,11 +341,11 @@ import { SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons
 <Input prefix={<UserOutlined />} />
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { Button } from "bindrunes";
+  import { Button } from "urupe-ui";
   import { Search, Settings, User } from "lucide-svelte";
 </script>
 
@@ -380,7 +380,7 @@ import { SearchOutlined, SettingOutlined, UserOutlined } from "@ant-design/icons
 
 ## Table Migration
 
-Ant Design's `Table` is feature-rich with sorting, filtering, pagination, and row selection. bindrunes provides `DataTable` with column configuration.
+Ant Design's `Table` is feature-rich with sorting, filtering, pagination, and row selection. urupe-ui provides `DataTable` with column configuration.
 
 ### Before (Ant Design)
 
@@ -401,11 +401,11 @@ const data = [
 <Table columns={columns} dataSource={data} pagination={{ pageSize: 10 }} />
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { DataTable } from "bindrunes";
+  import { DataTable } from "urupe-ui";
 
   const columns = [
     { accessor: "name", header: "Name" },
@@ -430,7 +430,7 @@ Ant Design is React-only. This migration requires rewriting components to Svelte
 
 ### 2. CSS-in-JS to Tailwind
 
-Ant Design uses CSS-in-JS (cssinjs/antd-style). bindrunes uses Tailwind CSS. Replace styled-components patterns with utility classes.
+Ant Design uses CSS-in-JS (cssinjs/antd-style). urupe-ui uses Tailwind CSS. Replace styled-components patterns with utility classes.
 
 ### 3. ConfigProvider Is Gone
 
@@ -460,13 +460,13 @@ Ant Design's `Space` component maps to Tailwind flex with `gap`. Replace `<Space
 ## Migration Steps
 
 1. **Set up SvelteKit:** If migrating from React, initialize a SvelteKit project
-2. **Install bindrunes:** `npm install bindrunes`
+2. **Install urupe-ui:** `npm install urupe-ui`
 3. **Install Valibot:** `npm install valibot` (for form validation)
 4. **Install lucide-svelte:** `npm install lucide-svelte` (for icons)
-5. **Update `app.css`:** Replace Ant Design styles with bindrunes imports
+5. **Update `app.css`:** Replace Ant Design styles with urupe-ui imports
 6. **Add `AppProvider`:** Wrap your root layout
 7. **Replace ConfigProvider:** Swap Ant Design's `ConfigProvider` with `AppProvider` and CSS custom properties
-8. **Rewrite components:** Replace React JSX with Svelte syntax, swap Ant Design components for bindrunes
+8. **Rewrite components:** Replace React JSX with Svelte syntax, swap Ant Design components for urupe-ui
 9. **Migrate forms:** Replace Ant Design Form rules with Valibot schemas
 10. **Replace icons:** Swap `@ant-design/icons` for `lucide-svelte`
 11. **Replace tables:** Swap Ant Design Table for `DataTable`

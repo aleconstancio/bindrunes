@@ -20,7 +20,7 @@
 ```json
 {
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "valibot": "^0.42.0"
   },
   "peerDependencies": {
@@ -63,12 +63,12 @@ git commit -m "fix: add missing dependencies and fix package exports"
 
 ### Task 2: Delete Duplicated Client Composables
 
-The core `bindrunes` library already has superior versions of these. Delete the kit versions and re-export from core.
+The core `urupe-ui` library already has superior versions of these. Delete the kit versions and re-export from core.
 
 **Files to delete:**
-- `packages/bindrunes-kit/src/client/query.ts` (replaced by `bindrunes.createQuery`)
-- `packages/bindrunes-kit/src/client/form.ts` (replaced by `bindrunes.createForm`)
-- `packages/bindrunes-kit/src/client/api.ts` (replaced by `bindrunes.createApiClient`)
+- `packages/bindrunes-kit/src/client/query.ts` (replaced by `urupe-ui.createQuery`)
+- `packages/bindrunes-kit/src/client/form.ts` (replaced by `urupe-ui.createForm`)
+- `packages/bindrunes-kit/src/client/api.ts` (replaced by `urupe-ui.createApiClient`)
 
 **File to modify:** `packages/bindrunes-kit/src/client/index.ts`
 
@@ -77,9 +77,9 @@ The core `bindrunes` library already has superior versions of these. Delete the 
 - [ ] **Step 2:** Rewrite it to re-export from core + keep kit-only composables:
 ```ts
 // Re-export core composables that kit consumers need
-export { createQuery, createMutation, invalidateQuery } from "bindrunes";
-export { createForm } from "bindrunes";
-export { createApiClient } from "bindrunes";
+export { createQuery, createMutation, invalidateQuery } from "urupe-ui";
+export { createForm } from "urupe-ui";
+export { createApiClient } from "urupe-ui";
 
 // Kit-only composables (not in core)
 export { createClientAuth } from "./auth.svelte";
@@ -97,7 +97,7 @@ rm packages/bindrunes-kit/src/client/api.ts
 - [ ] **Step 4:** Commit:
 ```bash
 git add -A packages/bindrunes-kit/src/client/
-git commit -m "refactor: delete duplicated composables, re-export from core bindrunes"
+git commit -m "refactor: delete duplicated composables, re-export from core urupe-ui"
 ```
 
 ---
@@ -117,7 +117,7 @@ git commit -m "refactor: delete duplicated composables, re-export from core bind
 - Add SSR guard to `bootstrap()` call
 - Make token getter reactive (use `$state` for token)
 - Add `$effect` for cleanup if needed
-- Ensure cookie name matches server auth: use `bindrunes-session` as default for both
+- Ensure cookie name matches server auth: use `urupe-ui-session` as default for both
 
 - [ ] **Step 3:** The auth composable should store the token reactively:
 ```ts
@@ -175,7 +175,7 @@ git commit -m "fix: fix SSR guards, reactivity, and cleanup in client composable
 - [ ] **Step 1:** Read the file.
 
 - [ ] **Step 2:** Fix issues:
-- Change default `cookieName` from `"bindrunes-session"` to match client (or document the mismatch)
+- Change default `cookieName` from `"urupe-ui-session"` to match client (or document the mismatch)
 - Add `maxAge: 0` to `deleteSession` for proper cookie clearing
 - Add `App.Locals` type augmentation
 
@@ -271,7 +271,7 @@ git commit -m "fix: fix content-type check and auth header in server API client"
 - [ ] **Step 2:** For each file:
 - Replace `import { page } from "$app/stores"` with `import { page } from "$app/state"`
 - Replace `$page.url.pathname` with `page.url.pathname`
-- Fix any import errors (createForm from bindrunes-kit/client → bindrunes)
+- Fix any import errors (createForm from bindrunes-kit/client → urupe-ui)
 - Fix double JSON parse in register page
 - Fix realtime status reactivity
 

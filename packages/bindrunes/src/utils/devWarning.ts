@@ -4,6 +4,6 @@
  */
 export function devWarning(message: string, ...args: unknown[]): void {
 	if (import.meta.env?.DEV) {
-		console.warn(`[bindrunes] ${message}`, ...args);
+		console.warn(`[urupe-ui] ${message}`, ...args);
 	}
 }

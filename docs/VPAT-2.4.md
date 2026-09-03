@@ -1,4 +1,4 @@
-# VPAT 2.4 — bindrunes
+# VPAT 2.4 — urupe-ui
 
 ## WCAG 2.1 Level A
 
@@ -50,7 +50,7 @@
 
 ## Conformance Notes
 
-- **Tested versions:** bindrunes v4.0.0
+- **Tested versions:** urupe-ui v4.0.0
 - **Tested browsers:** Chrome, Firefox, Safari, Edge
 - **Testing tools:** axe-core, VoiceOver, NVDA, manual keyboard testing
 - **Known exceptions:** RichTextEditor (ProseMirror) has partial ARIA support

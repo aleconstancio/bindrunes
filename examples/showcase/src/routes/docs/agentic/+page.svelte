@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge } from "bindrunes";
+import { Badge } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -39,7 +39,7 @@ import { Badge } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Copilot Components</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/domains/agentic</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/domains/agentic</code>
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-body text-muted-foreground">
@@ -67,7 +67,7 @@ import { Badge } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Kernel Modules</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes/agentic</code>
+        Import from <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui/agentic</code>
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-body text-muted-foreground">

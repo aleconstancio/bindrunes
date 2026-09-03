@@ -1,7 +1,7 @@
-import type { User } from "bindrunes";
+import type { User } from "urupe-ui";
 import { array, object, optional, safeParse, string } from "valibot";
 
-export type { User } from "bindrunes";
+export type { User } from "urupe-ui";
 
 export interface Tenant {
 	id: string;

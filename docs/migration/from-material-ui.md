@@ -1,14 +1,14 @@
-# Migration Guide: Material UI to bindrunes
+# Migration Guide: Material UI to urupe-ui
 
-This guide covers migrating a React project from Material UI (MUI) to bindrunes (Svelte 5). MUI is a comprehensive React component library implementing Material Design; bindrunes is a Svelte 5 component library with a 3-axis design system. The migration involves rewriting React components to Svelte, replacing MUI's sx prop and styled-components with Tailwind, and swapping the theme system to OKLCH custom properties.
+This guide covers migrating a React project from Material UI (MUI) to urupe-ui (Svelte 5). MUI is a comprehensive React component library implementing Material Design; urupe-ui is a Svelte 5 component library with a 3-axis design system. The migration involves rewriting React components to Svelte, replacing MUI's sx prop and styled-components with Tailwind, and swapping the theme system to OKLCH custom properties.
 
 ## Component Mapping
 
-| Material UI | bindrunes | Notes |
+| Material UI | urupe-ui | Notes |
 |---|---|---|
 | `Button` | `Button` | Similar API; variant prop instead of variant/color |
 | `Card`, `CardContent`, `CardHeader`, `CardActions` | `Card` | Single component with slots |
-| `TextField` | `Input` | MUI's TextField is a complex wrapper; bindrunes uses a simpler Input |
+| `TextField` | `Input` | MUI's TextField is a complex wrapper; urupe-ui uses a simpler Input |
 | `Select` | `Select` | Similar API |
 | `Checkbox` | `Checkbox` | Similar API |
 | `Switch` | `Switch` | Same API |
@@ -50,7 +50,7 @@ This guide covers migrating a React project from Material UI (MUI) to bindrunes 
 
 ## Styling Migration
 
-MUI uses the `sx` prop, `styled()` API, or CSS-in-JS. bindrunes uses Tailwind CSS utility classes.
+MUI uses the `sx` prop, `styled()` API, or CSS-in-JS. urupe-ui uses Tailwind CSS utility classes.
 
 ### Before (MUI sx prop)
 
@@ -126,7 +126,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
 
 ## Theme Migration
 
-MUI uses `createTheme` with a JavaScript object. bindrunes uses CSS custom properties with OKLCH color space.
+MUI uses `createTheme` with a JavaScript object. urupe-ui uses CSS custom properties with OKLCH color space.
 
 ### Before (MUI)
 
@@ -153,10 +153,10 @@ const theme = createTheme({
 });
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```ts
-import { defineTheme } from "bindrunes";
+import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.48 0.18 260)",          // MUI primary #1976d2
@@ -177,9 +177,9 @@ const myBrand = defineTheme("my-brand", {
 myBrand.apply();
 ```
 
-### MUI Palette to bindrunes
+### MUI Palette to urupe-ui
 
-| MUI Token | bindrunes Token | Notes |
+| MUI Token | urupe-ui Token | Notes |
 |---|---|---|
 | `palette.primary.main` | `--primary` | Main brand color |
 | `palette.primary.light` | Use `--primary` with opacity | Or define a lighter shade |
@@ -198,7 +198,7 @@ myBrand.apply();
 
 ## Form Migration
 
-MUI uses `Controller` with react-hook-form or formik. bindrunes uses `createForm()` with Valibot.
+MUI uses `Controller` with react-hook-form or formik. urupe-ui uses `createForm()` with Valibot.
 
 ### Before (MUI + react-hook-form)
 
@@ -246,12 +246,12 @@ function MyForm() {
 }
 ```
 
-### After (bindrunes + Valibot)
+### After (urupe-ui + Valibot)
 
 ```svelte
 <script lang="ts">
   import * as v from "valibot";
-  import { createForm, Form, FormField, Input, Button, Label } from "bindrunes";
+  import { createForm, Form, FormField, Input, Button, Label } from "urupe-ui";
 
   const formSchema = v.object({
     email: v.pipe(v.string(), v.email()),
@@ -290,7 +290,7 @@ function MyForm() {
 
 ## Layout Migration
 
-MUI uses `Grid` with a 12-column system, `Stack` for spacing, and `Box` as a generic container. bindrunes uses Tailwind utilities.
+MUI uses `Grid` with a 12-column system, `Stack` for spacing, and `Box` as a generic container. urupe-ui uses Tailwind utilities.
 
 ### MUI Grid to Tailwind Grid
 
@@ -342,7 +342,7 @@ MUI uses `Grid` with a 12-column system, `Stack` for spacing, and `Box` as a gen
 
 ## Icon Migration
 
-MUI has its own icon package (`@mui/icons-material`). bindrunes uses `lucide-svelte`.
+MUI has its own icon package (`@mui/icons-material`). urupe-ui uses `lucide-svelte`.
 
 ### Before (MUI)
 
@@ -355,11 +355,11 @@ import SettingsIcon from "@mui/icons-material/Settings";
 <TextField InputProps={{ startAdornment: <SearchIcon /> }} />
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { Button, Input } from "bindrunes";
+  import { Button, Input } from "urupe-ui";
   import { Trash2, Search, Settings } from "lucide-svelte";
 </script>
 
@@ -405,7 +405,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 ## Table Migration
 
-MUI's `Table` is a low-level component. bindrunes' `DataTable` provides built-in sorting, pagination, and selection.
+MUI's `Table` is a low-level component. urupe-ui' `DataTable` provides built-in sorting, pagination, and selection.
 
 ### Before (MUI)
 
@@ -432,11 +432,11 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 </TableContainer>
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { DataTable } from "bindrunes";
+  import { DataTable } from "urupe-ui";
 
   const columns = [
     { accessor: "name", header: "Name" },
@@ -454,7 +454,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 ## Snackbar to Toast Migration
 
-MUI uses `Snackbar` + `Alert` for notifications. bindrunes uses `createToast()` composable.
+MUI uses `Snackbar` + `Alert` for notifications. urupe-ui uses `createToast()` composable.
 
 ### Before (MUI)
 
@@ -475,11 +475,11 @@ function MyApp() {
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { createToast } from "bindrunes";
+  import { createToast } from "urupe-ui";
   const toast = createToast();
 </script>
 
@@ -490,7 +490,7 @@ Add `ToastProvider` to your root layout:
 
 ```svelte
 <script lang="ts">
-  import { AppProvider, ToastProvider } from "bindrunes";
+  import { AppProvider, ToastProvider } from "urupe-ui";
 </script>
 
 <AppProvider>
@@ -512,7 +512,7 @@ MUI's `sx` prop is powerful but non-standard. Replace every `sx` with Tailwind u
 
 ### 3. No More CSS-in-JS
 
-MUI uses Emotion (CSS-in-JS). bindrunes uses Tailwind. Remove `@emotion/styled`, `@emotion/react`, and all styled-components patterns.
+MUI uses Emotion (CSS-in-JS). urupe-ui uses Tailwind. Remove `@emotion/styled`, `@emotion/react`, and all styled-components patterns.
 
 ### 4. Grid API Differs
 
@@ -533,7 +533,7 @@ npm install lucide-svelte
 
 ### 7. Form Library Change
 
-MUI works with react-hook-form, formik, etc. bindrunes uses `createForm()` with Valibot. You'll need to rewrite form logic.
+MUI works with react-hook-form, formik, etc. urupe-ui uses `createForm()` with Valibot. You'll need to rewrite form logic.
 
 ### 8. Remove MUI Dependencies
 
@@ -544,13 +544,13 @@ npm uninstall @mui/material @mui/icons-material @emotion/styled @emotion/react
 ## Migration Steps
 
 1. **Set up SvelteKit:** If migrating from React, initialize a SvelteKit project
-2. **Install bindrunes:** `npm install bindrunes`
+2. **Install urupe-ui:** `npm install urupe-ui`
 3. **Install Valibot:** `npm install valibot` (for form validation)
 4. **Install lucide-svelte:** `npm install lucide-svelte` (for icons)
-5. **Update `app.css`:** Replace MUI styles with bindrunes imports
+5. **Update `app.css`:** Replace MUI styles with urupe-ui imports
 6. **Add `AppProvider`:** Wrap your root layout
-7. **Replace theme:** Swap MUI's `createTheme` with bindrunes' `defineTheme()` and OKLCH tokens
-8. **Rewrite components:** Replace React JSX with Svelte syntax, swap MUI components for bindrunes
+7. **Replace theme:** Swap MUI's `createTheme` with urupe-ui' `defineTheme()` and OKLCH tokens
+8. **Rewrite components:** Replace React JSX with Svelte syntax, swap MUI components for urupe-ui
 9. **Replace sx props:** Convert all `sx` prop objects to Tailwind utility classes
 10. **Replace icons:** Swap `@mui/icons-material` for `lucide-svelte`
 11. **Replace tables:** Swap MUI Table for `DataTable`

@@ -1,6 +1,6 @@
 # bindrunes-kit
 
-SvelteKit meta-framework powered by bindrunes. Build full-stack or SPA+backend apps with the bindrunes design system.
+SvelteKit meta-framework powered by urupe-ui. Build full-stack or SPA+backend apps with the urupe-ui design system.
 
 ## Quick Start
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-import { Card, Badge, Button, DataTable, Dialog } from "bindrunes";
-import type { Column } from "bindrunes";
+import { Card, Badge, Button, DataTable, Dialog } from "urupe-ui";
+import type { Column } from "urupe-ui";
 import { Plus, Pencil, Trash2 } from "lucide-svelte";
 
 const columns: Column[] = [

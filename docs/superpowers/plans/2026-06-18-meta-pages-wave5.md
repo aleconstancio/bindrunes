@@ -281,7 +281,7 @@ git commit -m "feat: add prop types for DataTable, Select, Tabs, Switch, Tooltip
 Creates a debounced version of a callback function.
 
 ```ts
-import { useDebouncedCallback } from "bindrunes";
+import { useDebouncedCallback } from "urupe-ui";
 
 const debouncedSearch = useDebouncedCallback((query: string) => {
   searchAPI(query);
@@ -294,7 +294,7 @@ const debouncedSearch = useDebouncedCallback((query: string) => {
 Triggers a callback when a sentinel element enters the viewport.
 
 ```ts
-import { useInfiniteScroll } from "bindrunes";
+import { useInfiniteScroll } from "urupe-ui";
 
 let sentinel: HTMLElement;
 
@@ -310,7 +310,7 @@ useInfiniteScroll(sentinel, {
 Virtual list for rendering large datasets.
 
 ```ts
-import { useVirtualList } from "bindrunes";
+import { useVirtualList } from "urupe-ui";
 
 const { visibleItems, containerStyle, scrollTo } = useVirtualList(items, {
   itemHeight: 40,

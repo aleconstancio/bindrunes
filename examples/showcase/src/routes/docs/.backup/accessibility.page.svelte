@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge } from "bindrunes";
+import { Badge } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -13,7 +13,7 @@ import { Badge } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Statement</h2>
       <p class="text-body text-muted-foreground">
-        bindrunes targets WCAG 2.1 Level AA compliance. Components are tested with axe-core automated scanning and manual keyboard/screen reader testing.
+        urupe-ui targets WCAG 2.1 Level AA compliance. Components are tested with axe-core automated scanning and manual keyboard/screen reader testing.
       </p>
     </section>
 

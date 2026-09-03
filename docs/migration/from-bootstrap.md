@@ -1,10 +1,10 @@
-# Migration Guide: Bootstrap to bindrunes
+# Migration Guide: Bootstrap to urupe-ui
 
-This guide covers migrating a web project from Bootstrap to bindrunes. Bootstrap is a CSS/JS framework for general-purpose web development; bindrunes is a Svelte 5 component library with a built-in design system. The migration involves replacing Bootstrap's class-based approach with bindrunes components, swapping jQuery/Bootstrap JS for Svelte components, and adopting a token-based design system.
+This guide covers migrating a web project from Bootstrap to urupe-ui. Bootstrap is a CSS/JS framework for general-purpose web development; urupe-ui is a Svelte 5 component library with a built-in design system. The migration involves replacing Bootstrap's class-based approach with urupe-ui components, swapping jQuery/Bootstrap JS for Svelte components, and adopting a token-based design system.
 
 ## Component Mapping
 
-| Bootstrap | bindrunes | Notes |
+| Bootstrap | urupe-ui | Notes |
 |---|---|---|
 | `btn`, `btn-primary` | `Button variant="primary"` | CSS classes become components |
 | `btn-outline-*` | `Button variant="outline"` | Outline variant handled via prop |
@@ -38,11 +38,11 @@ This guide covers migrating a web project from Bootstrap to bindrunes. Bootstrap
 
 ## Class Name Removal
 
-Bootstrap uses utility and component classes extensively. When migrating, you remove Bootstrap classes and replace them with bindrunes components and Tailwind utilities.
+Bootstrap uses utility and component classes extensively. When migrating, you remove Bootstrap classes and replace them with urupe-ui components and Tailwind utilities.
 
 ### Common Bootstrap Classes to Replace
 
-| Bootstrap Class | bindrunes / Tailwind Replacement |
+| Bootstrap Class | urupe-ui / Tailwind Replacement |
 |---|---|
 | `container` | `<div class="container mx-auto">` (Tailwind) |
 | `row`, `col-*` | `<div class="grid grid-cols-*">` (Tailwind grid) |
@@ -80,11 +80,11 @@ Bootstrap uses utility and component classes extensively. When migrating, you re
 </div>
 ```
 
-### After (bindrunes + Tailwind)
+### After (urupe-ui + Tailwind)
 
 ```svelte
 <script lang="ts">
-  import { Card, Button, Alert } from "bindrunes";
+  import { Card, Button, Alert } from "urupe-ui";
 </script>
 
 <div class="container mx-auto">
@@ -101,7 +101,7 @@ Bootstrap uses utility and component classes extensively. When migrating, you re
 
 ## Grid System Migration
 
-Bootstrap uses a 12-column float-based grid. bindrunes uses Tailwind's utility-first grid system.
+Bootstrap uses a 12-column float-based grid. urupe-ui uses Tailwind's utility-first grid system.
 
 | Bootstrap Grid | Tailwind Equivalent |
 |---|---|
@@ -129,7 +129,7 @@ Bootstrap uses a 12-column float-based grid. bindrunes uses Tailwind's utility-f
 
 ## Color System Migration
 
-Bootstrap uses Sass variables with a 10-step color scale. bindrunes uses OKLCH CSS custom properties with a role-based token system.
+Bootstrap uses Sass variables with a 10-step color scale. urupe-ui uses OKLCH CSS custom properties with a role-based token system.
 
 ### Before (Bootstrap Sass)
 
@@ -149,10 +149,10 @@ $body-color: #212529;
 $link-color: #0d6efd;
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```ts
-import { defineTheme } from "bindrunes";
+import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   "--primary": "oklch(0.55 0.18 260)",        // was $primary
@@ -172,9 +172,9 @@ const myBrand = defineTheme("my-brand", {
 myBrand.apply();
 ```
 
-### Bootstrap Color Scale to bindrunes
+### Bootstrap Color Scale to urupe-ui
 
-| Bootstrap Color | bindrunes Token | Notes |
+| Bootstrap Color | urupe-ui Token | Notes |
 |---|---|---|
 | `$primary` | `--primary` | Main brand color |
 | `$secondary` | `--accent` | Secondary emphasis |
@@ -191,9 +191,9 @@ myBrand.apply();
 
 ## JavaScript Plugin Migration
 
-Bootstrap relies on jQuery and Bootstrap JS for interactive behavior. bindrunes replaces these with Svelte components and composables.
+Bootstrap relies on jQuery and Bootstrap JS for interactive behavior. urupe-ui replaces these with Svelte components and composables.
 
-| Bootstrap JS | bindrunes Equivalent |
+| Bootstrap JS | urupe-ui Equivalent |
 |---|---|
 | `bootstrap.Modal` | `<Dialog>` component with `bind:open` |
 | `bootstrap.Offcanvas` | `<Sheet>` or `<Drawer>` component |
@@ -222,12 +222,12 @@ const toast = new bootstrap.Toast(toastEl);
 toast.show();
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
-  import { Dialog } from "bindrunes";
-  import { createToast } from "bindrunes";
+  import { Dialog } from "urupe-ui";
+  import { createToast } from "urupe-ui";
 
   let modalOpen = $state(false);
   const toast = createToast();
@@ -245,7 +245,7 @@ toast.show();
 
 ## Form Migration
 
-Bootstrap forms use CSS classes on native HTML elements. bindrunes provides proper Svelte components with built-in validation via Valibot.
+Bootstrap forms use CSS classes on native HTML elements. urupe-ui provides proper Svelte components with built-in validation via Valibot.
 
 ### Before (Bootstrap)
 
@@ -277,12 +277,12 @@ Bootstrap forms use CSS classes on native HTML elements. bindrunes provides prop
 </form>
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```svelte
 <script lang="ts">
   import * as v from "valibot";
-  import { createForm, Form, FormField, Input, Select, Checkbox, Switch, Button, Label } from "bindrunes";
+  import { createForm, Form, FormField, Input, Select, Checkbox, Switch, Button, Label } from "urupe-ui";
 
   const formSchema = v.object({
     email: v.pipe(v.string(), v.email()),
@@ -341,7 +341,7 @@ Bootstrap forms use CSS classes on native HTML elements. bindrunes provides prop
 
 ### 1. CSS Conflicts
 
-Bootstrap and bindrunes both reset base styles. Remove Bootstrap CSS entirely before adding bindrunes -- mixing them will cause conflicts.
+Bootstrap and urupe-ui both reset base styles. Remove Bootstrap CSS entirely before adding urupe-ui -- mixing them will cause conflicts.
 
 ```bash
 # Remove Bootstrap
@@ -356,7 +356,7 @@ Bootstrap utility classes (`mt-3`, `text-center`) may conflict with Tailwind cla
 
 ### 3. jQuery Dependency
 
-If your project uses jQuery for Bootstrap JS plugins, replace those calls with bindrunes components. You can remove jQuery entirely once migration is complete.
+If your project uses jQuery for Bootstrap JS plugins, replace those calls with urupe-ui components. You can remove jQuery entirely once migration is complete.
 
 ### 4. Responsive Breakpoints Differ
 
@@ -374,7 +374,7 @@ Adjust your responsive class prefixes accordingly.
 
 ### 5. Forms Need Validation Libraries
 
-Bootstrap uses native HTML5 validation. bindrunes uses Valibot for schema-based validation. Install it:
+Bootstrap uses native HTML5 validation. urupe-ui uses Valibot for schema-based validation. Install it:
 
 ```bash
 npm install valibot
@@ -382,11 +382,11 @@ npm install valibot
 
 ### 6. Toast Is a Composable
 
-Bootstrap toasts are markup-based. bindrunes uses a composable. Add `ToastProvider` to your root layout:
+Bootstrap toasts are markup-based. urupe-ui uses a composable. Add `ToastProvider` to your root layout:
 
 ```svelte
 <script lang="ts">
-  import { AppProvider, ToastProvider } from "bindrunes";
+  import { AppProvider, ToastProvider } from "urupe-ui";
 </script>
 
 <AppProvider>
@@ -402,13 +402,13 @@ Bootstrap's `col-md-6`, `offset-lg-3` etc. don't exist in Tailwind. Use `col-spa
 
 ## Migration Steps
 
-1. **Install bindrunes:** `npm install bindrunes`
+1. **Install urupe-ui:** `npm install urupe-ui`
 2. **Remove Bootstrap:** `npm uninstall bootstrap` and remove CSS imports
-3. **Update `app.css`:** Replace Bootstrap imports with bindrunes imports
+3. **Update `app.css`:** Replace Bootstrap imports with urupe-ui imports
 4. **Add `AppProvider`:** Wrap your root layout with `AppProvider` and `ToastProvider`
 5. **Replace Bootstrap grid:** Swap `row`/`col-*` for Tailwind `grid`/`col-span-*`
-6. **Replace components:** Swap Bootstrap classes (`btn`, `card`, `form-control`) for bindrunes components (`Button`, `Card`, `Input`)
-7. **Replace JS plugins:** Swap `bootstrap.Modal` etc. for bindrunes components
+6. **Replace components:** Swap Bootstrap classes (`btn`, `card`, `form-control`) for urupe-ui components (`Button`, `Card`, `Input`)
+7. **Replace JS plugins:** Swap `bootstrap.Modal` etc. for urupe-ui components
 8. **Migrate forms:** Install Valibot, replace native validation with `createForm()`
 9. **Replace colors:** Map Bootstrap Sass variables to OKLCH custom properties
 10. **Remove jQuery:** If no longer needed, remove it

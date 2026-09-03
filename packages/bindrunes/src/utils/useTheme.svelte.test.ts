@@ -43,11 +43,11 @@ describe("useTheme", () => {
 	it("setTheme persists to localStorage", async () => {
 		const t = await mountComposable(() => useTheme());
 		t.setTheme("github");
-		await waitFor(() => expect(localStorage.getItem("bindrunes_theme")).toContain("github"));
+		await waitFor(() => expect(localStorage.getItem("urupe-ui_theme")).toContain("github"));
 	});
 
 	it("reads initial theme from localStorage", async () => {
-		localStorage.setItem("bindrunes_theme", JSON.stringify("rose-pine"));
+		localStorage.setItem("urupe-ui_theme", JSON.stringify("rose-pine"));
 		const t = await mountComposable(() => useTheme());
 		expect(t.theme).toBe("rose-pine");
 	});

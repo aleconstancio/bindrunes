@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { CaseStudy, ProjectGrid } from "bindrunes/domains/portfolio";
-	import { PortfolioTemplate } from "bindrunes/layouts";
+	import { CaseStudy, ProjectGrid } from "urupe-ui/domains/portfolio";
+	import { PortfolioTemplate } from "urupe-ui/layouts";
 
 	const projects = [
 		{ id: "1", title: "E-commerce Platform", description: "A full-stack e-commerce solution with real-time inventory.", image: "", tags: ["Svelte", "Node.js", "PostgreSQL"] },

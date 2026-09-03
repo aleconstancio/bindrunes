@@ -1,14 +1,14 @@
 # Build a Copilot in 5 Minutes
 
-This tutorial walks you through building a working LLM chat interface using bindrunes agentic composables and copilot components.
+This tutorial walks you through building a working LLM chat interface using urupe-ui agentic composables and copilot components.
 
 ## Prerequisites
 
 ```bash
-npm install bindrunes
+npm install urupe-ui
 ```
 
-bindrunes requires Svelte 5 with runes mode enabled.
+urupe-ui requires Svelte 5 with runes mode enabled.
 
 ---
 
@@ -18,7 +18,7 @@ Every copilot needs a window store. Wrap your app (or chat subtree) with `create
 
 ```svelte
 <script lang="ts">
-  import { createWindowStoreProvider } from "bindrunes/agentic";
+  import { createWindowStoreProvider } from "urupe-ui/agentic";
 
   const store = createWindowStoreProvider({ budgetCap: 8192 });
 </script>
@@ -40,14 +40,14 @@ Create the main chat component. It uses `CopilotMessageList` for the message fee
     useWindowStore,
     useOrchestrator,
     useTokenBudget,
-  } from "bindrunes/agentic";
+  } from "urupe-ui/agentic";
   import {
     CopilotMessageList,
     CopilotInput,
     CopilotStreamIndicator,
-  } from "bindrunes/domains/agentic";
-  import type { CopilotMessage } from "bindrunes/domains/agentic";
-  import type { AgentRuntime } from "bindrunes/agentic";
+  } from "urupe-ui/domains/agentic";
+  import type { CopilotMessage } from "urupe-ui/domains/agentic";
+  import type { AgentRuntime } from "urupe-ui/agentic";
 
   const store = useWindowStore();
 
@@ -153,8 +153,8 @@ If your runtime supports tools, define them and pass a `toolHandler` to the orch
 
 ```svelte
 <script lang="ts">
-  import { useOrchestrator } from "bindrunes/agentic";
-  import type { ToolSpec } from "bindrunes/agentic";
+  import { useOrchestrator } from "urupe-ui/agentic";
+  import type { ToolSpec } from "urupe-ui/agentic";
 
   const tools: ToolSpec[] = [
     {
@@ -226,7 +226,7 @@ Show token usage with `CopilotContextSidebar`:
 
 ```svelte
 <script lang="ts">
-  import { CopilotContextSidebar } from "bindrunes/domains/agentic";
+  import { CopilotContextSidebar } from "urupe-ui/domains/agentic";
 
   const budget = useTokenBudget({ cap: 8192 });
 </script>
@@ -248,7 +248,7 @@ Show token usage with `CopilotContextSidebar`:
 
 ## Full Working Example
 
-See the complete copilot example at `examples/copilot` in the bindrunes repository.
+See the complete copilot example at `examples/copilot` in the urupe-ui repository.
 
 ---
 

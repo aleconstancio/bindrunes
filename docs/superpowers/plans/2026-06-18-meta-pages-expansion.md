@@ -6,7 +6,7 @@
 
 **Architecture:** Three phases: (1) unify types and eliminate duplication (Block vs PageSection), (2) complete MarketingPage with all 8 missing landing sections + snippet overrides, (3) create 8 new page templates (AuthPage, SettingsPage, ChatPage, CalendarPage, EcommercePage, BlogPage, PortfolioPage, MediaPage) following the established PageShell pattern.
 
-**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing bindrunes component library.
+**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing urupe-ui component library.
 
 ---
 
@@ -86,7 +86,7 @@ Change the prop type from `TestimonialData[]` to `Testimonial[]`.
 Add a comment to `TestimonialItem` in `src/components/boundrune/types.ts`:
 
 ```ts
-/** @deprecated Use Testimonial from bindrunes/landing instead */
+/** @deprecated Use Testimonial from urupe-ui/landing instead */
 export interface TestimonialItem { ... }
 ```
 
@@ -133,7 +133,7 @@ import type { ..., Logo } from "./landing-types";
 - [ ] **Step 3: Deprecate LogoItem in boundrune/types.ts**
 
 ```ts
-/** @deprecated Use Logo from bindrunes/landing instead */
+/** @deprecated Use Logo from urupe-ui/landing instead */
 export interface LogoItem { ... }
 ```
 
@@ -1411,8 +1411,8 @@ Run: `bun run test`
 - [ ] **Step 4: Verify exports**
 
 Check that all new components are properly exported:
-- `bindrunes` → PageShell, PageSection
-- `bindrunes/landing` → MarketingPage, Logo, Testimonial
-- `bindrunes/boundrune` → DashboardPage, CrudPage, AuthPage, SettingsPage, ChatPage, CalendarPage, EcommercePage, BlogPage, PortfolioPage, MediaPage
+- `urupe-ui` → PageShell, PageSection
+- `urupe-ui/landing` → MarketingPage, Logo, Testimonial
+- `urupe-ui/boundrune` → DashboardPage, CrudPage, AuthPage, SettingsPage, ChatPage, CalendarPage, EcommercePage, BlogPage, PortfolioPage, MediaPage
 
 - [ ] **Step 5: Final commit if any fixes needed**

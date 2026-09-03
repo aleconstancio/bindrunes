@@ -108,7 +108,7 @@ export function createPersistenceAdapter(
 	};
 }
 
-export function createLocalStorageAdapter(prefix: string = "bindrunes"): PersistenceAdapter {
+export function createLocalStorageAdapter(prefix: string = "urupe-ui"): PersistenceAdapter {
 	return {
 		async save(key: string, data: string): Promise<void> {
 			localStorage.setItem(`${prefix}:${key}`, data);
@@ -122,7 +122,7 @@ export function createLocalStorageAdapter(prefix: string = "bindrunes"): Persist
 	};
 }
 
-export function createIndexedDBAdapter(dbName: string = "bindrunes-agentic"): PersistenceAdapter {
+export function createIndexedDBAdapter(dbName: string = "urupe-ui-agentic"): PersistenceAdapter {
 	const STORE_NAME = "windows";
 
 	function openDB(): Promise<IDBDatabase> {

@@ -1,4 +1,4 @@
-# Full Growth Roadmap — bindrunes
+# Full Growth Roadmap — urupe-ui
 
 **Date:** 2026-06-30
 **Status:** Draft
@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-bindrunes is technically excellent (255 components, 82 composables, 126 visual combos) but invisible. This roadmap converts technical quality into adoption and revenue across 4 phases.
+urupe-ui is technically excellent (255 components, 82 composables, 126 visual combos) but invisible. This roadmap converts technical quality into adoption and revenue across 4 phases.
 
 **Phase 1 (Week 1–2):** Visibility — hosted playground, npm README, public agentic docs
 **Phase 2 (Week 3–4):** Quality — Storybook, accessibility audit
@@ -20,7 +20,7 @@ bindrunes is technically excellent (255 components, 82 composables, 126 visual c
 
 ## Phase 1: Visibility (Weeks 1–2)
 
-**Goal:** Anyone who finds bindrunes can try it in 30 seconds and understand what makes it unique.
+**Goal:** Anyone who finds urupe-ui can try it in 30 seconds and understand what makes it unique.
 
 ### 1.1 Hosted Interactive Playground
 
@@ -30,7 +30,7 @@ bindrunes is technically excellent (255 components, 82 composables, 126 visual c
 
 **Implementation:**
 
-- Create a new Vercel project `bindrunes-playground` (or add to existing docs-site)
+- Create a new Vercel project `urupe-ui-playground` (or add to existing docs-site)
 - Add `/playground` route to `docs-site` that renders the Playground component
 - The playground loads components from the built `dist/` via dynamic imports
 - Deploy preview URLs on every PR for instant visual verification
@@ -90,7 +90,7 @@ bindrunes is technically excellent (255 components, 82 composables, 126 visual c
 
 ### 1.4 Vercel Deployment & CI Integration
 
-**Problem:** No Vercel project exists for bindrunes. Need to set up automated deployment.
+**Problem:** No Vercel project exists for urupe-ui. Need to set up automated deployment.
 
 **Approach:**
 - User provides `VERCEL_TOKEN` (required — not found in Vico project)
@@ -172,7 +172,7 @@ The Storybook a11y addon provides real-time accessibility checks. Visual regress
 
 ### 3.1 Template Marketplace (5 Templates)
 
-**Problem:** No proof that bindrunes works end-to-end for real applications. No revenue stream.
+**Problem:** No proof that urupe-ui works end-to-end for real applications. No revenue stream.
 
 **Approach:** Create 5 production-quality templates as free showcase projects (no payment integration):
 
@@ -185,7 +185,7 @@ The Storybook a11y addon provides real-time accessibility checks. Visual regress
 | **CRUD Admin** | Data management, user admin |
 
 Each template:
-- Full SvelteKit app using `bindrunes` + `bindrunes-kit`
+- Full SvelteKit app using `urupe-ui` + `bindrunes-kit`
 - Deployed as live demo on Vercel
 - Includes auth, dashboard, settings, responsive design
 - Documented with setup instructions
@@ -236,9 +236,9 @@ Each template:
 **Problem:** Migration guides exist for shadcn-svelte, Melt UI, and Skeleton. Missing: Bootstrap, Ant Design, Material UI — the largest migration pools.
 
 **Approach:** Write migration guides for:
-- Bootstrap → bindrunes (largest pool, most migration pain)
-- Ant Design → bindrunes (enterprise React users considering Svelte)
-- Material UI → bindrunes (largest design system by adoption)
+- Bootstrap → urupe-ui (largest pool, most migration pain)
+- Ant Design → urupe-ui (enterprise React users considering Svelte)
+- Material UI → urupe-ui (largest design system by adoption)
 
 Each guide:
 - Component-by-component mapping table

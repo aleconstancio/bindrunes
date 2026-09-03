@@ -105,7 +105,7 @@ describe("SlidingWindowCompaction", () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SlidingWindowCompaction.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SlidingWindowCompaction.test.ts
 ```
 
 Expected: FAIL — module not found
@@ -163,7 +163,7 @@ export class SlidingWindowCompaction implements CompactionStrategy {
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SlidingWindowCompaction.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SlidingWindowCompaction.test.ts
 ```
 
 Expected: PASS
@@ -252,7 +252,7 @@ describe("SummarizeCompaction", () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SummarizeCompaction.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SummarizeCompaction.test.ts
 ```
 
 Expected: FAIL — module not found
@@ -341,7 +341,7 @@ export class SummarizeCompaction implements CompactionStrategy {
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SummarizeCompaction.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/compaction/SummarizeCompaction.test.ts
 ```
 
 Expected: PASS
@@ -459,7 +459,7 @@ describe("createCompositeEviction", () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/eviction.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/eviction.svelte.test.ts
 ```
 
 Expected: FAIL — module not found
@@ -540,7 +540,7 @@ export function createCompositeEviction(...policies: EvictionPolicyInstance[]): 
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/eviction.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/eviction.svelte.test.ts
 ```
 
 Expected: PASS
@@ -642,7 +642,7 @@ describe("createPersistenceAdapter", () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/persistence.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/persistence.svelte.test.ts
 ```
 
 Expected: FAIL — module not found
@@ -770,7 +770,7 @@ export function createPersistenceAdapter(
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/persistence.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/persistence.svelte.test.ts
 ```
 
 Expected: PASS
@@ -892,7 +892,7 @@ describe("createOrchestrator", () => {
 - [ ] **Step 2: Run test to verify it fails**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/createOrchestrator.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/createOrchestrator.svelte.test.ts
 ```
 
 Expected: FAIL — module not found
@@ -1132,7 +1132,7 @@ export function createOrchestrator(options: OrchestratorOptions): OrchestratorRe
 - [ ] **Step 4: Run test to verify it passes**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/createOrchestrator.svelte.test.ts
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/createOrchestrator.svelte.test.ts
 ```
 
 Expected: PASS
@@ -1174,7 +1174,7 @@ export {
 - [ ] **Step 2: Run all agentic tests**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run src/utils/agentic/
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run src/utils/agentic/
 ```
 
 Expected: All tests pass
@@ -1193,7 +1193,7 @@ git commit -m "feat(agentic): export orchestrator, compaction, persistence, and 
 - [ ] **Step 1: Run all agentic tests with coverage**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes && npx vitest run --coverage src/utils/agentic/
+cd /home/ale/Projects/urupe-ui/packages/bindrunes && npx vitest run --coverage src/utils/agentic/
 ```
 
 Expected: 95%+ lines, 90%+ branches, 92%+ functions
@@ -1201,7 +1201,7 @@ Expected: 95%+ lines, 90%+ branches, 92%+ functions
 - [ ] **Step 2: Run type check**
 
 ```bash
-cd /home/ale/Projects/bindrunes/packages/bindrunes-kit && bun run check
+cd /home/ale/Projects/urupe-ui/packages/bindrunes-kit && bun run check
 ```
 
 Expected: Pass

@@ -12,7 +12,7 @@ export default defineConfig({
 	resolve: {
 		conditions: ["browser", "import", "module"],
 		alias: {
-			bindrunes: new URL("./src/bindrunes-stub.ts", import.meta.url).pathname,
+			"urupe-ui": new URL("./src/urupe-ui-stub.ts", import.meta.url).pathname,
 		},
 	},
 	test: {

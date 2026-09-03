@@ -1,6 +1,6 @@
 <script lang="ts">
-import { AuthTemplate } from "bindrunes/layouts";
-import type { AuthView } from "bindrunes/domains/types";
+import { AuthTemplate } from "urupe-ui/layouts";
+import type { AuthView } from "urupe-ui/domains/types";
 
 let view = $state<AuthView>("login");
 

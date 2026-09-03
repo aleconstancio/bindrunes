@@ -1,8 +1,8 @@
-# bindrunes v2.0 Architecture Overhaul Implementation Plan
+# urupe-ui v2.0 Architecture Overhaul Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restructure bindrunes from 7 unclear categories into a clean 4-layer hierarchy (Primitives > Layouts > Domains > Templates), standardize naming conventions, and clean up exports.
+**Goal:** Restructure urupe-ui from 7 unclear categories into a clean 4-layer hierarchy (Primitives > Layouts > Domains > Templates), standardize naming conventions, and clean up exports.
 
 **Architecture:** Move components from `src/components/` to `src/primitives/`, `src/layouts/`, `src/domains/`, and `src/templates/`. Rename all composables from `createX()` to `useX()`. Update all exports to use layer-based paths.
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, Button, Card, PageSection } from "bindrunes";
+import { Badge, Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-5xl">
@@ -7,7 +7,7 @@ import { Badge, Button, Card, PageSection } from "bindrunes";
     <Badge variant="primary">Migration Guides</Badge>
     <h1 class="mt-4 text-display-1 text-foreground">Migration</h1>
     <p class="mt-3 text-body-lg text-muted-foreground max-w-2xl">
-      Step-by-step guides for migrating from other component libraries to bindrunes.
+      Step-by-step guides for migrating from other component libraries to urupe-ui.
     </p>
   </div>
 

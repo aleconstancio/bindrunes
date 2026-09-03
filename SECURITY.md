@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-bindrunes follows [semantic versioning](https://semver.org/). Security fixes are
+urupe-ui follows [semantic versioning](https://semver.org/). Security fixes are
 backported to the current minor release and the immediately previous minor
 release. Older versions are not patched.
 
@@ -19,7 +19,7 @@ release. Older versions are not patched.
 Report privately via one of the following channels:
 
 1. **GitHub Security Advisories** (preferred):
-   <https://github.com/aleconstancio/bindrunes/security/advisories/new>
+   <https://github.com/aleconstancio/urupe-ui/security/advisories/new>
 2. **Email**: open a draft security advisory on GitHub; the maintainer email
    is listed in the response.
 
@@ -42,7 +42,7 @@ notes (unless you prefer to remain anonymous).
 
 In-scope targets include:
 
-- The published npm package `bindrunes` and all its subpath exports
+- The published npm package `urupe-ui` and all its subpath exports
 - The TypeScript / Svelte source in `src/`
 - Build, lint, and test scripts that ship to npm
 - GitHub Actions workflows in this repository

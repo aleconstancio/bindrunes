@@ -1,11 +1,11 @@
 /* ══════════════════════════════════════════════════
- * bindrunes — Spacious Density Preset
+ * urupe-ui — Spacious Density Preset
  *
  * Generous spacing for content-heavy UIs: landing
  * pages, marketing, editorial layouts.
  *
  * Import in your app.css:
- * @import "bindrunes/styles/densities/spacious.css";
+ * @import "urupe-ui/styles/densities/spacious.css";
  * ══════════════════════════════════════════════════ */
 
 [data-density="spacious"] {

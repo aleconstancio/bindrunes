@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -29,7 +29,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4 font-mono text-xs">cookieName</td>
               <td class="py-2 pr-4 font-mono text-xs">string</td>
-              <td class="py-2 pr-4">"bindrunes-session"</td>
+              <td class="py-2 pr-4">"urupe-ui-session"</td>
               <td class="py-2">Name of the session cookie</td>
             </tr>
             <tr class="border-b border-border/50">

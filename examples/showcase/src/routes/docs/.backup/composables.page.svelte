@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <h3 class="text-title-2 text-foreground mb-2">useQuery & useMutation</h3>
           <p class="text-body text-muted-foreground mb-3">Manage server queries and state mutations with caching, retry strategies, and loading statuses.</p>
           <CodeSnippet language="ts">
-{`import { useQuery, useMutation } from "bindrunes";
+{`import { useQuery, useMutation } from "urupe-ui";
 
 const users = useQuery<User[]>({
   key: "/api/users",
@@ -36,7 +36,7 @@ const createUser = useMutation<User, NewUser>({
           <h3 class="text-title-2 text-foreground mb-2">createAsyncState</h3>
           <p class="text-body text-muted-foreground mb-3">Reactive wrapper for async operations with loading, error, and data states.</p>
           <CodeSnippet language="ts">
-{`import { createAsyncState } from "bindrunes";
+{`import { createAsyncState } from "urupe-ui";
 
 const user = createAsyncState(
   () => fetch("/api/users/1").then(r => r.json()),
@@ -50,7 +50,7 @@ const user = createAsyncState(
           <h3 class="text-title-2 text-foreground mb-2">useTable</h3>
           <p class="text-body text-muted-foreground mb-3">State machine for sorting, pagination, and filtering in tables.</p>
           <CodeSnippet language="ts">
-{`import { useTable } from "bindrunes";
+{`import { useTable } from "urupe-ui";
 
 const table = useTable({ data: usersList, columns: [{ key: "name", sortable: true }] });`}
           </CodeSnippet>
@@ -65,7 +65,7 @@ const table = useTable({ data: usersList, columns: [{ key: "name", sortable: tru
           <h3 class="text-title-2 text-foreground mb-2">useForm & useWizard</h3>
           <p class="text-body text-muted-foreground mb-3">Typesafe form and multi-step wizard state with Valibot schema validations.</p>
           <CodeSnippet language="ts">
-{`import { useForm } from "bindrunes";
+{`import { useForm } from "urupe-ui";
 import { string, minLength } from "valibot";
 
 const form = useForm({
@@ -81,7 +81,7 @@ const form = useForm({
           <h3 class="text-title-2 text-foreground mb-2">validateWithSchema</h3>
           <p class="text-body text-muted-foreground mb-3">Standalone validation utility using Valibot schemas.</p>
           <CodeSnippet language="ts">
-{`import { validateWithSchema } from "bindrunes";
+{`import { validateWithSchema } from "urupe-ui";
 
 const errors = validateWithSchema(schema, values);`}
           </CodeSnippet>
@@ -96,7 +96,7 @@ const errors = validateWithSchema(schema, values);`}
           <h3 class="text-title-2 text-foreground mb-2">useAuth & useAccess</h3>
           <p class="text-body text-muted-foreground mb-3">Reactive authentication token handling and Role-Based Access Controls.</p>
           <CodeSnippet language="ts">
-{`import { useAuth, useAccess } from "bindrunes";
+{`import { useAuth, useAccess } from "urupe-ui";
 
 const auth = useAuth();
 const access = useAccess(auth);
@@ -111,7 +111,7 @@ if (access.hasRole("admin") && access.hasPermission("users:write")) {
           <h3 class="text-title-2 text-foreground mb-2">hasRole / hasAnyRole / hasPermission</h3>
           <p class="text-body text-muted-foreground mb-3">Role-Based Access Control checks.</p>
           <CodeSnippet language="ts">
-{`import { hasRole, hasAnyRole, hasPermission } from "bindrunes";
+{`import { hasRole, hasAnyRole, hasPermission } from "urupe-ui";
 
 hasRole(user, "admin");          // true if user has "admin" role
 hasAnyRole(user, ["admin", "editor"]);
@@ -128,7 +128,7 @@ hasPermission(user, "users:write");`}
           <h3 class="text-title-2 text-foreground mb-2">useTheme / useAesthetic / useDensity</h3>
           <p class="text-body text-muted-foreground mb-3">Runtime switching of the three design axes.</p>
           <CodeSnippet language="ts">
-{`import { useTheme, useAesthetic, useDensity } from "bindrunes";
+{`import { useTheme, useAesthetic, useDensity } from "urupe-ui";
 
 const theme = useTheme({ default: "editorial" });
 const aesthetic = useAesthetic({ default: "glass" });
@@ -144,7 +144,7 @@ density.setDensity("spacious");`}
           <h3 class="text-title-2 text-foreground mb-2">useDarkMode</h3>
           <p class="text-body text-muted-foreground mb-3">Reactive dark mode toggling with system preference detection.</p>
           <CodeSnippet language="ts">
-{`import { useDarkMode } from "bindrunes";
+{`import { useDarkMode } from "urupe-ui";
 
 const dark = useDarkMode();
 dark.toggle();

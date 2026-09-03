@@ -1,6 +1,6 @@
 # Landing Pages
 
-Marketing layout blocks designed for SaaS platforms. Import landing primitives from `bindrunes/domains/landing` and the full template from `bindrunes/layouts`.
+Marketing layout blocks designed for SaaS platforms. Import landing primitives from `urupe-ui/domains/landing` and the full template from `urupe-ui/layouts`.
 
 ## Setup
 
@@ -9,8 +9,8 @@ Enable landing page styles by importing the stylesheet after Tailwind:
 ```css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/landing.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/landing.css";
 ```
 
 This enables:
@@ -28,7 +28,7 @@ The fastest way to build a landing page. Pass your data, get a complete page.
 
 ```svelte
 <script lang="ts">
-  import { MarketingTemplate } from "bindrunes/layouts";
+  import { MarketingTemplate } from "urupe-ui/layouts";
   import { ArrowRight, Zap, Shield, Clock } from "lucide-svelte";
 
   const features = [
@@ -113,12 +113,12 @@ All section props are optional — omit a section and it won't render.
 
 ## PageSection — Content Zone Wrapper
 
-Wraps content sections with container, spacing, and animation. Import from `bindrunes`.
+Wraps content sections with container, spacing, and animation. Import from `urupe-ui`.
 
 ```svelte
 <script lang="ts">
-  import { PageSection } from "bindrunes";
-  import { FeatureGrid } from "bindrunes/domains/landing";
+  import { PageSection } from "urupe-ui";
+  import { FeatureGrid } from "urupe-ui/domains/landing";
 </script>
 
 <PageSection id="features" size="xl" background="muted" spacing="wide">
@@ -147,7 +147,7 @@ For full control, compose sections manually:
 
 ```svelte
 <script lang="ts">
-  import { createLandingState, LandingNav, HeroBanner, FeatureGrid, PricingTable, SiteFooter } from "bindrunes/domains/landing";
+  import { createLandingState, LandingNav, HeroBanner, FeatureGrid, PricingTable, SiteFooter } from "urupe-ui/domains/landing";
   const landing = createLandingState();
 </script>
 

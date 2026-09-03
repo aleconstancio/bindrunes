@@ -1,10 +1,10 @@
 <script lang="ts">
-import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
+import { Badge, Button, Card, CodeSnippet, PageSection } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Blog</Badge>
-  <h1 class="mt-4 text-display-1 text-foreground">Why bindrunes</h1>
+  <h1 class="mt-4 text-display-1 text-foreground">Why urupe-ui</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
     The case for a full-stack Svelte design system.
   </p>
@@ -27,9 +27,9 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     </section>
 
     <section>
-      <h2 class="text-title-1 text-foreground mb-4">What bindrunes Provides</h2>
+      <h2 class="text-title-1 text-foreground mb-4">What urupe-ui Provides</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes is 234 components organized across four layers, not one:
+        urupe-ui is 234 components organized across four layers, not one:
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -72,7 +72,7 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">The 3-Axis Design System</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Most design systems give you a single theme. bindrunes gives you three independent axes:
+        Most design systems give you a single theme. urupe-ui gives you three independent axes:
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <Card variant="glass" padding>
@@ -96,7 +96,7 @@ import { Badge, Button, Card, CodeSnippet, PageSection } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Agentic AI Built-In</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes is the only component library with an LLM orchestration kernel. The <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">AICore</code> composable handles the hard parts of building copilot UIs:
+        urupe-ui is the only component library with an LLM orchestration kernel. The <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">AICore</code> composable handles the hard parts of building copilot UIs:
       </p>
       <ul class="text-body text-muted-foreground space-y-2 list-disc list-inside mb-4">
         <li><strong>Token budgeting</strong> — automatic context window management</li>
@@ -119,8 +119,8 @@ bun run dev`}
       <p class="text-body text-muted-foreground mt-4 mb-4">
         Or add to an existing SvelteKit project:
       </p>
-      <CodeSnippet language="bash" title="Add bindrunes">
-{`bun add bindrunes`}
+      <CodeSnippet language="bash" title="Add urupe-ui">
+{`bun add urupe-ui`}
       </CodeSnippet>
       <p class="text-body text-muted-foreground mt-4 mb-4">
         Set up your layout:
@@ -128,7 +128,7 @@ bun run dev`}
       <CodeSnippet language="svelte" title="+layout.svelte">
 {`<script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 

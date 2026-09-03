@@ -1,4 +1,4 @@
-/* bindrunes — Default :root token values (aesthetic=minimal, density=comfortable) */
+/* urupe-ui — Default :root token values (aesthetic=minimal, density=comfortable) */
 :root {
 	/* Surfaces (warm grey) */
 	--background: oklch(0.13 0.01 270);

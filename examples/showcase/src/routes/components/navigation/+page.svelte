@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Breadcrumb, Stepper, Timeline, Pagination, Collapsible, CodeSnippet } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Breadcrumb, Stepper, Timeline, Pagination, Collapsible, CodeSnippet } from "urupe-ui";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
 
 	let currentPage = $state(1);
 	let activeStep = $state(1);
@@ -42,7 +42,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Breadcrumb } from "bindrunes";\n\nconst breadcrumbItems = [\n  { label: "Home", href: "/" },\n  { label: "Components", href: "/components" },\n  { label: "Navigation" },\n];\n\n<Breadcrumb items={breadcrumbItems} />`}
+				code={`import { Breadcrumb } from "urupe-ui";\n\nconst breadcrumbItems = [\n  { label: "Home", href: "/" },\n  { label: "Components", href: "/components" },\n  { label: "Navigation" },\n];\n\n<Breadcrumb items={breadcrumbItems} />`}
 				language="svelte"
 				title="Breadcrumb"
 			/>
@@ -81,7 +81,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Stepper } from "bindrunes";\n\nlet activeStep = $state(1);\n\nconst steps = [\n  { title: "Account", description: "Create your account" },\n  { title: "Profile", description: "Set up your profile" },\n  { title: "Preferences", description: "Configure settings" },\n  { title: "Complete", description: "You're all set!" },\n];\n\n<Stepper {steps} currentStep={activeStep} />\n<button onclick={() => activeStep = Math.min(steps.length - 1, activeStep + 1)}>Next</button>`}
+				code={`import { Stepper } from "urupe-ui";\n\nlet activeStep = $state(1);\n\nconst steps = [\n  { title: "Account", description: "Create your account" },\n  { title: "Profile", description: "Set up your profile" },\n  { title: "Preferences", description: "Configure settings" },\n  { title: "Complete", description: "You're all set!" },\n];\n\n<Stepper {steps} currentStep={activeStep} />\n<button onclick={() => activeStep = Math.min(steps.length - 1, activeStep + 1)}>Next</button>`}
 				language="svelte"
 				title="Stepper"
 			/>
@@ -100,7 +100,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Timeline } from "bindrunes";\n\nconst timelineItems = [\n  { title: "Project created", description: "New project initialized", time: "2 hours ago" },\n  { title: "Dependencies installed", description: "All packages resolved", time: "1 hour ago" },\n  { title: "Build completed", description: "Successfully compiled", time: "30 min ago" },\n];\n\n<Timeline items={timelineItems} />`}
+				code={`import { Timeline } from "urupe-ui";\n\nconst timelineItems = [\n  { title: "Project created", description: "New project initialized", time: "2 hours ago" },\n  { title: "Dependencies installed", description: "All packages resolved", time: "1 hour ago" },\n  { title: "Build completed", description: "Successfully compiled", time: "30 min ago" },\n];\n\n<Timeline items={timelineItems} />`}
 				language="svelte"
 				title="Timeline"
 			/>
@@ -119,7 +119,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { Pagination } from "bindrunes";\n\nlet currentPage = $state(1);\n\n<Pagination bind:currentPage totalPages={20} />`}
+				code={`import { Pagination } from "urupe-ui";\n\nlet currentPage = $state(1);\n\n<Pagination bind:currentPage totalPages={20} />`}
 				language="svelte"
 				title="Pagination"
 			/>

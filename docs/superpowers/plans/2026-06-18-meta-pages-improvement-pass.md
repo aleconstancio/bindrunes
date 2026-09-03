@@ -6,7 +6,7 @@
 
 **Architecture:** Four phases: (1) refactor MarketingPage to reduce repetition, (2) export missing types, (3) migrate 8 showcase pages to use boundrune page templates, (4) add CrudPage demo and update landing example.
 
-**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing bindrunes component library.
+**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing urupe-ui component library.
 
 ---
 
@@ -176,7 +176,7 @@ Read `examples/showcase/src/routes/dashboard/+page.svelte` to understand the cur
 - [ ] **Step 2: Rewrite to use DashboardPage template**
 
 Replace the manual DashboardShell composition with DashboardPage. The key changes:
-- Import `DashboardPage` from `bindrunes/boundrune` instead of `DashboardShell` from `bindrunes/dashboard`
+- Import `DashboardPage` from `urupe-ui/boundrune` instead of `DashboardShell` from `urupe-ui/dashboard`
 - Pass `navigation`, `appName`, `title` props
 - Move the main content into `children` snippet
 
@@ -340,7 +340,7 @@ Create a showcase page that demonstrates the list+detail split layout:
 
 ```svelte
 <script lang="ts">
-import { CrudPage } from "bindrunes/boundrune";
+import { CrudPage } from "urupe-ui/boundrune";
 
 const users = [
   { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
@@ -408,7 +408,7 @@ Replace the manual composition (createLandingState + 8 component imports + manua
 
 ```svelte
 <script lang="ts">
-import { MarketingPage } from "bindrunes/landing";
+import { MarketingPage } from "urupe-ui/landing";
 import { ArrowRight, Zap, Shield, Clock, CheckCircle } from "lucide-svelte";
 
 const features = [
@@ -480,7 +480,7 @@ Run: `npx biome check src/`
 
 - [ ] **Step 2: Verify exports**
 
-Check that `StatData` and `NavCTA` are properly exported from `bindrunes/landing`.
+Check that `StatData` and `NavCTA` are properly exported from `urupe-ui/landing`.
 
 - [ ] **Step 3: Verify no regressions**
 

@@ -26,7 +26,7 @@ let {
     {#each Array(rows) as _, r}
       <div class="flex gap-4 py-3 border-b border-border">
         {#each Array(4) as _, c}
-          <div class="h-4 flex-1 rounded bg-muted" style="animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {(r * 4 + c) * 0.05}s"></div>
+          <div class="h-4 flex-1 rounded bg-muted" style="animation: urupe-ui-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {(r * 4 + c) * 0.05}s"></div>
         {/each}
       </div>
     {/each}
@@ -54,7 +54,7 @@ let {
 {:else}
   <div class="space-y-2" role="status" aria-label={t?.('common.loading') ?? 'Loading'}>
     {#each Array(lines) as _, l}
-      <div class="h-4 rounded bg-muted" style="width: {60 + Math.random() * 40}%; animation: bindrunes-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {l * 0.15}s"></div>
+      <div class="h-4 rounded bg-muted" style="width: {60 + Math.random() * 40}%; animation: urupe-ui-shimmer 1.5s var(--ease-standard, ease-in-out) infinite; animation-delay: {l * 0.15}s"></div>
     {/each}
   </div>
 {/if}

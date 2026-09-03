@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -114,7 +114,7 @@ export const handle = localeRedirect;`}
         Create an i18n context with your translation dictionaries:
       </p>
       <CodeSnippet language="ts">
-{`import { createI18nContext } from "bindrunes";
+{`import { createI18nContext } from "urupe-ui";
 
 createI18nContext({
   default: "en",
@@ -137,7 +137,7 @@ createI18nContext({
       <h2 class="text-title-1 text-foreground mb-4">Usage in Components</h2>
       <CodeSnippet language="svelte">
 {`<script lang="ts">
-  import { useI18n } from "bindrunes";
+  import { useI18n } from "urupe-ui";
   const t = useI18n();
 </script>
 

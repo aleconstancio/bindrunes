@@ -1,9 +1,9 @@
-# bindrunes
+# urupe-ui
 
-[![CI](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
-[![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/bindrunes)](https://bundlephobia.com/package/bindrunes)
+[![CI](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/urupe-ui)](https://www.npmjs.com/package/urupe-ui)
+[![license](https://img.shields.io/npm/l/urupe-ui)](https://github.com/aleconstancio/urupe-ui/blob/main/LICENSE)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/urupe-ui)](https://bundlephobia.com/package/urupe-ui)
 
 **Svelte 5 component library for B2B SaaS.** 234 components, 25 composables, server-first rendering, responsive hybrid design, and an agentic copilot kernel.
 
@@ -12,21 +12,21 @@
 ## Quick Start
 
 ```bash
-bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
+bun add urupe-ui svelte tailwindcss lucide-svelte svelte-sonner
 ```
 
 ```css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 ```svelte
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -38,7 +38,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 ```svelte
 <!-- +page.svelte -->
 <script lang="ts">
-  import { Button, Card } from "bindrunes";
+  import { Button, Card } from "urupe-ui";
 </script>
 
 <Card variant="glass" responsive>
@@ -47,9 +47,9 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 </Card>
 ```
 
-## Why bindrunes?
+## Why urupe-ui?
 
-| Feature | bindrunes | shadcn-svelte | Skeleton | Melt UI |
+| Feature | urupe-ui | shadcn-svelte | Skeleton | Melt UI |
 |---------|-----------|---------------|----------|---------|
 | Svelte 5 runes | ✅ | ✅ | ✅ | ✅ |
 | B2B domain components | ✅ (12 categories) | ❌ | ❌ | ❌ |
@@ -94,7 +94,7 @@ Any combination works. Colors never bleed into form. Form never touches spacing.
 Build LLM chat interfaces with built-in token budget management, conversation branching, and persistence:
 
 ```ts
-import { CopilotMessageList, CopilotInput } from "bindrunes/domains/agentic";
+import { CopilotMessageList, CopilotInput } from "urupe-ui/domains/agentic";
 ```
 
 [Read the tutorial →](https://bindrunes.dev/docs/agentic/build-a-copilot)
@@ -104,27 +104,27 @@ import { CopilotMessageList, CopilotInput } from "bindrunes/domains/agentic";
 All components are SSR-safe. Server utilities work outside SvelteKit:
 
 ```ts
-import { createServerTheme, useThemeServer } from "bindrunes/server";
+import { createServerTheme, useThemeServer } from "urupe-ui/server";
 ```
 
 ## Export Paths
 
 | Path | What |
 |------|------|
-| `bindrunes` | Primitives, composables, utilities, types |
-| `bindrunes/server` | SSR-safe utilities |
-| `bindrunes/responsive` | Viewport, gesture, haptic |
-| `bindrunes/motion` | AnimatePresence, PageTransition, Stagger |
-| `bindrunes/data` | useQuery, useMutation, useTable |
-| `bindrunes/forms` | useForm, useWizard |
-| `bindrunes/auth` | useAuth, useAccess |
-| `bindrunes/domains/<name>` | Domain components |
-| `bindrunes/layouts` | Layouts + templates |
-| `bindrunes/agentic` | Agentic copilot kernel |
-| `bindrunes/playground` | Dev playground components |
-| `bindrunes/tailwind` | Tailwind CSS v4 plugin |
-| `bindrunes/styles/*` | Global styles and token sheets |
-| `bindrunes/i18n/<locale>` | Translation dictionaries |
+| `urupe-ui` | Primitives, composables, utilities, types |
+| `urupe-ui/server` | SSR-safe utilities |
+| `urupe-ui/responsive` | Viewport, gesture, haptic |
+| `urupe-ui/motion` | AnimatePresence, PageTransition, Stagger |
+| `urupe-ui/data` | useQuery, useMutation, useTable |
+| `urupe-ui/forms` | useForm, useWizard |
+| `urupe-ui/auth` | useAuth, useAccess |
+| `urupe-ui/domains/<name>` | Domain components |
+| `urupe-ui/layouts` | Layouts + templates |
+| `urupe-ui/agentic` | Agentic copilot kernel |
+| `urupe-ui/playground` | Dev playground components |
+| `urupe-ui/tailwind` | Tailwind CSS v4 plugin |
+| `urupe-ui/styles/*` | Global styles and token sheets |
+| `urupe-ui/i18n/<locale>` | Translation dictionaries |
 
 ## Documentation
 

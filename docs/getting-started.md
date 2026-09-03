@@ -3,7 +3,7 @@
 ## Install
 
 ```bash
-bun add bindrunes svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
+bun add urupe-ui svelte tailwindcss lucide-svelte mode-watcher svelte-sonner
 ```
 
 ### Optional dependencies
@@ -28,11 +28,11 @@ Add to `app.css`:
 
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
-Exclude `bindrunes` from Vite pre-bundling in `vite.config.ts`:
+Exclude `urupe-ui` from Vite pre-bundling in `vite.config.ts`:
 
 ```ts
 import { defineConfig } from 'vite';
@@ -41,7 +41,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: { exclude: ['bindrunes'] },
+  optimizeDeps: { exclude: ['urupe-ui'] },
 });
 ```
 
@@ -53,7 +53,7 @@ export default defineConfig({
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -69,7 +69,7 @@ export default defineConfig({
 ```svelte
 <!-- +page.svelte -->
 <script lang="ts">
-  import { Button, Card } from "bindrunes";
+  import { Button, Card } from "urupe-ui";
 </script>
 
 <Card variant="surface">
@@ -85,20 +85,20 @@ export default defineConfig({
 
 | Path | Contents | Example |
 |---|---|---|
-| `bindrunes` | Primitives, composables, utilities, types | `import { Button, useTheme } from "bindrunes"` |
-| `bindrunes/layouts` | Layouts + templates | `import { PageShell, DashboardShell } from "bindrunes/layouts"` |
-| `bindrunes/domains/<name>` | Single domain components | `import { LoginForm } from "bindrunes/domains/auth"` |
-| `bindrunes/agentic` | LLM agent tools | `import { createAgentLoop } from "bindrunes/agentic"` |
-| `bindrunes/tailwind` | Tailwind CSS plugin | `@plugin "bindrunes/tailwind"` |
-| `bindrunes/styles/*` | Global CSS + token sheets | `@import "bindrunes/styles/global.css"` |
-| `bindrunes/i18n/*` | Translation dictionaries | `import en from "bindrunes/i18n/en"` |
+| `urupe-ui` | Primitives, composables, utilities, types | `import { Button, useTheme } from "urupe-ui"` |
+| `urupe-ui/layouts` | Layouts + templates | `import { PageShell, DashboardShell } from "urupe-ui/layouts"` |
+| `urupe-ui/domains/<name>` | Single domain components | `import { LoginForm } from "urupe-ui/domains/auth"` |
+| `urupe-ui/agentic` | LLM agent tools | `import { createAgentLoop } from "urupe-ui/agentic"` |
+| `urupe-ui/tailwind` | Tailwind CSS plugin | `@plugin "urupe-ui/tailwind"` |
+| `urupe-ui/styles/*` | Global CSS + token sheets | `@import "urupe-ui/styles/global.css"` |
+| `urupe-ui/i18n/*` | Translation dictionaries | `import en from "urupe-ui/i18n/en"` |
 
 ---
 
 ## Troubleshooting
 
-**Multiple Svelte instances** — Add `optimizeDeps: { exclude: ['bindrunes'] }` to `vite.config.ts`.
+**Multiple Svelte instances** — Add `optimizeDeps: { exclude: ['urupe-ui'] }` to `vite.config.ts`.
 
-**Tailwind classes not applying** — Verify `@plugin "bindrunes/tailwind"` is in your entry CSS.
+**Tailwind classes not applying** — Verify `@plugin "urupe-ui/tailwind"` is in your entry CSS.
 
 **SSR hydration warnings** — Wrap browser-only APIs in `$effect` or check `typeof window !== 'undefined'`.

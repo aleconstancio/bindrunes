@@ -14,7 +14,7 @@ The agentic subsystem provides two layers:
 
 ## Copilot Components
 
-*Import from `bindrunes/domains/agentic`*
+*Import from `urupe-ui/domains/agentic`*
 
 | Component | Description |
 |-----------|-------------|
@@ -37,7 +37,7 @@ The agentic subsystem provides two layers:
     CopilotInput,
     CopilotStreamIndicator,
     CopilotToolPanel
-  } from "bindrunes/domains/agentic";
+  } from "urupe-ui/domains/agentic";
 
   let messages = $state([]);
   let isStreaming = $state(false);

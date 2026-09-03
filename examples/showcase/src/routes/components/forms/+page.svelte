@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Badge, Button, Input, PasswordInput, NumberInput, TagInput, Checkbox, Switch, RadioGroup, Select, Slider, Combobox, PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "bindrunes";
-	import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes/layouts";
-	import { Collapsible, CodeSnippet } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Badge, Button, Input, PasswordInput, NumberInput, TagInput, Checkbox, Switch, RadioGroup, Select, Slider, Combobox, PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "urupe-ui";
+	import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui/layouts";
+	import { Collapsible, CodeSnippet } from "urupe-ui";
 
 	let textValue = $state("");
 	let passwordValue = $state("");
@@ -90,7 +90,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { Input, PasswordInput, NumberInput, TagInput } from "bindrunes";\n\n<Input bind:value={textValue} placeholder="Type something..." label="Name" />\n<PasswordInput bind:value={passwordValue} placeholder="Enter password" label="Password" />\n<NumberInput bind:value={numberValue} min={0} max={100} step={5} label="Quantity" />\n<TagInput bind:value={tagValues} label="Tags" placeholder="Add tag..." />`}
+					code={`import { Input, PasswordInput, NumberInput, TagInput } from "urupe-ui";\n\n<Input bind:value={textValue} placeholder="Type something..." label="Name" />\n<PasswordInput bind:value={passwordValue} placeholder="Enter password" label="Password" />\n<NumberInput bind:value={numberValue} min={0} max={100} step={5} label="Quantity" />\n<TagInput bind:value={tagValues} label="Tags" placeholder="Add tag..." />`}
 					language="svelte"
 					title="Text Inputs"
 				/>
@@ -151,7 +151,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { Checkbox, Switch, RadioGroup, Select, Combobox, Slider } from "bindrunes";\n\n<Checkbox bind:checked={checkValue} label="Accept terms" />\n<Switch bind:checked={switchValue} label="Enable notifications" />\n<RadioGroup bind:value={radioValue} options={radioOptions} label="Choose one" />\n<Select bind:value={selectValue} options={selectOptions} label="Framework" />\n<Combobox bind:value={comboboxValue} options={comboboxOptions} label="Language" />\n<Slider bind:value={sliderValue} min={0} max={100} label="Volume" />`}
+					code={`import { Checkbox, Switch, RadioGroup, Select, Combobox, Slider } from "urupe-ui";\n\n<Checkbox bind:checked={checkValue} label="Accept terms" />\n<Switch bind:checked={switchValue} label="Enable notifications" />\n<RadioGroup bind:value={radioValue} options={radioOptions} label="Choose one" />\n<Select bind:value={selectValue} options={selectOptions} label="Framework" />\n<Combobox bind:value={comboboxValue} options={comboboxOptions} label="Language" />\n<Slider bind:value={sliderValue} min={0} max={100} label="Volume" />`}
 					language="svelte"
 					title="Selection Components"
 				/>
@@ -208,7 +208,7 @@
 			{/snippet}
 			<div class="space-y-2 mt-2">
 				<CodeSnippet
-					code={`import { PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "bindrunes";\n\n<PinInput bind:value={pinValue} length={6} label="Verification code" />\n<RatingGroup bind:value={ratingValue} max={5} label="Rating" />\n<TimeField bind:value={timeValue} label="Meeting time" placeholder="HH:MM" />\n<Toggle bind:pressed={toggleValue} label="Bold" />\n<ToggleGroup bind:value={toggleGroupValue} type="multiple" options={toggleOptions} label="Formatting" />`}
+					code={`import { PinInput, RatingGroup, TimeField, Toggle, ToggleGroup } from "urupe-ui";\n\n<PinInput bind:value={pinValue} length={6} label="Verification code" />\n<RatingGroup bind:value={ratingValue} max={5} label="Rating" />\n<TimeField bind:value={timeValue} label="Meeting time" placeholder="HH:MM" />\n<Toggle bind:pressed={toggleValue} label="Bold" />\n<ToggleGroup bind:value={toggleGroupValue} type="multiple" options={toggleOptions} label="Formatting" />`}
 					language="svelte"
 					title="Specialty Components"
 				/>

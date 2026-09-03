@@ -4,8 +4,8 @@ import FAQ from "./FAQ.svelte";
 import type { FAQItem } from "./landing-types";
 
 const items: FAQItem[] = [
-	{ question: "What is bindrunes?", answer: "A UI library." },
-	{ question: "How do I install?", answer: "npm install bindrunes" },
+	{ question: "What is urupe-ui?", answer: "A UI library." },
+	{ question: "How do I install?", answer: "npm install urupe-ui" },
 ];
 
 describe("FAQ", () => {
@@ -17,14 +17,14 @@ describe("FAQ", () => {
 
 	it("renders each question", () => {
 		render(FAQ, { items });
-		expect(screen.getByText("What is bindrunes?")).toBeInTheDocument();
+		expect(screen.getByText("What is urupe-ui?")).toBeInTheDocument();
 		expect(screen.getByText("How do I install?")).toBeInTheDocument();
 	});
 
 	it("renders the answer (in accordion body)", () => {
 		const { container } = render(FAQ, { items });
 		expect(container.textContent).toContain("A UI library.");
-		expect(container.textContent).toContain("npm install bindrunes");
+		expect(container.textContent).toContain("npm install urupe-ui");
 	});
 
 	it("renders nothing extra for empty items", () => {
@@ -33,7 +33,7 @@ describe("FAQ", () => {
 	});
 
 	it("uses defaultOpen when provided", () => {
-		const { container } = render(FAQ, { items, defaultOpen: "What is bindrunes?" });
+		const { container } = render(FAQ, { items, defaultOpen: "What is urupe-ui?" });
 		expect(container.textContent).toContain("A UI library.");
 	});
 

@@ -35,10 +35,10 @@ export function createDemoState(config: {
 }): DemoState {
 	const state: DemoState = {
 		get title() {
-			return config.title ?? "bindrunes Demo";
+			return config.title ?? "urupe-ui Demo";
 		},
 		get description() {
-			return config.description ?? "Component demo for bindrunes";
+			return config.description ?? "Component demo for urupe-ui";
 		},
 		get nav() {
 			return config.nav ?? [];

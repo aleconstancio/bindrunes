@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { createSidebarState, DashboardShell, DashboardShellSplit } from "bindrunes/layouts";
-	import { Card } from "bindrunes";
-	import { Button } from "bindrunes";
+	import { createSidebarState, DashboardShell, DashboardShellSplit } from "urupe-ui/layouts";
+	import { Card } from "urupe-ui";
+	import { Button } from "urupe-ui";
 
 	const sidebar = createSidebarState(true);
 

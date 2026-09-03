@@ -1,5 +1,5 @@
 <script lang="ts">
-import { AppProvider, Badge, Button, Card, CodeSnippet, Input } from "bindrunes";
+import { AppProvider, Badge, Button, Card, CodeSnippet, Input } from "urupe-ui";
 
 const themes = [
 	{ value: "editorial", label: "Editorial", description: "Warm grey with indigo accents" },
@@ -144,7 +144,7 @@ const cssExport = $derived(`<html
 			</CodeSnippet>
 			<div class="mt-3">
 				<CodeSnippet language="ts" title="JS API">
-{`import { useTheme, useAesthetic, useDensity } from "bindrunes";
+{`import { useTheme, useAesthetic, useDensity } from "urupe-ui";
 
 const theme = useTheme({ default: "${selectedTheme}" });
 const aesthetic = useAesthetic({ default: "${selectedAesthetic}" });

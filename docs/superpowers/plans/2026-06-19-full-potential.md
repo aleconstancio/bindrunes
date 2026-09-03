@@ -1,4 +1,4 @@
-# bindrunes Full Potential — Phase 1 Implementation Plan
+# urupe-ui Full Potential — Phase 1 Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -373,7 +373,7 @@ Read `examples/showcase/src/routes/dashboard/+page.svelte`. Remove the outer `ma
 
 - [ ] **Step 7: Fix app page fake composable demos**
 
-Read `examples/showcase/src/routes/app/+page.svelte`. Import actual `useToggle` and `useCounter` from `bindrunes` and use them instead of raw `$state`.
+Read `examples/showcase/src/routes/app/+page.svelte`. Import actual `useToggle` and `useCounter` from `urupe-ui` and use them instead of raw `$state`.
 
 - [ ] **Step 8: Run lint and typecheck**
 
@@ -571,7 +571,7 @@ Add to the `components` array in `playground-data.ts`:
 
 - [ ] **Step 6: Update playground page preview section**
 
-In `examples/showcase/src/routes/playground/+page.svelte`, add preview cases for the new components in the `{#if current?.name === ...}` chain. Import the necessary bindrunes components.
+In `examples/showcase/src/routes/playground/+page.svelte`, add preview cases for the new components in the `{#if current?.name === ...}` chain. Import the necessary urupe-ui components.
 
 - [ ] **Step 7: Verify**
 

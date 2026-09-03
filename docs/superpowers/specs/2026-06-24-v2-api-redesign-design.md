@@ -1,8 +1,8 @@
-# bindrunes v2.0 API Redesign
+# urupe-ui v2.0 API Redesign
 
 ## Overview
 
-Ground-up API cleanup and consolidation for bindrunes v2.0. No migration concern — fresh start.
+Ground-up API cleanup and consolidation for urupe-ui v2.0. No migration concern — fresh start.
 
 **Focus:** API cleanup + consolidation of overlapping APIs, removal of deprecated paths, unified naming conventions, and TypeScript DX improvements.
 
@@ -56,14 +56,14 @@ Ground-up API cleanup and consolidation for bindrunes v2.0. No migration concern
 
 ```ts
 // v1
-import { DashboardTemplate, AuthTemplate } from "bindrunes/templates";
-import { LoginForm } from "bindrunes/domains";
-import { Button, Card } from "bindrunes";
+import { DashboardTemplate, AuthTemplate } from "urupe-ui/templates";
+import { LoginForm } from "urupe-ui/domains";
+import { Button, Card } from "urupe-ui";
 
 // v2
-import { DashboardTemplate, AuthTemplate } from "bindrunes/layouts";
-import { LoginForm } from "bindrunes/domains/auth";
-import { Button, Card } from "bindrunes";
+import { DashboardTemplate, AuthTemplate } from "urupe-ui/layouts";
+import { LoginForm } from "urupe-ui/domains/auth";
+import { Button, Card } from "urupe-ui";
 ```
 
 ---
@@ -135,10 +135,10 @@ Delete `src/domains/index.ts`. Consumers must import from specific domains:
 
 ```ts
 // v1
-import { LoginForm } from "bindrunes/domains";
+import { LoginForm } from "urupe-ui/domains";
 
 // v2
-import { LoginForm } from "bindrunes/domains/auth";
+import { LoginForm } from "urupe-ui/domains/auth";
 ```
 
 ### TypeScript Improvements
@@ -169,10 +169,10 @@ import { LoginForm } from "bindrunes/domains/auth";
 | What | Why | Migration |
 |------|-----|-----------|
 | `SidebarLayout` | Deprecated since v1.1 | Use `MetaLayout` |
-| `./boundrune` export path | Pre-v1.0 legacy | `bindrunes/domains/<name>` |
-| `./landing` export path | Redundant alias | `bindrunes/domains/landing` |
+| `./boundrune` export path | Pre-v1.0 legacy | `urupe-ui/domains/<name>` |
+| `./landing` export path | Redundant alias | `urupe-ui/domains/landing` |
 | `./playground` / `./scaffold` exports | Dev-only | Import from source |
-| `./scaffold/app.css` | Dev-only | `bindrunes/styles/global.css` |
+| `./scaffold/app.css` | Dev-only | `urupe-ui/styles/global.css` |
 | `LOCALE` direct export | `@deprecated` — unsafe in SSR | `getLocale()` |
 | `useAsyncState` | Subset of `useQuery` | `useQuery({ cache: false })` |
 | `useDarkMode` | Overlaps with `useTheme` | `useTheme().toggleMode()` |
@@ -186,7 +186,7 @@ import { LoginForm } from "bindrunes/domains/auth";
 // src/utils/devWarning.ts
 export function devWarning(condition: boolean, message: string) {
   if (import.meta.env?.DEV && condition) {
-    console.warn(`[bindrunes] ${message}`);
+    console.warn(`[urupe-ui] ${message}`);
   }
 }
 ```
@@ -215,9 +215,9 @@ All kept except `SidebarLayout` (removed).
 
 | Bundle | v1 Limit | v2 Limit | Reason |
 |--------|----------|----------|--------|
-| `bindrunes` (main) | 15 kB | 16 kB | Slight growth from consolidated composables, offset by removed re-exports |
-| `bindrunes/layouts` | 8 kB | 18 kB | Absorbs templates |
-| `bindrunes/domains/<name>` | (single 12 kB) | 2 kB each | Granular per-domain |
+| `urupe-ui` (main) | 15 kB | 16 kB | Slight growth from consolidated composables, offset by removed re-exports |
+| `urupe-ui/layouts` | 8 kB | 18 kB | Absorbs templates |
+| `urupe-ui/domains/<name>` | (single 12 kB) | 2 kB each | Granular per-domain |
 
 ---
 

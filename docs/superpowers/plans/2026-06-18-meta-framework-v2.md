@@ -1,10 +1,10 @@
-# bindrunes v2.0 Meta-Framework Implementation Plan
+# urupe-ui v2.0 Meta-Framework Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Evolve bindrunes from a component library into a dual-mode meta-framework (full-stack + SPA+backend) with CLI scaffolding, server utilities, SSR support, and deployment adapters.
+**Goal:** Evolve urupe-ui from a component library into a dual-mode meta-framework (full-stack + SPA+backend) with CLI scaffolding, server utilities, SSR support, and deployment adapters.
 
-**Architecture:** Turborepo monorepo with 3 packages: `bindrunes` (core library), `bindrunes-kit` (SvelteKit meta-framework), `bindrunes-backend` (backend templates).
+**Architecture:** Turborepo monorepo with 3 packages: `urupe-ui` (core library), `bindrunes-kit` (SvelteKit meta-framework), `urupe-ui-backend` (backend templates).
 
 **Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, SvelteKit, Turborepo, Bun, Vitest.
 
@@ -26,7 +26,7 @@
 - [ ] **Step 2:** Create the monorepo structure:
 ```
 packages/
-  bindrunes/          # Move existing src/ here
+  urupe-ui/          # Move existing src/ here
     src/              # Current src/ contents
     package.json      # Current package.json adapted
   bindrunes-kit/      # New SvelteKit meta-framework
@@ -105,7 +105,7 @@ git commit -m "chore: restructure to Turborepo monorepo"
 {
   "name": "bindrunes-kit",
   "version": "2.0.0",
-  "description": "SvelteKit meta-framework powered by bindrunes",
+  "description": "SvelteKit meta-framework powered by urupe-ui",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
@@ -113,7 +113,7 @@ git commit -m "chore: restructure to Turborepo monorepo"
     "./types": "./src/types/index.ts"
   },
   "dependencies": {
-    "bindrunes": "workspace:*",
+    "urupe-ui": "workspace:*",
     "@sveltejs/kit": "^2.0.0",
     "svelte": "^5.0.0"
   },
@@ -159,7 +159,7 @@ interface.createServerAuthOptions {
 }
 
 export function createServerAuth(options: createStoreAuthOptions) {
-  const { secret, cookieName = "bindrunes-session", maxAge = 60 * 60 * 24 * 7, validate } = options;
+  const { secret, cookieName = "urupe-ui-session", maxAge = 60 * 60 * 24 * 7, validate } = options;
 
   async function getSession(event: RequestEvent): Promise<SessionData | null> {
     const token = event.cookies.get(cookieName);
@@ -430,7 +430,7 @@ async function main() {
 
   if (values.help) {
     console.log(`
-bindrunes — Create a new SvelteKit project
+urupe-ui — Create a new SvelteKit project
 
 Usage:
   npx create-bindrunes [project-name] [options]
@@ -573,7 +573,7 @@ function generatePackageJson(config: ProjectConfig): string {
       preview: "vite preview",
     },
     dependencies: {
-      bindrunes: "^2.0.0",
+      "urupe-ui": "^2.0.0",
       "bindrunes-kit": "^2.0.0",
       svelte: "^5.0.0",
       "@sveltejs/kit": "^2.0.0",

@@ -1,11 +1,11 @@
 <script lang="ts">
-import { Badge, Button, Card, PageSection } from "bindrunes";
+import { Badge, Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-5xl">
   <div class="mb-8">
     <Badge variant="primary">SvelteKit Integration</Badge>
-    <h1 class="mt-4 text-display-1 text-foreground">bindrunes Kit</h1>
+    <h1 class="mt-4 text-display-1 text-foreground">urupe-ui Kit</h1>
     <p class="mt-3 text-body-lg text-muted-foreground max-w-2xl">
       SvelteKit scaffolding with SSR, auth, API routes, and deployment adapters.
     </p>

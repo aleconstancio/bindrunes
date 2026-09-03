@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, ThemeToggle } from "bindrunes";
+  import { Button, ThemeToggle } from "urupe-ui";
   import { Menu, X, ChevronDown } from "lucide-svelte";
   import { slide } from "svelte/transition";
 
@@ -80,7 +80,7 @@
     {
       label: "Blog",
       items: [
-        { href: "/blog/why-bindrunes", label: "Why bindrunes" },
+        { href: "/blog/why-bindrunes", label: "Why urupe-ui" },
         { href: "/blog/3-axis-design-system", label: "3-Axis Design" },
       ],
     },
@@ -111,7 +111,7 @@
   <div class="nav-topbar-inner">
     <a href="/" class="nav-logo" onclick={closeMobile}>
       <span class="nav-logo-icon">⬡</span>
-      <span class="nav-logo-text">bindrunes</span>
+      <span class="nav-logo-text">urupe-ui</span>
     </a>
 
     <nav class="hidden lg:flex items-center gap-1">
@@ -150,7 +150,7 @@
 
     <div class="flex items-center gap-2">
       <Button href="/docs/getting-started" variant="primary" size="sm">Get Started</Button>
-      <Button href="https://github.com/aleconstancio/bindrunes" variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">GitHub</Button>
+      <Button href="https://github.com/aleconstancio/urupe-ui" variant="ghost" size="sm" target="_blank" rel="noopener noreferrer">GitHub</Button>
       <ThemeToggle />
 
       <button

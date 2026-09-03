@@ -21,13 +21,13 @@
 ```svelte
 <!-- v2 -->
 <script lang="ts">
-  import { useDensity } from "bindrunes";
+  import { useDensity } from "urupe-ui";
   const density = useDensity({ responsive: { default: "comfortable" } });
 </script>
 
 <!-- v3 -->
 <script lang="ts">
-  import { useViewport } from "bindrunes/responsive";
+  import { useViewport } from "urupe-ui/responsive";
   const viewport = useViewport();
 </script>
 
@@ -44,7 +44,7 @@
 
 ```svelte
 <script lang="ts">
-  import { useTheme } from "bindrunes";
+  import { useTheme } from "urupe-ui";
   const theme = useTheme();
 </script>
 
@@ -55,7 +55,7 @@
 
 ```ts
 // Server-side theme resolution (in +page.server.ts)
-import { createServerTheme, useThemeServer, useDensityServer } from "bindrunes/server";
+import { createServerTheme, useThemeServer, useDensityServer } from "urupe-ui/server";
 
 export async function load({ request }) {
   const { theme } = useThemeServer(request);
@@ -69,7 +69,7 @@ export async function load({ request }) {
 
 ```svelte
 <script lang="ts">
-  import { useViewport } from "bindrunes/responsive";
+  import { useViewport } from "urupe-ui/responsive";
   const viewport = useViewport();
 </script>
 
@@ -102,8 +102,8 @@ New `data-density="auto"` mode derives spacing from viewport:
 
 ## What's New
 
-- `bindrunes/server` — SSR-safe utilities (no runes, no browser APIs)
-- `bindrunes/responsive` — Viewport composable and responsive utilities
+- `urupe-ui/server` — SSR-safe utilities (no runes, no browser APIs)
+- `urupe-ui/responsive` — Viewport composable and responsive utilities
 - `createServerTheme()` — Pure function for server-side theme resolution
 - `useThemeServer()` / `useDensityServer()` — Read preferences from request cookies
 - `useViewport()` — Client-side breakpoint detection

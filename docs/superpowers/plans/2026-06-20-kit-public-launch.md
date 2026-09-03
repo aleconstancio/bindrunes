@@ -124,7 +124,7 @@ describe("createServerAuth", () => {
     const event = { cookies: { set: vi.fn() } } as any;
     await auth.setSession(event, "token-123");
     expect(event.cookies.set).toHaveBeenCalledWith(
-      "bindrunes-session",
+      "urupe-ui-session",
       "token-123",
       expect.objectContaining({ maxAge: 3600 })
     );
@@ -136,7 +136,7 @@ describe("createServerAuth", () => {
     });
     const event = { cookies: { delete: vi.fn() } } as any;
     auth.deleteSession(event);
-    expect(event.cookies.delete).toHaveBeenCalledWith("bindrunes-session");
+    expect(event.cookies.delete).toHaveBeenCalledWith("urupe-ui-session");
   });
 
   it("handle attaches session to locals", async () => {
@@ -695,7 +695,7 @@ git commit -m "test: add client module tests — auth, autosave, session, SSE, W
 
 ## Task 4: Build Missing Core Composables
 
-The kit root index re-exports `createQuery`, `createMutation`, `createApiClient`, `createForm` from bindrunes core, but these don't exist yet.
+The kit root index re-exports `createQuery`, `createMutation`, `createApiClient`, `createForm` from urupe-ui core, but these don't exist yet.
 
 **Files:**
 - Create: `packages/bindrunes/src/utils/createQuery.svelte.ts`
@@ -1379,7 +1379,7 @@ Expected: All pass
 
 - [ ] **Step 2: Create changeset**
 
-Run: `cd /home/ale/Projects/bindrunes && bun run changeset`
+Run: `cd /home/ale/Projects/urupe-ui && bun run changeset`
 Select: `bindrunes-kit` → minor → "Initial public release"
 
 - [ ] **Step 3: Version**

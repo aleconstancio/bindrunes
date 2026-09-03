@@ -27,7 +27,7 @@ export const handle = combineHooks(auth.handle, otherHooks);
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `cookieName` | `string` | `"bindrunes-session"` | Name of the session cookie |
+| `cookieName` | `string` | `"urupe-ui-session"` | Name of the session cookie |
 | `maxAge` | `number` | `604800` (7 days) | Cookie max age in seconds |
 | `validate` | `(token: string) => Promise<SessionData \| null>` | **required** | Validates a raw cookie token and returns session data |
 
@@ -284,7 +284,7 @@ Reactive authentication state for Svelte 5 components.
 | `onLogin` | `(user: User) => void` | — | Called after successful login/bootstrap |
 | `onLogout` | `() => void` | — | Called after logout |
 | `tokenStorage` | `"cookie" \| "localStorage"` | `"cookie"` | Where to persist the auth token |
-| `tokenKey` | `string` | `"bindrunes-session"` | Cookie/localStorage key name |
+| `tokenKey` | `string` | `"urupe-ui-session"` | Cookie/localStorage key name |
 
 #### Returns
 

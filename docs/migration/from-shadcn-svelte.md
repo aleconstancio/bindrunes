@@ -1,22 +1,22 @@
-# Migration Guide: shadcn-svelte to bindrunes
+# Migration Guide: shadcn-svelte to urupe-ui
 
-This guide walks you through migrating a SvelteKit project from shadcn-svelte to bindrunes. The two libraries share conceptual DNA (both are component libraries for Svelte) but differ significantly in architecture, theming, and form validation.
+This guide walks you through migrating a SvelteKit project from shadcn-svelte to urupe-ui. The two libraries share conceptual DNA (both are component libraries for Svelte) but differ significantly in architecture, theming, and form validation.
 
 ## Component Mapping
 
-| shadcn-svelte | bindrunes | Notes |
+| shadcn-svelte | urupe-ui | Notes |
 |---|---|---|
-| `Button` | `Button` | Same name; bindrunes uses `variant` prop with different values |
-| `Card`, `CardContent`, `CardHeader`, `CardTitle`, `CardDescription`, `CardFooter` | `Card` | bindrunes uses a single `Card` component with slot regions |
+| `Button` | `Button` | Same name; urupe-ui uses `variant` prop with different values |
+| `Card`, `CardContent`, `CardHeader`, `CardTitle`, `CardDescription`, `CardFooter` | `Card` | urupe-ui uses a single `Card` component with slot regions |
 | `Input` | `Input` | Same API surface |
 | `Label` | `Label` | Same API surface |
 | `Badge` | `Badge` | Different variant names (see below) |
-| `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter` | `Dialog` | bindrunes uses a single `Dialog` with named slots |
+| `Dialog`, `DialogContent`, `DialogHeader`, `DialogTitle`, `DialogDescription`, `DialogFooter` | `Dialog` | urupe-ui uses a single `Dialog` with named slots |
 | `AlertDialog` | `AlertDialog` | Same pattern |
 | `DropdownMenu`, `DropdownMenuContent`, `DropdownMenuItem`, etc. | `DropdownMenu` | Simplified API |
 | `Select`, `SelectContent`, `SelectItem`, etc. | `Select` | Simplified API |
 | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | Same decomposition |
-| `Toast`, `ToastProvider` | `ToastProvider` | bindrunes uses composable `createToast()` |
+| `Toast`, `ToastProvider` | `ToastProvider` | urupe-ui uses composable `createToast()` |
 | `Sheet`, `SheetContent` | `Sheet`, `Drawer` | Sheet for side panels, Drawer for bottom sheets |
 | `Switch` | `Switch` | Same API |
 | `Checkbox` | `Checkbox` | Same API |
@@ -35,22 +35,22 @@ This guide walks you through migrating a SvelteKit project from shadcn-svelte to
 | `ContextMenu`, `ContextMenuContent`, etc. | `ContextMenu` | Simplified |
 | `Pagination` | `Pagination` | Same API |
 | `ScrollArea` | `ScrollArea` | Same API |
-| `Table`, `TableHeader`, `TableBody`, etc. | `DataTable` | bindrunes provides a higher-level `DataTable` with column config |
+| `Table`, `TableHeader`, `TableBody`, etc. | `DataTable` | urupe-ui provides a higher-level `DataTable` with column config |
 | `Form`, `FormField` | `Form`, `FormField` | Validation differs (see below) |
 | `DatePicker` | `DatePicker` | Same API |
 | `Sonner` (toast) | `ToastProvider` + `createToast()` | Composable-based |
-| — | `Stepper` | bindrunes-only |
-| — | `TreeView` | bindrunes-only |
-| — | `RichTextEditor` | bindrunes-only |
-| — | `TagInput` | bindrunes-only |
-| — | `Combobox` | bindrunes-only |
-| — | `TimeField` | bindrunes-only |
-| — | `PinInput` | bindrunes-only |
-| — | `RatingGroup` | bindrunes-only |
+| — | `Stepper` | urupe-ui-only |
+| — | `TreeView` | urupe-ui-only |
+| — | `RichTextEditor` | urupe-ui-only |
+| — | `TagInput` | urupe-ui-only |
+| — | `Combobox` | urupe-ui-only |
+| — | `TimeField` | urupe-ui-only |
+| — | `PinInput` | urupe-ui-only |
+| — | `RatingGroup` | urupe-ui-only |
 
 ## Theme Variable Migration
 
-shadcn-svelte uses HSL CSS variables. bindrunes uses OKLCH -- a perceptually uniform color space that produces more consistent results across displays.
+shadcn-svelte uses HSL CSS variables. urupe-ui uses OKLCH -- a perceptually uniform color space that produces more consistent results across displays.
 
 ### Before (shadcn-svelte)
 
@@ -100,9 +100,9 @@ shadcn-svelte uses HSL CSS variables. bindrunes uses OKLCH -- a perceptually uni
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
-bindrunes handles dark/light mode automatically. You only need to set the theme attribute:
+urupe-ui handles dark/light mode automatically. You only need to set the theme attribute:
 
 ```html
 <!-- In your layout -->
@@ -113,7 +113,7 @@ Or use the composable for runtime switching:
 
 ```svelte
 <script lang="ts">
-  import { createTheme } from "bindrunes";
+  import { createTheme } from "urupe-ui";
   const theme = createTheme({ default: "editorial" });
 </script>
 ```
@@ -121,7 +121,7 @@ Or use the composable for runtime switching:
 If you need a custom color palette, use `defineTheme()`:
 
 ```ts
-import { defineTheme } from "bindrunes";
+import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   // OKLCH format: oklch(Lightness Chroma Hue)
@@ -143,7 +143,7 @@ myBrand.apply();
 
 ### HSL to OKLCH Conversion Reference
 
-| shadcn HSL token | bindrunes OKLCH equivalent |
+| shadcn HSL token | urupe-ui OKLCH equivalent |
 |---|---|
 | `0 0% 100%` (white) | `oklch(1 0 0)` |
 | `0 0% 0%` (black) | `oklch(0 0 0)` |
@@ -159,7 +159,7 @@ myBrand.apply();
 Use this utility to convert HSL to OKLCH:
 
 ```ts
-import { hexToOklch } from "bindrunes";
+import { hexToOklch } from "urupe-ui";
 
 // Convert hex to OKLCH
 const oklchValue = hexToOklch("#6366f1"); // Returns "oklch(0.55 0.18 260)"
@@ -169,7 +169,7 @@ Or use an online converter like [oklch.com](https://oklch.com).
 
 ## Form Library Migration (Zod to Valibot)
 
-bindrunes uses Valibot instead of Zod for form validation. Valibot is smaller (tree-shakeable) and has a compatible API.
+urupe-ui uses Valibot instead of Zod for form validation. Valibot is smaller (tree-shakeable) and has a compatible API.
 
 ### Before (shadcn-svelte + Zod)
 
@@ -209,12 +209,12 @@ bindrunes uses Valibot instead of Zod for form validation. Valibot is smaller (t
 </form>
 ```
 
-### After (bindrunes + Valibot)
+### After (urupe-ui + Valibot)
 
 ```svelte
 <script lang="ts">
   import * as v from "valibot";
-  import { createForm, Form, FormField, Input, Label } from "bindrunes";
+  import { createForm, Form, FormField, Input, Label } from "urupe-ui";
 
   const formSchema = v.object({
     username: v.pipe(v.string(), v.minLength(2), v.maxLength(50)),
@@ -326,23 +326,23 @@ npx shadcn-svelte@latest add button card input
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```bash
-npm install bindrunes
+npm install urupe-ui
 ```
 
 `app.css`:
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 `+layout.svelte`:
 ```svelte
 <script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 </script>
 
 <AppProvider>
@@ -352,25 +352,25 @@ npm install bindrunes
 
 ### Key Differences
 
-| Aspect | shadcn-svelte | bindrunes |
+| Aspect | shadcn-svelte | urupe-ui |
 |---|---|---|
-| Install method | `npx shadcn-svelte add` | `npm install bindrunes` |
-| Component location | Copied into `$lib/components` | Imported from `bindrunes` package |
+| Install method | `npx shadcn-svelte add` | `npm install urupe-ui` |
+| Component location | Copied into `$lib/components` | Imported from `urupe-ui` package |
 | Theming | HSL CSS variables, manual dark mode | OKLCH tokens, automatic dark/light |
 | Dark mode | Toggle `.dark` class manually | `data-theme` attribute with built-in light/dark |
 | Form validation | Zod + superforms | Valibot + `createForm()` composable |
 | Toast notifications | Sonner integration | `createToast()` composable |
-| Tailwind config | Custom `tailwind.config.js` | `@plugin "bindrunes/tailwind"` |
+| Tailwind config | Custom `tailwind.config.js` | `@plugin "urupe-ui/tailwind"` |
 | Provider wrapper | Not required | `AppProvider` wraps root layout |
 | Customization | Override CSS variables | 3-axis system (theme x aesthetic x density) |
 
 ## Migration Steps
 
-1. **Install bindrunes:** `npm install bindrunes`
-2. **Update `app.css`:** Replace shadcn imports with bindrunes imports
+1. **Install urupe-ui:** `npm install urupe-ui`
+2. **Update `app.css`:** Replace shadcn imports with urupe-ui imports
 3. **Add `AppProvider`:** Wrap your root layout
 4. **Replace CSS variables:** Swap HSL values for OKLCH (use `hexToOklch()` for conversion)
-5. **Replace component imports:** Update import paths from local components to `bindrunes`
+5. **Replace component imports:** Update import paths from local components to `urupe-ui`
 6. **Migrate forms:** Replace Zod schemas with Valibot, swap `superForm` for `createForm`
 7. **Test theme switching:** Verify your color palette looks correct in both light and dark modes
 8. **Remove shadcn artifacts:** Delete `$lib/components`, `components.json`, and unused config files

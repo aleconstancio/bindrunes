@@ -1,7 +1,7 @@
 # UX/DX & Design System Audit — Design Spec
 
 **Date:** 2026-06-18
-**Goal:** Comprehensive audit and fix of residual issues across the bindrunes component library and showcase demo — covering token architecture, component API contracts, accessibility, docs drift, showcase UX, and consumer DX.
+**Goal:** Comprehensive audit and fix of residual issues across the urupe-ui component library and showcase demo — covering token architecture, component API contracts, accessibility, docs drift, showcase UX, and consumer DX.
 
 ---
 

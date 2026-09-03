@@ -1,10 +1,10 @@
 # Accessibility
 
-bindrunes is committed to WCAG 2.1 AA compliance. This document covers the accessibility features, known limitations, and audit results.
+urupe-ui is committed to WCAG 2.1 AA compliance. This document covers the accessibility features, known limitations, and audit results.
 
 ## Statement
 
-bindrunes targets WCAG 2.1 Level AA compliance. Components are tested with axe-core automated scanning and manual keyboard/screen reader testing.
+urupe-ui targets WCAG 2.1 Level AA compliance. Components are tested with axe-core automated scanning and manual keyboard/screen reader testing.
 
 ## Accessibility Features
 

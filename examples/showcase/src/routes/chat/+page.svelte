@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Button, Collapsible, CodeSnippet } from "bindrunes";
-	import { ChatTemplate } from "bindrunes/layouts";
-	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "bindrunes/domains/chat";
-	import { RealtimeClient } from "bindrunes";
-	import type { RealtimeEvent } from "bindrunes";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Button, Collapsible, CodeSnippet } from "urupe-ui";
+	import { ChatTemplate } from "urupe-ui/layouts";
+	import { ChatThread, ChatInput, ConversationList, TypingIndicator } from "urupe-ui/domains/chat";
+	import { RealtimeClient } from "urupe-ui";
+	import type { RealtimeEvent } from "urupe-ui";
 
 	const conversations = [
 		{ id: "1", name: "Alice Johnson", lastMessage: "Hey, how's the project going?", timestamp: "2m", unread: 2 },
@@ -130,7 +130,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { ChatThread, ChatInput, TypingIndicator } from "bindrunes/domains/chat";\n\nlet isTyping = $state(false);\nlet messages = $state([]);\n\nfunction handleSend(message: string) {\n  messages = [...messages, { id: String(Date.now()), content: message, sender: "user", timestamp: "now" }];\n  isTyping = true;\n  setTimeout(() => {\n    isTyping = false;\n    messages = [...messages, { id: String(Date.now()), content: "Response", sender: "assistant", timestamp: "now" }];\n  }, 1500);\n}\n\n<ChatThread messages={messages} />\n{#if isTyping}\n  <TypingIndicator />\n{/if}\n<ChatInput onSend={handleSend} placeholder="Type a message..." />`}
+				code={`import { ChatThread, ChatInput, TypingIndicator } from "urupe-ui/domains/chat";\n\nlet isTyping = $state(false);\nlet messages = $state([]);\n\nfunction handleSend(message: string) {\n  messages = [...messages, { id: String(Date.now()), content: message, sender: "user", timestamp: "now" }];\n  isTyping = true;\n  setTimeout(() => {\n    isTyping = false;\n    messages = [...messages, { id: String(Date.now()), content: "Response", sender: "assistant", timestamp: "now" }];\n  }, 1500);\n}\n\n<ChatThread messages={messages} />\n{#if isTyping}\n  <TypingIndicator />\n{/if}\n<ChatInput onSend={handleSend} placeholder="Type a message..." />`}
 				language="svelte"
 				title="Chat Interface"
 			/>
@@ -201,7 +201,7 @@
 		{/snippet}
 		<div class="space-y-2 mt-2">
 			<CodeSnippet
-				code={`import { RealtimeClient } from "bindrunes";\nimport type { RealtimeEvent } from "bindrunes";\n\nconst client = new RealtimeClient({\n  url: "https://example.com/sse",\n  onEvent: (event) => console.log("Event:", event),\n  onError: (err) => console.error("Error:", err),\n});\n\nclient.connect();\n// Status: "connected" | "reconnecting" | "degraded" | "disconnected"\nconsole.log(client.status);\n\n// Cleanup\nclient.disconnect();`}
+				code={`import { RealtimeClient } from "urupe-ui";\nimport type { RealtimeEvent } from "urupe-ui";\n\nconst client = new RealtimeClient({\n  url: "https://example.com/sse",\n  onEvent: (event) => console.log("Event:", event),\n  onError: (err) => console.error("Error:", err),\n});\n\nclient.connect();\n// Status: "connected" | "reconnecting" | "degraded" | "disconnected"\nconsole.log(client.status);\n\n// Cleanup\nclient.disconnect();`}
 				language="svelte"
 				title="RealtimeClient"
 			/>

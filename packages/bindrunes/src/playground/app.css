@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
-@import "bindrunes/styles/landing.css";
-@import "bindrunes/styles/aesthetics/glass.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
+@import "urupe-ui/styles/landing.css";
+@import "urupe-ui/styles/aesthetics/glass.css";

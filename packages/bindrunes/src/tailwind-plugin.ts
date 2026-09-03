@@ -12,7 +12,7 @@ import {
 } from "@bindrunes/tokens/tailwind-map";
 import type { Config } from "tailwindcss";
 
-const bindrunesConfig = {
+const urupeUiConfig = {
 	theme: {
 		extend: {
 			colors,
@@ -29,7 +29,7 @@ const bindrunesConfig = {
 	},
 } satisfies Config;
 
-function bindrunesPlugin({
+function urupeUiPlugin({
 	addUtilities,
 }: {
 	addUtilities: (utilities: Record<string, Record<string, string>>) => void;
@@ -65,7 +65,7 @@ function bindrunesPlugin({
 			"font-family": 'var(--font-mono, "JetBrains Mono", ui-monospace, monospace)',
 		},
 		".animate-pulse-glow": {
-			animation: "bindrunes-pulse-glow 3s infinite ease-in-out",
+			animation: "urupe-ui-pulse-glow 3s infinite ease-in-out",
 		},
 		".section-reveal": {
 			animation: "fade-slide-in 0.7s var(--ease-standard, cubic-bezier(0.2, 0, 0, 1)) forwards",
@@ -116,8 +116,8 @@ function bindrunesPlugin({
 	});
 }
 
-const plugin = Object.assign(bindrunesPlugin, {
-	config: bindrunesConfig,
+const plugin = Object.assign(urupeUiPlugin, {
+	config: urupeUiConfig,
 });
 
 export default plugin;

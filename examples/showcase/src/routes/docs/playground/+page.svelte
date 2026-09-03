@@ -67,7 +67,7 @@ import {
 	Tooltip,
 	TooltipProvider,
 	TreeView,
-} from "bindrunes";
+} from "urupe-ui";
 
 let dialogOpen = $state(false);
 let drawerOpen = $state(false);

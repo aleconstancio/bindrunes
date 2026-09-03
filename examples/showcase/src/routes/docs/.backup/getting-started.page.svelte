@@ -1,19 +1,19 @@
 <script lang="ts">
-import { Badge, Button, CodeSnippet } from "bindrunes";
+import { Badge, Button, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Docs</Badge>
   <h1 class="mt-4 text-display-1 text-foreground">Getting Started</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
-    Install bindrunes, configure Tailwind, and start building.
+    Install urupe-ui, configure Tailwind, and start building.
   </p>
 
   <div class="mt-10 space-y-10">
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Installation</h2>
       <CodeSnippet language="bash" title="Terminal">
-{`bun add bindrunes
+{`bun add urupe-ui
 bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner`}
       </CodeSnippet>
 
@@ -32,7 +32,7 @@ bun add chart.js svelte-chartjs`}
 
       <div class="mt-6">
         <Button
-          href="https://stackblitz.com/fork/aleconstancio/bindrunes/tree/main/examples/showcase?embed=1&terminal=dev"
+          href="https://stackblitz.com/fork/aleconstancio/urupe-ui/tree/main/examples/showcase?embed=1&terminal=dev"
           variant="outline"
           target="_blank"
           rel="noopener noreferrer"
@@ -52,12 +52,12 @@ bun add chart.js svelte-chartjs`}
       </p>
       <CodeSnippet language="css" title="app.css">
 {`@import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";`}
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";`}
       </CodeSnippet>
 
       <p class="text-body text-muted-foreground mt-4 mb-4">
-        Exclude <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">bindrunes</code> from Vite's pre-bundling in <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">vite.config.ts</code> to prevent duplicate Svelte instances:
+        Exclude <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">urupe-ui</code> from Vite's pre-bundling in <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">vite.config.ts</code> to prevent duplicate Svelte instances:
       </p>
       <CodeSnippet language="ts" title="vite.config.ts">
 {`import { defineConfig } from 'vite';
@@ -66,7 +66,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [tailwindcss(), sveltekit()],
-  optimizeDeps: { exclude: ['bindrunes'] },
+  optimizeDeps: { exclude: ['urupe-ui'] },
 });`}
       </CodeSnippet>
     </section>
@@ -79,7 +79,7 @@ export default defineConfig({
       <CodeSnippet language="svelte" title="+layout.svelte">
 {`<script lang="ts">
   import "../app.css";
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -96,7 +96,7 @@ export default defineConfig({
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Font Loading</h2>
       <p class="text-body text-muted-foreground mb-4">
-        bindrunes uses three font families that you should load for the best experience:
+        urupe-ui uses three font families that you should load for the best experience:
       </p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
@@ -146,13 +146,13 @@ export default defineConfig({
         <div>
           <h3 class="text-title-2 text-foreground mb-2">"Multiple Svelte instances"</h3>
           <p class="text-body text-muted-foreground">
-            Ensure <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">vite.config.ts</code> includes <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">optimizeDeps: { '{' } exclude: ['bindrunes'] { '}' }</code>.
+            Ensure <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">vite.config.ts</code> includes <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">optimizeDeps: { '{' } exclude: ['urupe-ui'] { '}' }</code>.
           </p>
         </div>
         <div>
           <h3 class="text-title-2 text-foreground mb-2">Tailwind classes not applying</h3>
           <p class="text-body text-muted-foreground">
-            Verify that your entry CSS file imports <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">@plugin "bindrunes/tailwind"</code>.
+            Verify that your entry CSS file imports <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">@plugin "urupe-ui/tailwind"</code>.
           </p>
         </div>
         <div>

@@ -13,7 +13,7 @@ export interface ShortcutOptions {
  *
  * Usage:
  * <script lang="ts">
- *   import { shortcut } from 'bindrunes';
+ *   import { shortcut } from 'urupe-ui';
  * </script>
  * <div use:shortcut={{ key: 'k', ctrl: true, callback: () => openSearch() }}>
  *

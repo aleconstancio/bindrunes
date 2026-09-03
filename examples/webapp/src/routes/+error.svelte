@@ -1,6 +1,6 @@
 <script lang="ts">
 import { page } from "$app/state";
-import { Button, EmptyState } from "bindrunes";
+import { Button, EmptyState } from "urupe-ui";
 import { Home } from "lucide-svelte";
 </script>
 

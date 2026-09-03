@@ -8,7 +8,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"bindrunes": "workspace:*",
+		"urupe-ui": "workspace:*",
 		"bindrunes-kit": "workspace:*",
 		"lucide-svelte": "^1.0.1",
 		"mode-watcher": "^1.1.0",

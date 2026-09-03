@@ -1,12 +1,12 @@
-# Migration Guide: Melt UI to bindrunes
+# Migration Guide: Melt UI to urupe-ui
 
-This guide covers migrating from Melt UI (the composable-based headless UI library for Svelte) to bindrunes. Melt UI provides unstyled primitives via builder functions; bindrunes provides styled, accessible components with a composable-based design system.
+This guide covers migrating from Melt UI (the composable-based headless UI library for Svelte) to urupe-ui. Melt UI provides unstyled primitives via builder functions; urupe-ui provides styled, accessible components with a composable-based design system.
 
 ## Component Mapping
 
-| Melt UI Builder | bindrunes Component | Notes |
+| Melt UI Builder | urupe-ui Component | Notes |
 |---|---|---|
-| `createAccordion()` | `Accordion` + `AccordionItem` | Melt uses builders; bindrunes uses Svelte components |
+| `createAccordion()` | `Accordion` + `AccordionItem` | Melt uses builders; urupe-ui uses Svelte components |
 | `createAlertDialog()` | `AlertDialog` | Direct mapping |
 | `createCheckbox()` | `Checkbox` | Direct mapping |
 | `createCollapsible()` | `Collapsible` | Direct mapping |
@@ -16,7 +16,7 @@ This guide covers migrating from Melt UI (the composable-based headless UI libra
 | `createDropdownMenu()` | `DropdownMenu` | Direct mapping |
 | `createHoverCard()` | `Popover` | Use Popover for hover-triggered content |
 | `createLabel()` | `Label` | Direct mapping |
-| `createListbox()` | `Select` | Melt's Listbox maps to bindrunes Select |
+| `createListbox()` | `Select` | Melt's Listbox maps to urupe-ui Select |
 | `createMenubar()` | `NavigationMenu` | Different pattern, see below |
 | `createPopover()` | `Popover` | Direct mapping |
 | `createProgress()` | `Progress` | Direct mapping |
@@ -25,22 +25,22 @@ This guide covers migrating from Melt UI (the composable-based headless UI libra
 | `createSlider()` | `Slider` | Direct mapping |
 | `createSwitch()` | `Switch` | Direct mapping |
 | `createTabs()` | `Tabs` | Direct mapping |
-| `createToast()` | `createToast()` | bindrunes has its own composable |
+| `createToast()` | `createToast()` | urupe-ui has its own composable |
 | `createTooltip()` | `Tooltip` | Direct mapping |
-| — | `Button` | bindrunes-only (Melt has no button builder) |
-| — | `Card` | bindrunes-only |
-| — | `Input` | bindrunes-only |
-| — | `Badge` | bindrunes-only |
-| — | `DataTable` | bindrunes-only |
-| — | `DataTable` | bindrunes-only |
-| — | `Stepper` | bindrunes-only |
-| — | `TreeView` | bindrunes-only |
-| — | `Combobox` | bindrunes-only |
-| — | `TagInput` | bindrunes-only |
+| — | `Button` | urupe-ui-only (Melt has no button builder) |
+| — | `Card` | urupe-ui-only |
+| — | `Input` | urupe-ui-only |
+| — | `Badge` | urupe-ui-only |
+| — | `DataTable` | urupe-ui-only |
+| — | `DataTable` | urupe-ui-only |
+| — | `Stepper` | urupe-ui-only |
+| — | `TreeView` | urupe-ui-only |
+| — | `Combobox` | urupe-ui-only |
+| — | `TagInput` | urupe-ui-only |
 
-## Composable Migration (Melt Builders to bindrunes Components)
+## Composable Migration (Melt Builders to urupe-ui Components)
 
-Melt UI uses builder functions that return props objects. bindrunes uses standard Svelte components with props. Here is how each pattern translates.
+Melt UI uses builder functions that return props objects. urupe-ui uses standard Svelte components with props. Here is how each pattern translates.
 
 ### Accordion
 
@@ -66,10 +66,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 </div>
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Accordion, AccordionItem } from "bindrunes";
+  import { Accordion, AccordionItem } from "urupe-ui";
 </script>
 
 <Accordion>
@@ -105,10 +105,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 {/if}
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Dialog } from "bindrunes";
+  import { Dialog } from "urupe-ui";
   let open = $state(false);
 </script>
 
@@ -142,10 +142,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 {/if}
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { DropdownMenu } from "bindrunes";
+  import { DropdownMenu } from "urupe-ui";
 </script>
 
 <DropdownMenu>
@@ -177,10 +177,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 {/if}
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Popover } from "bindrunes";
+  import { Popover } from "urupe-ui";
 </script>
 
 <Popover>
@@ -212,10 +212,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 </div>
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
+  import { Tabs, TabsList, TabsTrigger, TabsContent } from "urupe-ui";
 </script>
 
 <Tabs defaultValue="tab-1">
@@ -250,10 +250,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 {/if}
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Tooltip, TooltipProvider } from "bindrunes";
+  import { Tooltip, TooltipProvider } from "urupe-ui";
 </script>
 
 <TooltipProvider>
@@ -281,10 +281,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 <input {...$input} />
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Checkbox } from "bindrunes";
+  import { Checkbox } from "urupe-ui";
   let checked = $state(false);
 </script>
 
@@ -307,10 +307,10 @@ Melt UI uses builder functions that return props objects. bindrunes uses standar
 <input {...$input} />
 ```
 
-**After (bindrunes):**
+**After (urupe-ui):**
 ```svelte
 <script lang="ts">
-  import { Switch } from "bindrunes";
+  import { Switch } from "urupe-ui";
   let checked = $state(false);
 </script>
 
@@ -329,9 +329,9 @@ Melt UI is headless -- it provides no theming system. You style everything via T
 </button>
 ```
 
-### bindrunes
+### urupe-ui
 
-bindrunes has a built-in 3-axis design system (theme x aesthetic x density). Components are pre-styled using CSS custom properties:
+urupe-ui has a built-in 3-axis design system (theme x aesthetic x density). Components are pre-styled using CSS custom properties:
 
 ```svelte
 <!-- Components are styled automatically -->
@@ -339,7 +339,7 @@ bindrunes has a built-in 3-axis design system (theme x aesthetic x density). Com
 
 <!-- Switch theme at runtime -->
 <script lang="ts">
-  import { createTheme, createAesthetic, createDensity } from "bindrunes";
+  import { createTheme, createAesthetic, createDensity } from "urupe-ui";
   const theme = createTheme({ default: "dracula" });
   const aesthetic = createAesthetic({ default: "glass" });
   const density = createDensity({ default: "comfortable" });
@@ -350,7 +350,7 @@ You can still override styles via Tailwind utility classes or CSS custom propert
 
 ### Composable Pattern Differences
 
-| Melt UI Pattern | bindrunes Pattern |
+| Melt UI Pattern | urupe-ui Pattern |
 |---|---|
 | Builder returns props spread on elements | Svelte components with named slots |
 | `use:$action.action` for directive-based rendering | Standard component props |
@@ -369,23 +369,23 @@ npm install @melt-ui/svelte
 
 No CSS imports required (headless).
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```bash
-npm install bindrunes
+npm install urupe-ui
 ```
 
 Add to `app.css`:
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 Add provider to root layout:
 ```svelte
 <script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 </script>
 
 <AppProvider>
@@ -395,7 +395,7 @@ Add provider to root layout:
 
 ## Key Differences
 
-| Aspect | Melt UI | bindrunes |
+| Aspect | Melt UI | urupe-ui |
 |---|---|---|
 | Approach | Headless primitives | Styled components |
 | Theming | None (DIY) | 3-axis system (theme x aesthetic x density) |

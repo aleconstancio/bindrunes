@@ -1,4 +1,4 @@
-// Tiny stub for tests - prevents loading full bindrunes dist (which has stale paths)
+// Tiny stub for tests - prevents loading full urupe-ui dist (which has stale paths)
 
 export { default as Accordion } from "./primitives/Accordion.svelte";
 export { default as AccordionItem } from "./primitives/AccordionItem.svelte";

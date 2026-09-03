@@ -6,7 +6,7 @@
 
 **Architecture:** Five phases: (1) fix critical bugs (broken imports, type mismatches), (2) standardize template APIs (shared types, consistent props), (3) add missing features (AuthPage views, loading states), (4) create showcase examples using templates, (5) complete documentation.
 
-**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing bindrunes component library.
+**Tech Stack:** Svelte 5 runes, TypeScript, Tailwind CSS v4, bits-ui, existing urupe-ui component library.
 
 ---
 
@@ -524,7 +524,7 @@ This example demonstrates the MarketingPage template with all sections.
 
 ```svelte
 <script lang="ts">
-import { MarketingPage } from "bindrunes/landing";
+import { MarketingPage } from "urupe-ui/landing";
 import { ArrowRight, Zap, Shield, Clock, CheckCircle, Layers, BarChart3, Users, Globe } from "lucide-svelte";
 
 const navLinks = [
@@ -619,8 +619,8 @@ git commit -m "feat: add MarketingPage showcase example"
 
 ```svelte
 <script lang="ts">
-import { AuthPage } from "bindrunes/boundrune";
-import type { AuthView } from "bindrunes/boundrune/types/auth";
+import { AuthPage } from "urupe-ui/boundrune";
+import type { AuthView } from "urupe-ui/boundrune/types/auth";
 
 let view = $state<AuthView>("login");
 
@@ -670,7 +670,7 @@ git commit -m "feat: add AuthPage showcase example"
 
 ```svelte
 <script lang="ts">
-import { DashboardPage } from "bindrunes/boundrune";
+import { DashboardPage } from "urupe-ui/boundrune";
 import { Home, Users, Settings, BarChart3 } from "lucide-svelte";
 
 const navigation = [
@@ -717,7 +717,7 @@ git commit -m "feat: add DashboardPage showcase example"
 
 ```svelte
 <script lang="ts">
-import { ChatPage } from "bindrunes/boundrune";
+import { ChatPage } from "urupe-ui/boundrune";
 
 const conversations = [
   { id: "1", name: "Alice Johnson", lastMessage: "Hey, how's it going?" },

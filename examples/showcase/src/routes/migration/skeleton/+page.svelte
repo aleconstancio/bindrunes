@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
@@ -17,7 +17,7 @@ import { Badge, CodeSnippet } from "bindrunes";
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Skeleton UI</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -25,7 +25,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4">button (Tailwind directive)</td>
               <td class="py-2 pr-4">Button</td>
-              <td class="py-2">Skeleton uses classes; bindrunes uses a component</td>
+              <td class="py-2">Skeleton uses classes; urupe-ui uses a component</td>
             </tr>
             <tr class="border-b border-border/50">
               <td class="py-2 pr-4">Card, CardHeader, CardBody, CardFooter</td>
@@ -60,16 +60,16 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Theme System Migration</h2>
       <p class="text-body text-muted-foreground mb-4">
-        Skeleton uses a single-theme color palette with HSL and CSS layers. bindrunes uses a 3-axis system (theme x aesthetic x density) with OKLCH color tokens.
+        Skeleton uses a single-theme color palette with HSL and CSS layers. urupe-ui uses a 3-axis system (theme x aesthetic x density) with OKLCH color tokens.
       </p>
 
-      <h3 class="text-title-2 text-foreground mb-3">Skeleton vs bindrunes Token Comparison</h3>
+      <h3 class="text-title-2 text-foreground mb-3">Skeleton vs urupe-ui Token Comparison</h3>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Skeleton Token</th>
-              <th class="text-left py-2 pr-4 font-medium text-foreground">bindrunes Token</th>
+              <th class="text-left py-2 pr-4 font-medium text-foreground">urupe-ui Token</th>
               <th class="text-left py-2 font-medium text-foreground">Notes</th>
             </tr>
           </thead>
@@ -112,7 +112,7 @@ import { Badge, CodeSnippet } from "bindrunes";
             <tr class="border-b border-border">
               <th class="text-left py-2 pr-4 font-medium text-foreground">Aspect</th>
               <th class="text-left py-2 pr-4 font-medium text-foreground">Skeleton</th>
-              <th class="text-left py-2 font-medium text-foreground">bindrunes</th>
+              <th class="text-left py-2 font-medium text-foreground">urupe-ui</th>
             </tr>
           </thead>
           <tbody class="text-muted-foreground">
@@ -144,8 +144,8 @@ import { Badge, CodeSnippet } from "bindrunes";
     <section>
       <h2 class="text-title-1 text-foreground mb-4">Migration Steps</h2>
       <ol class="text-body text-muted-foreground space-y-2 list-decimal list-inside">
-        <li>Install bindrunes: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install bindrunes</code></li>
-        <li>Update app.css: Replace Skeleton imports with bindrunes imports</li>
+        <li>Install urupe-ui: <code class="text-sm bg-surface-2 px-1.5 py-0.5 rounded">npm install urupe-ui</code></li>
+        <li>Update app.css: Replace Skeleton imports with urupe-ui imports</li>
         <li>Choose a theme: Start with editorial or map your Skeleton colors</li>
         <li>Add AppProvider: Wrap your root layout</li>
         <li>Replace button classes: Skeleton's btn/btn-* classes become &lt;Button&gt; components</li>

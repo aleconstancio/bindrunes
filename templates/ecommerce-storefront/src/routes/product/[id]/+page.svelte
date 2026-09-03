@@ -1,26 +1,32 @@
 <script lang="ts">
-  import { Card, Button, Badge, Separator } from "bindrunes";
-  import { ShoppingCart, Star, ArrowLeft, Truck, Shield, RotateCcw } from "lucide-svelte";
+import { ArrowLeft, RotateCcw, Shield, ShoppingCart, Star, Truck } from "lucide-svelte";
+import { Badge, Button, Card, Separator } from "urupe-ui";
 
-  const product = {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 79.99,
-    originalPrice: 99.99,
-    rating: 4.5,
-    reviews: 128,
-    badge: "Best Seller",
-    description: "Premium wireless headphones with active noise cancellation, 30-hour battery life, and crystal-clear audio. Designed for comfort with memory foam ear cushions and an adjustable headband.",
-    features: ["Active Noise Cancellation", "30-hour battery", "Bluetooth 5.2", "Memory foam cushions"],
-    image: "🎧",
-    inStock: true,
-  };
+const product = {
+	id: 1,
+	name: "Wireless Headphones",
+	price: 79.99,
+	originalPrice: 99.99,
+	rating: 4.5,
+	reviews: 128,
+	badge: "Best Seller",
+	description:
+		"Premium wireless headphones with active noise cancellation, 30-hour battery life, and crystal-clear audio. Designed for comfort with memory foam ear cushions and an adjustable headband.",
+	features: [
+		"Active Noise Cancellation",
+		"30-hour battery",
+		"Bluetooth 5.2",
+		"Memory foam cushions",
+	],
+	image: "🎧",
+	inStock: true,
+};
 
-  const features = [
-    { icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
-    { icon: Shield, title: "2 Year Warranty", desc: "Full coverage" },
-    { icon: RotateCcw, title: "30-Day Returns", desc: "Hassle-free" },
-  ];
+const features = [
+	{ icon: Truck, title: "Free Shipping", desc: "On orders over $50" },
+	{ icon: Shield, title: "2 Year Warranty", desc: "Full coverage" },
+	{ icon: RotateCcw, title: "30-Day Returns", desc: "Hassle-free" },
+];
 </script>
 
 <div class="min-h-screen bg-background">

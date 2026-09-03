@@ -1,7 +1,7 @@
 <script lang="ts">
 import { page } from "$app/stores";
-import { DashboardShell } from "bindrunes/layouts";
-	import { ThemeStudio } from "bindrunes";
+import { DashboardShell } from "urupe-ui/layouts";
+	import { ThemeStudio } from "urupe-ui";
 import { LayoutDashboard, Settings, Users, BarChart3, FileText, Shield, Palette } from "lucide-svelte";
 
 let { children } = $props();
@@ -33,7 +33,7 @@ const navGroups = [
 </script>
 
 <DashboardShell
-  brand={{ label: "bindrunes", href: "/" }}
+  brand={{ label: "urupe-ui", href: "/" }}
   {navGroups}
   pathname={$page.url.pathname}
   variant="default"

@@ -1,14 +1,14 @@
-# bindrunes Documentation
+# urupe-ui Documentation
 
 > Svelte 5 Component Library & B2B SaaS Scaffold — 234 components, 25 composables, 10 domain categories, 6 themes.
 
 ## Overview
 
-bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis design system: theme (color), aesthetic (form), and density (spacing).
+urupe-ui is a toolkit for building SaaS interfaces. It provides a three-axis design system: theme (color), aesthetic (form), and density (spacing).
 
 ```svelte
 <script lang="ts">
-  import { AppProvider, Button, Card, useQuery } from "bindrunes";
+  import { AppProvider, Button, Card, useQuery } from "urupe-ui";
   const users = useQuery({
     key: "/api/users",
     fetcher: () => fetch("/api/users").then(r => r.json()),
@@ -56,13 +56,13 @@ bindrunes is a toolkit for building SaaS interfaces. It provides a three-axis de
 
 ## Exports
 
-- `bindrunes` — Core components, composables, and utilities
-- `bindrunes/layouts` — Layout shell components (DashboardShell, Sidebar, Tabs, etc.)
-- `bindrunes/domains` — Domain-specific components (auth, calendar, chat, data, ecommerce, landing, marketing, media, portfolio, settings)
-- `bindrunes/domains/*` — Individual domain imports (e.g., `bindrunes/domains/auth`)
-- `bindrunes/domains/agentic` — Agentic copilot UI components
-- `bindrunes/templates` — Pre-composed page templates
-- `bindrunes/playground` — Demo/scaffold components and utilities
-- `bindrunes/agentic` — Agentic chat kernel composables
-- `bindrunes/tailwind` — Tailwind CSS v4 integration plugin
-- `bindrunes/styles/*` — Theme CSS, presets, aesthetics, and density scales
+- `urupe-ui` — Core components, composables, and utilities
+- `urupe-ui/layouts` — Layout shell components (DashboardShell, Sidebar, Tabs, etc.)
+- `urupe-ui/domains` — Domain-specific components (auth, calendar, chat, data, ecommerce, landing, marketing, media, portfolio, settings)
+- `urupe-ui/domains/*` — Individual domain imports (e.g., `urupe-ui/domains/auth`)
+- `urupe-ui/domains/agentic` — Agentic copilot UI components
+- `urupe-ui/templates` — Pre-composed page templates
+- `urupe-ui/playground` — Demo/scaffold components and utilities
+- `urupe-ui/agentic` — Agentic chat kernel composables
+- `urupe-ui/tailwind` — Tailwind CSS v4 integration plugin
+- `urupe-ui/styles/*` — Theme CSS, presets, aesthetics, and density scales

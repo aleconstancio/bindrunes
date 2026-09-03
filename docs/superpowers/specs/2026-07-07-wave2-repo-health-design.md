@@ -26,9 +26,9 @@ Wave 1 consolidated templates, config, docs, and added missing tests. Wave 2 fix
 - `src/components/simple-components.test.ts`
 - `src/templates/DashboardTemplate.svelte.test.ts`
 
-### 2. Fix `bindrunes/scaffold` Import
+### 2. Fix `urupe-ui/scaffold` Import
 
-**Problem:** `examples/webapp/src/routes/+layout.svelte` imports from `bindrunes/scaffold` which doesn't exist. Should be `bindrunes/playground`.
+**Problem:** `examples/webapp/src/routes/+layout.svelte` imports from `urupe-ui/scaffold` which doesn't exist. Should be `urupe-ui/playground`.
 
 **Fix:** Change one import line.
 
@@ -59,7 +59,7 @@ Wave 1 consolidated templates, config, docs, and added missing tests. Wave 2 fix
 
 ### 6. Add Agentic Domain to Size-Limit
 
-**Problem:** `bindrunes/domains/agentic` has no bundle size tracking.
+**Problem:** `urupe-ui/domains/agentic` has no bundle size tracking.
 
 **Fix:** Add entry to `.size-limit.json`.
 

@@ -1,22 +1,30 @@
 <script lang="ts">
-  import { Card, Button, Badge, Avatar, Input } from "bindrunes";
-  import { Send, Plus, Search, Bot, User } from "lucide-svelte";
+import { Bot, Plus, Search, Send, User } from "lucide-svelte";
+import { Avatar, Badge, Button, Card, Input } from "urupe-ui";
 
-  const conversations = [
-    { id: 1, title: "Getting started with Svelte 5", lastMessage: "2 min ago", active: true },
-    { id: 2, title: "Debugging server-side rendering", lastMessage: "1 hour ago", active: false },
-    { id: 3, title: "Optimizing bundle size", lastMessage: "3 hours ago", active: false },
-    { id: 4, title: "Setting up authentication", lastMessage: "Yesterday", active: false },
-  ];
+const conversations = [
+	{ id: 1, title: "Getting started with Svelte 5", lastMessage: "2 min ago", active: true },
+	{ id: 2, title: "Debugging server-side rendering", lastMessage: "1 hour ago", active: false },
+	{ id: 3, title: "Optimizing bundle size", lastMessage: "3 hours ago", active: false },
+	{ id: 4, title: "Setting up authentication", lastMessage: "Yesterday", active: false },
+];
 
-  const messages = [
-    { role: "user" as const, content: "How do I create a reusable component in Svelte 5?" },
-    { role: "assistant" as const, content: "In Svelte 5, you create reusable components using runes. The $props() rune replaces the old export let syntax. You define the component's API by destructuring the props object with TypeScript types." },
-    { role: "user" as const, content: "Can I use snippets for slot-like patterns?" },
-    { role: "assistant" as const, content: "Yes! Svelte 5 snippets replace slots. Snippets are more powerful than slots because they can be passed as props and used with the @render tag." },
-  ];
+const messages = [
+	{ role: "user" as const, content: "How do I create a reusable component in Svelte 5?" },
+	{
+		role: "assistant" as const,
+		content:
+			"In Svelte 5, you create reusable components using runes. The $props() rune replaces the old export let syntax. You define the component's API by destructuring the props object with TypeScript types.",
+	},
+	{ role: "user" as const, content: "Can I use snippets for slot-like patterns?" },
+	{
+		role: "assistant" as const,
+		content:
+			"Yes! Svelte 5 snippets replace slots. Snippets are more powerful than slots because they can be passed as props and used with the @render tag.",
+	},
+];
 
-  let inputValue = $state("");
+let inputValue = $state("");
 </script>
 
 <div class="flex h-screen bg-background">

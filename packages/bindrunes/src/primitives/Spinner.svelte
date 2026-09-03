@@ -16,7 +16,7 @@ const sizes = {
 
 <svg
   data-size={size}
-  class="bindrunes-spin text-primary {sizes[size]} {className}"
+  class="urupe-ui-spin text-primary {sizes[size]} {className}"
   viewBox="0 0 24 24"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
@@ -30,10 +30,10 @@ const sizes = {
 </svg>
 
 <style>
-  @keyframes bindrunes-spin {
+  @keyframes urupe-ui-spin {
     to { transform: rotate(360deg); }
   }
-  .bindrunes-spin {
-    animation: bindrunes-spin 1s linear infinite;
+  .urupe-ui-spin {
+    animation: urupe-ui-spin 1s linear infinite;
   }
 </style>

@@ -29,7 +29,7 @@ VITE_API_URL=http://localhost:8080
 The generated API client is in `src/lib/api/client.ts`:
 
 ```ts
-import { createApiClient } from "bindrunes";
+import { createApiClient } from "urupe-ui";
 
 export const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL ?? "http://localhost:8080",
@@ -64,7 +64,7 @@ export const api = createApiClient({
 For SPA mode, use client-side auth with the API backend:
 
 ```ts
-import { createApiClient } from "bindrunes";
+import { createApiClient } from "urupe-ui";
 
 const api = createApiClient({
   baseUrl: import.meta.env.VITE_API_URL,

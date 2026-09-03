@@ -4,17 +4,17 @@ Pre-composed page patterns organized by domain. Each domain provides a full set 
 
 ## Import
 
-Individual domain components are imported from `bindrunes/domains/<domain>`:
+Individual domain components are imported from `urupe-ui/domains/<domain>`:
 
 ```ts
-import { LoginForm, AuthLayout } from "bindrunes/domains/auth";
-import { DashboardHome, StatsOverview } from "bindrunes/domains/dashboard";
+import { LoginForm, AuthLayout } from "urupe-ui/domains/auth";
+import { DashboardHome, StatsOverview } from "urupe-ui/domains/dashboard";
 ```
 
-Pre-composed page templates that wire entire domains together are available from `bindrunes/layouts`:
+Pre-composed page templates that wire entire domains together are available from `urupe-ui/layouts`:
 
 ```ts
-import { AuthTemplate } from "bindrunes/layouts";
+import { AuthTemplate } from "urupe-ui/layouts";
 ```
 
 ## Templates
@@ -35,7 +35,7 @@ Full-page template components that compose domain components into ready-to-use p
 | `SettingsTemplate` | Tabbed settings with profile, security, and notifications |
 
 ```ts
-import { AuthTemplate } from "bindrunes/layouts";
+import { AuthTemplate } from "urupe-ui/layouts";
 ```
 
 ## Categories
@@ -43,7 +43,7 @@ import { AuthTemplate } from "bindrunes/layouts";
 ### Auth
 Authentication flows -- login, registration, password reset, email verification, 2FA, and social login.
 
-**Import from `bindrunes/domains/auth`:**
+**Import from `urupe-ui/domains/auth`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -61,7 +61,7 @@ Authentication flows -- login, registration, password reset, email verification,
 ### Dashboard
 Dashboard shell components -- stats, activity feeds, quick actions, and home layout.
 
-**Import from `bindrunes/domains/dashboard`:**
+**Import from `urupe-ui/domains/dashboard`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -74,7 +74,7 @@ Dashboard shell components -- stats, activity feeds, quick actions, and home lay
 ### Data
 CRUD operations, tables, import/export, and data management pages.
 
-**Import from `bindrunes/domains/data`:**
+**Import from `urupe-ui/domains/data`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -98,7 +98,7 @@ CRUD operations, tables, import/export, and data management pages.
 ### Calendar
 Scheduling and event management.
 
-**Import from `bindrunes/domains/calendar`:**
+**Import from `urupe-ui/domains/calendar`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -110,7 +110,7 @@ Scheduling and event management.
 ### Chat
 Real-time messaging components.
 
-**Import from `bindrunes/domains/chat`:**
+**Import from `urupe-ui/domains/chat`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -129,7 +129,7 @@ Real-time messaging components.
 ### Agentic Copilot
 Pre-built UI components for LLM chat interfaces.
 
-**Import from `bindrunes/domains/agentic`:**
+**Import from `urupe-ui/domains/agentic`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -146,7 +146,7 @@ Pre-built UI components for LLM chat interfaces.
 ### E-commerce
 Product display, cart, and checkout.
 
-**Import from `bindrunes/domains/ecommerce`:**
+**Import from `urupe-ui/domains/ecommerce`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -159,7 +159,7 @@ Product display, cart, and checkout.
 ### Landing
 Landing page building blocks -- hero sections, feature grids, pricing, testimonials, and more.
 
-**Import from `bindrunes/domains/landing`:**
+**Import from `urupe-ui/domains/landing`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -189,7 +189,7 @@ Landing page building blocks -- hero sections, feature grids, pricing, testimoni
 ### Marketing
 Blog, changelog, and promotional components.
 
-**Import from `bindrunes/domains/marketing`:**
+**Import from `urupe-ui/domains/marketing`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -209,7 +209,7 @@ Blog, changelog, and promotional components.
 ### Media
 File handling, uploads, and media players.
 
-**Import from `bindrunes/domains/media`:**
+**Import from `urupe-ui/domains/media`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -222,7 +222,7 @@ File handling, uploads, and media players.
 ### Portfolio
 Case studies and project showcases.
 
-**Import from `bindrunes/domains/portfolio`:**
+**Import from `urupe-ui/domains/portfolio`:**
 
 | Component | Description |
 |-----------|-------------|
@@ -233,7 +233,7 @@ Case studies and project showcases.
 ### Settings
 Account settings pages -- profile, security, notifications, danger zone.
 
-**Import from `bindrunes/domains/settings`:**
+**Import from `urupe-ui/domains/settings`:**
 
 | Component | Description |
 |-----------|-------------|

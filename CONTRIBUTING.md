@@ -1,11 +1,11 @@
-# Contributing to bindrunes
+# Contributing to urupe-ui
 
 ## Quick Start
 
 ```bash
 # Clone the repo
-git clone https://github.com/aleconstancio/bindrunes.git
-cd bindrunes
+git clone https://github.com/aleconstancio/urupe-ui.git
+cd urupe-ui
 
 # Install dependencies
 bun install
@@ -73,11 +73,11 @@ CSS files are formatted by Biome (tab indentation, 100 char lines) but Biome can
 
 ## AppProvider Requirement
 
-Every app must wrap its root layout in `<AppProvider>` from `bindrunes`:
+Every app must wrap its root layout in `<AppProvider>` from `urupe-ui`:
 
 ```svelte
 <script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -105,8 +105,8 @@ This initializes theme resolution, dark mode (via ModeWatcher), and density. Wit
 
 Avoid these patterns in v2 code:
 
-- **Barrel imports**: Never import from `bindrunes/domains` (barrel removed). Use `bindrunes/domains/<name>` for individual domains.
-- **Template imports**: Never import from `bindrunes/templates`. Templates are now in `bindrunes/layouts`.
+- **Barrel imports**: Never import from `urupe-ui/domains` (barrel removed). Use `urupe-ui/domains/<name>` for individual domains.
+- **Template imports**: Never import from `urupe-ui/templates`. Templates are now in `urupe-ui/layouts`.
 - **Legacy APIs**: Never use `SimulatorRuntime` or `provideWindowStore`. Use `createSimulatorRuntime` and `createWindowStoreProvider` instead.
 - **Console warnings**: Never use `console.warn` in library code. Use `devWarning()` for dev-only output.
 
@@ -117,20 +117,20 @@ Avoid these patterns in v2 code:
 The library has 14+ export paths:
 
 ```ts
-import { /* core */ } from "bindrunes";
-import { /* server */ } from "bindrunes/server";
-import { /* responsive */ } from "bindrunes/responsive";
-import { /* motion */ } from "bindrunes/motion";
-import { /* data */ } from "bindrunes/data";
-import { /* forms */ } from "bindrunes/forms";
-import { /* auth */ } from "bindrunes/auth";
-import { /* domain */ } from "bindrunes/domains/<name>";
-import { /* layouts */ } from "bindrunes/layouts";
-import { /* agentic */ } from "bindrunes/agentic";
-import { /* playground */ } from "bindrunes/playground";
-import "bindrunes/styles/<name>.css";
-import "bindrunes/i18n/<locale>.json";
-import "bindrunes/tailwind";
+import { /* core */ } from "urupe-ui";
+import { /* server */ } from "urupe-ui/server";
+import { /* responsive */ } from "urupe-ui/responsive";
+import { /* motion */ } from "urupe-ui/motion";
+import { /* data */ } from "urupe-ui/data";
+import { /* forms */ } from "urupe-ui/forms";
+import { /* auth */ } from "urupe-ui/auth";
+import { /* domain */ } from "urupe-ui/domains/<name>";
+import { /* layouts */ } from "urupe-ui/layouts";
+import { /* agentic */ } from "urupe-ui/agentic";
+import { /* playground */ } from "urupe-ui/playground";
+import "urupe-ui/styles/<name>.css";
+import "urupe-ui/i18n/<locale>.json";
+import "urupe-ui/tailwind";
 ```
 
 ---
@@ -139,8 +139,8 @@ import "bindrunes/tailwind";
 
 1. **Components**: Place in `src/domains/<domain>/` and export from the domain barrel. Add test files co-located next to implementation with `vitest-axe` assertions.
 2. **Composables**: Place in `src/utils/` and suffix with `.svelte.ts` if runes are used. Add tests using the `mountComposable` helper.
-3. **Layouts**: Place in `src/layouts/` for full-page template components. Export from `bindrunes/layouts`.
-4. **Themes & Aesthetics**: Define color custom properties (`themes/`) or layout tokens (`aesthetics/`). Import styles from `bindrunes/styles/`.
+3. **Layouts**: Place in `src/layouts/` for full-page template components. Export from `urupe-ui/layouts`.
+4. **Themes & Aesthetics**: Define color custom properties (`themes/`) or layout tokens (`aesthetics/`). Import styles from `urupe-ui/styles/`.
 
 ---
 
@@ -180,9 +180,9 @@ CI uses `bun install --frozen-lockfile`. Always commit `bun.lock` when adding or
 
 Packages build before consumers. `turbo.json` uses `"dependsOn": ["^build"]` for cascading builds:
 
-- `^build` — build upstream dependencies first (e.g., build bindrunes before showcase)
+- `^build` — build upstream dependencies first (e.g., build urupe-ui before showcase)
 - `build` (no caret) — build the current package only
-- Vercel workflow builds bindrunes explicitly first (`bunx turbo run build --filter=bindrunes`), then builds the showcase with `vercel build`
+- Vercel workflow builds urupe-ui explicitly first (`bunx turbo run build --filter=urupe-ui`), then builds the showcase with `vercel build`
 
 ---
 

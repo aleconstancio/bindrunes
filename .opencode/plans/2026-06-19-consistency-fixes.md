@@ -165,7 +165,7 @@ export { default as AuthGuard } from "./components/AuthGuard.svelte";
 
 - Update `src/index.ts` to use new paths
 - Update all internal imports across the codebase
-- Update `src/bindrunes-stub.ts`
+- Update `src/urupe-ui-stub.ts`
 
 ### Task 2.8: Clean up empty components directory
 
@@ -199,7 +199,7 @@ export { default as AuthGuard } from "./components/AuthGuard.svelte";
 
 ### Task 3.5: Update docs/boundrunes.md
 
-- Fix `bindrunes/boundrune` → `bindrunes/templates` or `bindrunes/domains`
+- Fix `urupe-ui/boundrune` → `urupe-ui/templates` or `urupe-ui/domains`
 - Update component references
 
 ### Task 3.6: Update docs/landing.md

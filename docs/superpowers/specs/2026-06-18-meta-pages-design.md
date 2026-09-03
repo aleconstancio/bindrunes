@@ -2,7 +2,7 @@
 
 ## Problem
 
-Building pages with bindrunes requires manual composition of 8-10 components, repeated boilerplate (`<section class="px-6 py-16 section-reveal"><div class="mx-auto max-w-6xl">`), and separate systems for landing vs app pages. No layout flexibility — left/right/top bars aren't composable.
+Building pages with urupe-ui requires manual composition of 8-10 components, repeated boilerplate (`<section class="px-6 py-16 section-reveal"><div class="mx-auto max-w-6xl">`), and separate systems for landing vs app pages. No layout flexibility — left/right/top bars aren't composable.
 
 ## Solution: Three-Layer Architecture
 
@@ -126,7 +126,7 @@ interface PageSectionProps {
 
 Pre-composed templates using `PageShell` + `PageSection`.
 
-#### `MarketingPage` (export from `bindrunes/landing`)
+#### `MarketingPage` (export from `urupe-ui/landing`)
 
 Data-driven landing page. Accepts data for every section; omitted sections don't render.
 
@@ -255,7 +255,7 @@ interface MarketingPageProps {
 
 **Snippet overrides:** Every section has a `*Snippet` prop that replaces the default rendering entirely. This enables full customization without breaking the data-driven flow.
 
-#### `DashboardPage` (export from `bindrunes/boundrune`)
+#### `DashboardPage` (export from `urupe-ui/boundrune`)
 
 App shell with sidebar navigation.
 
@@ -335,7 +335,7 @@ interface DashboardPageProps {
 </PageShell>
 ```
 
-#### `CrudPage` (export from `bindrunes/boundrune`)
+#### `CrudPage` (export from `urupe-ui/boundrune`)
 
 List + detail split layout. Uses `PageShell` directly (not nested inside `DashboardPage`).
 
@@ -413,7 +413,7 @@ src/components/boundrune/CrudPage.svelte      # CRUD page template
 - All existing types (CTA, Feature, Plan, etc.)
 - Manual composition approach still works
 - Block, MetaContainer, LandingSection primitives
-- Import paths (`bindrunes/landing`, `bindrunes/boundrune`)
+- Import paths (`urupe-ui/landing`, `urupe-ui/boundrune`)
 
 ## Deprecation (soft, not breaking)
 
@@ -423,14 +423,14 @@ src/components/boundrune/CrudPage.svelte      # CRUD page template
 ## Export Additions
 
 ```ts
-// Root export (bindrunes)
+// Root export (urupe-ui)
 export { default as PageShell } from "./components/PageShell.svelte";
 export { default as PageSection } from "./components/PageSection.svelte";
 
-// bindrunes/landing
+// urupe-ui/landing
 export { default as MarketingPage } from "./components/landing/MarketingPage.svelte";
 
-// bindrunes/boundrune
+// urupe-ui/boundrune
 export { default as DashboardPage } from "./components/boundrune/DashboardPage.svelte";
 export { default as CrudPage } from "./components/boundrune/CrudPage.svelte";
 ```

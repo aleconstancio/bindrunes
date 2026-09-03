@@ -13,7 +13,7 @@ import {
   FAQ,
   Newsletter,
   SiteFooter,
-} from "bindrunes/domains/landing";
+} from "urupe-ui/domains/landing";
 import {
   ArrowRight,
   Zap,
@@ -85,9 +85,9 @@ const stats = [
 ];
 
 const testimonials = [
-  { quote: "bindrunes transformed how we ship features. What used to take weeks now takes days.", author: "Sarah Chen", role: "CTO, TechFlow Inc.", avatarFallback: "SC" },
+  { quote: "urupe-ui transformed how we ship features. What used to take weeks now takes days.", author: "Sarah Chen", role: "CTO, TechFlow Inc.", avatarFallback: "SC" },
   { quote: "The three-axis design system is a game-changer. Our brand team loves the flexibility.", author: "Marcus Johnson", role: "Lead Engineer, DataSync", avatarFallback: "MJ" },
-  { quote: "We evaluated 12 platforms. bindrunes was the only one that checked every box.", author: "Priya Patel", role: "VP Product, CloudBase", avatarFallback: "PP" },
+  { quote: "We evaluated 12 platforms. urupe-ui was the only one that checked every box.", author: "Priya Patel", role: "VP Product, CloudBase", avatarFallback: "PP" },
 ];
 
 const plans = [
@@ -117,7 +117,7 @@ const plans = [
 ];
 
 const faqItems = [
-  { question: "What is bindrunes?", answer: "bindrunes is a modern Svelte 5 component library and design system for building B2B SaaS applications at scale." },
+  { question: "What is urupe-ui?", answer: "urupe-ui is a modern Svelte 5 component library and design system for building B2B SaaS applications at scale." },
   { question: "How does the three-axis design system work?", answer: "Theme controls color identity, aesthetic controls form (radius, shadow, motion), and density controls spacing. They are completely independent — any combination works." },
   { question: "Can I customize the themes?", answer: "Yes. You can extend any built-in theme, create custom themes with defineTheme(), or use ThemeStudio for live editing and CSS export." },
   { question: "Is there a free trial?", answer: "Yes, all plans come with a 14-day free trial. No credit card required." },
@@ -128,7 +128,7 @@ const faqItems = [
 
 <div class="landing-page">
   <LandingNav
-    logo={{ href: "/", label: "bindrunes" }}
+    logo={{ href: "/", label: "urupe-ui" }}
     links={navLinks}
     cta={{ label: "Get Started", href: "/signup" }}
     sectionIds={["features", "how-it-works", "pricing", "testimonials", "faq"]}
@@ -162,7 +162,7 @@ const faqItems = [
       <div class="mx-auto max-w-6xl">
         <h2 class="text-center text-display-3 text-foreground">Everything you need to ship faster</h2>
         <p class="mx-auto mt-4 max-w-2xl text-center text-body-lg text-muted-foreground">
-          From UI components to data layer, auth, and theming — bindrunes gives you the full stack for building modern SaaS applications.
+          From UI components to data layer, auth, and theming — urupe-ui gives you the full stack for building modern SaaS applications.
         </p>
         <div class="mt-12">
           <FeatureGrid {features} columns={3} variant="card" />
@@ -194,7 +194,7 @@ const faqItems = [
       <div class="mx-auto max-w-6xl">
         <h2 class="text-center text-display-3 text-foreground">Loved by engineering teams</h2>
         <p class="mx-auto mt-4 max-w-2xl text-center text-body-lg text-muted-foreground">
-          See what our customers have to say about building with bindrunes.
+          See what our customers have to say about building with urupe-ui.
         </p>
         <div class="mt-12">
           <TestimonialGrid testimonials={testimonials} columns={3} />
@@ -222,7 +222,7 @@ const faqItems = [
       <div class="mx-auto max-w-6xl">
         <h2 class="text-center text-display-3 text-foreground">Frequently asked questions</h2>
         <p class="mx-auto mt-4 max-w-2xl text-center text-body-lg text-muted-foreground">
-          Everything you need to know about bindrunes.
+          Everything you need to know about urupe-ui.
         </p>
         <div class="mx-auto mt-12 max-w-3xl">
           <FAQ items={faqItems} />
@@ -233,7 +233,7 @@ const faqItems = [
 
   <section class="section-reveal" aria-label="Call to action">
     <HeroBanner
-      description="Join thousands of teams already building with bindrunes. Start your free trial today."
+      description="Join thousands of teams already building with urupe-ui. Start your free trial today."
       ctas={[{ label: "Get Started Free", href: "/signup", icon: ArrowRight }]}
       footnote={{ title: "14-day free trial.", description: "No credit card required." }}
       level={2}
@@ -245,7 +245,7 @@ const faqItems = [
   </main>
 
   <SiteFooter
-    logo={{ label: "bindrunes" }}
+    logo={{ label: "urupe-ui" }}
     links={[
       { label: "Docs", href: "/docs" },
       { label: "Blog", href: "/blog" },

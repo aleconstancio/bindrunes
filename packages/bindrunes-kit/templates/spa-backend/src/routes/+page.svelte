@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Card, PageSection } from "bindrunes";
+  import { Button, Card, PageSection } from "urupe-ui";
 </script>
 
 <PageSection size="2xl" spacing="wide" reveal={false}>

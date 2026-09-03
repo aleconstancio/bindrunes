@@ -61,8 +61,8 @@ const vars: Record<Variant, string> = {
     aria-label={interactive ? ariaLabel : undefined}
     class="block rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
-           {interactive && !hover ? 'bindrunes-card-interactive' : ''}
-           {hover && hover !== 'none' ? `bindrunes-card-hover-${hover}` : ''}
+           {interactive && !hover ? 'urupe-ui-card-interactive' : ''}
+           {hover && hover !== 'none' ? `urupe-ui-card-hover-${hover}` : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
     style="contain: layout style paint;"
@@ -77,8 +77,8 @@ const vars: Record<Variant, string> = {
   <div
     class="rounded-[--radius,0.5rem] transition-all duration-[--duration-fluid]
            {vars[variant]} {padding ? 'p-[--card-padding,1rem]' : ''}
-           {interactive && !hover ? 'bindrunes-card-interactive' : ''}
-           {hover && hover !== 'none' ? `bindrunes-card-hover-${hover}` : ''}
+           {interactive && !hover ? 'urupe-ui-card-interactive' : ''}
+           {hover && hover !== 'none' ? `urupe-ui-card-hover-${hover}` : ''}
            {responsive ? 'container-queries' : ''}
            {className}"
     style="contain: layout style paint;"
@@ -96,45 +96,45 @@ const vars: Record<Variant, string> = {
 {/if}
 
 <style>
-  :global(.bindrunes-card-interactive) {
+  :global(.urupe-ui-card-interactive) {
     cursor: pointer;
     transition: border-color var(--duration-fluid), box-shadow var(--duration-fluid), transform var(--duration-fluid);
   }
-  :global(.bindrunes-card-interactive:hover) {
+  :global(.urupe-ui-card-interactive:hover) {
     border-color: oklch(from var(--primary) l c h / 0.22);
     box-shadow: var(--shadow-emphasis-resolved, var(--shadow-lg));
     transform: translateY(-2px);
   }
-  :global(.bindrunes-card-interactive:active) {
+  :global(.urupe-ui-card-interactive:active) {
     transform: translateY(0) scale(0.99);
     box-shadow: var(--shadow-sm);
   }
-  :global(.bindrunes-card-hover-lift) {
+  :global(.urupe-ui-card-hover-lift) {
     cursor: pointer;
     transition: transform var(--duration-fluid), box-shadow var(--duration-fluid);
   }
-  :global(.bindrunes-card-hover-lift:hover) {
+  :global(.urupe-ui-card-hover-lift:hover) {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
   }
-  :global(.bindrunes-card-hover-lift:active) {
+  :global(.urupe-ui-card-hover-lift:active) {
     transform: translateY(0);
   }
-  :global(.bindrunes-card-hover-glow) {
+  :global(.urupe-ui-card-hover-glow) {
     cursor: pointer;
     transition: box-shadow var(--duration-fluid);
   }
-  :global(.bindrunes-card-hover-glow:hover) {
+  :global(.urupe-ui-card-hover-glow:hover) {
     box-shadow: var(--shadow-glow-primary);
   }
-  :global(.bindrunes-card-hover-scale) {
+  :global(.urupe-ui-card-hover-scale) {
     cursor: pointer;
     transition: transform var(--duration-fluid);
   }
-  :global(.bindrunes-card-hover-scale:hover) {
+  :global(.urupe-ui-card-hover-scale:hover) {
     transform: scale(1.02);
   }
-  :global(.bindrunes-card-hover-scale:active) {
+  :global(.urupe-ui-card-hover-scale:active) {
     transform: scale(1);
   }
 </style>

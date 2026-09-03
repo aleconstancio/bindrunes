@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { PageHeader } from "bindrunes/layouts";
-	import { Card, Badge } from "bindrunes";
-	import { DocsLayout } from "bindrunes/domains/marketing";
+	import { PageHeader } from "urupe-ui/layouts";
+	import { Card, Badge } from "urupe-ui";
+	import { DocsLayout } from "urupe-ui/domains/marketing";
 
 	const sections = [
 		{ id: "getting-started", title: "Getting Started" },
@@ -25,7 +25,7 @@
 		<section id="getting-started" class="space-y-4">
 			<h1 class="text-display-3 text-foreground">Getting Started</h1>
 			<p class="text-body-lg text-muted-foreground">
-				bindrunes is a comprehensive Svelte 5 component library with a three-axis design system.
+				urupe-ui is a comprehensive Svelte 5 component library with a three-axis design system.
 				It provides 160+ components, 47 composables, and pre-built page patterns for SaaS applications.
 			</p>
 			<div class="flex gap-2">
@@ -39,10 +39,10 @@
 		<section id="installation" class="space-y-4">
 			<h2 class="text-display-3 text-foreground">Installation</h2>
 			<p class="text-body text-muted-foreground">
-				Install bindrunes and its peer dependencies using your preferred package manager.
+				Install urupe-ui and its peer dependencies using your preferred package manager.
 			</p>
 			<div class="rounded-[--radius-lg] bg-muted p-4 font-mono text-body-sm text-foreground">
-				<p>bun add bindrunes</p>
+				<p>bun add urupe-ui</p>
 				<p>bun add svelte tailwindcss lucide-svelte mode-watcher svelte-sonner</p>
 			</div>
 			<p class="text-body text-muted-foreground">
@@ -120,7 +120,7 @@
 				Auto-generated <code class="px-1.5 py-0.5 rounded bg-muted text-foreground font-mono text-body-sm">.d.ts</code> files are included in the package.
 			</p>
 			<p class="text-body text-muted-foreground">
-				See the <a href="https://github.com/aleconstancio/bindrunes" class="text-primary hover:underline">GitHub repository</a> for source code and type definitions.
+				See the <a href="https://github.com/aleconstancio/urupe-ui" class="text-primary hover:underline">GitHub repository</a> for source code and type definitions.
 			</p>
 		</section>
 	</div>

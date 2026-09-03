@@ -1,7 +1,7 @@
-# bindrunes Full Potential — Design Spec
+# urupe-ui Full Potential — Design Spec
 
 **Date:** 2026-06-19
-**Goal:** Complete all outstanding audit items, build the interactive playground, and raise test coverage — making bindrunes production-ready for its consumers.
+**Goal:** Complete all outstanding audit items, build the interactive playground, and raise test coverage — making urupe-ui production-ready for its consumers.
 
 ---
 

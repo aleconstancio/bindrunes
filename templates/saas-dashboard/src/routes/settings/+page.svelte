@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Card, Button, Input, Separator, Tabs, TabsList, TabsTrigger, TabsContent } from "bindrunes";
-  import { User, Bell, Shield, CreditCard } from "lucide-svelte";
+import { Bell, CreditCard, Shield, User } from "lucide-svelte";
+import { Button, Card, Input, Separator, Tabs, TabsContent, TabsList, TabsTrigger } from "urupe-ui";
 
-  let activeTab = $state("profile");
+let activeTab = $state("profile");
 </script>
 
 <div class="flex min-h-screen bg-background">

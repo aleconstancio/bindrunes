@@ -1,4 +1,4 @@
-/* bindrunes — @property type-safety for animations and JS reads */
+/* urupe-ui — @property type-safety for animations and JS reads */
 @property --radius {
 	syntax: "<length>";
 	initial-value: 0.5rem;

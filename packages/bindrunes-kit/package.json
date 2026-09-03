@@ -1,17 +1,17 @@
 {
 	"name": "bindrunes-kit",
 	"version": "1.0.0",
-	"description": "SvelteKit meta-framework extension for bindrunes — SSR, auth, i18n, adapters",
+	"description": "SvelteKit meta-framework extension for urupe-ui — SSR, auth, i18n, adapters",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/aleconstancio/bindrunes.git",
+		"url": "https://github.com/aleconstancio/urupe-ui.git",
 		"directory": "packages/bindrunes-kit"
 	},
-	"homepage": "https://github.com/aleconstancio/bindrunes#readme",
+	"homepage": "https://github.com/aleconstancio/urupe-ui#readme",
 	"bugs": {
-		"url": "https://github.com/aleconstancio/bindrunes/issues"
+		"url": "https://github.com/aleconstancio/urupe-ui/issues"
 	},
 	"files": [
 		"dist",
@@ -52,7 +52,7 @@
 		"test:ci": "vitest run --coverage --reporter=verbose"
 	},
 	"dependencies": {
-		"bindrunes": "workspace:*",
+		"urupe-ui": "workspace:*",
 		"valibot": "^1.4.1"
 	},
 	"peerDependencies": {

@@ -2,7 +2,7 @@
 
 ## Problem
 
-The bindrunes documentation has drifted significantly from the codebase reality:
+The urupe-ui documentation has drifted significantly from the codebase reality:
 
 1. **Count contradictions**: README says "200+", AGENTS.md says "170+", index.md says "239 components, 33 composables, 13 domain categories" — all different.
 2. **Missing package**: `bindrunes-kit` (SvelteKit meta-framework) is not mentioned in root docs, README, or AGENTS.md.

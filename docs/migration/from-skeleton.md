@@ -1,17 +1,17 @@
-# Migration Guide: Skeleton UI to bindrunes
+# Migration Guide: Skeleton UI to urupe-ui
 
-This guide covers migrating from Skeleton UI (the SvelteKit-first component library) to bindrunes. Both libraries are component libraries for Svelte with built-in theming, but they differ significantly in theme architecture, color system, and customization model.
+This guide covers migrating from Skeleton UI (the SvelteKit-first component library) to urupe-ui. Both libraries are component libraries for Svelte with built-in theming, but they differ significantly in theme architecture, color system, and customization model.
 
 ## Component Mapping
 
-| Skeleton UI | bindrunes | Notes |
+| Skeleton UI | urupe-ui | Notes |
 |---|---|---|
 | `Accordion`, `AccordionItem`, `AccordionControl`, `AccordionPanel` | `Accordion`, `AccordionItem` | Simplified API |
 | `Alert` | `Alert` | Same API |
 | `Avatar`, `AvatarGroup` | `Avatar` | Group support may need custom layout |
 | `Badge` | `Badge` | Different variant names |
 | `Breadcrumb`, `BreadcrumbItem` | `Breadcrumb` | Single component |
-| `button` (Tailwind directive) | `Button` | Skeleton uses Tailwind classes; bindrunes uses a component |
+| `button` (Tailwind directive) | `Button` | Skeleton uses Tailwind classes; urupe-ui uses a component |
 | `Card`, `CardHeader`, `CardBody`, `CardFooter` | `Card` | Single component with slots |
 | `ConicGradient` | — | Use CSS `conic-gradient()` directly |
 | `Drawer` | `Drawer` | Direct mapping |
@@ -37,15 +37,15 @@ This guide covers migrating from Skeleton UI (the SvelteKit-first component libr
 | `Table`, `TableHead`, `TableRow`, `TableCell` | `DataTable` | Higher-level component |
 | `Toast`, `toastStore` | `ToastProvider` + `createToast()` | Composable-based |
 | `Tooltip` | `Tooltip` | Direct mapping |
-| — | `Combobox` | bindrunes-only |
-| — | `DatePicker` | bindrunes-only |
-| — | `TreeView` | bindrunes-only |
-| — | `RichTextEditor` | bindrunes-only |
-| — | `Stepper` | bindrunes-only |
+| — | `Combobox` | urupe-ui-only |
+| — | `DatePicker` | urupe-ui-only |
+| — | `TreeView` | urupe-ui-only |
+| — | `RichTextEditor` | urupe-ui-only |
+| — | `Stepper` | urupe-ui-only |
 
 ## Theme System Migration
 
-This is the most significant change. Skeleton uses a single-theme color palette with HSL CSS variables and CSS layers. bindrunes uses a 3-axis system (theme x aesthetic x density) with OKLCH color tokens.
+This is the most significant change. Skeleton uses a single-theme color palette with HSL CSS variables and CSS layers. urupe-ui uses a 3-axis system (theme x aesthetic x density) with OKLCH color tokens.
 
 ### Before (Skeleton UI)
 
@@ -129,15 +129,15 @@ export default {
 };
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
-bindrunes replaces the entire Skeleton theme system. You no longer need a `theme.postcss` file, a custom `tailwind.config.ts` plugin, or a 50-950 color scale.
+urupe-ui replaces the entire Skeleton theme system. You no longer need a `theme.postcss` file, a custom `tailwind.config.ts` plugin, or a 50-950 color scale.
 
 **Setup (`app.css`):**
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 **Choose a preset theme:**
@@ -155,7 +155,7 @@ Or pick from any built-in theme:
 
 **Custom theme with `defineTheme()`:**
 ```ts
-import { defineTheme } from "bindrunes";
+import { defineTheme } from "urupe-ui";
 
 const myBrand = defineTheme("my-brand", {
   // 16 tokens replace Skeleton's 50-950 scale
@@ -180,11 +180,11 @@ const myBrand = defineTheme("my-brand", {
 myBrand.apply();
 ```
 
-### Skeleton vs bindrunes Token Comparison
+### Skeleton vs urupe-ui Token Comparison
 
-| Skeleton Token | bindrunes Token | Notes |
+| Skeleton Token | urupe-ui Token | Notes |
 |---|---|---|
-| `--color-primary-50` to `--color-primary-950` | `--primary` + `--primary-foreground` | bindrunes uses single primary color, not a 10-step scale |
+| `--color-primary-50` to `--color-primary-950` | `--primary` + `--primary-foreground` | urupe-ui uses single primary color, not a 10-step scale |
 | `--color-secondary-50` to `--color-secondary-950` | `--accent` + `--accent-foreground` | Maps to accent |
 | `--color-tertiary-*` | `--info` | Tertiary maps to info |
 | `--color-surface-50` to `--color-surface-950` | `--background`, `--surface-1/2/3`, `--card-solid` | Surface hierarchy via named tokens |
@@ -203,7 +203,7 @@ myBrand.apply();
 
 ### Key Theme Differences
 
-| Aspect | Skeleton | bindrunes |
+| Aspect | Skeleton | urupe-ui |
 |---|---|---|
 | Color space | HSL (via Tailwind `oklch`) | OKLCH (native CSS) |
 | Color scale | 50-950 per color | Single token per role |
@@ -252,30 +252,30 @@ export default {
 }
 ```
 
-### After (bindrunes)
+### After (urupe-ui)
 
 ```bash
-npm install bindrunes
+npm install urupe-ui
 ```
 
 `app.css`:
 ```css
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 Optionally import specific aesthetics:
 ```css
-@import "bindrunes/styles/aesthetics/glass.css";
-@import "bindrunes/styles/aesthetics/bento.css";
-@import "bindrunes/styles/aesthetics/expressive.css";
+@import "urupe-ui/styles/aesthetics/glass.css";
+@import "urupe-ui/styles/aesthetics/bento.css";
+@import "urupe-ui/styles/aesthetics/expressive.css";
 ```
 
 `+layout.svelte`:
 ```svelte
 <script lang="ts">
-  import { AppProvider } from "bindrunes";
+  import { AppProvider } from "urupe-ui";
 </script>
 
 <AppProvider>
@@ -298,8 +298,8 @@ Remove from `tailwind.config.ts`:
 
 ### Migration Steps
 
-1. **Install bindrunes:** `npm install bindrunes`
-2. **Update `app.css`:** Replace Skeleton imports with bindrunes imports
+1. **Install urupe-ui:** `npm install urupe-ui`
+2. **Update `app.css`:** Replace Skeleton imports with urupe-ui imports
 3. **Choose a theme:** Start with `editorial` or map your Skeleton colors to a preset
 4. **Add `AppProvider`:** Wrap your root layout
 5. **Replace button classes:** Skeleton's `btn` / `btn-*` classes become `<Button>` components

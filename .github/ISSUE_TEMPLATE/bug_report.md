@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug in bindrunes
+about: Report a bug in urupe-ui
 title: "[Bug] "
 labels: bug
 ---
@@ -28,7 +28,7 @@ If possible, provide a minimal reproduction:
 
 ## Environment
 
-- bindrunes version:
+- urupe-ui version:
 - Svelte version:
 - Browser:
 - OS:

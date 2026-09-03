@@ -1,12 +1,12 @@
 <script lang="ts">
-import { Badge, CodeSnippet } from "bindrunes";
+import { Badge, CodeSnippet } from "urupe-ui";
 </script>
 
 <div class="p-6 lg:p-8 max-w-4xl">
   <Badge variant="primary">Docs</Badge>
   <h1 class="mt-4 text-display-1 text-foreground">Contributing</h1>
   <p class="mt-3 text-body-lg text-muted-foreground">
-    How to contribute to bindrunes.
+    How to contribute to urupe-ui.
   </p>
 
   <div class="mt-10 space-y-10">
@@ -14,8 +14,8 @@ import { Badge, CodeSnippet } from "bindrunes";
       <h2 class="text-title-1 text-foreground mb-4">Quick Start</h2>
       <CodeSnippet language="bash" title="Terminal">
 {`# Clone the repo
-git clone https://github.com/aleconstancio/bindrunes.git
-cd bindrunes
+git clone https://github.com/aleconstancio/urupe-ui.git
+cd urupe-ui
 
 # Install dependencies
 bun install

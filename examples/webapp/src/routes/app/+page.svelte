@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { PageHeader, ErrorBoundary } from "bindrunes/layouts";
-	import { MetricCard, Card, Badge, PageLoading } from "bindrunes";
-  import { AdvancedTable } from "bindrunes/domains/data";
+  import { PageHeader, ErrorBoundary } from "urupe-ui/layouts";
+	import { MetricCard, Card, Badge, PageLoading } from "urupe-ui";
+  import { AdvancedTable } from "urupe-ui/domains/data";
   import { TrendingUp, Users, DollarSign, Activity } from "lucide-svelte";
 
   let loading = $state(true);

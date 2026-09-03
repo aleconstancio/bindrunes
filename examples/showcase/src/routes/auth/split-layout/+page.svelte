@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AuthLayout, LoginForm } from "bindrunes/domains/auth";
+	import { AuthLayout, LoginForm } from "urupe-ui/domains/auth";
 	import { goto } from "$app/navigation";
 </script>
 
@@ -8,7 +8,7 @@
 </div>
 
 <AuthLayout
-	brandTitle="bindrunes"
+	brandTitle="urupe-ui"
 	brandDescription="A modern Svelte 5 component library for building beautiful applications."
 >
 	<LoginForm

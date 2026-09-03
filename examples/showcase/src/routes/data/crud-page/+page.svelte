@@ -1,5 +1,5 @@
 <script lang="ts">
-import { CrudTemplate } from "bindrunes/layouts";
+import { CrudTemplate } from "urupe-ui/layouts";
 
 const users = [
   { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin" },

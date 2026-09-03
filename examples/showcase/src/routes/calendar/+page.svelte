@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { CalendarTemplate } from "bindrunes/layouts";
-	import { EventCalendar } from "bindrunes/domains/calendar";
-	import { Scheduler } from "bindrunes/domains/calendar";
-	import { BookingForm } from "bindrunes/domains/calendar";
-	import { AvailabilityGrid } from "bindrunes/domains/calendar";
+	import { CalendarTemplate } from "urupe-ui/layouts";
+	import { EventCalendar } from "urupe-ui/domains/calendar";
+	import { Scheduler } from "urupe-ui/domains/calendar";
+	import { BookingForm } from "urupe-ui/domains/calendar";
+	import { AvailabilityGrid } from "urupe-ui/domains/calendar";
 
 	const today = new Date().toISOString().split("T")[0]!;
 

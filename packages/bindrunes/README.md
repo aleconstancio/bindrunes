@@ -1,29 +1,29 @@
-# bindrunes
+# urupe-ui
 
-[![CI](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/bindrunes/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/bindrunes)](https://www.npmjs.com/package/bindrunes)
-[![license](https://img.shields.io/npm/l/bindrunes)](https://github.com/aleconstancio/bindrunes/blob/main/LICENSE)
+[![CI](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/aleconstancio/urupe-ui/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/urupe-ui)](https://www.npmjs.com/package/urupe-ui)
+[![license](https://img.shields.io/npm/l/urupe-ui)](https://github.com/aleconstancio/urupe-ui/blob/main/LICENSE)
 
 Svelte 5 component library for B2B SaaS. Server-first rendering, responsive hybrid, 234 components, 25 composables.
 
 ## Quick Start
 
 ```bash
-bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
+bun add urupe-ui svelte tailwindcss lucide-svelte svelte-sonner
 ```
 
 ```css
 /* app.css */
 @import "tailwindcss";
-@plugin "bindrunes/tailwind";
-@import "bindrunes/styles/global.css";
+@plugin "urupe-ui/tailwind";
+@import "urupe-ui/styles/global.css";
 ```
 
 ```svelte
 <!-- +layout.svelte -->
 <script lang="ts">
   import "../app.css";
-  import { ThemeProvider } from "bindrunes";
+  import { ThemeProvider } from "urupe-ui";
   let { children } = $props();
 </script>
 
@@ -35,7 +35,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 ```svelte
 <!-- +page.svelte -->
 <script lang="ts">
-  import { Button, Card } from "bindrunes";
+  import { Button, Card } from "urupe-ui";
 </script>
 
 <Card variant="glass" responsive>
@@ -51,7 +51,7 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 - **Mobile gestures** — `useSwipe()`, `useLongPress()`, `useHaptic()` composables. BottomSheet and SwipeableList components.
 - **Motion system** — `<Transition>`, `<AnimatePresence>`, `<Stagger>`, `<PageTransition>`, scroll-reveal CSS.
 - **Runtime optimization** — `useMemo()`, `useWorker()`, `useLazyLoad()` composables. CSS containment on components.
-- **Tree-shakeable** — Split entry points: `bindrunes/data`, `bindrunes/forms`, `bindrunes/auth` for lazy loading.
+- **Tree-shakeable** — Split entry points: `urupe-ui/data`, `urupe-ui/forms`, `urupe-ui/auth` for lazy loading.
 - **Three-axis design system** — Theme (color), aesthetic (form), density (spacing). Any combination works.
 - **Svelte 5 runes** — `$state`, `$derived`, `$effect` only. No legacy stores.
 - **4-layer architecture** — Primitives → Layouts → Domains → Templates.
@@ -81,19 +81,19 @@ bun add bindrunes svelte tailwindcss lucide-svelte svelte-sonner
 
 | Path | What |
 |------|------|
-| `bindrunes` | Primitives, composables, utilities, types |
-| `bindrunes/server` | SSR-safe utilities (no runes, no browser APIs) |
-| `bindrunes/responsive` | Viewport, gesture, haptic, motion composables |
-| `bindrunes/motion` | Transition, AnimatePresence, Stagger, PageTransition |
-| `bindrunes/data` | Data layer (useQuery, useMutation, useTable) — lazy-loadable |
-| `bindrunes/forms` | Form layer (useForm, useWizard) — lazy-loadable |
-| `bindrunes/auth` | Auth layer (useAuth, useAccess) — lazy-loadable |
-| `bindrunes/layouts` | Layouts + templates |
-| `bindrunes/domains/<name>` | Domain components (e.g. `bindrunes/domains/auth`) |
-| `bindrunes/agentic` | Agentic chat kernel |
-| `bindrunes/tailwind` | Tailwind CSS v4 plugin |
-| `bindrunes/styles/*` | Theme and global CSS |
-| `bindrunes/i18n/*` | Translation dictionaries |
+| `urupe-ui` | Primitives, composables, utilities, types |
+| `urupe-ui/server` | SSR-safe utilities (no runes, no browser APIs) |
+| `urupe-ui/responsive` | Viewport, gesture, haptic, motion composables |
+| `urupe-ui/motion` | Transition, AnimatePresence, Stagger, PageTransition |
+| `urupe-ui/data` | Data layer (useQuery, useMutation, useTable) — lazy-loadable |
+| `urupe-ui/forms` | Form layer (useForm, useWizard) — lazy-loadable |
+| `urupe-ui/auth` | Auth layer (useAuth, useAccess) — lazy-loadable |
+| `urupe-ui/layouts` | Layouts + templates |
+| `urupe-ui/domains/<name>` | Domain components (e.g. `urupe-ui/domains/auth`) |
+| `urupe-ui/agentic` | Agentic chat kernel |
+| `urupe-ui/tailwind` | Tailwind CSS v4 plugin |
+| `urupe-ui/styles/*` | Theme and global CSS |
+| `urupe-ui/i18n/*` | Translation dictionaries |
 
 ## Development
 

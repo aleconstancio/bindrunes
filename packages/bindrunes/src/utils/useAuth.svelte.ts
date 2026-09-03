@@ -18,16 +18,16 @@ export interface AuthStorage {
 }
 
 const DEFAULT_STORAGE: AuthStorage = {
-	getToken: () => (isBrowser ? localStorage.getItem("bindrunes_token") : null),
+	getToken: () => (isBrowser ? localStorage.getItem("urupe-ui_token") : null),
 	setToken: (token: string) => {
-		if (isBrowser) localStorage.setItem("bindrunes_token", token);
+		if (isBrowser) localStorage.setItem("urupe-ui_token", token);
 	},
 	clearToken: () => {
-		if (isBrowser) localStorage.removeItem("bindrunes_token");
+		if (isBrowser) localStorage.removeItem("urupe-ui_token");
 	},
 	getUser: () => {
 		if (!isBrowser) return null;
-		const stored = localStorage.getItem("bindrunes_user");
+		const stored = localStorage.getItem("urupe-ui_user");
 		if (!stored) return null;
 		try {
 			const parsed = JSON.parse(stored);
@@ -46,7 +46,7 @@ const DEFAULT_STORAGE: AuthStorage = {
 			return success ? (output as User) : null;
 		} catch {
 			try {
-				localStorage.removeItem("bindrunes_user");
+				localStorage.removeItem("urupe-ui_user");
 			} catch {}
 			return null;
 		}
@@ -54,14 +54,14 @@ const DEFAULT_STORAGE: AuthStorage = {
 	setUser: (user: User) => {
 		if (isBrowser) {
 			try {
-				localStorage.setItem("bindrunes_user", JSON.stringify(user));
+				localStorage.setItem("urupe-ui_user", JSON.stringify(user));
 			} catch {}
 		}
 	},
 	clearUser: () => {
 		if (isBrowser) {
 			try {
-				localStorage.removeItem("bindrunes_user");
+				localStorage.removeItem("urupe-ui_user");
 			} catch {}
 		}
 	},
@@ -72,7 +72,7 @@ const DEFAULT_STORAGE: AuthStorage = {
  *
  * Usage:
  * <script>
- *   import { useAuth } from 'bindrunes';
+ *   import { useAuth } from 'urupe-ui';
  *   const auth = useAuth({ storage: { getToken, setToken, clearToken } });
  * </script>
  *
