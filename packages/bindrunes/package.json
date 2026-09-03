@@ -155,7 +155,7 @@
 		"@storybook/addon-themes": "^8.6.0",
 		"@storybook/addon-viewport": "^8.6.0",
 		"@storybook/svelte": "^8.6.0",
-		"@storybook/svelte-vite": "^8.6.0",
+		"@storybook/svelte-vite": "^10.5.4",
 		"@sveltejs/package": "^2.5.8",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/vite": "^4.3.1",
