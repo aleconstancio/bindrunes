@@ -153,7 +153,7 @@
 		"@storybook/addon-a11y": "^8.6.0",
 		"@storybook/addon-essentials": "^8.6.0",
 		"@storybook/addon-themes": "^8.6.0",
-		"@storybook/addon-viewport": "^8.6.0",
+		"@storybook/addon-viewport": "^9.0.8",
 		"@storybook/svelte": "^8.6.0",
 		"@storybook/svelte-vite": "^8.6.0",
 		"@sveltejs/package": "^2.5.8",
